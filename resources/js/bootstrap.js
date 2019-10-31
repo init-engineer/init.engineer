@@ -2,8 +2,8 @@
  * This bootstrap file is used for both frontend and backend
  */
 
-import _ from 'lodash'
-import axios from 'axios'
+import _ from 'lodash';
+import axios from 'axios';
 import Swal from 'sweetalert2';
 import $ from 'jquery';
 import 'popper.js'; // Required for BS4
@@ -26,8 +26,27 @@ window._ = _; // Lodash
  */
 
 window.axios = require('axios');
-
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
+/**
+ * Next we will register the CSRF Token as a common header with Axios so that
+ * all outgoing HTTP requests automatically have it attached. This is just
+ * a simple convenience so we don't have to attach every token manually.
+ */
+
+const csrf_token = document.head.querySelector('meta[name="csrf-token"]');
+if (csrf_token) {
+  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = csrf_token.content;
+} else {
+  console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+}
+
+const api_token = document.head.querySelector('meta[name="authorization"]');
+if (api_token) {
+  window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + api_token.content;
+} else {
+  console.error('Authorization token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+}
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
@@ -40,8 +59,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 // window.Pusher = require('pusher-js');
 
 // window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: process.env.MIX_PUSHER_APP_KEY,
-//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-//     encrypted: true
+//   broadcaster: 'pusher',
+//   key: process.env.MIX_PUSHER_APP_KEY,
+//   cluster: process.env.MIX_PUSHER_APP_CLUSTER,
+//   encrypted: true
 // });
