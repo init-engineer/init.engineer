@@ -12,6 +12,18 @@ if (! function_exists('app_name')) {
     }
 }
 
+if (! function_exists('app_imgur')) {
+    /**
+     * Helper to grab the application imgur.
+     *
+     * @return mixed
+     */
+    function app_imgur()
+    {
+        return config('app.imgur');
+    }
+}
+
 if (! function_exists('gravatar')) {
     /**
      * Access the gravatar helper.
