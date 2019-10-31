@@ -158,11 +158,11 @@ return [
             'profile' => [
                 'avatar' => '头像',
                 'created_at' => '创建于',
-                'edit_information' => '编辑信息',
+                'edit_information' => '编辑訊息',
                 'email' => '电子邮件',
                 'last_updated' => '最后更新',
                 'name' => '名称',
-                'update_information' => '更新信息',
+                'update_information' => '更新訊息',
             ],
         ],
     ],

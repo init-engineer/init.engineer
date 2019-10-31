@@ -15,9 +15,11 @@ return [
     'backend' => [
         'access' => [
             'users' => [
-                'delete_user_confirm' => '您確定要永久刪除此用戶嗎？引用此用戶ID的應用程序中的任何地方都很可能是錯誤。繼續自行承擔風險。這不能被撤消。 ',
+                'delete_user_confirm' => '您確定要永久刪除此使用者嗎？引用此使用者ID的應用程序中的任何地方都很可能是錯誤。繼續自行承擔風險。這不能被撤消。',
                 'if_confirmed_off' => '(確認關閉)',
-                'restore_user_confirm' => '將此用戶恢復到其原始狀態？ ',
+                'no_deactivated' => 'There are no deactivated users.',
+                'no_deleted' => 'There are no deleted users.',
+                'restore_user_confirm' => '將此使用者恢復到其原始狀態？ ',
             ],
         ],
 
@@ -27,8 +29,8 @@ return [
         ],
 
         'general' => [
-            'all_rights_reserved' => '保留所有權利。 ',
-            'are_you_sure' => '你確定嗎？ ',
+            'all_rights_reserved' => '保留所有權利。',
+            'are_you_sure' => '您確定嗎？ ',
             'boilerplate_link' => 'Laravel Boilerplate',
             'continue' => '繼續',
             'member_since' => '會員自',
@@ -50,13 +52,13 @@ return [
             'you_have' => [
                 'messages' => '{0} 您沒有消息|{1} 您有1個消息|[2,Inf] 您有 :number 個消息',
                 'notifications' => '{0} 您沒有通知|{1} 您有1個通知|[2,Inf] 您有 :number 個通知',
-                'tasks' => '{0} 你沒有任務|{1} 你有1個任務|[2,Inf] 你有 :number 個任務',
+                'tasks' => '{0} 您沒有任務|{1} 您有1個任務|[2,Inf] 您有 :number 個任務',
             ],
         ],
 
         'search' => [
-            'empty' => '請輸入搜索字詞。 ',
-            'incomplete' => '您必須為此系統編寫您自己的搜索邏輯。 ',
+            'empty' => '請輸入搜索字詞。',
+            'incomplete' => '您必須為此系統編寫您自己的搜索邏輯。',
             'title' => '搜索結果',
             'results' => '搜索結果 :query',
         ],
@@ -68,17 +70,17 @@ return [
         'auth' => [
             'account_confirmed' => 'Your account has been confirmed.',
             'error' => 'Whoops!',
-            'greeting' => '你好!',
+            'greeting' => '您好!',
             'regards' => '問候,',
             'trouble_clicking_button' => '如果您在點擊 ":action_text" 按鈕時遇到問題, 請將以下網址複製並粘貼到您的網絡瀏覽器中:',
             'thank_you_for_using_app' => '謝謝您使用我們的應用程序！ ',
 
             'password_reset_subject' => '重置密碼',
-            'password_cause_of_email' => '您收到此電子郵件是因為我們收到了您帳戶的密碼重設要求',
+            'password_cause_of_email' => '您收到此電子信箱(E-mail)是因為我們收到了您帳號的密碼重設要求',
             'password_if_not_requested' => '如果您沒有請求重置密碼，則無需進一步操作',
             'reset_password' => '點擊這裡重置密碼',
 
-            'click_to_confirm' => '點擊此處確認您的帳戶:',
+            'click_to_confirm' => '點擊此處確認您的帳號:',
         ],
 
         'contact' => [
