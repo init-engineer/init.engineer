@@ -23,7 +23,15 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel '.app()->version().' Boilerplate'),
+    'name' => env('APP_NAME', sprintf('Laravel %s Boilerplate', app()->version())),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Image Storage Imgur
+    |--------------------------------------------------------------------------
+    */
+
+    'imgur' => env('APP_IMGUR', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -201,6 +209,10 @@ return [
         App\Providers\HelperServiceProvider::class,
         App\Providers\ObserverServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
+        /**
+         * Custom Providers
+         */
     ],
 
     /*
@@ -250,5 +262,10 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+        /**
+         * Custom Aliases
+         */
+        'Facebook' => Vinkla\Facebook\Facades\Facebook::class,
     ],
 ];
