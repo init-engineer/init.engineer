@@ -1,13 +1,65 @@
 @import "../global";
 
-// Fonts
+/**
+ * Fonts
+ */
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
-// Bootstrap Overrides
+/**
+ * Bootstrap Overrides
+ */
 @import 'variables';
 
-// Bootstrap
+/**
+ * Bootstrap
+ */
 @import '~bootstrap/scss/bootstrap';
 
-// Pages
+/**
+ * Base
+ */
+@import 'base/reset';
+@import 'base/basic';
+@import 'base/float';
+@import 'base/typography';
+
+/**
+ * Components
+ */
+@import 'components/buttons';
+@import 'components/carousel';
+@import 'components/cover';
+@import 'components/dropdown';
+@import 'components/navigation';
+
+/**
+ * Helpers
+ */
+@import 'helpers/functions';
+@import 'helpers/helpers';
+@import 'helpers/mixins';
+@import 'helpers/variables';
+@import 'helpers/skins';
+
+/**
+ * Layout
+ */
+@import 'layout/footer';
+@import 'layout/forms';
+@import 'layout/grid';
+@import 'layout/header';
+@import 'layout/navbar';
+@import 'layout/sidebar';
+
+/**
+ * Pages
+ */
+@import 'pages/contact';
 @import 'pages/dashboard';
+@import 'pages/home';
+@import 'pages/index';
+
+/**
+ * Themes
+ */
+@import 'themes/theme';
