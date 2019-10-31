@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
 /**
@@ -33,6 +34,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        /**
+         * Fix for MySQL < 5.7.7 and MariaDB < 10.2.2
+         * https://laravel.com/docs/master/migrations#creating-indexes
+         *
+         * Answer: https://github.com/laravel/framework/issues/27806
+         */
+        Schema::defaultStringLength(191);
+
         /*
          * Application locale defaults for various components
          *
@@ -58,9 +67,10 @@ class AppServiceProvider extends ServiceProvider
         }
 
         // Force SSL in production
-        /*if ($this->app->environment() === 'production') {
-            URL::forceScheme('https');
-        }*/
+        if ($this->app->environment() === 'production')
+        {
+            \URL::forceScheme('https');
+        }
 
         // Set the default template for Pagination to use the included Bootstrap 4 template
         \Illuminate\Pagination\AbstractPaginator::defaultView('pagination::bootstrap-4');
