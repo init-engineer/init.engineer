@@ -26,7 +26,7 @@
                 @if (app_imgur())
                     <img src="https://i.imgur.com/vznInUz.png" class="d-block w-100" alt="你是工程師嗎">
                 @else
-                    <img src="{{ asset("img/frontend/background/main_carousel_smail.png") }}" class="d-block w-100" alt="你是工程師嗎">
+                    <img src="{{ asset("img/frontend/background/vznInUz.png") }}" class="d-block w-100" alt="你是工程師嗎">
                 @endif
                 <div class="carousel-caption text-left text-dark">
                     <h3 class="text-stroke">純靠北工程師</h3>
@@ -89,7 +89,7 @@
                             <i class="fas fa-dog blue-text fa-2x"></i>
                         </div><!-- Grid column -->
                         <div class="col-lg-10 col-md-9 col-10"><!-- Grid column -->
-                            <h4 class="font-weight-bold">交朋友</h4>
+                            <h4 class="font-weight-bold">汪汪汪汪汪汪</h4>
                             <p class="grey-text">汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪</p>
                             <a class="btn btn-primary btn-sm">汪？</a>
                         </div><!-- Grid column -->
@@ -102,7 +102,7 @@
                             <i class="fas fa-cat pink-text fa-2x"></i>
                         </div><!-- Grid column -->
                         <div class="col-lg-10 col-md-9 col-10"><!-- Grid column -->
-                            <h4 class="font-weight-bold">沒朋友</h4>
+                            <h4 class="font-weight-bold">喵喵喵喵喵喵</h4>
                             <p class="grey-text">喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵</p>
                             <a class="btn btn-primary btn-sm">喵？</a>
                         </div><!-- Grid column -->
@@ -112,12 +112,12 @@
                 <div class="col-md-4"><!-- Grid column -->
                     <div class="row"><!-- Grid row -->
                         <div class="col-lg-2 col-md-3 col-2"><!-- Grid column -->
-                            <i class="fas fa-tachometer-alt purple-text fa-2x"></i>
+                            <i class="fas fa-bug purple-text fa-2x"></i>
                         </div><!-- Grid column -->
                         <div class="col-lg-10 col-md-9 col-10"><!-- Grid column -->
-                            <h4 class="font-weight-bold">Support</h4>
-                            <p class="grey-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-                            <a class="btn btn-primary btn-sm">Learn more</a>
+                            <h4 class="font-weight-bold">哞哞哞哞哞哞</h4>
+                            <p class="grey-text">哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞</p>
+                            <a class="btn btn-primary btn-sm">哞？</a>
                         </div><!-- Grid column -->
                     </div><!-- Grid row -->
                 </div><!-- Grid column -->

@@ -22,7 +22,13 @@
                 <!-- Content -->
                 <h6 class="text-white font-weight-bold">關於本站</h6>
                 <hr class="bg-white accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 32px;">
-                <p><img class="img-fluid rounded w-100" src="{{ asset('/img/frontend/background/就看你能多有梗.png') }}" alt="就看你能多有梗" /></p>
+                <p>
+                    @if (app_imgur())
+                        <img class="img-fluid rounded w-100" src="https://i.imgur.com/WsOFRId.png" alt="就看你能多有梗" />
+                    @else
+                        <img class="img-fluid rounded w-100" src="{{ asset('/img/frontend/background/WsOFRId.png') }}" alt="就看你能多有梗" />
+                    @endif
+                </p>
             </div>
 
             <!-- Grid column -->
