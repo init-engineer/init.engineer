@@ -5,7 +5,7 @@
 
 這是一項純靠北工程師 `v3.0` 的專案，原本計畫寫完再開源出來，但還沒寫完就在那邊公開了，有夠自肥自大的。
 
-身為閱讀者的你，也是可以一起享受這份喜悅這份快樂的，你只要依照 `README.md` 的 `安裝` 步驟，基本上應該可以把這網站架起來，如果沒意外的話啦，然後看看首頁乾乾過癮。
+身為閱讀者的你，也是可以一起享受這份喜悅這份快樂的，你只要依照 `README.md` 的[安裝](https://github.com/Kantai235/init.engineer#安裝)步驟，基本上應該可以把這網站架起來，如果沒意外的話啦，然後看看首頁乾乾過癮。
 
 或者是你也可以參與這項專案，來教我寫程式，我不會寫程式，嗚嗚嗚。
 
@@ -52,7 +52,7 @@ php artisan storage:link
 ```
 
 8. 如果這樣子你還是架設不起來，那你可以參考其他篇教學文章。
-[Laravel Boilerplate | Quick Start](http://laravel-boilerplate.com/6.0/start.html)
-[如何建置這個平臺？ · Kantai235/kaobei.opendata Wiki · GitHub](https://github.com/Kantai235/kaobei.opendata/wiki/%E5%A6%82%E4%BD%95%E5%BB%BA%E7%BD%AE%E9%80%99%E5%80%8B%E5%B9%B3%E8%87%BA%EF%BC%9F)
+- [Laravel Boilerplate | Quick Start](http://laravel-boilerplate.com/6.0/start.html)
+- [如何建置這個平臺？ · Kantai235/kaobei.opendata Wiki · GitHub](https://github.com/Kantai235/kaobei.opendata/wiki/%E5%A6%82%E4%BD%95%E5%BB%BA%E7%BD%AE%E9%80%99%E5%80%8B%E5%B9%B3%E8%87%BA%EF%BC%9F)
 
 Have fun :)
