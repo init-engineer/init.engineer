@@ -9,7 +9,7 @@
                 @if (app_imgur())
                     <img src="https://i.imgur.com/rlaVme5.png" class="d-block w-100" alt="你是工程師嗎">
                 @else
-                    <img src="{{ asset("img/frontend/background/main_carousel.png") }}" class="d-block w-100" alt="你是工程師嗎">
+                    <img src="{{ asset("img/frontend/background/rlaVme5.png") }}" class="d-block w-100" alt="你是工程師嗎">
                 @endif
                 <div class="carousel-caption text-left mb-5 pb-5 text-dark">
                     <h1 class="text-black-stroke display-3">純靠北工程師</h1>
