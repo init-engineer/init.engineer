@@ -25,7 +25,8 @@
         "qlurk/qlurk": "^0.2.2",
         "spatie/laravel-html": "^2.22",
         "spatie/laravel-permission": "^3.0",
-        "torann/geoip": "^1.0"
+        "torann/geoip": "^1.0",
+        "vinkla/facebook": "^4.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
