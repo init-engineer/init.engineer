@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "23146a9be5602a7a358621b2a07a5790",
+    "content-hash": "712b1fdb058afee73a769ad86b210ea2",
     "packages": [
         {
             "name": "albertcht/invisible-recaptcha",
@@ -329,6 +329,53 @@
                 "support"
             ],
             "time": "2019-10-02T18:20:38+00:00"
+        },
+        {
+            "name": "atymic/laravel-twitter",
+            "version": "2.2.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/atymic/laravel-twitter.git",
+                "reference": "286fc17c849d3f086a364177bd6e8b5bda3a5f6b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/atymic/laravel-twitter/zipball/286fc17c849d3f086a364177bd6e8b5bda3a5f6b",
+                "reference": "286fc17c849d3f086a364177bd6e8b5bda3a5f6b",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5.5 || ~6.0",
+                "php": ">7.2",
+                "themattharris/tmhoauth": "0.8.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Thujohn\\Twitter": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "atymic",
+                    "email": "atymicq@gmail.com"
+                }
+            ],
+            "description": "Twitter API for Laravel",
+            "keywords": [
+                "laravel",
+                "laravel5",
+                "laravel6",
+                "twitter"
+            ],
+            "time": "2019-10-27T01:04:24+00:00"
         },
         {
             "name": "creativeorange/gravatar",
@@ -4606,6 +4653,48 @@
                 "dump"
             ],
             "time": "2019-10-04T19:48:13+00:00"
+        },
+        {
+            "name": "themattharris/tmhoauth",
+            "version": "0.8.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/themattharris/tmhOAuth.git",
+                "reference": "455552d6c57549632644b6c9ac9204766be2b5ee"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/themattharris/tmhOAuth/zipball/455552d6c57549632644b6c9ac9204766be2b5ee",
+                "reference": "455552d6c57549632644b6c9ac9204766be2b5ee",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "tmhOAuth": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "themattharris",
+                    "email": "matt@themattharris.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "An OAuth library written in PHP by @themattharris",
+            "keywords": [
+                "oauth",
+                "twitter"
+            ],
+            "time": "2014-08-06T22:29:35+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
