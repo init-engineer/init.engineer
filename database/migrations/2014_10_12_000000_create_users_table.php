@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('avatar_type')->default('gravatar');
             $table->string('avatar_location')->nullable();
             $table->string('password')->nullable();
+            $table->string('api_token', 60)->unique()->nullable()->default(null);
             $table->timestamp('password_changed_at')->nullable();
             $table->unsignedTinyInteger('active')->default(1);
             $table->string('confirmation_code')->nullable();

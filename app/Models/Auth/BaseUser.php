@@ -47,6 +47,7 @@ abstract class BaseUser extends Authenticatable implements Recordable
         'last_login_at',
         'last_login_ip',
         'to_be_logged_out',
+        'api_token',
     ];
 
     /**
@@ -83,6 +84,7 @@ abstract class BaseUser extends Authenticatable implements Recordable
      */
     protected $hidden = [
         'password',
+        'api_token',
         'remember_token',
     ];
 

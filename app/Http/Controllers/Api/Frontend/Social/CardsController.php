@@ -49,9 +49,7 @@ class CardsController extends Controller
         $cards->setPaginator(new IlluminatePaginatorAdapter($paginator));
         $response = $this->fractal->createData($cards);
 
-        return view('frontend.index')
-            ->withJSON($response->toArray());
-        // return response()->json($response->toArray());
+        return response()->json($response->toArray());
     }
 
     /**

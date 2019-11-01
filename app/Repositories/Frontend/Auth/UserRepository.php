@@ -102,6 +102,7 @@ class UserRepository extends BaseRepository
                 'password' => $data['password'],
                 // If users require approval or needs to confirm email
                 'confirmed' => ! (config('access.users.requires_approval') || config('access.users.confirm_email')),
+                'api_token' => Str::random(60),
             ]);
 
             if ($user) {
