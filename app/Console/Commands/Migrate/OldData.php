@@ -89,7 +89,18 @@ class OldData extends Command
              */
             if ($_card = $this->cardsRepository->findById($_old_card->id))
             {
-                $card = $_card;
+                $card = $this->cardsRepository->update($_card, [
+                    'id' => $_old_card->id,
+                    'user_id' => $_old_card->user_id,
+                    'content' => $_old_card->content,
+                    'active' => $_old_card->active,
+                    'is_banned' => isset($_old_card->deleted_at)? true : false,
+                    'banned_user_id' => $_old_card->deleted_by_who,
+                    'banned_remarks' => $_old_card->deleted_of_what,
+                    'created_at' => $_old_card->created_at,
+                    'updated_at' => $_old_card->updated_at,
+                    'deleted_at' => $_old_card->deleted_at,
+                ]);
             }
             else
             {
@@ -101,6 +112,9 @@ class OldData extends Command
                     'is_banned' => isset($_old_card->deleted_at)? true : false,
                     'banned_user_id' => $_old_card->deleted_by_who,
                     'banned_remarks' => $_old_card->deleted_of_what,
+                    'created_at' => $_old_card->created_at,
+                    'updated_at' => $_old_card->updated_at,
+                    'deleted_at' => $_old_card->deleted_at,
                 ]);
             }
 
@@ -109,7 +123,18 @@ class OldData extends Command
              */
             if ($_image = $this->imagesRepository->findById($_old_card->image->id))
             {
-                $image = $_image;
+                $image = $this->imagesRepository->update($_image, [
+                    'id' => $_old_card->image->id,
+                    'card_id' => $card->id,
+                    'user_id' => $_old_card->image->user_id,
+                    'avatar_path' => $_old_card->image->file_path,
+                    'avatar_name' => $_old_card->image->file_name,
+                    'avatar_type' => $_old_card->image->file_type,
+                    'active' => $_old_card->image->active,
+                    'created_at' => $_old_card->image->created_at,
+                    'updated_at' => $_old_card->image->updated_at,
+                    'deleted_at' => $_old_card->image->deleted_at,
+                ]);
             }
             else
             {
@@ -121,6 +146,9 @@ class OldData extends Command
                     'avatar_name' => $_old_card->image->file_name,
                     'avatar_type' => $_old_card->image->file_type,
                     'active' => $_old_card->image->active,
+                    'created_at' => $_old_card->image->created_at,
+                    'updated_at' => $_old_card->image->updated_at,
+                    'deleted_at' => $_old_card->image->deleted_at,
                 ]);
             }
 
@@ -133,7 +161,22 @@ class OldData extends Command
                 {
                     if ($__facebook_new_card = $this->mediaCardsRepository->findByCardId($card->id, 'facebook', 'secondary'))
                     {
-                        $_facebook_new_card = $__facebook_new_card;
+                        $_facebook_new_card = $this->mediaCardsRepository->update($__facebook_new_card, [
+                            'card_id' => $card->id,
+                            'user_id' => $_old_card->user_id,
+                            'social_type' => 'facebook',
+                            'social_connections' => 'secondary',
+                            'social_card_id' => $_old_card->facebook_new_card_id,
+                            'num_like' => $_old_card->facebook_new_card_like,
+                            'num_share' => $_old_card->facebook_new_card_share,
+                            'active' => $_old_card->facebook_new_card_active,
+                            'is_banned' => $_old_card->facebook_new_card_active,
+                            'banned_user_id' => $_old_card->deleted_by_who,
+                            'banned_remarks' => $_old_card->deleted_of_what,
+                            'created_at' => $_old_card->created_at,
+                            'updated_at' => $_old_card->updated_at,
+                            'deleted_at' => $_old_card->deleted_at,
+                        ]);
                     }
                     else
                     {
@@ -149,6 +192,9 @@ class OldData extends Command
                             'is_banned' => $_old_card->facebook_new_card_active,
                             'banned_user_id' => $_old_card->deleted_by_who,
                             'banned_remarks' => $_old_card->deleted_of_what,
+                            'created_at' => $_old_card->created_at,
+                            'updated_at' => $_old_card->updated_at,
+                            'deleted_at' => $_old_card->deleted_at,
                         ]);
                     }
                 }
@@ -163,7 +209,22 @@ class OldData extends Command
                 {
                     if ($__facebook_old_card = $this->mediaCardsRepository->findByCardId($card->id, 'facebook', 'primary'))
                     {
-                        $_facebook_old_card = $__facebook_old_card;
+                        $_facebook_old_card = $this->mediaCardsRepository->update($__facebook_old_card, [
+                            'card_id' => $card->id,
+                            'user_id' => $_old_card->user_id,
+                            'social_type' => 'facebook',
+                            'social_connections' => 'primary',
+                            'social_card_id' => $_old_card->facebook_old_card_id,
+                            'num_like' => $_old_card->facebook_old_card_like,
+                            'num_share' => $_old_card->facebook_old_card_share,
+                            'active' => $_old_card->facebook_old_card_active,
+                            'is_banned' => $_old_card->facebook_old_card_active,
+                            'banned_user_id' => $_old_card->deleted_by_who,
+                            'banned_remarks' => $_old_card->deleted_of_what,
+                            'created_at' => $_old_card->created_at,
+                            'updated_at' => $_old_card->updated_at,
+                            'deleted_at' => $_old_card->deleted_at,
+                        ]);
                     }
                     else
                     {
@@ -179,6 +240,9 @@ class OldData extends Command
                             'is_banned' => $_old_card->facebook_old_card_active,
                             'banned_user_id' => $_old_card->deleted_by_who,
                             'banned_remarks' => $_old_card->deleted_of_what,
+                            'created_at' => $_old_card->created_at,
+                            'updated_at' => $_old_card->updated_at,
+                            'deleted_at' => $_old_card->deleted_at,
                         ]);
                     }
                 }
@@ -193,7 +257,22 @@ class OldData extends Command
                 {
                     if ($__twitter_card = $this->mediaCardsRepository->findByCardId($card->id, 'twitter', 'primary'))
                     {
-                        $_twitter_card = $__twitter_card;
+                        $_twitter_card = $this->mediaCardsRepository->update($__twitter_card, [
+                            'card_id' => $card->id,
+                            'user_id' => $_old_card->user_id,
+                            'social_type' => 'twitter',
+                            'social_connections' => 'primary',
+                            'social_card_id' => $_old_card->twitter_card_id,
+                            'num_like' => $_old_card->twitter_card_like,
+                            'num_share' => $_old_card->twitter_card_share,
+                            'active' => $_old_card->twitter_card_active,
+                            'is_banned' => $_old_card->twitter_card_active,
+                            'banned_user_id' => $_old_card->deleted_by_who,
+                            'banned_remarks' => $_old_card->deleted_of_what,
+                            'created_at' => $_old_card->created_at,
+                            'updated_at' => $_old_card->updated_at,
+                            'deleted_at' => $_old_card->deleted_at,
+                        ]);
                     }
                     else
                     {
@@ -209,6 +288,9 @@ class OldData extends Command
                             'is_banned' => $_old_card->twitter_card_active,
                             'banned_user_id' => $_old_card->deleted_by_who,
                             'banned_remarks' => $_old_card->deleted_of_what,
+                            'created_at' => $_old_card->created_at,
+                            'updated_at' => $_old_card->updated_at,
+                            'deleted_at' => $_old_card->deleted_at,
                         ]);
                     }
                 }
@@ -223,7 +305,22 @@ class OldData extends Command
                 {
                     if ($__plurk_card = $this->mediaCardsRepository->findByCardId($card->id, 'plurk', 'primary'))
                     {
-                        $_plurk_card = $__plurk_card;
+                        $_plurk_card = $this->mediaCardsRepository->update($__plurk_card, [
+                            'card_id' => $card->id,
+                            'user_id' => $_old_card->user_id,
+                            'social_type' => 'plurk',
+                            'social_connections' => 'primary',
+                            'social_card_id' => $_old_card->plurk_card_id,
+                            'num_like' => $_old_card->plurk_card_like,
+                            'num_share' => $_old_card->plurk_card_share,
+                            'active' => $_old_card->plurk_card_active,
+                            'is_banned' => $_old_card->plurk_card_active,
+                            'banned_user_id' => $_old_card->deleted_by_who,
+                            'banned_remarks' => $_old_card->deleted_of_what,
+                            'created_at' => $_old_card->created_at,
+                            'updated_at' => $_old_card->updated_at,
+                            'deleted_at' => $_old_card->deleted_at,
+                        ]);
                     }
                     else
                     {
@@ -239,6 +336,9 @@ class OldData extends Command
                             'is_banned' => $_old_card->plurk_card_active,
                             'banned_user_id' => $_old_card->deleted_by_who,
                             'banned_remarks' => $_old_card->deleted_of_what,
+                            'created_at' => $_old_card->created_at,
+                            'updated_at' => $_old_card->updated_at,
+                            'deleted_at' => $_old_card->deleted_at,
                         ]);
                     }
                 }
@@ -262,7 +362,23 @@ class OldData extends Command
                             $_old_comment->social_user_id,
                             $_old_comment->content))
                         {
-                            $_facebook_new_comment = $__facebook_new_comment;
+                            $_facebook_new_comment = $this->commentsRepository->update($__facebook_new_comment, [
+                                'card_id' => $card->id,
+                                'media_id' => $_facebook_new_card->id,
+                                'media_comment_id' => $_old_comment->social_comment_id,
+                                'user_id' => $_old_comment->social_user_id,
+                                'user_name' => $_old_comment->social_user_name,
+                                'user_avatar' => $_old_comment->avatar_url,
+                                'content' => $_old_comment->content,
+                                'active' => true,
+                                'reply_media_comment_id' => $_old_comment->reply_by,
+                                'is_banned' => false,
+                                'banned_user_id' => null,
+                                'banned_remarks' => null,
+                                'created_at' => $_old_comment->created_at,
+                                'updated_at' => $_old_comment->updated_at,
+                                'deleted_at' => $_old_comment->deleted_at,
+                            ]);
                         }
                         else
                         {
@@ -279,6 +395,9 @@ class OldData extends Command
                                 'is_banned' => false,
                                 'banned_user_id' => null,
                                 'banned_remarks' => null,
+                                'created_at' => $_old_comment->created_at,
+                                'updated_at' => $_old_comment->updated_at,
+                                'deleted_at' => $_old_comment->deleted_at,
                             ]);
                         }
                         break;
@@ -294,7 +413,23 @@ class OldData extends Command
                             $_old_comment->social_user_id,
                             $_old_comment->content))
                         {
-                            $_facebook_old_comment = $__facebook_old_comment;
+                            $_facebook_old_comment = $this->commentsRepository->update($__facebook_old_comment, [
+                                'card_id' => $card->id,
+                                'media_id' => $_facebook_old_card->id,
+                                'media_comment_id' => $_old_comment->social_comment_id,
+                                'user_id' => $_old_comment->social_user_id,
+                                'user_name' => $_old_comment->social_user_name,
+                                'user_avatar' => $_old_comment->avatar_url,
+                                'content' => $_old_comment->content,
+                                'active' => true,
+                                'reply_media_comment_id' => $_old_comment->reply_by,
+                                'is_banned' => false,
+                                'banned_user_id' => null,
+                                'banned_remarks' => null,
+                                'created_at' => $_old_comment->created_at,
+                                'updated_at' => $_old_comment->updated_at,
+                                'deleted_at' => $_old_comment->deleted_at,
+                            ]);
                         }
                         else
                         {
@@ -311,6 +446,9 @@ class OldData extends Command
                                 'is_banned' => false,
                                 'banned_user_id' => null,
                                 'banned_remarks' => null,
+                                'created_at' => $_old_comment->created_at,
+                                'updated_at' => $_old_comment->updated_at,
+                                'deleted_at' => $_old_comment->deleted_at,
                             ]);
                         }
                         break;
@@ -326,7 +464,22 @@ class OldData extends Command
                             $_old_comment->social_user_id,
                             $_old_comment->content))
                         {
-                            $_platform_comment = $__platform_comment;
+                            $_platform_comment = $this->commentsRepository->update($__platform_comment, [
+                                'card_id' => $card->id,
+                                'media_id' => null,
+                                'media_comment_id' => null,
+                                'user_id' => $_old_comment->social_user_id,
+                                'user_name' => $_old_comment->social_user_name,
+                                'user_avatar' => $_old_comment->avatar_url,
+                                'content' => $_old_comment->content,
+                                'active' => true,
+                                'is_banned' => false,
+                                'banned_user_id' => null,
+                                'banned_remarks' => null,
+                                'created_at' => $_old_comment->created_at,
+                                'updated_at' => $_old_comment->updated_at,
+                                'deleted_at' => $_old_comment->deleted_at,
+                            ]);
                         }
                         else
                         {
@@ -342,6 +495,9 @@ class OldData extends Command
                                 'is_banned' => false,
                                 'banned_user_id' => null,
                                 'banned_remarks' => null,
+                                'created_at' => $_old_comment->created_at,
+                                'updated_at' => $_old_comment->updated_at,
+                                'deleted_at' => $_old_comment->deleted_at,
                             ]);
                         }
                         break;
@@ -357,7 +513,22 @@ class OldData extends Command
                             $_old_comment->social_user_id,
                             $_old_comment->content))
                         {
-                            $_plurk_comment = $__plurk_comment;
+                            $_plurk_comment = $this->commentsRepository->update($__plurk_comment, [
+                                'card_id' => $card->id,
+                                'media_id' => $_plurk_card->id,
+                                'media_comment_id' => $_old_comment->social_comment_id,
+                                'user_id' => $_old_comment->social_user_id,
+                                'user_name' => $_old_comment->social_user_name,
+                                'user_avatar' => $_old_comment->avatar_url,
+                                'content' => $_old_comment->content,
+                                'active' => true,
+                                'is_banned' => false,
+                                'banned_user_id' => null,
+                                'banned_remarks' => null,
+                                'created_at' => $_old_comment->created_at,
+                                'updated_at' => $_old_comment->updated_at,
+                                'deleted_at' => $_old_comment->deleted_at,
+                            ]);
                         }
                         else
                         {
@@ -373,6 +544,9 @@ class OldData extends Command
                                 'is_banned' => false,
                                 'banned_user_id' => null,
                                 'banned_remarks' => null,
+                                'created_at' => $_old_comment->created_at,
+                                'updated_at' => $_old_comment->updated_at,
+                                'deleted_at' => $_old_comment->deleted_at,
                             ]);
                         }
                         break;

@@ -32,7 +32,7 @@ class Cards extends Model
      *
      * @var bool
      */
-    public $timestamps = true;
+    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.
@@ -47,6 +47,9 @@ class Cards extends Model
         'is_banned',
         'banned_user_id',
         'banned_remarks',
+        'created_at',
+        'updated_at',
+        'deleted_at',
     ];
 
     /**

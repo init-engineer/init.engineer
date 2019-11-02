@@ -28,8 +28,9 @@ class Cards extends Model
      *
      * @var bool
      */
-    public $timestamps = true;
+    public $timestamps = false;
 
+    
     /**
      * Get the image with the model.
      *
