@@ -8,6 +8,14 @@ namespace App\Models\Social\Traits\Attribute;
 trait ImagesAttribute
 {
     /**
+     * @return Storage
+     */
+    public function getFileAttribute()
+    {
+        return $this->getFile();
+    }
+
+    /**
      * @return mixed
      */
     public function getPictureAttribute()
