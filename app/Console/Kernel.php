@@ -16,7 +16,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        \App\Console\Commands\Backup\Database::class,
     ];
 
     /**
@@ -26,7 +26,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        /**
+         * 自動化 資料庫備份
+         */
+        $schedule->command('backup:database')->daily()->at('23:00');
     }
 
     /**
