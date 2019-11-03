@@ -267,5 +267,6 @@ return [
          * Custom Aliases
          */
         'Facebook' => Vinkla\Facebook\Facades\Facebook::class,
+        'Twitter' => ReliqArts\Thujohn\Twitter\Facades\Twitter::class,
     ],
 ];

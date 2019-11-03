@@ -23,6 +23,7 @@
         "laravel/socialite": "^4.1",
         "league/fractal": "^0.18.0",
         "qlurk/qlurk": "^0.2.2",
+        "reliqarts/thujohn-twitter": "^2.2",
         "spatie/laravel-html": "^2.22",
         "spatie/laravel-permission": "^3.0",
         "torann/geoip": "^1.0",
