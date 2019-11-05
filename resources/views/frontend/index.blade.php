@@ -28,8 +28,8 @@
                 @else
                     <img src="{{ asset("img/frontend/background/vznInUz.png") }}" class="d-block w-100" alt="你是工程師嗎">
                 @endif
-                <div class="carousel-caption text-left text-dark">
-                    <h3 class="text-stroke">純靠北工程師</h3>
+                <div class="carousel-caption text-left mb-5 text-dark">
+                    <h3 class="text-black-stroke">純靠北工程師</h3>
                     <a class="btn btn-warning btn-md shake-slow shake-constant shake-constant--hover" href="#" role="button">開始去發廢文 <i class="fas fa-poop"></i></a>
                 </div>
             </div>
