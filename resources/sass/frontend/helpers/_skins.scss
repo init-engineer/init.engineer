@@ -29,6 +29,12 @@
 .bg-black {   background-color: $black; }
 
 /**
+ * Backgrounds Images
+ */
+.bg-img-star { background-image: url('../../../../public/img/frontend/background/background-star.gif'); }
+.bg-img-rock { background-image: url('../../../../public/img/frontend/background/background-rock.jpg'); }
+
+/**
  * Colors
  */
 .navy {       color: $navy; }
