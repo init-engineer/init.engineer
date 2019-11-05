@@ -1,5 +1,10 @@
-<nav class="navbar navbar-expand-lg navbar-full-bg navbar-dark bg-black pt-0 pb-0">
-    <a href="{{ route('frontend.index') }}" class="navbar-brand">{{ app_name() }}</a>
+<nav class="navbar navbar-expand-lg navbar-full-bg navbar-dark bg-black fixed-top pt-0 pb-0">
+    <div>
+        <a href="{{ route('frontend.index') }}" class="navbar-brand">{{ app_name() }}</a>
+        <a class="mr-2" href="{{ env('FACEBOOK_PRIMARY_SOCIAL_URL') }}"><img src="https://image.flaticon.com/icons/svg/220/220200.svg" alt="Facebook" class="rounded" width="30" height="30"></a>
+        <a class="mr-2" href="{{ env('TWITTER_SOCIAL_URL') }}"><img src="https://image.flaticon.com/icons/svg/124/124021.svg" alt="Twitter" class="rounded" width="30" height="30"></a>
+        <a class="mr-2" href="{{ env('PLURK_SOCIAL_URL') }}"><img src="https://image.flaticon.com/icons/svg/124/124026.svg" alt="Plurk" class="rounded" width="30" height="30"></a>
+    </div>
 
     <button class="navbar-toggler navbar-toggler-right border-0 collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="@lang('labels.general.toggle_navigation')">
         <span class="navbar-toggler-icon icon-bar top-bar"></span>
