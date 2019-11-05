@@ -4,6 +4,39 @@
 
 button {
 
-    
+    &.btn-bitbucket {                       color: white;       background-color: #274970; }
+    &.btn-bitbucket:hover {                 color: darkgrey;    background-color: #192F48; }
+    &.btn-facebook {                        color: white;       background-color: #3B5998; }
+    &.btn-facebook:hover {                  color: darkgrey;    background-color: #263961; }
+    &.btn-google {                          color: white;       background-color: #D34836; }
+    &.btn-google:hover {                    color: darkgrey;    background-color: #872E23; }
+    &.btn-github {                          color: white;       background-color: #464646; }
+    &.btn-github:hover {                    color: darkgrey;    background-color: #2D2D2D; }
+    &.btn-linkedin {                        color: white;       background-color: #0077B5; }
+    &.btn-linkedin:hover {                  color: darkgrey;    background-color: #004C74; }
+    &.btn-twitter {                         color: white;       background-color: #1DCAFF; }
+    &.btn-twitter:hover {                   color: darkgrey;    background-color: #1381A3; }
+    &.btn-pink {                            color: white;       background-color: #E83E8C; }
+    &.btn-pink:hover {                      color: darkgrey;    background-color: #94285A; }
+    &.btn-orange {                          color: white;       background-color: #FD7E14; }
+    &.btn-orange:hover {                    color: darkgrey;    background-color: #A2510D; }
+    &.btn-laravel {                         color: white;       background-color: #F4645F; }
+    &.btn-laravel:hover {                   color: darkgrey;    background-color: #9C403D; }
+    &.btn-softgreen {                       color: white;       background-color: #39C5BB; }
+    &.btn-softgreen:hover {                 color: darkgrey;    background-color: #257E77; }
+    &.btn-switch {                          color: white;       background-color: #2F3437; }
+    &.btn-switch:hover {                    color: darkgrey;    background-color: #1E2223; }
+    &.btn-pikachu {                         color: white;       background-color: #FFD547; }
+    &.btn-pikachu:hover {                   color: darkgrey;    background-color: #A3882E; }
+    &.btn-eevee {                           color: white;       background-color: #E7AF56; }
+    &.btn-eevee:hover {                     color: darkgrey;    background-color: #937037; }
+    &.btn-ch-new-year-2019-red {            color: white;       background-color: #A61723; }
+    &.btn-ch-new-year-2019-red:hover {      color: darkgrey;    background-color: #6A0F17; }
+    &.btn-ch-new-year-2019-yellow {         color: white;       background-color: #D8B06A; }
+    &.btn-ch-new-year-2019-yellow:hover {   color: darkgrey;    background-color: #8A7144; }
+    &.btn-devotion {                        color: white;       background-color: #F11541; }
+    &.btn-devotion:hover {                  color: darkgrey;    background-color: #9A0E2A; }
+    &.btn-windows-10-error {                color: white;       background-color: #007BD0; }
+    &.btn-windows-10-error:hover {          color: darkgrey;    background-color: #004F85; }
 
 }
