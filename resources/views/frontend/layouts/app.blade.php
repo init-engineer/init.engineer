@@ -61,7 +61,7 @@
 
         @stack('after-styles')
     </head>
-    <body class="bg-img-star">
+    <body class="bg-img-star pt-5">
         @include('includes.partials.read-only')
 
         <div id="app">
