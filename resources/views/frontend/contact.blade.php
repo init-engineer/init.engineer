@@ -3,7 +3,7 @@
 @section('title', app_name() . ' | ' . __('labels.frontend.contact.box_title'))
 
 @section('content')
-    <div class="container">
+    <div class="container my-5">
         <div class="row justify-content-center">
             <div class="col col-sm-8 align-self-center">
                 <div class="card">
