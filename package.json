@@ -73,6 +73,7 @@
     "dependencies": {
         "animate.css": "^3.7.2",
         "csshake": "^1.5.3",
-        "jshint": "^2.10.2"
+        "jshint": "^2.10.2",
+        "vue-marquee-text-component": "^1.1.1"
     }
 }
