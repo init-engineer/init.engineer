@@ -39,4 +39,10 @@ button {
     &.btn-windows-10-error {                color: white;       background-color: #007BD0; }
     &.btn-windows-10-error:hover {          color: darkgrey;    background-color: #004F85; }
 
+    &.btn-dos {
+        background: #bbb;
+        border-radius: 0em;
+        box-shadow: 10px 10px 0 #333;
+    }
+
 }
