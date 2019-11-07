@@ -3,6 +3,7 @@
 namespace App\Repositories\Backend\Auth;
 
 use App\Models\Auth\User;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use App\Exceptions\GeneralException;
 use App\Repositories\BaseRepository;
