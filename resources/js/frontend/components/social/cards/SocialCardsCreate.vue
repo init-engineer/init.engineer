@@ -148,24 +148,23 @@
             }
         },
         mounted() {
-            console.log('Component mounted.');
             this.drawingAll();
         },
         methods: {
             onContentKeyup(event) {
-                this.$data.canvas.content = event.target.value;
+                this.canvas.content = event.target.value;
                 this.drawingAll();
             },
             onThemeChange(event) {
-                const theme = this.$data.theme.options.find(option => option.value === this.$data.theme.selector);
-                this.$data.canvas.color = theme.color.text;
-                this.$data.canvas.background_color = theme.color.background;
+                const theme = this.theme.options.find(option => option.value === this.theme.selector);
+                this.canvas.color = theme.color.text;
+                this.canvas.background_color = theme.color.background;
 
                 this.drawingAll();
             },
             onFontChange(event) {
-                const font = this.$data.font.options.find(option => option.value === this.$data.font.selector);
-                this.$data.canvas.font = font.font;
+                const font = this.font.options.find(option => option.value === this.font.selector);
+                this.canvas.font = font.font;
 
                 const ffo = new FontFaceObserver(font.font);
                 ffo.load().then(function () {
@@ -197,15 +196,15 @@
                 this.drawingContent();
             },
             resetCanvasView() {
-                this.$data.canvas.view = this.$refs.canvasView;
-                this.$data.canvas.ctx = this.$data.canvas.view.getContext('2d');
+                this.canvas.view = this.$refs.canvasView;
+                this.canvas.ctx = this.canvas.view.getContext('2d');
             },
             settingCanvasViewSize() {
                 let lineCount         = this.contentSplit().length;
                 let canvasView_center = ((lineCount * 80) < 600)? true : false;
-                let canvasView_height = (canvasView_center)? this.$data.canvas.default_height : (72 + 72 + ((lineCount * 80)));
-                let canvasView_width  = this.$data.canvas.default_width;
-                switch(this.$data.theme.selector) {
+                let canvasView_height = (canvasView_center)? this.canvas.default_height : (72 + 72 + ((lineCount * 80)));
+                let canvasView_width  = this.canvas.default_width;
+                switch(this.theme.selector) {
                     case '32d2a897602ef652ed8e15d66128aa74':
                         canvasView_height += 360;
                         break;
@@ -216,86 +215,86 @@
                         break;
                 }
 
-                this.$data.canvas.is_center   = canvasView_center;
-                this.$data.canvas.view.width  = canvasView_width;
-                this.$data.canvas.view.height = canvasView_height;
-                this.$data.canvas.width       = canvasView_width;
-                this.$data.canvas.height      = canvasView_height;
+                this.canvas.is_center   = canvasView_center;
+                this.canvas.view.width  = canvasView_width;
+                this.canvas.view.height = canvasView_height;
+                this.canvas.width       = canvasView_width;
+                this.canvas.height      = canvasView_height;
             },
             drawingBackground() {
-                this.$data.canvas.ctx.fillStyle = this.$data.canvas.background_color;
-                this.$data.canvas.ctx.fillRect(0, 0, this.$data.canvas.width, this.$data.canvas.height);
+                this.canvas.ctx.fillStyle = this.canvas.background_color;
+                this.canvas.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
             },
             drawingBackgroundImage() {
                 let img = new Image();
-                switch(this.$data.theme.selector) {
+                switch(this.theme.selector) {
                     case '05217b7d4741e38096a54eff4226c217':
                         img.src = '/img/frontend/cards/devotion-bg.png';
-                        this.$data.canvas.ctx.drawImage(img, 360, 64);
+                        this.canvas.ctx.drawImage(img, 360, 64);
                         console.log(img);
                         return;
 
                     case '32d2a897602ef652ed8e15d66128aa74':
                         img.src = '/img/frontend/cards/qrcode.png';
-                        this.$data.canvas.ctx.drawImage(img, 24, this.$data.canvas.height - 204);
+                        this.canvas.ctx.drawImage(img, 24, this.canvas.height - 204);
                         return;
 
                     case '05326525f82b9a036e1bcb53a392ff7c':
                         img.src = '/img/frontend/cards/fragmented_background.png';
-                        this.$data.canvas.ctx.drawImage(img, 0, this.$data.canvas.height - 560);
+                        this.canvas.ctx.drawImage(img, 0, this.canvas.height - 560);
                         img.src = '/img/frontend/cards/fragmented_people.png';
-                        this.$data.canvas.ctx.drawImage(img, 36, this.$data.canvas.height - 542);
+                        this.canvas.ctx.drawImage(img, 36, this.canvas.height - 542);
 
-                        this.$data.canvas.ctx.lineJoin = 'round';
-                        this.$data.canvas.ctx.lineWidth = 8;
-                        this.$data.canvas.ctx.strokeRect(353, 40, this.$data.canvas.width - 381, this.$data.canvas.height - 282);
+                        this.canvas.ctx.lineJoin = 'round';
+                        this.canvas.ctx.lineWidth = 8;
+                        this.canvas.ctx.strokeRect(353, 40, this.canvas.width - 381, this.canvas.height - 282);
 
                         img.src = '/img/frontend/cards/fragmented_background_top_left.png';
-                        this.$data.canvas.ctx.drawImage(img, 349, 36);
+                        this.canvas.ctx.drawImage(img, 349, 36);
                         img.src = '/img/frontend/cards/fragmented_background_top_right.png';
-                        this.$data.canvas.ctx.drawImage(img, this.$data.canvas.width - 72, 36);
+                        this.canvas.ctx.drawImage(img, this.canvas.width - 72, 36);
                         return;
                 }
             },
             drawingLogo() {
-                switch(this.$data.theme.selector) {
+                switch(this.theme.selector) {
                     case '32d2a897602ef652ed8e15d66128aa74':
-                        this.$data.canvas.ctx.font = '36px ' + this.$data.canvas.font;
-                        this.$data.canvas.ctx.fillStyle = this.$data.canvas.color;
-                        this.$data.canvas.ctx.fillText('若要深入了解，您稍候可以線上搜尋此:', 228, this.$data.canvas.height - 160);
-                        this.$data.canvas.ctx.fillText('純靠北工程師 0xKAOBEI_ENGINEER', 228, this.$data.canvas.height - 120);
-                        this.$data.canvas.ctx.fillText('請訪問 https://kaobei.engineer', 228, this.$data.canvas.height - 40);
+                        this.canvas.ctx.font = '36px ' + this.canvas.font;
+                        this.canvas.ctx.fillStyle = this.canvas.color;
+                        this.canvas.ctx.fillText('若要深入了解，您稍候可以線上搜尋此:', 228, this.canvas.height - 160);
+                        this.canvas.ctx.fillText('純靠北工程師 0xKAOBEI_ENGINEER', 228, this.canvas.height - 120);
+                        this.canvas.ctx.fillText('請訪問 https://kaobei.engineer', 228, this.canvas.height - 40);
                         return;
 
                     case '05326525f82b9a036e1bcb53a392ff7c':
-                        this.$data.canvas.ctx.font = '72px ' + this.$data.canvas.font;
-                        this.$data.canvas.ctx.fillStyle = this.$data.canvas.color;
-                        this.$data.canvas.ctx.fillText('支離滅裂な', 360, this.$data.canvas.height - 160);
-                        this.$data.canvas.ctx.fillText('思考・発言', 360, this.$data.canvas.height - 80);
-                        this.$data.canvas.ctx.font = '36px ' + this.$data.canvas.font;
-                        this.$data.canvas.ctx.fillStyle = this.$data.canvas.color;
-                        this.$data.canvas.ctx.fillText('純靠北工程師', this.$data.canvas.width - 232, this.$data.canvas.height - 24);
+                        this.canvas.ctx.font = '72px ' + this.canvas.font;
+                        this.canvas.ctx.fillStyle = this.canvas.color;
+                        this.canvas.ctx.fillText('支離滅裂な', 360, this.canvas.height - 160);
+                        this.canvas.ctx.fillText('思考・発言', 360, this.canvas.height - 80);
+                        this.canvas.ctx.font = '36px ' + this.canvas.font;
+                        this.canvas.ctx.fillStyle = this.canvas.color;
+                        this.canvas.ctx.fillText('純靠北工程師', this.canvas.width - 232, this.canvas.height - 24);
                         return;
 
                     default:
-                        this.$data.canvas.ctx.font = '36px ' + this.$data.canvas.font;
-                        this.$data.canvas.ctx.fillStyle = this.$data.canvas.color;
-                        this.$data.canvas.ctx.fillText('純靠北工程師', this.$data.canvas.width - 232, this.$data.canvas.height - 24);
+                        this.canvas.ctx.font = '36px ' + this.canvas.font;
+                        this.canvas.ctx.fillStyle = this.canvas.color;
+                        this.canvas.ctx.fillText('純靠北工程師', this.canvas.width - 232, this.canvas.height - 24);
                         return;
                 }
             },
             drawingUrl() {
-                switch(this.$data.theme.selector) {
+                switch(this.theme.selector) {
                     case '32d2a897602ef652ed8e15d66128aa74':
-                        this.$data.canvas.ctx.font = '192px ' + this.$data.canvas.font;
-                        this.$data.canvas.ctx.fillStyle = this.$data.canvas.color;
-                        this.$data.canvas.ctx.fillText(':(', 48, 192);
+                        this.canvas.ctx.font = '192px ' + this.canvas.font;
+                        this.canvas.ctx.fillStyle = this.canvas.color;
+                        this.canvas.ctx.fillText(':(', 48, 192);
                         return;
 
                     default:
-                        this.$data.canvas.ctx.font = '36px ' + this.$data.canvas.font;
-                        this.$data.canvas.ctx.fillStyle = this.$data.canvas.color;
-                        this.$data.canvas.ctx.fillText('發文傳送門 https://kaobei.engineer', 16, this.$data.canvas.height - 24);
+                        this.canvas.ctx.font = '36px ' + this.canvas.font;
+                        this.canvas.ctx.fillStyle = this.canvas.color;
+                        this.canvas.ctx.fillText('發文傳送門 https://kaobei.engineer', 16, this.canvas.height - 24);
                         return;
                 }
             },
@@ -304,25 +303,25 @@
                 contentList.forEach(function(content_value, content_key) {
                     let x_point = 36;
                     let y_point = 0;
-                    if (this.$data.canvas.is_center) {
-                        y_point = 24 + (this.$data.canvas.is_center)? 440 + (((content_key - 1) * 80) - (contentList.length * 40)): ((content_key + 1) * 80);
+                    if (this.canvas.is_center) {
+                        y_point = 24 + (this.canvas.is_center)? 440 + (((content_key - 1) * 80) - (contentList.length * 40)): ((content_key + 1) * 80);
                     } else {
                         y_point = 96 + (content_key * 80);
                     }
 
-                    switch(this.$data.theme.selector) {
+                    switch(this.theme.selector) {
                         case '32d2a897602ef652ed8e15d66128aa74':
                             y_point += 240;
                             break;
                     }
 
-                    this.$data.canvas.ctx.font = '63px ' + this.$data.canvas.font;
-                    this.$data.canvas.ctx.fillStyle = this.$data.canvas.color;
-                    this.$data.canvas.ctx.fillText(content_value, x_point, y_point);
+                    this.canvas.ctx.font = '63px ' + this.canvas.font;
+                    this.canvas.ctx.fillStyle = this.canvas.color;
+                    this.canvas.ctx.fillText(content_value, x_point, y_point);
                 }.bind(this));
             },
             contentSplit() {
-                let content = this.$data.canvas.content;
+                let content = this.canvas.content;
                 let response_list = [];
                 let content_list = content.split(/\r\n|\r|\n/);
                 content_list.forEach(function(content_value) {
