@@ -55,7 +55,7 @@
                 <div class="form-group">
                     <!-- <img src="/img/frontend/og/QbQaeAxOUcQJfHPhKlLBUQGGHFoyQLj0u2k4eI8ykndZGQhfTomEUwkPzWbcTzLx.png" class="img-fluid" style="max-hei" alt="可以直接上傳梗圖"> -->
                     <label class="col-label">label.frontend.cards.avatar-input</label>
-                    <picture-input ref="pictureInput"
+                    <picture-input ref="avatarInput"
                         class="bg-black text-white"
                         width='1920'
                         height='360'
@@ -109,6 +109,7 @@
                     background_color: '#000000',
                     font: 'Auraka',
                 },
+                avatar: null,
                 theme: {
                     selector: '2e6046c7387d8fbe9acd700394a3add3',
                     options: [
@@ -324,7 +325,7 @@
                 let content = this.canvas.content;
                 let response_list = [];
                 let content_list = content.split(/\r\n|\r|\n/);
-                content_list.forEach(function(content_value) {
+                content_list.forEach(function (content_value) {
                     let content_strlen = encodeURIComponent(content_value).replace(/%[A-F\d]{2}/g, 'U').length;
                     if (content_strlen <= 42) {
                         response_list.push(content_value);
@@ -332,7 +333,7 @@
                         let content_width = 0;
                         let char_string   = '';
                         let _content_value_list = content_value.split('');
-                        _content_value_list.forEach(function(char_value, char_key) {
+                        _content_value_list.forEach(function (char_value, char_key) {
                             let char_strlen = encodeURIComponent(char_value).replace(/%[A-F\d]{2}/g, 'U').length;
                             content_width += (char_strlen == 3)? 1 : 0.5 ;
 
