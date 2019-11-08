@@ -149,7 +149,7 @@ class ImagesService extends BaseService implements ImagesContract
                     break;
             }
 
-            imagettftext($this->canvas, $this->canvasFontSize, $this->canvasAngle, $xPoint, $yPoint, $this->canvasTextColor, $this->canvasFont, $value);
+            imageTTFtext($this->canvas, $this->canvasFontSize, $this->canvasAngle, $xPoint, $yPoint, $this->canvasTextColor, $this->canvasFont, $value);
         }
 
         /**
@@ -163,19 +163,19 @@ class ImagesService extends BaseService implements ImagesContract
         switch ($avatarType)
         {
             case 'gif':
-                imagegif($this->canvas, $storagePath);
+                imageGIF($this->canvas, $storagePath);
                 break;
 
             case 'png':
-                imagepng($this->canvas, $storagePath);
+                imagePNG($this->canvas, $storagePath);
                 break;
 
             case 'jpeg':
-                imagejpeg($this->canvas, $storagePath);
+                imageJPEG($this->canvas, $storagePath);
                 break;
 
             default:
-                imagejpeg($this->canvas, $storagePath);
+                imageJPEG($this->canvas, $storagePath);
                 break;
         }
         $imageOutput = base64_encode(ob_get_clean());
@@ -192,7 +192,7 @@ class ImagesService extends BaseService implements ImagesContract
      */
     private function createCanvas()
     {
-        $this->canvas = imagecreatetruecolor(
+        $this->canvas = imageCreateTrueColor(
             $this->canvasWidth,
             $this->canvasHeight
         );
@@ -209,19 +209,19 @@ class ImagesService extends BaseService implements ImagesContract
         switch($theme)
         {
             case '32d2a897602ef652ed8e15d66128aa74':
-                imagettftext($this->canvas, 26, $this->canvasAngle, 228, $this->canvasHeight - 160, $this->canvasTextColor, $this->canvasFont, '若要深入了解，您稍候可以線上搜尋此:');
-                imagettftext($this->canvas, 26, $this->canvasAngle, 228, $this->canvasHeight - 120, $this->canvasTextColor, $this->canvasFont, '純靠北工程師 0xKAOBEI_ENGINEER');
-                imagettftext($this->canvas, 26, $this->canvasAngle, 228, $this->canvasHeight - 40,  $this->canvasTextColor, $this->canvasFont, '請訪問 https://kaobei.engineer');
+                imageTTFtext($this->canvas, 26, $this->canvasAngle, 228, $this->canvasHeight - 160, $this->canvasTextColor, $this->canvasFont, '若要深入了解，您稍候可以線上搜尋此:');
+                imageTTFtext($this->canvas, 26, $this->canvasAngle, 228, $this->canvasHeight - 120, $this->canvasTextColor, $this->canvasFont, '純靠北工程師 0xKAOBEI_ENGINEER');
+                imageTTFtext($this->canvas, 26, $this->canvasAngle, 228, $this->canvasHeight - 40,  $this->canvasTextColor, $this->canvasFont, '請訪問 https://kaobei.engineer');
                 break;
 
             default:
                 $fontSize   = 24;
-                $fontWidth  = imagefontwidth($fontSize) * strlen(app_name());
-                $fontHeight = imagefontheight($fontSize);
+                $fontWidth  = imageFontWidth($fontSize) * strlen(app_name());
+                $fontHeight = imageFontHeight($fontSize);
                 $xPoint     = $this->canvasWidth - ($fontWidth * 1.2) - $fontSize;
                 $yPoint     = $this->canvasHeight - $fontHeight - $fontSize;
                 $content    = mb_convert_encoding(app_name(), 'UTF-8', 'auto');
-                imagettftext($this->canvas, $fontSize, $this->canvasAngle, $xPoint, $yPoint, $this->canvasTextColor, $this->canvasFont, $content);
+                imageTTFtext($this->canvas, $fontSize, $this->canvasAngle, $xPoint, $yPoint, $this->canvasTextColor, $this->canvasFont, $content);
                 break;
         }
 
@@ -239,17 +239,17 @@ class ImagesService extends BaseService implements ImagesContract
         switch($theme)
         {
             case '32d2a897602ef652ed8e15d66128aa74':
-                imagettftext($this->canvas, 160, $this->canvasAngle, 48, 192, $this->canvasTextColor, $this->canvasFont, ':(');
+                imageTTFtext($this->canvas, 160, $this->canvasAngle, 48, 192, $this->canvasTextColor, $this->canvasFont, ':(');
                 break;
 
             default:
                 $fontSize   = 24;
-                $fontWidth  = imagefontwidth($fontSize) * strlen(sprintf('發文傳送門 %s', env('APP_URL')));
-                $fontHeight = imagefontheight($fontSize);
+                $fontWidth  = imageFontWidth($fontSize) * strlen(sprintf('發文傳送門 %s', env('APP_URL')));
+                $fontHeight = imageFontHeight($fontSize);
                 $xPoint     = $fontSize;
                 $yPoint     = $this->canvasHeight - $fontHeight - $fontSize;
                 $content    = mb_convert_encoding(sprintf('發文傳送門 %s', env('APP_URL')), 'UTF-8', 'auto');
-                imagettftext($this->canvas, $fontSize, $this->canvasAngle, $xPoint, $yPoint, $this->canvasTextColor, $this->canvasFont, $content);
+                imageTTFtext($this->canvas, $fontSize, $this->canvasAngle, $xPoint, $yPoint, $this->canvasTextColor, $this->canvasFont, $content);
                 break;
         }
 
@@ -268,119 +268,119 @@ class ImagesService extends BaseService implements ImagesContract
         {
             /** 黑底綠字 */
             case '2e6046c7387d8fbe9acd700394a3add3':
-                $this->canvasTextColor = imagecolorallocate($this->canvas, 0, 255, 59);
-                $this->canvasBackgroundColor = imagecolorallocate($this->canvas, 0, 0, 0);
+                $this->canvasTextColor = imageColorAllocate($this->canvas, 0, 255, 59);
+                $this->canvasBackgroundColor = imageColorAllocate($this->canvas, 0, 0, 0);
                 break;
 
             /** 黑底黃字 */
             case 'be551aa525b9d13790278b008a9ec7bf':
-                $this->canvasTextColor = imagecolorallocate($this->canvas, 235, 212, 67);
-                $this->canvasBackgroundColor = imagecolorallocate($this->canvas, 0, 0, 0);
+                $this->canvasTextColor = imageColorAllocate($this->canvas, 235, 212, 67);
+                $this->canvasBackgroundColor = imageColorAllocate($this->canvas, 0, 0, 0);
                 break;
 
             /** 黑底白字 */
             case '8a755c0bd32e29f813c1aa4267357d5a':
-                $this->canvasTextColor = imagecolorallocate($this->canvas, 248, 249, 250);
-                $this->canvasBackgroundColor = imagecolorallocate($this->canvas, 0, 0, 0);
+                $this->canvasTextColor = imageColorAllocate($this->canvas, 248, 249, 250);
+                $this->canvasBackgroundColor = imageColorAllocate($this->canvas, 0, 0, 0);
                 break;
 
             /** 黑底紅字 */
             case '507d8c23bdcc98850c7be1c1286d5dcf':
-                $this->canvasTextColor = imagecolorallocate($this->canvas, 220, 53, 69);
-                $this->canvasBackgroundColor = imagecolorallocate($this->canvas, 0, 0, 0);
+                $this->canvasTextColor = imageColorAllocate($this->canvas, 220, 53, 69);
+                $this->canvasBackgroundColor = imageColorAllocate($this->canvas, 0, 0, 0);
                 break;
 
             /** 甜甜香草巧克力熊貓 */
             case '7d37ef838c73b3397403eec4bf4f3839':
-                $this->canvasTextColor = imagecolorallocate($this->canvas, 248, 249, 250);
-                $this->canvasBackgroundColor = imagecolorallocate($this->canvas, 232, 62, 140);
+                $this->canvasTextColor = imageColorAllocate($this->canvas, 248, 249, 250);
+                $this->canvasBackgroundColor = imageColorAllocate($this->canvas, 232, 62, 140);
                 break;
 
             /** 藍白屏 */
             case '4834578267bcb800feb2762d2a3ccff2':
-                $this->canvasTextColor = imagecolorallocate($this->canvas, 248, 249, 250);
-                $this->canvasBackgroundColor = imagecolorallocate($this->canvas, 0, 123, 255);
+                $this->canvasTextColor = imageColorAllocate($this->canvas, 248, 249, 250);
+                $this->canvasBackgroundColor = imageColorAllocate($this->canvas, 0, 123, 255);
                 break;
 
             /** PostgreSQL */
             case 'dc7b1c2c41639e5cf10f725d60ad8c64':
-                $this->canvasTextColor = imagecolorallocate($this->canvas, 0, 123, 255);
-                $this->canvasBackgroundColor = imagecolorallocate($this->canvas, 248, 249, 250);
+                $this->canvasTextColor = imageColorAllocate($this->canvas, 0, 123, 255);
+                $this->canvasBackgroundColor = imageColorAllocate($this->canvas, 248, 249, 250);
                 break;
 
             /** Laravel */
             case 'a5c95b86291ea299fcbe64458ed12702':
-                $this->canvasTextColor = imagecolorallocate($this->canvas, 248, 249, 250);
-                $this->canvasBackgroundColor = imagecolorallocate($this->canvas, 244, 100, 95);
+                $this->canvasTextColor = imageColorAllocate($this->canvas, 248, 249, 250);
+                $this->canvasBackgroundColor = imageColorAllocate($this->canvas, 244, 100, 95);
                 break;
 
             /** 軟體綠 */
             case '731019ad725385614d65fbcc5fb1758e':
-                $this->canvasTextColor = imagecolorallocate($this->canvas, 52, 58, 64);
-                $this->canvasBackgroundColor = imagecolorallocate($this->canvas, 57, 197, 187);
+                $this->canvasTextColor = imageColorAllocate($this->canvas, 52, 58, 64);
+                $this->canvasBackgroundColor = imageColorAllocate($this->canvas, 57, 197, 187);
                 break;
 
             /** 皮卡丘 */
             case '9CE44F88A25272B6D9CBB430EBBCFCF1':
-                $this->canvasTextColor = imagecolorallocate($this->canvas, 255, 213, 71);
-                $this->canvasBackgroundColor = imagecolorallocate($this->canvas, 47, 52, 55);
+                $this->canvasTextColor = imageColorAllocate($this->canvas, 255, 213, 71);
+                $this->canvasBackgroundColor = imageColorAllocate($this->canvas, 47, 52, 55);
                 break;
 
             /** 伊布 */
             case '640ED62B7D35C1765A05EB8724535A53':
-                $this->canvasTextColor = imagecolorallocate($this->canvas, 231, 175, 86);
-                $this->canvasBackgroundColor = imagecolorallocate($this->canvas, 47, 52, 55);
+                $this->canvasTextColor = imageColorAllocate($this->canvas, 231, 175, 86);
+                $this->canvasBackgroundColor = imageColorAllocate($this->canvas, 47, 52, 55);
                 break;
 
             /** 反向 皮卡丘 */
             case '9A2E33D968A1AF98B09E26AC63CB6DCB':
-                $this->canvasTextColor = imagecolorallocate($this->canvas, 47, 52, 55);
-                $this->canvasBackgroundColor = imagecolorallocate($this->canvas, 255, 213, 71);
+                $this->canvasTextColor = imageColorAllocate($this->canvas, 47, 52, 55);
+                $this->canvasBackgroundColor = imageColorAllocate($this->canvas, 255, 213, 71);
                 break;
 
             /** 反向 伊布 */
             case '98C614FBC16CCF5D5740BD4D4E00757C':
-                $this->canvasTextColor = imagecolorallocate($this->canvas, 47, 52, 55);
-                $this->canvasBackgroundColor = imagecolorallocate($this->canvas, 231, 175, 86);
+                $this->canvasTextColor = imageColorAllocate($this->canvas, 47, 52, 55);
+                $this->canvasBackgroundColor = imageColorAllocate($this->canvas, 231, 175, 86);
                 break;
 
             /** 新年限定主題 */
             case '2be6c9a365a26a12876145e9229639b1':
-                $this->canvasTextColor = imagecolorallocate($this->canvas, 216, 176, 106);
-                $this->canvasBackgroundColor = imagecolorallocate($this->canvas, 166, 23, 35);
+                $this->canvasTextColor = imageColorAllocate($this->canvas, 216, 176, 106);
+                $this->canvasBackgroundColor = imageColorAllocate($this->canvas, 166, 23, 35);
                 break;
 
             /** 反向 新年限定主題 */
             case 'b9b8ae80a601616cb9af07aaabe532f4':
-                $this->canvasTextColor = imagecolorallocate($this->canvas, 166, 23, 35);
-                $this->canvasBackgroundColor = imagecolorallocate($this->canvas, 216, 176, 106);
+                $this->canvasTextColor = imageColorAllocate($this->canvas, 166, 23, 35);
+                $this->canvasBackgroundColor = imageColorAllocate($this->canvas, 216, 176, 106);
                 break;
 
             /** 恭迎慈孤觀音 渡世靈顯四方 */
             case '05217b7d4741e38096a54eff4226c217':
-                $this->canvasTextColor = imagecolorallocate($this->canvas, 0, 0, 0);
-                $this->canvasBackgroundColor = imagecolorallocate($this->canvas, 241, 21, 65);
+                $this->canvasTextColor = imageColorAllocate($this->canvas, 0, 0, 0);
+                $this->canvasBackgroundColor = imageColorAllocate($this->canvas, 241, 21, 65);
                 $this->drawingBackgroundImage('05217b7d4741e38096a54eff4226c217');
                 break;
 
             /** Windows 最棒的畫面 */
             case '32d2a897602ef652ed8e15d66128aa74':
-                $this->canvasTextColor = imagecolorallocate($this->canvas, 248, 249, 250);
-                $this->canvasBackgroundColor = imagecolorallocate($this->canvas, 0, 123, 208);
+                $this->canvasTextColor = imageColorAllocate($this->canvas, 248, 249, 250);
+                $this->canvasBackgroundColor = imageColorAllocate($this->canvas, 0, 123, 208);
                 $this->drawingBackgroundImage('32d2a897602ef652ed8e15d66128aa74');
                 break;
 
             /** 預設: 黑底綠字 */
             default:
-                $this->canvasTextColor = imagecolorallocate($this->canvas, 0, 255, 59);
-                $this->canvasBackgroundColor = imagecolorallocate($this->canvas, 0, 0, 0);
+                $this->canvasTextColor = imageColorAllocate($this->canvas, 0, 255, 59);
+                $this->canvasBackgroundColor = imageColorAllocate($this->canvas, 0, 0, 0);
                 break;
         }
 
         /**
          * 將圖片上背景顏色。
          */
-        return imagefill($this->canvas, 0, 0, $this->canvasBackgroundColor);
+        return imageFill($this->canvas, 0, 0, $this->canvasBackgroundColor);
     }
 
     /**
@@ -453,7 +453,7 @@ class ImagesService extends BaseService implements ImagesContract
             /** 恭迎慈孤觀音 渡世靈顯四方 */
             case '05217b7d4741e38096a54eff4226c217':
                 $overlayImage = imageCreateFromPng(asset('img/frontend/cards/devotion-bg.png'));
-                imageCopy($this->canvas, $overlayImage, 360, 64, 0, 0, imagesx($overlayImage), imagesy($overlayImage));
+                imageCopy($this->canvas, $overlayImage, 360, 64, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
                 break;
 
             /** Windows 最棒的畫面 */
@@ -461,7 +461,7 @@ class ImagesService extends BaseService implements ImagesContract
                 $overlayImage = imageCreateFromPng(asset('img/frontend/cards/qrcode.png'));
                 imageAlphaBlending($overlayImage, true);
                 imageSaveAlpha($overlayImage, true);
-                imageCopy($this->canvas, $overlayImage, 24, imagesy($this->canvas) - 204, 0, 0, imagesx($overlayImage), imagesy($overlayImage));
+                imageCopy($this->canvas, $overlayImage, 24, imageSY($this->canvas) - 204, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
                 break;
 
             default:
@@ -478,7 +478,7 @@ class ImagesService extends BaseService implements ImagesContract
     {
         for ($i = 12; $i < 18; $i++)
         {
-            imagerectangle($this->canvas, $i, $i, $this->canvasWidth - $i, $this->canvasHeight - $i, $this->canvasTextColor);
+            imageRectAngle($this->canvas, $i, $i, $this->canvasWidth - $i, $this->canvasHeight - $i, $this->canvasTextColor);
         }
     }
 
