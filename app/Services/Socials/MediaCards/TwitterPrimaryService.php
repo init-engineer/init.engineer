@@ -50,7 +50,7 @@ class TwitterPrimaryService extends BaseService implements SocialCardsContract
             "#純靠北工程師%s\r\n%s\r\n📢 匿名發文請至 %s\r\n🥙 全平台留言 %s",
             base_convert($options['id'], 10, 36),
             $_content,
-            '#', // route('frontend.social.cards.create')
+            route('frontend.social.cards.create'),
             '#', // route('frontend.social.cards.show', ['id' => $options['id']])
         );
     }
