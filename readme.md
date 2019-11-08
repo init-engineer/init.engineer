@@ -1,4 +1,19 @@
-# README
+# 純靠北工程師 README.md
+
+![GitHub contributors](https://img.shields.io/github/contributors/init-engineer/init.engineer.svg)
+![GitHub stars](https://img.shields.io/github/stars/init-engineer/init.engineer.svg?style=social)
+
+- [官方網站](https://kaobei.engineer)
+- [Facebook 正式機 粉絲團](https://www.facebook.com/init.kobeengineer)
+- [Facebook 測試機 粉絲團](https://www.facebook.com/kaobei.engineer)
+- [Twitter 粉絲團](https://twitter.com/kaobei_engineer)
+- [Plurk 粉絲團](https://www.plurk.com/kaobei_engineer)
+
+![預覽圖](https://i.imgur.com/H1cy0Ei.png)
+
+---
+## 簡介
+
 哈囉大家好，我是誰並不重要，重要的是你知道純靠北工程師 `v3.0` 計畫嗎？不知道沒關係，因為那本來就是只有我跟我自己討論出來的東西，不過現在我想把喜悅分享給大家。
 
 [GitHub - Kantai235/init.engineer: 這是一份純靠北工程師的專案，請好好愛護它，謝謝。](https://github.com/Kantai235/init.engineer)
@@ -16,8 +31,8 @@
 對我來說，我的版號是 `第幾次砍掉重寫.第幾次大改版.第幾次小改版` 這樣編的，舉例來說這次 `v3.0` 意味著這次是第 3 次砍掉重寫，什麼？你說這跟你的認知不同？沒關係，你現在懂了，You 們都懂就 You 不懂。
 
 ---
-
 ## 安裝
+
 1. 您需要先設定 `env` 設定檔，基本上你在整個專案找不到 `.env` 這個檔案，你只會看到 `.env.example` 這個檔案，沒錯，看到 `.example` 就知道這檔案是個範例，你可以複製一個改名為 `.env` 即可，然後開始要修改裡面的參數，哪些必填哪些選填，範例檔案內會有詳細解釋。
 
 2. 您可能需要安裝 `composer` 才能啟用整個網站。
@@ -54,5 +69,8 @@ php artisan storage:link
 8. 如果這樣子你還是架設不起來，那你可以參考其他篇教學文章。
 - [Laravel Boilerplate | Quick Start](http://laravel-boilerplate.com/6.0/start.html)
 - [如何建置這個平臺？ · Kantai235/kaobei.opendata Wiki · GitHub](https://github.com/Kantai235/kaobei.opendata/wiki/%E5%A6%82%E4%BD%95%E5%BB%BA%E7%BD%AE%E9%80%99%E5%80%8B%E5%B9%B3%E8%87%BA%EF%BC%9F)
+
+---
+## 總結
 
 Have fun :)
