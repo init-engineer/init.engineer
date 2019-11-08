@@ -38,10 +38,9 @@ class PlurkPrimaryService extends BaseService implements SocialCardsContract
     public function publish(Cards $cards)
     {
         $picture = $this->plurk->call('/APP/Timeline/uploadPicture', [
-            // 'image' => Storage::get('IMAGE_URL')
             'image' => $cards->images->first()->getFile(),
         ]);
-        $resp = $this->plurk->call('/APP/Timeline/plurkAdd', [
+        $response = $this->plurk->call('/APP/Timeline/plurkAdd', [
             'content'   => $this->buildContent($cards->content, [
                 'id' => $cards->id,
                 'image_url' => $picture['full'],

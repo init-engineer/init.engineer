@@ -30,7 +30,7 @@ class FacebookPrimaryService extends BaseService implements SocialCardsContract
      */
     public function publish(Cards $cards)
     {
-        $facebook_primary_media_card = $this->facebook->post(
+        $response = $this->facebook->post(
             sprintf(
                 '/%s/photos',
                 config('facebook.connections.primary.user_id')

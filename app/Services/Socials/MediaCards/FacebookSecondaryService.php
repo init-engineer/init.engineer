@@ -30,7 +30,7 @@ class FacebookSecondaryService extends BaseService implements SocialCardsContrac
      */
     public function publish(Cards $cards)
     {
-        $facebook_secondary_media_card = $this->facebook->post(
+        $response = $this->facebook->post(
             sprintf(
                 '/%s/photos',
                 config('facebook.connections.secondary.user_id')

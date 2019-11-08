@@ -25,14 +25,14 @@ class TwitterPrimaryService extends BaseService implements SocialCardsContract
      */
     public function publish(Cards $cards)
     {
-        $twitter_uploaded_media = Twitter::uploadMedia([
+        $picture = Twitter::uploadMedia([
             'media' => $cards->images->first()->getFile(),
         ]);
-        $twitter_media_card = Twitter::postTweet([
+        $response = Twitter::postTweet([
             'status' => $this->buildContent($cards->content, [
                 'id' => $cards->id,
             ]),
-            'media_ids' => $twitter_uploaded_media->media_id_string
+            'media_ids' => $picture->media_id_string
         ]);
     }
 
