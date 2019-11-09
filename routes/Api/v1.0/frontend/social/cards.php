@@ -28,7 +28,9 @@ Route::group([
         ], function () {
             // Cards CRUD
             Route::get('/', [CardsController::class, 'index'])->name('index');
-            Route::post('/', [CardsController::class, 'store'])->name('store');
+            Route::group(['middleware' => 'auth:api'], function () {
+                Route::post('/', [CardsController::class, 'store'])->name('store');
+            });
 
             // Specific Card
             Route::group(['prefix' => '/{id}'], function () {

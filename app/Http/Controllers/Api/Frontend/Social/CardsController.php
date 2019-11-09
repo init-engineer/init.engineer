@@ -3,14 +3,22 @@
 namespace App\Http\Controllers\Api\Frontend\Social;
 
 use League\Fractal\Manager;
+use League\Fractal\Resource\Item;
+use League\Fractal\Resource\Collection;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use League\Fractal\Resource\Collection;
 use App\Services\Socials\Images\ImagesService;
 use App\Http\Transformers\Social\CardsTransformer;
-use App\Repositories\Frontend\Social\CardsRepository;
 use App\Http\Transformers\IlluminatePaginatorAdapter;
+use App\Repositories\Frontend\Social\CardsRepository;
+use App\Repositories\Frontend\Social\ImagesRepository;
 use App\Http\Requests\Api\Frontend\Social\Cards\StoreCardsRequest;
+
+use App\Jobs\Social\MediaCards\PlurkPrimaryPublish;
+use App\Jobs\Social\MediaCards\TwitterPrimaryPublish;
+use App\Jobs\Social\MediaCards\FacebookPrimaryPublish;
+use App\Jobs\Social\MediaCards\FacebookSecondaryPublish;
 
 /**
  * Class CardsController.
@@ -58,29 +66,40 @@ class CardsController extends Controller
      * Store a newly created resource in storage.
      *
      * @param StoreCardsRequest $request
+     * @param ImagesService $imagesService
+     * @param ImagesRepository $imagesRepository
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCardsRequest $request, ImagesService $imagesService)
+    public function store(StoreCardsRequest $request, ImagesService $imagesService, ImagesRepository $imagesRepository)
     {
-        $card = $this->cardsRepository->create([
-            'user_id' => $request->user()->id,
+        $modelCard = $this->cardsRepository->create([
+            'model_id' => $request->user()->id,
             'content' => $request->input('content'),
         ]);
 
-        if ($request->has('avatar'))
-        {
-            $avatar = $imagesService->uploadImage([
+        $avatar = $request->has('avatar')?
+            $imagesService->uploadImage([], $request->file('avatar')) :
+            $imagesService->buildImage($request->only('content', 'themeStyle', 'fontStyle'));
 
-            ], $request->file('avatar'));
-        }
-        else
-        {
-            $avatar = $imagesService->buildImage([
+        $imagesRepository->create([
+            'card_id' => $modelCard->id,
+            'model_id' => $request->user()->id,
+            'avatar' => [
+                'path' => $avatar['avatar']['path'],
+                'name' => $avatar['avatar']['name'],
+                'type' => $avatar['avatar']['type'],
+            ],
+        ]);
 
-            ]);
-        }
+        if (env('FACEBOOK_PRIMARY_CREATE_POST', false)) { FacebookPrimaryPublish::dispatch($modelCard); }
+        if (env('FACEBOOK_SECONDARY_CREATE_POST', false)) { FacebookSecondaryPublish::dispatch($modelCard); }
+        if (env('TWITTER_CREATE_POST', false)) { TwitterPrimaryPublish::dispatch($modelCard); }
+        if (env('PLURK_CREATE_POST', false)) { PlurkPrimaryPublish::dispatch($modelCard); }
 
-        // $imagesService->buildImage();
+        $cards = new Item($modelCard, new CardsTransformer());
+        $response = $this->fractal->createData($cards);
+
+        return response()->json($response->toArray());
     }
 
     /**
@@ -90,29 +109,6 @@ class CardsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
     {
         //
     }

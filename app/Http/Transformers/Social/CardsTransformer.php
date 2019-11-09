@@ -21,7 +21,7 @@ class CardsTransformer extends TransformerAbstract
         return [
             'id' => $cards->id,
             'content' => $cards->content,
-            // 'image' => $cards->images->first()->getPicture(),
+            'image' => $cards->images->first()->getPicture(),
             // 'comments' => $cards->comments,
             // 'media' => $cards->medias,
             'created_at' => $cards->created_at,
