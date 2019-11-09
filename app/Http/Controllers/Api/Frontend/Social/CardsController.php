@@ -122,11 +122,14 @@ class CardsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param Cards $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Cards $id)
     {
-        //
+        $cards = new Item($id, new CardsTransformer());
+        $response = $this->fractal->createData($cards);
+
+        return response()->json($response->toArray());
     }
 }

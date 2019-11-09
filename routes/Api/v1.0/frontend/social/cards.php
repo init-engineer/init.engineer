@@ -35,8 +35,6 @@ Route::group([
             // Specific Card
             Route::group(['prefix' => '/{id}'], function () {
                 Route::get('/', [CardsController::class, 'show'])->name('user.show');
-                Route::patch('/', [CardsController::class, 'update'])->name('update');
-                Route::delete('/', [CardsController::class, 'destroy'])->name('destroy');
             });
         });
     });
