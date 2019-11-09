@@ -3,22 +3,17 @@
 namespace App\Http\Controllers\Api\Frontend\Social;
 
 use League\Fractal\Manager;
+use App\Models\Social\Cards;
 use League\Fractal\Resource\Item;
-use League\Fractal\Resource\Collection;
-
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use League\Fractal\Resource\Collection;
+use App\Services\Socials\Cards\CardsService;
 use App\Services\Socials\Images\ImagesService;
 use App\Http\Transformers\Social\CardsTransformer;
 use App\Http\Transformers\IlluminatePaginatorAdapter;
 use App\Repositories\Frontend\Social\CardsRepository;
 use App\Repositories\Frontend\Social\ImagesRepository;
 use App\Http\Requests\Api\Frontend\Social\Cards\StoreCardsRequest;
-
-use App\Jobs\Social\MediaCards\PlurkPrimaryPublish;
-use App\Jobs\Social\MediaCards\TwitterPrimaryPublish;
-use App\Jobs\Social\MediaCards\FacebookPrimaryPublish;
-use App\Jobs\Social\MediaCards\FacebookSecondaryPublish;
 
 /**
  * Class CardsController.
@@ -31,20 +26,46 @@ class CardsController extends Controller
     protected $fractal;
 
     /**
+     * @var CardsService
+     */
+    protected $cardsService;
+
+    /**
+     * @var ImagesService
+     */
+    protected $imagesService;
+
+    /**
      * @var CardsRepository
      */
     protected $cardsRepository;
 
     /**
+     * @var ImagesRepository
+     */
+    protected $imagesRepository;
+
+    /**
      * CardsController constructor.
      *
      * @param Manager $fractal
+     * @param CardsService $cardsService
+     * @param ImagesService $imagesService
      * @param CardsRepository $cardsRepository
+     * @param ImagesRepository $imagesRepository
      */
-    public function __construct(Manager $fractal, CardsRepository $cardsRepository)
+    public function __construct(
+        Manager $fractal,
+        CardsService $cardsService,
+        ImagesService $imagesService,
+        CardsRepository $cardsRepository,
+        ImagesRepository $imagesRepository)
     {
         $this->fractal = $fractal;
+        $this->cardsService = $cardsService;
+        $this->imagesService = $imagesService;
         $this->cardsRepository = $cardsRepository;
+        $this->imagesRepository = $imagesRepository;
     }
 
     /**
@@ -67,10 +88,9 @@ class CardsController extends Controller
      *
      * @param StoreCardsRequest $request
      * @param ImagesService $imagesService
-     * @param ImagesRepository $imagesRepository
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCardsRequest $request, ImagesService $imagesService, ImagesRepository $imagesRepository)
+    public function store(StoreCardsRequest $request)
     {
         $modelCard = $this->cardsRepository->create([
             'model_id' => $request->user()->id,
@@ -78,10 +98,10 @@ class CardsController extends Controller
         ]);
 
         $avatar = $request->has('avatar')?
-            $imagesService->uploadImage([], $request->file('avatar')) :
-            $imagesService->buildImage($request->only('content', 'themeStyle', 'fontStyle'));
+            $this->imagesService->uploadImage([], $request->file('avatar')) :
+            $this->imagesService->buildImage($request->only('content', 'themeStyle', 'fontStyle'));
 
-        $imagesRepository->create([
+        $this->imagesRepository->create([
             'card_id' => $modelCard->id,
             'model_id' => $request->user()->id,
             'avatar' => [
@@ -91,10 +111,7 @@ class CardsController extends Controller
             ],
         ]);
 
-        if (env('FACEBOOK_PRIMARY_CREATE_POST', false)) { FacebookPrimaryPublish::dispatch($modelCard); }
-        if (env('FACEBOOK_SECONDARY_CREATE_POST', false)) { FacebookSecondaryPublish::dispatch($modelCard); }
-        if (env('TWITTER_CREATE_POST', false)) { TwitterPrimaryPublish::dispatch($modelCard); }
-        if (env('PLURK_CREATE_POST', false)) { PlurkPrimaryPublish::dispatch($modelCard); }
+        $this->cardsService->publish($modelCard);
 
         $cards = new Item($modelCard, new CardsTransformer());
         $response = $this->fractal->createData($cards);
