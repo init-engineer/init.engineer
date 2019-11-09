@@ -90,12 +90,12 @@ class ImagesService extends BaseService implements ImagesContract
      */
     public function uploadImage(array $data, $avatar)
     {
-        $avatarPath = isset($data['avatarPath'])? $data['avatarPath'] : 'public/cards/custom';
+        $avatarPath = isset($data['avatarPath'])? $data['avatarPath'] : 'cards/custom';
         $avatarName = isset($data['avatarName'])? $data['avatarName'] : Str::random(128);
         $avatarType = isset($data['avatarType'])? $data['avatarType'] : $avatar->getClientOriginalExtension();
 
         $storagePath = $avatar->storeAs(
-            $avatarPath,
+            sprintf('public/%s', $avatarPath),
             sprintf('%s.%s', $avatarName, $avatarType)
         );
 
@@ -164,10 +164,10 @@ class ImagesService extends BaseService implements ImagesContract
          * 執行輸出圖片的一個動作。
          */
         ob_start();
-        $avatarPath  = isset($data['avatarPath'])? $data['avatarPath'] : 'app/public/cards/images/';
+        $avatarPath  = isset($data['avatarPath'])? $data['avatarPath'] : 'cards/images';
         $avatarName  = isset($data['avatarName'])? $data['avatarName'] : Str::random(128);
         $avatarType  = isset($data['avatarType'])? $data['avatarType'] : 'jpeg';
-        $storagePath = storage_path(sprintf('%s%s.%s', $avatarPath, $avatarName, $avatarType));
+        $storagePath = storage_path(sprintf('app/public/%s/%s.%s', $avatarPath, $avatarName, $avatarType));
 
         switch ($avatarType)
         {

@@ -47,7 +47,7 @@ trait ImagesMethod
                 return gravatar()->get($this->email, ['size' => $size]);
 
             case 'storage':
-                return url(sprintf('%s/%s.%s', $this->avatar_path, $this->avatar_name, $this->avatar_type));
+                return url(sprintf('storage/%s/%s.%s', $this->avatar_path, $this->avatar_name, $this->avatar_type));
         }
 
         return false;
