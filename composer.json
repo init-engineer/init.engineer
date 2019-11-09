@@ -1,11 +1,13 @@
 {
-    "name": "rappasoft/laravel-boilerplate",
+    "name": "init-engineer/init.engineer",
     "type": "project",
-    "description": "The Laravel Boilerplate Project.",
+    "description": "這是一份純靠北工程師的專案，請好好愛護它，謝謝。",
     "keywords": [
-        "framework",
+        "純靠北工程師",
         "laravel",
-        "boilerplate"
+        "boilerplate",
+        "init.engineer",
+        "kaobei.engineer"
     ],
     "license": "MIT",
     "require": {
