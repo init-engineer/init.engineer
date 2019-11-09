@@ -5,6 +5,7 @@ namespace App\Services\Socials\MediaCards;
 use App\Models\Social\Cards;
 use App\Services\BaseService;
 use ReliqArts\Thujohn\Twitter\Facades\Twitter;
+use App\Repositories\Frontend\Social\MediaCardsRepository;
 
 /**
  * Class TwitterPrimaryService.
@@ -12,11 +13,16 @@ use ReliqArts\Thujohn\Twitter\Facades\Twitter;
 class TwitterPrimaryService extends BaseService implements SocialCardsContract
 {
     /**
+     * @var MediaCardsRepository
+     */
+    protected $mediaCardsRepository;
+
+    /**
      * TwitterPrimaryService constructor.
      */
-    public function __construct()
+    public function __construct(MediaCardsRepository $mediaCardsRepository)
     {
-        //
+        $this->mediaCardsRepository = $mediaCardsRepository;
     }
 
     /**
@@ -25,15 +31,30 @@ class TwitterPrimaryService extends BaseService implements SocialCardsContract
      */
     public function publish(Cards $cards)
     {
-        $picture = Twitter::uploadMedia([
-            'media' => $cards->images->first()->getFile(),
-        ]);
-        $response = Twitter::postTweet([
-            'status' => $this->buildContent($cards->content, [
-                'id' => $cards->id,
-            ]),
-            'media_ids' => $picture->media_id_string
-        ]);
+        if ($this->mediaCardsRepository->findByCardId($cards->id, 'twitter', 'primary'))
+        {
+            throw new GeneralException(__('exceptions.frontend.social.media.cards.repeated_error'));
+        }
+        else
+        {
+            $picture = Twitter::uploadMedia([
+                'media' => $cards->images->first()->getFile(),
+            ]);
+            $response = Twitter::postTweet([
+                'status' => $this->buildContent($cards->content, [
+                    'id' => $cards->id,
+                ]),
+                'media_ids' => $picture->media_id_string
+            ]);
+
+            $this->mediaCardsRepository->create([
+                'card_id' => $cards->id,
+                'model_id' => $cards->model_id,
+                'social_type' => 'twitter',
+                'social_connections' => 'primary',
+                'social_card_id' => $response->id,
+            ]);
+        }
     }
 
     /**

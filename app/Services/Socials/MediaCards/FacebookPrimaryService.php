@@ -5,6 +5,7 @@ namespace App\Services\Socials\MediaCards;
 use App\Models\Social\Cards;
 use App\Services\BaseService;
 use Vinkla\Facebook\Facades\Facebook;
+use App\Repositories\Frontend\Social\MediaCardsRepository;
 
 /**
  * Class FacebookPrimaryService.
@@ -17,11 +18,17 @@ class FacebookPrimaryService extends BaseService implements SocialCardsContract
     protected $facebook;
 
     /**
+     * @var MediaCardsRepository
+     */
+    protected $mediaCardsRepository;
+
+    /**
      * FacebookPrimaryService constructor.
      */
-    public function __construct()
+    public function __construct(MediaCardsRepository $mediaCardsRepository)
     {
         $this->facebook = Facebook::connection('primary');
+        $this->mediaCardsRepository = $mediaCardsRepository;
     }
 
     /**
@@ -30,18 +37,33 @@ class FacebookPrimaryService extends BaseService implements SocialCardsContract
      */
     public function publish(Cards $cards)
     {
-        $response = $this->facebook->post(
-            sprintf(
-                '/%s/photos',
-                config('facebook.connections.primary.user_id')
-            ),
-            array(
-                'message' => $this->buildContent($cards->content, [
-                    'id' => $cards->id,
-                ]),
-                'source' => $this->facebook->fileToUpload($cards->images->first()->getPicture()),
-            ),
-        );
+        if ($this->mediaCardsRepository->findByCardId($cards->id, 'facebook', 'primary'))
+        {
+            throw new GeneralException(__('exceptions.frontend.social.media.cards.repeated_error'));
+        }
+        else
+        {
+            $response = $this->facebook->post(
+                sprintf(
+                    '/%s/photos',
+                    config('facebook.connections.primary.user_id')
+                ),
+                array(
+                    'message' => $this->buildContent($cards->content, [
+                        'id' => $cards->id,
+                    ]),
+                    'source' => $this->facebook->fileToUpload($cards->images->first()->getPicture()),
+                ),
+            );
+
+            $this->mediaCardsRepository->create([
+                'card_id' => $cards->id,
+                'model_id' => $cards->model_id,
+                'social_type' => 'facebook',
+                'social_connections' => 'primary',
+                'social_card_id' => $response->getGraphUser()->getId(),
+            ]);
+        }
     }
 
     /**

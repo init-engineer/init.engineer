@@ -66,6 +66,7 @@ return [
 
             'media' => [
                 'cards' => [
+                    'repeated_error' => '將文章準備發表至社群平台時，發現該篇文章已經發表過了。',
                     'create_error' => '新增社群文章時出現問題，請再試一次。',
                     'update_error' => '更新社群文章時出現問題，請再試一次。',
                     'not_found' => '該社群文章不存在。',

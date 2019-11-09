@@ -3,9 +3,9 @@
 namespace App\Models\Social\Traits\Scope;
 
 /**
- * Trait CardsScope.
+ * Trait MediaCardsScope.
  */
-trait CardsScope
+trait MediaCardsScope
 {
     /**
      * @param $query

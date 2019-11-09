@@ -4,13 +4,17 @@ namespace App\Models\Social;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Social\Traits\Scope\MediaCardsScope;
+use App\Models\Social\Traits\Method\MediaCardsMethod;
 
 /**
  * Class MediaCards.
  */
 class MediaCards extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes,
+        MediaCardsScope,
+        MediaCardsMethod;
 
     /**
      * The table associated with the model.

@@ -5,6 +5,7 @@ namespace App\Services\Socials\MediaCards;
 use Qlurk\ApiClient;
 use App\Models\Social\Cards;
 use App\Services\BaseService;
+use App\Repositories\Frontend\Social\MediaCardsRepository;
 
 /**
  * Class PlurkPrimaryService.
@@ -17,9 +18,14 @@ class PlurkPrimaryService extends BaseService implements SocialCardsContract
     protected $plurk;
 
     /**
+     * @var MediaCardsRepository
+     */
+    protected $mediaCardsRepository;
+
+    /**
      * PlurkPrimaryService constructor.
      */
-    public function __construct()
+    public function __construct(MediaCardsRepository $mediaCardsRepository)
     {
         $this->plurk = new ApiClient(
             env('PLURK_CLIENT_ID'),
@@ -27,6 +33,7 @@ class PlurkPrimaryService extends BaseService implements SocialCardsContract
             env('PLURK_TOKEN'),
             env('PLURK_TOKEN_SECRET')
         );
+        $this->mediaCardsRepository = $mediaCardsRepository;
     }
 
     /**
@@ -37,17 +44,32 @@ class PlurkPrimaryService extends BaseService implements SocialCardsContract
      */
     public function publish(Cards $cards)
     {
-        $picture = $this->plurk->call('/APP/Timeline/uploadPicture', [
-            'image' => $cards->images->first()->getFile(),
-        ]);
-        $response = $this->plurk->call('/APP/Timeline/plurkAdd', [
-            'content'   => $this->buildContent($cards->content, [
-                'id' => $cards->id,
-                'image_url' => $picture['full'],
-            ]),
-            'qualifier' => 'says',
-            'lang'      => 'tr_ch'
-        ]);
+        if ($this->mediaCardsRepository->findByCardId($cards->id, 'plurk', 'primary'))
+        {
+            throw new GeneralException(__('exceptions.frontend.social.media.cards.repeated_error'));
+        }
+        else
+        {
+            $picture = $this->plurk->call('/APP/Timeline/uploadPicture', [
+                'image' => $cards->images->first()->getFile(),
+            ]);
+            $response = $this->plurk->call('/APP/Timeline/plurkAdd', [
+                'content'   => $this->buildContent($cards->content, [
+                    'id' => $cards->id,
+                    'image_url' => $picture['full'],
+                ]),
+                'qualifier' => 'says',
+                'lang'      => 'tr_ch'
+            ]);
+
+            $this->mediaCardsRepository->create([
+                'card_id' => $cards->id,
+                'model_id' => $cards->model_id,
+                'social_type' => 'twitter',
+                'social_connections' => 'primary',
+                'social_card_id' => base_convert($response['plurk_id'], 10, 36),
+            ]);
+        }
     }
 
     /**
