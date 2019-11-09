@@ -6,9 +6,11 @@ use League\Fractal\Manager;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use League\Fractal\Resource\Collection;
+use App\Services\Socials\Images\ImagesService;
 use App\Http\Transformers\Social\CardsTransformer;
 use App\Repositories\Frontend\Social\CardsRepository;
 use App\Http\Transformers\IlluminatePaginatorAdapter;
+use App\Http\Requests\Api\Frontend\Social\Cards\StoreCardsRequest;
 
 /**
  * Class CardsController.
@@ -55,12 +57,30 @@ class CardsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param StoreCardsRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCardsRequest $request, ImagesService $imagesService)
     {
-        //
+        $card = $this->cardsRepository->create([
+            'user_id' => $request->user()->id,
+            'content' => $request->input('content'),
+        ]);
+
+        if ($request->has('avatar'))
+        {
+            $avatar = $imagesService->uploadImage([
+
+            ], $request->file('avatar'));
+        }
+        else
+        {
+            $avatar = $imagesService->buildImage([
+
+            ]);
+        }
+
+        // $imagesService->buildImage();
     }
 
     /**
