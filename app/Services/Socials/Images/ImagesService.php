@@ -99,14 +99,14 @@ class ImagesService extends BaseService implements ImagesContract
             sprintf('%s.%s', $avatarName, $avatarType)
         );
 
-        return array(
-            'avatar' => array(
+        return [
+            'avatar' => [
                 'image' => $storagePath,
                 'path' => $avatarPath,
                 'name' => $avatarName,
                 'type' => $avatarType,
-            ),
-        );
+            ],
+        ];
     }
 
     /**
@@ -136,7 +136,7 @@ class ImagesService extends BaseService implements ImagesContract
         $this->drawingLogo($data['themeStyle']);
         $this->drawingUrl($data['themeStyle']);
 
-        if ($data['isManagerLine'])
+        if (isset($data['isManagerLine']) && $data['isManagerLine'])
         {
             $this->drawingManagerLine();
         }
@@ -190,14 +190,14 @@ class ImagesService extends BaseService implements ImagesContract
 
         $imageOutput = base64_encode(ob_get_clean());
 
-        return array(
-            'avatar' => array(
+        return [
+            'avatar' => [
                 'image' => $imageOutput,
                 'path' => $avatarPath,
                 'name' => $avatarName,
                 'type' => $avatarType,
-            ),
-        );
+            ],
+        ];
     }
 
     /**
@@ -504,7 +504,7 @@ class ImagesService extends BaseService implements ImagesContract
     private function contentSplit($content)
     {
         $contentList  = preg_split("/\\r\\n|\\r|\\n/", $content);
-        $responseList = array();
+        $responseList = [];
         foreach ($contentList as $contentKey => $contentValue)
         {
             $contentStrlen = strlen($contentValue);

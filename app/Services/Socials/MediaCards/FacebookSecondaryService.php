@@ -48,12 +48,12 @@ class FacebookSecondaryService extends BaseService implements SocialCardsContrac
                     '/%s/photos',
                     config('facebook.connections.secondary.user_id')
                 ),
-                array(
+                [
                     'message' => $this->buildContent($cards->content, [
                         'id' => $cards->id,
                     ]),
                     'source' => $this->facebook->fileToUpload($cards->images->first()->getPicture()),
-                ),
+                ],
             );
 
             $this->mediaCardsRepository->create([

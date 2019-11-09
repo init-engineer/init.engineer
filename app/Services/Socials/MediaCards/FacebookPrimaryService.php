@@ -48,12 +48,12 @@ class FacebookPrimaryService extends BaseService implements SocialCardsContract
                     '/%s/photos',
                     config('facebook.connections.primary.user_id')
                 ),
-                array(
+                [
                     'message' => $this->buildContent($cards->content, [
                         'id' => $cards->id,
                     ]),
                     'source' => $this->facebook->fileToUpload($cards->images->first()->getPicture()),
-                ),
+                ],
             );
 
             $this->mediaCardsRepository->create([
