@@ -77,8 +77,8 @@ class MediaCardsRepository extends BaseRepository
         return DB::transaction(function () use ($data) {
             $cards = $this->model::create([
                 'card_id' => $data['card_id'],
-                'model_type' => isset($data['user_type'])? $data['user_type'] : 'App\Models\Auth\User',
-                'model_id' => $data['user_id'],
+                'model_type' => isset($data['model_type'])? $data['model_type'] : 'App\Models\Auth\User',
+                'model_id' => $data['model_id'],
                 'social_type' => isset($data['social_type'])? $data['social_type'] : 'local',
                 'social_connections' => isset($data['social_connections'])? $data['social_connections'] : 'local',
                 'social_card_id' => isset($data['social_card_id'])? $data['social_card_id'] : $data['card_id'],

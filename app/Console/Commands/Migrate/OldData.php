@@ -91,7 +91,7 @@ class OldData extends Command
             {
                 $card = $this->cardsRepository->update($_card, [
                     'id' => $_old_card->id,
-                    'user_id' => $_old_card->user_id,
+                    'model_id' => $_old_card->user_id,
                     'content' => $_old_card->content,
                     'active' => $_old_card->active,
                     'is_banned' => isset($_old_card->deleted_at)? true : false,
@@ -106,7 +106,7 @@ class OldData extends Command
             {
                 $card = $this->cardsRepository->create([
                     'id' => $_old_card->id,
-                    'user_id' => $_old_card->user_id,
+                    'model_id' => $_old_card->user_id,
                     'content' => $_old_card->content,
                     'active' => $_old_card->active,
                     'is_banned' => isset($_old_card->deleted_at)? true : false,
@@ -126,7 +126,7 @@ class OldData extends Command
                 $image = $this->imagesRepository->update($_image, [
                     'id' => $_old_card->image->id,
                     'card_id' => $card->id,
-                    'user_id' => $_old_card->image->user_id,
+                    'model_id' => $_old_card->image->user_id,
                     'avatar_path' => $_old_card->image->file_path,
                     'avatar_name' => $_old_card->image->file_name,
                     'avatar_type' => $_old_card->image->file_type,
@@ -141,7 +141,7 @@ class OldData extends Command
                 $image = $this->imagesRepository->create([
                     'id' => $_old_card->image->id,
                     'card_id' => $card->id,
-                    'user_id' => $_old_card->image->user_id,
+                    'model_id' => $_old_card->image->user_id,
                     'avatar_path' => $_old_card->image->file_path,
                     'avatar_name' => $_old_card->image->file_name,
                     'avatar_type' => $_old_card->image->file_type,
@@ -163,7 +163,7 @@ class OldData extends Command
                     {
                         $_facebook_new_card = $this->mediaCardsRepository->update($__facebook_new_card, [
                             'card_id' => $card->id,
-                            'user_id' => $_old_card->user_id,
+                            'model_id' => $_old_card->user_id,
                             'social_type' => 'facebook',
                             'social_connections' => 'secondary',
                             'social_card_id' => $_old_card->facebook_new_card_id,
@@ -182,7 +182,7 @@ class OldData extends Command
                     {
                         $_facebook_new_card = $this->mediaCardsRepository->create([
                             'card_id' => $card->id,
-                            'user_id' => $_old_card->user_id,
+                            'model_id' => $_old_card->user_id,
                             'social_type' => 'facebook',
                             'social_connections' => 'secondary',
                             'social_card_id' => $_old_card->facebook_new_card_id,
@@ -211,7 +211,7 @@ class OldData extends Command
                     {
                         $_facebook_old_card = $this->mediaCardsRepository->update($__facebook_old_card, [
                             'card_id' => $card->id,
-                            'user_id' => $_old_card->user_id,
+                            'model_id' => $_old_card->user_id,
                             'social_type' => 'facebook',
                             'social_connections' => 'primary',
                             'social_card_id' => $_old_card->facebook_old_card_id,
@@ -230,7 +230,7 @@ class OldData extends Command
                     {
                         $_facebook_old_card = $this->mediaCardsRepository->create([
                             'card_id' => $card->id,
-                            'user_id' => $_old_card->user_id,
+                            'model_id' => $_old_card->user_id,
                             'social_type' => 'facebook',
                             'social_connections' => 'primary',
                             'social_card_id' => $_old_card->facebook_old_card_id,
@@ -259,7 +259,7 @@ class OldData extends Command
                     {
                         $_twitter_card = $this->mediaCardsRepository->update($__twitter_card, [
                             'card_id' => $card->id,
-                            'user_id' => $_old_card->user_id,
+                            'model_id' => $_old_card->user_id,
                             'social_type' => 'twitter',
                             'social_connections' => 'primary',
                             'social_card_id' => $_old_card->twitter_card_id,
@@ -278,7 +278,7 @@ class OldData extends Command
                     {
                         $_twitter_card = $this->mediaCardsRepository->create([
                             'card_id' => $card->id,
-                            'user_id' => $_old_card->user_id,
+                            'model_id' => $_old_card->user_id,
                             'social_type' => 'twitter',
                             'social_connections' => 'primary',
                             'social_card_id' => $_old_card->twitter_card_id,
@@ -307,7 +307,7 @@ class OldData extends Command
                     {
                         $_plurk_card = $this->mediaCardsRepository->update($__plurk_card, [
                             'card_id' => $card->id,
-                            'user_id' => $_old_card->user_id,
+                            'model_id' => $_old_card->user_id,
                             'social_type' => 'plurk',
                             'social_connections' => 'primary',
                             'social_card_id' => $_old_card->plurk_card_id,
@@ -326,7 +326,7 @@ class OldData extends Command
                     {
                         $_plurk_card = $this->mediaCardsRepository->create([
                             'card_id' => $card->id,
-                            'user_id' => $_old_card->user_id,
+                            'model_id' => $_old_card->user_id,
                             'social_type' => 'plurk',
                             'social_connections' => 'primary',
                             'social_card_id' => $_old_card->plurk_card_id,

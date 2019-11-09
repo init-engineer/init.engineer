@@ -71,8 +71,8 @@ class ImagesRepository extends BaseRepository
         return DB::transaction(function () use ($data) {
             $image = $this->model::create([
                 'card_id' => $data['card_id'],
-                'model_type' => isset($data['user_type'])? $data['user_type'] : 'App\Models\Auth\User',
-                'model_id' => $data['user_id'],
+                'model_type' => isset($data['model_type'])? $data['model_type'] : 'App\Models\Auth\User',
+                'model_id' => $data['model_id'],
                 'storage' => isset($data['avatar']['storage'])? $data['avatar']['storage'] : 'storage',
                 'avatar_path' => $data['avatar']['path'],
                 'avatar_name' => $data['avatar']['name'],

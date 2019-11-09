@@ -53,8 +53,8 @@ class CardsRepository extends BaseRepository
         return DB::transaction(function () use ($data) {
             $cards = $this->model::create([
                 'id' => isset($data['id'])? $data['id'] : null,
-                'model_type' => isset($data['user_type'])? $data['user_type'] : 'App\Models\Auth\User',
-                'model_id' => $data['user_id'],
+                'model_type' => isset($data['model_type'])? $data['model_type'] : 'App\Models\Auth\User',
+                'model_id' => $data['model_id'],
                 'content' => $data['content'],
                 'active' => isset($data['active'])? $data['active'] : true,
                 'is_banned' => isset($data['is_banned'])? $data['is_banned'] : false,
