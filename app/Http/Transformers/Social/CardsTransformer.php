@@ -23,7 +23,7 @@ class CardsTransformer extends TransformerAbstract
             'content' => $cards->content,
             // 'image' => $cards->images->first()->getPicture(),
             // 'comments' => $cards->comments,
-            // 'media' => $cards->media,
+            // 'media' => $cards->medias,
             'created_at' => $cards->created_at,
             'updated_at' => $cards->updated_at,
         ];

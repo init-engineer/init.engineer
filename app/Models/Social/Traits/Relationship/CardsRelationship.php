@@ -7,20 +7,14 @@ use App\Models\Social\Comments;
 use App\Models\Social\MediaCards;
 
 /**
- * Class CardsRelationship.
+ * Trait CardsRelationship.
  */
 trait CardsRelationship
 {
     /**
-     * @return mixed
-     */
-    public function images()
-    {
-        return $this->hasMany(Images::class, 'card_id', 'id');
-    }
-
-    /**
-     * @return mixed
+     * Get the media for the card.
+     *
+     * @return Media
      */
     public function medias()
     {
@@ -28,7 +22,19 @@ trait CardsRelationship
     }
 
     /**
-     * @return mixed
+     * Get the images for the card.
+     *
+     * @return Images
+     */
+    public function images()
+    {
+        return $this->hasMany(Images::class, 'card_id', 'id');
+    }
+
+    /**
+     * Get the comments for the card.
+     *
+     * @return Comments
      */
     public function comments()
     {

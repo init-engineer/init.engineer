@@ -51,34 +51,4 @@ class Cards extends Model
         'updated_at',
         'deleted_at',
     ];
-
-    /**
-     * Get the media for the card.
-     *
-     * @return Media
-     */
-    public function media()
-    {
-        return $this->hasMany(MediaCards::class, 'card_id', 'id');
-    }
-
-    /**
-     * Get the images for the card.
-     *
-     * @return Images
-     */
-    public function images()
-    {
-        return $this->hasMany(Images::class, 'card_id', 'id');
-    }
-
-    /**
-     * Get the comments for the card.
-     *
-     * @return Comments
-     */
-    public function comments()
-    {
-        return $this->hasMany(Comments::class, 'card_id', 'id');
-    }
 }
