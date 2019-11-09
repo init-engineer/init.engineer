@@ -99,7 +99,14 @@ class ImagesService extends BaseService implements ImagesContract
             sprintf('%s.%s', $avatarName, $avatarType)
         );
 
-        return $storagePath;
+        return array(
+            'avatar' => array(
+                'image' => $storagePath,
+                'path' => $avatarPath,
+                'name' => $avatarName,
+                'type' => $avatarType,
+            ),
+        );
     }
 
     /**
@@ -114,19 +121,20 @@ class ImagesService extends BaseService implements ImagesContract
         $this->canvasTextCenter = ((count($content) * 80) < 600)? true : false;
         $this->canvasHeight = $this->canvasTextCenter? 720 : (72 + 72 + ((count($content) * 80)));
 
-        switch($data['thmemStyle'])
+        switch($data['themeStyle'])
         {
             /** Windows 最棒的畫面 */
             case '32d2a897602ef652ed8e15d66128aa74':
                 $this->canvasHeight += 360;
                 break;
         }
+        // dd($data['themeStyle']);
 
         $this->createCanvas();
-        $this->drawingTheme($data['thmemStyle']);
+        $this->drawingTheme($data['themeStyle']);
         $this->drawingFont($data['fontStyle']);
-        $this->drawingLogo($data['thmemStyle']);
-        $this->drawingUrl($data['thmemStyle']);
+        $this->drawingLogo($data['themeStyle']);
+        $this->drawingUrl($data['themeStyle']);
 
         if ($data['isManagerLine'])
         {
@@ -141,7 +149,7 @@ class ImagesService extends BaseService implements ImagesContract
             $xPoint = 36;
             $yPoint = $this->canvasTextCenter? 24 + ($this->canvasTextCenter)? 440 + ((($key - 1) * 80) - (count($content) * 40)) : (($key + 1) * 80) : 72 + ($key * 80);
 
-            switch($data['thmemStyle'])
+            switch($data['themeStyle'])
             {
                 /** Windows 最棒的畫面 */
                 case '32d2a897602ef652ed8e15d66128aa74':
@@ -160,6 +168,7 @@ class ImagesService extends BaseService implements ImagesContract
         $avatarName  = isset($data['avatarName'])? $data['avatarName'] : Str::random(128);
         $avatarType  = isset($data['avatarType'])? $data['avatarType'] : 'jpeg';
         $storagePath = storage_path(sprintf('%s%s.%s', $avatarPath, $avatarName, $avatarType));
+
         switch ($avatarType)
         {
             case 'gif':
@@ -178,11 +187,17 @@ class ImagesService extends BaseService implements ImagesContract
                 imageJPEG($this->canvas, $storagePath);
                 break;
         }
+
         $imageOutput = base64_encode(ob_get_clean());
-        return [
-            'image' => $imageOutput,
-            'path' => $storagePath,
-        ];
+
+        return array(
+            'avatar' => array(
+                'image' => $imageOutput,
+                'path' => $avatarPath,
+                'name' => $avatarName,
+                'type' => $avatarType,
+            ),
+        );
     }
 
     /**
@@ -459,8 +474,6 @@ class ImagesService extends BaseService implements ImagesContract
             /** Windows 最棒的畫面 */
             case '32d2a897602ef652ed8e15d66128aa74':
                 $overlayImage = imageCreateFromPng(asset('img/frontend/cards/qrcode.png'));
-                imageAlphaBlending($overlayImage, true);
-                imageSaveAlpha($overlayImage, true);
                 imageCopy($this->canvas, $overlayImage, 24, imageSY($this->canvas) - 204, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
                 break;
 
