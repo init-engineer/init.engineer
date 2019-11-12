@@ -448,6 +448,11 @@ class ImagesService extends BaseService implements ImagesContract
                 $this->canvasFont = public_path('fonts/microsoft_jheng_hei.ttf');
                 break;
 
+            /** 極粗明朝體 */
+            case 'ozke4ri3gkpy7e9c312u5l0w5vr9jdqq':
+                $this->canvasFont = public_path('fonts/FOT-MatissePro-EB.otf');
+                break;
+
             /** 預設: AURAKA 點陣宋字型 */
             default:
                 $this->canvasFont = public_path('fonts/Auraka.ttf');

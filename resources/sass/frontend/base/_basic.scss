@@ -53,6 +53,12 @@
 }
 
 @font-face {
+    font-family: 'MatissePro EB';
+    src: url('/fonts/FOT-MatissePro-EB.otf');
+    // src: url('https://kaobei.engineer/fonts/FOT-MatissePro-EB.otf');
+}
+
+@font-face {
     font-family: 'DOS';
     src: url('/fonts/Fixedsys500c.eot')  format("eot"),
          url('/fonts/Fixedsys500c.woff') format('woff'),
