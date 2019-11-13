@@ -12,6 +12,18 @@ if (! function_exists('app_name')) {
     }
 }
 
+if (! function_exists('app_url')) {
+    /**
+     * Helper to grab the application url.
+     *
+     * @return mixed
+     */
+    function app_url()
+    {
+        return config('app.url');
+    }
+}
+
 if (! function_exists('app_imgur')) {
     /**
      * Helper to grab the application imgur.
