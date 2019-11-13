@@ -1,6 +1,6 @@
 @extends('frontend.layouts.app')
 
-@section('title', app_name() . ' | ' . __('navs.general.home'))
+@section('title', app_name() . ' | ' . __('navs.frontend.social.cards.create'))
 
 @section('content')
     <div class="container my-5">

@@ -31,5 +31,12 @@ return [
             'my_information' => '我的訊息',
             'profile' => '個人資料',
         ],
+
+        'social' => [
+            'cards' => [
+                'show' => '詳細文章 - :title',
+                'create' => '發表文章',
+            ],
+        ],
     ],
 ];
