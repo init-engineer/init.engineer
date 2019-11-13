@@ -1,0 +1,20 @@
+/**
+ * Social Cards specific styles
+ */
+
+.social-cards {
+
+    .blueimp-gallery {
+        a {
+            color: white;
+            font-size: 4em !important;
+            opacity: 1;
+        }
+
+        a:hover {
+            color: white;
+            opacity: .8 !important;
+        }
+    }
+
+}
