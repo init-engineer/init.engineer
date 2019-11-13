@@ -8,7 +8,7 @@
             <div class="col-12 col-md-6">
                 <div class="form-group">
                     <label class="col-label">canvas.frontend.cards.edit</label>
-                    <textarea v-model="canvas.content" @keyup="onContentKeyup($event)" class="form-control cards-editor" placeholder="跟大家分享你的靠北事吧。" rows="7" minlength="6" maxlength="1024" required=""></textarea>
+                    <textarea v-model="canvas.content" @keyup="onContentKeyup($event)" class="form-control cards-editor" placeholder="跟大家分享你的靠北事吧。" rows="7" minlength="30" maxlength="4096" required=""></textarea>
                     <p class="text-danger text-right"><strong>【注意事項】字數有限制，字不能太少，也不能太多字。</strong></p>
                 </div><!--form-group-->
             </div><!--col-->
@@ -59,6 +59,7 @@
                         class="bg-black text-white"
                         width='1920'
                         height='360'
+                        :zIndex=0
                         :crop="false"
                         margin='12'
                         accept='image/jpeg,image/png,image/gif'
@@ -67,7 +68,8 @@
                         :customStrings="{
                             drag: '點我可以直接上傳圖片ㄛ🐱',
                             change: '換別張圖好惹',
-                        }">
+                        }"
+                        @change="onAvatarChange">
                     </picture-input>
                 </div><!--input-group-->
             </div><!--col-->
@@ -77,7 +79,7 @@
             <div class="col">
                 <div class="form-group clearfix ">
                     <label class="col-label">button.frontend.cards.send</label>
-                    <button class="h3 btn btn-block btn-dos btn-lg" type="submit">發表文章</button>
+                    <button class="h3 btn btn-block btn-dos btn-lg" @click="publish">發表文章</button>
                 </div><!--form-group-->
             </div><!--col-->
         </div><!--row-->
@@ -88,6 +90,7 @@
     import MarqueeText from 'vue-marquee-text-component';
     import PictureInput from 'vue-picture-input';
     import FontFaceObserver from 'fontfaceobserver';
+    import { required, minLength } from 'vuelidate/lib/validators';
 
     export default {
         components: {
@@ -144,6 +147,7 @@
                         { text: '微軟正黑體', font:'Microsoft JhengHei', value: '13f5333afe00f8c7e8da7e0b13ec2c94', },
                         { text: '新細明體', font:'Mingliu', value: 'c0b5dd764ede0ca105be22cf13ebadff', },
                         { text: '標楷體', font:'Kaiu', value: '21881fc6a87aca0dd1afc685cb6ee891', },
+                        { text: '極粗明朝體', font:'MatissePro EB', value: 'ozke4ri3gkpy7e9c312u5l0w5vr9jdqq', },
                     ],
                 },
             }
@@ -151,7 +155,34 @@
         mounted() {
             this.drawingAll();
         },
+        validations: {
+            canvas: {
+                content: {
+                    required,
+                    minLength: minLength(30),
+                },
+            },
+            theme: {
+                selector: {
+                    required,
+                },
+            },
+            font: {
+                selector: {
+                    required,
+                },
+            },
+        },
         methods: {
+            onAvatarChange(avatar) {
+                console.log('New picture selected!')
+                if (avatar) {
+                    console.log('Picture loaded.');
+                    this.avatar = this.$refs.avatarInput.file;
+                } else {
+                    console.log('FileReader API not supported: use the <form>, Luke!');
+                }
+            },
             onContentKeyup(event) {
                 this.canvas.content = event.target.value;
                 this.drawingAll();
@@ -357,6 +388,72 @@
                 });
 
                 return response_list;
+            },
+            publish() {
+                this.$v.$touch();
+                if (this.$v.$invalid) {
+                    Swal.fire('您根本的內容不符合規範啊！', '我對於你們在學校所受的訓練為什麼會是這個樣子，我深感不解。', 'error');
+                } else {
+                    Swal.fire({
+                        title: '您確定要發表文章嗎？',
+                        text: '如果您按下射射射，那文章就真的會射出去了。',
+                        showCancelButton: true,
+                        showLoaderOnConfirm: true,
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: '射射射',
+                        cancelButtonColor: '#d33',
+                        cancelButtonText: '不要！',
+                        allowOutsideClick: () => !Swal.isLoading(),
+                        preConfirm: (login) => {
+                            let formData = new FormData();
+                            formData.append('content', this.canvas.content);
+                            formData.append('themeStyle', this.theme.selector);
+                            formData.append('fontStyle', this.font.selector);
+                            if (this.avatar) {
+                                formData.append('avatar', this.avatar);
+                            }
+
+                            return axios.post('/api/frontend/social/cards/', formData)
+                                .then(function (response) {
+                                    return response;
+                                })
+                                .catch(function (error) {
+                                    return error;
+                                });
+                        },
+                    }).then((result) => {
+                        switch (result.value.status) {
+                            case 200:
+                                let timerInterval;
+                                Swal.fire({
+                                    title: '射射射！',
+                                    html: '文章射出去惹，系統將在 <b></b> 毫秒後自動前往。',
+                                    timer: 2000,
+                                    timerProgressBar: true,
+                                    allowOutsideClick: false,
+                                    onBeforeOpen: () => {
+                                        Swal.showLoading();
+                                        timerInterval = setInterval(() => {
+                                            Swal.getContent().querySelector('b').textContent = Swal.getTimerLeft();
+                                        }, 100);
+                                    },
+                                    onClose: () => {
+                                        clearInterval(timerInterval);
+                                        window.location.href = '/';
+                                    },
+                                }).then((result) => {
+                                    if (result.dismiss === Swal.DismissReason.timer) {
+                                        console.log('I was closed by the timer');
+                                    }
+                                });
+                                break;
+
+                            default:
+                                Swal.fire('啊 ... 卡住了。', '文章並沒有被射出去，建議您去問問作者花生神魔術惹？', 'error');
+                                break;
+                        }
+                    });
+                }
             },
         },
     }
