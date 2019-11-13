@@ -2,6 +2,8 @@
 
 namespace App\Services\Socials\Cards;
 
+use App\Models\Social\Cards;
+
 /**
  * Interface CardsContract.
  */
