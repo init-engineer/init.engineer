@@ -8,8 +8,10 @@
 import '../bootstrap';
 import '../plugins';
 import Vue from 'vue';
+import Vuelidate from 'vuelidate';
 
 window.Vue = Vue;
+Vue.use(Vuelidate);
 
 /**
  * The following block of code may be used to automatically register your
