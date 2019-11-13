@@ -225,8 +225,8 @@ class ImagesService extends BaseService implements ImagesContract
         {
             case '32d2a897602ef652ed8e15d66128aa74':
                 imageTTFtext($this->canvas, 26, $this->canvasAngle, 228, $this->canvasHeight - 160, $this->canvasTextColor, $this->canvasFont, '若要深入了解，您稍候可以線上搜尋此:');
-                imageTTFtext($this->canvas, 26, $this->canvasAngle, 228, $this->canvasHeight - 120, $this->canvasTextColor, $this->canvasFont, '純靠北工程師 0xKAOBEI_ENGINEER');
-                imageTTFtext($this->canvas, 26, $this->canvasAngle, 228, $this->canvasHeight - 40,  $this->canvasTextColor, $this->canvasFont, '請訪問 https://kaobei.engineer');
+                imageTTFtext($this->canvas, 26, $this->canvasAngle, 228, $this->canvasHeight - 120, $this->canvasTextColor, $this->canvasFont, sprintf('%s 0xKAOBEI_ENGINEER', app_name()));
+                imageTTFtext($this->canvas, 26, $this->canvasAngle, 228, $this->canvasHeight - 40,  $this->canvasTextColor, $this->canvasFont, sprintf('請訪問 %s', app_url()));
                 break;
 
             default:
@@ -259,11 +259,11 @@ class ImagesService extends BaseService implements ImagesContract
 
             default:
                 $fontSize   = 24;
-                $fontWidth  = imageFontWidth($fontSize) * strlen(sprintf('發文傳送門 %s', env('APP_URL')));
+                $fontWidth  = imageFontWidth($fontSize) * strlen(sprintf('發文傳送門 %s', app_url()));
                 $fontHeight = imageFontHeight($fontSize);
                 $xPoint     = $fontSize;
                 $yPoint     = $this->canvasHeight - $fontHeight - $fontSize;
-                $content    = mb_convert_encoding(sprintf('發文傳送門 %s', env('APP_URL')), 'UTF-8', 'auto');
+                $content    = mb_convert_encoding(sprintf('發文傳送門 %s', app_url()), 'UTF-8', 'auto');
                 imageTTFtext($this->canvas, $fontSize, $this->canvasAngle, $xPoint, $yPoint, $this->canvasTextColor, $this->canvasFont, $content);
                 break;
         }
