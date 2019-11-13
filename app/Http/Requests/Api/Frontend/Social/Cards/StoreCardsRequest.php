@@ -27,9 +27,9 @@ class StoreCardsRequest extends FormRequest
     public function rules()
     {
         return [
-            'content' => ['required'],
-            'themeStyle' => ['required'],
-            'fontStyle' => ['required'],
+            'content' => ['required', 'string', 'min:30'],
+            'themeStyle' => ['required', 'string'],
+            'fontStyle' => ['required', 'string'],
             'avatar' => ['nullable', 'mimes:jpeg,jpg,png,gif', 'max:2048'],
         ];
     }
