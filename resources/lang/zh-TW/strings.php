@@ -29,7 +29,7 @@ return [
         ],
 
         'general' => [
-            'all_rights_reserved' => '保留所有權利。',
+            'all_rights_reserved' => 'Copyright © :year :app_name. <br class="d-block d-md-none">All rights reserved. <br class="d-block d-md-none">Powered by <a href="https://github.com/init-engineer/init.engineer">純靠北工程師</a>.',
             'are_you_sure' => '您確定嗎？ ',
             'boilerplate_link' => 'Laravel Boilerplate',
             'continue' => '繼續',
@@ -119,6 +119,7 @@ return [
         ],
 
         'general' => [
+            'all_rights_reserved' => 'Copyright © :year :app_name. <br class="d-block d-md-none">All rights reserved. <br class="d-block d-md-none">Powered by <a href="https://github.com/init-engineer/init.engineer">純靠北工程師</a>.',
             'joined' => 'Joined',
         ],
 

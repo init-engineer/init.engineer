@@ -90,7 +90,7 @@
 
     <!-- Copyright -->
     <div class="footer-copyright text-center text-white py-3">
-        <p class="m-0">Copyright © 2019 {{ app_name() }}.<br class="d-block d-md-none">All rights reserved.</p>
+        <p class="m-0">{!! __('strings.frontend.general.all_rights_reserved', ['year' => date('Y'), 'app_name' => app_name()]) !!}</p>
     </div>
     <!-- Copyright -->
 
