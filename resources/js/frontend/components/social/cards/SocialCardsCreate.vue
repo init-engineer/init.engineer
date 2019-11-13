@@ -439,7 +439,7 @@
                                     },
                                     onClose: () => {
                                         clearInterval(timerInterval);
-                                        window.location.href = '/';
+                                        window.location.href = `/cards/show/${result.value.data.data.id}`;
                                     },
                                 }).then((result) => {
                                     if (result.dismiss === Swal.DismissReason.timer) {
