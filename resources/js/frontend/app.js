@@ -9,9 +9,14 @@ import '../bootstrap';
 import '../plugins';
 import Vue from 'vue';
 import Vuelidate from 'vuelidate';
+import VueMoment from 'vue-moment';
+import moment from 'moment-timezone';
 
 window.Vue = Vue;
 Vue.use(Vuelidate);
+Vue.use(VueMoment, {
+    moment,
+});
 
 /**
  * The following block of code may be used to automatically register your

@@ -76,9 +76,11 @@
         "csshake": "^1.5.3",
         "fontfaceobserver": "^2.1.0",
         "jshint": "^2.10.3",
+        "moment-timezone": "^0.5.27",
         "vue-content-loading": "^1.6.0",
         "vue-gallery": "^2.0.1",
         "vue-marquee-text-component": "^1.1.1",
+        "vue-moment": "^4.0.0",
         "vue-picture-input": "^2.1.6",
         "vuelidate": "^0.7.4"
     }
