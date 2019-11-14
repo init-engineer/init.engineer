@@ -4,10 +4,35 @@
 
 .social-cards {
 
+    .cards {
+        .cards-image {
+            img {
+                max-height: 400px;
+            }
+        }
+
+        .cards-content {
+            img {
+                width: 64px;
+                height: 64px;
+                background-image: url('../../../../public/img/frontend/background/animated-rainbow.gif');
+            }
+
+            .avatar {
+                width: 128px;
+            }
+
+            .content {
+                font-size: 1.5rem;
+                padding-left: 1.5rem;
+            }
+        }
+    }
+
     .blueimp-gallery {
         a {
             color: white;
-            font-size: 4em !important;
+            font-size: 4rem !important;
             opacity: 1;
         }
 

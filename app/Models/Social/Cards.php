@@ -51,4 +51,13 @@ class Cards extends Model
         'updated_at',
         'deleted_at',
     ];
+
+    /**
+     * @var array
+     */
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
 }

@@ -6,7 +6,7 @@
     <div class="container my-5">
         <div class="row justify-content-center">
             <div class="col col-12 align-self-center">
-                <social-cards-show id="{{ $card->id }}"></social-cards-show>
+                <social-cards-show id="{{ $card->id }}" content="{{ $card->content }}" image="{{ $image }}" created="{{ $card->created_at->diffForHumans() }}"></social-cards-show>
             </div><!--col-->
         </div><!--row-->
     </div><!--container-->

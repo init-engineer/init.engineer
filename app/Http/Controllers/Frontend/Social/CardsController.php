@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Frontend\Social;
 
-use App\Models\Social\Cards;
 use Illuminate\Http\Request;
+use App\Models\Social\Cards;
 use App\Http\Controllers\Controller;
 
 /**
@@ -30,6 +30,7 @@ class CardsController extends Controller
     public function show(Cards $id)
     {
         return view('frontend.social.cards.show')
-            ->withCard($id);
+            ->withCard($id)
+            ->withImage($id->images->first()->getPicture());
     }
 }
