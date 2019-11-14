@@ -35,6 +35,7 @@ Route::group([
             // Specific Card
             Route::group(['prefix' => '/{id}'], function () {
                 Route::get('/', [CardsController::class, 'show'])->name('show');
+                Route::get('/links', [CardsController::class, 'links'])->name('links');
             });
         });
     });

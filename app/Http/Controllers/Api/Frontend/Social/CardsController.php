@@ -13,6 +13,7 @@ use App\Http\Transformers\Social\CardsTransformer;
 use App\Http\Transformers\IlluminatePaginatorAdapter;
 use App\Repositories\Frontend\Social\CardsRepository;
 use App\Repositories\Frontend\Social\ImagesRepository;
+use App\Http\Transformers\Social\MediaCardsTransformer;
 use App\Http\Requests\Api\Frontend\Social\Cards\StoreCardsRequest;
 
 /**
@@ -128,6 +129,18 @@ class CardsController extends Controller
     public function show(Cards $id)
     {
         $cards = new Item($id, new CardsTransformer());
+        $response = $this->fractal->createData($cards);
+
+        return response()->json($response->toArray());
+    }
+
+    /**
+     * @param Cards $id
+     * @return \Illuminate\Http\Response
+     */
+    public function links(Cards $id)
+    {
+        $cards = new Collection($id->medias, new MediaCardsTransformer());
         $response = $this->fractal->createData($cards);
 
         return response()->json($response->toArray());
