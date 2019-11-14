@@ -10,10 +10,12 @@ use League\Fractal\Resource\Collection;
 use App\Services\Socials\Cards\CardsService;
 use App\Services\Socials\Images\ImagesService;
 use App\Http\Transformers\Social\CardsTransformer;
+use App\Http\Transformers\Social\CommentsTransformer;
 use App\Http\Transformers\IlluminatePaginatorAdapter;
 use App\Repositories\Frontend\Social\CardsRepository;
 use App\Repositories\Frontend\Social\ImagesRepository;
 use App\Http\Transformers\Social\MediaCardsTransformer;
+use App\Repositories\Frontend\Social\CommentsRepository;
 use App\Http\Requests\Api\Frontend\Social\Cards\StoreCardsRequest;
 
 /**
@@ -47,6 +49,11 @@ class CardsController extends Controller
     protected $imagesRepository;
 
     /**
+     * @var CommentsRepository
+     */
+    protected $commentsRepository;
+
+    /**
      * CardsController constructor.
      *
      * @param Manager $fractal
@@ -54,19 +61,22 @@ class CardsController extends Controller
      * @param ImagesService $imagesService
      * @param CardsRepository $cardsRepository
      * @param ImagesRepository $imagesRepository
+     * @param CommentsRepository $commentsRepository
      */
     public function __construct(
         Manager $fractal,
         CardsService $cardsService,
         ImagesService $imagesService,
         CardsRepository $cardsRepository,
-        ImagesRepository $imagesRepository)
+        ImagesRepository $imagesRepository,
+        CommentsRepository $commentsRepository)
     {
         $this->fractal = $fractal;
         $this->cardsService = $cardsService;
         $this->imagesService = $imagesService;
         $this->cardsRepository = $cardsRepository;
         $this->imagesRepository = $imagesRepository;
+        $this->commentsRepository = $commentsRepository;
     }
 
     /**
@@ -142,6 +152,20 @@ class CardsController extends Controller
     {
         $cards = new Collection($id->medias, new MediaCardsTransformer());
         $response = $this->fractal->createData($cards);
+
+        return response()->json($response->toArray());
+    }
+
+    /**
+     * @param Cards $id
+     * @return \Illuminate\Http\Response
+     */
+    public function comments(Cards $id)
+    {
+        $paginator = $this->commentsRepository->getActivePaginated($id);
+        $comments = new Collection($paginator->items(), new CommentsTransformer());
+        $comments->setPaginator(new IlluminatePaginatorAdapter($paginator));
+        $response = $this->fractal->createData($comments);
 
         return response()->json($response->toArray());
     }

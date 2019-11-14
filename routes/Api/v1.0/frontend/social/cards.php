@@ -36,6 +36,7 @@ Route::group([
             Route::group(['prefix' => '/{id}'], function () {
                 Route::get('/', [CardsController::class, 'show'])->name('show');
                 Route::get('/links', [CardsController::class, 'links'])->name('links');
+                Route::get('/comments', [CardsController::class, 'comments'])->name('comments');
             });
         });
     });

@@ -4,13 +4,17 @@ namespace App\Models\Social;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Social\Traits\Scope\CommentsScope;
+use App\Models\Social\Traits\Method\CommentsMethod;
 
 /**
  * Class Comments.
  */
 class Comments extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes,
+        CommentsScope,
+        CommentsMethod;
 
     /**
      * The table associated with the model.
