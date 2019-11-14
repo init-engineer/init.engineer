@@ -19,12 +19,12 @@ class MediaCardsTransformer extends TransformerAbstract
     public function transform(MediaCards $media)
     {
         return [
-            'type' => $media->social_type,
-            'connections' => $media->social_connections,
-            // 'social_card_id' => $media->social_card_id,
-            'url' => $media->getLink(),
-            'like' => $media->num_like,
-            'share' => $media->num_share,
+            'social_type' => $media->social_type,
+            'social_connections' => $media->social_connections,
+            'social_card_id' => $media->social_card_id,
+            'social_url' => $media->getLink(),
+            'num_like' => $media->num_like,
+            'num_share' => $media->num_share,
         ];
     }
 }
