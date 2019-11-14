@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-full-bg navbar-dark bg-black fixed-top pt-0 pb-0">
+<nav class="navbar navbar-expand-lg navbar-full-bg navbar-dark bg-black fixed-top pt-0 pb-0 border-bottom border-white border-w-3">
     <div>
         <a href="{{ route('frontend.index') }}" class="navbar-brand">{{ app_name() }}</a>
         <a class="mr-2" href="{{ env('FACEBOOK_PRIMARY_SOCIAL_URL') }}"><img src="https://image.flaticon.com/icons/svg/220/220200.svg" alt="Facebook" class="rounded" width="30" height="30"></a>
