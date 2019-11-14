@@ -2,7 +2,7 @@
  * Buttons
  */
 
-button {
+a, button {
 
     &.btn-bitbucket {
         color: white;
@@ -71,6 +71,16 @@ button {
         &:active {
             color: darkgrey;
             background-color: #94285A;
+        }
+    }
+
+    &.btn-plurk {
+        color: white;
+        background-color: #FF4E47;
+
+        &:active {
+            color: darkgrey;
+            background-color: #A3322E;
         }
     }
 
