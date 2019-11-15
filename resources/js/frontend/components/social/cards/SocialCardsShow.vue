@@ -1,6 +1,9 @@
 <template>
     <div class="social-cards">
-        <vue-gallery :images="images" :index="gallery" @close="gallery = null" />
+        <vue-gallery
+            :images="images"
+            :index="gallery"
+            @close="gallery = null" />
         <div class="cards bg-black rounded p-2">
             <div class="cards-image mb-4">
                 <vue-content-loading
@@ -10,18 +13,16 @@
                     :height="40"
                     :speed="1"
                     primary="#333333"
-                    secondary="#666666"
-                >
-                    <rect x="20" y="0" rx="1" ry="1" width="60" height="40" />
+                    secondary="#666666">
+                    <rect
+                        x="20"
+                        y="0"
+                        rx="1"
+                        ry="1"
+                        width="60"
+                        height="40" />
                 </vue-content-loading>
-                <img
-                    class="rounded img-fluid mx-auto d-block animated faster"
-                    :class="{ fadeIn: loaded.image }"
-                    v-show="loaded.image"
-                    :src="image"
-                    @load="loadedImage"
-                    @click="gallery = 0"
-                />
+                <img class="rounded img-fluid mx-auto d-block animated faster" :class="{ fadeIn: loaded.image }" v-show="loaded.image" :src="image" @load="loadedImage" @click="gallery = 0" />
             </div>
             <!-- cards image -->
 
@@ -33,33 +34,85 @@
                     :height="24"
                     :speed="1"
                     primary="#333333"
-                    secondary="#666666"
-                >
-                    <rect x="1" y="0" rx="1" ry="1" width="10" height="10" />
-                    <rect x="1" y="11" rx="1" ry="1" width="10" height="2" />
-                    <rect x="88" y="0" rx="1" ry="1" width="12" height="3" />
-                    <rect x="12" y="6" rx="1" ry="1" width="80" height="2" />
-                    <rect x="12" y="9" rx="1" ry="1" width="80" height="2" />
-                    <rect x="12" y="12" rx="1" ry="1" width="80" height="2" />
-                    <rect x="12" y="15" rx="1" ry="1" width="80" height="2" />
-                    <rect x="12" y="18" rx="1" ry="1" width="80" height="2" />
-                    <rect x="12" y="21" rx="1" ry="1" width="36" height="2" />
+                    secondary="#666666">
+                    <rect
+                        x="1"
+                        y="0"
+                        rx="1"
+                        ry="1"
+                        width="10"
+                        height="10" />
+                    <rect
+                        x="1"
+                        y="11"
+                        rx="1"
+                        ry="1"
+                        width="10"
+                        height="2" />
+                    <rect
+                        x="88"
+                        y="0"
+                        rx="1"
+                        ry="1"
+                        width="12"
+                        height="3" />
+                    <rect
+                        x="12"
+                        y="6"
+                        rx="1"
+                        ry="1"
+                        width="80"
+                        height="2" />
+                    <rect
+                        x="12"
+                        y="9"
+                        rx="1"
+                        ry="1"
+                        width="80"
+                        height="2" />
+                    <rect
+                        x="12"
+                        y="12"
+                        rx="1"
+                        ry="1"
+                        width="80"
+                        height="2" />
+                    <rect
+                        x="12"
+                        y="15"
+                        rx="1"
+                        ry="1"
+                        width="80"
+                        height="2" />
+                    <rect
+                        x="12"
+                        y="18"
+                        rx="1"
+                        ry="1"
+                        width="80"
+                        height="2" />
+                    <rect
+                        x="12"
+                        y="21"
+                        rx="1"
+                        ry="1"
+                        width="36"
+                        height="2" />
                 </vue-content-loading>
-                <div class="d-flex flex-row" v-show="loaded.avatar">
+                <div
+                    class="d-flex flex-row"
+                    v-show="loaded.avatar">
                     <div class="avatar text-center">
-                        <img
-                            class="rounded-circle img-fluid p-2 mb-2 animated faster"
-                            :class="{ fadeIn: loaded.avatar }"
-                            :src="profile.avatar"
-                            @load="loadedAvatar"
-                        />
+                        <img class="rounded-circle img-fluid p-2 mb-2 animated faster" :class="{ fadeIn: loaded.avatar }" :src="profile.avatar" @load="loadedAvatar" />
                         <p class="text-white">匿名{{ profile.name }}</p>
                     </div>
                     <div class="content w-100">
                         <p class="text-right text-white mb-2">
                             <small>{{ created }}</small>
                         </p>
-                        <pre class="read text-white text-wrap" v-html="wrapContent"></pre>
+                        <pre
+                            class="read text-white text-wrap"
+                            v-html="wrapContent"></pre>
                     </div>
                 </div>
             </div>
@@ -73,21 +126,37 @@
                     :height="3"
                     :speed="1"
                     primary="#333333"
-                    secondary="#666666"
-                >
-                    <rect x="61" y="0" rx="1" ry="1" width="9" height="3" />
-                    <rect x="71" y="0" rx="1" ry="1" width="9" height="3" />
-                    <rect x="81" y="0" rx="1" ry="1" width="9" height="3" />
-                    <rect x="91" y="0" rx="1" ry="1" width="9" height="3" />
+                    secondary="#666666">
+                    <rect
+                        x="61"
+                        y="0"
+                        rx="1"
+                        ry="1"
+                        width="9"
+                        height="3" />
+                    <rect
+                        x="71"
+                        y="0"
+                        rx="1"
+                        ry="1"
+                        width="9"
+                        height="3" />
+                    <rect
+                        x="81"
+                        y="0"
+                        rx="1"
+                        ry="1"
+                        width="9"
+                        height="3" />
+                    <rect
+                        x="91"
+                        y="0"
+                        rx="1"
+                        ry="1"
+                        width="9"
+                        height="3" />
                 </vue-content-loading>
-                <a
-                    class="btn btn-sm ml-1 animated faster"
-                    :class="[ 'btn-' + link.type, { fadeIn: loaded.avatar } ]"
-                    v-for="link in links"
-                    :key="link.id"
-                    :href="link.url"
-                    target="_blank"
-                >{{ link.type }} {{ (link.connections === 'primary') ? '主站' : '次站' }}</a>
+                <a class="btn btn-sm ml-1 animated faster" :class="[ 'btn-' + link.type, { fadeIn: loaded.avatar } ]" v-for="link in links" :key="link.id" :href="link.url" target="_blank">{{ link.type }} {{ (link.connections === 'primary') ? '主站' : '次站' }}</a>
             </div>
             <!-- cards links -->
 
@@ -99,22 +168,105 @@
                     :height="32"
                     :speed="1"
                     primary="#333333"
-                    secondary="#666666"
-                >
-                    <rect x="1" y="0" rx="1" ry="1" width="10" height="10" />
-                    <rect x="1" y="11" rx="1" ry="1" width="10" height="2" />
-                    <rect x="12" y="0" rx="1" ry="1" width="12" height="3" />
-                    <rect x="88" y="0" rx="1" ry="1" width="12" height="3" />
-                    <rect x="12" y="6" rx="1" ry="1" width="80" height="2" />
-                    <rect x="12" y="9" rx="1" ry="1" width="80" height="2" />
-                    <rect x="12" y="12" rx="1" ry="1" width="36" height="2" />
-                    <rect x="12" y="17" rx="1" ry="1" width="10" height="10" />
-                    <rect x="12" y="28" rx="1" ry="1" width="10" height="2" />
-                    <rect x="23" y="17" rx="1" ry="1" width="12" height="3" />
-                    <rect x="88" y="17" rx="1" ry="1" width="12" height="3" />
-                    <rect x="23" y="23" rx="1" ry="1" width="69" height="2" />
-                    <rect x="23" y="26" rx="1" ry="1" width="69" height="2" />
-                    <rect x="23" y="29" rx="1" ry="1" width="36" height="2" />
+                    secondary="#666666">
+                    <rect
+                        x="1"
+                        y="0"
+                        rx="1"
+                        ry="1"
+                        width="10"
+                        height="10" />
+                    <rect
+                        x="1"
+                        y="11"
+                        rx="1"
+                        ry="1"
+                        width="10"
+                        height="2" />
+                    <rect
+                        x="12"
+                        y="0"
+                        rx="1"
+                        ry="1"
+                        width="12"
+                        height="3" />
+                    <rect
+                        x="88"
+                        y="0"
+                        rx="1"
+                        ry="1"
+                        width="12"
+                        height="3" />
+                    <rect
+                        x="12"
+                        y="6"
+                        rx="1"
+                        ry="1"
+                        width="80"
+                        height="2" />
+                    <rect
+                        x="12"
+                        y="9"
+                        rx="1"
+                        ry="1"
+                        width="80"
+                        height="2" />
+                    <rect
+                        x="12"
+                        y="12"
+                        rx="1"
+                        ry="1"
+                        width="36"
+                        height="2" />
+                    <rect
+                        x="12"
+                        y="17"
+                        rx="1"
+                        ry="1"
+                        width="10"
+                        height="10" />
+                    <rect
+                        x="12"
+                        y="28"
+                        rx="1"
+                        ry="1"
+                        width="10"
+                        height="2" />
+                    <rect
+                        x="23"
+                        y="17"
+                        rx="1"
+                        ry="1"
+                        width="12"
+                        height="3" />
+                    <rect
+                        x="88"
+                        y="17"
+                        rx="1"
+                        ry="1"
+                        width="12"
+                        height="3" />
+                    <rect
+                        x="23"
+                        y="23"
+                        rx="1"
+                        ry="1"
+                        width="69"
+                        height="2" />
+                    <rect
+                        x="23"
+                        y="26"
+                        rx="1"
+                        ry="1"
+                        width="69"
+                        height="2" />
+                    <rect
+                        x="23"
+                        y="29"
+                        rx="1"
+                        ry="1"
+                        width="36"
+                        height="2" />
                 </vue-content-loading>
             </div>
             <!-- cards comments -->
@@ -201,8 +353,7 @@ export default {
                 .catch(error => console.log(error));
         },
         getRandomName() {
-            const nameList = [
-                {
+            const nameList = [{
                     name: "蝙蝠",
                     avatar: "https://image.flaticon.com/icons/svg/2219/2219690.svg"
                 },

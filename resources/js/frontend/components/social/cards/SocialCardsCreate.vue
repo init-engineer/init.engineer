@@ -8,16 +8,7 @@
             <div class="col-12 col-md-6">
                 <div class="form-group">
                     <label class="col-label">canvas.frontend.cards.edit</label>
-                    <textarea
-                        class="form-control cards-editor"
-                        rows="7"
-                        minlength="30"
-                        maxlength="4096"
-                        placeholder="跟大家分享你的靠北事吧。"
-                        required
-                        v-model="canvas.content"
-                        @keyup="onContentKeyup($event)"
-                    ></textarea>
+                    <textarea class="form-control cards-editor" rows="7" minlength="30" maxlength="4096" placeholder="跟大家分享你的靠北事吧。" required v-model="canvas.content" @keyup="onContentKeyup($event)"></textarea>
                     <p class="text-danger text-right">
                         <strong>【注意事項】字數有限制，字不能太少，也不能太多字。</strong>
                     </p>
@@ -29,12 +20,7 @@
             <div class="col-12 col-md-6">
                 <div class="form-group">
                     <label class="col-label">canvas.frontend.cards.preview</label>
-                    <canvas
-                        class="rounded mx-auto d-block w-100"
-                        width="960"
-                        height="720"
-                        ref="canvasView"
-                    >
+                    <canvas class="rounded mx-auto d-block w-100" width="960" height="720" ref="canvasView">
                         <!-- 倘若使用者的瀏覽器並不支援 canvas，將會顯示該段內容。 -->
                         您的瀏覽器必須支援 HTML5 標籤語法，才能使用圖片(即時)預覽功能。
                     </canvas>
@@ -49,18 +35,12 @@
             <div class="col">
                 <div class="form-group">
                     <label class="col-label">label.frontend.cards.theme-selector</label>
-                    <select
-                        class="form-control form-control-lg"
-                        :class="theme.options.find(option => option.value === theme.selector).class"
-                        v-model="theme.selector"
-                        @change="onThemeChange($event)"
-                    >
+                    <select class="form-control form-control-lg" :class="theme.options.find(option => option.value === theme.selector).class" v-model="theme.selector" @change="onThemeChange($event)">
                         <option
                             :class="option.class"
                             v-for="option in theme.options"
                             :key="option.value"
-                            :value="option.value"
-                        >{{ option.text }}</option>
+                            :value="option.value">{{ option.text }}</option>
                     </select>
                 </div>
                 <!--form-group-->
@@ -73,16 +53,11 @@
             <div class="col">
                 <div class="form-group">
                     <label class="col-label">label.frontend.cards.font-selector</label>
-                    <select
-                        class="form-control form-control-lg btn-dark text-white"
-                        v-model="font.selector"
-                        @change="onFontChange($event)"
-                    >
+                    <select class="form-control form-control-lg btn-dark text-white" v-model="font.selector" @change="onFontChange($event)">
                         <option
                             v-for="option in font.options"
                             :key="option.value"
-                            :value="option.value"
-                        >{{ option.text }}</option>
+                            :value="option.value">{{ option.text }}</option>
                     </select>
                 </div>
                 <!--input-group-->
@@ -110,8 +85,7 @@
                             drag: '點我可以直接上傳圖片ㄛ🐱',
                             change: '換別張圖好惹',
                         }"
-                        @change="onAvatarChange"
-                    ></picture-input>
+                        @change="onAvatarChange"></picture-input>
                 </div>
                 <!--input-group-->
             </div>
@@ -138,7 +112,10 @@
 import MarqueeText from "vue-marquee-text-component";
 import PictureInput from "vue-picture-input";
 import FontFaceObserver from "fontfaceobserver";
-import { required, minLength } from "vuelidate/lib/validators";
+import {
+    required,
+    minLength
+} from "vuelidate/lib/validators";
 
 export default {
     name: "SocialCardsCreate",
@@ -164,8 +141,7 @@ export default {
             avatar: null,
             theme: {
                 selector: "2e6046c7387d8fbe9acd700394a3add3",
-                options: [
-                    {
+                options: [{
                         text: "黑底綠字",
                         class: "bg-dark text-success",
                         value: "2e6046c7387d8fbe9acd700394a3add3",
@@ -322,8 +298,7 @@ export default {
             },
             font: {
                 selector: "ea98dde8987df3cd8aef75479019b688",
-                options: [
-                    {
+                options: [{
                         text: "AURAKA 點陣宋字型",
                         font: "Auraka",
                         value: "ea98dde8987df3cd8aef75479019b688"
@@ -424,13 +399,12 @@ export default {
 
             const ffo = new FontFaceObserver(font.font);
             ffo.load().then(
-                function() {
+                function () {
                     console.log("Font is available.");
                 },
-                function() {
+                function () {
                     Swal.fire({
-                        title:
-                            "字體需要一點時間載入，載入完成後將會自動替換字體。",
+                        title: "字體需要一點時間載入，載入完成後將會自動替換字體。",
                         width: 600,
                         padding: "3em",
                         backdrop: `
@@ -462,9 +436,9 @@ export default {
         settingCanvasViewSize() {
             let lineCount = this.contentSplit().length;
             let canvasView_center = lineCount * 80 < 600 ? true : false;
-            let canvasView_height = canvasView_center
-                ? this.canvas.default_height
-                : 72 + 72 + lineCount * 80;
+            let canvasView_height = canvasView_center ?
+                this.canvas.default_height :
+                72 + 72 + lineCount * 80;
             let canvasView_width = this.canvas.default_width;
             switch (this.theme.selector) {
                 case "32d2a897602ef652ed8e15d66128aa74":
@@ -615,16 +589,16 @@ export default {
         drawingContent() {
             let contentList = this.contentSplit();
             contentList.forEach(
-                function(content_value, content_key) {
+                function (content_value, content_key) {
                     let x_point = 36;
                     let y_point = 0;
                     if (this.canvas.is_center) {
                         y_point =
-                            24 + this.canvas.is_center
-                                ? 440 +
-                                  ((content_key - 1) * 80 -
-                                      contentList.length * 40)
-                                : (content_key + 1) * 80;
+                            24 + this.canvas.is_center ?
+                            440 +
+                            ((content_key - 1) * 80 -
+                                contentList.length * 40) :
+                            (content_key + 1) * 80;
                     } else {
                         y_point = 96 + content_key * 80;
                     }
@@ -645,7 +619,7 @@ export default {
             let content = this.canvas.content;
             let response_list = [];
             let content_list = content.split(/\r\n|\r|\n/);
-            content_list.forEach(function(content_value) {
+            content_list.forEach(function (content_value) {
                 let content_strlen = encodeURIComponent(content_value).replace(
                     /%[A-F\d]{2}/g,
                     "U"
@@ -656,7 +630,7 @@ export default {
                     let content_width = 0;
                     let char_string = "";
                     let _content_value_list = content_value.split("");
-                    _content_value_list.forEach(function(char_value, char_key) {
+                    _content_value_list.forEach(function (char_value, char_key) {
                         let char_strlen = encodeURIComponent(
                             char_value
                         ).replace(/%[A-F\d]{2}/g, "U").length;
@@ -716,10 +690,10 @@ export default {
 
                         return axios
                             .post("/api/frontend/social/cards/", formData)
-                            .then(function(response) {
+                            .then(function (response) {
                                 return response;
                             })
-                            .catch(function(error) {
+                            .catch(function (error) {
                                 return error;
                             });
                     }
@@ -729,8 +703,7 @@ export default {
                             let timerInterval;
                             Swal.fire({
                                 title: "射射射！",
-                                html:
-                                    "文章射出去惹，系統將在 <b></b> 毫秒後自動前往。",
+                                html: "文章射出去惹，系統將在 <b></b> 毫秒後自動前往。",
                                 timer: 2000,
                                 timerProgressBar: true,
                                 allowOutsideClick: false,
