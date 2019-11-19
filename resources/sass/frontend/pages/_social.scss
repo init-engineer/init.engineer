@@ -45,18 +45,17 @@
             }
         }
     }
+}
 
-    .blueimp-gallery {
-        a {
-            color: white;
-            font-size: 4rem !important;
-            opacity: 1;
-        }
-
-        a:hover {
-            color: white;
-            opacity: .8 !important;
-        }
+.blueimp-gallery {
+    a {
+        color: white !important;
+        font-size: 4rem !important;
+        opacity: 1;
     }
 
+    a:hover {
+        color: white !important;
+        opacity: .8 !important;
+    }
 }

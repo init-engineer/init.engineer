@@ -4,6 +4,7 @@
             :images="images"
             :index="gallery"
             @close="gallery = null" />
+
         <div class="cards bg-black rounded p-2">
             <div class="cards-image mb-4">
                 <vue-content-loading
@@ -213,10 +214,9 @@ export default {
         this.wrapContent = this.content.replace(/\n/g, "<br />");
         this.getRandomName();
         this.getLinks();
-        // this.getComments();
     },
     methods: {
-        async getLinks() {
+        getLinks() {
             axios.get(`/api/frontend/social/cards/${this.id}/links`)
                 .then(
                     response => (
@@ -226,17 +226,7 @@ export default {
                 )
                 .catch(error => console.log(error));
         },
-        async getComments() {
-            axios.get(`/api/frontend/social/cards/${this.id}/comments`)
-                .then(
-                    response => (
-                        (this.comments.push(...response.data.data)),
-                        (this.commentsNext = response.data.meta.pagination.links.next)
-                    )
-                )
-                .catch(error => console.log(error));
-        },
-        async infiniteHandler($state) {
+        infiniteHandler($state) {
             axios.get(this.commentsNext)
                 .then((response) => {
                     this.comments.push(...response.data.data);

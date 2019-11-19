@@ -34,6 +34,7 @@ return [
 
         'social' => [
             'cards' => [
+                'index' => '文章列表',
                 'show' => '詳細文章 - :title',
                 'create' => '發表文章',
             ],

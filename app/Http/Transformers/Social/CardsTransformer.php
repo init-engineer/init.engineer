@@ -22,10 +22,10 @@ class CardsTransformer extends TransformerAbstract
             'id' => $cards->id,
             'content' => $cards->content,
             'image' => $cards->images->first()->getPicture(),
-            // 'comments' => $cards->comments,
-            // 'media' => $cards->medias,
             'created_at' => $cards->created_at,
+            'created_diff' => $cards->created_at->diffForHumans(),
             'updated_at' => $cards->updated_at,
+            'updated_diff' => $cards->updated_at->diffForHumans(),
         ];
     }
 }

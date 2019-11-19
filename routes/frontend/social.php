@@ -20,6 +20,7 @@ Route::group([
         'as' => 'cards.',
         'namespace' => 'Cards',
     ], function () {
+        Route::get('/', [CardsController::class, 'index'])->name('index');
         Route::get('/show/{id}', [CardsController::class, 'show'])->name('show');
 
         // These routes require the user to be logged in
