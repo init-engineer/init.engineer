@@ -205,4 +205,13 @@ a, button {
             background-color: #155851;
         }
     }
+
+    &.btn-rainbow {
+        color: white;
+        background-image: url('../../../../public/img/frontend/background/animated-rainbow.gif');
+
+        &:active {
+            color: darkgrey;
+        }
+    }
 }

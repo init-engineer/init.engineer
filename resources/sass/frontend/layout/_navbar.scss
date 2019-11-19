@@ -7,6 +7,24 @@
     margin-top: 4px
 }
 
+.navbar {
+    .img-avatar {
+        height: 1.6em;
+    }
+
+    .dropdown-menu {
+        background-color: #666666;
+
+        .dropdown-item {
+            color: white;
+
+            &:hover {
+                background-color: #454545;
+            }
+        }
+    }
+}
+
 .navbar-toggler {
     border: none;
     background: transparent !important;
@@ -50,5 +68,5 @@
 .navbar-full-bg .nav-item:hover .nav-link,
 .navbar-full-bg .nav-item .active {
     color: #ffffff;
-    background-color: #333;
+    background-color: #333333;
 }

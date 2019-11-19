@@ -86,12 +86,12 @@
                 <div class="col-md-4 mb-md-0 mb-5"><!-- Grid column -->
                     <div class="row"><!-- Grid row -->
                         <div class="col-lg-2 col-md-3 col-2"><!-- Grid column -->
-                            <i class="fas fa-dog blue-text fa-2x"></i>
+                            <i class="fas fa-dog blue-text fa-2x shake-hard shake-constant shake-constant--hover"></i>
                         </div><!-- Grid column -->
                         <div class="col-lg-10 col-md-9 col-10"><!-- Grid column -->
                             <h4 class="font-weight-bold">汪汪汪汪汪汪</h4>
                             <p class="grey-text">汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪</p>
-                            <a class="btn btn-primary btn-sm">汪？</a>
+                            <a class="btn btn-rainbow btn-block btn-lg"><i class="fas fa-heart shake-little shake-constant shake-constant--hover"> 汪汪汪</i></a>
                         </div><!-- Grid column -->
                     </div><!-- Grid row -->
                 </div><!-- Grid column -->
@@ -99,12 +99,12 @@
                 <div class="col-md-4 mb-md-0 mb-5"><!-- Grid column -->
                     <div class="row"><!-- Grid row -->
                         <div class="col-lg-2 col-md-3 col-2"><!-- Grid column -->
-                            <i class="fas fa-cat pink-text fa-2x"></i>
+                            <i class="fas fa-cat pink-text fa-2x shake-hard shake-constant shake-constant--hover"></i>
                         </div><!-- Grid column -->
                         <div class="col-lg-10 col-md-9 col-10"><!-- Grid column -->
                             <h4 class="font-weight-bold">喵喵喵喵喵喵</h4>
                             <p class="grey-text">喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵</p>
-                            <a class="btn btn-primary btn-sm">喵？</a>
+                            <a class="btn btn-rainbow btn-block btn-lg"><i class="fas fa-heart shake-little shake-constant shake-constant--hover"> 喵喵喵</i></a>
                         </div><!-- Grid column -->
                     </div><!-- Grid row -->
                 </div><!-- Grid column -->
@@ -112,12 +112,12 @@
                 <div class="col-md-4"><!-- Grid column -->
                     <div class="row"><!-- Grid row -->
                         <div class="col-lg-2 col-md-3 col-2"><!-- Grid column -->
-                            <i class="fas fa-bug purple-text fa-2x"></i>
+                            <i class="fas fa-bug purple-text fa-2x shake-hard shake-constant shake-constant--hover"></i>
                         </div><!-- Grid column -->
                         <div class="col-lg-10 col-md-9 col-10"><!-- Grid column -->
                             <h4 class="font-weight-bold">哞哞哞哞哞哞</h4>
                             <p class="grey-text">哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞</p>
-                            <a class="btn btn-primary btn-sm">哞？</a>
+                            <a class="btn btn-rainbow btn-block btn-lg"><i class="fas fa-heart shake-little shake-constant shake-constant--hover"> 哞哞哞</i></a>
                         </div><!-- Grid column -->
                     </div><!-- Grid row -->
                 </div><!-- Grid column -->
