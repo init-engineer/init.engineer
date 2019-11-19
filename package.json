@@ -82,6 +82,7 @@
         "vue-infinite-loading": "^2.4.4",
         "vue-marquee-text-component": "^1.1.1",
         "vue-picture-input": "^2.1.6",
+        "vue-tippy": "^4.0.3",
         "vuelidate": "^0.7.4"
     }
 }
