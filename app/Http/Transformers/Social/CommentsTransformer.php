@@ -18,15 +18,20 @@ class CommentsTransformer extends TransformerAbstract
      */
     public function transform(Comments $comments)
     {
+        $media = isset($comments->media)? [
+            'type' => $comments->media->social_type,
+            'connections' => $comments->media->social_connections,
+        ] : [
+            'type' => 'platform',
+            'connections' => 'primary',
+        ];
+
         return [
             'name' => $comments->user_name,
             'avatar' => $comments->user_avatar,
             'content' => $comments->content,
             'created' => $comments->created_at->diffForHumans(),
-            'media' => [
-                'type' => $comments->media->social_type,
-                'connections' => $comments->media->social_connections,
-            ],
+            'media' => $media,
         ];
     }
 }

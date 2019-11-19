@@ -44,7 +44,7 @@
                     class="d-flex flex-row"
                     v-show="loaded.avatar">
                     <div class="avatar text-center">
-                        <img class="rounded img-fluid p-2 mb-2 animated faster" :class="{ fadeIn: loaded.avatar }" :src="profile.avatar" @load="loadedAvatar" />
+                        <img class="rounded img-fluid p-1 mb-2 animated faster" :class="{ fadeIn: loaded.avatar }" :src="profile.avatar" @load="loadedAvatar" />
                         <p class="text-white">匿名{{ profile.name }}</p>
                     </div>
                     <div class="content w-100">
@@ -76,19 +76,19 @@
 
                 <a class="btn btn-sm mx-1 animated faster"
                     :class="[ 'btn-' + link.type, { fadeInUp: loaded.avatar } ]"
-                    :name="'tippy-' + link.type"
+                    :name="`tippy-${link.type}-${link.connections}`"
                     v-for="link in links"
                     :key="link.id"
                     :href="link.url"
                     target="_blank">
 
-                    <tippy :to="'tippy-' + link.type"
+                    <tippy :to="`tippy-${link.type}-${link.connections}`"
                         flip=false
                         placement="top"
                         multiple>
                         <p class="m-1"><i class="fas fa-heart"></i> {{ link.like }}</p>
                     </tippy>
-                    <tippy :to="'tippy-' + link.type"
+                    <tippy :to="`tippy-${link.type}-${link.connections}`"
                         flip=false
                         placement="bottom"
                         multiple>
@@ -105,7 +105,7 @@
                     v-for="(comment, $index) in comments"
                     :key="$index">
                     <div class="avatar text-center">
-                        <img class="align-self-start rounded img-fluid p-2 mb-2 animated faster" :class="{ fadeIn: loaded.avatar }" :src="comment.avatar" onerror="javascript:this.src='https://image.flaticon.com/icons/svg/675/675564.svg'" />
+                        <img class="align-self-start rounded img-fluid p-1 mb-2 animated faster" :class="{ fadeIn: loaded.avatar }" :src="comment.avatar" onerror="javascript:this.src='https://image.flaticon.com/icons/svg/675/675564.svg'" />
                         <p class="text-white">{{ comment.name }}</p>
                     </div>
                     <div class="media-body content">

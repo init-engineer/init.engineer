@@ -196,4 +196,13 @@ a, button {
         }
     }
 
+    &.btn-platform {
+        color: white;
+        background-color: #21897E;
+
+        &:active {
+            color: darkgrey;
+            background-color: #155851;
+        }
+    }
 }
