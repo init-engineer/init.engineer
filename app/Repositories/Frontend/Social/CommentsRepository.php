@@ -49,10 +49,11 @@ class CommentsRepository extends BaseRepository
      *
      * @return mixed
      */
-    public function getActivePaginated(Cards $cards, $paged = 25, $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
+    public function getActivePaginated(Cards $cards, $paged = 15, $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
     {
         return $this->model
             ->where('card_id', $cards->id)
+            ->where('content', 'not like', '')
             ->whereNull('reply_media_comment_id')
             ->active()
             ->orderBy($orderBy, $sort)

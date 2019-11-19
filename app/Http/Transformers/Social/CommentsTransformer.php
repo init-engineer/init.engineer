@@ -22,7 +22,11 @@ class CommentsTransformer extends TransformerAbstract
             'name' => $comments->user_name,
             'avatar' => $comments->user_avatar,
             'content' => $comments->content,
-            'created_at' => $comments->created_at,
+            'created' => $comments->created_at->diffForHumans(),
+            'media' => [
+                'type' => $comments->media->social_type,
+                'connections' => $comments->media->social_connections,
+            ],
         ];
     }
 }

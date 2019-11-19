@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Social\Traits\Scope\CommentsScope;
 use App\Models\Social\Traits\Method\CommentsMethod;
+use App\Models\Social\Traits\Relationship\CommentsRelationship;
 
 /**
  * Class Comments.
@@ -14,7 +15,8 @@ class Comments extends Model
 {
     use SoftDeletes,
         CommentsScope,
-        CommentsMethod;
+        CommentsMethod,
+        CommentsRelationship;
 
     /**
      * The table associated with the model.
@@ -48,6 +50,17 @@ class Comments extends Model
         'is_banned',
         'banned_user_id',
         'banned_remarks',
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
         'created_at',
         'updated_at',
         'deleted_at',

@@ -14,13 +14,7 @@
                     :speed="1"
                     primary="#333333"
                     secondary="#666666">
-                    <rect
-                        x="20"
-                        y="0"
-                        rx="1"
-                        ry="1"
-                        width="60"
-                        height="40" />
+                    <rect x="20" y="0" rx="1" ry="1" width="60" height="40" />
                 </vue-content-loading>
                 <img class="rounded img-fluid mx-auto d-block animated faster" :class="{ fadeIn: loaded.image }" v-show="loaded.image" :src="image" @load="loadedImage" @click="gallery = 0" />
             </div>
@@ -35,75 +29,21 @@
                     :speed="1"
                     primary="#333333"
                     secondary="#666666">
-                    <rect
-                        x="1"
-                        y="0"
-                        rx="1"
-                        ry="1"
-                        width="10"
-                        height="10" />
-                    <rect
-                        x="1"
-                        y="11"
-                        rx="1"
-                        ry="1"
-                        width="10"
-                        height="2" />
-                    <rect
-                        x="88"
-                        y="0"
-                        rx="1"
-                        ry="1"
-                        width="12"
-                        height="3" />
-                    <rect
-                        x="12"
-                        y="6"
-                        rx="1"
-                        ry="1"
-                        width="80"
-                        height="2" />
-                    <rect
-                        x="12"
-                        y="9"
-                        rx="1"
-                        ry="1"
-                        width="80"
-                        height="2" />
-                    <rect
-                        x="12"
-                        y="12"
-                        rx="1"
-                        ry="1"
-                        width="80"
-                        height="2" />
-                    <rect
-                        x="12"
-                        y="15"
-                        rx="1"
-                        ry="1"
-                        width="80"
-                        height="2" />
-                    <rect
-                        x="12"
-                        y="18"
-                        rx="1"
-                        ry="1"
-                        width="80"
-                        height="2" />
-                    <rect
-                        x="12"
-                        y="21"
-                        rx="1"
-                        ry="1"
-                        width="36"
-                        height="2" />
+                    <rect x="1" y="0" rx="1" ry="1" width="10" height="10" />
+                    <rect x="1" y="11" rx="1" ry="1" width="10" height="2" />
+                    <rect x="88" y="0" rx="1" ry="1" width="12" height="3" />
+                    <rect x="12" y="6" rx="1" ry="1" width="80" height="2" />
+                    <rect x="12" y="9" rx="1" ry="1" width="80" height="2" />
+                    <rect x="12" y="12" rx="1" ry="1" width="80" height="2" />
+                    <rect x="12" y="15" rx="1" ry="1" width="80" height="2" />
+                    <rect x="12" y="18" rx="1" ry="1" width="80" height="2" />
+                    <rect x="12" y="21" rx="1" ry="1" width="36" height="2" />
                 </vue-content-loading>
                 <div
                     class="d-flex flex-row"
                     v-show="loaded.avatar">
                     <div class="avatar text-center">
-                        <img class="rounded-circle img-fluid p-2 mb-2 animated faster" :class="{ fadeIn: loaded.avatar }" :src="profile.avatar" @load="loadedAvatar" />
+                        <img class="rounded img-fluid p-2 mb-2 animated faster" :class="{ fadeIn: loaded.avatar }" :src="profile.avatar" @load="loadedAvatar" />
                         <p class="text-white">匿名{{ profile.name }}</p>
                     </div>
                     <div class="content w-100">
@@ -118,7 +58,7 @@
             </div>
             <!-- cards content -->
 
-            <div class="cards-links border-bottom border-white text-right mb-4 pb-2">
+            <div class="cards-links border-bottom border-white border-w-3 text-right mb-4 pb-2">
                 <vue-content-loading
                     class="animated faster"
                     :class="{ 'fadeOut position-absolute': loaded.links }"
@@ -127,168 +67,91 @@
                     :speed="1"
                     primary="#333333"
                     secondary="#666666">
-                    <rect
-                        x="61"
-                        y="0"
-                        rx="1"
-                        ry="1"
-                        width="9"
-                        height="3" />
-                    <rect
-                        x="71"
-                        y="0"
-                        rx="1"
-                        ry="1"
-                        width="9"
-                        height="3" />
-                    <rect
-                        x="81"
-                        y="0"
-                        rx="1"
-                        ry="1"
-                        width="9"
-                        height="3" />
-                    <rect
-                        x="91"
-                        y="0"
-                        rx="1"
-                        ry="1"
-                        width="9"
-                        height="3" />
+                    <rect x="61" y="0" rx="1" ry="1" width="9" height="3" />
+                    <rect x="71" y="0" rx="1" ry="1" width="9" height="3" />
+                    <rect x="81" y="0" rx="1" ry="1" width="9" height="3" />
+                    <rect x="91" y="0" rx="1" ry="1" width="9" height="3" />
                 </vue-content-loading>
-                <a class="btn btn-sm ml-1 animated faster" :class="[ 'btn-' + link.type, { fadeIn: loaded.avatar } ]" v-for="link in links" :key="link.id" :href="link.url" target="_blank">{{ link.type }} {{ (link.connections === 'primary') ? '主站' : '次站' }}</a>
+                <a class="btn btn-sm ml-1 animated faster" :class="[ 'btn-' + link.type, { fadeInUp: loaded.avatar } ]" v-for="link in links" :key="link.id" :href="link.url" target="_blank">{{ link.type }} {{ (link.connections === 'primary') ? '主站' : '次站' }}</a>
             </div>
             <!-- cards links -->
 
             <div class="cards-comments">
-                <vue-content-loading
-                    class="animated faster"
-                    :class="{ 'fadeOut position-absolute': loaded.comments }"
-                    :width="100"
-                    :height="32"
-                    :speed="1"
-                    primary="#333333"
-                    secondary="#666666">
-                    <rect
-                        x="1"
-                        y="0"
-                        rx="1"
-                        ry="1"
-                        width="10"
-                        height="10" />
-                    <rect
-                        x="1"
-                        y="11"
-                        rx="1"
-                        ry="1"
-                        width="10"
-                        height="2" />
-                    <rect
-                        x="12"
-                        y="0"
-                        rx="1"
-                        ry="1"
-                        width="12"
-                        height="3" />
-                    <rect
-                        x="88"
-                        y="0"
-                        rx="1"
-                        ry="1"
-                        width="12"
-                        height="3" />
-                    <rect
-                        x="12"
-                        y="6"
-                        rx="1"
-                        ry="1"
-                        width="80"
-                        height="2" />
-                    <rect
-                        x="12"
-                        y="9"
-                        rx="1"
-                        ry="1"
-                        width="80"
-                        height="2" />
-                    <rect
-                        x="12"
-                        y="12"
-                        rx="1"
-                        ry="1"
-                        width="36"
-                        height="2" />
-                    <rect
-                        x="12"
-                        y="17"
-                        rx="1"
-                        ry="1"
-                        width="10"
-                        height="10" />
-                    <rect
-                        x="12"
-                        y="28"
-                        rx="1"
-                        ry="1"
-                        width="10"
-                        height="2" />
-                    <rect
-                        x="23"
-                        y="17"
-                        rx="1"
-                        ry="1"
-                        width="12"
-                        height="3" />
-                    <rect
-                        x="88"
-                        y="17"
-                        rx="1"
-                        ry="1"
-                        width="12"
-                        height="3" />
-                    <rect
-                        x="23"
-                        y="23"
-                        rx="1"
-                        ry="1"
-                        width="69"
-                        height="2" />
-                    <rect
-                        x="23"
-                        y="26"
-                        rx="1"
-                        ry="1"
-                        width="69"
-                        height="2" />
-                    <rect
-                        x="23"
-                        y="29"
-                        rx="1"
-                        ry="1"
-                        width="36"
-                        height="2" />
-                </vue-content-loading>
+                <div
+                    class="d-flex flex-row media pb-2 animated fadeInUp faster"
+                    v-show="loaded.comments"
+                    v-for="(comment, $index) in comments"
+                    :key="$index">
+                    <div class="avatar text-center">
+                        <img class="align-self-start rounded img-fluid p-2 mb-2 animated faster" :class="{ fadeIn: loaded.avatar }" :src="comment.avatar" onerror="javascript:this.src='https://image.flaticon.com/icons/svg/675/675564.svg'" />
+                        <p class="text-white">{{ comment.name }}</p>
+                    </div>
+                    <div class="media-body content">
+                        <div class="d-flex mb-2">
+                            <button class="btn btn-sm ml-1 animated fadeInUp faster" :class="'btn-' + comment.media.type">{{ comment.media.type }} {{ (comment.media.connections === 'primary') ? '主站' : '次站' }}</button>
+                            <small class="ml-auto text-white">{{ comment.created }}</small>
+                        </div>
+                        <pre class="read text-white text-wrap" v-html="comment.content"></pre>
+                    </div>
+                </div>
+                <!-- media -->
+
+                <infinite-loading @infinite="infiniteHandler">
+                    <div slot="spinner">
+                        <vue-content-loading
+                            :width="100"
+                            :height="32"
+                            :speed="1"
+                            primary="#333333"
+                            secondary="#666666">
+                            <rect x="1" y="0" rx="1" ry="1" width="10" height="10" />
+                            <rect x="1" y="11" rx="1" ry="1" width="10" height="2" />
+                            <rect x="12" y="0" rx="1" ry="1" width="12" height="3" />
+                            <rect x="88" y="0" rx="1" ry="1" width="12" height="3" />
+                            <rect x="12" y="6" rx="1" ry="1" width="80" height="2" />
+                            <rect x="12" y="9" rx="1" ry="1" width="80" height="2" />
+                            <rect x="12" y="12" rx="1" ry="1" width="36" height="2" />
+                            <rect x="12" y="17" rx="1" ry="1" width="10" height="10" />
+                            <rect x="12" y="28" rx="1" ry="1" width="10" height="2" />
+                            <rect x="23" y="17" rx="1" ry="1" width="12" height="3" />
+                            <rect x="88" y="17" rx="1" ry="1" width="12" height="3" />
+                            <rect x="23" y="23" rx="1" ry="1" width="69" height="2" />
+                            <rect x="23" y="26" rx="1" ry="1" width="69" height="2" />
+                            <rect x="23" y="29" rx="1" ry="1" width="36" height="2" />
+                        </vue-content-loading>
+                    </div>
+                    <div class="text-white border-top border-white border-w-3 pt-5 pb-5" slot="no-more">沒有其他留言了。</div>
+                    <div class="text-white border-top border-white border-w-3 pt-5 pb-5" slot="no-results">沒有其他留言了。</div>
+                </infinite-loading>
+                <!-- infinit loading -->
             </div>
             <!-- cards comments -->
         </div>
         <!-- cards -->
+
+        <go-top bg-color="#4ec425" />
+        <!-- go to the top -->
     </div>
     <!-- social cards -->
 </template>
 
 <script>
+import GoTop from '@inotom/vue-go-top';
 import VueGallery from "vue-gallery";
+import InfiniteLoading from 'vue-infinite-loading';
 import VueContentLoading from "vue-content-loading";
 
 export default {
     name: "SocialCardsShow",
     components: {
+        GoTop,
         VueGallery,
+        InfiniteLoading,
         VueContentLoading
     },
     props: {
         id: {
-            type: Number,
+            type: String,
             required: true
         },
         content: {
@@ -311,13 +174,15 @@ export default {
             links: [],
             images: [],
             comments: [],
+            commentsNext: `/api/frontend/social/cards/${this.id}/comments`,
+            commentsPage: 1,
             profile: {
                 name: null,
                 avatar: null
             },
             loaded: {
                 avatar: false,
-                comments: false,
+                commentsOver: false,
                 image: false,
                 links: false
             }
@@ -327,29 +192,40 @@ export default {
         this.wrapContent = this.content.replace(/\n/g, "<br />");
         this.getRandomName();
         this.getLinks();
-        this.getComments();
+        // this.getComments();
     },
     methods: {
         async getLinks() {
-            axios
-                .get(`/api/frontend/social/cards/${this.id}/links`)
+            axios.get(`/api/frontend/social/cards/${this.id}/links`)
                 .then(
                     response => (
-                        (this.links = response.data.data),
+                        (this.links.push(...response.data.data)),
                         (this.loaded.links = true)
                     )
                 )
                 .catch(error => console.log(error));
         },
         async getComments() {
-            axios
-                .get(`/api/frontend/social/cards/${this.id}/comments`)
+            axios.get(`/api/frontend/social/cards/${this.id}/comments`)
                 .then(
                     response => (
-                        (this.comments = response.data.data),
-                        (this.loaded.comments = true)
+                        (this.comments.push(...response.data.data)),
+                        (this.commentsNext = response.data.meta.pagination.links.next)
                     )
                 )
+                .catch(error => console.log(error));
+        },
+        async infiniteHandler($state) {
+            axios.get(this.commentsNext)
+                .then((response) => {
+                    this.comments.push(...response.data.data);
+                    if (response.data.meta.pagination.links.next) {
+                        this.commentsNext = response.data.meta.pagination.links.next;
+                        $state.loaded();
+                    } else {
+                        $state.complete();
+                    }
+                })
                 .catch(error => console.log(error));
         },
         getRandomName() {
@@ -498,8 +374,7 @@ export default {
                     avatar: "https://image.flaticon.com/icons/svg/2219/2219791.svg"
                 }
             ];
-            this.profile =
-                nameList[Math.floor(Math.random() * nameList.length)];
+            this.profile = nameList[Math.floor(Math.random() * nameList.length)];
         },
         loadedAvatar() {
             this.loaded.avatar = true;

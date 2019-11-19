@@ -27,6 +27,23 @@
                 padding-left: 1.5rem;
             }
         }
+
+        .cards-comments {
+            img {
+                width: 64px;
+                height: 64px;
+                background-image: url('../../../../public/img/frontend/background/animated-rainbow.gif');
+            }
+
+            .avatar {
+                width: 128px;
+            }
+
+            .content {
+                font-size: 1.5rem;
+                padding-left: 1.5rem;
+            }
+        }
     }
 
     .blueimp-gallery {
