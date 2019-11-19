@@ -72,13 +72,34 @@
                     <rect x="81" y="0" rx="1" ry="1" width="9" height="3" />
                     <rect x="91" y="0" rx="1" ry="1" width="9" height="3" />
                 </vue-content-loading>
-                <a class="btn btn-sm ml-1 animated faster" :class="[ 'btn-' + link.type, { fadeInUp: loaded.avatar } ]" v-for="link in links" :key="link.id" :href="link.url" target="_blank">{{ link.type }} {{ (link.connections === 'primary') ? '主站' : '次站' }}</a>
+
+                <a class="btn btn-sm mx-1 animated faster"
+                    :class="[ 'btn-' + link.type, { fadeInUp: loaded.avatar } ]"
+                    :name="'tippy-' + link.type"
+                    v-for="link in links"
+                    :key="link.id"
+                    :href="link.url"
+                    target="_blank">
+
+                    <tippy :to="'tippy-' + link.type"
+                        flip=false
+                        placement="top"
+                        multiple>
+                        <p class="m-1"><i class="fas fa-heart"></i> {{ link.like }}</p>
+                    </tippy>
+                    <tippy :to="'tippy-' + link.type"
+                        flip=false
+                        placement="bottom"
+                        multiple>
+                        <p class="m-1"><i class="fas fa-share"></i> {{ link.share }}</p>
+                    </tippy>
+                    {{ link.type }} {{ (link.connections === 'primary') ? '主站' : '次站' }}
+                </a>
             </div>
             <!-- cards links -->
 
             <div class="cards-comments">
-                <div
-                    class="d-flex flex-row media pb-2 animated fadeInUp faster"
+                <div class="d-flex flex-row media pb-2 animated fadeInUp faster"
                     v-show="loaded.comments"
                     v-for="(comment, $index) in comments"
                     :key="$index">

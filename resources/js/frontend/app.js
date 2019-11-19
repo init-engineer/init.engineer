@@ -9,9 +9,12 @@ import '../bootstrap';
 import '../plugins';
 import Vue from 'vue';
 import Vuelidate from 'vuelidate';
+import VueTippy, { TippyComponent } from 'vue-tippy';
 
 window.Vue = Vue;
 Vue.use(Vuelidate);
+Vue.use(VueTippy);
+Vue.component('tippy', TippyComponent);
 
 /**
  * The following block of code may be used to automatically register your
