@@ -16,6 +16,8 @@ use App\Repositories\Frontend\Social\CardsRepository;
 use App\Repositories\Frontend\Social\ImagesRepository;
 use App\Http\Transformers\Social\MediaCardsTransformer;
 use App\Repositories\Frontend\Social\CommentsRepository;
+use App\Http\Transformers\Social\DashboardCardsTransformer;
+use App\Http\Requests\Api\Frontend\Social\Cards\DashboardRequest;
 use App\Http\Requests\Api\Frontend\Social\Cards\StoreCardsRequest;
 
 /**
@@ -88,6 +90,20 @@ class CardsController extends Controller
     {
         $paginator = $this->cardsRepository->getActivePaginated();
         $cards = new Collection($paginator->items(), new CardsTransformer());
+        $cards->setPaginator(new IlluminatePaginatorAdapter($paginator));
+        $response = $this->fractal->createData($cards);
+
+        return response()->json($response->toArray());
+    }
+
+    /**
+     * @param DashboardRequest $request
+     * @return \Illuminate\Http\Response
+     */
+    public function dashboard(DashboardRequest $request)
+    {
+        $paginator = $this->cardsRepository->getDashboardPaginated($request->user());
+        $cards = new Collection($paginator->items(), new DashboardCardsTransformer());
         $cards->setPaginator(new IlluminatePaginatorAdapter($paginator));
         $response = $this->fractal->createData($cards);
 

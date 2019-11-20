@@ -5,9 +5,9 @@ namespace App\Http\Requests\Api\Frontend\Social\Cards;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * Class StoreCardsRequest.
+ * Class DashboardRequest.
  */
-class StoreCardsRequest extends FormRequest
+class DashboardRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,10 +27,7 @@ class StoreCardsRequest extends FormRequest
     public function rules()
     {
         return [
-            'content' => ['required', 'string', 'min:30'],
-            'themeStyle' => ['required', 'string'],
-            'fontStyle' => ['required', 'string'],
-            'avatar' => ['nullable', 'mimes:jpeg,jpg,png,gif', 'max:2048'],
+            //
         ];
     }
 }
