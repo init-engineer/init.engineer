@@ -4,6 +4,7 @@ namespace App\Services\Socials\MediaCards;
 
 use App\Models\Social\Cards;
 use App\Services\BaseService;
+use App\Exceptions\GeneralException;
 use ReliqArts\Thujohn\Twitter\Facades\Twitter;
 use App\Repositories\Frontend\Social\MediaCardsRepository;
 
@@ -33,7 +34,7 @@ class TwitterPrimaryService extends BaseService implements SocialCardsContract
     {
         if ($this->mediaCardsRepository->findByCardId($cards->id, 'twitter', 'primary'))
         {
-            throw new GeneralException(__('exceptions.frontend.social.media.cards.repeated_error'));
+            throw new GeneralException(__('exceptions.backend.social.media.cards.repeated_error'));
         }
         else
         {
@@ -73,7 +74,7 @@ class TwitterPrimaryService extends BaseService implements SocialCardsContract
             base_convert($options['id'], 10, 36),
             $_content,
             route('frontend.social.cards.create'),
-            '#', // route('frontend.social.cards.show', ['id' => $options['id']])
+            route('frontend.social.cards.show', ['id' => $options['id']])
         );
     }
 }
