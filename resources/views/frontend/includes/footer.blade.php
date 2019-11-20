@@ -45,8 +45,9 @@
                 <!-- Links -->
                 <h6 class="text-white font-weight-bold">服務項目</h6>
                 <hr class="bg-white accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 32px;">
-                <p><a href="{{ route('frontend.social.cards.index') }}">文章列表</a></p>
-                <p><a href="{{ route('frontend.social.cards.create') }}">發表文章</a></p>
+                <p><a href="{{ route('frontend.policies') }}">{{ __('navs.frontend.policies') }}</a></p>
+                <p><a href="{{ route('frontend.social.cards.index') }}">{{ __('navs.frontend.social.cards.index') }}</a></p>
+                <p><a href="{{ route('frontend.social.cards.create') }}">{{ __('navs.frontend.social.cards.create') }}</a></p>
             </div>
             <!-- Grid column -->
 

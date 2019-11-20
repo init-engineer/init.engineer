@@ -23,6 +23,7 @@ return [
         'login' => '登入',
         'macros' => '巨集',
         'register' => '註冊',
+        'policies' => '網站服務條款 & 隱私權政策',
 
         'user' => [
             'account' => '我的帳號',

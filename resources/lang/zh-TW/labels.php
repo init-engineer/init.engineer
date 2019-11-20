@@ -116,26 +116,36 @@ return [
 
     'frontend' => [
         'auth' => [
-            'login_box_title' => '登入',
+            'login_box_title' => 'LOGIN',
             'login_button' => '登入',
             'login_with' => '使用 :social_media 登入',
-            'register_box_title' => '註冊',
+            'register_box_title' => 'REGISTER',
             'register_button' => '註冊',
             'remember_me' => '記住我',
         ],
 
         'contact' => [
-            'box_title' => '聯絡我們',
+            'box_title' => 'CONTACT',
+            'box_text' => '聯絡我們',
             'button' => '送出訊息',
         ],
 
         'passwords' => [
-            'expired_password_box_title' => '您的密碼已過期。',
+            'expired_password_box_title' => 'EXPIRED PASSWORD',
+            'expired_password_text' => '您的密碼已過期。',
+            'forgot_password_title' => 'FORGOT PASSWORD',
+            'forgot_password_text' => '忘記密碼？ ',
             'forgot_password' => '忘記密碼？ ',
-            'reset_password_box_title' => '重置密碼',
+            'reset_password_box_title' => 'RESET PASSWORD',
+            'reset_password_box_text' => '重置密碼',
             'reset_password_button' => '重置密碼',
             'update_password_button' => '更新密碼',
             'send_password_reset_link_button' => '發送密碼重置連結',
+        ],
+
+        'policies' => [
+            'policies_title' => 'POLICIES',
+            'policies_text' => '網站服務條款 & 隱私權政策',
         ],
 
         'user' => [
