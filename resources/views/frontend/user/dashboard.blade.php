@@ -1,22 +1,31 @@
 @extends('frontend.layouts.app')
 
-@section('title', app_name() . ' | ' . __('navs.frontend.dashboard') )
-
 @section('content')
     <div class="container my-5">
         <div class="row mb-4">
             <div class="col">
-                <div class="card">
-                    <div class="card-header">
+                <div class="text-white">
+                    <div class="card-header display-4">
                         <strong>
-                            <i class="fas fa-tachometer-alt"></i> @lang('navs.frontend.dashboard')
+                            <i class="fas fa-tachometer-alt"></i> {{ __('labels.frontend.user.dashboard.dashboard_text') }}
                         </strong>
                     </div><!--card-header-->
 
                     <div class="card-body">
                         <div class="row">
-                            <div class="col col-sm-4 order-1 order-sm-2  mb-4">
-                                <div class="card mb-4 bg-light">
+                            <div class="col col-sm-4 text-dark order-1 order-sm-2 mb-4">
+                                <div class="nav nav-tabs" role="tablist">
+                                    <a href="#cards" class="my-2 btn btn-block btn-dos rounded-0 active" aria-controls="cards" role="tab" data-toggle="tab">@lang('navs.frontend.user.cards')</a>
+                                    <a href="#profile" class="my-2 btn btn-block btn-dos rounded-0" aria-controls="profile" role="tab" data-toggle="tab">@lang('navs.frontend.user.profile')</a>
+                                    <a href="#edit" class="my-2 btn btn-block btn-dos rounded-0" aria-controls="edit" role="tab" data-toggle="tab">@lang('labels.frontend.user.profile.update_information')</a>
+                                    @if($logged_in_user->canChangePassword())
+                                        <a href="#password" class="my-2 btn btn-block btn-dos rounded-0" aria-controls="password" role="tab" data-toggle="tab">@lang('navs.frontend.user.change_password')</a>
+                                    @endif
+                                </div>
+
+                                <hr class="border border-w-3">
+
+                                <div class="card mb-4 bg-img-rock text-white rounded-0 border border-w-6">
                                     <img class="card-img-top" src="{{ $logged_in_user->picture }}" alt="Profile Picture">
 
                                     <div class="card-body">
@@ -31,110 +40,38 @@
                                             </small>
                                         </p>
 
+                                        @can('view backend')
                                         <p class="card-text">
-
-                                            <a href="{{ route('frontend.user.account')}}" class="btn btn-info btn-sm mb-1">
-                                                <i class="fas fa-user-circle"></i> @lang('navs.frontend.user.account')
+                                            <a href="{{ route('admin.dashboard')}}" class="btn btn-danger btn-block btn-lg">
+                                                <i class="fas fa-user-secret"></i> @lang('navs.frontend.user.administration')
                                             </a>
-
-                                            @can('view backend')
-                                                &nbsp;<a href="{{ route('admin.dashboard')}}" class="btn btn-danger btn-sm mb-1">
-                                                    <i class="fas fa-user-secret"></i> @lang('navs.frontend.user.administration')
-                                                </a>
-                                            @endcan
                                         </p>
+                                        @endcan
                                     </div>
                                 </div>
-
-                                <div class="card mb-4">
-                                    <div class="card-header">Header</div>
-                                    <div class="card-body">
-                                        <h4 class="card-title">Info card title</h4>
-                                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    </div>
-                                </div><!--card-->
                             </div><!--col-md-4-->
 
                             <div class="col-md-8 order-2 order-sm-1">
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="card mb-4">
-                                            <div class="card-header">
-                                                Item
-                                            </div><!--card-header-->
+                                <div class="tab-content">
+                                    <div role="tabpanel" class="tab-pane fade show active pt-3" id="cards" aria-labelledby="cards-tab">
+                                        <social-cards-dashboard></social-cards-dashboard>
+                                    </div><!--tab panel profile-->
 
-                                            <div class="card-body">
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non qui facilis deleniti expedita fuga ipsum numquam aperiam itaque cum maxime.
-                                            </div><!--card-body-->
-                                        </div><!--card-->
-                                    </div><!--col-md-6-->
-                                </div><!--row-->
+                                    <div role="tabpanel" class="tab-pane fade show pt-3" id="profile" aria-labelledby="profile-tab">
+                                        @include('frontend.user.account.tabs.profile')
+                                    </div><!--tab panel profile-->
 
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="card mb-4">
-                                            <div class="card-header">
-                                                Item
-                                            </div><!--card-header-->
+                                    <div role="tabpanel" class="tab-pane fade show pt-3" id="edit" aria-labelledby="edit-tab">
+                                        @include('frontend.user.account.tabs.edit')
+                                    </div><!--tab panel profile-->
 
-                                            <div class="card-body">
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non qui facilis deleniti expedita fuga ipsum numquam aperiam itaque cum maxime.
-                                            </div><!--card-body-->
-                                        </div><!--card-->
-                                    </div><!--col-md-6-->
-                                </div><!--row-->
+                                    @if($logged_in_user->canChangePassword())
+                                        <div role="tabpanel" class="tab-pane fade show pt-3" id="password" aria-labelledby="password-tab">
+                                            @include('frontend.user.account.tabs.change-password')
+                                        </div><!--tab panel change password-->
+                                    @endif
+                                </div><!--tab content-->
 
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="card mb-4">
-                                            <div class="card-header">
-                                                Item
-                                            </div><!--card-header-->
-
-                                            <div class="card-body">
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non qui facilis deleniti expedita fuga ipsum numquam aperiam itaque cum maxime.
-                                            </div><!--card-body-->
-                                        </div><!--card-->
-                                    </div><!--col-md-6-->
-
-                                    <div class="col">
-                                        <div class="card mb-4">
-                                            <div class="card-header">
-                                                Item
-                                            </div><!--card-header-->
-
-                                            <div class="card-body">
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non qui facilis deleniti expedita fuga ipsum numquam aperiam itaque cum maxime.
-                                            </div><!--card-body-->
-                                        </div><!--card-->
-                                    </div><!--col-md-6-->
-
-                                    <div class="w-100"></div>
-
-                                    <div class="col">
-                                        <div class="card mb-4">
-                                            <div class="card-header">
-                                                Item
-                                            </div><!--card-header-->
-
-                                            <div class="card-body">
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non qui facilis deleniti expedita fuga ipsum numquam aperiam itaque cum maxime.
-                                            </div><!--card-body-->
-                                        </div><!--card-->
-                                    </div><!--col-md-6-->
-
-                                    <div class="col">
-                                        <div class="card mb-4">
-                                            <div class="card-header">
-                                                Item
-                                            </div><!--card-header-->
-
-                                            <div class="card-body">
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non qui facilis deleniti expedita fuga ipsum numquam aperiam itaque cum maxime.
-                                            </div><!--card-body-->
-                                        </div><!--card-->
-                                    </div><!--col-md-6-->
-                                </div><!--row-->
                             </div><!--col-md-8-->
                         </div><!-- row -->
                     </div> <!-- card-body -->

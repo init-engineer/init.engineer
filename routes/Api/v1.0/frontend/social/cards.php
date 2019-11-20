@@ -29,13 +29,13 @@ Route::group([
             // Cards CRUD
             Route::get('/', [CardsController::class, 'index'])->name('index');
             Route::group(['middleware' => 'auth:api'], function () {
-                Route::get('/', [CardsController::class, 'dashboard'])->name('dashboard');
+                Route::get('/dashboard', [CardsController::class, 'dashboard'])->name('dashboard');
                 Route::post('/', [CardsController::class, 'store'])->name('store');
             });
 
             // Specific Card
             Route::group(['prefix' => '/{id}'], function () {
-                Route::get('/', [CardsController::class, 'show'])->name('show');
+                Route::get('/show', [CardsController::class, 'show'])->name('show');
                 Route::get('/links', [CardsController::class, 'links'])->name('links');
                 Route::get('/comments', [CardsController::class, 'comments'])->name('comments');
             });

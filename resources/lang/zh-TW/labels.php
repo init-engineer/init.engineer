@@ -149,6 +149,10 @@ return [
         ],
 
         'user' => [
+            'dashboard' => [
+                'dashboard_text' => 'DASHBOARD',
+            ],
+
             'passwords' => [
                 'change' => '更改密碼',
             ],

@@ -26,6 +26,7 @@ return [
         'policies' => '網站服務條款 & 隱私權政策',
 
         'user' => [
+            'cards' => '發文歷程',
             'account' => '我的帳號',
             'administration' => '管理',
             'change_password' => '更改密碼',

@@ -37,7 +37,7 @@
                 @endif
             @else
                 <li class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle mb-2" id="navbarDropdownMenuUser" data-toggle="dropdown"
+                    <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuUser" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">
                        <img src="{{ $logged_in_user->picture }}" class="img-avatar rounded" alt="{{ $logged_in_user->email }}">
                         {{ $logged_in_user->name }}
@@ -47,8 +47,6 @@
                         @can('view backend')
                             <a href="{{ route('admin.dashboard') }}" class="dropdown-item py-2">@lang('navs.frontend.user.administration')</a>
                         @endcan
-
-                        <a href="{{ route('frontend.user.account') }}" class="dropdown-item py-2 {{ active_class(Route::is('frontend.user.account')) }}">@lang('navs.frontend.user.account')</a>
                         <a href="{{ route('frontend.auth.logout') }}" class="dropdown-item py-2">@lang('navs.general.logout')</a>
                     </div>
                 </li>

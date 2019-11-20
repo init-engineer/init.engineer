@@ -94,14 +94,13 @@
                         multiple>
                         <p class="m-1"><i class="fas fa-share"></i> {{ link.share }}</p>
                     </tippy>
-                    {{ link.type }} {{ (link.connections === 'primary') ? '主站' : '次站' }}
+                    {{ link.type.toUpperCase() }} {{ (link.connections === 'primary') ? '主站' : '次站' }}
                 </a>
             </div>
             <!-- cards links -->
 
             <div class="cards-comments">
                 <div class="d-flex flex-row media pb-2 animated fadeInUp faster"
-                    v-show="loaded.comments"
                     v-for="(comment, $index) in comments"
                     :key="$index">
                     <div class="avatar text-center">
@@ -110,7 +109,7 @@
                     </div>
                     <div class="media-body content">
                         <div class="d-flex mb-2">
-                            <button class="btn btn-sm ml-1 animated fadeInUp faster" :class="'btn-' + comment.media.type">{{ comment.media.type }} {{ (comment.media.connections === 'primary') ? '主站' : '次站' }}</button>
+                            <span class="btn btn-sm ml-1 animated fadeInUp faster" :class="'btn-' + comment.media.type">{{ comment.media.type.toUpperCase() }} {{ (comment.media.connections === 'primary') ? '主站' : '次站' }}</span>
                             <small class="ml-auto text-white">{{ comment.created }}</small>
                         </div>
                         <pre class="read text-white text-wrap" v-html="comment.content"></pre>
@@ -200,14 +199,14 @@ export default {
             commentsPage: 1,
             profile: {
                 name: null,
-                avatar: null
+                avatar: null,
             },
             loaded: {
                 avatar: false,
                 commentsOver: false,
                 image: false,
-                links: false
-            }
+                links: false,
+            },
         };
     },
     mounted() {

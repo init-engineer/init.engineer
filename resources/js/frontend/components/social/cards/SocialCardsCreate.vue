@@ -114,14 +114,14 @@ import PictureInput from "vue-picture-input";
 import FontFaceObserver from "fontfaceobserver";
 import {
     required,
-    minLength
+    minLength,
 } from "vuelidate/lib/validators";
 
 export default {
     name: "SocialCardsCreate",
     components: {
         MarqueeText,
-        PictureInput
+        PictureInput,
     },
     data() {
         return {
@@ -136,19 +136,20 @@ export default {
                 content: null,
                 color: "#00FF3B",
                 background_color: "#000000",
-                font: "Auraka"
+                font: "Auraka",
             },
             avatar: null,
             theme: {
                 selector: "2e6046c7387d8fbe9acd700394a3add3",
-                options: [{
+                options: [
+                    {
                         text: "黑底綠字",
                         class: "bg-dark text-success",
                         value: "2e6046c7387d8fbe9acd700394a3add3",
                         color: {
                             background: "#000000",
-                            text: "#00FF3B"
-                        }
+                            text: "#00FF3B",
+                        },
                     },
                     {
                         text: "黑底黃字",
@@ -156,8 +157,8 @@ export default {
                         value: "be551aa525b9d13790278b008a9ec7bf",
                         color: {
                             background: "#000000",
-                            text: "#EBD443"
-                        }
+                            text: "#EBD443",
+                        },
                     },
                     {
                         text: "黑底白字",
@@ -165,8 +166,8 @@ export default {
                         value: "8a755c0bd32e29f813c1aa4267357d5a",
                         color: {
                             background: "#000000",
-                            text: "#F8F9FA"
-                        }
+                            text: "#F8F9FA",
+                        },
                     },
                     {
                         text: "黑底紅字",
@@ -174,8 +175,8 @@ export default {
                         value: "507d8c23bdcc98850c7be1c1286d5dcf",
                         color: {
                             background: "#000000",
-                            text: "#DC3545"
-                        }
+                            text: "#DC3545",
+                        },
                     },
                     {
                         text: "甜甜香草巧克力熊貓",
@@ -183,8 +184,8 @@ export default {
                         value: "7d37ef838c73b3397403eec4bf4f3839",
                         color: {
                             background: "#E83E8C",
-                            text: "#F8F9FA"
-                        }
+                            text: "#F8F9FA",
+                        },
                     },
                     {
                         text: "藍白屏",
@@ -192,8 +193,8 @@ export default {
                         value: "4834578267bcb800feb2762d2a3ccff2",
                         color: {
                             background: "#007BFF",
-                            text: "#F8F9FA"
-                        }
+                            text: "#F8F9FA",
+                        },
                     },
                     {
                         text: "PostgreSQL",
@@ -201,8 +202,8 @@ export default {
                         value: "dc7b1c2c41639e5cf10f725d60ad8c64",
                         color: {
                             background: "#F8F9FA",
-                            text: "#007BFF"
-                        }
+                            text: "#007BFF",
+                        },
                     },
                     {
                         text: "Laravel",
@@ -210,8 +211,8 @@ export default {
                         value: "a5c95b86291ea299fcbe64458ed12702",
                         color: {
                             background: "#F4645F",
-                            text: "#F8F9FA"
-                        }
+                            text: "#F8F9FA",
+                        },
                     },
                     {
                         text: "軟體綠",
@@ -219,8 +220,8 @@ export default {
                         value: "731019ad725385614d65fbcc5fb1758e",
                         color: {
                             background: "#39C5BB",
-                            text: "#000000"
-                        }
+                            text: "#000000",
+                        },
                     },
                     {
                         text: "皮卡丘",
@@ -228,8 +229,8 @@ export default {
                         value: "9CE44F88A25272B6D9CBB430EBBCFCF1",
                         color: {
                             background: "#2F3437",
-                            text: "#FFD547"
-                        }
+                            text: "#FFD547",
+                        },
                     },
                     {
                         text: "伊布",
@@ -237,8 +238,8 @@ export default {
                         value: "640ED62B7D35C1765A05EB8724535A53",
                         color: {
                             background: "#2F3437",
-                            text: "#E7AF56"
-                        }
+                            text: "#E7AF56",
+                        },
                     },
                     {
                         text: "反向 皮卡丘",
@@ -246,8 +247,8 @@ export default {
                         value: "9A2E33D968A1AF98B09E26AC63CB6DCB",
                         color: {
                             background: "#FFD547",
-                            text: "#2F3437"
-                        }
+                            text: "#2F3437",
+                        },
                     },
                     {
                         text: "反向 伊布",
@@ -255,8 +256,8 @@ export default {
                         value: "98C614FBC16CCF5D5740BD4D4E00757C",
                         color: {
                             background: "#E7AF56",
-                            text: "#2F3437"
-                        }
+                            text: "#2F3437",
+                        },
                     },
                     {
                         text: "新年限定主題",
@@ -264,8 +265,8 @@ export default {
                         value: "2be6c9a365a26a12876145e9229639b1",
                         color: {
                             background: "#A61723",
-                            text: "#D8B06A"
-                        }
+                            text: "#D8B06A",
+                        },
                     },
                     {
                         text: "反向 新年限定主題",
@@ -273,8 +274,8 @@ export default {
                         value: "b9b8ae80a601616cb9af07aaabe532f4",
                         color: {
                             background: "#D8B06A",
-                            text: "#A61723"
-                        }
+                            text: "#A61723",
+                        },
                     },
                     {
                         text: "恭迎慈孤觀音 渡世靈顯四方",
@@ -282,8 +283,8 @@ export default {
                         value: "05217b7d4741e38096a54eff4226c217",
                         color: {
                             background: "#F11541",
-                            text: "#000000"
-                        }
+                            text: "#000000",
+                        },
                     },
                     {
                         text: "Windows 最棒的畫面",
@@ -291,60 +292,60 @@ export default {
                         value: "32d2a897602ef652ed8e15d66128aa74",
                         color: {
                             background: "#007BD0",
-                            text: "#F8F9FA"
-                        }
-                    }
-                ]
+                            text: "#F8F9FA",
+                        },
+                    },
+                ],
             },
             font: {
                 selector: "ea98dde8987df3cd8aef75479019b688",
                 options: [{
                         text: "AURAKA 點陣宋字型",
                         font: "Auraka",
-                        value: "ea98dde8987df3cd8aef75479019b688"
+                        value: "ea98dde8987df3cd8aef75479019b688",
                     },
                     {
                         text: "國喬點陣字型",
                         font: "KC24M",
-                        value: "813ca6cbbd95d7e08fa2af59bc12072d"
+                        value: "813ca6cbbd95d7e08fa2af59bc12072d",
                     },
                     {
                         text: "ZPIX 點陣字型",
                         font: "Zfull",
-                        value: "1b23b3cd9223930ac694b7f29f38ff21"
+                        value: "1b23b3cd9223930ac694b7f29f38ff21",
                     },
                     {
                         text: "張海山銳諧體",
                         font: "Harmonic",
-                        value: "68068fcf50e7cae709cb8ed0b7b9b0f3"
+                        value: "68068fcf50e7cae709cb8ed0b7b9b0f3",
                     },
                     {
                         text: "蒙納繁圓點陣",
                         font: "MBitmapRoundHK",
-                        value: "f762e3a99692b40e5929ab3668606a4a"
+                        value: "f762e3a99692b40e5929ab3668606a4a",
                     },
                     {
                         text: "微軟正黑體",
                         font: "Microsoft JhengHei",
-                        value: "13f5333afe00f8c7e8da7e0b13ec2c94"
+                        value: "13f5333afe00f8c7e8da7e0b13ec2c94",
                     },
                     {
                         text: "新細明體",
                         font: "Mingliu",
-                        value: "c0b5dd764ede0ca105be22cf13ebadff"
+                        value: "c0b5dd764ede0ca105be22cf13ebadff",
                     },
                     {
                         text: "標楷體",
                         font: "Kaiu",
-                        value: "21881fc6a87aca0dd1afc685cb6ee891"
+                        value: "21881fc6a87aca0dd1afc685cb6ee891",
                     },
                     {
                         text: "極粗明朝體",
                         font: "MatissePro EB",
-                        value: "ozke4ri3gkpy7e9c312u5l0w5vr9jdqq"
-                    }
-                ]
-            }
+                        value: "ozke4ri3gkpy7e9c312u5l0w5vr9jdqq",
+                    },
+                ],
+            },
         };
     },
     mounted() {
@@ -354,19 +355,19 @@ export default {
         canvas: {
             content: {
                 required,
-                minLength: minLength(30)
-            }
+                minLength: minLength(30),
+            },
         },
         theme: {
             selector: {
-                required
-            }
+                required,
+            },
         },
         font: {
             selector: {
-                required
-            }
-        }
+                required,
+            },
+        },
     },
     methods: {
         onAvatarChange(avatar) {
