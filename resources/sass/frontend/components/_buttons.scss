@@ -194,6 +194,10 @@ a, span, button {
             outline: 0;
             box-shadow: 0 0 0;
         }
+
+        &.active {
+            background-image: url('../../../../public/img/frontend/background/animated-rainbow.gif');
+        }
     }
 
     &.btn-platform {
