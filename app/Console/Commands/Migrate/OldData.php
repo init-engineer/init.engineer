@@ -3,7 +3,14 @@
 namespace App\Console\Commands\Migrate;
 
 use Illuminate\Console\Command;
+
+use App\Models\Social\Cards;
+use App\Models\Social\Images;
+use App\Models\Social\Comments;
+use App\Models\Social\MediaCards;
 use App\Models\Social\Old\Cards as OldCards;
+use App\Models\Social\Old\Image as OldImages;
+use App\Models\Social\Old\Comments as OldComments;
 use App\Repositories\Backend\Social\CardsRepository;
 use App\Repositories\Backend\Social\ImagesRepository;
 use App\Repositories\Backend\Social\CommentsRepository;
@@ -79,479 +86,523 @@ class OldData extends Command
          */
         ini_set('memory_limit', '1024M');
 
-        /**
-         * 撈出所有的舊架構文章
-         */
-        foreach (OldCards::all() as $_old_card)
+        foreach (OldCards::all() as $舊文章)
         {
-            /**
-             * 搬移主要社群文章
-             */
-            if ($_card = $this->cardsRepository->findById($_old_card->id))
+            if ($新文章 = $this->搬移舊文章($舊文章))
             {
-                $card = $this->cardsRepository->update($_card, [
-                    'id' => $_old_card->id,
-                    'model_id' => $_old_card->user_id,
-                    'content' => $_old_card->content,
-                    'active' => $_old_card->active,
-                    'is_banned' => isset($_old_card->deleted_at)? true : false,
-                    'banned_user_id' => $_old_card->deleted_by_who,
-                    'banned_remarks' => $_old_card->deleted_of_what,
-                    'created_at' => $_old_card->created_at,
-                    'updated_at' => $_old_card->updated_at,
-                    'deleted_at' => $_old_card->deleted_at,
-                ]);
-            }
-            else
-            {
-                $card = $this->cardsRepository->create([
-                    'id' => $_old_card->id,
-                    'model_id' => $_old_card->user_id,
-                    'content' => $_old_card->content,
-                    'active' => $_old_card->active,
-                    'is_banned' => isset($_old_card->deleted_at)? true : false,
-                    'banned_user_id' => $_old_card->deleted_by_who,
-                    'banned_remarks' => $_old_card->deleted_of_what,
-                    'created_at' => $_old_card->created_at,
-                    'updated_at' => $_old_card->updated_at,
-                    'deleted_at' => $_old_card->deleted_at,
-                ]);
-            }
-
-            /**
-             * 搬移 CardsImage 文章圖片
-             */
-            if ($_image = $this->imagesRepository->findById($_old_card->image->id))
-            {
-                $image = $this->imagesRepository->update($_image, [
-                    'id' => $_old_card->image->id,
-                    'card_id' => $card->id,
-                    'model_id' => $_old_card->image->user_id,
-                    'avatar_path' => $_old_card->image->file_path,
-                    'avatar_name' => $_old_card->image->file_name,
-                    'avatar_type' => $_old_card->image->file_type,
-                    'active' => $_old_card->image->active,
-                    'created_at' => $_old_card->image->created_at,
-                    'updated_at' => $_old_card->image->updated_at,
-                    'deleted_at' => $_old_card->image->deleted_at,
-                ]);
-            }
-            else
-            {
-                $image = $this->imagesRepository->create([
-                    'id' => $_old_card->image->id,
-                    'card_id' => $card->id,
-                    'model_id' => $_old_card->image->user_id,
-                    'avatar_path' => $_old_card->image->file_path,
-                    'avatar_name' => $_old_card->image->file_name,
-                    'avatar_type' => $_old_card->image->file_type,
-                    'active' => $_old_card->image->active,
-                    'created_at' => $_old_card->image->created_at,
-                    'updated_at' => $_old_card->image->updated_at,
-                    'deleted_at' => $_old_card->image->deleted_at,
-                ]);
-            }
-
-            /**
-             * 搬移 Facebook 新粉絲團的社群文章，並且判斷是否已經寫入過。
-             */
-            if (isset($_old_card->facebook_new_card_id))
-            {
-                if ($_old_card->facebook_new_card_id != '-')
+                $this->搬移舊圖片($舊文章, $新文章);
+                $facebook主站社群文章 = $this->搬移Facebook主站社群文章($舊文章, $新文章);
+                $facebook次站社群文章 = $this->搬移Facebook次站社群文章($舊文章, $新文章);
+                $twitter主站社群文章  = $this->搬移Twitter主站社群文章($舊文章, $新文章);
+                $plurk主站社群文章    = $this->搬移Plurk主站社群文章($舊文章, $新文章);
+                foreach ($舊文章->comments as $舊留言)
                 {
-                    if ($__facebook_new_card = $this->mediaCardsRepository->findByCardId($card->id, 'facebook', 'secondary'))
+                    switch ($舊留言->social_type)
                     {
-                        $_facebook_new_card = $this->mediaCardsRepository->update($__facebook_new_card, [
-                            'card_id' => $card->id,
-                            'model_id' => $_old_card->user_id,
-                            'social_type' => 'facebook',
-                            'social_connections' => 'secondary',
-                            'social_card_id' => $_old_card->facebook_new_card_id,
-                            'num_like' => $_old_card->facebook_new_card_like,
-                            'num_share' => $_old_card->facebook_new_card_share,
-                            'active' => $_old_card->facebook_new_card_active,
-                            'is_banned' => $_old_card->facebook_new_card_active,
-                            'banned_user_id' => $_old_card->deleted_by_who,
-                            'banned_remarks' => $_old_card->deleted_of_what,
-                            'created_at' => $_old_card->created_at,
-                            'updated_at' => $_old_card->updated_at,
-                            'deleted_at' => $_old_card->deleted_at,
-                        ]);
-                    }
-                    else
-                    {
-                        $_facebook_new_card = $this->mediaCardsRepository->create([
-                            'card_id' => $card->id,
-                            'model_id' => $_old_card->user_id,
-                            'social_type' => 'facebook',
-                            'social_connections' => 'secondary',
-                            'social_card_id' => $_old_card->facebook_new_card_id,
-                            'num_like' => $_old_card->facebook_new_card_like,
-                            'num_share' => $_old_card->facebook_new_card_share,
-                            'active' => $_old_card->facebook_new_card_active,
-                            'is_banned' => $_old_card->facebook_new_card_active,
-                            'banned_user_id' => $_old_card->deleted_by_who,
-                            'banned_remarks' => $_old_card->deleted_of_what,
-                            'created_at' => $_old_card->created_at,
-                            'updated_at' => $_old_card->updated_at,
-                            'deleted_at' => $_old_card->deleted_at,
-                        ]);
+                        case 'Facebook New':
+                            if ($facebook主站社群文章)
+                            {
+                                $this->搬移Facebook主站留言($舊留言, $新文章, $facebook主站社群文章);
+                            }
+                            else
+                            {
+                                $this->搬移本平台留言($舊留言, $新文章);
+                            }
+                            break;
+
+                        case 'Facebook Old':
+                            if ($facebook次站社群文章)
+                            {
+                                $this->搬移Facebook次站留言($舊留言, $新文章, $facebook次站社群文章);
+                            }
+                            else
+                            {
+                                $this->搬移本平台留言($舊留言, $新文章);
+                            }
+                            break;
+
+                        case 'Twitter':
+                            if ($twitter主站社群文章)
+                            {
+                                $this->搬移Twitter主站留言($舊留言, $新文章, $twitter主站社群文章);
+                            }
+                            else
+                            {
+                                $this->搬移本平台留言($舊留言, $新文章);
+                            }
+                            break;
+
+                        case 'Plurk':
+                            if ($plurk主站社群文章)
+                            {
+                                $this->搬移Plurk主站留言($舊留言, $新文章, $plurk主站社群文章);
+                            }
+                            else
+                            {
+                                $this->搬移本平台留言($舊留言, $新文章);
+                            }
+                            break;
+
+                        default:
+                            $this->搬移本平台留言($舊留言, $新文章);
+                            break;
                     }
                 }
             }
+        }
+    }
 
-            /**
-             * 搬移 Facebook 舊粉絲團的社群文章，並且判斷是否已經寫入過。
-             */
-            if (isset($_old_card->facebook_old_card_id))
+    /**
+     * 搬移主要社群文章
+     *
+     * @param OldCards $舊文章
+     * @return Cards
+     */
+    private function 搬移舊文章(OldCards $舊文章) : Cards
+    {
+        if ($新文章 = $this->cardsRepository->findById($舊文章->id))
+        {
+            return $this->cardsRepository->update($新文章, [
+                'active' => $舊文章->active,
+                'is_banned' => isset($舊文章->deleted_at)? true : false,
+                'banned_user_id' => $舊文章->deleted_by_who,
+                'banned_remarks' => $舊文章->deleted_of_what,
+                'banned_at' => $舊文章->deleted_at,
+                'created_at' => $舊文章->created_at,
+                'updated_at' => $舊文章->updated_at,
+            ]);
+        }
+        else
+        {
+            return $this->cardsRepository->create([
+                'id' => $舊文章->id,
+                'model_id' => $舊文章->user_id,
+                'content' => $舊文章->content,
+                'active' => $舊文章->active,
+                'is_banned' => isset($舊文章->deleted_at)? true : false,
+                'banned_user_id' => $舊文章->deleted_by_who,
+                'banned_remarks' => $舊文章->deleted_of_what,
+                'banned_at' => $舊文章->deleted_at,
+                'created_at' => $舊文章->created_at,
+                'updated_at' => $舊文章->updated_at,
+                'deleted_at' => null,
+            ]);
+        }
+    }
+
+    /**
+     * 搬移 CardsImage 文章圖片
+     *
+     * @param OldCards $舊文章
+     * @param Cards    $新文章
+     * @return Images
+     */
+    private function 搬移舊圖片(OldCards $舊文章, Cards $新文章) : Images
+    {
+        if ($新圖片 = $this->imagesRepository->findById($舊文章->image->id))
+        {
+            return $新圖片;
+        }
+        else
+        {
+            return $this->imagesRepository->create([
+                'id' => $舊文章->image->id,
+                'card_id' => $新文章->id,
+                'model_id' => $舊文章->image->user_id,
+                'avatar_path' => $舊文章->image->file_path,
+                'avatar_name' => $舊文章->image->file_name,
+                'avatar_type' => $舊文章->image->file_type,
+                'active' => $舊文章->image->active,
+                'banned_at' => $舊文章->image->deleted_at,
+                'created_at' => $舊文章->image->created_at,
+                'updated_at' => $舊文章->image->updated_at,
+                'deleted_at' => null,
+            ]);
+        }
+    }
+
+    /**
+     * 搬移 Facebook 主要粉絲團的社群文章，並且判斷是否已經寫入過。
+     *
+     * @param OldCards $舊文章
+     * @param Cards    $新文章
+     * @return MediaCards
+     */
+    private function 搬移Facebook主站社群文章(OldCards $舊文章, Cards $新文章)
+    {
+        if (isset($舊文章->facebook_old_card_id))
+        {
+            if ($舊文章->facebook_old_card_id != '-')
             {
-                if ($_old_card->facebook_old_card_id != '-')
+                if ($facebook主站社群文章 = $this->mediaCardsRepository->findByCardId($新文章->id, 'facebook', 'primary'))
                 {
-                    if ($__facebook_old_card = $this->mediaCardsRepository->findByCardId($card->id, 'facebook', 'primary'))
-                    {
-                        $_facebook_old_card = $this->mediaCardsRepository->update($__facebook_old_card, [
-                            'card_id' => $card->id,
-                            'model_id' => $_old_card->user_id,
-                            'social_type' => 'facebook',
-                            'social_connections' => 'primary',
-                            'social_card_id' => $_old_card->facebook_old_card_id,
-                            'num_like' => $_old_card->facebook_old_card_like,
-                            'num_share' => $_old_card->facebook_old_card_share,
-                            'active' => $_old_card->facebook_old_card_active,
-                            'is_banned' => $_old_card->facebook_old_card_active,
-                            'banned_user_id' => $_old_card->deleted_by_who,
-                            'banned_remarks' => $_old_card->deleted_of_what,
-                            'created_at' => $_old_card->created_at,
-                            'updated_at' => $_old_card->updated_at,
-                            'deleted_at' => $_old_card->deleted_at,
-                        ]);
-                    }
-                    else
-                    {
-                        $_facebook_old_card = $this->mediaCardsRepository->create([
-                            'card_id' => $card->id,
-                            'model_id' => $_old_card->user_id,
-                            'social_type' => 'facebook',
-                            'social_connections' => 'primary',
-                            'social_card_id' => $_old_card->facebook_old_card_id,
-                            'num_like' => $_old_card->facebook_old_card_like,
-                            'num_share' => $_old_card->facebook_old_card_share,
-                            'active' => $_old_card->facebook_old_card_active,
-                            'is_banned' => $_old_card->facebook_old_card_active,
-                            'banned_user_id' => $_old_card->deleted_by_who,
-                            'banned_remarks' => $_old_card->deleted_of_what,
-                            'created_at' => $_old_card->created_at,
-                            'updated_at' => $_old_card->updated_at,
-                            'deleted_at' => $_old_card->deleted_at,
-                        ]);
-                    }
+                    return $this->mediaCardsRepository->update($facebook主站社群文章, [
+                        'num_like' => $舊文章->facebook_old_card_like,
+                        'num_share' => $舊文章->facebook_old_card_share,
+                        'active' => $舊文章->facebook_old_card_active,
+                        'is_banned' => $舊文章->facebook_old_card_active,
+                        'banned_user_id' => $舊文章->deleted_by_who,
+                        'banned_remarks' => $舊文章->deleted_of_what,
+                        'banned_at' => $舊文章->deleted_at,
+                    ]);
+                }
+                else
+                {
+                    return $this->mediaCardsRepository->create([
+                        'card_id' => $新文章->id,
+                        'model_id' => $舊文章->user_id,
+                        'social_type' => 'facebook',
+                        'social_connections' => 'primary',
+                        'social_card_id' => $舊文章->facebook_old_card_id,
+                        'num_like' => $舊文章->facebook_old_card_like,
+                        'num_share' => $舊文章->facebook_old_card_share,
+                        'active' => $舊文章->facebook_old_card_active,
+                        'is_banned' => $舊文章->facebook_old_card_active,
+                        'banned_user_id' => $舊文章->deleted_by_who,
+                        'banned_remarks' => $舊文章->deleted_of_what,
+                        'banned_at' => $舊文章->deleted_at,
+                        'created_at' => $舊文章->created_at,
+                        'updated_at' => $舊文章->updated_at,
+                        'deleted_at' => null,
+                    ]);
                 }
             }
+        }
 
-            /**
-             * 搬移 Twitter 的社群文章，並且判斷是否已經寫入過。
-             */
-            if (isset($_old_card->twitter_card_id))
+        return false;
+    }
+
+    /**
+     * 搬移 Facebook 次要粉絲團的社群文章，並且判斷是否已經寫入過。
+     *
+     * @param OldCards $舊文章
+     * @param Cards    $新文章
+     * @return MediaCards
+     */
+    private function 搬移Facebook次站社群文章(OldCards $舊文章, Cards $新文章)
+    {
+        if (isset($舊文章->facebook_new_card_id))
+        {
+            if ($舊文章->facebook_new_card_id != '-')
             {
-                if ($_old_card->twitter_card_id != '-')
+                if ($facebook次站社群文章 = $this->mediaCardsRepository->findByCardId($新文章->id, 'facebook', 'secondary'))
                 {
-                    if ($__twitter_card = $this->mediaCardsRepository->findByCardId($card->id, 'twitter', 'primary'))
-                    {
-                        $_twitter_card = $this->mediaCardsRepository->update($__twitter_card, [
-                            'card_id' => $card->id,
-                            'model_id' => $_old_card->user_id,
-                            'social_type' => 'twitter',
-                            'social_connections' => 'primary',
-                            'social_card_id' => $_old_card->twitter_card_id,
-                            'num_like' => $_old_card->twitter_card_like,
-                            'num_share' => $_old_card->twitter_card_share,
-                            'active' => $_old_card->twitter_card_active,
-                            'is_banned' => $_old_card->twitter_card_active,
-                            'banned_user_id' => $_old_card->deleted_by_who,
-                            'banned_remarks' => $_old_card->deleted_of_what,
-                            'created_at' => $_old_card->created_at,
-                            'updated_at' => $_old_card->updated_at,
-                            'deleted_at' => $_old_card->deleted_at,
-                        ]);
-                    }
-                    else
-                    {
-                        $_twitter_card = $this->mediaCardsRepository->create([
-                            'card_id' => $card->id,
-                            'model_id' => $_old_card->user_id,
-                            'social_type' => 'twitter',
-                            'social_connections' => 'primary',
-                            'social_card_id' => $_old_card->twitter_card_id,
-                            'num_like' => $_old_card->twitter_card_like,
-                            'num_share' => $_old_card->twitter_card_share,
-                            'active' => $_old_card->twitter_card_active,
-                            'is_banned' => $_old_card->twitter_card_active,
-                            'banned_user_id' => $_old_card->deleted_by_who,
-                            'banned_remarks' => $_old_card->deleted_of_what,
-                            'created_at' => $_old_card->created_at,
-                            'updated_at' => $_old_card->updated_at,
-                            'deleted_at' => $_old_card->deleted_at,
-                        ]);
-                    }
+                    return $this->mediaCardsRepository->update($facebook次站社群文章, [
+                        'num_like' => $舊文章->facebook_new_card_like,
+                        'num_share' => $舊文章->facebook_new_card_share,
+                        'active' => $舊文章->facebook_new_card_active,
+                        'is_banned' => $舊文章->facebook_new_card_active,
+                        'banned_user_id' => $舊文章->deleted_by_who,
+                        'banned_remarks' => $舊文章->deleted_of_what,
+                        'banned_at' => $舊文章->deleted_at,
+                    ]);
+                }
+                else
+                {
+                    return $this->mediaCardsRepository->create([
+                        'card_id' => $新文章->id,
+                        'model_id' => $舊文章->user_id,
+                        'social_type' => 'facebook',
+                        'social_connections' => 'secondary',
+                        'social_card_id' => $舊文章->facebook_new_card_id,
+                        'num_like' => $舊文章->facebook_new_card_like,
+                        'num_share' => $舊文章->facebook_new_card_share,
+                        'active' => $舊文章->facebook_new_card_active,
+                        'is_banned' => $舊文章->facebook_new_card_active,
+                        'banned_user_id' => $舊文章->deleted_by_who,
+                        'banned_remarks' => $舊文章->deleted_of_what,
+                        'banned_at' => $舊文章->deleted_at,
+                        'created_at' => $舊文章->created_at,
+                        'updated_at' => $舊文章->updated_at,
+                        'deleted_at' => null,
+                    ]);
                 }
             }
+        }
 
-            /**
-             * 搬移 Plurk 的社群文章，並且判斷是否已經寫入過。
-             */
-            if (isset($_old_card->plurk_card_id))
+        return false;
+    }
+
+    /**
+     * 搬移 Twitter 的社群文章，並且判斷是否已經寫入過。
+     *
+     * @param OldCards $舊文章
+     * @param Cards    $新文章
+     * @return MediaCards
+     */
+    private function 搬移Twitter主站社群文章(OldCards $舊文章, Cards $新文章)
+    {
+        if (isset($舊文章->twitter_card_id))
+        {
+            if ($舊文章->twitter_card_id != '-')
             {
-                if ($_old_card->plurk_card_id != '-')
+                if ($twitter主站社群文章 = $this->mediaCardsRepository->findByCardId($新文章->id, 'twitter', 'primary'))
                 {
-                    if ($__plurk_card = $this->mediaCardsRepository->findByCardId($card->id, 'plurk', 'primary'))
-                    {
-                        $_plurk_card = $this->mediaCardsRepository->update($__plurk_card, [
-                            'card_id' => $card->id,
-                            'model_id' => $_old_card->user_id,
-                            'social_type' => 'plurk',
-                            'social_connections' => 'primary',
-                            'social_card_id' => $_old_card->plurk_card_id,
-                            'num_like' => $_old_card->plurk_card_like,
-                            'num_share' => $_old_card->plurk_card_share,
-                            'active' => $_old_card->plurk_card_active,
-                            'is_banned' => $_old_card->plurk_card_active,
-                            'banned_user_id' => $_old_card->deleted_by_who,
-                            'banned_remarks' => $_old_card->deleted_of_what,
-                            'created_at' => $_old_card->created_at,
-                            'updated_at' => $_old_card->updated_at,
-                            'deleted_at' => $_old_card->deleted_at,
-                        ]);
-                    }
-                    else
-                    {
-                        $_plurk_card = $this->mediaCardsRepository->create([
-                            'card_id' => $card->id,
-                            'model_id' => $_old_card->user_id,
-                            'social_type' => 'plurk',
-                            'social_connections' => 'primary',
-                            'social_card_id' => $_old_card->plurk_card_id,
-                            'num_like' => $_old_card->plurk_card_like,
-                            'num_share' => $_old_card->plurk_card_share,
-                            'active' => $_old_card->plurk_card_active,
-                            'is_banned' => $_old_card->plurk_card_active,
-                            'banned_user_id' => $_old_card->deleted_by_who,
-                            'banned_remarks' => $_old_card->deleted_of_what,
-                            'created_at' => $_old_card->created_at,
-                            'updated_at' => $_old_card->updated_at,
-                            'deleted_at' => $_old_card->deleted_at,
-                        ]);
-                    }
+                    return $this->mediaCardsRepository->update($twitter主站社群文章, [
+                        'num_like' => $舊文章->twitter_card_like,
+                        'num_share' => $舊文章->twitter_card_share,
+                        'active' => $舊文章->twitter_card_active,
+                        'is_banned' => $舊文章->twitter_card_active,
+                        'banned_user_id' => $舊文章->deleted_by_who,
+                        'banned_remarks' => $舊文章->deleted_of_what,
+                        'banned_at' => $舊文章->deleted_at,
+                    ]);
+                }
+                else
+                {
+                    return $this->mediaCardsRepository->create([
+                        'card_id' => $新文章->id,
+                        'model_id' => $舊文章->user_id,
+                        'social_type' => 'twitter',
+                        'social_connections' => 'primary',
+                        'social_card_id' => $舊文章->twitter_card_id,
+                        'num_like' => $舊文章->twitter_card_like,
+                        'num_share' => $舊文章->twitter_card_share,
+                        'active' => $舊文章->twitter_card_active,
+                        'is_banned' => $舊文章->twitter_card_active,
+                        'banned_user_id' => $舊文章->deleted_by_who,
+                        'banned_remarks' => $舊文章->deleted_of_what,
+                        'banned_at' => $舊文章->deleted_at,
+                        'created_at' => $舊文章->created_at,
+                        'updated_at' => $舊文章->updated_at,
+                        'deleted_at' => null,
+                    ]);
                 }
             }
+        }
 
-            /**
-             * 搬移所有社群文章的留言與回覆。
-             */
-            foreach ($_old_card->comments as $_old_comment)
+        return false;
+    }
+
+    /**
+     * 搬移 Plurk 的社群文章，並且判斷是否已經寫入過。
+     *
+     * @param OldCards $舊文章
+     * @param Cards    $新文章
+     * @return MediaCards
+     */
+    private function 搬移Plurk主站社群文章(OldCards $舊文章, Cards $新文章)
+    {
+        if (isset($舊文章->plurk_card_id))
+        {
+            if ($舊文章->plurk_card_id != '-')
             {
-                switch ($_old_comment->social_type)
+                if ($plurk主站社群文章 = $this->mediaCardsRepository->findByCardId($新文章->id, 'plurk', 'primary'))
                 {
-                    /**
-                     * 搬移 Facebook 新粉絲團的社群文章的留言。
-                     */
-                    case 'Facebook New':
-                        if ($__facebook_new_comment = $this->commentsRepository->findByMediaAndUserAndContent(
-                            $card->id,
-                            $_facebook_new_card->id,
-                            $_old_comment->social_comment_id,
-                            $_old_comment->social_user_id,
-                            $_old_comment->content))
-                        {
-                            $_facebook_new_comment = $this->commentsRepository->update($__facebook_new_comment, [
-                                'card_id' => $card->id,
-                                'media_id' => $_facebook_new_card->id,
-                                'media_comment_id' => $_old_comment->social_comment_id,
-                                'user_id' => $_old_comment->social_user_id,
-                                'user_name' => $_old_comment->social_user_name,
-                                'user_avatar' => $_old_comment->avatar_url,
-                                'content' => $_old_comment->content,
-                                'active' => true,
-                                'reply_media_comment_id' => $_old_comment->reply_by,
-                                'is_banned' => false,
-                                'banned_user_id' => null,
-                                'banned_remarks' => null,
-                                'created_at' => $_old_comment->created_at,
-                                'updated_at' => $_old_comment->updated_at,
-                                'deleted_at' => $_old_comment->deleted_at,
-                            ]);
-                        }
-                        else
-                        {
-                            $_facebook_new_comment = $this->commentsRepository->create([
-                                'card_id' => $card->id,
-                                'media_id' => $_facebook_new_card->id,
-                                'media_comment_id' => $_old_comment->social_comment_id,
-                                'user_id' => $_old_comment->social_user_id,
-                                'user_name' => $_old_comment->social_user_name,
-                                'user_avatar' => $_old_comment->avatar_url,
-                                'content' => $_old_comment->content,
-                                'active' => true,
-                                'reply_media_comment_id' => $_old_comment->reply_by,
-                                'is_banned' => false,
-                                'banned_user_id' => null,
-                                'banned_remarks' => null,
-                                'created_at' => $_old_comment->created_at,
-                                'updated_at' => $_old_comment->updated_at,
-                                'deleted_at' => $_old_comment->deleted_at,
-                            ]);
-                        }
-                        break;
-
-                    /**
-                     * 搬移 Facebook 舊粉絲團的社群文章的留言。
-                     */
-                    case 'Facebook Old':
-                        if ($__facebook_old_comment = $this->commentsRepository->findByMediaAndUserAndContent(
-                            $card->id,
-                            $_facebook_old_card->id,
-                            $_old_comment->social_comment_id,
-                            $_old_comment->social_user_id,
-                            $_old_comment->content))
-                        {
-                            $_facebook_old_comment = $this->commentsRepository->update($__facebook_old_comment, [
-                                'card_id' => $card->id,
-                                'media_id' => $_facebook_old_card->id,
-                                'media_comment_id' => $_old_comment->social_comment_id,
-                                'user_id' => $_old_comment->social_user_id,
-                                'user_name' => $_old_comment->social_user_name,
-                                'user_avatar' => $_old_comment->avatar_url,
-                                'content' => $_old_comment->content,
-                                'active' => true,
-                                'reply_media_comment_id' => $_old_comment->reply_by,
-                                'is_banned' => false,
-                                'banned_user_id' => null,
-                                'banned_remarks' => null,
-                                'created_at' => $_old_comment->created_at,
-                                'updated_at' => $_old_comment->updated_at,
-                                'deleted_at' => $_old_comment->deleted_at,
-                            ]);
-                        }
-                        else
-                        {
-                            $_facebook_old_comment = $this->commentsRepository->create([
-                                'card_id' => $card->id,
-                                'media_id' => $_facebook_old_card->id,
-                                'media_comment_id' => $_old_comment->social_comment_id,
-                                'user_id' => $_old_comment->social_user_id,
-                                'user_name' => $_old_comment->social_user_name,
-                                'user_avatar' => $_old_comment->avatar_url,
-                                'content' => $_old_comment->content,
-                                'active' => true,
-                                'reply_media_comment_id' => $_old_comment->reply_by,
-                                'is_banned' => false,
-                                'banned_user_id' => null,
-                                'banned_remarks' => null,
-                                'created_at' => $_old_comment->created_at,
-                                'updated_at' => $_old_comment->updated_at,
-                                'deleted_at' => $_old_comment->deleted_at,
-                            ]);
-                        }
-                        break;
-
-                    /**
-                     * 搬移本平台的社群文章的留言。
-                     */
-                    case 'Platform':
-                        if ($__platform_comment = $this->commentsRepository->findByMediaAndUserAndContent(
-                            $card->id,
-                            null,
-                            null,
-                            $_old_comment->social_user_id,
-                            $_old_comment->content))
-                        {
-                            $_platform_comment = $this->commentsRepository->update($__platform_comment, [
-                                'card_id' => $card->id,
-                                'media_id' => null,
-                                'media_comment_id' => null,
-                                'user_id' => $_old_comment->social_user_id,
-                                'user_name' => $_old_comment->social_user_name,
-                                'user_avatar' => $_old_comment->avatar_url,
-                                'content' => $_old_comment->content,
-                                'active' => true,
-                                'is_banned' => false,
-                                'banned_user_id' => null,
-                                'banned_remarks' => null,
-                                'created_at' => $_old_comment->created_at,
-                                'updated_at' => $_old_comment->updated_at,
-                                'deleted_at' => $_old_comment->deleted_at,
-                            ]);
-                        }
-                        else
-                        {
-                            $_platform_comment = $this->commentsRepository->create([
-                                'card_id' => $card->id,
-                                'media_id' => null,
-                                'media_comment_id' => null,
-                                'user_id' => $_old_comment->social_user_id,
-                                'user_name' => $_old_comment->social_user_name,
-                                'user_avatar' => $_old_comment->avatar_url,
-                                'content' => $_old_comment->content,
-                                'active' => true,
-                                'is_banned' => false,
-                                'banned_user_id' => null,
-                                'banned_remarks' => null,
-                                'created_at' => $_old_comment->created_at,
-                                'updated_at' => $_old_comment->updated_at,
-                                'deleted_at' => $_old_comment->deleted_at,
-                            ]);
-                        }
-                        break;
-
-                    /**
-                     * 搬移 Plurk 的社群文章的留言。
-                     */
-                    case 'Plurk':
-                        if ($__plurk_comment = $this->commentsRepository->findByMediaAndUserAndContent(
-                            $card->id,
-                            $_plurk_card->id,
-                            $_old_comment->social_comment_id,
-                            $_old_comment->social_user_id,
-                            $_old_comment->content))
-                        {
-                            $_plurk_comment = $this->commentsRepository->update($__plurk_comment, [
-                                'card_id' => $card->id,
-                                'media_id' => $_plurk_card->id,
-                                'media_comment_id' => $_old_comment->social_comment_id,
-                                'user_id' => $_old_comment->social_user_id,
-                                'user_name' => $_old_comment->social_user_name,
-                                'user_avatar' => $_old_comment->avatar_url,
-                                'content' => $_old_comment->content,
-                                'active' => true,
-                                'is_banned' => false,
-                                'banned_user_id' => null,
-                                'banned_remarks' => null,
-                                'created_at' => $_old_comment->created_at,
-                                'updated_at' => $_old_comment->updated_at,
-                                'deleted_at' => $_old_comment->deleted_at,
-                            ]);
-                        }
-                        else
-                        {
-                            $_plurk_comment = $this->commentsRepository->create([
-                                'card_id' => $card->id,
-                                'media_id' => $_plurk_card->id,
-                                'media_comment_id' => $_old_comment->social_comment_id,
-                                'user_id' => $_old_comment->social_user_id,
-                                'user_name' => $_old_comment->social_user_name,
-                                'user_avatar' => $_old_comment->avatar_url,
-                                'content' => $_old_comment->content,
-                                'active' => true,
-                                'is_banned' => false,
-                                'banned_user_id' => null,
-                                'banned_remarks' => null,
-                                'created_at' => $_old_comment->created_at,
-                                'updated_at' => $_old_comment->updated_at,
-                                'deleted_at' => $_old_comment->deleted_at,
-                            ]);
-                        }
-                        break;
+                    return $this->mediaCardsRepository->update($plurk主站社群文章, [
+                        'num_like' => $舊文章->plurk_card_like,
+                        'num_share' => $舊文章->plurk_card_share,
+                        'active' => $舊文章->plurk_card_active,
+                        'is_banned' => $舊文章->plurk_card_active,
+                        'banned_user_id' => $舊文章->deleted_by_who,
+                        'banned_remarks' => $舊文章->deleted_of_what,
+                        'banned_at' => $舊文章->deleted_at,
+                    ]);
+                }
+                else
+                {
+                    return $this->mediaCardsRepository->create([
+                        'card_id' => $新文章->id,
+                        'model_id' => $舊文章->user_id,
+                        'social_type' => 'plurk',
+                        'social_connections' => 'primary',
+                        'social_card_id' => $舊文章->plurk_card_id,
+                        'num_like' => $舊文章->plurk_card_like,
+                        'num_share' => $舊文章->plurk_card_share,
+                        'active' => $舊文章->plurk_card_active,
+                        'is_banned' => $舊文章->plurk_card_active,
+                        'banned_user_id' => $舊文章->deleted_by_who,
+                        'banned_remarks' => $舊文章->deleted_of_what,
+                        'banned_at' => $舊文章->deleted_at,
+                        'created_at' => $舊文章->created_at,
+                        'updated_at' => $舊文章->updated_at,
+                        'deleted_at' => null,
+                    ]);
                 }
             }
+        }
+
+        return false;
+    }
+
+    /**
+     * 搬移 Facebook 主要粉絲團的社群文章的留言。
+     *
+     * @param OldComments $舊留言
+     * @param Cards       $新文章
+     * @param MediaCards  $facebook主站社群文章
+     * @return Comments
+     */
+    private function 搬移Facebook主站留言(OldComments $舊留言, Cards $新文章, MediaCards $facebook主站社群文章) : Comments
+    {
+        if ($facebook主站社群文章留言 = $this->commentsRepository->findByMediaAndUserAndContent($新文章->id, $facebook主站社群文章->id, $舊留言->social_comment_id, $舊留言->social_user_id, $舊留言->content))
+        {
+            return $facebook主站社群文章留言;
+        }
+        else
+        {
+            return $this->commentsRepository->create([
+                'card_id' => $新文章->id,
+                'media_id' => $facebook主站社群文章->id,
+                'media_comment_id' => $舊留言->social_comment_id,
+                'user_id' => $舊留言->social_user_id,
+                'user_name' => $舊留言->social_user_name,
+                'user_avatar' => $舊留言->avatar_url,
+                'content' => $舊留言->content,
+                'active' => true,
+                'reply_media_comment_id' => $舊留言->reply_by,
+                'is_banned' => false,
+                'banned_user_id' => null,
+                'banned_remarks' => null,
+                'created_at' => $舊留言->created_at,
+                'updated_at' => $舊留言->updated_at,
+                'deleted_at' => null,
+            ]);
+        }
+    }
+
+    /**
+     * 搬移 Facebook 次要粉絲團的社群文章的留言。
+     *
+     * @param OldComments $舊留言
+     * @param Cards       $新文章
+     * @param MediaCards  $facebook次站社群文章
+     * @return Comments
+     */
+    private function 搬移Facebook次站留言(OldComments $舊留言, Cards $新文章, MediaCards $facebook次站社群文章) : Comments
+    {
+        if ($facebook次站社群文章留言 = $this->commentsRepository->findByMediaAndUserAndContent($新文章->id, $facebook次站社群文章->id, $舊留言->social_comment_id, $舊留言->social_user_id, $舊留言->content))
+        {
+            return $facebook次站社群文章留言;
+        }
+        else
+        {
+            return $this->commentsRepository->create([
+                'card_id' => $新文章->id,
+                'media_id' => $facebook次站社群文章->id,
+                'media_comment_id' => $舊留言->social_comment_id,
+                'user_id' => $舊留言->social_user_id,
+                'user_name' => $舊留言->social_user_name,
+                'user_avatar' => $舊留言->avatar_url,
+                'content' => $舊留言->content,
+                'active' => true,
+                'reply_media_comment_id' => $舊留言->reply_by,
+                'is_banned' => false,
+                'banned_user_id' => null,
+                'banned_remarks' => null,
+                'created_at' => $舊留言->created_at,
+                'updated_at' => $舊留言->updated_at,
+                'deleted_at' => null,
+            ]);
+        }
+    }
+
+    /**
+     * 搬移 Twitter 主要粉絲團的社群文章的留言。
+     *
+     * @param OldComments $舊留言
+     * @param Cards       $新文章
+     * @param MediaCards  $twitter主站社群文章
+     * @return Comments
+     */
+    private function 搬移Twitter主站留言(OldComments $舊留言, Cards $新文章, MediaCards $twitter主站社群文章)
+    {
+        if ($twitter主站社群文章留言 = $this->commentsRepository->findByMediaAndUserAndContent($新文章->id, $twitter主站社群文章->id, $舊留言->social_comment_id, $舊留言->social_user_id, $舊留言->content))
+        {
+            return $twitter主站社群文章留言;
+        }
+        else
+        {
+            return $this->commentsRepository->create([
+                'card_id' => $新文章->id,
+                'media_id' => $twitter主站社群文章->id,
+                'media_comment_id' => $舊留言->social_comment_id,
+                'user_id' => $舊留言->social_user_id,
+                'user_name' => $舊留言->social_user_name,
+                'user_avatar' => $舊留言->avatar_url,
+                'content' => $舊留言->content,
+                'active' => true,
+                'reply_media_comment_id' => $舊留言->reply_by,
+                'is_banned' => false,
+                'banned_user_id' => null,
+                'banned_remarks' => null,
+                'created_at' => $舊留言->created_at,
+                'updated_at' => $舊留言->updated_at,
+                'deleted_at' => null,
+            ]);
+        }
+    }
+
+    /**
+     * 搬移 Plurk 主要粉絲團的社群文章的留言。
+     *
+     * @param OldComments $舊留言
+     * @param Cards       $新文章
+     * @param MediaCards  $plurk主站社群文章
+     * @return Comments
+     */
+    private function 搬移Plurk主站留言(OldComments $舊留言, Cards $新文章, MediaCards $plurk主站社群文章) : Comments
+    {
+        if ($plurk主站社群文章留言 = $this->commentsRepository->findByMediaAndUserAndContent($新文章->id, $plurk主站社群文章->id, $舊留言->social_comment_id, $舊留言->social_user_id, $舊留言->content))
+        {
+            return $plurk主站社群文章留言;
+        }
+        else
+        {
+            return $this->commentsRepository->create([
+                'card_id' => $新文章->id,
+                'media_id' => $plurk主站社群文章->id,
+                'media_comment_id' => $舊留言->social_comment_id,
+                'user_id' => $舊留言->social_user_id,
+                'user_name' => $舊留言->social_user_name,
+                'user_avatar' => $舊留言->avatar_url,
+                'content' => $舊留言->content,
+                'active' => true,
+                'reply_media_comment_id' => null,
+                'is_banned' => false,
+                'banned_user_id' => null,
+                'banned_remarks' => null,
+                'banned_at' => $舊留言->deleted_at,
+                'created_at' => $舊留言->created_at,
+                'updated_at' => $舊留言->updated_at,
+                'deleted_at' => null,
+            ]);
+        }
+    }
+
+    /**
+     * 搬移本平台的文章的留言。
+     *
+     * @param OldComments $舊留言
+     * @param Cards       $新文章
+     * @param MediaCards  $facebook主站社群文章
+     * @return Comments
+     */
+    private function 搬移本平台留言(OldComments $舊留言, Cards $新文章) : Comments
+    {
+        if ($本平台文章留言 = $this->commentsRepository->findByMediaAndUserAndContent($新文章->id, null, null, $舊留言->social_user_id, $舊留言->content))
+        {
+            return $本平台文章留言;
+        }
+        else
+        {
+            return $this->commentsRepository->create([
+                'card_id' => $新文章->id,
+                'media_id' => null,
+                'media_comment_id' => null,
+                'user_id' => $舊留言->social_user_id,
+                'user_name' => $舊留言->social_user_name,
+                'user_avatar' => $舊留言->avatar_url,
+                'content' => $舊留言->content,
+                'active' => true,
+                'is_banned' => false,
+                'banned_user_id' => null,
+                'banned_remarks' => null,
+                'banned_at' => $舊留言->deleted_at,
+                'created_at' => $舊留言->created_at,
+                'updated_at' => $舊留言->updated_at,
+                'deleted_at' => null,
+            ]);
         }
     }
 }
