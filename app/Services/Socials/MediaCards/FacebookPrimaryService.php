@@ -30,14 +30,14 @@ class FacebookPrimaryService extends BaseService implements SocialCardsContract
      */
     public function __construct(MediaCardsRepository $mediaCardsRepository)
     {
-        $this->facebook = Facebook::connection('primary');
         $this->mediaCardsRepository = $mediaCardsRepository;
+        $this->facebook = Facebook::connection('primary');
         $this->getAccessToken();
     }
 
     /**
      * @param Cards $cards
-     * @return
+     * @return MediaCards
      */
     public function publish(Cards $cards)
     {
@@ -60,7 +60,7 @@ class FacebookPrimaryService extends BaseService implements SocialCardsContract
                 ],
             );
 
-            $this->mediaCardsRepository->create([
+            return $this->mediaCardsRepository->create([
                 'card_id' => $cards->id,
                 'model_id' => $cards->model_id,
                 'social_type' => 'facebook',

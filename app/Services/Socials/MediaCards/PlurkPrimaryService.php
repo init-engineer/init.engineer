@@ -41,7 +41,7 @@ class PlurkPrimaryService extends BaseService implements SocialCardsContract
      * 注意: Plurk 的內容如果超過中英文 360 字的話，多餘的內容將會被 Plurk 自動忽略。
      *
      * @param Cards $cards
-     * @return
+     * @return MediaCards
      */
     public function publish(Cards $cards)
     {
@@ -63,7 +63,7 @@ class PlurkPrimaryService extends BaseService implements SocialCardsContract
                 'lang'      => 'tr_ch'
             ]);
 
-            $this->mediaCardsRepository->create([
+            return $this->mediaCardsRepository->create([
                 'card_id' => $cards->id,
                 'model_id' => $cards->model_id,
                 'social_type' => 'twitter',

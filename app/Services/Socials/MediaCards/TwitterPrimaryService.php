@@ -28,7 +28,7 @@ class TwitterPrimaryService extends BaseService implements SocialCardsContract
 
     /**
      * @param Cards $cards
-     * @return
+     * @return MediaCards
      */
     public function publish(Cards $cards)
     {
@@ -48,7 +48,7 @@ class TwitterPrimaryService extends BaseService implements SocialCardsContract
                 'media_ids' => $picture->media_id_string
             ]);
 
-            $this->mediaCardsRepository->create([
+            return $this->mediaCardsRepository->create([
                 'card_id' => $cards->id,
                 'model_id' => $cards->model_id,
                 'social_type' => 'twitter',
