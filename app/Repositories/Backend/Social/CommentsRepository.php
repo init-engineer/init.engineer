@@ -42,6 +42,28 @@ class CommentsRepository extends BaseRepository
     }
 
     /**
+     * @param $id
+     *
+     * @throws GeneralException
+     * @return mixed
+     */
+    public function findBySocialId($card_id, $media_id, $media_comment_id)
+    {
+        $comments = $this->model
+            ->where('card_id', $card_id)
+            ->where('media_id', $media_id)
+            ->where('media_comment_id', $media_comment_id)
+            ->first();
+
+        if ($comments instanceof $this->model) {
+            return $comments;
+        }
+
+        // throw new GeneralException(__('exceptions.backend.social.media.comments.not_found'));
+        return false;
+    }
+
+    /**
      * @param $card_id
      * @param $media_id
      * @param $media_comment_id
