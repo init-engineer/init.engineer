@@ -8,7 +8,7 @@ use App\Services\BaseService;
 use Facebook\FacebookRequest;
 use App\Exceptions\GeneralException;
 use Vinkla\Facebook\Facades\Facebook;
-use App\Repositories\Frontend\Social\MediaCardsRepository;
+use App\Repositories\Backend\Social\MediaCardsRepository;
 
 /**
  * Class FacebookSecondaryService.
@@ -37,6 +37,7 @@ class FacebookSecondaryService extends BaseService implements SocialCardsContrac
 
     /**
      * @param Cards $cards
+     * @throws \App\Exceptions\GeneralException
      * @return MediaCards
      */
     public function publish(Cards $cards)
@@ -47,27 +48,74 @@ class FacebookSecondaryService extends BaseService implements SocialCardsContrac
         }
         else
         {
-            $response = $this->facebook->post(
-                sprintf(
-                    '/%s/photos',
-                    config('facebook.connections.secondary.user_id')
-                ),
-                [
-                    'message' => $this->buildContent($cards->content, [
-                        'id' => $cards->id,
-                    ]),
-                    'source' => $this->facebook->fileToUpload($cards->images->first()->getPicture()),
-                ],
-            );
+            try
+            {
+                $response = $this->facebook->post(
+                    sprintf(
+                        '/%s/photos',
+                        config('facebook.connections.secondary.user_id')
+                    ),
+                    [
+                        'message' => $this->buildContent($cards->content, [
+                            'id' => $cards->id,
+                        ]),
+                        'source' => $this->facebook->fileToUpload($cards->images->first()->getPicture()),
+                    ],
+                );
 
-            return $this->mediaCardsRepository->create([
-                'card_id' => $cards->id,
-                'model_id' => $cards->model_id,
-                'social_type' => 'facebook',
-                'social_connections' => 'secondary',
-                'social_card_id' => $response->getGraphUser()->getId(),
-            ]);
+                return $this->mediaCardsRepository->create([
+                    'card_id' => $cards->id,
+                    'model_id' => $cards->model_id,
+                    'social_type' => 'facebook',
+                    'social_connections' => 'secondary',
+                    'social_card_id' => $response->getGraphUser()->getId(),
+                ]);
+            }
+            catch (\Facebook\Exceptions\FacebookSDKException $e)
+            {
+                \Log::error($e->getMessage());
+            }
+            catch (Exception $e)
+            {
+                \Log::error($e->getMessage());
+            }
         }
+    }
+
+    /**
+     * @param Cards $cards
+     * @return MediaCards
+     */
+    public function update(Cards $cards)
+    {
+        if ($mediaCards = $this->mediaCardsRepository->findByCardId($cards->id, 'facebook', 'secondary'))
+        {
+            try
+            {
+                $response = $this->facebook->get(
+                    sprintf(
+                        '%s_%s?fields=shares,likes.summary(true).limit(0),comments.limit(1000),reactions.type(LIKE).limit(0).summary(total_count).as(reactions_like),reactions.type(LOVE).limit(0).summary(total_count).as(reactions_love),reactions.type(WOW).limit(0).summary(total_count).as(reactions_wow),reactions.type(HAHA).limit(0).summary(total_count).as(reactions_haha),reactions.type(SAD).limit(0).summary(total_count).as(reactions_sad),reactions.type(ANGRY).limit(0).summary(total_count).as(reactions_angry)',
+                        config('facebook.connections.primary.user_id'),
+                        $mediaCards->social_card_id
+                    )
+                );
+                $decodedBody = $response->getDecodedBody();
+                return $this->mediaCardsRepository->update($mediaCards, [
+                    'num_like' => $this->slicerCardsLikes($decodedBody),
+                    'num_share' => $this->slicerCardsShare($decodedBody),
+                ]);
+            }
+            catch (\Facebook\Exceptions\FacebookSDKException $e)
+            {
+                \Log::error($e->getMessage());
+            }
+            catch (Exception $e)
+            {
+                \Log::error($e->getMessage());
+            }
+        }
+
+        return false;
     }
 
     /**
@@ -124,5 +172,31 @@ class FacebookSecondaryService extends BaseService implements SocialCardsContrac
         $accessToken = $this->facebook->getClient()->sendRequest($facebookRequest)->getDecodedBody();
         $foreverPageAccessToken = $accessToken['access_token'];
         $this->facebook->setDefaultAccessToken($foreverPageAccessToken);
+    }
+
+    /**
+     * @param array $body
+     * @return int
+     */
+    private function slicerCardsLikes($body) : int
+    {
+        $fb_like  = (! empty($body['reactions_like'])) ? $body['reactions_like']['summary']['total_count']  : 0 ;
+        $fb_love  = (! empty($body['reactions_love'])) ? $body['reactions_love']['summary']['total_count']  : 0 ;
+        $fb_wow   = (! empty($body['reactions_wow']))  ? $body['reactions_wow']['summary']['total_count']   : 0 ;
+        $fb_haha  = (! empty($body['reactions_haha'])) ? $body['reactions_haha']['summary']['total_count']  : 0 ;
+        $fb_sad   = (! empty($body['reactions_sad']))  ? $body['reactions_sad']['summary']['total_count']   : 0 ;
+        $fb_angry = (! empty($body['reactions_angry']))? $body['reactions_angry']['summary']['total_count'] : 0 ;
+        $fb_count = $fb_like + $fb_love + $fb_wow + $fb_haha + $fb_sad + $fb_angry;
+
+        return $fb_count;
+    }
+
+    /**
+     * @param array $body
+     * @return int
+     */
+    private function slicerCardsShare($body) : int
+    {
+        return (! empty($body['shares']))? $body['shares']['count'] : 0 ;
     }
 }

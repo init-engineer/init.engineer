@@ -6,7 +6,7 @@ use App\Models\Social\Cards;
 use App\Services\BaseService;
 use App\Exceptions\GeneralException;
 use ReliqArts\Thujohn\Twitter\Facades\Twitter;
-use App\Repositories\Frontend\Social\MediaCardsRepository;
+use App\Repositories\Backend\Social\MediaCardsRepository;
 
 /**
  * Class TwitterPrimaryService.
@@ -38,24 +38,56 @@ class TwitterPrimaryService extends BaseService implements SocialCardsContract
         }
         else
         {
-            $picture = Twitter::uploadMedia([
-                'media' => $cards->images->first()->getFile(),
-            ]);
-            $response = Twitter::postTweet([
-                'status' => $this->buildContent($cards->content, [
-                    'id' => $cards->id,
-                ]),
-                'media_ids' => $picture->media_id_string
-            ]);
+            try
+            {
+                $picture = Twitter::uploadMedia([
+                    'media' => $cards->images->first()->getFile(),
+                ]);
+                $response = Twitter::postTweet([
+                    'status' => $this->buildContent($cards->content, [
+                        'id' => $cards->id,
+                    ]),
+                    'media_ids' => $picture->media_id_string
+                ]);
 
-            return $this->mediaCardsRepository->create([
-                'card_id' => $cards->id,
-                'model_id' => $cards->model_id,
-                'social_type' => 'twitter',
-                'social_connections' => 'primary',
-                'social_card_id' => $response->id,
-            ]);
+                return $this->mediaCardsRepository->create([
+                    'card_id' => $cards->id,
+                    'model_id' => $cards->model_id,
+                    'social_type' => 'twitter',
+                    'social_connections' => 'primary',
+                    'social_card_id' => $response->id,
+                ]);
+            }
+            catch (Exception $e)
+            {
+                \Log::error($e->getMessage());
+            }
         }
+    }
+
+    /**
+     * @param Cards $cards
+     * @return MediaCards
+     */
+    public function update(Cards $cards)
+    {
+        if ($mediaCards = $this->mediaCardsRepository->findByCardId($cards->id, 'plurk', 'primary'))
+        {
+            try
+            {
+                $response = Twitter::getTweet($mediaCards->social_card_id);
+                return $this->mediaCardsRepository->update($mediaCards, [
+                    'num_like' => $response->favorite_count,
+                    'num_share' => $response->retweet_count,
+                ]);
+            }
+            catch (Exception $e)
+            {
+                \Log::error($e->getMessage());
+            }
+        }
+
+        return false;
     }
 
     /**

@@ -11,5 +11,7 @@ interface SocialCardsContract
 {
     public function publish(Cards $cards);
 
+    public function update(Cards $cards);
+
     public function buildContent($content = '', array $options = []);
 }

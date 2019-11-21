@@ -6,7 +6,7 @@ use Qlurk\ApiClient;
 use App\Models\Social\Cards;
 use App\Services\BaseService;
 use App\Exceptions\GeneralException;
-use App\Repositories\Frontend\Social\MediaCardsRepository;
+use App\Repositories\Backend\Social\MediaCardsRepository;
 
 /**
  * Class PlurkPrimaryService.
@@ -51,26 +51,61 @@ class PlurkPrimaryService extends BaseService implements SocialCardsContract
         }
         else
         {
-            $picture = $this->plurk->call('/APP/Timeline/uploadPicture', [
-                'image' => $cards->images->first()->getFile(),
-            ]);
-            $response = $this->plurk->call('/APP/Timeline/plurkAdd', [
-                'content'   => $this->buildContent($cards->content, [
-                    'id' => $cards->id,
-                    'image_url' => $picture['full'],
-                ]),
-                'qualifier' => 'says',
-                'lang'      => 'tr_ch'
-            ]);
+            try
+            {
+                $picture = $this->plurk->call('/APP/Timeline/uploadPicture', [
+                    'image' => $cards->images->first()->getFile(),
+                ]);
+                $response = $this->plurk->call('/APP/Timeline/plurkAdd', [
+                    'content'   => $this->buildContent($cards->content, [
+                        'id' => $cards->id,
+                        'image_url' => $picture['full'],
+                    ]),
+                    'qualifier' => 'says',
+                    'lang'      => 'tr_ch'
+                ]);
 
-            return $this->mediaCardsRepository->create([
-                'card_id' => $cards->id,
-                'model_id' => $cards->model_id,
-                'social_type' => 'twitter',
-                'social_connections' => 'primary',
-                'social_card_id' => base_convert($response['plurk_id'], 10, 36),
-            ]);
+                return $this->mediaCardsRepository->create([
+                    'card_id' => $cards->id,
+                    'model_id' => $cards->model_id,
+                    'social_type' => 'twitter',
+                    'social_connections' => 'primary',
+                    'social_card_id' => base_convert($response['plurk_id'], 10, 36),
+                ]);
+            }
+            catch (Exception $e)
+            {
+                \Log::error($e->getMessage());
+            }
         }
+    }
+
+    /**
+     * @param Cards $cards
+     * @return MediaCards
+     */
+    public function update(Cards $cards)
+    {
+        if ($mediaCards = $this->mediaCardsRepository->findByCardId($cards->id, 'plurk', 'primary'))
+        {
+            try
+            {
+                $response = $this->plurk->call('/APP/Timeline/getPlurk', [
+                    'plurk_id'   => base_convert($mediaCards->social_card_id, 36, 10),
+                    'count'      => 'all'
+                ]);
+                return $this->mediaCardsRepository->update($mediaCards, [
+                    'num_like' => $response['plurk']['favorite_count'],
+                    'num_share' => $response['plurk']['replurkers_count'],
+                ]);
+            }
+            catch (Exception $e)
+            {
+                \Log::error($e->getMessage());
+            }
+        }
+
+        return false;
     }
 
     /**
