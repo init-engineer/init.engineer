@@ -38,6 +38,7 @@ class Comments extends Model
      * @var array
      */
     protected $fillable = [
+        'id',
         'card_id',
         'media_id',
         'media_comment_id',
@@ -50,6 +51,7 @@ class Comments extends Model
         'is_banned',
         'banned_user_id',
         'banned_remarks',
+        'banned_at',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -61,6 +63,7 @@ class Comments extends Model
      * @var array
      */
     protected $dates = [
+        'banned_at',
         'created_at',
         'updated_at',
         'deleted_at',

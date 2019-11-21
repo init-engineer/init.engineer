@@ -65,6 +65,7 @@ class ImagesRepository extends BaseRepository
                 'is_banned' => isset($data['is_banned'])? $data['is_banned'] : false,
                 'banned_user_id' => isset($data['banned_user_id'])? $data['banned_user_id'] : null,
                 'banned_remarks' => isset($data['banned_remarks'])? $data['banned_remarks'] : null,
+                'banned_at' => isset($data['banned_at'])? $data['banned_at'] : null,
                 'created_at' => isset($data['created_at'])? $data['created_at'] : null,
                 'updated_at' => isset($data['updated_at'])? $data['updated_at'] : null,
                 'deleted_at' => isset($data['deleted_at'])? $data['deleted_at'] : null,
@@ -102,6 +103,7 @@ class ImagesRepository extends BaseRepository
                 'is_banned' => isset($data['is_banned'])? $data['is_banned'] : $images->is_banned,
                 'banned_user_id' => isset($data['banned_user_id'])? $data['banned_user_id'] : $images->banned_user_id,
                 'banned_remarks' => isset($data['banned_remarks'])? $data['banned_remarks'] : $images->banned_remarks,
+                'banned_at' => isset($data['banned_at'])? $data['banned_at'] : $images->banned_at,
             ])) {
                 // event(new ImagesUpdated($images));
 

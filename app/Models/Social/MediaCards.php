@@ -36,6 +36,7 @@ class MediaCards extends Model
      * @var array
      */
     protected $fillable = [
+        'id',
         'card_id',
         'model_type',
         'model_id',
@@ -48,6 +49,19 @@ class MediaCards extends Model
         'is_banned',
         'banned_user_id',
         'banned_remarks',
+        'banned_at',
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'banned_at',
         'created_at',
         'updated_at',
         'deleted_at',

@@ -24,6 +24,7 @@ class CreateSocialCardsTable extends Migration
             $table->unsignedTinyInteger('is_banned')->default(0);
             $table->unsignedBigInteger('banned_user_id')->nullable();
             $table->string('banned_remarks')->nullable();
+            $table->timestamp('banned_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -41,6 +42,7 @@ class CreateSocialCardsTable extends Migration
             $table->unsignedTinyInteger('is_banned')->default(0);
             $table->unsignedBigInteger('banned_user_id')->nullable();
             $table->string('banned_remarks')->nullable();
+            $table->timestamp('banned_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
@@ -64,6 +66,7 @@ class CreateSocialCardsTable extends Migration
             $table->unsignedTinyInteger('is_banned')->default(0);
             $table->unsignedBigInteger('banned_user_id')->nullable();
             $table->string('banned_remarks')->nullable();
+            $table->timestamp('banned_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
@@ -86,6 +89,7 @@ class CreateSocialCardsTable extends Migration
             $table->unsignedTinyInteger('is_banned')->default(0);
             $table->unsignedBigInteger('banned_user_id')->nullable();
             $table->string('banned_remarks')->nullable();
+            $table->timestamp('banned_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

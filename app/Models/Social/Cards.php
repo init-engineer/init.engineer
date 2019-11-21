@@ -40,6 +40,7 @@ class Cards extends Model
      * @var array
      */
     protected $fillable = [
+        'id',
         'model_type',
         'model_id',
         'content',
@@ -47,6 +48,7 @@ class Cards extends Model
         'is_banned',
         'banned_user_id',
         'banned_remarks',
+        'banned_at',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -58,6 +60,7 @@ class Cards extends Model
      * @var array
      */
     protected $dates = [
+        'banned_at',
         'created_at',
         'updated_at',
         'deleted_at',
