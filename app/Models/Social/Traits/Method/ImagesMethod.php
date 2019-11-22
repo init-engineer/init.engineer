@@ -16,7 +16,7 @@ trait ImagesMethod
     {
         $file_path = sprintf(
             '%s/%s.%s',
-            str_replace('storage', 'public', $this->avatar_path),
+            $this->avatar_path,
             $this->avatar_name,
             $this->avatar_type
         );
@@ -47,7 +47,7 @@ trait ImagesMethod
                 return gravatar()->get($this->email, ['size' => $size]);
 
             case 'storage':
-                return url(sprintf('storage/%s/%s.%s', $this->avatar_path, $this->avatar_name, $this->avatar_type));
+                return url(sprintf('storage/%s/%s.%s', str_replace('public/', '', $this->avatar_path), $this->avatar_name, $this->avatar_type));
         }
 
         return false;

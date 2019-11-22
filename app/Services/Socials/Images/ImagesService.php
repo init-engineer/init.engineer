@@ -102,7 +102,7 @@ class ImagesService extends BaseService implements ImagesContract
         return [
             'avatar' => [
                 'image' => $storagePath,
-                'path' => $avatarPath,
+                'path' => sprintf('public/%s', $avatarPath),
                 'name' => $avatarName,
                 'type' => $avatarType,
             ],
@@ -128,7 +128,6 @@ class ImagesService extends BaseService implements ImagesContract
                 $this->canvasHeight += 360;
                 break;
         }
-        // dd($data['themeStyle']);
 
         $this->createCanvas();
         $this->drawingTheme($data['themeStyle']);
@@ -194,7 +193,7 @@ class ImagesService extends BaseService implements ImagesContract
         return [
             'avatar' => [
                 'image' => $imageOutput,
-                'path' => $avatarPath,
+                'path' => sprintf('public/%s', $avatarPath),
                 'name' => $avatarName,
                 'type' => $avatarType,
             ],
