@@ -189,6 +189,7 @@ class ImagesService extends BaseService implements ImagesContract
         }
 
         $imageOutput = base64_encode(ob_get_clean());
+        imagedestroy($this->canvas);
 
         return [
             'avatar' => [
