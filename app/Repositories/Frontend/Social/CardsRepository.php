@@ -35,6 +35,7 @@ class CardsRepository extends BaseRepository
     {
         return $this->model
             ->active()
+            ->publish()
             ->orderBy($orderBy, $sort)
             ->paginate($paged);
     }
