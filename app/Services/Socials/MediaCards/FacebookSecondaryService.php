@@ -3,6 +3,7 @@
 namespace App\Services\Socials\MediaCards;
 
 use Facebook\FacebookApp;
+use App\Models\Auth\User;
 use App\Models\Social\Cards;
 use App\Services\BaseService;
 use Facebook\FacebookRequest;
@@ -103,6 +104,44 @@ class FacebookSecondaryService extends BaseService implements SocialCardsContrac
                 return $this->mediaCardsRepository->update($mediaCards, [
                     'num_like' => $this->slicerCardsLikes($decodedBody),
                     'num_share' => $this->slicerCardsShare($decodedBody),
+                ]);
+            }
+            catch (\Facebook\Exceptions\FacebookSDKException $e)
+            {
+                \Log::error($e->getMessage());
+            }
+            catch (Exception $e)
+            {
+                \Log::error($e->getMessage());
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * @param User  $user
+     * @param Cards $cards
+     * @param array $options
+     * @return MediaCards
+     */
+    public function destory(User $user, Cards $cards, array $options)
+    {
+        if ($mediaCards = $this->mediaCardsRepository->findByCardId($cards->id, 'facebook', 'secondary'))
+        {
+            try
+            {
+                $response = $this->facebook->delete(sprintf('/%s', $mediaCards->social_card_id));
+                $decodedBody = $response->getDecodedBody();
+
+                // TODO: 解析 decodedBody 的資訊
+
+                return $this->mediaCardsRepository->update($mediaCards, [
+                    'active' => false,
+                    'is_banned' => true,
+                    'banned_user_id' => $user->id,
+                    'banned_remarks' => isset($options['remarks'])? $options['remarks'] : null,
+                    'banned_at' => now(),
                 ]);
             }
             catch (\Facebook\Exceptions\FacebookSDKException $e)

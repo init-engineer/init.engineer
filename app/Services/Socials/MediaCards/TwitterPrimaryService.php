@@ -2,6 +2,7 @@
 
 namespace App\Services\Socials\MediaCards;
 
+use App\Models\Auth\User;
 use App\Models\Social\Cards;
 use App\Services\BaseService;
 use App\Exceptions\GeneralException;
@@ -80,6 +81,43 @@ class TwitterPrimaryService extends BaseService implements SocialCardsContract
                     'num_like' => $response->favorite_count,
                     'num_share' => $response->retweet_count,
                 ]);
+            }
+            catch (Exception $e)
+            {
+                \Log::error($e->getMessage());
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * @param User  $user
+     * @param Cards $cards
+     * @param array $options
+     * @return MediaCards
+     */
+    public function destory(User $user, Cards $cards, array $options)
+    {
+        if ($mediaCards = $this->mediaCardsRepository->findByCardId($cards->id, 'twitter', 'primary'))
+        {
+            try
+            {
+                $response = Twitter::destroyTweet($mediaCards->social_card_id);
+
+                // TODO: 解析 response 的資訊
+
+                return $this->mediaCardsRepository->update($mediaCards, [
+                    'active' => false,
+                    'is_banned' => true,
+                    'banned_user_id' => $user->id,
+                    'banned_remarks' => isset($options['remarks'])? $options['remarks'] : null,
+                    'banned_at' => now(),
+                ]);
+            }
+            catch (\Facebook\Exceptions\FacebookSDKException $e)
+            {
+                \Log::error($e->getMessage());
             }
             catch (Exception $e)
             {

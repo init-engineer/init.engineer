@@ -3,6 +3,7 @@
 namespace App\Services\Socials\MediaCards;
 
 use Qlurk\ApiClient;
+use App\Models\Auth\User;
 use App\Models\Social\Cards;
 use App\Services\BaseService;
 use App\Exceptions\GeneralException;
@@ -68,7 +69,7 @@ class PlurkPrimaryService extends BaseService implements SocialCardsContract
                 return $this->mediaCardsRepository->create([
                     'card_id' => $cards->id,
                     'model_id' => $cards->model_id,
-                    'social_type' => 'twitter',
+                    'social_type' => 'plurk',
                     'social_connections' => 'primary',
                     'social_card_id' => base_convert($response['plurk_id'], 10, 36),
                 ]);
@@ -98,6 +99,43 @@ class PlurkPrimaryService extends BaseService implements SocialCardsContract
                     'num_like' => $response['plurk']['favorite_count'],
                     'num_share' => $response['plurk']['replurkers_count'],
                 ]);
+            }
+            catch (Exception $e)
+            {
+                \Log::error($e->getMessage());
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * @param User  $user
+     * @param Cards $cards
+     * @param array $options
+     * @return MediaCards
+     */
+    public function destory(User $user, Cards $cards, array $options)
+    {
+        if ($mediaCards = $this->mediaCardsRepository->findByCardId($cards->id, 'plurk', 'primary'))
+        {
+            try
+            {
+                $response = $this->plurk->call('/APP/Timeline/plurkDelete', ['plurk_id' => base_convert($mediaCards->social_card_id, 36, 10)]);
+
+                // TODO: 解析 response 的資訊
+
+                return $this->mediaCardsRepository->update($mediaCards, [
+                    'active' => false,
+                    'is_banned' => true,
+                    'banned_user_id' => $user->id,
+                    'banned_remarks' => isset($options['remarks'])? $options['remarks'] : null,
+                    'banned_at' => now(),
+                ]);
+            }
+            catch (\Facebook\Exceptions\FacebookSDKException $e)
+            {
+                \Log::error($e->getMessage());
             }
             catch (Exception $e)
             {
