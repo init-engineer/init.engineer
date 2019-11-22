@@ -26,16 +26,6 @@ class FacebookSecondaryPublish implements ShouldQueue
     protected $cards;
 
     /**
-     * Determine the time at which the job should timeout.
-     *
-     * @return \DateTime
-     */
-    public function retryUntil()
-    {
-        return now()->addMinutes(6);
-    }
-
-    /**
      * Create a new job instance.
      *
      * @return void
@@ -43,6 +33,16 @@ class FacebookSecondaryPublish implements ShouldQueue
     public function __construct(Cards $cards)
     {
         $this->cards = $cards;
+    }
+
+    /**
+     * Determine the time at which the job should timeout.
+     *
+     * @return \DateTime
+     */
+    public function retryUntil()
+    {
+        return now()->addMinutes(6);
     }
 
     /**
