@@ -36,16 +36,6 @@ class TwitterPrimaryPublish implements ShouldQueue
     }
 
     /**
-     * Determine the time at which the job should timeout.
-     *
-     * @return \DateTime
-     */
-    public function retryUntil()
-    {
-        return now()->addMinutes(6);
-    }
-
-    /**
      * Execute the job.
      *
      * @return void

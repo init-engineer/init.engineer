@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands\Tests;
 
+use App\Models\Auth\User;
 use App\Models\Social\Cards;
 use Illuminate\Console\Command;
 use App\Services\Socials\MediaCards\PlurkPrimaryService;
@@ -71,7 +72,12 @@ class SocialCards extends Command
      */
     public function handle()
     {
-        // $cards = Cards::find(2720);
+        $user = User::find(1);
+        $cards = Cards::find(3095);
+        $this->plurkPrimaryService->destory($user, $cards, ['remarks' => '刪除測試文章。']);
+        $this->twitterPrimaryService->destory($user, $cards, ['remarks' => '刪除測試文章。']);
+        $this->facebookPrimaryService->destory($user, $cards, ['remarks' => '刪除測試文章。']);
+        $this->facebookSecondaryService->destory($user, $cards, ['remarks' => '刪除測試文章。']);
         // dd($this->plurkPrimaryService->publish($cards));         // OK, Success.
         // dd($this->twitterPrimaryService->publish($cards));       // OK, Success.
         // dd($this->facebookPrimaryService->publish($cards));      // OK, Success.
