@@ -93,6 +93,22 @@
         </div>
         <!--row-->
 
+        <div class="row" v-if="this.isAdmin">
+            <div class="col">
+                <div class="form-group">
+                    <label class="col-label">label.frontend.cards.admin</label>
+
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" id="manager-line" class="control-input" v-model="canvas.is_manager_line" @click="drawingManagerLine">
+                        <label class="text-white control-label" for="manager-line">是否在文章當中繪製版主群識別框線</label>
+                    </div>
+                </div>
+                <!--input-group-->
+            </div>
+            <!--col-->
+        </div>
+        <!--row-->
+
         <div class="row">
             <div class="col">
                 <div class="form-group clearfix">
@@ -123,6 +139,12 @@ export default {
         MarqueeText,
         PictureInput,
     },
+    props: {
+        isAdmin: {
+            type: Number,
+            required: true,
+        },
+    },
     data() {
         return {
             canvas: {
@@ -137,6 +159,7 @@ export default {
                 color: "#00FF3B",
                 background_color: "#000000",
                 font: "Auraka",
+                is_manager_line: false,
             },
             avatar: null,
             theme: {
@@ -384,20 +407,15 @@ export default {
             this.drawingAll();
         },
         onThemeChange(event) {
-            const theme = this.theme.options.find(
-                option => option.value === this.theme.selector
-            );
+            const theme = this.theme.options.find(option => option.value === this.theme.selector);
             this.canvas.color = theme.color.text;
             this.canvas.background_color = theme.color.background;
 
             this.drawingAll();
         },
         onFontChange(event) {
-            const font = this.font.options.find(
-                option => option.value === this.font.selector
-            );
+            const font = this.font.options.find(option => option.value === this.font.selector);
             this.canvas.font = font.font;
-
             const ffo = new FontFaceObserver(font.font);
             ffo.load().then(
                 function () {
@@ -425,6 +443,7 @@ export default {
 
             this.settingCanvasViewSize();
             this.drawingBackground();
+            this.drawingManagerLine();
             this.drawingBackgroundImage();
             this.drawingLogo();
             this.drawingUrl();
@@ -437,9 +456,7 @@ export default {
         settingCanvasViewSize() {
             let lineCount = this.contentSplit().length;
             let canvasView_center = lineCount * 80 < 600 ? true : false;
-            let canvasView_height = canvasView_center ?
-                this.canvas.default_height :
-                72 + 72 + lineCount * 80;
+            let canvasView_height = canvasView_center ? this.canvas.default_height : 72 + 72 + lineCount * 80;
             let canvasView_width = this.canvas.default_width;
             switch (this.theme.selector) {
                 case "32d2a897602ef652ed8e15d66128aa74":
@@ -460,12 +477,7 @@ export default {
         },
         drawingBackground() {
             this.canvas.ctx.fillStyle = this.canvas.background_color;
-            this.canvas.ctx.fillRect(
-                0,
-                0,
-                this.canvas.width,
-                this.canvas.height
-            );
+            this.canvas.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
         },
         drawingBackgroundImage() {
             let img = new Image();
@@ -473,42 +485,24 @@ export default {
                 case "05217b7d4741e38096a54eff4226c217":
                     img.src = "/img/frontend/cards/devotion-bg.png";
                     this.canvas.ctx.drawImage(img, 360, 64);
-                    console.log(img);
                     return;
 
                 case "32d2a897602ef652ed8e15d66128aa74":
                     img.src = "/img/frontend/cards/qrcode.png";
-                    this.canvas.ctx.drawImage(
-                        img,
-                        24,
-                        this.canvas.height - 204
-                    );
+                    this.canvas.ctx.drawImage(img, 24, this.canvas.height - 204);
                     return;
 
                 case "05326525f82b9a036e1bcb53a392ff7c":
                     img.src = "/img/frontend/cards/fragmented_background.png";
                     this.canvas.ctx.drawImage(img, 0, this.canvas.height - 560);
                     img.src = "/img/frontend/cards/fragmented_people.png";
-                    this.canvas.ctx.drawImage(
-                        img,
-                        36,
-                        this.canvas.height - 542
-                    );
-
+                    this.canvas.ctx.drawImage(img, 36, this.canvas.height - 542);
                     this.canvas.ctx.lineJoin = "round";
                     this.canvas.ctx.lineWidth = 8;
-                    this.canvas.ctx.strokeRect(
-                        353,
-                        40,
-                        this.canvas.width - 381,
-                        this.canvas.height - 282
-                    );
-
-                    img.src =
-                        "/img/frontend/cards/fragmented_background_top_left.png";
+                    this.canvas.ctx.strokeRect(353, 40, this.canvas.width - 381, this.canvas.height - 282);
+                    img.src = "/img/frontend/cards/fragmented_background_top_left.png";
                     this.canvas.ctx.drawImage(img, 349, 36);
-                    img.src =
-                        "/img/frontend/cards/fragmented_background_top_right.png";
+                    img.src = "/img/frontend/cards/fragmented_background_top_right.png";
                     this.canvas.ctx.drawImage(img, this.canvas.width - 72, 36);
                     return;
             }
@@ -518,53 +512,25 @@ export default {
                 case "32d2a897602ef652ed8e15d66128aa74":
                     this.canvas.ctx.font = "36px " + this.canvas.font;
                     this.canvas.ctx.fillStyle = this.canvas.color;
-                    this.canvas.ctx.fillText(
-                        "若要深入了解，您稍候可以線上搜尋此:",
-                        228,
-                        this.canvas.height - 160
-                    );
-                    this.canvas.ctx.fillText(
-                        "純靠北工程師 0xKAOBEI_ENGINEER",
-                        228,
-                        this.canvas.height - 120
-                    );
-                    this.canvas.ctx.fillText(
-                        "請訪問 https://kaobei.engineer",
-                        228,
-                        this.canvas.height - 40
-                    );
+                    this.canvas.ctx.fillText("若要深入了解，您稍候可以線上搜尋此:", 228, this.canvas.height - 160);
+                    this.canvas.ctx.fillText("純靠北工程師 0xKAOBEI_ENGINEER", 228, this.canvas.height - 120);
+                    this.canvas.ctx.fillText("請訪問 https://kaobei.engineer", 228, this.canvas.height - 40);
                     return;
 
                 case "05326525f82b9a036e1bcb53a392ff7c":
                     this.canvas.ctx.font = "72px " + this.canvas.font;
                     this.canvas.ctx.fillStyle = this.canvas.color;
-                    this.canvas.ctx.fillText(
-                        "支離滅裂な",
-                        360,
-                        this.canvas.height - 160
-                    );
-                    this.canvas.ctx.fillText(
-                        "思考・発言",
-                        360,
-                        this.canvas.height - 80
-                    );
+                    this.canvas.ctx.fillText("支離滅裂な", 360, this.canvas.height - 160);
+                    this.canvas.ctx.fillText("思考・発言", 360, this.canvas.height - 80);
                     this.canvas.ctx.font = "36px " + this.canvas.font;
                     this.canvas.ctx.fillStyle = this.canvas.color;
-                    this.canvas.ctx.fillText(
-                        "純靠北工程師",
-                        this.canvas.width - 232,
-                        this.canvas.height - 24
-                    );
+                    this.canvas.ctx.fillText("純靠北工程師", this.canvas.width - 232, this.canvas.height - 24);
                     return;
 
                 default:
                     this.canvas.ctx.font = "36px " + this.canvas.font;
                     this.canvas.ctx.fillStyle = this.canvas.color;
-                    this.canvas.ctx.fillText(
-                        "純靠北工程師",
-                        this.canvas.width - 232,
-                        this.canvas.height - 24
-                    );
+                    this.canvas.ctx.fillText("純靠北工程師", this.canvas.width - 232, this.canvas.height - 24);
                     return;
             }
         },
@@ -579,11 +545,7 @@ export default {
                 default:
                     this.canvas.ctx.font = "36px " + this.canvas.font;
                     this.canvas.ctx.fillStyle = this.canvas.color;
-                    this.canvas.ctx.fillText(
-                        "發文傳送門 https://kaobei.engineer",
-                        16,
-                        this.canvas.height - 24
-                    );
+                    this.canvas.ctx.fillText("發文傳送門 https://kaobei.engineer", 16, this.canvas.height - 24);
                     return;
             }
         },
@@ -594,12 +556,7 @@ export default {
                     let x_point = 36;
                     let y_point = 0;
                     if (this.canvas.is_center) {
-                        y_point =
-                            24 + this.canvas.is_center ?
-                            440 +
-                            ((content_key - 1) * 80 -
-                                contentList.length * 40) :
-                            (content_key + 1) * 80;
+                        y_point = 24 + this.canvas.is_center ? 440 + ((content_key - 1) * 80 - contentList.length * 40) : (content_key + 1) * 80;
                     } else {
                         y_point = 96 + content_key * 80;
                     }
@@ -616,15 +573,22 @@ export default {
                 }.bind(this)
             );
         },
+        drawingManagerLine() {
+            if (this.canvas.is_manager_line) {
+                for (let i = 6; i < 12; i++) {
+                    let rectangle = new Path2D();
+                        rectangle.rect(i, i, this.canvas.width - (i * 2), this.canvas.height - (i * 2));
+                    this.canvas.ctx.strokeStyle = this.canvas.color;
+                    this.canvas.ctx.stroke(rectangle);
+                }
+            }
+        },
         contentSplit() {
-            let content = this.canvas.content;
+            let content = (this.canvas.content !== null) ? this.canvas.content : "";
             let response_list = [];
             let content_list = content.split(/\r\n|\r|\n/);
             content_list.forEach(function (content_value) {
-                let content_strlen = encodeURIComponent(content_value).replace(
-                    /%[A-F\d]{2}/g,
-                    "U"
-                ).length;
+                let content_strlen = encodeURIComponent(content_value).replace(/%[A-F\d]{2}/g, "U").length;
                 if (content_strlen <= 42) {
                     response_list.push(content_value);
                 } else {
@@ -632,19 +596,12 @@ export default {
                     let char_string = "";
                     let _content_value_list = content_value.split("");
                     _content_value_list.forEach(function (char_value, char_key) {
-                        let char_strlen = encodeURIComponent(
-                            char_value
-                        ).replace(/%[A-F\d]{2}/g, "U").length;
+                        let char_strlen = encodeURIComponent(char_value).replace(/%[A-F\d]{2}/g, "U").length;
                         content_width += char_strlen == 3 ? 1 : 0.5;
-
                         char_string += char_value;
                         if (char_key + 1 in _content_value_list) {
-                            let _next_char_strlen = encodeURIComponent(
-                                _content_value_list[char_key + 1]
-                            ).replace(/%[A-F\d]{2}/g, "U").length;
-                            let _next_char_width =
-                                _next_char_strlen == 3 ? 1 : 0.5;
-
+                            let _next_char_strlen = encodeURIComponent(_content_value_list[char_key + 1]).replace(/%[A-F\d]{2}/g, "U").length;
+                            let _next_char_width = _next_char_strlen == 3 ? 1 : 0.5;
                             if (content_width + _next_char_width >= 14) {
                                 response_list.push(char_string);
                                 content_width = 0;
@@ -681,16 +638,24 @@ export default {
                     cancelButtonText: "不要！",
                     allowOutsideClick: () => !Swal.isLoading(),
                     preConfirm: login => {
-                        let formData = new FormData();
-                        formData.append("content", this.canvas.content);
-                        formData.append("themeStyle", this.theme.selector);
-                        formData.append("fontStyle", this.font.selector);
+                        let data;
                         if (this.avatar) {
-                            formData.append("avatar", this.avatar);
+                            data = new FormData();
+                            data.append("content", this.canvas.content);
+                            data.append("themeStyle", this.theme.selector);
+                            data.append("fontStyle", this.font.selector);
+                            data.append("avatar", this.avatar);
+                        } else {
+                            data = {
+                                content: this.canvas.content,
+                                themeStyle: this.theme.selector,
+                                fontStyle: this.font.selector,
+                                isManagerLine: this.canvas.is_manager_line,
+                            }
                         }
 
                         return axios
-                            .post("/api/frontend/social/cards/", formData)
+                            .post(this.isAdmin ? "/api/backend/social/cards/" : "/api/frontend/social/cards/", data)
                             .then(function (response) {
                                 return response;
                             })
@@ -711,9 +676,7 @@ export default {
                                 onBeforeOpen: () => {
                                     Swal.showLoading();
                                     timerInterval = setInterval(() => {
-                                        Swal.getContent().querySelector(
-                                            "b"
-                                        ).textContent = Swal.getTimerLeft();
+                                        Swal.getContent().querySelector("b").textContent = Swal.getTimerLeft();
                                     }, 100);
                                 },
                                 onClose: () => {
@@ -721,9 +684,7 @@ export default {
                                     window.location.href = `/cards/show/${result.value.data.data.id}`;
                                 }
                             }).then(result => {
-                                if (
-                                    result.dismiss === Swal.DismissReason.timer
-                                ) {
+                                if (result.dismiss === Swal.DismissReason.timer) {
                                     console.log("I was closed by the timer");
                                 }
                             });
