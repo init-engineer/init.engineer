@@ -10,6 +10,30 @@ use Illuminate\Support\Facades\Storage;
 trait ImagesMethod
 {
     /**
+     * @return bool
+     */
+    public function isActive()
+    {
+        return $this->active;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isPublish()
+    {
+        return ! $this->is_banned;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isBanned()
+    {
+        return $this->is_banned;
+    }
+
+    /**
      * @return Storage
      */
     public function getFile()

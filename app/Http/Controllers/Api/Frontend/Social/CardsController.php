@@ -154,7 +154,7 @@ class CardsController extends Controller
      */
     public function show(Cards $id)
     {
-        $cards = new Item($id, new CardsTransformer());
+        $cards = new Item($id->isPublish()? $id : null, new CardsTransformer());
         $response = $this->fractal->createData($cards);
 
         return response()->json($response->toArray());
@@ -166,7 +166,10 @@ class CardsController extends Controller
      */
     public function links(Cards $id)
     {
-        $cards = new Collection($id->medias, new MediaCardsTransformer());
+        $medias = $id->medias->reject(function ($media) {
+            return $media->isPublish();
+        });
+        $cards = new Collection($medias, new MediaCardsTransformer());
         $response = $this->fractal->createData($cards);
 
         return response()->json($response->toArray());

@@ -16,6 +16,22 @@ trait MediaCardsMethod
     }
 
     /**
+     * @return bool
+     */
+    public function isPublish()
+    {
+        return ! $this->is_banned;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isBanned()
+    {
+        return $this->is_banned;
+    }
+
+    /**
      * @return string
      */
     public function getLink()

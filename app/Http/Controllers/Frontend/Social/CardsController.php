@@ -40,8 +40,13 @@ class CardsController extends Controller
      */
     public function show(Cards $id)
     {
-        return view('frontend.social.cards.show')
-            ->withCard($id)
-            ->withImage($id->images->first()->getPicture());
+        if ($id->isPublish())
+        {
+            return view('frontend.social.cards.show')
+                ->withCard($id)
+                ->withImage($id->images->first()->getPicture());
+        }
+
+        return redirect()->route('frontend.social.cards.index')->withFlashDanger(__('alerts.frontend.social.cards.not_found'));
     }
 }
