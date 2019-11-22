@@ -6,7 +6,7 @@
     <div class="container my-5">
         <div class="row justify-content-center">
             <div class="col col-12 align-self-center">
-                <social-cards-create></social-cards-create>
+                <social-cards-create :is-admin="{{ $logged_in_user->isAdmin() }}"></social-cards-create>
             </div><!--col-->
         </div><!--row-->
     </div><!--container-->
