@@ -111,38 +111,34 @@ export default {
         };
     },
     mounted() {
-        axios.get(this.cardsNext)
-            .then((response) => {
-                console.log(response);
-                let cards = response.data.data;
-                cards.forEach(element => {
-                    this.images.push(element.image);
-                });
-                this.cards.push(...cards);
-                if (response.data.meta.pagination.links.next) {
-                    this.cardsNext = response.data.meta.pagination.links.next;
-                }
-            })
-            .catch(error => console.log(error));
+        this.infiniteHandler();
     },
     methods: {
         infiniteHandler($state) {
-            axios.get(this.cardsNext)
-                .then((response) => {
-                    let cards = response.data.data;
-                    cards.forEach(element => {
-                        this.images.push(element.image);
-                    });
-                    this.cards.push(...cards);
-                    if (response.data.meta.pagination.links.next) {
-                        this.cardsNext = response.data.meta.pagination.links.next;
-                        $state.loaded();
-                    } else {
-                        $state.complete();
-                    }
-                })
-                .catch(error => console.log(error));
+            if (this.cardsNext)
+            {
+                axios.get(this.cardsNext)
+                    .then((response) => {
+                        let cards = response.data.data;
+                        cards.forEach(element => {
+                            this.images.push(element.image);
+                        });
+                        this.cards.push(...cards);
+                        if (response.data.meta.pagination.links.next) {
+                            this.cardsNext = response.data.meta.pagination.links.next;
+                            $state.loaded();
+                        } else {
+                            this.cardsNext = null;
+                            $state.complete();
+                        }
+                    })
+                    .catch(error => console.log(error));
+            }
+            else
+            {
+                $state.complete();
+            }
         },
-    }
+    },
 };
 </script>
