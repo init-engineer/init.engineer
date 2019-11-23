@@ -27,6 +27,8 @@
                     <table class="table">
                         <thead>
                         <tr>
+                            <th>@lang('labels.backend.access.users.table.id')</th>
+                            <th>@lang('labels.backend.access.users.table.picture')</th>
                             <th>@lang('labels.backend.access.users.table.last_name')</th>
                             <th>@lang('labels.backend.access.users.table.first_name')</th>
                             <th>@lang('labels.backend.access.users.table.email')</th>
@@ -41,6 +43,8 @@
                         <tbody>
                         @foreach($users as $user)
                             <tr>
+                                <td>{{ $user->id }}</td>
+                                <td><img src="{{ $user->getPicture() }}" class="img-fluid rounded" style="max-width: 48px;max-height: 48px;" alt=""></td>
                                 <td>{{ $user->last_name }}</td>
                                 <td>{{ $user->first_name }}</td>
                                 <td>{{ $user->email }}</td>
