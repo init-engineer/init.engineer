@@ -6,6 +6,44 @@
             @close="gallery = null" />
 
         <div class="card-columns">
+            <div v-if="cards.length === 0">
+                <vue-content-loading
+                    class="mx-2 mb-2"
+                    :width="100"
+                    :height="96"
+                    :speed="1"
+                    primary="#333333"
+                    secondary="#666666">
+                    <rect x="0" y="0" rx="2" ry="2" width="100" height="86" />
+                    <rect x="0" y="88" rx="1" ry="1" width="20" height="8" />
+                    <rect x="22" y="88" rx="1" ry="1" width="56" height="8" />
+                    <rect x="80" y="88" rx="1" ry="1" width="20" height="8" />
+                </vue-content-loading>
+                <vue-content-loading
+                    class="mx-2 mb-2"
+                    :width="100"
+                    :height="64"
+                    :speed="1"
+                    primary="#333333"
+                    secondary="#666666">
+                    <rect x="0" y="0" rx="2" ry="2" width="100" height="54" />
+                    <rect x="0" y="56" rx="1" ry="1" width="20" height="8" />
+                    <rect x="22" y="56" rx="1" ry="1" width="56" height="8" />
+                    <rect x="80" y="56" rx="1" ry="1" width="20" height="8" />
+                </vue-content-loading>
+                <vue-content-loading
+                    class="mx-2 mb-2"
+                    :width="100"
+                    :height="96"
+                    :speed="1"
+                    primary="#333333"
+                    secondary="#666666">
+                    <rect x="0" y="0" rx="2" ry="2" width="100" height="86" />
+                    <rect x="0" y="88" rx="1" ry="1" width="20" height="8" />
+                    <rect x="22" y="88" rx="1" ry="1" width="56" height="8" />
+                    <rect x="80" y="88" rx="1" ry="1" width="20" height="8" />
+                </vue-content-loading>
+            </div>
             <div class="card animated fadeInUp faster"
                 v-for="(card, $index) in cards"
                 :key="$index">
@@ -93,9 +131,6 @@ export default {
             gallery: null,
             cardsNext: `/api/frontend/social/cards`
         }
-    },
-    mounted() {
-        this.infiniteHandler();
     },
     methods: {
         infiniteHandler($state) {
