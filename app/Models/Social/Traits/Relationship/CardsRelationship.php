@@ -12,6 +12,14 @@ use App\Models\Social\MediaCards;
 trait CardsRelationship
 {
     /**
+     * Get all of the owning user models.
+     */
+    public function model()
+    {
+        return $this->morphTo();
+    }
+
+    /**
      * Get the media for the card.
      *
      * @return Media

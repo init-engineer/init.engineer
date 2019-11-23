@@ -28,6 +28,13 @@ return [
                 'unlink' => '取消連結',
             ],
         ],
+
+        'social' => [
+            'cards' => [
+                'delete_permanently' => '永久刪除',
+                'restore_cards' => '還原文章',
+            ],
+        ],
     ],
 
     'emails' => [
@@ -44,6 +51,9 @@ return [
         'crud' => [
             'create' => '新增',
             'delete' => '刪除',
+            'banned' => '禁用',
+            'soft_delete' => '軟刪除',
+            'delete_permanently' => '永久刪除',
             'edit' => '編輯',
             'update' => '更新',
             'view' => '查看',

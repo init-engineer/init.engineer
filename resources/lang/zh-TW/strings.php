@@ -23,6 +23,12 @@ return [
             ],
         ],
 
+        'social' => [
+            'cards' => [
+                'no_deleted' => 'There are no deleted cards.',
+            ],
+        ],
+
         'dashboard' => [
             'title' => '管理儀表板',
             'welcome' => '歡迎',

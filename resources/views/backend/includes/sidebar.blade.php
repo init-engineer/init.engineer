@@ -15,7 +15,7 @@
 
             @if ($logged_in_user->isAdmin())
                 <li class="nav-title">
-                    @lang('menus.backend.sidebar.system')
+                    @lang('menus.backend.sidebar.account')
                 </li>
 
                 <li class="nav-item nav-dropdown {{
@@ -53,8 +53,46 @@
                         </li>
                     </ul>
                 </li>
+            @endif
 
-                <li class="divider"></li>
+            @if ($logged_in_user->isAdmin())
+                <li class="nav-title">
+                    @lang('menus.backend.sidebar.social')
+                </li>
+
+                <li class="nav-item nav-dropdown {{
+                    active_class(Route::is('admin/social*'), 'open')
+                }}">
+                    <a class="nav-link nav-dropdown-toggle {{
+                        active_class(Route::is('admin/social*'))
+                    }}" href="#">
+                        <i class="nav-icon far fa-comment-dots"></i>
+                        @lang('menus.backend.social.title')
+                    </a>
+
+                    <ul class="nav-dropdown-items">
+                        <li class="nav-item">
+                            <a class="nav-link {{
+                                active_class(Route::is('admin/social/cards*'))
+                            }}" href="{{ route('admin.social.cards.index') }}">
+                                @lang('labels.backend.social.cards.management')
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{
+                                active_class(Route::is('admin/social/comments*'))
+                            }}" href="#">
+                                @lang('labels.backend.social.comments.management')
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            @endif
+
+            @if ($logged_in_user->isAdmin())
+                <li class="nav-title">
+                    @lang('menus.backend.sidebar.system')
+                </li>
 
                 <li class="nav-item nav-dropdown {{
                     active_class(Route::is('admin/log-viewer*'), 'open')

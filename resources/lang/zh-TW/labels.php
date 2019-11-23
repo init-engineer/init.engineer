@@ -55,7 +55,7 @@ return [
                 'all_permissions' => '所有權限',
                 'change_password' => '更改密碼',
                 'change_password_for' => '更改密碼 :user',
-                'create' => '已刪除的使用者',
+                'create' => '新增使用者',
                 'deactivated' => '已停用的使用者',
                 'deleted' => '已刪除的使用者',
                 'edit' => '編輯使用者',
@@ -66,6 +66,8 @@ return [
                 'user_actions' => '使用者動作',
 
                 'table' => [
+                    'id' => 'ID/編號',
+                    'picture' => '大頭貼',
                     'confirmed' => '認證',
                     'created' => '新增',
                     'email' => '電子信箱(E-mail)',
@@ -74,8 +76,8 @@ return [
                     'name' => '名稱',
                     'first_name' => '名稱',
                     'last_name' => '姓氏',
-                    'no_deactivated' => '沒有停用的使用者',
-                    'no_deleted' => '未刪除使用者',
+                    'no_deactivated' => '沒有已停用的使用者',
+                    'no_deleted' => '沒有已刪除的使用者',
                     'other_permissions' => '其他權限',
                     'permissions' => '權限',
                     'abilities' => 'Abilities',
@@ -110,6 +112,34 @@ return [
                 ],
 
                 'view' => '查看使用者',
+            ],
+        ],
+
+        'social' => [
+            'cards' => [
+                'management' => 'Cards',
+                'active' => 'Active',
+                'deactivated' => 'Deactivated',
+                'deleted' => 'Deleted',
+
+                'table' => [
+                    'confirmed' => '認證',
+                    'created' => '新增',
+                    'id' => 'ID/編號',
+                    'user' => 'User(E-mail)',
+                    'content' => '文章內容',
+                    'last_updated' => '最後更新',
+                    'name' => '名稱',
+                    'first_name' => '名稱',
+                    'last_name' => '姓氏',
+                    'no_deactivated' => '沒有已停用的文章',
+                    'no_deleted' => '沒有已刪除的文章',
+                    'total' => '文章總計|文章總計',
+                ],
+            ],
+
+            'comments' => [
+                'management' => 'Comments',
             ],
         ],
     ],
