@@ -10,4 +10,6 @@ use App\Models\Social\Cards;
 interface CardsContract
 {
     public function publish(Cards $cards);
+
+    public function destory(User $user, Cards $cards, array $options);
 }
