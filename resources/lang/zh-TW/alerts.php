@@ -33,6 +33,16 @@ return [
             'updated' => '使用者已成功更新。',
             'updated_pa​​ssword' => '使用者密碼已成功更新。',
         ],
+
+        'social' => [
+            'cards' => [
+                'cant_resend_confirmation' => '該應用程式當前設定為手動核准使用者。',
+                'banned' => '文章已成功禁用。',
+                'deleted' => '文章已成功刪除。',
+                'deleted_permanently' => '文章被永久刪除。',
+                'restored' => '文章已成功還原。',
+            ],
+        ],
     ],
 
     'frontend' => [

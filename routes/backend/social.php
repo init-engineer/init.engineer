@@ -24,12 +24,13 @@ Route::group([
         Route::get('/', [CardsController::class, 'index'])->name('index');
 
         // Specific Social Cards
-        Route::group(['prefix' => '/{id}'], function () {
+        Route::group(['prefix' => '/{cards}'], function () {
             // Social Cards
             Route::get('/', [CardsController::class, 'show'])->name('show');
             Route::delete('/', [CardsController::class, 'destroy'])->name('destroy');
 
             // Deleted
+            Route::get('banned', [CardsStatusController::class, 'banned'])->name('banned');
             Route::get('delete', [CardsStatusController::class, 'delete'])->name('delete-permanently');
             Route::get('restore', [CardsStatusController::class, 'restore'])->name('restore');
         });

@@ -56,6 +56,12 @@ return [
                 'create_error' => '新增文章時出現問題，請再試一次。',
                 'update_error' => '更新文章時出現問題，請再試一次。',
                 'not_found' => '該文章不存在。',
+                'banned_error' => '禁用此文章時出現問題，請再試一次。',
+                'banned_first' => '此文章必須先禁用，才能進行軟刪除。',
+                'delete_error' => '刪除此文章時出現問題，請再試一次。',
+                'delete_first' => '此文章必須先刪除，才能進行永久刪除。',
+                'cant_restore' => '此文章未刪除，因此無法恢復。',
+                'restore_error' => '還原此文章時出現問題，請再試一次。',
             ],
 
             'images' => [

@@ -8,7 +8,7 @@
             <i class="fas fa-trash"></i>
         </a>
     </div>
-@elseif($card->banned())
+@elseif($card->isBanned())
     <div class="btn-group" role="group" aria-label="@lang('labels.backend.social.cards.card_actions')">
         <a href="{{ route('admin.social.cards.show', $card) }}" data-toggle="tooltip" data-placement="top" title="@lang('buttons.general.crud.view')" class="btn btn-info">
             <i class="fas fa-eye"></i>
@@ -39,7 +39,7 @@
                 @lang('labels.general.more')
             </button>
             <div class="dropdown-menu" aria-labelledby="cardActions">
-                <a href="{{ route('admin.social.cards.destroy', $card) }}"
+                <a href="{{ route('admin.social.cards.banned', $card) }}"
                     data-method="delete"
                     data-trans-button-cancel="@lang('buttons.general.cancel')"
                     data-trans-button-confirm="@lang('buttons.general.crud.delete')"

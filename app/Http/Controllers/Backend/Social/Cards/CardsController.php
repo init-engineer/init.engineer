@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Backend\Social\Cards;
 
-use Illuminate\Http\Request;
+use App\Models\Social\Cards;
 use App\Http\Controllers\Controller;
 use App\Repositories\Backend\Social\CardsRepository;
 use App\Http\Requests\Backend\Social\Cards\ManageCardsRequest;
@@ -38,56 +38,12 @@ class CardsController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param Cards $cards
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function show(Cards $cards)
     {
         //
     }
@@ -95,11 +51,15 @@ class CardsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param Cards $cards
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Cards $cards)
     {
-        //
+        $this->cardsRepository->deleteById($cards->id);
+
+        // event(new CardsDeleted($cards));
+
+        return redirect()->route('admin.social.cards.deleted')->withFlashSuccess(__('alerts.backend.social.cards.deleted'));
     }
 }

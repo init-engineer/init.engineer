@@ -121,6 +121,7 @@ return [
                 'active' => 'Active',
                 'deactivated' => 'Deactivated',
                 'deleted' => 'Deleted',
+                'card_actions' => '文章動作',
 
                 'table' => [
                     'confirmed' => '認證',

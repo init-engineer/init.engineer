@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Backend\Social;
 
+use App\Models\Auth\User;
 use App\Models\Social\Cards;
 use Illuminate\Support\Facades\DB;
 use App\Repositories\BaseRepository;
@@ -151,5 +152,84 @@ class CardsRepository extends BaseRepository
 
             throw new GeneralException(__('exceptions.backend.social.cards.update_error'));
         });
+    }
+
+    /**
+     * @param User  $user
+     * @param Cards $cards
+     * @param array $options
+     *
+     * @throws GeneralException
+     * @throws \Exception
+     * @throws \Throwable
+     * @return Cards
+     */
+    public function banned(User $user, Cards $cards, array $options) : Cards
+    {
+        if ($cards->banned_at === null) {
+            throw new GeneralException(__('exceptions.backend.social.cards.banned_first'));
+        }
+
+        return DB::transaction(function () use ($user, $cards, $options) {
+            if ($cards->update([
+                'active' => false,
+                'is_banned' => true,
+                'banned_user_id' => $user->id,
+                'banned_remarks' => isset($options['remarks'])? $options['remarks'] : null,
+                'banned_at' => now(),
+            ])) {
+                // event(new CardsBanned($cards));
+
+                return $cards;
+            }
+
+            throw new GeneralException(__('exceptions.backend.social.cards.banned_error'));
+        });
+    }
+
+    /**
+     * @param Cards $cards
+     *
+     * @throws GeneralException
+     * @throws \Exception
+     * @throws \Throwable
+     * @return Cards
+     */
+    public function forceDelete(Cards $cards) : Cards
+    {
+        if ($cards->deleted_at === null) {
+            throw new GeneralException(__('exceptions.backend.social.cards.delete_first'));
+        }
+
+        return DB::transaction(function () use ($cards) {
+            if ($cards->forceDelete()) {
+                // event(new CardsPermanentlyDeleted($cards));
+
+                return $cards;
+            }
+
+            throw new GeneralException(__('exceptions.backend.social.cards.delete_error'));
+        });
+    }
+
+    /**
+     * @param Cards $cards
+     *
+     * @throws GeneralException
+     * @return Cards
+     */
+    public function restore(Cards $cards) : Cards
+    {
+        if ($cards->deleted_at === null) {
+            throw new GeneralException(__('exceptions.backend.social.cards.cant_restore'));
+        }
+
+        if ($cards->restore()) {
+            // event(new CardsRestored($cards));
+
+            return $cards;
+        }
+
+        throw new GeneralException(__('exceptions.backend.social.cards.restore_error'));
     }
 }
