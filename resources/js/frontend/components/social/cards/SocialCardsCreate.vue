@@ -367,6 +367,11 @@ export default {
                         font: "MatissePro EB",
                         value: "ozke4ri3gkpy7e9c312u5l0w5vr9jdqq",
                     },
+                    {
+                        text: "台北黑體",
+                        font: "Taipei Sans TC Beta",
+                        value: "yc45sgsfbss490dqgs2g23a7z24slhoj",
+                    },
                 ],
             },
         };
