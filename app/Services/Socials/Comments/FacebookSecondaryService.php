@@ -156,7 +156,7 @@ class FacebookSecondaryService extends BaseService implements SocialCardsContrac
             $facebookApp,
             $this->facebook->getDefaultAccessToken()->getValue(),
             'GET',
-            config('facebook.connections.secondary.user_id'),
+            config('facebook.connections.secondary.user_id', 'FACEBOOK_CONNECTIONS_SECONDARY_USER_ID'),
             ['fields' => 'access_token']
         );
 
