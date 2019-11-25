@@ -54,7 +54,7 @@ class FacebookPrimaryService extends BaseService implements SocialCardsContract
                 $response = $this->facebook->post(
                     sprintf(
                         '/%s/photos',
-                        config('facebook.connections.primary.user_id')
+                        config('facebook.connections.primary.user_id', 'FACEBOOK_CONNECTIONS_PRIMARY_USER_ID')
                     ),
                     [
                         'message' => $this->buildContent($cards->content, [
@@ -96,7 +96,7 @@ class FacebookPrimaryService extends BaseService implements SocialCardsContract
                 $response = $this->facebook->get(
                     sprintf(
                         '%s_%s?fields=shares,likes.summary(true).limit(0),comments.limit(1000),reactions.type(LIKE).limit(0).summary(total_count).as(reactions_like),reactions.type(LOVE).limit(0).summary(total_count).as(reactions_love),reactions.type(WOW).limit(0).summary(total_count).as(reactions_wow),reactions.type(HAHA).limit(0).summary(total_count).as(reactions_haha),reactions.type(SAD).limit(0).summary(total_count).as(reactions_sad),reactions.type(ANGRY).limit(0).summary(total_count).as(reactions_angry)',
-                        config('facebook.connections.primary.user_id'),
+                        config('facebook.connections.primary.user_id', 'FACEBOOK_CONNECTIONS_PRIMARY_USER_ID'),
                         $mediaCards->social_card_id
                     )
                 );
@@ -204,7 +204,7 @@ class FacebookPrimaryService extends BaseService implements SocialCardsContract
             $facebookApp,
             $this->facebook->getDefaultAccessToken()->getValue(),
             'GET',
-            config('facebook.connections.primary.user_id'),
+            config('facebook.connections.primary.user_id', 'FACEBOOK_CONNECTIONS_PRIMARY_USER_ID'),
             ['fields' => 'access_token']
         );
 

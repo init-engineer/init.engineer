@@ -155,7 +155,7 @@ class FacebookPrimaryService extends BaseService implements SocialCardsContract
             $facebookApp,
             $this->facebook->getDefaultAccessToken()->getValue(),
             'GET',
-            config('facebook.connections.primary.user_id'),
+            config('facebook.connections.primary.user_id', 'FACEBOOK_CONNECTIONS_PRIMARY_USER_ID'),
             ['fields' => 'access_token']
         );
 
