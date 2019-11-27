@@ -33,7 +33,6 @@ class FacebookSecondaryService extends BaseService implements SocialCardsContrac
     {
         $this->mediaCardsRepository = $mediaCardsRepository;
         $this->facebook = Facebook::connection('secondary');
-        $this->getAccessToken();
     }
 
     /**
@@ -51,6 +50,7 @@ class FacebookSecondaryService extends BaseService implements SocialCardsContrac
         {
             try
             {
+                $this->getAccessToken();
                 $response = $this->facebook->post(
                     sprintf(
                         '/%s/photos',
@@ -93,6 +93,7 @@ class FacebookSecondaryService extends BaseService implements SocialCardsContrac
         {
             try
             {
+                $this->getAccessToken();
                 $response = $this->facebook->get(
                     sprintf(
                         '%s_%s?fields=shares,likes.summary(true).limit(0),comments.limit(1000),reactions.type(LIKE).limit(0).summary(total_count).as(reactions_like),reactions.type(LOVE).limit(0).summary(total_count).as(reactions_love),reactions.type(WOW).limit(0).summary(total_count).as(reactions_wow),reactions.type(HAHA).limit(0).summary(total_count).as(reactions_haha),reactions.type(SAD).limit(0).summary(total_count).as(reactions_sad),reactions.type(ANGRY).limit(0).summary(total_count).as(reactions_angry)',
@@ -131,6 +132,7 @@ class FacebookSecondaryService extends BaseService implements SocialCardsContrac
         {
             try
             {
+                $this->getAccessToken();
                 $response = $this->facebook->delete(sprintf('/%s', $mediaCards->social_card_id));
                 $decodedBody = $response->getDecodedBody();
 
