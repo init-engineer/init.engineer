@@ -2,6 +2,7 @@
 
 namespace App\Services\Socials\Cards;
 
+use App\Models\Auth\User;
 use App\Models\Social\Cards;
 
 /**
