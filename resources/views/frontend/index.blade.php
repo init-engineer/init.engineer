@@ -36,6 +36,14 @@
         </div>
     </div>
 
+    <div class="my-5 animated fadeIn">
+        <div class="row">
+            <div class="col-md-12 my-4">
+                <fake-cards></fake-cards>
+            </div>
+        </div>
+    </div>
+
     <div class="container my-5 animated fadeIn">
         <div class="row">
             <div class="col-md-12">
