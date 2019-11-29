@@ -155,9 +155,8 @@ class PlurkPrimaryService extends BaseService implements SocialCardsContract
         $_content = (mb_strlen($content, 'utf-8') > 220)? mb_substr($content, 0, 220, 'utf-8') . ' ...' : $content;
 
         return sprintf(
-            "%s\r\n#%s%s\r\n%s\r\n🥙 全平台留言 %s",
+            "%s\r\n#純靠北工程師%s\r\n%s\r\n🥙 全平台留言 %s",
             $options['image_url'],
-            app_name(),
             base_convert($options['id'], 10, 36),
             $_content,
             route('frontend.social.cards.show', ['id' => $options['id']])

@@ -166,8 +166,7 @@ class FacebookSecondaryService extends BaseService implements SocialCardsContrac
     public function buildContent($content = '', array $options = [])
     {
         return sprintf(
-            "#%s%s\r\n%s\r\n📢 匿名發文請至 %s\r\n🥙 全平台留言 %s",
-            app_name(),
+            "#純靠北工程師%s\r\n%s\r\n📢 匿名發文請至 %s\r\n🥙 全平台留言 %s",
             base_convert($options['id'], 10, 36),
             $content,
             route('frontend.social.cards.create'),
