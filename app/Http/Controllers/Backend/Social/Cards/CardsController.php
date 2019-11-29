@@ -43,9 +43,10 @@ class CardsController extends Controller
      * @param Cards $cards
      * @return \Illuminate\Http\Response
      */
-    public function show(Cards $cards)
+    public function show(Cards $card)
     {
-        //
+        return view('backend.social.cards.show')
+            ->withCard($card);
     }
 
     /**
