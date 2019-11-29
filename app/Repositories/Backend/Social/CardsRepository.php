@@ -166,7 +166,7 @@ class CardsRepository extends BaseRepository
      */
     public function banned(User $user, Cards $cards, array $options) : Cards
     {
-        if ($cards->banned_at === null) {
+        if ($cards->banned_at !== null) {
             throw new GeneralException(__('exceptions.backend.social.cards.banned_first'));
         }
 

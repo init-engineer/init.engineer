@@ -30,9 +30,9 @@ Route::group([
             Route::delete('/', [CardsController::class, 'destroy'])->name('destroy');
 
             // Deleted
-            Route::get('banned', [CardsStatusController::class, 'banned'])->name('banned');
-            Route::get('delete', [CardsStatusController::class, 'delete'])->name('delete-permanently');
-            Route::get('restore', [CardsStatusController::class, 'restore'])->name('restore');
+            Route::delete('banned', [CardsStatusController::class, 'banned'])->name('banned');
+            Route::delete('delete', [CardsStatusController::class, 'delete'])->name('delete-permanently');
+            Route::delete('restore', [CardsStatusController::class, 'restore'])->name('restore');
         });
     });
 });
