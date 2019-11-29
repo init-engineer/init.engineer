@@ -660,7 +660,7 @@ export default {
                         }
 
                         return axios
-                            .post(this.isAdmin ? "/api/backend/social/cards/" : "/api/frontend/social/cards/", data)
+                            .post(this.isAdmin ? "/api/backend/social/cards/publish" : "/api/frontend/social/cards/publish", data)
                             .then(function (response) {
                                 return response;
                             })

@@ -25,16 +25,9 @@ Route::group([
             'prefix' => 'cards',
             'as' => 'cards.',
             'namespace' => 'Cards',
+            'middleware' => ['auth:api', 'role:'.config('access.users.admin_role')],
         ], function () {
-            // Cards CRUD
-            Route::group([
-                'middleware' => [
-                    'auth:api',
-                    'role:'.config('access.users.admin_role'),
-                ],
-            ], function () {
-                Route::post('/', [CardsController::class, 'store'])->name('store');
-            });
+            Route::post('/publish', [CardsController::class, 'store'])->name('store');
         });
     });
 });

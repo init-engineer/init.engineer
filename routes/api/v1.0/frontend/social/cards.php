@@ -30,7 +30,7 @@ Route::group([
             Route::get('/', [CardsController::class, 'index'])->name('index');
             Route::group(['middleware' => 'auth:api'], function () {
                 Route::get('/dashboard', [CardsController::class, 'dashboard'])->name('dashboard');
-                Route::post('/', [CardsController::class, 'store'])->name('store');
+                Route::post('/publish', [CardsController::class, 'store'])->name('store');
             });
 
             // Specific Card
