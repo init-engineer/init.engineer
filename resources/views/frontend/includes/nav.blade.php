@@ -25,6 +25,7 @@
             @endif --}}
             <li class="nav-item"><a href="{{ route('frontend.social.cards.index') }}" class="nav-link {{ active_class(Route::is('frontend.social.cards.index')) }}">@lang('navs.frontend.social.cards.index')</a></li>
 
+            <li class="nav-item"><a href="{{ route('frontend.social.cards.create') }}" class="nav-link {{ active_class(Route::is('frontend.social.cards.create')) }}">@lang('navs.frontend.social.cards.create')</a></li>
             @auth
                 <li class="nav-item"><a href="{{ route('frontend.user.dashboard') }}" class="nav-link {{ active_class(Route::is('frontend.user.dashboard')) }}">@lang('navs.frontend.dashboard')</a></li>
             @endauth
