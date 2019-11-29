@@ -66,6 +66,7 @@ class PlurkPrimaryService extends BaseService implements SocialCardsContract
                     $this->write(array_merge($reply, [
                         'card_id' => $cards->id,
                         'media_card_id' => $mediaCards->id,
+                        'media_comment_id' => sprintf('%s_%s', $reply['plurk_id'], $reply['id']),
                     ]));
                 }
             }

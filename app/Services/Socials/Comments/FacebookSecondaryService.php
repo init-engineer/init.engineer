@@ -119,7 +119,7 @@ class FacebookSecondaryService extends BaseService implements SocialCardsContrac
                 'user_id' => $data['from']['id'],
                 'user_name' => $data['from']['name'],
                 'user_avatar' => sprintf('https://graph.facebook.com/%s/picture?type=large', $data['from']['id']),
-                'content' => $data['content'],
+                'content' => $data['message'] ?? $data['content'] ?? null,
                 'reply_media_comment_id' => isset($data['reply_id'])? $data['reply_id'] : null,
             ]);
         }
