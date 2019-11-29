@@ -71,7 +71,7 @@ class CardsStatusController extends Controller
         $this->cardsService->destory($request->user(), $cards, ['remarks' => '違反版規。']);
         $this->cardsRepository->banned($request->user(), $cards, ['remarks' => '違反版規。']);
 
-        return redirect()->route('admin.social.cards.deleted')->withFlashSuccess(__('alerts.backend.social.cards.banned'));
+        return redirect()->route('admin.social.cards.deactivated')->withFlashSuccess(__('alerts.backend.social.cards.banned'));
     }
 
     /**
