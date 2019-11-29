@@ -27,7 +27,7 @@ class BannedCardsRequest extends FormRequest
     public function rules()
     {
         return [
-            'remarks' => ['required'],
+            'remarks' => ['nullable'],
         ];
     }
 }
