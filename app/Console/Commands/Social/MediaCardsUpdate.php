@@ -79,11 +79,11 @@ class MediaCardsUpdate extends Command
             case 'all':
                 ini_set("memory_limit", "2048M");
                 ini_set("max_execution_time", "86400");
-                $socialCards = Cards::orderBy('id', 'desc')->get();
+                $socialCards = Cards::orderBy('id', 'desc')->publish()->get();
                 break;
 
             default:
-                $socialCards = Cards::orderBy('id', 'desc')->take($this->argument('value'))->get();
+                $socialCards = Cards::orderBy('id', 'desc')->publish()->take($this->argument('value'))->get();
                 break;
         }
 
