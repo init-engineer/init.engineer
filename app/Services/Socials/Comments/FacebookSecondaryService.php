@@ -95,14 +95,14 @@ class FacebookSecondaryService extends BaseService implements SocialCardsContrac
      * @param array $data
      * @return Comments
      */
-    private function write(array $data) : Comments
+    private function write(array $data)
     {
         if ($comment = $this->commentsRepository->findBySocialId($data['card_id'], $data['media_card_id'], $data['media_comment_id']))
         {
-            if ($comment->content != $data['content'])
+            if ($comment->content != $data['message'])
             {
                 return $this->commentsRepository->update($comment, [
-                    'content' => $data['content'],
+                    'content' => $data['message'],
                 ]);
             }
             else
