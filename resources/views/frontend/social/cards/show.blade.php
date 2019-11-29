@@ -1,6 +1,11 @@
 @extends('frontend.layouts.app')
 
 @section('title', app_name() . ' | ' . $card->content)
+@section('meta_keyword', $card->content)
+@section('meta_description', $card->content)
+@section('meta_og_title', $card->content)
+@section('meta_og_image', $image)
+@section('meta_og_description', $card->content)
 
 @section('content')
     <div class="container my-5">
