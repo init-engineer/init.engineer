@@ -111,13 +111,8 @@ class CommentsRepository extends BaseRepository
                 'content' => $data['content'],
                 'active' => isset($data['active'])? $data['active'] : true,
                 'reply_media_comment_id' => isset($data['reply_media_comment_id'])? ($data['reply_media_comment_id'] != '')? $data['reply_media_comment_id'] : null : null,
-                'is_banned' => isset($data['is_banned'])? $data['is_banned'] : false,
-                'banned_user_id' => isset($data['banned_user_id'])? $data['banned_user_id'] : null,
-                'banned_remarks' => isset($data['banned_remarks'])? $data['banned_remarks'] : null,
-                'banned_at' => isset($data['banned_at'])? $data['banned_at'] : null,
                 'created_at' => isset($data['created_at'])? date('Y-m-d H:i:s', strtotime($data['created_at'])) : date('Y-m-d H:i:s'),
                 'updated_at' => isset($data['updated_at'])? $data['updated_at'] : date('Y-m-d H:i:s'),
-                'deleted_at' => isset($data['deleted_at'])? $data['deleted_at'] : null,
             ]);
 
             if ($comments) {
