@@ -66,19 +66,16 @@ class FacebookPrimaryService extends BaseService implements SocialCardsContract
                         'media_comment_id' => $reply['id'],
                     ]));
 
-                    if (isset($reply['comments']))
+                    if (isset($reply['comments']['data']))
                     {
-                        foreach ($reply['comments'] as $commentReplys)
+                        foreach ($reply['comments']['data'] as $commentReply)
                         {
-                            foreach ($commentReplys as $commentReply)
-                            {
-                                $this->write(array_merge($commentReply, [
-                                    'card_id' => $cards->id,
-                                    'media_card_id' => $mediaCards->id,
-                                    'media_comment_id' => $commentReply['id'],
-                                    'reply_id' => $comment->media_comment_id,
-                                ]));
-                            }
+                            $this->write(array_merge($commentReply, [
+                                'card_id' => $cards->id,
+                                'media_card_id' => $mediaCards->id,
+                                'media_comment_id' => $commentReply['id'],
+                                'reply_id' => $comment->media_comment_id,
+                            ]));
                         }
                     }
                 }
