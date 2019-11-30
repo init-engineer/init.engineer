@@ -5,10 +5,10 @@ namespace App\Console\Commands\Tests;
 use App\Models\Auth\User;
 use App\Models\Social\Cards;
 use Illuminate\Console\Command;
-use App\Services\Socials\MediaCards\PlurkPrimaryService;
-use App\Services\Socials\MediaCards\TwitterPrimaryService;
-use App\Services\Socials\MediaCards\FacebookPrimaryService;
-use App\Services\Socials\MediaCards\FacebookSecondaryService;
+use App\Services\Socials\Comments\PlurkPrimaryService;
+use App\Services\Socials\Comments\TwitterPrimaryService;
+use App\Services\Socials\Comments\FacebookPrimaryService;
+use App\Services\Socials\Comments\FacebookSecondaryService;
 
 class SocialCards extends Command
 {
@@ -73,11 +73,12 @@ class SocialCards extends Command
     public function handle()
     {
         $user = User::find(1);
-        $cards = Cards::find(3095);
-        $this->plurkPrimaryService->destory($user, $cards, ['remarks' => '刪除測試文章。']);
-        $this->twitterPrimaryService->destory($user, $cards, ['remarks' => '刪除測試文章。']);
-        $this->facebookPrimaryService->destory($user, $cards, ['remarks' => '刪除測試文章。']);
-        $this->facebookSecondaryService->destory($user, $cards, ['remarks' => '刪除測試文章。']);
+        $cards = Cards::find(3144);
+        $this->facebookPrimaryService->getComments($cards);
+        // $this->plurkPrimaryService->destory($user, $cards, ['remarks' => '刪除測試文章。']);
+        // $this->twitterPrimaryService->destory($user, $cards, ['remarks' => '刪除測試文章。']);
+        // $this->facebookPrimaryService->destory($user, $cards, ['remarks' => '刪除測試文章。']);
+        // $this->facebookSecondaryService->destory($user, $cards, ['remarks' => '刪除測試文章。']);
         // dd($this->plurkPrimaryService->publish($cards));         // OK, Success.
         // dd($this->twitterPrimaryService->publish($cards));       // OK, Success.
         // dd($this->facebookPrimaryService->publish($cards));      // OK, Success.

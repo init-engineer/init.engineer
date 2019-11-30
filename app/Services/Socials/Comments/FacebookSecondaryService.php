@@ -39,7 +39,6 @@ class FacebookSecondaryService extends BaseService implements SocialCardsContrac
         $this->commentsRepository = $commentsRepository;
         $this->mediaCardsRepository = $mediaCardsRepository;
         $this->facebook = Facebook::connection('secondary');
-        $this->getAccessToken();
     }
 
     /**
@@ -52,6 +51,7 @@ class FacebookSecondaryService extends BaseService implements SocialCardsContrac
         {
             try
             {
+                $this->getAccessToken();
                 $url = sprintf(
                     '/%s/comments?fields=id,message,from,created_time,comments{id,message,from,created_time}',
                     $mediaCards->social_card_id
@@ -68,14 +68,17 @@ class FacebookSecondaryService extends BaseService implements SocialCardsContrac
 
                     if (isset($reply['comments']))
                     {
-                        foreach ($reply['comments'] as $commentReply)
+                        foreach ($reply['comments'] as $commentReplys)
                         {
-                            $this->write(array_merge($commentReply, [
-                                'card_id' => $cards->id,
-                                'media_card_id' => $mediaCards->id,
-                                'media_comment_id' => $commentReply['id'],
-                                'reply_id' => $comment->media_comment_id,
-                            ]));
+                            foreach ($commentReplys as $commentReply)
+                            {
+                                $this->write(array_merge($commentReply, [
+                                    'card_id' => $cards->id,
+                                    'media_card_id' => $mediaCards->id,
+                                    'media_comment_id' => $commentReply['id'],
+                                    'reply_id' => $comment->media_comment_id,
+                                ]));
+                            }
                         }
                     }
                 }
