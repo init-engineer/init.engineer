@@ -75,6 +75,7 @@ class FacebookSecondaryService extends BaseService implements SocialCardsContrac
                                 'media_card_id' => $mediaCards->id,
                                 'media_comment_id' => $commentReply['id'],
                                 'reply_id' => $comment->media_comment_id,
+                                'created_time' => $commentReply['created_time'],
                             ]));
                         }
                     }
@@ -121,6 +122,7 @@ class FacebookSecondaryService extends BaseService implements SocialCardsContrac
                 'user_avatar' => sprintf('https://graph.facebook.com/%s/picture?type=large', $data['from']['id']),
                 'content' => $data['message'] ?? $data['content'] ?? null,
                 'reply_media_comment_id' => isset($data['reply_id'])? $data['reply_id'] : null,
+                'created_at' => $data['created_time'],
             ]);
         }
     }

@@ -73,8 +73,11 @@ class SocialCards extends Command
     public function handle()
     {
         $user = User::find(1);
-        $cards = Cards::find(3144);
+        $cards = Cards::find(3140);
+        $this->plurkPrimaryService->getComments($cards);
+        $this->twitterPrimaryService->getComments($cards);
         $this->facebookPrimaryService->getComments($cards);
+        $this->facebookSecondaryService->getComments($cards);
         // $this->plurkPrimaryService->destory($user, $cards, ['remarks' => '刪除測試文章。']);
         // $this->twitterPrimaryService->destory($user, $cards, ['remarks' => '刪除測試文章。']);
         // $this->facebookPrimaryService->destory($user, $cards, ['remarks' => '刪除測試文章。']);

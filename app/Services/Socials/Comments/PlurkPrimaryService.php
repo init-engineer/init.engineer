@@ -105,6 +105,7 @@ class PlurkPrimaryService extends BaseService implements SocialCardsContract
                 'user_name' => $data['user_info']['full_name'],
                 'user_avatar' => $data['user_info']['avatar_big'],
                 'content' => $data['content'],
+                'created_at' => $data['posted'],
             ]);
         }
     }
