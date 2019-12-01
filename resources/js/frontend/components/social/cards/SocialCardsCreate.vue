@@ -384,7 +384,7 @@ export default {
         canvas: {
             content: {
                 required,
-                minLength: minLength(30),
+                minLength: minLength(6),
             },
         },
         theme: {

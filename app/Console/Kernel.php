@@ -34,18 +34,20 @@ class Kernel extends ConsoleKernel
         /**
          * 自動化 對社群平台爬蟲更新 Likes、分享數。
          */
-        $schedule->command('social:media-cards-update all')->daily();
-        $schedule->command('social:media-cards-update 12')->hourly();
-        $schedule->command('social:media-cards-update 4')->everyFiveMinutes();
-        $schedule->command('social:media-cards-update 1')->everyMinute();
+        // $schedule->command('social:media-cards-update all')->daily();
+        $schedule->command('social:media-cards-update 24')->hourly();
+        $schedule->command('social:media-cards-update 6')->everyTenMinutes();
+        $schedule->command('social:media-cards-update 2')->everyFiveMinutes();
+        // $schedule->command('social:media-cards-update 1')->everyMinute();
 
         /**
          * 自動化 對社群平台爬蟲更新留言
          */
-        $schedule->command('social:comments-update all')->daily();
-        $schedule->command('social:comments-update 12')->hourly();
-        $schedule->command('social:comments-update 4')->everyFiveMinutes();
-        $schedule->command('social:comments-update 1')->everyMinute();
+        // $schedule->command('social:comments-update all')->daily();
+        $schedule->command('social:comments-update 24')->hourly();
+        $schedule->command('social:comments-update 6')->everyTenMinutes();
+        $schedule->command('social:comments-update 2')->everyFiveMinutes();
+        // $schedule->command('social:comments-update 1')->everyMinute();
 
         /**
          * 自動化 執行任務、重新執行 Jobs 失敗的任務
