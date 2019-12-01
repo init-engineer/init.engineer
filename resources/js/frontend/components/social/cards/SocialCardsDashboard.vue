@@ -118,7 +118,7 @@
         </div>
         <!-- card-columns -->
 
-        <go-top bg-color="#4ec425" />
+        <go-top bg-color="#13cf13" weight="bold" :size="60" :right="92" :bottom="24" />
         <!-- go to the top -->
 
         <a class="text-dark btn btn-dos btn-block">給你按一按舒壓一下的按鈕</a>

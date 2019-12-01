@@ -150,7 +150,7 @@
         </div>
         <!-- cards -->
 
-        <go-top bg-color="#4ec425" />
+        <go-top bg-color="#13cf13" weight="bold" :size="60" :right="92" :bottom="24" />
         <!-- go to the top -->
     </div>
     <!-- social cards -->
