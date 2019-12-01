@@ -84,6 +84,7 @@
         {!! script(mix('js/frontend.js')) !!}
         @stack('after-scripts')
 
+        @include('includes.partials.fb-customerchat')
         @include('includes.partials.ga')
     </body>
 </html>

@@ -61,4 +61,13 @@ return [
             'default_social_url' => env('FACEBOOK_SECONDARY_SOCIAL_URL', 'https://facebook.com/'),
         ],
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Facebook Customerchat
+    |--------------------------------------------------------------------------
+    |
+    | Found in views/includes/partials/fb-customerchat.blade.php
+    */
+    'customerchat' => env('FACEBOOK_PAGE_ID', '0000000000000000'),
 ];
