@@ -30,7 +30,7 @@
                 @endif
                 <div class="carousel-caption text-left mb-5 text-dark">
                     <h3 class="text-black-stroke">純靠北工程師</h3>
-                    <a class="btn btn-warning btn-md shake-slow shake-constant shake-constant--hover" href="#" role="button">開始去發廢文 <i class="fas fa-poop"></i></a>
+                    <a class="btn btn-warning btn-md shake-slow shake-constant shake-constant--hover" href="{{ route('frontend.social.cards.create') }}" role="button">開始去發廢文 <i class="fas fa-poop"></i></a>
                 </div>
             </div>
         </div>
@@ -99,7 +99,7 @@
                         <div class="col-lg-10 col-md-9 col-10"><!-- Grid column -->
                             <h4 class="font-weight-bold">汪汪汪汪汪汪</h4>
                             <p class="grey-text">汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪</p>
-                            <a class="btn btn-rainbow btn-block btn-lg"><i class="fas fa-heart shake-little shake-constant shake-constant--hover"> 汪汪汪</i></a>
+                            <a href="{{ route('frontend.social.cards.create') }}" class="btn btn-rainbow btn-block btn-lg"><i class="fas fa-heart shake-little shake-constant shake-constant--hover"> 汪汪汪</i></a>
                         </div><!-- Grid column -->
                     </div><!-- Grid row -->
                 </div><!-- Grid column -->
@@ -112,7 +112,7 @@
                         <div class="col-lg-10 col-md-9 col-10"><!-- Grid column -->
                             <h4 class="font-weight-bold">喵喵喵喵喵喵</h4>
                             <p class="grey-text">喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵</p>
-                            <a class="btn btn-rainbow btn-block btn-lg"><i class="fas fa-heart shake-little shake-constant shake-constant--hover"> 喵喵喵</i></a>
+                            <a href="{{ route('frontend.social.cards.create') }}" class="btn btn-rainbow btn-block btn-lg"><i class="fas fa-heart shake-little shake-constant shake-constant--hover"> 喵喵喵</i></a>
                         </div><!-- Grid column -->
                     </div><!-- Grid row -->
                 </div><!-- Grid column -->
@@ -125,7 +125,7 @@
                         <div class="col-lg-10 col-md-9 col-10"><!-- Grid column -->
                             <h4 class="font-weight-bold">哞哞哞哞哞哞</h4>
                             <p class="grey-text">哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞</p>
-                            <a class="btn btn-rainbow btn-block btn-lg"><i class="fas fa-heart shake-little shake-constant shake-constant--hover"> 哞哞哞</i></a>
+                            <a href="{{ route('frontend.social.cards.create') }}" class="btn btn-rainbow btn-block btn-lg"><i class="fas fa-heart shake-little shake-constant shake-constant--hover"> 哞哞哞</i></a>
                         </div><!-- Grid column -->
                     </div><!-- Grid row -->
                 </div><!-- Grid column -->
