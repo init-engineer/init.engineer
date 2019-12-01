@@ -142,7 +142,8 @@ export default {
     props: {
         isAdmin: {
             type: Number,
-            required: true,
+            required: false,
+            default: false,
         },
     },
     data() {
