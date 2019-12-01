@@ -21,7 +21,7 @@
     </script>
 
     <!-- Your customer chat code -->
-    <div class="fb-customerchat" attribution=setup_tool page_id="1309707529076258" theme_color="#13cf13"
+    <div class="fb-customerchat" attribution=setup_tool page_id="{{ config('facebook.customerchat') }}" theme_color="#13cf13"
         logged_in_greeting="蛤？" logged_out_greeting="蛤？">
     </div>
 @endif
