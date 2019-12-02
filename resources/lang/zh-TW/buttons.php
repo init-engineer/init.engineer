@@ -26,6 +26,7 @@ return [
                 'restore_user' => '還原使用者',
                 'unconfirm' => 'Un-confirm',
                 'unlink' => '取消連結',
+                'search' => '搜尋',
             ],
         ],
 

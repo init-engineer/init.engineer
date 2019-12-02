@@ -46,6 +46,42 @@
                 <th>@lang('labels.backend.access.users.tabs.content.overview.last_login_ip')</th>
                 <td>{{ $user->last_login_ip ?? 'N/A' }}</td>
             </tr>
+
+            <tr>
+                <th>發表文章</th>
+                <td>
+                    <ul>
+                        @forelse (\App\Models\Social\Cards::where('model_id', $user->id)->active()->get() as $card)
+                            <li>
+                                <span class="badge badge-secondary">{{ $card->created_at->diffForHumans() }}</span>
+                                <p>{{ (mb_strlen($card->content, "utf-8") > 72)? mb_substr($card->content, 0, 72, "utf-8") . " ..." : $card->content }}</p>
+                            </li>
+                        @empty
+                            <li>無</li>
+                        @endforelse
+                    </ul>
+                </td>
+            </tr>
+
+            <tr>
+                <th>已被刪除的文章</th>
+                <td>
+                    <ul>
+                        @forelse (\App\Models\Social\Cards::where('model_id', $user->id)->where('active', 0)->get() as $card)
+                            <li>
+                                <span class="badge badge-secondary">{{ $card->created_at->diffForHumans() }}</span>
+                                <p>
+                                    {{ (mb_strlen($card->content, "utf-8") > 72)? mb_substr($card->content, 0, 72, "utf-8") . " ..." : $card->content }}
+                                    <br>
+                                    刪除原因: {{ (isset($card->banned_remarks))? $card->banned_remarks : '尚未填寫原因。' }}
+                                </p>
+                            </li>
+                        @empty
+                            <li>無</li>
+                        @endforelse
+                    </ul>
+                </td>
+            </tr>
         </table>
     </div>
 </div><!--table-responsive-->

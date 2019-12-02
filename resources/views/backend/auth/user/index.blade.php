@@ -19,6 +19,21 @@
             <div class="col-sm-7">
                 @include('backend.auth.user.includes.header-buttons')
             </div><!--col-->
+
+            <div class="col-sm-12 mt-3">
+                {{ html()->form('POST', route('admin.auth.user.search'))->class('form-horizontal')->open() }}
+                    <div class="input-group">
+                        {{ html()->text('email')
+                            ->class('form-control')
+                            ->placeholder(__('validation.attributes.backend.access.users.email'))
+                            ->attribute('maxlength', 191)
+                            ->required() }}
+                        <div class="input-group-append">
+                            {{ form_submit(__('buttons.backend.access.users.search'), 'btn btn-outline-secondary') }}
+                        </div>
+                    </div>
+                {{ html()->form()->close() }}
+            </div>
         </div><!--row-->
 
         <div class="row mt-4">

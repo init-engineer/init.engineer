@@ -10,6 +10,7 @@ use App\Repositories\Backend\Auth\UserRepository;
 use App\Repositories\Backend\Auth\PermissionRepository;
 use App\Http\Requests\Backend\Auth\User\StoreUserRequest;
 use App\Http\Requests\Backend\Auth\User\ManageUserRequest;
+use App\Http\Requests\Backend\Auth\User\SearchUserRequest;
 use App\Http\Requests\Backend\Auth\User\UpdateUserRequest;
 
 /**
@@ -41,6 +42,17 @@ class UserController extends Controller
     {
         return view('backend.auth.user.index')
             ->withUsers($this->userRepository->getActivePaginated(25, 'id', 'asc'));
+    }
+
+    /**
+     * @param SearchUserRequest $request
+     *
+     * @return mixed
+     */
+    public function search(SearchUserRequest $request)
+    {
+        return view('backend.auth.user.index')
+            ->withUsers($this->userRepository->getFuzzyActivePaginated($request->input('email'), 25, 'id', 'asc'));
     }
 
     /**

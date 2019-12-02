@@ -62,6 +62,24 @@ class UserRepository extends BaseRepository
     }
 
     /**
+     * @param string $email
+     * @param int    $paged
+     * @param string $orderBy
+     * @param string $sort
+     *
+     * @return mixed
+     */
+    public function getFuzzyActivePaginated($email = '', $paged = 25, $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
+    {
+        return $this->model
+            ->where('email', 'LIKE', '%' . $email . '%')
+            ->with('roles', 'permissions', 'providers')
+            ->active()
+            ->orderBy($orderBy, $sort)
+            ->paginate($paged);
+    }
+
+    /**
      * @param int    $paged
      * @param string $orderBy
      * @param string $sort

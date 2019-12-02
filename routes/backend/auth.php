@@ -23,6 +23,7 @@ Route::group([
 
         // User CRUD
         Route::get('user', [UserController::class, 'index'])->name('user.index');
+        Route::post('user/search', [UserController::class, 'search'])->name('user.search');
         Route::get('user/create', [UserController::class, 'create'])->name('user.create');
         Route::post('user', [UserController::class, 'store'])->name('user.store');
 
