@@ -31,7 +31,7 @@ class CreateLedgersTable extends Migration
             $table->text('extra');
             $table->text('url')->nullable();
             $table->ipAddress('ip_address')->nullable();
-            $table->string('user_agent')->nullable();
+            $table->longText('user_agent')->nullable();
             $table->string('signature');
             $table->timestamps();
 
