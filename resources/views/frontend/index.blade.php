@@ -36,7 +36,7 @@
         </div>
     </div>
 
-    <div class="my-5 animated fadeIn">
+    <div class="container-fluid my-5 animated fadeIn">
         <div class="row">
             <div class="col-md-12 my-4">
                 <fake-cards></fake-cards>
