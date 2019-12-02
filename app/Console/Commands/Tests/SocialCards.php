@@ -5,11 +5,18 @@ namespace App\Console\Commands\Tests;
 use App\Models\Auth\User;
 use App\Models\Social\Cards;
 use Illuminate\Console\Command;
-use App\Services\Socials\Comments\PlurkPrimaryService;
-use App\Services\Socials\Comments\TwitterPrimaryService;
-use App\Services\Socials\Comments\FacebookPrimaryService;
-use App\Services\Socials\Comments\FacebookSecondaryService;
+use App\Services\Socials\Comments\PlurkPrimaryService as PlurkPrimaryCommentsService;
+use App\Services\Socials\MediaCards\PlurkPrimaryService as PlurkPrimaryMediaCardsService;
+use App\Services\Socials\Comments\TwitterPrimaryService as TwitterPrimaryCommentsService;
+use App\Services\Socials\MediaCards\TwitterPrimaryService as TwitterPrimaryMediaCardsService;
+use App\Services\Socials\Comments\FacebookPrimaryService as FacebookPrimaryCommentsService;
+use App\Services\Socials\MediaCards\FacebookPrimaryService as FacebookPrimaryMediaCardsService;
+use App\Services\Socials\Comments\FacebookSecondaryService as FacebookSecondaryCommentsService;
+use App\Services\Socials\MediaCards\FacebookSecondaryService as FacebookSecondaryMediaCardsService;
 
+/**
+ * Class SocialCards.
+ */
 class SocialCards extends Command
 {
     /**
@@ -27,24 +34,44 @@ class SocialCards extends Command
     protected $description = '[測試] 社群平台發文';
 
     /**
-     * @var PlurkPrimaryService
+     * @var App\Services\Socials\Comments\PlurkPrimaryService
      */
-    protected $plurkPrimaryService;
+    protected $plurkPrimaryCommentsService;
 
     /**
-     * @var TwitterPrimaryService
+     * @var App\Services\Socials\Comments\TwitterPrimaryService
      */
-    protected $twitterPrimaryService;
+    protected $twitterPrimaryCommentsService;
 
     /**
-     * @var FacebookPrimaryService
+     * @var App\Services\Socials\Comments\FacebookPrimaryService
      */
-    protected $facebookPrimaryService;
+    protected $facebookPrimaryCommentsService;
 
     /**
-     * @var FacebookSecondaryService
+     * @var App\Services\Socials\Comments\FacebookSecondaryService
      */
-    protected $facebookSecondaryService;
+    protected $facebookSecondaryCommentsService;
+
+    /**
+     * @var App\Services\Socials\MediaCards\PlurkPrimaryService
+     */
+    protected $plurkPrimaryMediaCardsService;
+
+    /**
+     * @var App\Services\Socials\MediaCards\TwitterPrimaryService
+     */
+    protected $twitterPrimaryMediaCardsService;
+
+    /**
+     * @var App\Services\Socials\MediaCards\FacebookPrimaryService
+     */
+    protected $facebookPrimaryMediaCardsService;
+
+    /**
+     * @var App\Services\Socials\MediaCards\FacebookSecondaryService
+     */
+    protected $facebookSecondaryMediaCardsService;
 
     /**
      * Create a new command instance.
@@ -52,17 +79,25 @@ class SocialCards extends Command
      * @return void
      */
     public function __construct(
-        PlurkPrimaryService $plurkPrimaryService,
-        TwitterPrimaryService $twitterPrimaryService,
-        FacebookPrimaryService $facebookPrimaryService,
-        FacebookSecondaryService $facebookSecondaryService)
+        PlurkPrimaryCommentsService $plurkPrimaryCommentsService,
+        PlurkPrimaryMediaCardsService $plurkPrimaryMediaCardsService,
+        TwitterPrimaryCommentsService $twitterPrimaryCommentsService,
+        TwitterPrimaryMediaCardsService $twitterPrimaryMediaCardsService,
+        FacebookPrimaryCommentsService $facebookPrimaryCommentsService,
+        FacebookPrimaryMediaCardsService $facebookPrimaryMediaCardsService,
+        FacebookSecondaryCommentsService $facebookSecondaryCommentsService,
+        FacebookSecondaryMediaCardsService $facebookSecondaryMediaCardsService)
     {
         parent::__construct();
 
-        $this->plurkPrimaryService = $plurkPrimaryService;
-        $this->twitterPrimaryService = $twitterPrimaryService;
-        $this->facebookPrimaryService = $facebookPrimaryService;
-        $this->facebookSecondaryService = $facebookSecondaryService;
+        $this->plurkPrimaryCommentsService = $plurkPrimaryCommentsService;
+        $this->plurkPrimaryMediaCardsService = $plurkPrimaryMediaCardsService;
+        $this->twitterPrimaryCommentsService = $twitterPrimaryCommentsService;
+        $this->twitterPrimaryMediaCardsService = $twitterPrimaryMediaCardsService;
+        $this->facebookPrimaryCommentsService = $facebookPrimaryCommentsService;
+        $this->facebookPrimaryMediaCardsService = $facebookPrimaryMediaCardsService;
+        $this->facebookSecondaryCommentsService = $facebookSecondaryCommentsService;
+        $this->facebookSecondaryMediaCardsService = $facebookSecondaryMediaCardsService;
     }
 
     /**
@@ -72,19 +107,31 @@ class SocialCards extends Command
      */
     public function handle()
     {
-        $user = User::find(1);
-        $cards = Cards::find(3140);
-        $this->plurkPrimaryService->getComments($cards);
-        $this->twitterPrimaryService->getComments($cards);
-        $this->facebookPrimaryService->getComments($cards);
-        $this->facebookSecondaryService->getComments($cards);
-        // $this->plurkPrimaryService->destory($user, $cards, ['remarks' => '刪除測試文章。']);
-        // $this->twitterPrimaryService->destory($user, $cards, ['remarks' => '刪除測試文章。']);
-        // $this->facebookPrimaryService->destory($user, $cards, ['remarks' => '刪除測試文章。']);
-        // $this->facebookSecondaryService->destory($user, $cards, ['remarks' => '刪除測試文章。']);
-        // dd($this->plurkPrimaryService->publish($cards));         // OK, Success.
-        // dd($this->twitterPrimaryService->publish($cards));       // OK, Success.
-        // dd($this->facebookPrimaryService->publish($cards));      // OK, Success.
-        // dd($this->facebookSecondaryService->publish($cards));    // OK, Success.
+        // $user = User::find(1);
+        $cards = Cards::find(3151);
+
+        /**
+         * 測試發表文章到社群平台
+         */
+        // $this->plurkPrimaryMediaCardsService->publish($cards);
+        // $this->twitterPrimaryMediaCardsService->publish($cards);
+        // $this->facebookPrimaryMediaCardsService->publish($cards);
+        // $this->facebookSecondaryMediaCardsService->publish($cards);
+
+        /**
+         * 測試更新文章的留言
+         */
+        // $this->plurkPrimaryCommentsService->getComments($cards);
+        // $this->twitterPrimaryCommentsService->getComments($cards);
+        // $this->facebookPrimaryCommentsService->getComments($cards);
+        // $this->facebookSecondaryCommentsService->getComments($cards);
+
+        /**
+         * 測試刪除社群平台的文章
+         */
+        // $this->plurkPrimaryMediaCardsService->destory($user, $cards, ['remarks' => '刪除測試文章。']);
+        // $this->twitterPrimaryMediaCardsService->destory($user, $cards, ['remarks' => '刪除測試文章。']);
+        // $this->facebookPrimaryMediaCardsService->destory($user, $cards, ['remarks' => '刪除測試文章。']);
+        // $this->facebookSecondaryMediaCardsService->destory($user, $cards, ['remarks' => '刪除測試文章。']);
     }
 }
