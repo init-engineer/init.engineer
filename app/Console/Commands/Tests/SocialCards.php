@@ -119,6 +119,14 @@ class SocialCards extends Command
         // $this->facebookSecondaryMediaCardsService->publish($cards);
 
         /**
+         * 測試更新文章的 Likes、分享數
+         */
+        // $this->plurkPrimaryMediaCardsService->update($cards);
+        // $this->twitterPrimaryMediaCardsService->update($cards);
+        // dd($this->facebookPrimaryMediaCardsService->update($cards));
+        // dd($this->facebookSecondaryMediaCardsService->update($cards));
+
+        /**
          * 測試更新文章的留言
          */
         // $this->plurkPrimaryCommentsService->getComments($cards);

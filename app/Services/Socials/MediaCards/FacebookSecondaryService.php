@@ -96,7 +96,7 @@ class FacebookSecondaryService extends BaseService implements SocialCardsContrac
                 $this->getAccessToken();
                 $response = $this->facebook->get(
                     sprintf(
-                        '%s_%s?fields=shares,likes.summary(true).limit(0),comments.limit(1000),reactions.type(LIKE).limit(0).summary(total_count).as(reactions_like),reactions.type(LOVE).limit(0).summary(total_count).as(reactions_love),reactions.type(WOW).limit(0).summary(total_count).as(reactions_wow),reactions.type(HAHA).limit(0).summary(total_count).as(reactions_haha),reactions.type(SAD).limit(0).summary(total_count).as(reactions_sad),reactions.type(ANGRY).limit(0).summary(total_count).as(reactions_angry)',
+                        '%s_%s?fields=shares,likes.summary(true).limit(0),reactions.type(LIKE).limit(0).summary(total_count).as(reactions_like),reactions.type(LOVE).limit(0).summary(total_count).as(reactions_love),reactions.type(WOW).limit(0).summary(total_count).as(reactions_wow),reactions.type(HAHA).limit(0).summary(total_count).as(reactions_haha),reactions.type(SAD).limit(0).summary(total_count).as(reactions_sad),reactions.type(ANGRY).limit(0).summary(total_count).as(reactions_angry)',
                         config('facebook.connections.secondary.user_id', 'FACEBOOK_CONNECTIONS_SECONDARY_USER_ID'),
                         $mediaCards->social_card_id
                     )
@@ -196,22 +196,33 @@ class FacebookSecondaryService extends BaseService implements SocialCardsContrac
      */
     private function getAccessToken()
     {
-        $facebookApp = new FacebookApp(
-            $this->facebook->getApp()->getId(),
-            $this->facebook->getApp()->getSecret()
-        );
+        try
+        {
+            $facebookApp = new FacebookApp(
+                $this->facebook->getApp()->getId(),
+                $this->facebook->getApp()->getSecret()
+            );
 
-        $facebookRequest = new FacebookRequest(
-            $facebookApp,
-            $this->facebook->getDefaultAccessToken()->getValue(),
-            'GET',
-            config('facebook.connections.secondary.user_id', 'FACEBOOK_CONNECTIONS_SECONDARY_USER_ID'),
-            ['fields' => 'access_token']
-        );
+            $facebookRequest = new FacebookRequest(
+                $facebookApp,
+                $this->facebook->getDefaultAccessToken()->getValue(),
+                'GET',
+                config('facebook.connections.secondary.user_id', 'FACEBOOK_CONNECTIONS_SECONDARY_USER_ID'),
+                ['fields' => 'access_token']
+            );
 
-        $accessToken = $this->facebook->getClient()->sendRequest($facebookRequest)->getDecodedBody();
-        $foreverPageAccessToken = $accessToken['access_token'];
-        $this->facebook->setDefaultAccessToken($foreverPageAccessToken);
+            $accessToken = $this->facebook->getClient()->sendRequest($facebookRequest)->getDecodedBody();
+            $foreverPageAccessToken = $accessToken['access_token'];
+            $this->facebook->setDefaultAccessToken($foreverPageAccessToken);
+        }
+        catch (\Facebook\Exceptions\FacebookSDKException $e)
+        {
+            \Log::error($e->getMessage());
+        }
+        catch (Exception $e)
+        {
+            \Log::error($e->getMessage());
+        }
     }
 
     /**

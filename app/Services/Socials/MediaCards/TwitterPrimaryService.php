@@ -72,7 +72,7 @@ class TwitterPrimaryService extends BaseService implements SocialCardsContract
      */
     public function update(Cards $cards)
     {
-        if ($mediaCards = $this->mediaCardsRepository->findByCardId($cards->id, 'plurk', 'primary'))
+        if ($mediaCards = $this->mediaCardsRepository->findByCardId($cards->id, 'twitter', 'primary'))
         {
             try
             {
