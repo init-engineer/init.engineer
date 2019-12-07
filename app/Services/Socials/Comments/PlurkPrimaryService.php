@@ -2,10 +2,10 @@
 
 namespace App\Services\Socials\Comments;
 
+use Exception;
 use Qlurk\ApiClient;
 use App\Models\Social\Cards;
 use App\Services\BaseService;
-use App\Exceptions\GeneralException;
 use App\Repositories\Backend\Social\CommentsRepository;
 use App\Repositories\Backend\Social\MediaCardsRepository;
 

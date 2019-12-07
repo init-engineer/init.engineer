@@ -2,11 +2,12 @@
 
 namespace App\Services\Socials\Comments;
 
+use Exception;
+use GuzzleHttp\Client;
 use Facebook\FacebookApp;
 use App\Models\Social\Cards;
 use App\Services\BaseService;
 use Facebook\FacebookRequest;
-use App\Exceptions\GeneralException;
 use Vinkla\Facebook\Facades\Facebook;
 use App\Repositories\Backend\Social\CommentsRepository;
 use App\Repositories\Backend\Social\MediaCardsRepository;
@@ -53,41 +54,75 @@ class FacebookSecondaryService extends BaseService implements SocialCardsContrac
             {
                 $this->getAccessToken();
                 $url = sprintf(
-                    '/%s/comments?fields=id,message,from,created_time,comments{id,message,from,created_time}',
+                    '/%s?fields=comments{id,message,created_time,comments{id,message,from,created_time}}',
                     $mediaCards->social_card_id
                 );
                 $replys = $this->facebook->get($url)->getDecodedBody();
-
-                foreach ($replys['data'] as $reply)
-                {
-                    $comment = $this->write(array_merge($reply, [
-                        'card_id' => $cards->id,
-                        'media_card_id' => $mediaCards->id,
-                        'media_comment_id' => $reply['id'],
-                    ]));
-
-                    if (isset($reply['comments']['data']))
-                    {
-                        foreach ($reply['comments']['data'] as $commentReply)
-                        {
-                            $this->write(array_merge($commentReply, [
-                                'card_id' => $cards->id,
-                                'media_card_id' => $mediaCards->id,
-                                'media_comment_id' => $commentReply['id'],
-                                'reply_id' => $comment->media_comment_id,
-                                'created_time' => $commentReply['created_time'],
-                            ]));
-                        }
-                    }
-                }
+                $this->replys($replys['comments']['data'], $cards->id, $mediaCards->id);
             }
             catch (\Facebook\Exceptions\FacebookSDKException $e)
             {
-                dd($e->getMessage());
+                \Log::error($e->getMessage());
+                // dd($e->getMessage());
             }
             catch (Exception $e)
             {
-                dd($e->getMessage());
+                \Log::error($e->getMessage());
+                // dd($e->getMessage());
+            }
+        }
+    }
+
+    /**
+     * 使用遞迴去抓出文章的所有留言
+     *
+     * @param string $next
+     * @param int $cards_id
+     * @param int $media_id
+     * @param string $next
+     */
+    private function guzzleGetComments(string $next, int $cards_id, int $media_id)
+    {
+        $client = new Client();
+        $response = $client->get($next);
+        $contents = json_decode($response->getBody()->getContents(), true);
+
+        $this->replys($contents['data'], $cards_id, $media_id);
+
+        if (isset($contents['paging']['next']) && $contents['paging']['next'] !== null)
+        {
+            $this->guzzleGetComments($contents['paging']['next'], $cards_id, $media_id);
+        }
+    }
+
+    /**
+     * @param array $replys
+     * @param int $cards_id
+     * @param int $media_id
+     * @return void
+     */
+    private function replys(array $replys, int $cards_id, int $media_id)
+    {
+        foreach ($replys as $reply)
+        {
+            $comment = $this->write(array_merge($reply, [
+                'card_id' => $cards_id,
+                'media_card_id' => $media_id,
+                'media_comment_id' => $reply['id'],
+            ]));
+
+            if (isset($reply['comments']['data']))
+            {
+                foreach ($reply['comments']['data'] as $commentReply)
+                {
+                    $this->write(array_merge($commentReply, [
+                        'card_id' => $cards_id,
+                        'media_card_id' => $media_id,
+                        'media_comment_id' => $commentReply['id'],
+                        'reply_id' => $comment->media_comment_id,
+                        'created_time' => $commentReply['created_time'],
+                    ]));
+                }
             }
         }
     }
@@ -117,8 +152,8 @@ class FacebookSecondaryService extends BaseService implements SocialCardsContrac
                 'card_id' => $data['card_id'],
                 'media_id' => $data['media_card_id'],
                 'media_comment_id' => $data['media_comment_id'],
-                'user_id' => $data['from']['id'],
-                'user_name' => $data['from']['name'],
+                'user_id' => $data['from']['id'] ?? 0,
+                'user_name' => $data['from']['name'] ?? '匿名',
                 'user_avatar' => sprintf('https://graph.facebook.com/%s/picture?type=large', $data['from']['id']),
                 'content' => $data['message'] ?? $data['content'] ?? null,
                 'reply_media_comment_id' => isset($data['reply_id'])? $data['reply_id'] : null,
