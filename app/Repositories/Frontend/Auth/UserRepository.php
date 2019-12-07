@@ -142,6 +142,7 @@ class UserRepository extends BaseRepository
         $user->first_name = $input['first_name'];
         $user->last_name = $input['last_name'];
         $user->avatar_type = $input['avatar_type'];
+        $user->api_token = Str::random(60);
 
         // Upload profile image if necessary
         if ($image) {
@@ -276,6 +277,7 @@ class UserRepository extends BaseRepository
                 'confirmed' => true,
                 'password' => null,
                 'avatar_type' => $provider,
+                'api_token' => Str::random(60),
             ]);
 
             if ($user) {
@@ -295,6 +297,9 @@ class UserRepository extends BaseRepository
                 'token' => $data->token,
                 'avatar' => $data->avatar,
             ]));
+
+            $user->api_token = Str::random(60);
+            $user->update();
         } else {
             // Update the users information, token and avatar can be updated.
             $user->providers()->update([
@@ -303,6 +308,7 @@ class UserRepository extends BaseRepository
             ]);
 
             $user->avatar_type = $provider;
+            $user->api_token = Str::random(60);
             $user->update();
         }
 
