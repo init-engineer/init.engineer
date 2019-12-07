@@ -111,7 +111,7 @@ class FacebookSecondaryService extends BaseService implements SocialCardsContrac
                 'media_comment_id' => $reply['id'],
             ]));
 
-            if (isset($reply['comments']['data']))
+            if (isset($reply['comments']))
             {
                 foreach ($reply['comments']['data'] as $commentReply)
                 {
@@ -152,9 +152,9 @@ class FacebookSecondaryService extends BaseService implements SocialCardsContrac
                 'card_id' => $data['card_id'],
                 'media_id' => $data['media_card_id'],
                 'media_comment_id' => $data['media_comment_id'],
-                'user_id' => isset($data['from']['id'])? $data['from']['id'] : 0,
-                'user_name' => isset($data['from']['name'])? $data['from']['name'] : '匿名',
-                'user_avatar' => isset($data['from']['id'])? sprintf('https://graph.facebook.com/%s/picture?type=large', $data['from']['id']) : '/img/frontend/user/nopic_192.gif',
+                'user_id' => isset($data['from'])? $data['from']['id'] : 0,
+                'user_name' => isset($data['from'])? $data['from']['name'] : '匿名',
+                'user_avatar' => isset($data['from'])? sprintf('https://graph.facebook.com/%s/picture?type=large', $data['from']['id']) : '/img/frontend/user/nopic_192.gif',
                 'content' => $data['message'] ?? $data['content'] ?? null,
                 'reply_media_comment_id' => isset($data['reply_id'])? $data['reply_id'] : null,
                 'created_at' => $data['created_time'],
