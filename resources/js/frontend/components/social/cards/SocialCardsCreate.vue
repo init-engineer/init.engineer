@@ -675,8 +675,8 @@ export default {
                             let timerInterval;
                             Swal.fire({
                                 title: "射射射！",
-                                html: "文章射出去惹，系統將在 <b></b> 毫秒後自動前往。",
-                                timer: 2000,
+                                html: `文章射出去惹，系統將在 <b></b> 毫秒後自動前往。<br>或者<a href="/cards/show/${result.value.data.data.id}" class="btn btn-rainbow p-1 m-1">按我</a>直接前往。`,
+                                timer: 5000,
                                 timerProgressBar: true,
                                 allowOutsideClick: false,
                                 onBeforeOpen: () => {
