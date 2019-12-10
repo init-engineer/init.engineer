@@ -77,7 +77,6 @@ class ImagesRepository extends BaseRepository
                 'avatar_path' => $data['avatar']['path'],
                 'avatar_name' => $data['avatar']['name'],
                 'avatar_type' => $data['avatar']['type'],
-                'imgur_url' => isset($data['avatar']['imgur_url'])? $data['avatar']['imgur_url'] : null,
             ]);
 
             if ($image) {
@@ -107,7 +106,6 @@ class ImagesRepository extends BaseRepository
                 'avatar_path' => isset($data['avatar']['path'])? $data['avatar']['path'] : $images->avatar_path,
                 'avatar_name' => isset($data['avatar']['name'])? $data['avatar']['name'] : $images->avatar_name,
                 'avatar_type' => isset($data['avatar']['type'])? $data['avatar']['type'] : $images->avatar_type,
-                'imgur_url' => isset($data['avatar']['imgur_url'])? $data['avatar']['imgur_url'] : $images->imgur_url,
             ])) {
                 // event(new ImagesUpdated($images));
 

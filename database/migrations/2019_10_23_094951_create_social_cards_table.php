@@ -84,7 +84,6 @@ class CreateSocialCardsTable extends Migration
             $table->string('avatar_path')->nullable();
             $table->string('avatar_name')->nullable();
             $table->string('avatar_type')->nullable();
-            $table->longText('imgur_url')->nullable();
             $table->unsignedTinyInteger('active')->default(1);
             $table->unsignedTinyInteger('is_banned')->default(0);
             $table->unsignedBigInteger('banned_user_id')->nullable();

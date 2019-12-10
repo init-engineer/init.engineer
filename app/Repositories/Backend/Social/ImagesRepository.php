@@ -60,7 +60,6 @@ class ImagesRepository extends BaseRepository
                 'avatar_path' => $data['avatar_path'],
                 'avatar_name' => $data['avatar_name'],
                 'avatar_type' => $data['avatar_type'],
-                'imgur_url' => isset($data['imgur_url'])? $data['imgur_url'] : null,
                 'active' => isset($data['active'])? $data['active'] : true,
             ]);
 
@@ -91,7 +90,6 @@ class ImagesRepository extends BaseRepository
                 'avatar_path' => isset($data['avatar_path'])? $data['avatar_path'] : $images->avatar_path,
                 'avatar_name' => isset($data['avatar_name'])? $data['avatar_name'] : $images->avatar_name,
                 'avatar_type' => isset($data['avatar_type'])? $data['avatar_type'] : $images->avatar_type,
-                'imgur_url' => isset($data['imgur_url'])? $data['imgur_url'] : $images->imgur_url,
                 'active' => isset($data['active'])? $data['active'] : $images->active,
                 'is_banned' => isset($data['is_banned'])? $data['is_banned'] : $images->is_banned,
                 'banned_user_id' => isset($data['banned_user_id'])? $data['banned_user_id'] : $images->banned_user_id,
