@@ -74,6 +74,7 @@
         "@inotom/vue-go-top": "^1.1.0",
         "acorn-jsx": "^5.1.0",
         "animate.css": "^3.7.2",
+        "css-doodle": "^0.7.6",
         "csshake": "^1.5.3",
         "fontfaceobserver": "^2.1.0",
         "jshint": "^2.10.3",
