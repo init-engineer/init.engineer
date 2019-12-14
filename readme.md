@@ -1,13 +1,16 @@
-# 純靠北工程師 README.md
+<p align="center">
+	<a href="https://kaobei.engineer"><img src="https://i.imgur.com/iuP8yS0.png" alt="INIT.ENGINEER" width="300"></a>
+</p>
+<h3 align="center">喜歡純靠北工程師？我們也是。</h3>
+<p align="center">這是一份純靠北工程師的專案，請好好愛護它，謝謝。</p>
+<p align="center">
+    <a href="https://www.facebook.com/init.kobeengineer" title="facebook init"><img src="https://img.shields.io/badge/facebook-@init.kobeengineer-3b5998.svg" alt="facebook init" /></a>
+    <a href="https://www.facebook.com/kaobei.engineer" title="facebook testing"><img src="https://img.shields.io/badge/facebook-@kaobei.engineer-3b5998.svg" alt="facebook testing" /></a>
+    <a href="https://twitter.com/kaobei_engineer" title="twitter"><img src="https://img.shields.io/badge/twitter-@kaobei_engineer-55acee.svg" alt="twitter" /></a>
+    <a href="https://www.plurk.com/kaobei_engineer" title="plurk"><img src="https://img.shields.io/badge/plurk-@kaobei_engineer-ff574d.svg" alt="plurk" /></a>
+</p>
 
-![GitHub contributors](https://img.shields.io/github/contributors/init-engineer/init.engineer.svg)
-![GitHub stars](https://img.shields.io/github/stars/init-engineer/init.engineer.svg?style=social)
-
-- [官方網站](https://kaobei.engineer)
-- [Facebook 正式機 粉絲團](https://www.facebook.com/init.kobeengineer)
-- [Facebook 測試機 粉絲團](https://www.facebook.com/kaobei.engineer)
-- [Twitter 粉絲團](https://twitter.com/kaobei_engineer)
-- [Plurk 粉絲團](https://www.plurk.com/kaobei_engineer)
+---
 
 ![預覽圖](https://i.imgur.com/H1cy0Ei.png)
 
