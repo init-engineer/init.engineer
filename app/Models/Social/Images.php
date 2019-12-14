@@ -42,7 +42,6 @@ class Images extends Model
         'avatar_path',
         'avatar_name',
         'avatar_type',
-        'imgur_url',
         'active',
         'is_banned',
         'banned_user_id',

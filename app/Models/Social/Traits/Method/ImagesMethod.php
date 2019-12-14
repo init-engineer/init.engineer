@@ -56,11 +56,6 @@ trait ImagesMethod
      */
     public function getPicture($size = false)
     {
-        if (isset($this->imgur_url))
-        {
-            return $this->imgur_url;
-        }
-
         switch ($this->storage)
         {
             case 'gravatar':
