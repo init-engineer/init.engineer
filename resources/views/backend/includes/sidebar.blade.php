@@ -13,6 +13,7 @@
                 </a>
             </li>
 
+            {{-- 使用者 Access --}}
             @if ($logged_in_user->isAdmin())
                 <li class="nav-title">
                     @lang('menus.backend.sidebar.account')
@@ -55,6 +56,7 @@
                 </li>
             @endif
 
+            {{-- 文章 Social --}}
             @if ($logged_in_user->isAdmin())
                 <li class="nav-title">
                     @lang('menus.backend.sidebar.social')
@@ -89,6 +91,35 @@
                 </li>
             @endif
 
+            {{-- 公告 News --}}
+            @if ($logged_in_user->isAdmin())
+                <li class="nav-title">
+                    @lang('menus.backend.sidebar.news')
+                </li>
+
+                <li class="nav-item nav-dropdown {{
+                    active_class(Route::is('admin/news*'), 'open')
+                }}">
+                    <a class="nav-link nav-dropdown-toggle {{
+                        active_class(Route::is('admin/news*'))
+                    }}" href="#">
+                        <i class="nav-icon far fa-comment-dots"></i>
+                        @lang('menus.backend.news.title')
+                    </a>
+
+                    <ul class="nav-dropdown-items">
+                        <li class="nav-item">
+                            <a class="nav-link {{
+                                active_class(Route::is('admin/news/news*'))
+                            }}" href="{{ route('admin.news.index') }}">
+                                @lang('labels.backend.news.management')
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            @endif
+
+            {{-- 系統 Log 日誌列表 --}}
             @if ($logged_in_user->isAdmin())
                 <li class="nav-title">
                     @lang('menus.backend.sidebar.system')
