@@ -186,6 +186,15 @@ return [
                     'language' => '語言',
                 ],
             ],
+
+            'news' => [
+                'title' => '標題',
+                'image' => '圖片',
+                'url' => '相對網址',
+                'hashtag' => '標籤 #',
+                'layout' => '模板',
+                'content' => '內容',
+            ],
         ],
 
         'frontend' => [

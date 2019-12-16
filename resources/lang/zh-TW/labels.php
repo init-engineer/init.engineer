@@ -143,6 +143,31 @@ return [
                 'management' => 'Comments',
             ],
         ],
+
+        'news' => [
+            'management' => 'News',
+            'active' => 'Active',
+            'deactivated' => 'Deactivated',
+            'deleted' => 'Deleted',
+            'card_actions' => '文章動作',
+            'create' => '新增',
+            'edit' => '編輯',
+
+            'table' => [
+                'confirmed' => '認證',
+                'created' => '新增',
+                'id' => 'ID/編號',
+                'user' => 'User(E-mail)',
+                'content' => '文章內容',
+                'last_updated' => '最後更新',
+                'name' => '名稱',
+                'first_name' => '名稱',
+                'last_name' => '姓氏',
+                'no_deactivated' => '沒有已停用的文章',
+                'no_deleted' => '沒有已刪除的文章',
+                'total' => '文章總計|文章總計',
+            ],
+        ],
     ],
 
     'frontend' => [
