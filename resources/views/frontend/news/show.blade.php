@@ -3,8 +3,9 @@
 @section('title', app_name() . ' | ' . __('navs.frontend.social.cards.index'))
 
 @section('content')
-    <div class="container mt-4 p-2 bg-white rounded">
-        <h1 class="display-4">{{ $news->title }}</h1>
+    <div class="container mt-4 p-2 bg-white rounded text-center">
+        <h1 class="display-4 my-4">{{ $news->title }}</h1>
+        <img src="{{ $news->getPicture() }}" class="rounded w-100" alt="{{ $news->title }}">
     </div><!--container-->
     <div class="container mt-2 p-4 bg-white rounded">
         @markdown($news->content)

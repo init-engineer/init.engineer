@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend\News;
 
 use App\Models\News\News;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use App\Repositories\Backend\News\NewsRepository;
 use App\Http\Requests\Backend\News\StoreNewsRequest;
 use App\Http\Requests\Backend\News\UpdateNewsRequest;
@@ -86,7 +87,15 @@ class NewsController extends Controller
      */
     public function update(UpdateNewsRequest $request, News $id)
     {
+        $data = $request->only('title', 'url', 'hashtag', 'layout', 'content');
+        if ($request->has('image'))
+        {
+            Storage::disk('public')->delete($id->image);
+            $data['image'] = $request->file('image')->store('/news', 'public');
+        }
+        $this->newsRepository->update($id, $data);
 
+        return redirect()->route('admin.news.index')->withFlashSuccess(__('alerts.backend.news.updated'));
     }
 
     /**

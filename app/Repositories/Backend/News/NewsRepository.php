@@ -108,7 +108,6 @@ class NewsRepository extends BaseRepository
                 'url' => $data['url'],
                 'hashtag' => $data['hashtag'],
                 'layout' => isset($data['layout'])? $data['layout'] : 'frontend.news.layout.default',
-                'active' => isset($data['active']) && $data['active'] === '1',
             ]);
 
             if ($news)
