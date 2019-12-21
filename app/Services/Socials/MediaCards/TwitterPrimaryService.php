@@ -139,7 +139,7 @@ class TwitterPrimaryService extends BaseService implements SocialCardsContract
         $_content = (mb_strlen($content, 'utf-8') > 48)? mb_substr($content, 0, 48, 'utf-8') . ' ...' : $content;
 
         return sprintf(
-            "#純靠北工程師%s\r\n%s\r\n📢 匿名發文請至 %s\r\n🥙 全平台留言 %s",
+            "#純靠北工程師%s\r\n%s\r\n👉 去 GitHub 給我們🌟用行動支持純靠北工程師 https://github.com/init-engineer/init.engineer\r\n📢 匿名發文請至 %s\r\n🥙 全平台留言 %s",
             base_convert($options['id'], 10, 36),
             $_content,
             route('frontend.social.cards.create'),

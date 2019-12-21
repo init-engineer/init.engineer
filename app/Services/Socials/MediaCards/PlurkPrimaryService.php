@@ -155,7 +155,7 @@ class PlurkPrimaryService extends BaseService implements SocialCardsContract
         $_content = (mb_strlen($content, 'utf-8') > 220)? mb_substr($content, 0, 220, 'utf-8') . ' ...' : $content;
 
         return sprintf(
-            "%s\r\n#純靠北工程師%s\r\n%s\r\n🥙 全平台留言 %s",
+            "%s\r\n#純靠北工程師%s\r\n%s\r\n👉 去 GitHub 給我們🌟用行動支持純靠北工程師 https://github.com/init-engineer/init.engineer\r\n🥙 全平台留言 %s",
             $options['image_url'],
             base_convert($options['id'], 10, 36),
             $_content,
