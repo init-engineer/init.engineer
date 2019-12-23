@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Frontend\Social;
 
+use App\Models\Auth\User;
 use App\Models\Social\MediaCards;
 use Illuminate\Support\Facades\DB;
 use App\Repositories\BaseRepository;
@@ -56,7 +57,7 @@ class MediaCardsRepository extends BaseRepository
         return DB::transaction(function () use ($data) {
             $media = $this->model::create([
                 'card_id' => $data['card_id'],
-                'model_type' => isset($data['model_type'])? $data['model_type'] : 'App\Models\Auth\User',
+                'model_type' => isset($data['model_type'])? $data['model_type'] : User::class,
                 'model_id' => $data['model_id'],
                 'social_type' => $data['social_type'],
                 'social_connections' => $data['social_connections'],

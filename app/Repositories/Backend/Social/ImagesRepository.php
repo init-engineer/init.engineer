@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Backend\Social;
 
+use App\Models\Auth\User;
 use App\Models\Social\Images;
 use Illuminate\Support\Facades\DB;
 use App\Repositories\BaseRepository;
@@ -54,7 +55,7 @@ class ImagesRepository extends BaseRepository
             $images = $this->model::create([
                 'id' => isset($data['id'])? $data['id'] : null,
                 'card_id' => $data['card_id'],
-                'model_type' => isset($data['model_type'])? $data['model_type'] : 'App\Models\Auth\User',
+                'model_type' => isset($data['model_type'])? $data['model_type'] : User::class,
                 'model_id' => $data['model_id'],
                 'storage' => isset($data['storage'])? $data['storage'] : 'storage',
                 'avatar_path' => $data['avatar_path'],
