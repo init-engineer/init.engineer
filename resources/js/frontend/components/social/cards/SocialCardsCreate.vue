@@ -676,6 +676,7 @@ export default {
                     "您需要按下同意遵守板規的勾勾。",
                     "error"
                 );
+                return;
             }
 
             if (this.$v.$invalid) {
@@ -684,80 +685,81 @@ export default {
                     "我對於你們在學校所受的訓練為什麼會是這個樣子，我深感不解。",
                     "error"
                 );
-            } else {
-                Swal.fire({
-                    title: "您確定要發表文章嗎？",
-                    text: "如果您按下射射射，那文章就真的會射出去了。",
-                    showCancelButton: true,
-                    showLoaderOnConfirm: true,
-                    confirmButtonColor: "#3085d6",
-                    confirmButtonText: "射射射",
-                    cancelButtonColor: "#d33",
-                    cancelButtonText: "不要！",
-                    allowOutsideClick: () => !Swal.isLoading(),
-                    preConfirm: login => {
-                        let data;
-                        if (this.avatar) {
-                            data = new FormData();
-                            data.append("content", this.canvas.content);
-                            data.append("themeStyle", this.theme.selector);
-                            data.append("fontStyle", this.font.selector);
-                            data.append("avatar", this.avatar);
-                        } else {
-                            data = {
-                                content: this.canvas.content,
-                                themeStyle: this.theme.selector,
-                                fontStyle: this.font.selector,
-                                isManagerLine: this.canvas.is_manager_line,
-                            }
-                        }
-
-                        return axios
-                            .post(this.isAdmin ? "/api/backend/social/cards/publish" : "/api/frontend/social/cards/publish", data)
-                            .then(function (response) {
-                                return response;
-                            })
-                            .catch(function (error) {
-                                return error;
-                            });
-                    }
-                }).then(result => {
-                    switch (result.value.status) {
-                        case 200:
-                            let timerInterval;
-                            Swal.fire({
-                                title: "射射射！",
-                                html: `文章射出去惹，系統將在 <b></b> 毫秒後自動前往。<br>或者<a href="/cards/show/${result.value.data.data.id}" class="btn btn-rainbow p-1 m-1">按我</a>直接前往。`,
-                                timer: 5000,
-                                timerProgressBar: true,
-                                allowOutsideClick: false,
-                                onBeforeOpen: () => {
-                                    Swal.showLoading();
-                                    timerInterval = setInterval(() => {
-                                        Swal.getContent().querySelector("b").textContent = Swal.getTimerLeft();
-                                    }, 100);
-                                },
-                                onClose: () => {
-                                    clearInterval(timerInterval);
-                                    window.location.href = `/cards/show/${result.value.data.data.id}`;
-                                }
-                            }).then(result => {
-                                if (result.dismiss === Swal.DismissReason.timer) {
-                                    console.log("I was closed by the timer");
-                                }
-                            });
-                            break;
-
-                        default:
-                            Swal.fire(
-                                "啊 ... 卡住了。",
-                                "文章並沒有被射出去，建議您去問問作者花生神魔術惹？",
-                                "error"
-                            );
-                            break;
-                    }
-                });
+                return;
             }
+
+            Swal.fire({
+                title: "您確定要發表文章嗎？",
+                text: "如果您按下射射射，那文章就真的會射出去了。",
+                showCancelButton: true,
+                showLoaderOnConfirm: true,
+                confirmButtonColor: "#3085d6",
+                confirmButtonText: "射射射",
+                cancelButtonColor: "#d33",
+                cancelButtonText: "不要！",
+                allowOutsideClick: () => !Swal.isLoading(),
+                preConfirm: login => {
+                    let data;
+                    if (this.avatar) {
+                        data = new FormData();
+                        data.append("content", this.canvas.content);
+                        data.append("themeStyle", this.theme.selector);
+                        data.append("fontStyle", this.font.selector);
+                        data.append("avatar", this.avatar);
+                    } else {
+                        data = {
+                            content: this.canvas.content,
+                            themeStyle: this.theme.selector,
+                            fontStyle: this.font.selector,
+                            isManagerLine: this.canvas.is_manager_line,
+                        }
+                    }
+
+                    return axios
+                        .post(this.isAdmin ? "/api/backend/social/cards/publish" : "/api/frontend/social/cards/publish", data)
+                        .then(function (response) {
+                            return response;
+                        })
+                        .catch(function (error) {
+                            return error;
+                        });
+                }
+            }).then(result => {
+                switch (result.value.status) {
+                    case 200:
+                        let timerInterval;
+                        Swal.fire({
+                            title: "射射射！",
+                            html: `文章射出去惹，系統將在 <b></b> 毫秒後自動前往。<br>或者<a href="/cards/show/${result.value.data.data.id}" class="btn btn-rainbow p-1 m-1">按我</a>直接前往。`,
+                            timer: 5000,
+                            timerProgressBar: true,
+                            allowOutsideClick: false,
+                            onBeforeOpen: () => {
+                                Swal.showLoading();
+                                timerInterval = setInterval(() => {
+                                    Swal.getContent().querySelector("b").textContent = Swal.getTimerLeft();
+                                }, 100);
+                            },
+                            onClose: () => {
+                                clearInterval(timerInterval);
+                                window.location.href = `/cards/show/${result.value.data.data.id}`;
+                            }
+                        }).then(result => {
+                            if (result.dismiss === Swal.DismissReason.timer) {
+                                console.log("I was closed by the timer");
+                            }
+                        });
+                        break;
+
+                    default:
+                        Swal.fire(
+                            "啊 ... 卡住了。",
+                            "文章並沒有被射出去，建議您去問問作者花生神魔術惹？",
+                            "error"
+                        );
+                        break;
+                }
+            });
         }
     }
 };
