@@ -78,6 +78,7 @@
         "csshake": "^1.5.3",
         "fontfaceobserver": "^2.1.0",
         "jshint": "^2.10.3",
+        "pretty-checkbox": "^3.0.3",
         "vue-content-loading": "^1.6.0",
         "vue-gallery": "^2.0.1",
         "vue-infinite-loading": "^2.4.4",
