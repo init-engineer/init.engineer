@@ -50,6 +50,7 @@ return [
         'continue' => '繼續',
 
         'crud' => [
+            'publish' => '發佈',
             'create' => '新增',
             'delete' => '刪除',
             'banned' => '禁用',

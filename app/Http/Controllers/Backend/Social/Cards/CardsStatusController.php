@@ -8,6 +8,7 @@ use App\Services\Socials\Cards\CardsService;
 use App\Repositories\Backend\Social\CardsRepository;
 use App\Http\Requests\Backend\Social\Cards\BannedCardsRequest;
 use App\Http\Requests\Backend\Social\Cards\ManageCardsRequest;
+use App\Http\Requests\Backend\Social\Cards\PublishCardsRequest;
 
 /**
  * Class CardsStatusController.
@@ -54,6 +55,19 @@ class CardsStatusController extends Controller
     {
         return view('backend.social.cards.deleted')
             ->withCards($this->cardsRepository->getDeletedPaginated());
+    }
+
+    /**
+     * @param PublishCardsRequest $request
+     * @param Cards               $cards
+     *
+     * @return mixed
+     */
+    public function publish(PublishCardsRequest $request, Cards $cards)
+    {
+        $this->cardsService->publish($cards);
+
+        return redirect()->route('admin.social.cards.index')->withFlashSuccess(__('alerts.backend.social.cards.publish'));
     }
 
     /**

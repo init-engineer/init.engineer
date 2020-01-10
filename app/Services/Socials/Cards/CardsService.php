@@ -39,10 +39,14 @@ class CardsService extends BaseService implements CardsContract
      */
     public function publish(Cards $cards)
     {
-        if (env('FACEBOOK_PRIMARY_CREATE_POST', false)) { FacebookPrimaryPublish::dispatch($cards); }
-        if (env('FACEBOOK_SECONDARY_CREATE_POST', false)) { FacebookSecondaryPublish::dispatch($cards); }
-        if (env('TWITTER_CREATE_POST', false)) { TwitterPrimaryPublish::dispatch($cards); }
-        if (env('PLURK_CREATE_POST', false)) { PlurkPrimaryPublish::dispatch($cards); }
+        if (env('FACEBOOK_PRIMARY_CREATE_POST', false) && (! $this->mediaCardsRepository->findByCardId($cards->id, 'facebook', 'primary')))
+            FacebookPrimaryPublish::dispatch($cards);
+        if (env('FACEBOOK_SECONDARY_CREATE_POST', false) && (! $this->mediaCardsRepository->findByCardId($cards->id, 'facebook', 'secondary')))
+            FacebookSecondaryPublish::dispatch($cards);
+        if (env('TWITTER_CREATE_POST', false) && (! $this->mediaCardsRepository->findByCardId($cards->id, 'twitter', 'primary')))
+            TwitterPrimaryPublish::dispatch($cards);
+        if (env('PLURK_CREATE_POST', false) && (! $this->mediaCardsRepository->findByCardId($cards->id, 'plurk', 'primary')))
+            PlurkPrimaryPublish::dispatch($cards);
     }
 
     /**
