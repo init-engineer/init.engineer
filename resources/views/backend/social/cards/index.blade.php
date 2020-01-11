@@ -58,11 +58,9 @@
                                     </td>
                                     <td>
                                         <ul>
-                                        @foreach ($cards->medias as $media)
-                                            <li><span class="btn btn-sm btn-{{ $media->social_type }} ml-1">{{ $media->social_type }} {{ ($media->social_connections == 'primary')? '主站' : '次站'; }}</span></li>
-                                        @empty
-                                            <p>沒有發表到任何平台。</p>
-                                        @endforeach
+                                            @foreach ($card->medias as $media)
+                                                <li>{{ $media->social_type }} - {{ $media->social_connections }}</li>
+                                            @endforeach
                                         </ul>
                                     </td>
                                     <td>{{ $card->updated_at->diffForHumans() }}</td>
