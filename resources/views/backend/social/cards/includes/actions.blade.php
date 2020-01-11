@@ -40,7 +40,7 @@
             </button>
             <div class="dropdown-menu" aria-labelledby="cardActions">
                 <a href="{{ route('admin.social.cards.banned', $card) }}"
-                    data-method="delete"
+                    data-method="post"
                     data-trans-button-cancel="@lang('buttons.general.cancel')"
                     data-trans-button-confirm="@lang('buttons.general.crud.delete')"
                     data-trans-title="@lang('strings.backend.general.are_you_sure')"

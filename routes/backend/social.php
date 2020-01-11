@@ -29,7 +29,7 @@ Route::group([
             Route::get('/', [CardsController::class, 'show'])->name('show');
             Route::delete('/', [CardsController::class, 'destroy'])->name('destroy');
 
-            Route::get('publish', [CardsStatusController::class, 'publish'])->name('publish');
+            Route::post('publish', [CardsStatusController::class, 'publish'])->name('publish');
 
             // Deleted
             Route::delete('banned', [CardsStatusController::class, 'banned'])->name('banned');
