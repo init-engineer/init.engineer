@@ -124,6 +124,7 @@ return [
                 'card_actions' => '文章動作',
 
                 'table' => [
+                    'socials' => '社群列表',
                     'confirmed' => '認證',
                     'created' => '新增',
                     'id' => 'ID/編號',

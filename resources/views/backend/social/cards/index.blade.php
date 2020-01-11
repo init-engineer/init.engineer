@@ -26,6 +26,7 @@
                                 <th>@lang('labels.backend.social.cards.table.id')</th>
                                 <th>@lang('labels.backend.social.cards.table.user')</th>
                                 <th>@lang('labels.backend.social.cards.table.content')</th>
+                                <th>@lang('labels.backend.social.cards.table.socials')</th>
                                 <th>@lang('labels.backend.social.cards.table.last_updated')</th>
                                 <th>@lang('labels.general.actions')</th>
                             </tr>
@@ -34,21 +35,17 @@
                             @foreach ($cards as $card)
                                 <tr>
                                     <td><h4><span class="badge badge-dark" data-toggle="tooltip" data-placement="top" title="ID: {{ $card->id }}">#{{ app_name() . base_convert($card->id, 10, 36) }}</span></h4></td>
-                                    @if (isset($card->model))
-                                        <td>
-                                            <div class="media">
-                                                <div class="media-left">
-                                                    <img class="media-object img-fluid rounded mr-1" src="{{ $card->model->getPicture() }}" style="max-width: 48px;max-height: 48px;" alt="{{ $card->model->email }}">
-                                                </div>
-                                                <div class="media-body p-0">
-                                                    <h4 class="media-heading">{{ $card->model->full_name }}</h4>
-                                                    <p>{{ $card->model->email }}</p>
-                                                </div>
+                                    <td>
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <img class="media-object img-fluid rounded mr-1" src="{{ $card->model->getPicture() }}" style="max-width: 48px;max-height: 48px;" alt="{{ $card->model->email }}">
                                             </div>
-                                        </td>
-                                    @else
-                                        <td></td>
-                                    @endif
+                                            <div class="media-body p-0">
+                                                <h4 class="media-heading">{{ $card->model->full_name }}</h4>
+                                                <p>{{ $card->model->email }}</p>
+                                            </div>
+                                        </div>
+                                    </td>
                                     <td style="max-width: 24rem;">
                                         <div class="media">
                                             <div class="media-left">
@@ -58,6 +55,15 @@
                                                 <p class="lead">{{ $card->content }}</p>
                                             </div>
                                         </div>
+                                    </td>
+                                    <td>
+                                        <ul>
+                                        @foreach ($cards->medias as $media)
+                                            <li><span class="btn btn-sm btn-{{ $media->social_type }} ml-1">{{ $media->social_type }} {{ ($media->social_connections == 'primary')? '主站' : '次站'; }}</span></li>
+                                        @empty
+                                            <p>沒有發表到任何平台。</p>
+                                        @endforeach
+                                        </ul>
                                     </td>
                                     <td>{{ $card->updated_at->diffForHumans() }}</td>
                                     <td>@include('backend.social.cards.includes.actions', ['card' => $card])</td>
