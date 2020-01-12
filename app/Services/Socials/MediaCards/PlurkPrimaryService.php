@@ -153,7 +153,7 @@ class PlurkPrimaryService extends BaseService implements SocialCardsContract
      */
     public function buildContent($content = '', array $options = [])
     {
-        $_content = (mb_strlen($content, 'utf-8') > 220)? mb_substr($content, 0, 220, 'utf-8') . ' ...' : $content;
+        $_content = (mb_strlen($content, 'utf-8') > 100)? mb_substr($content, 0, 100, 'utf-8') . ' ...' : $content;
 
         return sprintf(
             "%s\r\n#純靠北工程師%s\r\n%s\r\n%s\r\n🥙 全平台留言 %s",
