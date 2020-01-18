@@ -39,39 +39,39 @@
 1. 您需要先設定 `env` 設定檔，基本上你在整個專案找不到 `.env` 這個檔案，你只會看到 `.env.example` 這個檔案，沒錯，看到 `.example` 就知道這檔案是個範例，你可以複製一個改名為 `.env` 即可，然後開始要修改裡面的參數，哪些必填哪些選填，範例檔案內會有詳細解釋。
 
 2. 您可能需要安裝 `composer` 才能啟用整個網站。
-```sh
-composer install
-```
+    ```sh
+    composer install
+    ```
 
 3. 您可能需要安裝 `npm` 才能啟用前端的東西。
-```sh
-npm install
-```
+    ```sh
+    npm install
+    ```
 
 4. 你需要產生 `Laravel` 在加密時會需要使用到的密鑰，這點在 `.env.example` 當中有提到。
-```sh
-php artisan key:generate
-```
+    ```sh
+    php artisan key:generate
+    ```
 
 5. 因為會需要使用到資料庫，所以你就去裝一裝你順眼的資料庫，然後去 `env` 設定一下參數吧，如果還沒設定的記得去設定，然後再做資料庫遷移。
-```sh
-php artisan migrate --seed
-```
+    ```sh
+    php artisan migrate --seed
+    ```
 
 6. 最後你需要把 `storage` 與 `public` 製作個連結，這樣部分檔案才能正常讀取，例如使用者的大頭貼。
-```
-php artisan storage:link
-```
+    ```
+    php artisan storage:link
+    ```
 
 7. 好了，你可以使用你熟悉的伺服器軟體，例如說 `Apache`，但不要使用 `Apache`，不然你會在 `SITCON` 被嗆爆，建議使用 `php artisan serve`，或者使用 `nginx` 也可以，就可以正常打開網站了。
-```text
-管理員預設帳號: admin@admin.com
-管理員預設密碼: secret
-```
+    ```text
+    管理員預設帳號: admin@admin.com
+    管理員預設密碼: secret
+    ```
 
 8. 如果這樣子你還是架設不起來，那你可以參考其他篇教學文章。
-- [Laravel Boilerplate | Quick Start](http://laravel-boilerplate.com/6.0/start.html)
-- [如何建置這個平臺？ · Kantai235/kaobei.opendata Wiki · GitHub](https://github.com/Kantai235/kaobei.opendata/wiki/%E5%A6%82%E4%BD%95%E5%BB%BA%E7%BD%AE%E9%80%99%E5%80%8B%E5%B9%B3%E8%87%BA%EF%BC%9F)
+    - [Laravel Boilerplate | Quick Start](http://laravel-boilerplate.com/6.0/start.html)
+    - [如何建置這個平臺？ · Kantai235/kaobei.opendata Wiki · GitHub](https://github.com/Kantai235/kaobei.opendata/wiki/%E5%A6%82%E4%BD%95%E5%BB%BA%E7%BD%AE%E9%80%99%E5%80%8B%E5%B9%B3%E8%87%BA%EF%BC%9F)
 
 ---
 ## 總結
