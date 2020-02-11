@@ -1,20 +1,20 @@
 ---
-name: Feature request
-about: Suggest an idea for this project
+name: 功能要求
+about: 為這個專案提出一些想法
 title: ''
-labels: ''
-assignees: ''
+labels: feature
+assignees: Kantai235
 
 ---
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+**您的功能要求與問題有關嗎？請描述。**
+清楚且簡單的說明問題所在，例如當 [...] 時，我知道這是版主的恩賜。
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
+**描述您想要的解決方案**
+對您想要發生的事情做個簡單的描述。
 
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
+**描述您考慮過的替代方案**
+對您考慮過的所有替代解決方案或功能也做個簡單的描述。
 
-**Additional context**
-Add any other context or screenshots about the feature request here.
+**其他內容**
+在此處添加有關功能請求的其他任何上下文或螢幕截圖。
