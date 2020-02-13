@@ -65,7 +65,7 @@ class IlluminatePaginatorAdapter implements PaginatorInterface
      */
     public function getTotal()
     {
-        return null;
+        return $this->paginator->total();
     }
 
     /**
