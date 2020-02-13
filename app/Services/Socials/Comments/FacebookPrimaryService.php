@@ -58,7 +58,10 @@ class FacebookPrimaryService extends BaseService implements SocialCardsContract
                     $mediaCards->social_card_id
                 );
                 $replys = $this->facebook->get($url)->getDecodedBody();
-                $this->replys($replys['comments']['data'], $cards->id, $mediaCards->id);
+                if (isset($replys['comments']))
+                {
+                    $this->replys($replys['comments']['data'], $cards->id, $mediaCards->id);
+                }
             }
             catch (\Facebook\Exceptions\FacebookSDKException $e)
             {
