@@ -48,12 +48,6 @@ class Kernel extends ConsoleKernel
         $schedule->command('social:comments-update 6')->everyTenMinutes();
         $schedule->command('social:comments-update 2')->everyFiveMinutes();
         // $schedule->command('social:comments-update 1')->everyMinute();
-
-        /**
-         * 自動化 執行任務、重新執行 Jobs 失敗的任務
-         */
-        $schedule->command('queue:work --daemon --quiet --queue=default --delay=3 --sleep=3 --tries=3')->everyMinute()->withoutOverlapping();
-        $schedule->command('queue:retry all')->everyFiveMinutes()->withoutOverlapping();
     }
 
     /**
