@@ -1,16 +1,15 @@
 @extends('frontend.layouts.app')
 
-{{-- @section('title', '') --}}
-{{-- @section('meta_keyword', '') --}}
-{{-- @section('meta_description', '') --}}
-{{-- @section('meta_og_title', '') --}}
-{{-- @section('meta_og_image', '') --}}
-{{-- @section('meta_og_description', '') --}}
+@section('title', '純靠北工程師 2019 年度排行榜 | Author by @yuu-chien')
+@section('meta_keyword', '純靠北工程師 2019 年度排行榜 | Author by @yuu-chien')
+@section('meta_description', '純靠北工程師 2019 年度排行榜 | Author by @yuu-chien')
+@section('meta_og_title', '純靠北工程師 2019 年度排行榜 | Author by @yuu-chien')
+@section('meta_og_image', 'https://i.imgur.com/4drN4eL.png')
+@section('meta_og_description', '純靠北工程師 2019 年度排行榜 | Author by @yuu-chien')
 
 @section('content')
     <div class="container-fluid p-0 m-0">
         <div id="all-wrap" class="row d-flex d-md-flex flex-column p-0 m-0">
-            <!-- Something code -->
             <section id="leaderBoard-entrance" class="parallax-window" data-parallax="scroll" data-image-src="{{ asset('/img/frontend/leaderboard/2019/yuu-chien/entrance-bg.jpg') }}">
                 <div class="title-wrap">
                     <p class="entrance-title">純靠北工程師</p>
@@ -345,6 +344,16 @@
                     </div>
                 </div>
             </section>
+        </div>
+    </div>
+
+    <div class="container my-5 py-5 animated fadeIn">
+        <div class="row">
+            <div class="col-md-12 text-center text-white">
+                <h1 class="m-2">Author by</h1>
+                <img src="https://avatars0.githubusercontent.com/u/55533267" class="rounded" width="128" height="128" />
+                <h2 class="m-2"><a href="https://github.com/yuu-chien">@yuu-chien</a></h2>
+            </div>
         </div>
     </div>
 @endsection
