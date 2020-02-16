@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -7,6 +6,7 @@
 
 import '../bootstrap';
 import '../plugins';
+import 'css-doodle';
 import Vue from 'vue';
 import Vuelidate from 'vuelidate';
 import VueTippy, { TippyComponent } from 'vue-tippy';
