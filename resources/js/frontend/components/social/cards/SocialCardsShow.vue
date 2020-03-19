@@ -40,20 +40,16 @@
                     <rect x="12" y="18" rx="1" ry="1" width="80" height="2" />
                     <rect x="12" y="21" rx="1" ry="1" width="36" height="2" />
                 </vue-content-loading>
-                <div
-                    class="d-flex flex-row"
-                    v-show="loaded.avatar">
+                <div class="d-flex flex-row" v-show="loaded.avatar">
                     <div class="avatar text-center">
-                        <img class="rounded img-fluid p-1 mb-2 animated faster" :class="{ fadeIn: loaded.avatar }" :src="profile.avatar" @load="loadedAvatar" />
+                        <img class="rounded img-fluid  p-1 mb-2 animated faster" :class="{ fadeIn: loaded.avatar }" :src="profile.avatar" @load="loadedAvatar" />
                         <p class="text-white">匿名{{ profile.name }}</p>
                     </div>
                     <div class="content w-100">
                         <p class="text-right text-white mb-2">
                             <small>{{ created }}</small>
                         </p>
-                        <pre
-                            class="read text-white text-wrap"
-                            v-html="wrapContent"></pre>
+                        <code class="read text-white" style="white-space: pre-line;" v-text="wrapContent"></code>
                     </div>
                 </div>
             </div>
@@ -210,7 +206,7 @@ export default {
         };
     },
     mounted() {
-        this.wrapContent = this.content.replace(/\n/g, "<br />");
+        this.wrapContent = this.content.replace(/\n/g, "\r\n");
         this.getRandomName();
         this.getLinks();
     },
