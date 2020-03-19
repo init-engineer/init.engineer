@@ -103,7 +103,7 @@
                     </div>
                     <div class="media-body content">
                         <div class="d-flex mb-2">
-                            <span class="btn btn-sm ml-1 animated fadeInUp faster" :class="'btn-' + comment.media.type">{{ comment.media.type.toUpperCase() }} {{ (comment.media.connections === 'primary') ? '主站' : '次站' }}</span>
+                            <span class="badge badge-sm ml-1 animated fadeInUp faster" :class="'badge-' + comment.media.type">{{ comment.media.type.toUpperCase() }} {{ (comment.media.connections === 'primary') ? '主站' : '次站' }}</span>
                             <small class="ml-auto text-white">{{ comment.created }}</small>
                         </div>
                         <code class="read text-white" style="white-space: pre-line;" v-text="comment.content"></code>
