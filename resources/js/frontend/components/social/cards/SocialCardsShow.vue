@@ -70,7 +70,7 @@
                     <rect x="91" y="0" rx="1" ry="1" width="9" height="3" />
                 </vue-content-loading>
 
-                <a class="btn btn-sm mx-1 animated faster"
+                <a class="btn btn-sm m-1 animated faster"
                     :class="[ 'btn-' + link.type, { fadeInUp: loaded.avatar } ]"
                     :name="`tippy-${link.type}-${link.connections}`"
                     v-for="link in links"
