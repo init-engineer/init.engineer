@@ -4,11 +4,11 @@ AOS.init();
 // 視差捲動 START
 // Photo by Pankaj Patel on Unsplash
 $('.parallax-window').parallax({
-    imageSrc: '../img/frontend/leaderboard/2019/yuu-chien/entrance-bg.jpg'
+    imageSrc: '../../img/frontend/leaderboard/2019/yuu-chien/entrance-bg.jpg'
 });
 // Photo by Markus Spiske on Unsplash
 $('.parallax-window-2').parallax({
-    imageSrc: '../img/frontend/leaderboard/2019/yuu-chien/years-accumulation-bg.jpg'
+    imageSrc: '../../img/frontend/leaderboard/2019/yuu-chien/years-accumulation-bg.jpg'
 });
 // 視差捲動 END
 
