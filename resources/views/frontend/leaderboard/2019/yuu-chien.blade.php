@@ -25,37 +25,37 @@
                         <div class="col-12 years-accumulation-wrap p-0 m-0">
                             <div class="years-accumulation-item">
                                 <p>年度累積文章數</p>
-                                <div id="year-acc-1" class="accumulation-num" data-val=2248></div>
+                                <div id="year-acc-1" class="accumulation-num" data-val=2248 data-animation="true"></div>
                             </div>
                         </div>
                         <div class="col-12 years-accumulation-wrap p-0 m-0">
                             <div class="years-accumulation-item">
                                 <p>年度累積響應數</p>
-                                <div id="year-acc-2" class="accumulation-num" data-val=57300></div>
+                                <div id="year-acc-2" class="accumulation-num" data-val=57300 data-animation="true"></div>
                             </div>
                         </div>
                         <div class="col-12 years-accumulation-wrap p-0 m-0">
                             <div class="years-accumulation-item">
                                 <p>年度散播靠北數</p>
-                                <div id="year-acc-3" class="accumulation-num" data-val=22920></div>
+                                <div id="year-acc-3" class="accumulation-num" data-val=22920 data-animation="true"></div>
                             </div>
                         </div>
                         <div class="col-12 years-accumulation-wrap p-0 m-0">
                             <div class="years-accumulation-item">
                                 <p>年度收割拇指數</p>
-                                <div id="year-acc-4" class="accumulation-num" data-val=430864></div>
+                                <div id="year-acc-4" class="accumulation-num" data-val=430864 data-animation="true"></div>
                             </div>
                         </div>
                         <div class="col-12 years-accumulation-wrap p-0 m-0">
                             <div class="years-accumulation-item">
                                 <p>年度刪除文章數</p>
-                                <div id="year-acc-5" class="accumulation-num" data-val=233></div>
+                                <div id="year-acc-5" class="accumulation-num" data-val=233 data-animation="true"></div>
                             </div>
                         </div>
                         <div class="col-12 years-accumulation-wrap p-0 m-0">
                             <div class="years-accumulation-item">
                                 <p>年度被消失人數</p>
-                                <div id="year-acc-6" class="accumulation-num" data-val=77></div>
+                                <div id="year-acc-6" class="accumulation-num" data-val=77 data-animation="true"></div>
                             </div>
                         </div>
                     </div>
