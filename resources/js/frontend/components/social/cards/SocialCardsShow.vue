@@ -96,9 +96,7 @@
             <!-- cards links -->
 
             <div class="cards-comments">
-                <div class="d-flex flex-row media pb-2 animated fadeInUp faster"
-                    v-for="(comment, $index) in comments"
-                    :key="$index">
+                <div class="d-flex flex-row media pb-2 animated fadeInUp faster" v-for="(comment, $index) in comments" :key="$index">
                     <div class="avatar text-center">
                         <img class="align-self-start rounded img-fluid p-1 mb-2 animated faster" :class="{ fadeIn: loaded.avatar }" :src="comment.avatar" onerror="javascript:this.src='https://image.flaticon.com/icons/svg/675/675564.svg'" />
                         <p class="text-white">{{ comment.name }}</p>
@@ -108,7 +106,7 @@
                             <span class="btn btn-sm ml-1 animated fadeInUp faster" :class="'btn-' + comment.media.type">{{ comment.media.type.toUpperCase() }} {{ (comment.media.connections === 'primary') ? '主站' : '次站' }}</span>
                             <small class="ml-auto text-white">{{ comment.created }}</small>
                         </div>
-                        <pre class="read text-white text-wrap" v-html="comment.content"></pre>
+                        <code class="read text-white" style="white-space: pre-line;" v-text="comment.content"></code>
                     </div>
                 </div>
                 <!-- media -->
