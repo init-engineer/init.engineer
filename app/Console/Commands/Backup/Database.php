@@ -51,7 +51,7 @@ class Database extends Command
             $mysqldump_path = env('MYSQLDUMP_PATH', 'mysqldump');
             $your_database_database = env('BACKUP_DB_DATABASE', 'homestead');
             $your_database_username = env('BACKUP_DB_USERNAME', 'homestead');
-            $your_database_password = env('BACKUP_DB_DATABASE', 'secret');
+            $your_database_password = env('BACKUP_DB_PASSWORD', 'secret');
             $sql_output_path = env('BACKUP_OUTPUT_PATH', storage_path('backups\database.sql'));
 
             $this->process = new Process(sprintf(
