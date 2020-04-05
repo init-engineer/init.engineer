@@ -4,25 +4,12 @@
             <h1 class="text-white">投資一定有風險，大頭菜有賺有賠，申購前應詳閱公開說明書。</h1>
         </marquee-text>
 
-        <div class="row">
-            <div class="col-12 col-md-6">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-4">
                 <div class="form-group">
-                    <label class="col-label">{{ 大頭菜起始價格.起始日期.起始 }} 大頭菜 買入價格</label>
+                    <label class="col-label">{{ 大頭菜起始價格.起始日期.起始 }}(日) 大頭菜 買入價格</label>
                     <div class="input-group">
                         <input class="form-control cards-editor text-right" placeholder="大頭菜買入價格" v-model.number="大頭菜起始價格.起始買入價格" number required>
-                        <div class="input-group-append"><span class="input-group-text">鈴錢</span></div>
-                    </div>
-                    <p class="text-danger text-right"><strong>必填</strong></p>
-                </div>
-                <!--form-group-->
-            </div>
-            <!--col-->
-
-            <div class="col-12 col-md-6">
-                <div class="form-group">
-                    <label class="col-label">{{ 大頭菜起始價格.起始日期.起始 }} 大頭菜 賣出價格</label>
-                    <div class="input-group">
-                        <input class="form-control cards-editor text-right" placeholder="大頭菜賣出價格" v-model.number="大頭菜起始價格.起始賣出價格" number required>
                         <div class="input-group-append"><span class="input-group-text">鈴錢</span></div>
                     </div>
                     <p class="text-danger text-right"><strong>必填</strong></p>
@@ -267,7 +254,7 @@ export default {
     },
     methods: {
         判斷大頭菜模型() {
-            if (this.大頭菜起始價格.起始買入價格 === null || this.大頭菜週期價格.星期一.上午.設定價格 === null) {
+            if (this.大頭菜起始價格.起始買入價格 === null && this.大頭菜週期價格.星期一.上午.設定價格 === null) {
                 Swal.fire(
                     "無法判斷",
                     "判斷大頭菜模型至少需要「起始基礎價格」以及「星期一上午價格」。",
@@ -279,8 +266,9 @@ export default {
             const _R1 = this.大頭菜週期價格.星期一.上午.設定價格 / this.大頭菜起始價格.起始買入價格;
 
             if (_R1 >= 0.9) {
-                // 四期型 或 波型
-                // 步驟 2-1
+                /**
+                 * 如果週一下午、週二上午都還沒填寫，那我只能判斷為「四期」或「波型」
+                 */
                 if (this.大頭菜週期價格.星期一.下午.設定價格 === null && this.大頭菜週期價格.星期二.上午.設定價格 === null) {
                     this.大頭菜週期模式 = ['四期型', '波型'];
                     Swal.fire(
@@ -291,6 +279,9 @@ export default {
                     return;
                 }
 
+                /**
+                 * 如果週一下午有填寫，週二上午沒有填寫，那麼我就先計算週一下午的漲幅，如果跌到 0.8 以下，那肯定是「波型」，否則可能為「四期」或「波型」
+                 */
                 if (this.大頭菜週期價格.星期一.下午.設定價格 != null && this.大頭菜週期價格.星期二.上午.設定價格 === null) {
                     const _R21 = this.大頭菜週期價格.星期一.下午.設定價格 / this.大頭菜起始價格.起始買入價格;
                     if (_R21 > 0.8) {
@@ -312,14 +303,17 @@ export default {
                     }
                 }
 
+                /**
+                 * 如果週一下午沒有填寫，週二上午有填寫，那麼我就先計算週二上午的漲幅，如果漲到 1.4 以上，那肯定是「四期」，否則為「波型」
+                 */
                 if (this.大頭菜週期價格.星期一.下午.設定價格 === null && this.大頭菜週期價格.星期二.上午.設定價格 != null) {
                     const _R21 = this.大頭菜週期價格.星期二.上午.設定價格 / this.大頭菜起始價格.起始買入價格;
-                    if (_R21 < 1.4) {
-                        this.大頭菜週期模式 = ['四期型', '波型'];
+                    if (_R21 >= 1.4) {
+                        this.大頭菜週期模式 = ['四期型'];
                         Swal.fire(
-                            "可能為「四期型」或「波型」",
-                            "因為缺少「星期一下午價格」，所以只能預測可能的模型。",
-                            "warning"
+                            "四期型",
+                            "相當平均的模型，容易在早期發現，也可以賣到上限 2 倍買價的錢，不錯。",
+                            "success"
                         );
                         return;
                     } else {
@@ -333,19 +327,25 @@ export default {
                     }
                 }
 
+                /**
+                 * 最好的狀況就是週一下午、週二上午都有填寫
+                 * 那我就判斷週一下午的漲幅如果跌到 0.8 以下，或者週二上午的漲幅沒有漲到 1.4 以上，只要上面兩個條件任一符合，就肯定是「波型」，否則為「四期」
+                 */
                 const _R211 = this.大頭菜週期價格.星期一.下午.設定價格 / this.大頭菜起始價格.起始買入價格;
                 const _R212 = this.大頭菜週期價格.星期二.上午.設定價格 / this.大頭菜起始價格.起始買入價格;
-                if (_R211 > 0.8 && _R212 < 1.4) {
+                if (_R211 < 0.8 || _R212 < 1.4) {
+                    this.大頭菜週期模式 = ['波型'];
                     Swal.fire(
-                        "四期型",
-                        "相當平均的模型，容易在早期發現，也可以賣到上限 2 倍買價的錢，不錯。",
+                        "波型",
+                        "波型固定會有 2 次的下跌階段與 3 次的上漲階段。",
                         "success"
                     );
                     return;
                 } else {
+                    this.大頭菜週期模式 = ['四期型'];
                     Swal.fire(
-                        "波型",
-                        "波型固定會有 2 次的下跌階段與 3 次的上漲階段。",
+                        "四期型",
+                        "相當平均的模型，容易在早期發現，也可以賣到上限 2 倍買價的錢，不錯。",
                         "success"
                     );
                     return;
