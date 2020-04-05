@@ -1,7 +1,7 @@
 <template>
     <div>
         <marquee-text class="mb-3">
-            <h1 class="text-white">投資一定有風險，大頭菜有賺有賠，申購前應詳閱公開說明書。</h1>
+            <h1 class="text-white">{{ 標題 }}</h1>
         </marquee-text>
 
         <div class="row justify-content-center">
@@ -167,6 +167,11 @@ export default {
     },
     data() {
         return {
+            標題: '大頭菜計算機，計算你的大頭菜',
+            標題語錄: [
+                '投資一定有風險，大頭菜有賺有賠，申購前應詳閱公開說明書。',
+                '你，不會投資？那你有想過用大頭菜來投資嗎？',
+            ],
             大頭菜起始價格: {
                 起始日期: {
                     起始: new Date(),
@@ -251,10 +256,11 @@ export default {
     },
     mounted() {
         this.計算起始日期();
+        this.隨機抽取標題();
     },
     methods: {
         判斷大頭菜模型() {
-            if (this.大頭菜起始價格.起始買入價格 === null && this.大頭菜週期價格.星期一.上午.設定價格 === null) {
+            if (this.大頭菜起始價格.起始買入價格 === null || this.大頭菜週期價格.星期一.上午.設定價格 === null) {
                 Swal.fire(
                     "無法判斷",
                     "判斷大頭菜模型至少需要「起始基礎價格」以及「星期一上午價格」。",
@@ -1020,22 +1026,9 @@ export default {
             起始日期.setDate(起始日期.getDate() + 1);
             this.大頭菜起始價格.起始日期.星期六 = 起始日期.yyyymmdd('$2-$3');
         },
-        計算漲幅百分比() {
-            if (this.大頭菜起始價格.起始價格 === null) {
-                return;
-            }
-
-            // 註：每期之間的跌幅算法為 (上期÷基礎價格) x 100％ - (下期÷基礎價格) x 100％
-            const 上期價格 = this.大頭菜起始價格.起始價格;
-            this.大頭菜週期價格.forEach(日期 => {
-                if (日期.上午.設定價格 != null && 日期.下午.設定價格 != null) {
-                    const 漲幅 = 上期價格 / this.大頭菜起始價格.起始價格;
-                }
-
-                if (日期.上午.設定價格 != null && 日期.下午.設定價格 === null) {
-
-                }
-            });
+        隨機抽取標題() {
+            const 抽卡 = Math.floor(Math.random() * this.標題語錄.length);
+            this.標題 = this.標題語錄[抽卡];
         },
     },
 };
