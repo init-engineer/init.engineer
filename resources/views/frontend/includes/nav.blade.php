@@ -23,6 +23,9 @@
                     @include('includes.partials.lang')
                 </li>
             @endif --}}
+
+            <li class="nav-item"><a href="{{ route('frontend.animal.index') }}" class="nav-link {{ active_class(Route::is('frontend.animal.index')) }}"><span class="badge badge-pill badge-danger">NEW</span> 大頭菜計算機</a></li>
+
             <li class="nav-item"><a href="{{ route('frontend.social.cards.index') }}" class="nav-link {{ active_class(Route::is('frontend.social.cards.index')) }}">@lang('navs.frontend.social.cards.index')</a></li>
 
             <li class="nav-item"><a href="{{ route('frontend.social.cards.create') }}" class="nav-link {{ active_class(Route::is('frontend.social.cards.create')) }}">@lang('navs.frontend.social.cards.create')</a></li>
