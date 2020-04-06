@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands\Tests;
+namespace App\Console\Commands\Testing;
 
 use App\Services\Socials\Images\ImagesService;
 use Illuminate\Console\Command;
@@ -15,7 +15,7 @@ class CardImages extends Command
      *
      * @var string
      */
-    protected $signature = 'tests:card-images';
+    protected $signature = 'testing:card-images';
 
     /**
      * The console command description.

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands\Tests;
+namespace App\Console\Commands\Testing;
 
 use App\Models\Social\Cards;
 use Illuminate\Console\Command;
@@ -18,7 +18,7 @@ class Service extends Command
      *
      * @var string
      */
-    protected $signature = 'tests:service';
+    protected $signature = 'testing:service';
 
     /**
      * The console command description.

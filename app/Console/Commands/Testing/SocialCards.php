@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands\Tests;
+namespace App\Console\Commands\Testing;
 
 use App\Models\Auth\User;
 use App\Models\Social\Cards;
@@ -24,7 +24,7 @@ class SocialCards extends Command
      *
      * @var string
      */
-    protected $signature = 'tests:social-cards';
+    protected $signature = 'testing:social-cards';
 
     /**
      * The console command description.
