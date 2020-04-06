@@ -21,7 +21,7 @@
         <!--row-->
 
         <div class="row">
-            <div class="col-4 col-md-2">
+            <div class="col-12 col-sm-4 col-lg-2">
                 <div class="form-group">
                     <label class="col-label">{{ 大頭菜起始價格.起始日期.星期一 }}(一) 上午</label>
                     <div class="input-group">
@@ -41,7 +41,7 @@
                 <!--form-group-->
             </div>
 
-            <div class="col-4 col-md-2">
+            <div class="col-12 col-sm-4 col-lg-2">
                 <div class="form-group">
                     <label class="col-label">{{ 大頭菜起始價格.起始日期.星期二 }}(二) 上午</label>
                     <div class="input-group">
@@ -61,7 +61,7 @@
                 <!--form-group-->
             </div>
 
-            <div class="col-4 col-md-2">
+            <div class="col-12 col-sm-4 col-lg-2">
                 <div class="form-group">
                     <label class="col-label">{{ 大頭菜起始價格.起始日期.星期三 }}(三) 上午</label>
                     <div class="input-group">
@@ -81,7 +81,7 @@
                 <!--form-group-->
             </div>
 
-            <div class="col-4 col-md-2">
+            <div class="col-12 col-sm-4 col-lg-2">
                 <div class="form-group">
                     <label class="col-label">{{ 大頭菜起始價格.起始日期.星期四 }}(四) 上午</label>
                     <div class="input-group">
@@ -101,7 +101,7 @@
                 <!--form-group-->
             </div>
 
-            <div class="col-4 col-md-2">
+            <div class="col-12 col-sm-4 col-lg-2">
                 <div class="form-group">
                     <label class="col-label">{{ 大頭菜起始價格.起始日期.星期五 }}(五) 上午</label>
                     <div class="input-group">
@@ -121,7 +121,7 @@
                 <!--form-group-->
             </div>
 
-            <div class="col-4 col-md-2">
+            <div class="col-12 col-sm-4 col-lg-2">
                 <div class="form-group">
                     <label class="col-label">{{ 大頭菜起始價格.起始日期.星期六 }}(六) 上午</label>
                     <div class="input-group">
@@ -272,6 +272,7 @@ export default {
     mounted() {
         this.計算起始日期();
         this.隨機抽取標題();
+        this.渲染折條圖();
     },
     methods: {
         判斷大頭菜模型() {
