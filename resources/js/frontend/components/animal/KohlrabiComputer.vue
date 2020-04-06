@@ -154,23 +154,38 @@
             <!--col-->
         </div>
         <!--row-->
+
+        <div class="row pt-5">
+            <div class="col">
+                <div class="card">
+                    <AreaChart :chartdata="chartData" />
+                </div>
+                <!--card-->
+            </div>
+            <!--col-->
+        </div>
+        <!--row-->
     </div>
 </template>
 
 <script>
+import AreaChart from "./KohlrabiAreaChart.vue";
 import MarqueeText from "vue-marquee-text-component";
 
 export default {
     name: "KohlrabiComputer",
     components: {
+        AreaChart,
         MarqueeText,
     },
     data() {
         return {
+            chartData: null,
             標題: '大頭菜計算機，計算你的大頭菜',
             標題語錄: [
                 '投資一定有風險，大頭菜有賺有賠，申購前應詳閱公開說明書。',
                 '你，不會投資？那你有想過用大頭菜來投資嗎？',
+                '史蒂夫和戴夫都有買動物森友會，史蒂夫精研大頭菜市場，戴夫則精研使用大頭菜計算機。',
             ],
             大頭菜起始價格: {
                 起始日期: {
@@ -268,6 +283,8 @@ export default {
                 );
                 return;
             }
+
+            this.渲染折條圖();
 
             const _R1 = this.大頭菜週期價格.星期一.上午.設定價格 / this.大頭菜起始價格.起始買入價格;
             if (_R1 >= 0.9) {
@@ -1047,6 +1064,78 @@ export default {
         隨機抽取標題() {
             const 抽卡 = Math.floor(Math.random() * this.標題語錄.length);
             this.標題 = this.標題語錄[抽卡];
+        },
+        渲染折條圖() {
+            const 實價登錄 = [],
+                  預測最高價格 = [],
+                  預測最低價格 = [];
+            實價登錄.push((this.大頭菜週期價格.星期一.上午.設定價格 != null)? this.大頭菜週期價格.星期一.上午.設定價格 : 0);
+            實價登錄.push((this.大頭菜週期價格.星期一.下午.設定價格 != null)? this.大頭菜週期價格.星期一.下午.設定價格 : 0);
+            實價登錄.push((this.大頭菜週期價格.星期二.上午.設定價格 != null)? this.大頭菜週期價格.星期二.上午.設定價格 : 0);
+            實價登錄.push((this.大頭菜週期價格.星期二.下午.設定價格 != null)? this.大頭菜週期價格.星期二.下午.設定價格 : 0);
+            實價登錄.push((this.大頭菜週期價格.星期三.上午.設定價格 != null)? this.大頭菜週期價格.星期三.上午.設定價格 : 0);
+            實價登錄.push((this.大頭菜週期價格.星期三.下午.設定價格 != null)? this.大頭菜週期價格.星期三.下午.設定價格 : 0);
+            實價登錄.push((this.大頭菜週期價格.星期四.上午.設定價格 != null)? this.大頭菜週期價格.星期四.上午.設定價格 : 0);
+            實價登錄.push((this.大頭菜週期價格.星期四.下午.設定價格 != null)? this.大頭菜週期價格.星期四.下午.設定價格 : 0);
+            實價登錄.push((this.大頭菜週期價格.星期五.上午.設定價格 != null)? this.大頭菜週期價格.星期五.上午.設定價格 : 0);
+            實價登錄.push((this.大頭菜週期價格.星期五.下午.設定價格 != null)? this.大頭菜週期價格.星期五.下午.設定價格 : 0);
+            實價登錄.push((this.大頭菜週期價格.星期六.上午.設定價格 != null)? this.大頭菜週期價格.星期六.上午.設定價格 : 0);
+            實價登錄.push((this.大頭菜週期價格.星期六.下午.設定價格 != null)? this.大頭菜週期價格.星期六.下午.設定價格 : 0);
+
+            this.chartData = {
+                labels: [
+                    "星期一 上午",
+                    "星期一 下午",
+                    "星期二 上午",
+                    "星期二 下午",
+                    "星期三 上午",
+                    "星期三 下午",
+                    "星期四 上午",
+                    "星期四 下午",
+                    "星期五 上午",
+                    "星期五 下午",
+                    "星期六 上午",
+                    "星期六 下午"
+                ],
+                datasets: [
+                    {
+                        label: "實價登錄",
+                        borderColor: "#ffba49",
+                        pointBackgroundColor: "white",
+                        pointRadius: 8,
+                        pointHoverRadius: 12,
+                        borderWidth: 4,
+                        hoverBorderWidth: 6,
+                        pointBorderColor: "#ffba49",
+                        backgroundColor: null,
+                        data: 實價登錄,
+                    },
+                    // {
+                    //     label: "預計最高",
+                    //     borderColor: "#20a39e",
+                    //     pointBackgroundColor: "white",
+                    //     pointBorderColor: "#20a39e",
+                    //     pointRadius: 8,
+                    //     pointHoverRadius: 12,
+                    //     borderWidth: 4,
+                    //     hoverBorderWidth: 6,
+                    //     backgroundColor: null,
+                    //     data: 預測最高價格,
+                    // },
+                    // {
+                    //     label: "預計最低",
+                    //     borderColor: "#ef5b5b",
+                    //     pointBackgroundColor: "white",
+                    //     pointBorderColor: "#ef5b5b",
+                    //     pointRadius: 8,
+                    //     pointHoverRadius: 12,
+                    //     borderWidth: 4,
+                    //     hoverBorderWidth: 6,
+                    //     backgroundColor: null,
+                    //     data: 預測最低價格,
+                    // },
+                ]
+            };
         },
     },
 };
