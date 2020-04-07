@@ -10,8 +10,10 @@
 @section('content')
     <div class="container my-5">
         <div class="row justify-content-center">
-            <div class="col col-12 align-self-center">
+            <div class="col col-12 col-md-6">
                 <img class="img-fluid rounded mb-5 w-100" src="{{ asset('img/frontend/banner/KohlrabiComputer.png') }}" />
+            </div><!--col-->
+            <div class="col-12">
                 <kohlrabi-computer></kohlrabi-computer>
             </div><!--col-->
         </div><!--row-->

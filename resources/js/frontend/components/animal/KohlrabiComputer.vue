@@ -156,13 +156,17 @@
         <!--row-->
 
         <div class="row pt-2">
-            <div class="col">
+            <div class="col-sm-12 col-lg-6 pt-4">
                 <div class="card p-2">
                     <h3 class="card-title text-center pt-2">模型預測</h3>
                     <PieChart :chartdata="modelData" />
                 </div>
                 <!--card-->
-                <div class="card mt-4 p-2">
+            </div>
+            <!--col-->
+
+            <div class="col-sm-12 col-lg-6 pt-4">
+                <div class="card p-2">
                     <h3 class="card-title text-center pt-2">價格預測</h3>
                     <AreaChart :chartdata="chartData" />
                 </div>
