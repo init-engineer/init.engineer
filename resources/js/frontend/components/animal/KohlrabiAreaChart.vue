@@ -45,8 +45,8 @@ export default {
             this.gradient3.addColorStop(1,   "rgba(239, 91, 91, 0)");
 
             this.chartdata.datasets[0].backgroundColor = this.gradient;
-            // this.chartdata.datasets[1].backgroundColor = this.gradient2;
-            // this.chartdata.datasets[2].backgroundColor = this.gradient3;
+            this.chartdata.datasets[1].backgroundColor = this.gradient2;
+            this.chartdata.datasets[2].backgroundColor = this.gradient3;
 
             this.renderChart(this.chartdata, this.options)
         },
