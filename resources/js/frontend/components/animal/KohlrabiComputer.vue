@@ -155,6 +155,18 @@
         </div>
         <!--row-->
 
+        <div class="row">
+            <div class="col">
+                <div class="form-group clearfix">
+                    <label class="col-label">把資料清光光！</label>
+                    <button class="h3 btn btn-block btn-dos btn-lg" @click="清空輸入資料()">幫我把資料清空，謝謝！</button>
+                </div>
+                <!--form-group-->
+            </div>
+            <!--col-->
+        </div>
+        <!--row-->
+
         <div class="row pt-2">
             <div class="col-sm-12 col-lg-6 pt-4">
                 <div class="card p-2">
@@ -208,6 +220,8 @@ export default {
                 '你渴望大頭菜嗎？',
                 '大頭菜的極致就是「三期型」的漲幅，大頭菜的暴利就是「三期型」的終焉！',
                 '當我週日過了中午才打開 Switch 時 ... 曹賣！！！！！！！！！！！！',
+                '豆狸、粒狸，不管你大頭菜要收多少，「預知的未來」顯示，致富站在我這邊！',
+                '這跟賺得了賺不了錢沒有關係，我每一天都必須站在這裡問你今天大頭菜的價格！',
             ],
             大頭菜起始價格: {
                 起始日期: {
@@ -291,6 +305,20 @@ export default {
         };
     },
     mounted() {
+        if (localStorage.起始買入價格)      this.大頭菜起始價格.起始買入價格        = localStorage.起始買入價格;
+        if (localStorage.星期一上午設定價格) this.大頭菜週期價格.星期一.上午.設定價格 = localStorage.星期一上午設定價格;
+        if (localStorage.星期一下午設定價格) this.大頭菜週期價格.星期一.下午.設定價格 = localStorage.星期一下午設定價格;
+        if (localStorage.星期二上午設定價格) this.大頭菜週期價格.星期二.上午.設定價格 = localStorage.星期二上午設定價格;
+        if (localStorage.星期二下午設定價格) this.大頭菜週期價格.星期二.下午.設定價格 = localStorage.星期二下午設定價格;
+        if (localStorage.星期三上午設定價格) this.大頭菜週期價格.星期三.上午.設定價格 = localStorage.星期三上午設定價格;
+        if (localStorage.星期三下午設定價格) this.大頭菜週期價格.星期三.下午.設定價格 = localStorage.星期三下午設定價格;
+        if (localStorage.星期四上午設定價格) this.大頭菜週期價格.星期四.上午.設定價格 = localStorage.星期四上午設定價格;
+        if (localStorage.星期四下午設定價格) this.大頭菜週期價格.星期四.下午.設定價格 = localStorage.星期四下午設定價格;
+        if (localStorage.星期五上午設定價格) this.大頭菜週期價格.星期五.上午.設定價格 = localStorage.星期五上午設定價格;
+        if (localStorage.星期五下午設定價格) this.大頭菜週期價格.星期五.下午.設定價格 = localStorage.星期五下午設定價格;
+        if (localStorage.星期六上午設定價格) this.大頭菜週期價格.星期六.上午.設定價格 = localStorage.星期六上午設定價格;
+        if (localStorage.星期六下午設定價格) this.大頭菜週期價格.星期六.下午.設定價格 = localStorage.星期六下午設定價格;
+
         this.計算起始日期();
         this.隨機抽取標題();
         this.渲染折條圖();
@@ -1240,84 +1268,119 @@ export default {
             販售價格.push((this.大頭菜週期價格.星期六.上午.設定價格 != null)? this.大頭菜週期價格.星期六.上午.設定價格 : NaN);
             販售價格.push((this.大頭菜週期價格.星期六.下午.設定價格 != null)? this.大頭菜週期價格.星期六.下午.設定價格 : NaN);
 
-            let _pie0 = 0, _pie1 = 0, _pie2 = 0, _pie3 = 0, _pie4 = 0;
+            let _pie0 = 0, _pie1 = 0, _pie2 = 0, _pie3 = 0;
             for (let 可能結果 of analyze_possibilities(販售價格)) {
-                /**
-                 * 可能模型計算
-                 */
-                switch (可能結果.pattern_number) {
-                    case 0: _pie0++; break;
-                    case 1: _pie1++; break;
-                    case 2: _pie2++; break;
-                    case 3: _pie3++; break;
-                    case 4: _pie4++; break;
+                if (可能結果.pattern_number != 4) {
+                    /**
+                     * 可能模型計算
+                     */
+                    switch (可能結果.pattern_number) {
+                        case 0: _pie0++; break;
+                        case 1: _pie1++; break;
+                        case 2: _pie2++; break;
+                        case 3: _pie3++; break;
+                    }
+
+                    /**
+                     * 重新設定大頭菜的最高、最低價格起點
+                     */
+                    if (this.大頭菜週期價格.星期一.上午.預測最高價格 === null) this.大頭菜週期價格.星期一.上午.預測最高價格 = 可能結果.prices[2].max;
+                    if (this.大頭菜週期價格.星期一.下午.預測最高價格 === null) this.大頭菜週期價格.星期一.下午.預測最高價格 = 可能結果.prices[3].max;
+                    if (this.大頭菜週期價格.星期二.上午.預測最高價格 === null) this.大頭菜週期價格.星期二.上午.預測最高價格 = 可能結果.prices[4].max;
+                    if (this.大頭菜週期價格.星期二.下午.預測最高價格 === null) this.大頭菜週期價格.星期二.下午.預測最高價格 = 可能結果.prices[5].max;
+                    if (this.大頭菜週期價格.星期三.上午.預測最高價格 === null) this.大頭菜週期價格.星期三.上午.預測最高價格 = 可能結果.prices[6].max;
+                    if (this.大頭菜週期價格.星期三.下午.預測最高價格 === null) this.大頭菜週期價格.星期三.下午.預測最高價格 = 可能結果.prices[7].max;
+                    if (this.大頭菜週期價格.星期四.上午.預測最高價格 === null) this.大頭菜週期價格.星期四.上午.預測最高價格 = 可能結果.prices[8].max;
+                    if (this.大頭菜週期價格.星期四.下午.預測最高價格 === null) this.大頭菜週期價格.星期四.下午.預測最高價格 = 可能結果.prices[9].max;
+                    if (this.大頭菜週期價格.星期五.上午.預測最高價格 === null) this.大頭菜週期價格.星期五.上午.預測最高價格 = 可能結果.prices[10].max;
+                    if (this.大頭菜週期價格.星期五.下午.預測最高價格 === null) this.大頭菜週期價格.星期五.下午.預測最高價格 = 可能結果.prices[11].max;
+                    if (this.大頭菜週期價格.星期六.上午.預測最高價格 === null) this.大頭菜週期價格.星期六.上午.預測最高價格 = 可能結果.prices[12].max;
+                    if (this.大頭菜週期價格.星期六.下午.預測最高價格 === null) this.大頭菜週期價格.星期六.下午.預測最高價格 = 可能結果.prices[13].max;
+                    if (this.大頭菜週期價格.星期一.上午.預測最低價格 === null) this.大頭菜週期價格.星期一.上午.預測最低價格 = 可能結果.prices[2].min;
+                    if (this.大頭菜週期價格.星期一.下午.預測最低價格 === null) this.大頭菜週期價格.星期一.下午.預測最低價格 = 可能結果.prices[3].min;
+                    if (this.大頭菜週期價格.星期二.上午.預測最低價格 === null) this.大頭菜週期價格.星期二.上午.預測最低價格 = 可能結果.prices[4].min;
+                    if (this.大頭菜週期價格.星期二.下午.預測最低價格 === null) this.大頭菜週期價格.星期二.下午.預測最低價格 = 可能結果.prices[5].min;
+                    if (this.大頭菜週期價格.星期三.上午.預測最低價格 === null) this.大頭菜週期價格.星期三.上午.預測最低價格 = 可能結果.prices[6].min;
+                    if (this.大頭菜週期價格.星期三.下午.預測最低價格 === null) this.大頭菜週期價格.星期三.下午.預測最低價格 = 可能結果.prices[7].min;
+                    if (this.大頭菜週期價格.星期四.上午.預測最低價格 === null) this.大頭菜週期價格.星期四.上午.預測最低價格 = 可能結果.prices[8].min;
+                    if (this.大頭菜週期價格.星期四.下午.預測最低價格 === null) this.大頭菜週期價格.星期四.下午.預測最低價格 = 可能結果.prices[9].min;
+                    if (this.大頭菜週期價格.星期五.上午.預測最低價格 === null) this.大頭菜週期價格.星期五.上午.預測最低價格 = 可能結果.prices[10].min;
+                    if (this.大頭菜週期價格.星期五.下午.預測最低價格 === null) this.大頭菜週期價格.星期五.下午.預測最低價格 = 可能結果.prices[11].min;
+                    if (this.大頭菜週期價格.星期六.上午.預測最低價格 === null) this.大頭菜週期價格.星期六.上午.預測最低價格 = 可能結果.prices[12].min;
+                    if (this.大頭菜週期價格.星期六.下午.預測最低價格 === null) this.大頭菜週期價格.星期六.下午.預測最低價格 = 可能結果.prices[13].min;
+
+                    /**
+                     * 判斷大頭菜可能的最高價格
+                     */
+                    if (this.大頭菜週期價格.星期一.上午.預測最高價格 < 可能結果.prices[2].max) this.大頭菜週期價格.星期一.上午.預測最高價格 = 可能結果.prices[2].max;
+                    if (this.大頭菜週期價格.星期一.下午.預測最高價格 < 可能結果.prices[3].max) this.大頭菜週期價格.星期一.下午.預測最高價格 = 可能結果.prices[3].max;
+                    if (this.大頭菜週期價格.星期二.上午.預測最高價格 < 可能結果.prices[4].max) this.大頭菜週期價格.星期二.上午.預測最高價格 = 可能結果.prices[4].max;
+                    if (this.大頭菜週期價格.星期二.下午.預測最高價格 < 可能結果.prices[5].max) this.大頭菜週期價格.星期二.下午.預測最高價格 = 可能結果.prices[5].max;
+                    if (this.大頭菜週期價格.星期三.上午.預測最高價格 < 可能結果.prices[6].max) this.大頭菜週期價格.星期三.上午.預測最高價格 = 可能結果.prices[6].max;
+                    if (this.大頭菜週期價格.星期三.下午.預測最高價格 < 可能結果.prices[7].max) this.大頭菜週期價格.星期三.下午.預測最高價格 = 可能結果.prices[7].max;
+                    if (this.大頭菜週期價格.星期四.上午.預測最高價格 < 可能結果.prices[8].max) this.大頭菜週期價格.星期四.上午.預測最高價格 = 可能結果.prices[8].max;
+                    if (this.大頭菜週期價格.星期四.下午.預測最高價格 < 可能結果.prices[9].max) this.大頭菜週期價格.星期四.下午.預測最高價格 = 可能結果.prices[9].max;
+                    if (this.大頭菜週期價格.星期五.上午.預測最高價格 < 可能結果.prices[10].max) this.大頭菜週期價格.星期五.上午.預測最高價格 = 可能結果.prices[10].max;
+                    if (this.大頭菜週期價格.星期五.下午.預測最高價格 < 可能結果.prices[11].max) this.大頭菜週期價格.星期五.下午.預測最高價格 = 可能結果.prices[11].max;
+                    if (this.大頭菜週期價格.星期六.上午.預測最高價格 < 可能結果.prices[12].max) this.大頭菜週期價格.星期六.上午.預測最高價格 = 可能結果.prices[12].max;
+                    if (this.大頭菜週期價格.星期六.下午.預測最高價格 < 可能結果.prices[13].max) this.大頭菜週期價格.星期六.下午.預測最高價格 = 可能結果.prices[13].max;
+
+                    /**
+                     * 判斷大頭菜可能的最高價格
+                     */
+                    if (this.大頭菜週期價格.星期一.上午.預測最低價格 > 可能結果.prices[2].min) this.大頭菜週期價格.星期一.上午.預測最低價格 = 可能結果.prices[2].min;
+                    if (this.大頭菜週期價格.星期一.下午.預測最低價格 > 可能結果.prices[3].min) this.大頭菜週期價格.星期一.下午.預測最低價格 = 可能結果.prices[3].min;
+                    if (this.大頭菜週期價格.星期二.上午.預測最低價格 > 可能結果.prices[4].min) this.大頭菜週期價格.星期二.上午.預測最低價格 = 可能結果.prices[4].min;
+                    if (this.大頭菜週期價格.星期二.下午.預測最低價格 > 可能結果.prices[5].min) this.大頭菜週期價格.星期二.下午.預測最低價格 = 可能結果.prices[5].min;
+                    if (this.大頭菜週期價格.星期三.上午.預測最低價格 > 可能結果.prices[6].min) this.大頭菜週期價格.星期三.上午.預測最低價格 = 可能結果.prices[6].min;
+                    if (this.大頭菜週期價格.星期三.下午.預測最低價格 > 可能結果.prices[7].min) this.大頭菜週期價格.星期三.下午.預測最低價格 = 可能結果.prices[7].min;
+                    if (this.大頭菜週期價格.星期四.上午.預測最低價格 > 可能結果.prices[8].min) this.大頭菜週期價格.星期四.上午.預測最低價格 = 可能結果.prices[8].min;
+                    if (this.大頭菜週期價格.星期四.下午.預測最低價格 > 可能結果.prices[9].min) this.大頭菜週期價格.星期四.下午.預測最低價格 = 可能結果.prices[9].min;
+                    if (this.大頭菜週期價格.星期五.上午.預測最低價格 > 可能結果.prices[10].min) this.大頭菜週期價格.星期五.上午.預測最低價格 = 可能結果.prices[10].min;
+                    if (this.大頭菜週期價格.星期五.下午.預測最低價格 > 可能結果.prices[11].min) this.大頭菜週期價格.星期五.下午.預測最低價格 = 可能結果.prices[11].min;
+                    if (this.大頭菜週期價格.星期六.上午.預測最低價格 > 可能結果.prices[12].min) this.大頭菜週期價格.星期六.上午.預測最低價格 = 可能結果.prices[12].min;
+                    if (this.大頭菜週期價格.星期六.下午.預測最低價格 > 可能結果.prices[13].min) this.大頭菜週期價格.星期六.下午.預測最低價格 = 可能結果.prices[13].min;
+
+                    this.預測結果.push(可能結果);
                 }
-
-                /**
-                 * 重新設定大頭菜的最高、最低價格起點
-                 */
-                if (this.大頭菜週期價格.星期一.上午.預測最高價格 === null) this.大頭菜週期價格.星期一.上午.預測最高價格 = 可能結果.prices[2].max;
-                if (this.大頭菜週期價格.星期一.下午.預測最高價格 === null) this.大頭菜週期價格.星期一.下午.預測最高價格 = 可能結果.prices[3].max;
-                if (this.大頭菜週期價格.星期二.上午.預測最高價格 === null) this.大頭菜週期價格.星期二.上午.預測最高價格 = 可能結果.prices[4].max;
-                if (this.大頭菜週期價格.星期二.下午.預測最高價格 === null) this.大頭菜週期價格.星期二.下午.預測最高價格 = 可能結果.prices[5].max;
-                if (this.大頭菜週期價格.星期三.上午.預測最高價格 === null) this.大頭菜週期價格.星期三.上午.預測最高價格 = 可能結果.prices[6].max;
-                if (this.大頭菜週期價格.星期三.下午.預測最高價格 === null) this.大頭菜週期價格.星期三.下午.預測最高價格 = 可能結果.prices[7].max;
-                if (this.大頭菜週期價格.星期四.上午.預測最高價格 === null) this.大頭菜週期價格.星期四.上午.預測最高價格 = 可能結果.prices[8].max;
-                if (this.大頭菜週期價格.星期四.下午.預測最高價格 === null) this.大頭菜週期價格.星期四.下午.預測最高價格 = 可能結果.prices[9].max;
-                if (this.大頭菜週期價格.星期五.上午.預測最高價格 === null) this.大頭菜週期價格.星期五.上午.預測最高價格 = 可能結果.prices[10].max;
-                if (this.大頭菜週期價格.星期五.下午.預測最高價格 === null) this.大頭菜週期價格.星期五.下午.預測最高價格 = 可能結果.prices[11].max;
-                if (this.大頭菜週期價格.星期六.上午.預測最高價格 === null) this.大頭菜週期價格.星期六.上午.預測最高價格 = 可能結果.prices[12].max;
-                if (this.大頭菜週期價格.星期六.下午.預測最高價格 === null) this.大頭菜週期價格.星期六.下午.預測最高價格 = 可能結果.prices[13].max;
-                if (this.大頭菜週期價格.星期一.上午.預測最低價格 === null) this.大頭菜週期價格.星期一.上午.預測最低價格 = 可能結果.prices[2].min;
-                if (this.大頭菜週期價格.星期一.下午.預測最低價格 === null) this.大頭菜週期價格.星期一.下午.預測最低價格 = 可能結果.prices[3].min;
-                if (this.大頭菜週期價格.星期二.上午.預測最低價格 === null) this.大頭菜週期價格.星期二.上午.預測最低價格 = 可能結果.prices[4].min;
-                if (this.大頭菜週期價格.星期二.下午.預測最低價格 === null) this.大頭菜週期價格.星期二.下午.預測最低價格 = 可能結果.prices[5].min;
-                if (this.大頭菜週期價格.星期三.上午.預測最低價格 === null) this.大頭菜週期價格.星期三.上午.預測最低價格 = 可能結果.prices[6].min;
-                if (this.大頭菜週期價格.星期三.下午.預測最低價格 === null) this.大頭菜週期價格.星期三.下午.預測最低價格 = 可能結果.prices[7].min;
-                if (this.大頭菜週期價格.星期四.上午.預測最低價格 === null) this.大頭菜週期價格.星期四.上午.預測最低價格 = 可能結果.prices[8].min;
-                if (this.大頭菜週期價格.星期四.下午.預測最低價格 === null) this.大頭菜週期價格.星期四.下午.預測最低價格 = 可能結果.prices[9].min;
-                if (this.大頭菜週期價格.星期五.上午.預測最低價格 === null) this.大頭菜週期價格.星期五.上午.預測最低價格 = 可能結果.prices[10].min;
-                if (this.大頭菜週期價格.星期五.下午.預測最低價格 === null) this.大頭菜週期價格.星期五.下午.預測最低價格 = 可能結果.prices[11].min;
-                if (this.大頭菜週期價格.星期六.上午.預測最低價格 === null) this.大頭菜週期價格.星期六.上午.預測最低價格 = 可能結果.prices[12].min;
-                if (this.大頭菜週期價格.星期六.下午.預測最低價格 === null) this.大頭菜週期價格.星期六.下午.預測最低價格 = 可能結果.prices[13].min;
-
-                /**
-                 * 判斷大頭菜可能的最高價格
-                 */
-                if (this.大頭菜週期價格.星期一.上午.預測最高價格 < 可能結果.prices[2].max) this.大頭菜週期價格.星期一.上午.預測最高價格 = 可能結果.prices[2].max;
-                if (this.大頭菜週期價格.星期一.下午.預測最高價格 < 可能結果.prices[3].max) this.大頭菜週期價格.星期一.下午.預測最高價格 = 可能結果.prices[3].max;
-                if (this.大頭菜週期價格.星期二.上午.預測最高價格 < 可能結果.prices[4].max) this.大頭菜週期價格.星期二.上午.預測最高價格 = 可能結果.prices[4].max;
-                if (this.大頭菜週期價格.星期二.下午.預測最高價格 < 可能結果.prices[5].max) this.大頭菜週期價格.星期二.下午.預測最高價格 = 可能結果.prices[5].max;
-                if (this.大頭菜週期價格.星期三.上午.預測最高價格 < 可能結果.prices[6].max) this.大頭菜週期價格.星期三.上午.預測最高價格 = 可能結果.prices[6].max;
-                if (this.大頭菜週期價格.星期三.下午.預測最高價格 < 可能結果.prices[7].max) this.大頭菜週期價格.星期三.下午.預測最高價格 = 可能結果.prices[7].max;
-                if (this.大頭菜週期價格.星期四.上午.預測最高價格 < 可能結果.prices[8].max) this.大頭菜週期價格.星期四.上午.預測最高價格 = 可能結果.prices[8].max;
-                if (this.大頭菜週期價格.星期四.下午.預測最高價格 < 可能結果.prices[9].max) this.大頭菜週期價格.星期四.下午.預測最高價格 = 可能結果.prices[9].max;
-                if (this.大頭菜週期價格.星期五.上午.預測最高價格 < 可能結果.prices[10].max) this.大頭菜週期價格.星期五.上午.預測最高價格 = 可能結果.prices[10].max;
-                if (this.大頭菜週期價格.星期五.下午.預測最高價格 < 可能結果.prices[11].max) this.大頭菜週期價格.星期五.下午.預測最高價格 = 可能結果.prices[11].max;
-                if (this.大頭菜週期價格.星期六.上午.預測最高價格 < 可能結果.prices[12].max) this.大頭菜週期價格.星期六.上午.預測最高價格 = 可能結果.prices[12].max;
-                if (this.大頭菜週期價格.星期六.下午.預測最高價格 < 可能結果.prices[13].max) this.大頭菜週期價格.星期六.下午.預測最高價格 = 可能結果.prices[13].max;
-
-                /**
-                 * 判斷大頭菜可能的最高價格
-                 */
-                if (this.大頭菜週期價格.星期一.上午.預測最低價格 > 可能結果.prices[2].min) this.大頭菜週期價格.星期一.上午.預測最低價格 = 可能結果.prices[2].min;
-                if (this.大頭菜週期價格.星期一.下午.預測最低價格 > 可能結果.prices[3].min) this.大頭菜週期價格.星期一.下午.預測最低價格 = 可能結果.prices[3].min;
-                if (this.大頭菜週期價格.星期二.上午.預測最低價格 > 可能結果.prices[4].min) this.大頭菜週期價格.星期二.上午.預測最低價格 = 可能結果.prices[4].min;
-                if (this.大頭菜週期價格.星期二.下午.預測最低價格 > 可能結果.prices[5].min) this.大頭菜週期價格.星期二.下午.預測最低價格 = 可能結果.prices[5].min;
-                if (this.大頭菜週期價格.星期三.上午.預測最低價格 > 可能結果.prices[6].min) this.大頭菜週期價格.星期三.上午.預測最低價格 = 可能結果.prices[6].min;
-                if (this.大頭菜週期價格.星期三.下午.預測最低價格 > 可能結果.prices[7].min) this.大頭菜週期價格.星期三.下午.預測最低價格 = 可能結果.prices[7].min;
-                if (this.大頭菜週期價格.星期四.上午.預測最低價格 > 可能結果.prices[8].min) this.大頭菜週期價格.星期四.上午.預測最低價格 = 可能結果.prices[8].min;
-                if (this.大頭菜週期價格.星期四.下午.預測最低價格 > 可能結果.prices[9].min) this.大頭菜週期價格.星期四.下午.預測最低價格 = 可能結果.prices[9].min;
-                if (this.大頭菜週期價格.星期五.上午.預測最低價格 > 可能結果.prices[10].min) this.大頭菜週期價格.星期五.上午.預測最低價格 = 可能結果.prices[10].min;
-                if (this.大頭菜週期價格.星期五.下午.預測最低價格 > 可能結果.prices[11].min) this.大頭菜週期價格.星期五.下午.預測最低價格 = 可能結果.prices[11].min;
-                if (this.大頭菜週期價格.星期六.上午.預測最低價格 > 可能結果.prices[12].min) this.大頭菜週期價格.星期六.上午.預測最低價格 = 可能結果.prices[12].min;
-                if (this.大頭菜週期價格.星期六.下午.預測最低價格 > 可能結果.prices[13].min) this.大頭菜週期價格.星期六.下午.預測最低價格 = 可能結果.prices[13].min;
-
-                this.預測結果.push(可能結果);
             }
             this.modelData = [_pie0, _pie1, _pie2, _pie3];
         },
+        清空輸入資料() {
+            localStorage.clear();
+            this.大頭菜週期價格.星期一.上午.設定價格 = null;
+            this.大頭菜週期價格.星期一.下午.設定價格 = null;
+            this.大頭菜週期價格.星期二.上午.設定價格 = null;
+            this.大頭菜週期價格.星期二.下午.設定價格 = null;
+            this.大頭菜週期價格.星期三.上午.設定價格 = null;
+            this.大頭菜週期價格.星期三.下午.設定價格 = null;
+            this.大頭菜週期價格.星期四.上午.設定價格 = null;
+            this.大頭菜週期價格.星期四.下午.設定價格 = null;
+            this.大頭菜週期價格.星期五.上午.設定價格 = null;
+            this.大頭菜週期價格.星期五.下午.設定價格 = null;
+            this.大頭菜週期價格.星期六.上午.設定價格 = null;
+            this.大頭菜週期價格.星期六.下午.設定價格 = null;
+            this.大頭菜起始價格.起始買入價格 = 100;
+            localStorage.clear();
+
+            this.渲染折條圖();
+        },
     },
+    watch: {
+        '大頭菜起始價格.起始買入價格':        function (價格資訊) { localStorage.起始買入價格      = 價格資訊; },
+        '大頭菜週期價格.星期一.上午.設定價格': function (價格資訊) { localStorage.星期一上午設定價格 = 價格資訊; },
+        '大頭菜週期價格.星期一.下午.設定價格': function (價格資訊) { localStorage.星期一下午設定價格 = 價格資訊; },
+        '大頭菜週期價格.星期二.上午.設定價格': function (價格資訊) { localStorage.星期二上午設定價格 = 價格資訊; },
+        '大頭菜週期價格.星期二.下午.設定價格': function (價格資訊) { localStorage.星期二下午設定價格 = 價格資訊; },
+        '大頭菜週期價格.星期三.上午.設定價格': function (價格資訊) { localStorage.星期三上午設定價格 = 價格資訊; },
+        '大頭菜週期價格.星期三.下午.設定價格': function (價格資訊) { localStorage.星期三下午設定價格 = 價格資訊; },
+        '大頭菜週期價格.星期四.上午.設定價格': function (價格資訊) { localStorage.星期四上午設定價格 = 價格資訊; },
+        '大頭菜週期價格.星期四.下午.設定價格': function (價格資訊) { localStorage.星期四下午設定價格 = 價格資訊; },
+        '大頭菜週期價格.星期五.上午.設定價格': function (價格資訊) { localStorage.星期五上午設定價格 = 價格資訊; },
+        '大頭菜週期價格.星期五.下午.設定價格': function (價格資訊) { localStorage.星期五下午設定價格 = 價格資訊; },
+        '大頭菜週期價格.星期六.上午.設定價格': function (價格資訊) { localStorage.星期六上午設定價格 = 價格資訊; },
+        '大頭菜週期價格.星期六.下午.設定價格': function (價格資訊) { localStorage.星期六下午設定價格 = 價格資訊; },
+    }
 };
 
 Date.prototype.yyyymmdd = function(val = '$1-$2-$3') {
