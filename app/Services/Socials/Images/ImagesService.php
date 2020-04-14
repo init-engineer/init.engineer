@@ -385,6 +385,12 @@ class ImagesService extends BaseService implements ImagesContract
                 $this->drawingBackgroundImage('32d2a897602ef652ed8e15d66128aa74');
                 break;
 
+            /** 粉紅色 */
+            case 'j874kwoxi2nh64yt67wtphy9m5dmea4q':
+                $this->canvasTextColor = imageColorAllocate($this->canvas, 255, 83, 118);
+                $this->canvasBackgroundColor = imageColorAllocate($this->canvas, 248, 192, 200);
+                break;
+
             /** 預設: 黑底綠字 */
             default:
                 $this->canvasTextColor = imageColorAllocate($this->canvas, 0, 255, 59);

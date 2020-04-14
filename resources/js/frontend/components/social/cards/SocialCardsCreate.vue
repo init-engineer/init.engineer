@@ -363,6 +363,15 @@ export default {
                             text: "#F8F9FA",
                         },
                     },
+                    {
+                        text: "粉紅色",
+                        class: "bg-pink-secondary color-pink",
+                        value: "j874kwoxi2nh64yt67wtphy9m5dmea4q",
+                        color: {
+                            background: "#F8C0C8",
+                            text: "#FF5376",
+                        },
+                    },
                 ],
             },
             font: {
