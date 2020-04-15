@@ -16,11 +16,21 @@
             <div class="col-12">
                 <kohlrabi-computer></kohlrabi-computer>
             </div><!--col-->
+            <div class="col-12">
+                <ins class="adsbygoogle"
+                    style="display:block"
+                    data-ad-client="ca-pub-3028179090690423"
+                    data-ad-slot="2486547757"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"></ins>
+            </div>
         </div><!--row-->
     </div><!--container-->
 @endsection
 
 @push('before-scripts')
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script> (adsbygoogle = window.adsbygoogle || []).push({}); </script>
     <script>
         function minimum_rate_from_given_and_base(given_price, buy_price) {
             return 10000 * (given_price - 1) / buy_price;

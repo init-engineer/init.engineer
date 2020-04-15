@@ -8,6 +8,21 @@
             <div class="col col-12 align-self-center">
                 <social-cards-create :is-admin="{{ $logged_in_user->isAdmin()? 1 : 0 }}"></social-cards-create>
             </div><!--col-->
+
+            <div class="col col-12 align-self-center">
+                <ins class="adsbygoogle"
+                    style="display:block"
+                    data-ad-client="ca-pub-3028179090690423"
+                    data-ad-slot="2486547757"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"></ins>
+            </div><!--col-->
         </div><!--row-->
     </div><!--container-->
 @endsection
+
+@push('after-scripts')
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script> (adsbygoogle = window.adsbygoogle || []).push({}); </script>
+@endpush

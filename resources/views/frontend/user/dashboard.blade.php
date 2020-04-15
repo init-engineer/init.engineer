@@ -49,6 +49,17 @@
                                         @endcan
                                     </div>
                                 </div>
+
+                                <hr class="border border-w-3">
+
+                                <div class="card mb-4 bg-img-rock text-white rounded-0 border border-w-6">
+                                    <ins class="adsbygoogle"
+                                        style="display:block"
+                                        data-ad-client="ca-pub-3028179090690423"
+                                        data-ad-slot="7777514837"
+                                        data-ad-format="auto"
+                                        data-full-width-responsive="true"></ins>
+                                </div>
                             </div><!--col-md-4-->
 
                             <div class="col-md-8 order-2 order-sm-1">
@@ -80,3 +91,9 @@
         </div><!-- row -->
     </div><!--container-->
 @endsection
+
+@push('after-scripts')
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script> (adsbygoogle = window.adsbygoogle || []).push({}); </script>
+@endpush
