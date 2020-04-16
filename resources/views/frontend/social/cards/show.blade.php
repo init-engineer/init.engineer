@@ -14,7 +14,8 @@
                 <social-cards-show id="{{ $card->id }}" content="{{ $card->content }}" image="{{ $image }}" created="{{ $card->created_at->diffForHumans() }}"></social-cards-show>
             </div><!--col-->
 
-            <div class="col col-12">
+            <div class="col col-12 mt-2">
+                <label class="col-label">這裡是 Ads 廣告</label>
                 <ins class="adsbygoogle"
                     style="display:block"
                     data-ad-client="ca-pub-3028179090690423"

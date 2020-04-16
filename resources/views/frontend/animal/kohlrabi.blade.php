@@ -16,7 +16,8 @@
             <div class="col-12">
                 <kohlrabi-computer></kohlrabi-computer>
             </div><!--col-->
-            <div class="col-12">
+            <div class="col-12 mt-3">
+                <label class="col-label">這裡是 Ads 廣告</label>
                 <ins class="adsbygoogle"
                     style="display:block"
                     data-ad-client="ca-pub-3028179090690423"

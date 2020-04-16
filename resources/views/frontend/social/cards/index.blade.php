@@ -3,7 +3,8 @@
 @section('title', app_name() . ' | ' . __('navs.frontend.social.cards.index'))
 
 @section('content')
-    <div class="container my-5">
+    <div class="container mt-3">
+        <label class="col-label">這裡是 Ads 廣告</label>
         <ins class="adsbygoogle"
             style="display:block"
             data-ad-client="ca-pub-3028179090690423"
@@ -12,7 +13,7 @@
             data-full-width-responsive="true"></ins>
     </div>
 
-    <div class="container my-5">
+    <div class="container my-3">
         <social-cards-list></social-cards-list>
     </div><!--container-->
 @endsection

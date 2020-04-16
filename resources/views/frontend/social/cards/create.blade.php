@@ -9,7 +9,8 @@
                 <social-cards-create :is-admin="{{ $logged_in_user->isAdmin()? 1 : 0 }}"></social-cards-create>
             </div><!--col-->
 
-            <div class="col col-12 align-self-center">
+            <div class="col col-12 mt-2 align-self-center">
+                <label class="col-label">這裡是 Ads 廣告</label>
                 <ins class="adsbygoogle"
                     style="display:block"
                     data-ad-client="ca-pub-3028179090690423"
