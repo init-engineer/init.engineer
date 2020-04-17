@@ -4,12 +4,34 @@
             <h1 class="text-white">{{ 標題 }}</h1>
         </marquee-text>
 
+        <div class="checkout-container my-2">
+            <form class="form cf">
+                <section class="plan cf text-center my-2">
+                    <h1 class="text-white">第一次購買</h1>
+                    <h2 class="text-white">這是您第一次在島上跟曹賣購買大頭菜嗎？</h2>
+                    <h3 class="text-white">（這會影響您的判斷模式）</h3>
+                    <input type="radio" v-model="first_time" id="first-time-radio-no" name="first-time" :value="false" checked><label class="col first-col" for="first-time-radio-no">不是</label>
+                    <input type="radio" v-model="first_time" id="first-time-radio-yes" name="first-time" :value="true"><label class="col first-col" for="first-time-radio-yes">是的</label>
+                </section>
+                <section class="plan cf text-center my-2">
+                    <h1 class="text-white">上一期的模式</h1>
+                    <h2 class="text-white">上週您的大頭菜價格走勢如何呢？</h2>
+                    <h3 class="text-white">（這會影響您的判斷模式）</h3>
+                    <input type="radio" v-model.number="pattern" id="pattern-radio-unknown" name="pattern" :value="-1" checked><label class="col pattern-col" for="pattern-radio-unknown">我不知道</label>
+                    <input type="radio" v-model.number="pattern" id="pattern-radio-fluctuating" name="pattern" :value="0"><label class="col pattern-col" for="pattern-radio-fluctuating">波型</label>
+                    <input type="radio" v-model.number="pattern" id="pattern-radio-small-spike" name="pattern" :value="3"><label class="col pattern-col" for="pattern-radio-small-spike">四期型</label>
+                    <input type="radio" v-model.number="pattern" id="pattern-radio-large-spike" name="pattern" :value="1"><label class="col pattern-col" for="pattern-radio-large-spike">三期型</label>
+                    <input type="radio" v-model.number="pattern" id="pattern-radio-decreasing" name="pattern" :value="2"><label class="col pattern-col" for="pattern-radio-decreasing">遞減型</label>
+                </section>
+            </form>
+        </div>
+
         <div class="row justify-content-center">
             <div class="col-12 col-md-4">
                 <div class="form-group">
                     <label class="col-label">{{ 大頭菜起始價格.起始日期.起始 }}(日) 大頭菜 買入價格</label>
                     <div class="input-group">
-                        <input class="form-control cards-editor text-right" placeholder="大頭菜買入價格" v-model.number="大頭菜起始價格.起始買入價格" number required>
+                        <input class="form-control cards-editor text-right" placeholder="大頭菜買入價格" v-model.number="大頭菜起始價格.起始買入價格" required>
                         <div class="input-group-append"><span class="input-group-text">鈴錢</span></div>
                     </div>
                     <p class="text-danger text-right"><strong>必填</strong></p>
@@ -25,7 +47,7 @@
                 <div class="form-group">
                     <label class="col-label">{{ 大頭菜起始價格.起始日期.星期一 }}(一) 上午</label>
                     <div class="input-group">
-                        <input class="form-control cards-editor text-right" placeholder="賣出價格" v-model.number="大頭菜週期價格.星期一.上午.設定價格" number>
+                        <input class="form-control cards-editor text-right" placeholder="賣出價格" v-model.number="大頭菜週期價格.星期一.上午.設定價格">
                         <div class="input-group-append"><span class="input-group-text">鈴錢</span></div>
                     </div>
                 </div>
@@ -34,7 +56,7 @@
                 <div class="form-group">
                     <label class="col-label">{{ 大頭菜起始價格.起始日期.星期一 }}(一) 下午</label>
                     <div class="input-group">
-                        <input class="form-control cards-editor text-right" placeholder="賣出價格" v-model.number="大頭菜週期價格.星期一.下午.設定價格" number>
+                        <input class="form-control cards-editor text-right" placeholder="賣出價格" v-model.number="大頭菜週期價格.星期一.下午.設定價格">
                         <div class="input-group-append"><span class="input-group-text">鈴錢</span></div>
                     </div>
                 </div>
@@ -45,7 +67,7 @@
                 <div class="form-group">
                     <label class="col-label">{{ 大頭菜起始價格.起始日期.星期二 }}(二) 上午</label>
                     <div class="input-group">
-                        <input class="form-control cards-editor text-right" placeholder="賣出價格" v-model.number="大頭菜週期價格.星期二.上午.設定價格" number>
+                        <input class="form-control cards-editor text-right" placeholder="賣出價格" v-model.number="大頭菜週期價格.星期二.上午.設定價格">
                         <div class="input-group-append"><span class="input-group-text">鈴錢</span></div>
                     </div>
                 </div>
@@ -54,7 +76,7 @@
                 <div class="form-group">
                     <label class="col-label">{{ 大頭菜起始價格.起始日期.星期二 }}(二) 下午</label>
                     <div class="input-group">
-                        <input class="form-control cards-editor text-right" placeholder="賣出價格" v-model.number="大頭菜週期價格.星期二.下午.設定價格" number>
+                        <input class="form-control cards-editor text-right" placeholder="賣出價格" v-model.number="大頭菜週期價格.星期二.下午.設定價格">
                         <div class="input-group-append"><span class="input-group-text">鈴錢</span></div>
                     </div>
                 </div>
@@ -204,6 +226,8 @@ export default {
     },
     data() {
         return {
+            first_time: false,
+            pattern: -1,
             chartData: null,
             modelData: [],
             預測結果: [],
@@ -1254,22 +1278,23 @@ export default {
 
             this.預測結果 = [];
             let 購買價格 = this.大頭菜起始價格.起始買入價格;
-            let 販售價格 = [購買價格, 購買價格];
-            販售價格.push((this.大頭菜週期價格.星期一.上午.設定價格 != null)? this.大頭菜週期價格.星期一.上午.設定價格 : NaN);
-            販售價格.push((this.大頭菜週期價格.星期一.下午.設定價格 != null)? this.大頭菜週期價格.星期一.下午.設定價格 : NaN);
-            販售價格.push((this.大頭菜週期價格.星期二.上午.設定價格 != null)? this.大頭菜週期價格.星期二.上午.設定價格 : NaN);
-            販售價格.push((this.大頭菜週期價格.星期二.下午.設定價格 != null)? this.大頭菜週期價格.星期二.下午.設定價格 : NaN);
-            販售價格.push((this.大頭菜週期價格.星期三.上午.設定價格 != null)? this.大頭菜週期價格.星期三.上午.設定價格 : NaN);
-            販售價格.push((this.大頭菜週期價格.星期三.下午.設定價格 != null)? this.大頭菜週期價格.星期三.下午.設定價格 : NaN);
-            販售價格.push((this.大頭菜週期價格.星期四.上午.設定價格 != null)? this.大頭菜週期價格.星期四.上午.設定價格 : NaN);
-            販售價格.push((this.大頭菜週期價格.星期四.下午.設定價格 != null)? this.大頭菜週期價格.星期四.下午.設定價格 : NaN);
-            販售價格.push((this.大頭菜週期價格.星期五.上午.設定價格 != null)? this.大頭菜週期價格.星期五.上午.設定價格 : NaN);
-            販售價格.push((this.大頭菜週期價格.星期五.下午.設定價格 != null)? this.大頭菜週期價格.星期五.下午.設定價格 : NaN);
-            販售價格.push((this.大頭菜週期價格.星期六.上午.設定價格 != null)? this.大頭菜週期價格.星期六.上午.設定價格 : NaN);
-            販售價格.push((this.大頭菜週期價格.星期六.下午.設定價格 != null)? this.大頭菜週期價格.星期六.下午.設定價格 : NaN);
+            let 販售價格 = [parseInt(購買價格), parseInt(購買價格)];
+            販售價格.push((this.大頭菜週期價格.星期一.上午.設定價格 != null)? parseInt(this.大頭菜週期價格.星期一.上午.設定價格) : NaN);
+            販售價格.push((this.大頭菜週期價格.星期一.下午.設定價格 != null)? parseInt(this.大頭菜週期價格.星期一.下午.設定價格) : NaN);
+            販售價格.push((this.大頭菜週期價格.星期二.上午.設定價格 != null)? parseInt(this.大頭菜週期價格.星期二.上午.設定價格) : NaN);
+            販售價格.push((this.大頭菜週期價格.星期二.下午.設定價格 != null)? parseInt(this.大頭菜週期價格.星期二.下午.設定價格) : NaN);
+            販售價格.push((this.大頭菜週期價格.星期三.上午.設定價格 != null)? parseInt(this.大頭菜週期價格.星期三.上午.設定價格) : NaN);
+            販售價格.push((this.大頭菜週期價格.星期三.下午.設定價格 != null)? parseInt(this.大頭菜週期價格.星期三.下午.設定價格) : NaN);
+            販售價格.push((this.大頭菜週期價格.星期四.上午.設定價格 != null)? parseInt(this.大頭菜週期價格.星期四.上午.設定價格) : NaN);
+            販售價格.push((this.大頭菜週期價格.星期四.下午.設定價格 != null)? parseInt(this.大頭菜週期價格.星期四.下午.設定價格) : NaN);
+            販售價格.push((this.大頭菜週期價格.星期五.上午.設定價格 != null)? parseInt(this.大頭菜週期價格.星期五.上午.設定價格) : NaN);
+            販售價格.push((this.大頭菜週期價格.星期五.下午.設定價格 != null)? parseInt(this.大頭菜週期價格.星期五.下午.設定價格) : NaN);
+            販售價格.push((this.大頭菜週期價格.星期六.上午.設定價格 != null)? parseInt(this.大頭菜週期價格.星期六.上午.設定價格) : NaN);
+            販售價格.push((this.大頭菜週期價格.星期六.下午.設定價格 != null)? parseInt(this.大頭菜週期價格.星期六.下午.設定價格) : NaN);
 
             let _pie0 = 0, _pie1 = 0, _pie2 = 0, _pie3 = 0;
-            for (let 可能結果 of analyze_possibilities(販售價格)) {
+
+            for (let 可能結果 of analyze_possibilities(販售價格, this.first_time, this.pattern)) {
                 if (可能結果.pattern_number != 4) {
                     /**
                      * 可能模型計算
@@ -1391,3 +1416,81 @@ Date.prototype.yyyymmdd = function(val = '$1-$2-$3') {
     }).replace(/(\d+)\/(\d+)\/(\d+)/, val);
 };
 </script>
+
+<style>
+    /* CONTAINERS */
+    .checkout-container {
+        max-width: 850px;
+        width: 100%;
+        margin: 0 auto;
+    }
+    .first-col {
+        width: 48.6%;
+        max-width: 50%;
+    }
+    .pattern-col {
+        width: 18.6%;
+        max-width: 50%;
+    }
+
+    /* COLUMNS */
+    .col {
+        display: block;
+        float: left;
+        margin: 1% 0 1% 1.6%;
+    }
+    .col:first-of-type {
+        margin-left: 0;
+    }
+
+    /* CLEARFIX */
+    .cf:before,
+    .cf:after {
+        content: " ";
+        display: table;
+    }
+    .cf:after {
+        clear: both;
+    }
+    .cf {
+        *zoom: 1;
+    }
+
+    /* FORM */
+    .form .plan input, .form .payment-plan input, .form .payment-type input {
+        display: none;
+    }
+    .form label {
+        position: relative;
+        color: #fff;
+        background-color: #aaa;
+        font-size: 26px;
+        text-align: center;
+        height: 150px;
+        line-height: 150px;
+        display: block;
+        cursor: pointer;
+        border: 3px solid transparent;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    .form .plan input:checked + label, .form .payment-plan input:checked + label, .form .payment-type input:checked + label {
+        border: 3px solid #333;
+        background-color: #2fcc71;
+
+    }
+    .form .plan input:checked + label:after, form .payment-plan input:checked + label:after, .form .payment-type input:checked + label:after {
+        content: "\2713";
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        border-radius: 100%;
+        border: 2px solid #333;
+        background-color: #2fcc71;
+        z-index: 999;
+        position: absolute;
+        top: -10px;
+        right: -10px;
+    }
+</style>
