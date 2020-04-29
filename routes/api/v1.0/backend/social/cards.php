@@ -25,7 +25,7 @@ Route::group([
             'prefix' => 'cards',
             'as' => 'cards.',
             'namespace' => 'Cards',
-            'middleware' => ['auth:api', 'role:'.config('access.users.admin_role')],
+            'middleware' => ['auth:token', 'role:'.config('access.users.admin_role')],
         ], function () {
             Route::post('/publish', [CardsController::class, 'store'])->name('store');
         });

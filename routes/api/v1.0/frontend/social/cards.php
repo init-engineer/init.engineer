@@ -28,7 +28,17 @@ Route::group([
         ], function () {
             // Cards CRUD
             Route::get('/', [CardsController::class, 'index'])->name('index');
-            Route::group(['middleware' => 'auth:api'], function () {
+            Route::group([
+                'prefix' => '/token',
+                'middleware' => 'auth:token',
+            ], function () {
+                Route::get('/dashboard', [CardsController::class, 'dashboard'])->name('dashboard');
+                Route::post('/publish', [CardsController::class, 'store'])->name('store');
+            });
+            Route::group([
+                'prefix' => '/api',
+                'middleware' => 'auth:api',
+            ], function () {
                 Route::get('/dashboard', [CardsController::class, 'dashboard'])->name('dashboard');
                 Route::post('/publish', [CardsController::class, 'store'])->name('store');
             });

@@ -145,7 +145,7 @@ export default {
             cards: [],
             images: [],
             gallery: null,
-            cardsNext: `/api/frontend/social/cards/dashboard`,
+            cardsNext: `/api/frontend/social/cards/token/dashboard`,
         };
     },
     methods: {

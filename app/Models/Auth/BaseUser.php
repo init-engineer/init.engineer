@@ -4,6 +4,7 @@ namespace App\Models\Auth;
 
 use App\Models\Traits\Uuid;
 use Altek\Eventually\Eventually;
+use Laravel\Passport\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Altek\Accountant\Contracts\Recordable;
@@ -20,6 +21,7 @@ abstract class BaseUser extends Authenticatable implements Recordable
 {
     use HasRoles,
         Eventually,
+        HasApiTokens,
         Impersonate,
         Notifiable,
         RecordableTrait,

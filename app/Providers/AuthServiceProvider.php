@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
-use Gate;
+use Carbon\Carbon;
+use Laravel\Passport\Passport;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 /**
@@ -25,6 +27,10 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
+
+        Passport::routes();
+        Passport::tokensExpireIn(Carbon::now()->addDays(7));
+        Passport::refreshTokensExpireIn(Carbon::now()->addDays(14));
 
         // Implicitly grant "Admin" role all permissions
         // This works in the app by using gate-related functions like auth()->user->can() and @can()

@@ -24,6 +24,7 @@
         "lab404/laravel-impersonate": "^1.4",
         "langleyfoxall/laravel-nist-password-rules": "^4.0",
         "laravel/framework": "^6.0",
+        "laravel/passport": "^8.4",
         "laravel/socialite": "^4.1",
         "league/fractal": "^0.18.0",
         "qlurk/qlurk": "^0.2.2",

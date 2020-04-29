@@ -725,7 +725,7 @@ export default {
                     }
 
                     return axios
-                        .post(this.isAdmin ? "/api/backend/social/cards/publish" : "/api/frontend/social/cards/publish", data)
+                        .post(this.isAdmin ? "/api/backend/social/cards/token/publish" : "/api/frontend/social/cards/token/publish", data)
                         .then(function (response) {
                             return response;
                         })
