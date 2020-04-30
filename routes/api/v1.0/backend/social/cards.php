@@ -22,10 +22,18 @@ Route::group([
          * All route names are prefixed with 'api.backend.social.cards'.
          */
         Route::group([
-            'prefix' => 'cards',
+            'prefix' => 'cards/token',
             'as' => 'cards.',
             'namespace' => 'Cards',
             'middleware' => ['auth:token', 'role:'.config('access.users.admin_role')],
+        ], function () {
+            Route::post('/publish', [CardsController::class, 'store'])->name('store');
+        });
+        Route::group([
+            'prefix' => 'cards/api',
+            'as' => 'cards.',
+            'namespace' => 'Cards',
+            'middleware' => ['auth:api', 'role:'.config('access.users.admin_role')],
         ], function () {
             Route::post('/publish', [CardsController::class, 'store'])->name('store');
         });
