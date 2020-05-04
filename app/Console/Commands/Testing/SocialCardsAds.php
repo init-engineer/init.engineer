@@ -55,12 +55,15 @@ class SocialCardsAds extends Command
      */
     public function handle()
     {
-        $image = $this->imagesService->buildImage([
-            'content' => '測試廣告效果',
-            'themeStyle' => 'j874kwoxi2nh64yt67wtphy9m5dmea4q',
-            'fontStyle' => 'ea98dde8987df3cd8aef75479019b688',
-        ]);
+        $ads = $this->adsRepository->findRandom();
+        $adsImage = imageCreateFromPng(asset($ads->ads_path));
 
-        dd($image);
+        // $image = $this->imagesService->buildImage([
+        //     'content' => '測試廣告效果',
+        //     'themeStyle' => 'j874kwoxi2nh64yt67wtphy9m5dmea4q',
+        //     'fontStyle' => 'ea98dde8987df3cd8aef75479019b688',
+        // ]);
+
+        // dd($image);
     }
 }

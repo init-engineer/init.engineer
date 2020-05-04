@@ -71,15 +71,14 @@ class AdsRepository extends BaseRepository
             ->where('started_at', '<=', Carbon::now())
             ->where('end_at', '>=', Carbon::now())
             ->active()
-            ->get()
-            ->random();
+            ->get();
 
-        if ($ads instanceof $this->model) {
-            return $ads;
+        if (count($ads) == 0)
+        {
+            return false;
         }
 
-        // throw new GeneralException(__('exceptions.frontend.social.cards.ads.not_found'));
-        return false;
+        return $ads->random();
     }
 
     /**
