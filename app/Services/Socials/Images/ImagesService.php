@@ -4,6 +4,7 @@ namespace App\Services\Socials\Images;
 
 use Illuminate\Support\Str;
 use App\Services\BaseService;
+use App\Repositories\Frontend\Social\AdsRepository;
 
 /**
  * Class ImagesService.
@@ -74,11 +75,16 @@ class ImagesService extends BaseService implements ImagesContract
     protected $canvasAngle = 0;
 
     /**
+     * @var AdsRepository
+     */
+    protected $adsRepository;
+
+    /**
      * ImagesService constructor.
      */
-    function __construct()
+    function __construct(AdsRepository $adsRepository)
     {
-        // Code ...
+        $this->adsRepository = $adsRepository;
     }
 
     /**
@@ -157,6 +163,38 @@ class ImagesService extends BaseService implements ImagesContract
             }
 
             imageTTFtext($this->canvas, $this->canvasFontSize, $this->canvasAngle, $xPoint, $yPoint, $this->canvasTextColor, $this->canvasFont, $value);
+        }
+
+        /**
+         * 渲染廣告。
+         */
+        if ($ads = $this->adsRepository->findRandom())
+        {
+            // $adsImage = imageCreateFromPng('https://i.imgur.com/LXXQEUb.png');
+            $adsImage = imageCreateFromPng(asset($ads->ads_path));
+            $adsCanvas = imageCreateTrueColor(imageSX($adsImage), imageSY($adsImage));
+            imageCopy($adsCanvas, $adsImage, 0, 0, 0, 0, imageSX($adsImage), imageSY($adsImage));
+
+            $backgroundRGB = $this->getColorInfo($this->canvasBackgroundColor);
+            $backgroundRGB = array(255 - $backgroundRGB['red'], 255 - $backgroundRGB['green'], 255 - $backgroundRGB['blue']);
+
+            $textRGB = $this->getColorInfo($this->canvasTextColor);
+            $textRGB = array($textRGB['red'], $textRGB['green'], $textRGB['blue']);
+
+            imageFilter($adsCanvas, IMG_FILTER_NEGATE);
+            imageFilter($adsCanvas, IMG_FILTER_COLORIZE, $textRGB[0], $textRGB[1], $textRGB[2]);
+            imageFilter($adsCanvas, IMG_FILTER_NEGATE);
+            imageFilter($adsCanvas, IMG_FILTER_COLORIZE, $backgroundRGB[0], $backgroundRGB[1], $backgroundRGB[2]);
+            imageFilter($adsCanvas, IMG_FILTER_NEGATE);
+
+            $adsSY = imageSY($adsCanvas);
+            $canvasSY = imageSY($this->canvas);
+            $newCanvasSY = $adsSY + $canvasSY;
+
+            $newCanvas = imageCreateTrueColor(imageSX($this->canvas), $newCanvasSY);
+            imageCopy($newCanvas, $this->canvas, 0, 0, 0, 0, imageSX($this->canvas), imageSY($this->canvas));
+            imageCopy($newCanvas, $adsCanvas, 0, $canvasSY, 0, 0, imageSX($adsCanvas), imageSY($adsCanvas));
+            $this->canvas = $newCanvas;
         }
 
         /**
@@ -560,5 +598,16 @@ class ImagesService extends BaseService implements ImagesContract
         }
 
         return $responseList;
+    }
+
+    /**
+     * 取得顏色資訊。
+     */
+    private function getColorInfo($color)
+    {
+        $canvas = imageCreateTrueColor(1, 1);
+        $rgb = imageColorSforIndex($canvas, $color);
+
+        return $rgb;
     }
 }
