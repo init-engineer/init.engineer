@@ -179,6 +179,7 @@ return [
             'register_box_title' => 'REGISTER',
             'register_button' => '註冊',
             'remember_me' => '記住我',
+            'authorization_box_title' => 'AUTHORIZATION',
         ],
 
         'contact' => [
