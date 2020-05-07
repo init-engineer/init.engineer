@@ -47,7 +47,7 @@
                 <div class="form-group">
                     <label class="col-label">{{ 大頭菜起始價格.起始日期.星期一 }}(一) 上午</label>
                     <div class="input-group">
-                        <input class="form-control cards-editor text-right" placeholder="賣出價格" v-model.number="大頭菜週期價格.星期一.上午.設定價格">
+                        <input class="form-control cards-editor text-right" placeholder="賣出價格" v-model.number="大頭菜週期價格.星期一.上午.設定價格" v-on:keyup="判斷大頭菜模型()">
                         <div class="input-group-append"><span class="input-group-text">鈴錢</span></div>
                     </div>
                 </div>
@@ -56,7 +56,7 @@
                 <div class="form-group">
                     <label class="col-label">{{ 大頭菜起始價格.起始日期.星期一 }}(一) 下午</label>
                     <div class="input-group">
-                        <input class="form-control cards-editor text-right" placeholder="賣出價格" v-model.number="大頭菜週期價格.星期一.下午.設定價格">
+                        <input class="form-control cards-editor text-right" placeholder="賣出價格" v-model.number="大頭菜週期價格.星期一.下午.設定價格" v-on:keyup="判斷大頭菜模型()">
                         <div class="input-group-append"><span class="input-group-text">鈴錢</span></div>
                     </div>
                 </div>
@@ -67,7 +67,7 @@
                 <div class="form-group">
                     <label class="col-label">{{ 大頭菜起始價格.起始日期.星期二 }}(二) 上午</label>
                     <div class="input-group">
-                        <input class="form-control cards-editor text-right" placeholder="賣出價格" v-model.number="大頭菜週期價格.星期二.上午.設定價格">
+                        <input class="form-control cards-editor text-right" placeholder="賣出價格" v-model.number="大頭菜週期價格.星期二.上午.設定價格" v-on:keyup="判斷大頭菜模型()">
                         <div class="input-group-append"><span class="input-group-text">鈴錢</span></div>
                     </div>
                 </div>
@@ -76,7 +76,7 @@
                 <div class="form-group">
                     <label class="col-label">{{ 大頭菜起始價格.起始日期.星期二 }}(二) 下午</label>
                     <div class="input-group">
-                        <input class="form-control cards-editor text-right" placeholder="賣出價格" v-model.number="大頭菜週期價格.星期二.下午.設定價格">
+                        <input class="form-control cards-editor text-right" placeholder="賣出價格" v-model.number="大頭菜週期價格.星期二.下午.設定價格" v-on:keyup="判斷大頭菜模型()">
                         <div class="input-group-append"><span class="input-group-text">鈴錢</span></div>
                     </div>
                 </div>
@@ -87,7 +87,7 @@
                 <div class="form-group">
                     <label class="col-label">{{ 大頭菜起始價格.起始日期.星期三 }}(三) 上午</label>
                     <div class="input-group">
-                        <input class="form-control cards-editor text-right" placeholder="賣出價格" v-model.number="大頭菜週期價格.星期三.上午.設定價格" number>
+                        <input class="form-control cards-editor text-right" placeholder="賣出價格" v-model.number="大頭菜週期價格.星期三.上午.設定價格" v-on:keyup="判斷大頭菜模型()">
                         <div class="input-group-append"><span class="input-group-text">鈴錢</span></div>
                     </div>
                 </div>
@@ -96,7 +96,7 @@
                 <div class="form-group">
                     <label class="col-label">{{ 大頭菜起始價格.起始日期.星期三 }}(三) 下午</label>
                     <div class="input-group">
-                        <input class="form-control cards-editor text-right" placeholder="賣出價格" v-model.number="大頭菜週期價格.星期三.下午.設定價格" number>
+                        <input class="form-control cards-editor text-right" placeholder="賣出價格" v-model.number="大頭菜週期價格.星期三.下午.設定價格" v-on:keyup="判斷大頭菜模型()">
                         <div class="input-group-append"><span class="input-group-text">鈴錢</span></div>
                     </div>
                 </div>
@@ -107,7 +107,7 @@
                 <div class="form-group">
                     <label class="col-label">{{ 大頭菜起始價格.起始日期.星期四 }}(四) 上午</label>
                     <div class="input-group">
-                        <input class="form-control cards-editor text-right" placeholder="賣出價格" v-model.number="大頭菜週期價格.星期四.上午.設定價格" number>
+                        <input class="form-control cards-editor text-right" placeholder="賣出價格" v-model.number="大頭菜週期價格.星期四.上午.設定價格" v-on:keyup="判斷大頭菜模型()">
                         <div class="input-group-append"><span class="input-group-text">鈴錢</span></div>
                     </div>
                 </div>
@@ -116,7 +116,7 @@
                 <div class="form-group">
                     <label class="col-label">{{ 大頭菜起始價格.起始日期.星期四 }}(四) 下午</label>
                     <div class="input-group">
-                        <input class="form-control cards-editor text-right" placeholder="賣出價格" v-model.number="大頭菜週期價格.星期四.下午.設定價格" number>
+                        <input class="form-control cards-editor text-right" placeholder="賣出價格" v-model.number="大頭菜週期價格.星期四.下午.設定價格" v-on:keyup="判斷大頭菜模型()">
                         <div class="input-group-append"><span class="input-group-text">鈴錢</span></div>
                     </div>
                 </div>
@@ -127,7 +127,7 @@
                 <div class="form-group">
                     <label class="col-label">{{ 大頭菜起始價格.起始日期.星期五 }}(五) 上午</label>
                     <div class="input-group">
-                        <input class="form-control cards-editor text-right" placeholder="賣出價格" v-model.number="大頭菜週期價格.星期五.上午.設定價格" number>
+                        <input class="form-control cards-editor text-right" placeholder="賣出價格" v-model.number="大頭菜週期價格.星期五.上午.設定價格" v-on:keyup="判斷大頭菜模型()">
                         <div class="input-group-append"><span class="input-group-text">鈴錢</span></div>
                     </div>
                 </div>
@@ -136,7 +136,7 @@
                 <div class="form-group">
                     <label class="col-label">{{ 大頭菜起始價格.起始日期.星期五 }}(五) 下午</label>
                     <div class="input-group">
-                        <input class="form-control cards-editor text-right" placeholder="賣出價格" v-model.number="大頭菜週期價格.星期五.下午.設定價格" number>
+                        <input class="form-control cards-editor text-right" placeholder="賣出價格" v-model.number="大頭菜週期價格.星期五.下午.設定價格" v-on:keyup="判斷大頭菜模型()">
                         <div class="input-group-append"><span class="input-group-text">鈴錢</span></div>
                     </div>
                 </div>
@@ -147,7 +147,7 @@
                 <div class="form-group">
                     <label class="col-label">{{ 大頭菜起始價格.起始日期.星期六 }}(六) 上午</label>
                     <div class="input-group">
-                        <input class="form-control cards-editor text-right" placeholder="賣出價格" v-model.number="大頭菜週期價格.星期六.上午.設定價格" number>
+                        <input class="form-control cards-editor text-right" placeholder="賣出價格" v-model.number="大頭菜週期價格.星期六.上午.設定價格" v-on:keyup="判斷大頭菜模型()">
                         <div class="input-group-append"><span class="input-group-text">鈴錢</span></div>
                     </div>
                 </div>
@@ -156,7 +156,7 @@
                 <div class="form-group">
                     <label class="col-label">{{ 大頭菜起始價格.起始日期.星期六 }}(六) 下午</label>
                     <div class="input-group">
-                        <input class="form-control cards-editor text-right" placeholder="賣出價格" v-model.number="大頭菜週期價格.星期六.下午.設定價格" number>
+                        <input class="form-control cards-editor text-right" placeholder="賣出價格" v-model.number="大頭菜週期價格.星期六.下午.設定價格" v-on:keyup="判斷大頭菜模型()">
                         <div class="input-group-append"><span class="input-group-text">鈴錢</span></div>
                     </div>
                 </div>
@@ -168,8 +168,8 @@
         <div class="row">
             <div class="col">
                 <div class="form-group clearfix">
-                    <label class="col-label">狸？</label>
-                    <button class="h3 btn btn-block btn-dos btn-lg" @click="判斷大頭菜模型()">我輸入完了，幫我算算看！</button>
+                    <label class="col-label">這個功能是以前根據公式來推估大頭菜模型的方式，僅能提供模型判斷，無法預測價格。</label>
+                    <button class="h3 btn btn-block btn-dos btn-lg" @click="彈跳視窗預測()">我想試試傳統公式來判斷模型</button>
                 </div>
                 <!--form-group-->
             </div>
@@ -345,12 +345,15 @@ export default {
 
         this.計算起始日期();
         this.隨機抽取標題();
+        this.計算預測結果();
         this.渲染折條圖();
     },
     methods: {
         判斷大頭菜模型() {
             this.計算預測結果();
             this.渲染折條圖();
+        },
+        彈跳視窗預測() {
             if (this.大頭菜起始價格.起始買入價格 === null || this.大頭菜週期價格.星期一.上午.設定價格 === null) {
                 Swal.fire(
                     "無法判斷",
@@ -1294,7 +1297,8 @@ export default {
 
             let _pie0 = 0, _pie1 = 0, _pie2 = 0, _pie3 = 0;
 
-            for (let 可能結果 of analyze_possibilities(販售價格, this.first_time, this.pattern)) {
+            let predictor = new Predictor(販售價格, this.first_time, this.pattern);
+            for (let 可能結果 of predictor.analyze_possibilities()) {
                 if (可能結果.pattern_number != 4) {
                     /**
                      * 可能模型計算
@@ -1370,6 +1374,10 @@ export default {
                 }
             }
             this.modelData = [_pie0, _pie1, _pie2, _pie3];
+
+            // if (_pie0 == 0 && _pie1 == 0 && _pie2 == 0 && _pie3 == 0) {
+            //     this.彈跳視窗預測();
+            // }
         },
         清空輸入資料() {
             localStorage.clear();
