@@ -46,6 +46,7 @@ class Ads extends Model
         'ads_path',
         'number_count',
         'number_max',
+        'incidence',
         'active',
         'options',
         'started_at',
@@ -62,6 +63,7 @@ class Ads extends Model
      */
     protected $casts = [
         'active' => 'boolean',
+        'incidence' => 'integer',
     ];
 
     /**

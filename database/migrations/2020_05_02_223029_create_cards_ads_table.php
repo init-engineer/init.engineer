@@ -22,6 +22,7 @@ class CreateCardsAdsTable extends Migration
             $table->string('ads_path')->nullable();
             $table->integer('number_count')->default(0);
             $table->integer('number_max')->default(0);
+            $table->integer('incidence')->default(0);
             $table->unsignedTinyInteger('active')->default(1);
             $table->longText('options')->nullable();
             $table->timestamp('started_at')->nullable();

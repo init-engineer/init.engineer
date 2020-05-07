@@ -78,7 +78,20 @@ class AdsRepository extends BaseRepository
             return false;
         }
 
-        return $ads->random();
+        $responseAds = false;
+        $incidence = 0;
+        $rand = rand(0, 10000);
+        foreach ($ads as $ad)
+        {
+            if ($rand >= $incidence && $rand <= $incidence + $ad->incidence)
+            {
+                $responseAds = $ad;
+            }
+
+            $incidence += $ad->incidence;
+        }
+
+        return $responseAds;
     }
 
     /**
