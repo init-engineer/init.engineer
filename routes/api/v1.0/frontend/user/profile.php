@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Frontend\User\ProfileController;
+use App\Http\Controllers\Api\Frontend\User\ProfileController;
 
 /**
  * All route names are prefixed with 'api.frontend'.
