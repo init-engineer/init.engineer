@@ -11,7 +11,7 @@
                 <div class="card-header">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
                         <span>
-                            Personal Access Tokens
+                            個人憑證 Access Tokens
                         </span>
 
                         <a class="action-link" tabindex="-1" @click="showCreateTokenForm">
@@ -22,15 +22,13 @@
 
                 <div class="card-body">
                     <!-- No Tokens Notice -->
-                    <p class="mb-0" v-if="tokens.length === 0">
-                        You have not created any personal access tokens.
-                    </p>
+                    <p class="mb-0" v-if="tokens.length === 0">您尚未建立任何個人憑證。</p>
 
                     <!-- Personal Access Tokens -->
                     <table class="table table-borderless mb-0" v-if="tokens.length > 0">
                         <thead>
                             <tr>
-                                <th>Name</th>
+                                <th>名稱</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -44,9 +42,7 @@
 
                                 <!-- Delete Button -->
                                 <td style="vertical-align: middle;">
-                                    <a class="action-link text-danger" @click="revoke(token)">
-                                        Delete
-                                    </a>
+                                    <a class="action-link text-danger" @click="revoke(token)">刪除</a>
                                 </td>
                             </tr>
                         </tbody>
@@ -70,7 +66,7 @@
                     <div class="modal-body">
                         <!-- Form Errors -->
                         <div class="alert alert-danger" v-if="form.errors.length > 0">
-                            <p class="mb-0"><strong>Whoops!</strong> Something went wrong!</p>
+                            <p class="mb-0"><strong>噢哦！</strong> 發生了一些錯誤！</p>
                             <br>
                             <ul>
                                 <li v-for="error in form.errors">
@@ -83,7 +79,7 @@
                         <form role="form" @submit.prevent="store">
                             <!-- Name -->
                             <div class="form-group row">
-                                <label class="col-md-4 col-form-label">Name</label>
+                                <label class="col-md-4 col-form-label">名稱</label>
 
                                 <div class="col-md-6">
                                     <input id="create-token-name" type="text" class="form-control" name="name" v-model="form.name">
@@ -92,7 +88,7 @@
 
                             <!-- Scopes -->
                             <div class="form-group row" v-if="scopes.length > 0">
-                                <label class="col-md-4 col-form-label">Scopes</label>
+                                <label class="col-md-4 col-form-label">權限</label>
 
                                 <div class="col-md-6">
                                     <div v-for="scope in scopes">
@@ -113,10 +109,10 @@
 
                     <!-- Modal Actions -->
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
 
                         <button type="button" class="btn btn-primary" @click="store">
-                            Create
+                            新增
                         </button>
                     </div>
                 </div>
@@ -129,24 +125,21 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">
-                            Personal Access Token
+                            個人憑證 Access Token
                         </h4>
 
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
 
                     <div class="modal-body">
-                        <p>
-                            Here is your new personal access token. This is the only time it will be shown so don't lose it!
-                            You may now use this token to make API requests.
-                        </p>
+                        <p>這是您新的個人憑證（Access token），他只會顯示在你面前一次，也就是本次，所以請不要弄丟了！您現在可以使用此憑證發出 API 請求。</p>
 
                         <textarea class="form-control" rows="10">{{ accessToken }}</textarea>
                     </div>
 
                     <!-- Modal Actions -->
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
                     </div>
                 </div>
             </div>
@@ -251,7 +244,7 @@
                             if (typeof error.response.data === 'object') {
                                 this.form.errors = _.flatten(_.toArray(error.response.data.errors));
                             } else {
-                                this.form.errors = ['Something went wrong. Please try again.'];
+                                this.form.errors = ['出了一些問題，請再重新嘗試一遍看看。'];
                             }
                         });
             },

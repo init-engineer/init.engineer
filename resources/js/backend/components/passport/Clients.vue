@@ -23,14 +23,17 @@
                 <!-- Current Clients -->
                 <p class="mb-0" v-if="clients.length === 0">
                     You have not created any OAuth clients.
+                    您尚未建立任何 OAuth Clients。
                 </p>
 
+                <p class="text-right text-danger">如果要使用測試功能的話，Redirect URL 必須設定為「<b>https://kaobei.engineer/callback?client_id={client.id}</b>」才能使用測試功能。</p>
                 <table class="table table-borderless mb-0" v-if="clients.length > 0">
                     <thead>
                         <tr>
                             <th>Client ID</th>
-                            <th>Name</th>
+                            <th>名稱</th>
                             <th>Secret</th>
+                            <th></th>
                             <th></th>
                             <th></th>
                         </tr>
@@ -55,16 +58,17 @@
 
                             <!-- Edit Button -->
                             <td style="vertical-align: middle;">
-                                <a class="action-link" tabindex="-1" @click="edit(client)">
-                                    Edit
-                                </a>
+                                <a class="action-link" tabindex="-1" @click="edit(client)">編輯</a>
                             </td>
 
                             <!-- Delete Button -->
                             <td style="vertical-align: middle;">
-                                <a class="action-link text-danger" @click="destroy(client)">
-                                    Delete
-                                </a>
+                                <a class="action-link text-danger" @click="destroy(client)">刪除</a>
+                            </td>
+
+                            <!-- Testing Button -->
+                            <td style="vertical-align: middle;">
+                                <a class="action-link text-success" :href="'/oauth/authorize?client_id=' + client.id + '&redirect_uri=https://kaobei.engineer/callback?client_id=' + client.id + '&response_type=code&scope=*'" target="_blank">測試</a>
                             </td>
                         </tr>
                     </tbody>
@@ -87,7 +91,7 @@
                     <div class="modal-body">
                         <!-- Form Errors -->
                         <div class="alert alert-danger" v-if="createForm.errors.length > 0">
-                            <p class="mb-0"><strong>Whoops!</strong> Something went wrong!</p>
+                            <p class="mb-0"><strong>噢哦！</strong> 發生了一些錯誤！</p>
                             <br>
                             <ul>
                                 <li v-for="error in createForm.errors">
@@ -100,14 +104,14 @@
                         <form role="form">
                             <!-- Name -->
                             <div class="form-group row">
-                                <label class="col-md-3 col-form-label">Name</label>
+                                <label class="col-md-3 col-form-label">名稱</label>
 
                                 <div class="col-md-9">
                                     <input id="create-client-name" type="text" class="form-control"
                                                                 @keyup.enter="store" v-model="createForm.name">
 
                                     <span class="form-text text-muted">
-                                        Something your users will recognize and trust.
+                                        您的使用者會看到並且信任的名稱。
                                     </span>
                                 </div>
                             </div>
@@ -121,14 +125,14 @@
                                                     @keyup.enter="store" v-model="createForm.redirect">
 
                                     <span class="form-text text-muted">
-                                        Your application's authorization callback URL.
+                                        您的應用程式通過授權後所轉址的 Callback URL。
                                     </span>
                                 </div>
                             </div>
 
                             <!-- Confidential -->
                             <div class="form-group row">
-                                <label class="col-md-3 col-form-label">Confidential</label>
+                                <label class="col-md-3 col-form-label">是否加密傳輸</label>
 
                                 <div class="col-md-9">
                                     <div class="checkbox">
@@ -138,7 +142,7 @@
                                     </div>
 
                                     <span class="form-text text-muted">
-                                        Require the client to authenticate with a secret. Confidential clients can hold credentials in a secure way without exposing them to unauthorized parties. Public applications, such as native desktop or JavaScript SPA applications, are unable to hold secrets securely.
+                                        要求用戶端使用加密傳輸進行身份驗證，加密可以確保使用安全的方式獲取憑證，而不會將其暴露給未經授權的開發者，公開的應用程式（例如桌面應用程式或 JavaScript SPA 應用程式）無法安全地儲存加密。
                                     </span>
                                 </div>
                             </div>
@@ -147,11 +151,8 @@
 
                     <!-- Modal Actions -->
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
-                        <button type="button" class="btn btn-primary" @click="store">
-                            Create
-                        </button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-primary" @click="store">新增</button>
                     </div>
                 </div>
             </div>
@@ -172,7 +173,7 @@
                     <div class="modal-body">
                         <!-- Form Errors -->
                         <div class="alert alert-danger" v-if="editForm.errors.length > 0">
-                            <p class="mb-0"><strong>Whoops!</strong> Something went wrong!</p>
+                            <p class="mb-0"><strong>噢哦！</strong> 發生了一些錯誤！</p>
                             <br>
                             <ul>
                                 <li v-for="error in editForm.errors">
@@ -185,14 +186,14 @@
                         <form role="form">
                             <!-- Name -->
                             <div class="form-group row">
-                                <label class="col-md-3 col-form-label">Name</label>
+                                <label class="col-md-3 col-form-label">名稱</label>
 
                                 <div class="col-md-9">
                                     <input id="edit-client-name" type="text" class="form-control"
                                                                 @keyup.enter="update" v-model="editForm.name">
 
                                     <span class="form-text text-muted">
-                                        Something your users will recognize and trust.
+                                        您的使用者會看到並且信任的名稱。
                                     </span>
                                 </div>
                             </div>
@@ -206,7 +207,7 @@
                                                     @keyup.enter="update" v-model="editForm.redirect">
 
                                     <span class="form-text text-muted">
-                                        Your application's authorization callback URL.
+                                        您的應用程式通過授權後所轉址的 Callback URL。
                                     </span>
                                 </div>
                             </div>
@@ -215,11 +216,8 @@
 
                     <!-- Modal Actions -->
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
-                        <button type="button" class="btn btn-primary" @click="update">
-                            Save Changes
-                        </button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-primary" @click="update">儲存更新</button>
                     </div>
                 </div>
             </div>
@@ -264,7 +262,6 @@
         mounted() {
             this.prepareComponent();
         },
-
         methods: {
             /**
              * Prepare the component.

@@ -8,15 +8,15 @@
     <div>
         <div v-if="tokens.length > 0">
             <div class="card card-default">
-                <div class="card-header">Authorized Applications</div>
+                <div class="card-header">授權列表</div>
 
                 <div class="card-body">
                     <!-- Authorized Tokens -->
                     <table class="table table-borderless mb-0">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Scopes</th>
+                                <th>名稱</th>
+                                <th>範圍(Scopes)</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -38,7 +38,7 @@
                                 <!-- Revoke Button -->
                                 <td style="vertical-align: middle;">
                                     <a class="action-link text-danger" @click="revoke(token)">
-                                        Revoke
+                                        撤銷
                                     </a>
                                 </td>
                             </tr>
