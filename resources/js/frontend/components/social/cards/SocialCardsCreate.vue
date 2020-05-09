@@ -376,7 +376,8 @@ export default {
             },
             font: {
                 selector: "ea98dde8987df3cd8aef75479019b688",
-                options: [{
+                options: [
+                    {
                         text: "AURAKA 點陣宋字型",
                         font: "Auraka",
                         value: "ea98dde8987df3cd8aef75479019b688",
