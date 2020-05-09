@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Frontend\User;
+namespace App\Http\Controllers\Api\Frontend\User;
 
 use League\Fractal\Manager;
+use League\Fractal\Resource\Item;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\Frontend\User\Profile\ManageProfileRequest;
 use App\Http\Transformers\User\ProfileTransformer;
 use App\Repositories\Frontend\Auth\UserRepository;
-use League\Fractal\Resource\Item;
+use App\Http\Requests\Api\Frontend\User\Profile\ManageProfileRequest;
 
 /**
  * Class ProfileController.
