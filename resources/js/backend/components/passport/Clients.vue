@@ -26,7 +26,6 @@
                     您尚未建立任何 OAuth Clients。
                 </p>
 
-                <p class="text-right text-danger">如果要使用測試功能的話，Redirect URL 必須設定為「<b>https://kaobei.engineer/callback?client_id={client.id}</b>」才能使用測試功能。</p>
                 <table class="table table-borderless mb-0" v-if="clients.length > 0">
                     <thead>
                         <tr>
@@ -40,7 +39,7 @@
                     </thead>
 
                     <tbody>
-                        <tr v-for="client in clients">
+                        <tr v-for="client in clients" :key="client.id">
                             <!-- ID -->
                             <td style="vertical-align: middle;">
                                 {{ client.id }}
@@ -68,7 +67,7 @@
 
                             <!-- Testing Button -->
                             <td style="vertical-align: middle;">
-                                <a class="action-link text-success" :href="'/oauth/authorize?client_id=' + client.id + '&redirect_uri=https://kaobei.engineer/callback?client_id=' + client.id + '&response_type=code&scope=*'" target="_blank">測試</a>
+                                <a class="action-link text-success" :href="'/testing/oauth/authorized/' + client.id" target="_blank">測試</a>
                             </td>
                         </tr>
                     </tbody>
@@ -94,7 +93,7 @@
                             <p class="mb-0"><strong>噢哦！</strong> 發生了一些錯誤！</p>
                             <br>
                             <ul>
-                                <li v-for="error in createForm.errors">
+                                <li v-for="error in createForm.errors" :key="error">
                                     {{ error }}
                                 </li>
                             </ul>
@@ -176,7 +175,7 @@
                             <p class="mb-0"><strong>噢哦！</strong> 發生了一些錯誤！</p>
                             <br>
                             <ul>
-                                <li v-for="error in editForm.errors">
+                                <li v-for="error in editForm.errors" :key="error">
                                     {{ error }}
                                 </li>
                             </ul>

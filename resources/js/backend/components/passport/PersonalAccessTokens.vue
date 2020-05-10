@@ -34,7 +34,7 @@
                         </thead>
 
                         <tbody>
-                            <tr v-for="token in tokens">
+                            <tr v-for="token in tokens" :key="token">
                                 <!-- Client Name -->
                                 <td style="vertical-align: middle;">
                                     {{ token.name }}
@@ -69,7 +69,7 @@
                             <p class="mb-0"><strong>噢哦！</strong> 發生了一些錯誤！</p>
                             <br>
                             <ul>
-                                <li v-for="error in form.errors">
+                                <li v-for="error in form.errors" :key="error">
                                     {{ error }}
                                 </li>
                             </ul>
@@ -91,7 +91,7 @@
                                 <label class="col-md-4 col-form-label">權限</label>
 
                                 <div class="col-md-6">
-                                    <div v-for="scope in scopes">
+                                    <div v-for="scope in scopes" :key="scope.id">
                                         <div class="checkbox">
                                             <label>
                                                 <input type="checkbox"
@@ -134,7 +134,7 @@
                     <div class="modal-body">
                         <p>這是您新的個人憑證（Access token），他只會顯示在你面前一次，也就是本次，所以請不要弄丟了！您現在可以使用此憑證發出 API 請求。</p>
 
-                        <textarea class="form-control" rows="10">{{ accessToken }}</textarea>
+                        <textarea class="form-control" rows="10" :value="accessToken"></textarea>
                     </div>
 
                     <!-- Modal Actions -->

@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Frontend\OAuth;
 
 use GuzzleHttp\Client;
-use Illuminate\Http\Request;
 use App\Models\OAuth\Clients;
 use App\Http\Controllers\Controller;
+use App\Repositories\Frontend\OAuth\OAuthClientsRepository;
+use App\Http\Requests\Frontend\OAuth\ClientCallbackTestingRequest;
 
 /**
  * Class CallbackController.
@@ -13,14 +14,32 @@ use App\Http\Controllers\Controller;
 class CallbackController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * @var OAuthClientsRepository
+     */
+    protected $clientsRepository;
+
+    /**
+     * CallbackController constructor.
+     *
+     * @param OAuthClientsRepository $clientsRepository
+     */
+    public function __construct(OAuthClientsRepository $clientsRepository)
+    {
+        $this->clientsRepository = $clientsRepository;
+    }
+
+    /**
+     * @param ClientCallbackTestingRequest $request
      *
      * @return \Illuminate\Http\Response
      */
-    public function callback(Request $request)
+    public function callback(ClientCallbackTestingRequest $request)
     {
+        $testing_client_id = $request->session()->get('testing_client_id');
+        $testing_redirect_uri = $request->session()->get('testing_redirect_uri');
+        $client = Clients::find($testing_client_id);
+
         $http = new Client();
-        $client = Clients::find($request->client_id);
         $response = $http->post('/oauth/token', [
             'form_params' => [
                 'grant_type' => 'authorization_code',
@@ -30,6 +49,11 @@ class CallbackController extends Controller
                 'code' => $request->code,
             ],
         ]);
+
+        $this->clientsRepository->update($client, ['redirect' => $testing_redirect_uri]);
+
+        $request->session()->forget('testing_client_id');
+        $request->session()->forget('testing_redirect_uri');
 
         return response()->json(json_decode((string) $response->getBody(), true));
     }
