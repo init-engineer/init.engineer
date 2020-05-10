@@ -40,7 +40,7 @@ class CallbackController extends Controller
         $client = Clients::find($testing_client_id);
 
         $http = new Client();
-        $response = $http->post('/oauth/token', [
+        $response = $http->post(config('app.url') . '/oauth/token', [
             'form_params' => [
                 'grant_type' => 'authorization_code',
                 'client_id' => $client->id,
