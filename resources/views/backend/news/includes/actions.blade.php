@@ -21,11 +21,11 @@
             <div class="dropdown-menu" aria-labelledby="newsActions">
                 @switch($news->active)
                     @case(0)
-                        <a href="{{ route('admin.news.mark', [$news, 1,]) }}" class="dropdown-item">@lang('buttons.backend.access.users.activate')</a>
+                        <a href="{{ route('admin.news.mark', [$news, 1,]) }}" class="dropdown-item py-2">@lang('buttons.backend.access.users.activate')</a>
                     @break
 
                     @case(1)
-                        <a href="{{ route('admin.news.mark', [$news, 0]) }}" class="dropdown-item">@lang('buttons.backend.access.users.deactivate')</a>
+                        <a href="{{ route('admin.news.mark', [$news, 0]) }}" class="dropdown-item py-2">@lang('buttons.backend.access.users.deactivate')</a>
                     @break
                 @endswitch
                 <a href="{{ route('admin.news.destroy', $news) }}"
@@ -33,7 +33,7 @@
                     data-trans-button-cancel="@lang('buttons.general.cancel')"
                     data-trans-button-confirm="@lang('buttons.general.crud.delete')"
                     data-trans-title="@lang('strings.backend.general.are_you_sure')"
-                    class="dropdown-item">@lang('buttons.general.crud.delete')</a>
+                    class="dropdown-item py-2">@lang('buttons.general.crud.delete')</a>
             </div>
         </div>
     </div>

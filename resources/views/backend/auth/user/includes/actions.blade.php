@@ -28,29 +28,29 @@
                        data-trans-button-cancel="@lang('buttons.general.cancel')"
                        data-trans-button-confirm="@lang('buttons.general.continue')"
                        data-trans-title="@lang('strings.backend.general.are_you_sure')"
-                       class="dropdown-item" name="confirm_item">@lang('buttons.backend.access.users.clear_session')</a>
+                       class="dropdown-item py-2" name="confirm_item">@lang('buttons.backend.access.users.clear_session')</a>
                 @endif
 
                 @canBeImpersonated($user)
-                    <a href="{{ route('impersonate', $user->id) }}" class="dropdown-item">@lang('buttons.backend.access.users.login_as', ['user' => $user->full_name])</a>
+                    <a href="{{ route('impersonate', $user->id) }}" class="dropdown-item py-2">@lang('buttons.backend.access.users.login_as', ['user' => $user->full_name])</a>
                 @endCanBeImpersonated
 
-                <a href="{{ route('admin.auth.user.change-password', $user) }}" class="dropdown-item">@lang('buttons.backend.access.users.change_password')</a>
+                <a href="{{ route('admin.auth.user.change-password', $user) }}" class="dropdown-item py-2">@lang('buttons.backend.access.users.change_password')</a>
 
                 @if ($user->id !== auth()->id())
                     @switch($user->active)
                         @case(0)
-                            <a href="{{ route('admin.auth.user.mark', [$user, 1,]) }}" class="dropdown-item">@lang('buttons.backend.access.users.activate')</a>
+                            <a href="{{ route('admin.auth.user.mark', [$user, 1,]) }}" class="dropdown-item py-2">@lang('buttons.backend.access.users.activate')</a>
                         @break
 
                         @case(1)
-                            <a href="{{ route('admin.auth.user.mark', [$user, 0]) }}" class="dropdown-item">@lang('buttons.backend.access.users.deactivate')</a>
+                            <a href="{{ route('admin.auth.user.mark', [$user, 0]) }}" class="dropdown-item py-2">@lang('buttons.backend.access.users.deactivate')</a>
                         @break
                     @endswitch
                 @endif
 
                 @if (! $user->isConfirmed() && ! config('access.users.requires_approval'))
-                    <a href="{{ route('admin.auth.user.account.confirm.resend', $user) }}" class="dropdown-item">@lang('buttons.backend.access.users.resend_email')</a>
+                    <a href="{{ route('admin.auth.user.account.confirm.resend', $user) }}" class="dropdown-item py-2">@lang('buttons.backend.access.users.resend_email')</a>
                 @endif
 
                 @if ($user->id !== 1 && $user->id !== auth()->id())
@@ -59,7 +59,7 @@
                        data-trans-button-cancel="@lang('buttons.general.cancel')"
                        data-trans-button-confirm="@lang('buttons.general.crud.delete')"
                        data-trans-title="@lang('strings.backend.general.are_you_sure')"
-                       class="dropdown-item">@lang('buttons.general.crud.delete')</a>
+                       class="dropdown-item py-2">@lang('buttons.general.crud.delete')</a>
                 @endif
             </div>
         </div>

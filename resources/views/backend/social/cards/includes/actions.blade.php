@@ -24,7 +24,7 @@
                     data-trans-button-cancel="@lang('buttons.general.cancel')"
                     data-trans-button-confirm="@lang('buttons.general.crud.delete')"
                     data-trans-title="@lang('strings.backend.general.are_you_sure')"
-                    class="dropdown-item">@lang('buttons.general.crud.soft_delete')</a>
+                    class="dropdown-item py-2">@lang('buttons.general.crud.soft_delete')</a>
             </div>
         </div>
     </div>
@@ -44,13 +44,13 @@
                     data-trans-button-cancel="@lang('buttons.general.cancel')"
                     data-trans-button-confirm="@lang('buttons.general.crud.delete')"
                     data-trans-title="@lang('strings.backend.general.are_you_sure')"
-                    class="dropdown-item">@lang('buttons.general.crud.banned')</a>
+                    class="dropdown-item py-2">@lang('buttons.general.crud.banned')</a>
                 <a href="{{ route('admin.social.cards.publish', $card) }}"
                     data-method="post"
                     data-trans-button-cancel="@lang('buttons.general.cancel')"
                     data-trans-button-confirm="@lang('buttons.general.crud.delete')"
                     data-trans-title="@lang('strings.backend.general.are_you_sure')"
-                    class="dropdown-item">@lang('buttons.general.crud.publish')</a>
+                    class="dropdown-item py-2">@lang('buttons.general.crud.publish')</a>
             </div>
         </div>
     </div>
