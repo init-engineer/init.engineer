@@ -48,6 +48,11 @@ class Kernel extends ConsoleKernel
         $schedule->command('social:comments-update 6')->everyTenMinutes();
         $schedule->command('social:comments-update 2')->everyFiveMinutes();
         // $schedule->command('social:comments-update 1')->everyMinute();
+
+        /**
+         * 自動化 偵測 IP Address 是否有變更
+         */
+        $schedule->command('report:ip-address')->everyMinute();
     }
 
     /**
