@@ -170,8 +170,8 @@ class ImagesService extends BaseService implements ImagesContract
          */
         if ($ads = $this->adsRepository->findRandom())
         {
-            // $adsImage = imageCreateFromPng('https://i.imgur.com/LXXQEUb.png');
-            $adsImage = imageCreateFromPng(asset($ads->ads_path));
+            // $adsImage = imageCreateFromPng(asset($ads->ads_path));
+            $adsImage = imageCreateFromPng('https://kaobei.engineer/' . $ads->ads_path);
             $adsCanvas = imageCreateTrueColor(imageSX($adsImage), imageSY($adsImage));
             imageCopy($adsCanvas, $adsImage, 0, 0, 0, 0, imageSX($adsImage), imageSY($adsImage));
 
@@ -181,11 +181,29 @@ class ImagesService extends BaseService implements ImagesContract
             $textRGB = $this->getColorInfo($this->canvasTextColor);
             $textRGB = array($textRGB['red'], $textRGB['green'], $textRGB['blue']);
 
-            imageFilter($adsCanvas, IMG_FILTER_NEGATE);
-            imageFilter($adsCanvas, IMG_FILTER_COLORIZE, $textRGB[0], $textRGB[1], $textRGB[2]);
-            imageFilter($adsCanvas, IMG_FILTER_NEGATE);
-            imageFilter($adsCanvas, IMG_FILTER_COLORIZE, $backgroundRGB[0], $backgroundRGB[1], $backgroundRGB[2]);
-            imageFilter($adsCanvas, IMG_FILTER_NEGATE);
+            /**
+             * 如果背景顏色是黑色
+             */
+            if ($backgroundRGB['red'] == 0 && $backgroundRGB['green'] == 0 && $backgroundRGB['blue'] == 0)
+            {
+                /**
+                 * 而且字體顏色是白色
+                 */
+                if ($textRGB['red'] != 255 && $textRGB['green'] != 255 && $textRGB['blue'] != 255)
+                {
+                    imageFilter($adsCanvas, IMG_FILTER_NEGATE);
+                    imageFilter($adsCanvas, IMG_FILTER_COLORIZE, 255 - $textRGB[0], 255 - $textRGB[1], 255 - $textRGB[2]);
+                    imageFilter($adsCanvas, IMG_FILTER_NEGATE);
+                }
+            }
+            else
+            {
+                imageFilter($adsCanvas, IMG_FILTER_NEGATE);
+                imageFilter($adsCanvas, IMG_FILTER_COLORIZE, $textRGB[0], $textRGB[1], $textRGB[2]);
+                imageFilter($adsCanvas, IMG_FILTER_NEGATE);
+                imageFilter($adsCanvas, IMG_FILTER_COLORIZE, $backgroundRGB[0], $backgroundRGB[1], $backgroundRGB[2]);
+                imageFilter($adsCanvas, IMG_FILTER_NEGATE);
+            }
 
             $adsSY = imageSY($adsCanvas);
             $canvasSY = imageSY($this->canvas);
