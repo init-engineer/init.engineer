@@ -29,5 +29,17 @@ Route::group([
         ], function () {
             Route::get('/', [ProfileController::class, 'index'])->name('index');
         });
+
+        /**
+         * All route names are prefixed with 'api.frontend.user.profile'.
+         */
+        Route::group([
+            'prefix' => 'profile',
+            'as' => 'profile.',
+            'namespace' => 'Profile',
+            'middleware' => 'auth:token',
+        ], function () {
+            Route::get('/roles', [ProfileController::class, 'roles'])->name('roles');
+        });
     });
 });

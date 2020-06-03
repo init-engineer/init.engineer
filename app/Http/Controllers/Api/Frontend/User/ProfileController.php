@@ -49,4 +49,9 @@ class ProfileController extends Controller
 
         return response()->json($response->toArray());
     }
+
+    public function roles(ManageProfileRequest $request)
+    {
+        return response()->json($request->user()->getRoleNames()->toArray());
+    }
 }

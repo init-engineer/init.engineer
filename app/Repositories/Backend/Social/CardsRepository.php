@@ -148,6 +148,29 @@ class CardsRepository extends BaseRepository
     }
 
     /**
+     * @param Cards $cards
+     *
+     * @throws GeneralException
+     * @throws \Exception
+     * @throws \Throwable
+     * @return Cards
+     */
+    public function active(Cards $cards) : Cards
+    {
+        return DB::transaction(function () use ($cards) {
+            if ($cards->update([
+                'active' => false,
+            ])) {
+                // event(new CardsActive($cards));
+
+                return $cards;
+            }
+
+            throw new GeneralException(__('exceptions.backend.social.cards.active_error'));
+        });
+    }
+
+    /**
      * @param User  $user
      * @param Cards $cards
      * @param array $options

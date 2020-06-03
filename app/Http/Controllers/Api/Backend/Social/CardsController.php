@@ -77,6 +77,7 @@ class CardsController extends Controller
         $modelCard = $this->cardsRepository->create([
             'model_id' => $request->user()->id,
             'content' => $request->input('content'),
+            'active' => true,
         ]);
 
         $avatar = $request->has('avatar')?

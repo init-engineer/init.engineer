@@ -25,6 +25,7 @@ Route::group([
 
         // These routes require the user to be logged in
         Route::group(['middleware' => 'auth'], function () {
+            Route::get('/review', [CardsController::class, 'review'])->name('review');
             Route::get('/create', [CardsController::class, 'create'])->name('create');
         });
     });

@@ -13,7 +13,7 @@ trait CommentsRelationship
     /**
      * Get the card for the comment.
      *
-     * @return Images
+     * @return Cards
      */
     public function card()
     {
@@ -23,7 +23,7 @@ trait CommentsRelationship
     /**
      * Get the media for the comment.
      *
-     * @return Media
+     * @return MediaCards
      */
     public function media()
     {

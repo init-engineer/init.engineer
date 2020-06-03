@@ -77,6 +77,70 @@ trait UserMethod
     }
 
     /**
+     * @return mixed
+     */
+    public function isJuniorVIP()
+    {
+        return $this->hasRole(config('access.users.junior_vip_role'));
+    }
+
+    /**
+     * @return mixed
+     */
+    public function isSeniorVIP()
+    {
+        return $this->hasRole(config('access.users.senior_vip_role'));
+    }
+
+    /**
+     * @return mixed
+     */
+    public function isJuniorDonate()
+    {
+        return $this->hasRole(config('access.users.junior_donate_role'));
+    }
+
+    /**
+     * @return mixed
+     */
+    public function isSeniorDonate()
+    {
+        return $this->hasRole(config('access.users.senior_donate_role'));
+    }
+
+    /**
+     * @return mixed
+     */
+    public function isJuniorUser()
+    {
+        return $this->hasRole(config('access.users.junior_user_role'));
+    }
+
+    /**
+     * @return mixed
+     */
+    public function isSeniorUser()
+    {
+        return $this->hasRole(config('access.users.senior_user_role'));
+    }
+
+    /**
+     * @return mixed
+     */
+    public function isJuniorManager()
+    {
+        return $this->hasRole(config('access.users.junior_manager_role'));
+    }
+
+    /**
+     * @return mixed
+     */
+    public function isSeniorManager()
+    {
+        return $this->hasRole(config('access.users.senior_manager_role'));
+    }
+
+    /**
      * @return bool
      */
     public function isActive()

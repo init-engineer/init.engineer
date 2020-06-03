@@ -118,6 +118,13 @@ return [
                 'create_error' => '新增文章時出現問題，請再試一次。',
                 'update_error' => '更新文章時出現問題，請再試一次。',
                 'not_found' => '該文章不存在。',
+                'review' => [
+                    'not_found' => '找不到審核紀錄。',
+                    'create_error' => '審核時意外失敗。',
+                    'card_is_active' => '該篇文章已通過審核。',
+                    'already_succeeded' => '您已經審核過了。',
+                    'already_failed' => '您已經審核過了。',
+                ],
             ],
 
             'images' => [

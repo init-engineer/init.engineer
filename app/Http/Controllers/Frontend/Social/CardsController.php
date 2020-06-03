@@ -21,6 +21,13 @@ class CardsController extends Controller
         return view('frontend.social.cards.index');
     }
 
+    /**
+     *
+     */
+    public function review()
+    {
+        return view('frontend.social.cards.review');
+    }
 
     /**
      * Show the form for creating a new resource.

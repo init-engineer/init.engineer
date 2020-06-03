@@ -37,6 +37,14 @@ class AuthServiceProvider extends ServiceProvider
         // This works in the app by using gate-related functions like auth()->user->can() and @can()
         Gate::before(function ($user) {
             return $user->hasRole(config('access.users.admin_role')) ? true : null;
+            return $user->hasRole(config('access.users.junior_vip_role')) ? true : null;
+            return $user->hasRole(config('access.users.senior_vip_role')) ? true : null;
+            return $user->hasRole(config('access.users.junior_donate_role')) ? true : null;
+            return $user->hasRole(config('access.users.senior_donate_role')) ? true : null;
+            return $user->hasRole(config('access.users.junior_user_role')) ? true : null;
+            return $user->hasRole(config('access.users.senior_user_role')) ? true : null;
+            return $user->hasRole(config('access.users.junior_manager_role')) ? true : null;
+            return $user->hasRole(config('access.users.senior_manager_role')) ? true : null;
         });
     }
 }

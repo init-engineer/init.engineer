@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Frontend\Social;
 
+use Carbon\Carbon;
 use App\Models\Auth\User;
 use App\Models\Social\Cards;
 use Illuminate\Support\Facades\DB;
@@ -36,6 +37,23 @@ class CardsRepository extends BaseRepository
         return $this->model
             ->active()
             ->publish()
+            ->orderBy($orderBy, $sort)
+            ->paginate($paged);
+    }
+
+    /**
+     * @param int    $paged
+     * @param string $orderBy
+     * @param string $sort
+     *
+     * @return mixed
+     */
+    public function getUnactivePaginated($paged = 10, $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
+    {
+        return $this->model
+            ->active(false)
+            ->banned(false)
+            ->where('created_at', '>=', Carbon::now()->addDay(-7))
             ->orderBy($orderBy, $sort)
             ->paginate($paged);
     }
@@ -89,6 +107,7 @@ class CardsRepository extends BaseRepository
                 'model_type' => isset($data['model_type'])? $data['model_type'] : User::class,
                 'model_id' => $data['model_id'],
                 'content' => $data['content'],
+                'active' => $data['active'] ?? false,
             ]);
 
             if ($cards) {

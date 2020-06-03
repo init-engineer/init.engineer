@@ -3,6 +3,7 @@
 namespace App\Models\Social\Traits\Relationship;
 
 use App\Models\Social\Images;
+use App\Models\Social\Review;
 use App\Models\Social\Comments;
 use App\Models\Social\MediaCards;
 
@@ -22,7 +23,7 @@ trait CardsRelationship
     /**
      * Get the media for the card.
      *
-     * @return Media
+     * @return MediaCards
      */
     public function medias()
     {
@@ -47,5 +48,15 @@ trait CardsRelationship
     public function comments()
     {
         return $this->hasMany(Comments::class, 'card_id', 'id');
+    }
+
+    /**
+     * Get the reviews for the card.
+     *
+     * @return Review
+     */
+    public function reviews()
+    {
+        return $this->hasMany(Review::class, 'card_id', 'id');
     }
 }

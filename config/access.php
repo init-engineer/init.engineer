@@ -23,6 +23,16 @@ return [
         // The name of the super administrator role
         'admin_role' => 'administrator',
 
+        // The name of the 各種 user role
+        'junior_vip_role' => 'junior vip',
+        'senior_vip_role' => 'senior vip',
+        'junior_donate_role' => 'junior donate',
+        'senior_donate_role' => 'senior donate',
+        'junior_user_role'  => 'junior user',
+        'senior_user_role'  => 'senior user',
+        'junior_manager_role' => 'junior manager',
+        'senior_manager_role' => 'senior manager',
+
         // The default role all new registered users get added to
         'default_role' => 'user',
 
