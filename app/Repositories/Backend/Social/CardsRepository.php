@@ -159,7 +159,7 @@ class CardsRepository extends BaseRepository
     {
         return DB::transaction(function () use ($cards) {
             if ($cards->update([
-                'active' => false,
+                'active' => true,
             ])) {
                 // event(new CardsActive($cards));
 

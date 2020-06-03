@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands\Social;
 
+use App\Models\Social\Cards;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use App\Services\Socials\Cards\CardsService;
@@ -73,10 +74,10 @@ class ReviewPublish extends Command
         $paginator = $this->frontendCardsRepository->getUnactivePaginated();
         foreach ($paginator as $card)
         {
-            if ($card->created_at >= Carbon::now()->addMinutes(-30)) $range = 5;
-            if ($card->created_at >= Carbon::now()->addHours(-1))    $range = 10;
-            if ($card->created_at >= Carbon::now()->addHours(-3))    $range = 20;
             if ($card->created_at >= Carbon::now()->addHours(-6))    $range = 30;
+            if ($card->created_at >= Carbon::now()->addHours(-3))    $range = 20;
+            if ($card->created_at >= Carbon::now()->addHours(-1))    $range = 10;
+            if ($card->created_at >= Carbon::now()->addMinutes(-30)) $range = 5;
 
             $point = 0;
             foreach ($card->reviews as $review)
@@ -86,8 +87,9 @@ class ReviewPublish extends Command
 
             if ($point >= $range)
             {
-                $this->backendCardsRepository->active($card);
-                $this->cardsService->publish($card);
+                $cards = Cards::find($card->id);
+                $this->backendCardsRepository->active($cards);
+                $this->cardsService->publish($cards);
             }
         }
     }
