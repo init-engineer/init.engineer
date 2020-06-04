@@ -57,10 +57,10 @@
                         <div class="p-1"><a :href="`/cards/show/${card.id}`" class="ml-auto p-1">詳細內容</a></div>
                     </div>
                     <div class="card-text d-flex justify-content-between">
-                        <div class="p-1"><a href="#" class="btn btn-success btn-block ml-auto" v-bind:class="{ disabled: card.review != 0 }" v-on:click="cardSucceeded(card.id)"><span class="badge badge-light">{{ card.succeeded }}</span> 通過</a></div>
+                        <div class="p-1"><a href="#" class="btn btn-success btn-block ml-auto" v-bind:class="{ disabled: card.review != 0 }" v-on:click="cardSucceeded(card.id)"><h1><span class="badge badge-light">{{ card.succeeded }}</span></h1> 通過</a></div>
                         <div class="p-1 text-success h3" v-if="card.review > 0">◀</div>
                         <div class="p-1 text-danger h3" v-if="card.review < 0">▶</div>
-                        <div class="p-1"><a href="#" class="btn btn-danger btn-block ml-auto" v-bind:class="{ disabled: card.review != 0 }" v-on:click="cardFailed(card.id)"><span class="badge badge-light">{{ card.failed }}</span> 否決</a></div>
+                        <div class="p-1"><a href="#" class="btn btn-danger btn-block ml-auto" v-bind:class="{ disabled: card.review != 0 }" v-on:click="cardFailed(card.id)"><h1><span class="badge badge-light">{{ card.failed }}</span></h1> 否決</a></div>
                     </div>
                 </div>
             </div>
@@ -132,11 +132,15 @@ export default {
     },
     data() {
         return {
+            timerCount: 0,
             cards: [],
             images: [],
             gallery: null,
             cardsNext: `/api/frontend/social/cards/token/review`
         };
+    },
+    created() {
+        this.timer();
     },
     methods: {
         infiniteHandler($state) {
@@ -174,6 +178,35 @@ export default {
                 })
                 .catch(error => console.log(error));
         },
-    }
+        reloadData() {
+            axios.get(this.cardsNext)
+                .then((response) => {
+                    let cards = response.data.data;
+                    cards.forEach(element => {
+                        const _image = this.cards.find(x => x.id === element.id)
+                        if (_image === undefined)
+                        {
+                            this.images.unshift(element.image);
+                            this.cards.unshift(element);
+                        }
+                    });
+                })
+                .catch(error => console.log(error));
+        },
+        timer() {
+            return setTimeout(() => {
+                this.reloadData();
+                this.timerCount += 1;
+            }, 60000);
+        },
+    },
+    watch: {
+        timerCount() {
+            this.timer();
+        }
+    },
+    destroyed() {
+        clearTimeout(this.timer);
+    },
 };
 </script>

@@ -24,7 +24,7 @@
                 </li>
             @endif --}}
 
-            <li class="nav-item"><a href="{{ route('frontend.animal.index') }}" class="nav-link {{ active_class(Route::is('frontend.animal.index')) }}"><span class="badge badge-pill badge-danger">NEW</span> 大頭菜計算機</a></li>
+            <li class="nav-item"><a href="{{ route('frontend.animal.index') }}" class="nav-link {{ active_class(Route::is('frontend.animal.index')) }}">大頭菜計算機</a></li>
 
             <li class="nav-item"><a href="{{ route('frontend.social.cards.review') }}" class="nav-link {{ active_class(Route::is('frontend.social.cards.review')) }}"><span class="badge badge-pill badge-danger">NEW</span> 群眾審核</a></li>
 
