@@ -40,6 +40,7 @@ Route::group([
             'middleware' => 'auth:token',
         ], function () {
             Route::get('/roles', [ProfileController::class, 'roles'])->name('roles');
+            Route::get('/reviewCount', [ProfileController::class, 'reviewCount'])->name('reviewCount');
         });
     });
 });

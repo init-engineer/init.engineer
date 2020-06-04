@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Frontend\User;
 
 use League\Fractal\Manager;
+use App\Models\Social\Review;
 use League\Fractal\Resource\Item;
 use App\Http\Controllers\Controller;
 use App\Http\Transformers\User\ProfileTransformer;
@@ -50,8 +51,21 @@ class ProfileController extends Controller
         return response()->json($response->toArray());
     }
 
+    /**
+     * @return \Illuminate\Http\Response
+     */
     public function roles(ManageProfileRequest $request)
     {
         return response()->json($request->user()->getRoleNames()->toArray());
+    }
+
+    /**
+     * @return \Illuminate\Http\Response
+     */
+    public function reviewCount(ManageProfileRequest $request)
+    {
+        return response()->json([
+            'count' => count(Review::where('model_id', $request->user()->id)->get()),
+        ]);
     }
 }

@@ -183,11 +183,16 @@ export default {
                 .then((response) => {
                     let cards = response.data.data;
                     cards.forEach(element => {
-                        const _image = this.cards.find(x => x.id === element.id)
-                        if (_image === undefined)
+                        const _card = this.cards.find(x => x.id === element.id)
+                        if (_card === undefined)
                         {
                             this.images.unshift(element.image);
                             this.cards.unshift(element);
+                        }
+                        else
+                        {
+                            _card.succeeded = element.succeeded;
+                            _card.failed = element.failed;
                         }
                     });
                 })
