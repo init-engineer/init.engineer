@@ -7,60 +7,54 @@
         <hr>
         <h3>你與下個身份組的距離：</h3>
         <div class="flex-wrapper">
-                <div class="single-chart">
-                    <svg viewBox="0 0 36 36" class="circular-chart orange">
+            <div class="single-chart" v-if="percentage.junior != null">
+                <svg viewBox="0 0 36 36" class="circular-chart orange">
                     <path class="circle-bg"
                         d="M18 2.0845
                         a 15.9155 15.9155 0 0 1 0 31.831
-                        a 15.9155 15.9155 0 0 1 0 -31.831"
-                    />
+                        a 15.9155 15.9155 0 0 1 0 -31.831"/>
                     <path class="circle"
-                        :stroke-dasharray="count + ', 200'"
+                        :stroke-dasharray="`${percentage.junior}, 100`"
                         d="M18 2.0845
                         a 15.9155 15.9155 0 0 1 0 31.831
-                        a 15.9155 15.9155 0 0 1 0 -31.831"
-                    />
-                    <text x="18" y="18.35" class="percentage">{{ Math.round((count * 100) / 200) }}%</text><br />
+                        a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                    <text x="18" y="18.35" class="percentage">{{ percentage.junior }}%</text>
                     <text x="18" y="24.35" class="percentage-text">Junior</text>
-                    </svg>
-                </div>
-
-                <div class="single-chart">
-                    <svg viewBox="0 0 36 36" class="circular-chart green">
-                    <path class="circle-bg"
-                        d="M18 2.0845
-                        a 15.9155 15.9155 0 0 1 0 31.831
-                        a 15.9155 15.9155 0 0 1 0 -31.831"
-                    />
-                    <path class="circle"
-                        :stroke-dasharray="count + ', 500'"
-                        d="M18 2.0845
-                        a 15.9155 15.9155 0 0 1 0 31.831
-                        a 15.9155 15.9155 0 0 1 0 -31.831"
-                    />
-                    <text x="18" y="18.35" class="percentage">{{ Math.round((count * 100) / 500) }}%</text><br />
-                    <text x="18" y="24.35" class="percentage-text">Senior</text>
-                    </svg>
-                </div>
-
-                <div class="single-chart">
-                    <svg viewBox="0 0 36 36" class="circular-chart blue">
-                    <path class="circle-bg"
-                        d="M18 2.0845
-                        a 15.9155 15.9155 0 0 1 0 31.831
-                        a 15.9155 15.9155 0 0 1 0 -31.831"
-                    />
-                    <path class="circle"
-                        :stroke-dasharray="count + ', 1000'"
-                        d="M18 2.0845
-                        a 15.9155 15.9155 0 0 1 0 31.831
-                        a 15.9155 15.9155 0 0 1 0 -31.831"
-                    />
-                    <text x="18" y="18.35" class="percentage">{{ Math.round((count * 100) / 1000) }}%</text><br />
-                    <text x="18" y="24.35" class="percentage-text">Legend</text>
-                    </svg>
-                </div>
+                </svg>
             </div>
+
+            <div class="single-chart" v-if="percentage.senior != null">
+                <svg viewBox="0 0 36 36" class="circular-chart green">
+                    <path class="circle-bg"
+                        d="M18 2.0845
+                        a 15.9155 15.9155 0 0 1 0 31.831
+                        a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                    <path class="circle"
+                        :stroke-dasharray="`${percentage.senior}, 100`"
+                        d="M18 2.0845
+                        a 15.9155 15.9155 0 0 1 0 31.831
+                        a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                    <text x="18" y="18.35" class="percentage">{{ percentage.senior }}%</text>
+                    <text x="18" y="24.35" class="percentage-text">Senior</text>
+                </svg>
+            </div>
+
+            <div class="single-chart" v-if="percentage.legend != null">
+                <svg viewBox="0 0 36 36" class="circular-chart blue">
+                    <path class="circle-bg"
+                        d="M18 2.0845
+                        a 15.9155 15.9155 0 0 1 0 31.831
+                        a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                    <path class="circle"
+                        :stroke-dasharray="`${percentage.legend}, 100`"
+                        d="M18 2.0845
+                        a 15.9155 15.9155 0 0 1 0 31.831
+                        a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                    <text x="18" y="18.35" class="percentage">{{ percentage.legend }}%</text>
+                    <text x="18" y="24.35" class="percentage-text">Legend</text>
+                </svg>
+            </div>
+        </div>
         <div class="collapse" id="collapseExample">
             <div class="card card-body">
                 <p class="lead">文章審核通過規則:</p>
@@ -96,6 +90,11 @@ export default {
             point: 0,
             count: 0,
             roles: [],
+            percentage: {
+                junior: null,
+                senior: null,
+                legend: null,
+            },
         };
     },
     mounted() {
@@ -128,15 +127,9 @@ export default {
                 .then((response) => {
                     this.count = response.data.count;
 
-                    $('.chart').easyPieChart({
-                        scaleColor: "#ecf0f1",
-                        lineWidth: 20,
-                        lineCap: 'butt',
-                        barColor: '#1abc9c',
-                        trackColor:	"#ecf0f1",
-                        size: 160,
-                        animate: 500
-                    });
+                    this.percentage.junior = Math.round((this.count * 100) / 200);
+                    this.percentage.senior = Math.round((this.count * 100) / 500);
+                    this.percentage.legend = Math.round((this.count * 100) / 1000);
                 })
                 .catch(error => console.log(error));
         },
