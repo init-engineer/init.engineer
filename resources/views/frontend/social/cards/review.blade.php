@@ -3,6 +3,13 @@
 @section('title', app_name() . ' | ' . __('navs.frontend.social.cards.review'))
 
 @section('content')
+    <div class="container my-4">
+        <social-cards-point></social-cards-point>
+        <social-cards-review></social-cards-review>
+    </div><!--container-->
+
+    <hr>
+
     <div class="container mt-3">
         <label class="col-label">這裡是 Ads 廣告</label>
         <ins class="adsbygoogle"
@@ -12,13 +19,6 @@
             data-ad-format="auto"
             data-full-width-responsive="true"></ins>
     </div>
-
-    <hr>
-
-    <div class="container my-3">
-        <social-cards-point></social-cards-point>
-        <social-cards-review></social-cards-review>
-    </div><!--container-->
 @endsection
 
 @push('after-scripts')
