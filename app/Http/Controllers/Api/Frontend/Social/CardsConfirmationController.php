@@ -98,12 +98,23 @@ class CardsConfirmationController extends Controller
                 }
                 if ($request->user()->isJuniorVIP())     { $point += 1;  array_push($roles, 'junior vip'); }
                 if ($request->user()->isSeniorVIP())     { $point += 2;  array_push($roles, 'senior vip'); }
-                if ($request->user()->isJuniorDonate())  { $point += 2;  array_push($roles, 'junior donate'); }
-                if ($request->user()->isSeniorDonate())  { $point += 4;  array_push($roles, 'senior donate'); }
+                if ($request->user()->isExpertVIP())     { $point += 3;  array_push($roles, 'expert vip'); }
+                if ($request->user()->isLegendVIP())     { $point += 4;  array_push($roles, 'legend vip'); }
+
+                if ($request->user()->isJuniorDonate())  { $point += 1;  array_push($roles, 'junior donate'); }
+                if ($request->user()->isSeniorDonate())  { $point += 2;  array_push($roles, 'senior donate'); }
+                if ($request->user()->isExpertDonate())  { $point += 3;  array_push($roles, 'expert donate'); }
+                if ($request->user()->isLegendDonate())  { $point += 4;  array_push($roles, 'legend donate'); }
+
                 if ($request->user()->isJuniorUser())    { $point += 1;  array_push($roles, 'junior user'); }
-                if ($request->user()->isSeniorUser())    { $point += 2;  array_push($roles, 'senior user'); }
-                if ($request->user()->isJuniorManager()) { $point += 4;  array_push($roles, 'junior manager'); }
-                if ($request->user()->isSeniorManager()) { $point += 9;  array_push($roles, 'senior manager'); }
+                if ($request->user()->isSeniorUser())    { $point += 1;  array_push($roles, 'senior user'); }
+                if ($request->user()->isExpertUser())    { $point += 2;  array_push($roles, 'expert user'); }
+                if ($request->user()->isLegendUser())    { $point += 3;  array_push($roles, 'legend user'); }
+
+                if ($request->user()->isJuniorManager()) { $point += 2;  array_push($roles, 'junior manager'); }
+                if ($request->user()->isSeniorManager()) { $point += 2;  array_push($roles, 'senior manager'); }
+                if ($request->user()->isExpertManager()) { $point += 3;  array_push($roles, 'expert manager'); }
+                if ($request->user()->isLegendManager()) { $point += 4;  array_push($roles, 'legend manager'); }
 
                 $review = $this->reviewRepository->create([
                     'card_id' => $id->id,
@@ -148,12 +159,23 @@ class CardsConfirmationController extends Controller
                 }
                 if ($request->user()->isJuniorVIP())     { $point -= 1;  array_push($roles, 'junior vip'); }
                 if ($request->user()->isSeniorVIP())     { $point -= 2;  array_push($roles, 'senior vip'); }
-                if ($request->user()->isJuniorDonate())  { $point -= 2;  array_push($roles, 'junior donate'); }
-                if ($request->user()->isSeniorDonate())  { $point -= 4;  array_push($roles, 'senior donate'); }
+                if ($request->user()->isExpertVIP())     { $point -= 3;  array_push($roles, 'expert vip'); }
+                if ($request->user()->isLegendVIP())     { $point -= 4;  array_push($roles, 'legend vip'); }
+
+                if ($request->user()->isJuniorDonate())  { $point -= 1;  array_push($roles, 'junior donate'); }
+                if ($request->user()->isSeniorDonate())  { $point -= 2;  array_push($roles, 'senior donate'); }
+                if ($request->user()->isExpertDonate())  { $point -= 3;  array_push($roles, 'expert donate'); }
+                if ($request->user()->isLegendDonate())  { $point -= 4;  array_push($roles, 'legend donate'); }
+
                 if ($request->user()->isJuniorUser())    { $point -= 1;  array_push($roles, 'junior user'); }
-                if ($request->user()->isSeniorUser())    { $point -= 2;  array_push($roles, 'senior user'); }
-                if ($request->user()->isJuniorManager()) { $point -= 4;  array_push($roles, 'junior manager'); }
-                if ($request->user()->isSeniorManager()) { $point -= 9;  array_push($roles, 'senior manager'); }
+                if ($request->user()->isSeniorUser())    { $point -= 1;  array_push($roles, 'senior user'); }
+                if ($request->user()->isExpertUser())    { $point -= 2;  array_push($roles, 'expert user'); }
+                if ($request->user()->isLegendUser())    { $point -= 3;  array_push($roles, 'legend user'); }
+
+                if ($request->user()->isJuniorManager()) { $point -= 2;  array_push($roles, 'junior manager'); }
+                if ($request->user()->isSeniorManager()) { $point -= 2;  array_push($roles, 'senior manager'); }
+                if ($request->user()->isExpertManager()) { $point -= 3;  array_push($roles, 'expert manager'); }
+                if ($request->user()->isLegendManager()) { $point -= 4;  array_push($roles, 'legend manager'); }
 
                 $review = $this->reviewRepository->create([
                     'card_id' => $id->id,

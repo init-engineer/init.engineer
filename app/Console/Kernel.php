@@ -55,6 +55,11 @@ class Kernel extends ConsoleKernel
         $schedule->command('social:review-publish')->everyMinute();
 
         /**
+         * 自動化 每小時檢查是否有使用者可以賦予身份
+         */
+        $schedule->command('roles:review-user-role')->hourly();
+
+        /**
          * 自動化 偵測 IP Address 是否有變更
          */
         $schedule->command('report:ip-address')->everyMinute();
