@@ -193,7 +193,7 @@ trait UserMethod
      */
     public function isExpertManager()
     {
-        return $this->hasRole(config('access.users.expert_manage_role'));
+        return $this->hasRole(config('access.users.expert_manager_role'));
     }
 
     /**
@@ -201,7 +201,7 @@ trait UserMethod
      */
     public function isLegendManager()
     {
-        return $this->hasRole(config('access.users.legend_manage_role'));
+        return $this->hasRole(config('access.users.legend_manager_role'));
     }
 
     /**
