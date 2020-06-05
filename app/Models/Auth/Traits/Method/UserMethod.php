@@ -95,6 +95,22 @@ trait UserMethod
     /**
      * @return mixed
      */
+    public function isExpertVIP()
+    {
+        return $this->hasRole(config('access.users.expert_vip_role'));
+    }
+
+    /**
+     * @return mixed
+     */
+    public function isLegendVIP()
+    {
+        return $this->hasRole(config('access.users.legend_vip_role'));
+    }
+
+    /**
+     * @return mixed
+     */
     public function isJuniorDonate()
     {
         return $this->hasRole(config('access.users.junior_donate_role'));
@@ -106,6 +122,22 @@ trait UserMethod
     public function isSeniorDonate()
     {
         return $this->hasRole(config('access.users.senior_donate_role'));
+    }
+
+    /**
+     * @return mixed
+     */
+    public function isExpertDonate()
+    {
+        return $this->hasRole(config('access.users.expert_donate_role'));
+    }
+
+    /**
+     * @return mixed
+     */
+    public function isLegendDonate()
+    {
+        return $this->hasRole(config('access.users.legend_donate_role'));
     }
 
     /**
@@ -127,6 +159,22 @@ trait UserMethod
     /**
      * @return mixed
      */
+    public function isExpertUser()
+    {
+        return $this->hasRole(config('access.users.expert_user_role'));
+    }
+
+    /**
+     * @return mixed
+     */
+    public function isLegendUser()
+    {
+        return $this->hasRole(config('access.users.legend_user_role'));
+    }
+
+    /**
+     * @return mixed
+     */
     public function isJuniorManager()
     {
         return $this->hasRole(config('access.users.junior_manager_role'));
@@ -138,6 +186,22 @@ trait UserMethod
     public function isSeniorManager()
     {
         return $this->hasRole(config('access.users.senior_manager_role'));
+    }
+
+    /**
+     * @return mixed
+     */
+    public function isExpertManage()
+    {
+        return $this->hasRole(config('access.users.expert_manage_role'));
+    }
+
+    /**
+     * @return mixed
+     */
+    public function isLegendManage()
+    {
+        return $this->hasRole(config('access.users.legend_manage_role'));
     }
 
     /**
