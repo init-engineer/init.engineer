@@ -191,7 +191,7 @@ trait UserMethod
     /**
      * @return mixed
      */
-    public function isExpertManage()
+    public function isExpertManager()
     {
         return $this->hasRole(config('access.users.expert_manage_role'));
     }
@@ -199,7 +199,7 @@ trait UserMethod
     /**
      * @return mixed
      */
-    public function isLegendManage()
+    public function isLegendManager()
     {
         return $this->hasRole(config('access.users.legend_manage_role'));
     }
