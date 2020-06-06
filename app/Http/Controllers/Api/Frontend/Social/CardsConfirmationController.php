@@ -155,7 +155,7 @@ class CardsConfirmationController extends Controller
                 {
                     $point -= 99;
                     array_push($roles, 'administrator');
-                    $this->backendCardsRepository->banned($request->user(), $id, ['remarks' => '違反版規。']);
+                    // $this->backendCardsRepository->banned($request->user(), $id, ['remarks' => '違反版規。']);
                 }
                 if ($request->user()->isJuniorVIP())     { $point -= 1;  array_push($roles, 'junior vip'); }
                 if ($request->user()->isSeniorVIP())     { $point -= 2;  array_push($roles, 'senior vip'); }
