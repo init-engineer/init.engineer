@@ -44,10 +44,9 @@
                     <rect x="80" y="88" rx="1" ry="1" width="20" height="8" />
                 </vue-content-loading>
             </div>
-            <div class="card animated fadeInUp faster"
-                v-for="(card, $index) in cards"
+            <div v-for="(card, $index) in cards"
                 :key="$index">
-                <div v-if="card.succeeded + card.failed > -50">
+                <div v-if="card.succeeded + card.failed > -50" class="card animated fadeInUp faster">
                     <img class="card-img-top img-fluid mx-auto d-block animated fadeIn faster"
                         :src="card.image"
                         @click="gallery = $index" />
