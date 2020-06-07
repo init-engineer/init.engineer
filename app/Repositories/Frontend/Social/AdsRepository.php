@@ -65,7 +65,7 @@ class AdsRepository extends BaseRepository
      * @throws GeneralException
      * @return mixed
      */
-    public function findRandom()
+    public function findRandom(Cards $cards)
     {
         $ads = $this->model
             ->where('started_at', '<=', Carbon::now())
@@ -81,8 +81,19 @@ class AdsRepository extends BaseRepository
         $responseAds = false;
         $incidence = 0;
         $rand = rand(0, 10000);
+        $data = [
+            'ads' => [],
+            'rand' => null,
+        ];
         foreach ($ads as $ad)
         {
+            array_push($data['ads'], [
+                'id' => $ad->id,
+                'name' => $ad->name,
+                'incidence' => $ad->incidence,
+                'active' => $ad->active,
+            ]);
+
             if ($rand >= $incidence && $rand <= $incidence + $ad->incidence)
             {
                 $responseAds = $ad;
@@ -91,22 +102,32 @@ class AdsRepository extends BaseRepository
             $incidence += $ad->incidence;
         }
 
+        if ($responseAds)
+        {
+            $data['rand'] = $rand;
+
+            $this->add($responseAds, $cards, $data);
+        }
+
         return $responseAds;
     }
 
     /**
      * @param Ads   $ads
      * @param Cards $cards
+     * @param array $data
      *
      * @throws GeneralException
      * @throws \Exception
      * @throws \Throwable
      * @return Ads
      */
-    public function add(Ads $ads, Cards $cards) : Ads
+    public function add(Ads $ads, Cards $cards, array $data) : Ads
     {
         $options = json_decode($ads->options, true);
-        array_push($options['cards'], $cards->id);
+        $_data = $data;
+        $_data['id'] = $cards->id;
+        array_push($options, $_data);
 
         return DB::transaction(function () use ($ads, $options) {
             if ($ads->update([
