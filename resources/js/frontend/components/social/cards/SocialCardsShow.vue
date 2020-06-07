@@ -225,7 +225,6 @@ export default {
                     this.comments.push(...response.data.data);
                     this.comments.forEach(element => {
                         element.content = element.content.replace(/<br \/>/g, "\n\r");
-                        console.log(element.content);
                     });
                     if (response.data.meta.pagination.links.next) {
                         this.commentsNext = response.data.meta.pagination.links.next;
