@@ -185,27 +185,45 @@ class ImagesService extends BaseService implements ImagesContract
              */
             if ($backgroundRGB[0] == 255 && $backgroundRGB[1] == 255 && $backgroundRGB[2] == 255)
             {
-                /**
-                 * 而且字體顏色是白色
-                 */
                 if ($textRGB[0] == 248 && $textRGB[1] == 249 && $textRGB[2] == 250)
                 {
-                    dd($textRGB);
+                    /**
+                     * 如果背景顏色是黑色
+                     * 且字體顏色是白色，那就甚麼事情都不做
+                     */
                 }
                 else
                 {
-                    imageFilter($adsCanvas, IMG_FILTER_NEGATE);
+                    /**
+                     * 如果背景顏色是黑色
+                     * 但文字並不是白色，那就只渲染文字顏色就好
+                     */
                     imageFilter($adsCanvas, IMG_FILTER_COLORIZE, 255 - $textRGB[0], 255 - $textRGB[1], 255 - $textRGB[2]);
                     imageFilter($adsCanvas, IMG_FILTER_NEGATE);
                 }
             }
             else
             {
-                imageFilter($adsCanvas, IMG_FILTER_NEGATE);
-                imageFilter($adsCanvas, IMG_FILTER_COLORIZE, $textRGB[0], $textRGB[1], $textRGB[2]);
-                imageFilter($adsCanvas, IMG_FILTER_NEGATE);
-                imageFilter($adsCanvas, IMG_FILTER_COLORIZE, $backgroundRGB[0], $backgroundRGB[1], $backgroundRGB[2]);
-                imageFilter($adsCanvas, IMG_FILTER_NEGATE);
+                if ($textRGB[0] == 248 && $textRGB[1] == 249 && $textRGB[2] == 250)
+                {
+                    /**
+                     * 如果背景顏色不是黑色
+                     * 但文字顏色是白色，那麼只要渲染背景顏色就好
+                     */
+                    imageFilter($adsCanvas, IMG_FILTER_COLORIZE, 255 - $backgroundRGB[0], 255 - $backgroundRGB[1], 255 - $backgroundRGB[2]);
+                }
+                else
+                {
+                    /**
+                     * 如果背景顏色不是黑色
+                     * 且文字顏色也不是白色，那麼背景跟文字都需要被上色
+                     */
+                    imageFilter($adsCanvas, IMG_FILTER_NEGATE);
+                    imageFilter($adsCanvas, IMG_FILTER_COLORIZE, $textRGB[0], $textRGB[1], $textRGB[2]);
+                    imageFilter($adsCanvas, IMG_FILTER_NEGATE);
+                    imageFilter($adsCanvas, IMG_FILTER_COLORIZE, $backgroundRGB[0], $backgroundRGB[1], $backgroundRGB[2]);
+                    imageFilter($adsCanvas, IMG_FILTER_NEGATE);
+                }
             }
 
             $adsSY = imageSY($adsCanvas);
