@@ -46,7 +46,7 @@
             </div>
             <div v-for="(card, $index) in cards"
                 :key="$index">
-                <div v-if="card.succeeded + card.failed > -50" class="card animated fadeInUp faster">
+                <div v-if="card.succeeded + card.failed > -50 || card.content.indexOf('群眾審核系統') === 1" class="card animated fadeInUp faster">
                     <img class="card-img-top img-fluid mx-auto d-block animated fadeIn faster"
                         :src="card.image"
                         @click="gallery = $index" />
