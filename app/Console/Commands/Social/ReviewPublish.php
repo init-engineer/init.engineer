@@ -74,10 +74,10 @@ class ReviewPublish extends Command
         $paginator = $this->frontendCardsRepository->getUnactivePaginated();
         foreach ($paginator as $card)
         {
-            if ($card->created_at >= Carbon::now()->addHours(-6))    $range = 30;
-            if ($card->created_at >= Carbon::now()->addHours(-3))    $range = 20;
-            if ($card->created_at >= Carbon::now()->addHours(-1))    $range = 10;
-            if ($card->created_at >= Carbon::now()->addMinutes(-30)) $range = 5;
+            $range = 50;
+            if ($card->created_at >= Carbon::now()->addHours(-6)) $range = 30;
+            if ($card->created_at >= Carbon::now()->addHours(-3)) $range = 20;
+            if ($card->created_at >= Carbon::now()->addHours(-1)) $range = 10;
 
             $point = 0;
             foreach ($card->reviews as $review)
