@@ -52,7 +52,7 @@ class Kernel extends ConsoleKernel
         /**
          * 自動化 檢查群眾審核
          */
-        $schedule->command('social:review-publish')->everyMinute();
+        $schedule->command('social:review-publish')->everyThirtyMinutes();
 
         /**
          * 自動化 每小時檢查是否有使用者可以賦予身份
