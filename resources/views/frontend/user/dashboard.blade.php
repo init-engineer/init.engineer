@@ -18,6 +18,10 @@
                                     <a href="#cards" class="my-2 btn btn-block btn-dos rounded-0 active" aria-controls="cards" role="tab" data-toggle="tab">@lang('navs.frontend.user.cards')</a>
                                     <a href="#profile" class="my-2 btn btn-block btn-dos rounded-0" aria-controls="profile" role="tab" data-toggle="tab">@lang('navs.frontend.user.profile')</a>
                                     <a href="#edit" class="my-2 btn btn-block btn-dos rounded-0" aria-controls="edit" role="tab" data-toggle="tab">@lang('labels.frontend.user.profile.update_information')</a>
+                                    <a href="#authorized" class="my-2 btn btn-block btn-dos rounded-0" aria-controls="authorized" role="tab" data-toggle="tab">授權列表</a>
+                                    @if($logged_in_user->isJuniorUser())
+                                        <a href="#clients" class="my-2 btn btn-block btn-dos rounded-0" aria-controls="clients" role="tab" data-toggle="tab">我的應用程式(OAuth)</a>
+                                    @endif
                                     @if($logged_in_user->canChangePassword())
                                         <a href="#password" class="my-2 btn btn-block btn-dos rounded-0" aria-controls="password" role="tab" data-toggle="tab">@lang('navs.frontend.user.change_password')</a>
                                     @endif
@@ -75,6 +79,17 @@
                                     <div role="tabpanel" class="tab-pane fade show pt-3" id="edit" aria-labelledby="edit-tab">
                                         @include('frontend.user.account.tabs.edit')
                                     </div><!--tab panel profile-->
+
+                                    <div role="tabpanel" class="tab-pane fade show pt-3" id="authorized" aria-labelledby="authorized-tab">
+                                        <authorized-clients></authorized-clients>
+                                    </div><!--tab panel profile-->
+
+                                    @if($logged_in_user->isJuniorUser())
+                                        <div role="tabpanel" class="tab-pane fade show pt-3" id="clients" aria-labelledby="clients-tab">
+                                            <clients></clients>
+                                            <personal-access-tokens></personal-access-tokens>
+                                        </div><!--tab panel profile-->
+                                    @endif
 
                                     @if($logged_in_user->canChangePassword())
                                         <div role="tabpanel" class="tab-pane fade show pt-3" id="password" aria-labelledby="password-tab">

@@ -9,20 +9,16 @@
         <div class="card card-default">
             <div class="card-header">
                 <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <span>
-                        OAuth Clients
-                    </span>
+                    <h3><span>我的應用程式 OAuth Clients</span></h3>
 
-                    <a class="action-link" tabindex="-1" @click="showCreateClientForm">
-                        Create New Client
-                    </a>
+                    <a class="action-link btn btn-info text-white" tabindex="-1" @click="showCreateClientForm">建立新的應用程式</a>
                 </div>
             </div>
 
             <div class="card-body">
                 <!-- Current Clients -->
                 <p class="mb-0" v-if="clients.length === 0">
-                    您尚未建立任何 OAuth Clients。
+                    您尚未建立任何應用程式。
                 </p>
 
                 <table class="table table-borderless mb-0" v-if="clients.length > 0">
@@ -80,7 +76,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">
-                            Create Client
+                            建立新的應用程式
                         </h4>
 
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -187,8 +183,7 @@
                                 <label class="col-md-3 col-form-label">名稱</label>
 
                                 <div class="col-md-9">
-                                    <input id="edit-client-name" type="text" class="form-control"
-                                                                @keyup.enter="update" v-model="editForm.name">
+                                    <input id="edit-client-name" type="text" class="form-control" @keyup.enter="update" v-model="editForm.name">
 
                                     <span class="form-text text-muted">
                                         您的使用者會看到並且信任的名稱。
@@ -201,8 +196,7 @@
                                 <label class="col-md-3 col-form-label">Redirect URL</label>
 
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" name="redirect"
-                                                    @keyup.enter="update" v-model="editForm.redirect">
+                                    <input type="text" class="form-control" name="redirect" @keyup.enter="update" v-model="editForm.redirect">
 
                                     <span class="form-text text-muted">
                                         您的應用程式通過授權後所轉址的 Callback URL。
