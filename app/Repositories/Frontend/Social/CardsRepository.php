@@ -48,7 +48,7 @@ class CardsRepository extends BaseRepository
      *
      * @return mixed
      */
-    public function getUnactivePaginated($paged = 10, $orderBy = 'created_at', $sort = 'asc') : LengthAwarePaginator
+    public function getUnactivePaginated($paged = 10, $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
     {
         return $this->model
             ->active(false)
