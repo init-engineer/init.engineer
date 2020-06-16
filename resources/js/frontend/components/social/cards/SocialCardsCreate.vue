@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-12 col-md-6">
                 <div class="form-group">
-                    <label class="col-label">canvas.frontend.cards.edit</label>
+                    <label class="col-label">內容編輯</label>
                     <textarea class="form-control cards-editor" rows="7" minlength="30" maxlength="4096" placeholder="跟大家分享你的靠北事吧。" required v-model="canvas.content" @keyup="onContentKeyup($event)"></textarea>
                     <p class="text-danger text-right">
                         <strong>【注意事項】字數有限制，字不能太少，也不能太多字。</strong>
@@ -19,7 +19,7 @@
 
             <div class="col-12 col-md-6">
                 <div class="form-group">
-                    <label class="col-label">canvas.frontend.cards.preview</label>
+                    <label class="col-label">預覽</label>
                     <canvas class="rounded mx-auto d-block w-100" width="960" height="720" ref="canvasView">
                         <!-- 倘若使用者的瀏覽器並不支援 canvas，將會顯示該段內容。 -->
                         您的瀏覽器必須支援 HTML5 標籤語法，才能使用圖片(即時)預覽功能。
@@ -32,16 +32,49 @@
         <!--row-->
 
         <div class="row">
-            <div class="col">
+            <div class="col-12 col-md-6">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label class="col-label">選擇主題樣式(文字、背景顏色)</label>
+                            <select class="form-control form-control-lg" :class="theme.options.find(option => option.value === theme.selector).class" v-model="theme.selector" @change="onThemeChange($event)">
+                                <option
+                                    :class="option.class"
+                                    v-for="option in theme.options"
+                                    :key="option.value"
+                                    :value="option.value">{{ option.text }}</option>
+                            </select>
+                        </div>
+                        <!--form-group-->
+                    </div>
+                    <!--col-->
+
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label class="col-label">選擇字型(font)</label>
+                            <select class="form-control form-control-lg btn-dark text-white" v-model="font.selector" @change="onFontChange($event)">
+                                <option
+                                    v-for="option in font.options"
+                                    :key="option.value"
+                                    :value="option.value">{{ option.text }}</option>
+                            </select>
+                        </div>
+                        <!--input-group-->
+                    </div>
+                    <!--col-->
+                </div>
+                <!--row-->
+            </div>
+            <!--col-->
+
+            <div class="col-12 col-md-6">
                 <div class="form-group">
-                    <label class="col-label">label.frontend.cards.theme-selector</label>
-                    <select class="form-control form-control-lg" :class="theme.options.find(option => option.value === theme.selector).class" v-model="theme.selector" @change="onThemeChange($event)">
-                        <option
-                            :class="option.class"
-                            v-for="option in theme.options"
-                            :key="option.value"
-                            :value="option.value">{{ option.text }}</option>
-                    </select>
+                    <label class="col-label">To Be Coutinued</label>
+
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" id="manager-line" class="control-input" v-model="canvas.feature.is_to_be_continued" @click="drawingAll">
+                        <label class="text-white control-label" for="manager-line">是否在文章當中繪製 To Be Coutinued</label>
+                    </div>
                 </div>
                 <!--form-group-->
             </div>
@@ -52,24 +85,7 @@
         <div class="row">
             <div class="col">
                 <div class="form-group">
-                    <label class="col-label">label.frontend.cards.font-selector</label>
-                    <select class="form-control form-control-lg btn-dark text-white" v-model="font.selector" @change="onFontChange($event)">
-                        <option
-                            v-for="option in font.options"
-                            :key="option.value"
-                            :value="option.value">{{ option.text }}</option>
-                    </select>
-                </div>
-                <!--input-group-->
-            </div>
-            <!--col-->
-        </div>
-        <!--row-->
-
-        <div class="row">
-            <div class="col">
-                <div class="form-group">
-                    <label class="col-label">label.frontend.cards.avatar-input</label>
+                    <label class="col-label">自定義圖片上傳</label>
                     <picture-input
                         class="bg-black text-white"
                         buttonClass="h3 btn btn-block btn-dos btn-lg"
@@ -139,14 +155,14 @@
         <div class="row" v-if="this.isAdmin">
             <div class="col">
                 <div class="form-group">
-                    <label class="col-label">label.frontend.cards.admin</label>
+                    <label class="col-label">版主識別框線</label>
 
                     <div class="custom-control custom-checkbox">
-                        <input type="checkbox" id="manager-line" class="control-input" v-model="canvas.is_manager_line" @click="drawingManagerLine">
+                        <input type="checkbox" id="manager-line" class="control-input" v-model="canvas.is_manager_line" @click="drawingAll">
                         <label class="text-white control-label" for="manager-line">是否在文章當中繪製版主群識別框線</label>
                     </div>
                 </div>
-                <!--input-group-->
+                <!--form-group-->
             </div>
             <!--col-->
         </div>
@@ -155,7 +171,7 @@
         <div class="row">
             <div class="col">
                 <div class="form-group clearfix">
-                    <label class="col-label">button.frontend.cards.send</label>
+                    <label class="col-label">將文章發表出去</label>
                     <button class="h3 btn btn-block btn-dos btn-lg" @click="publish">發表文章</button>
                 </div>
                 <!--form-group-->
@@ -205,6 +221,9 @@ export default {
                 background_color: "#000000",
                 font: "Auraka",
                 is_manager_line: false,
+                feature: {
+                    is_to_be_continued: false,
+                },
             },
             avatar: null,
             theme: {
@@ -372,6 +391,15 @@ export default {
                             text: "#FF5376",
                         },
                     },
+                    {
+                        text: "支離滅裂な思考・発言",
+                        class: "bg-light text-dark",
+                        value: "05326525f82b9a036e1bcb53a392ff7c",
+                        color: {
+                            background: "#F8F9FA",
+                            text: "#000000",
+                        },
+                    },
                 ],
             },
             font: {
@@ -508,6 +536,7 @@ export default {
             this.drawingLogo();
             this.drawingUrl();
             this.drawingContent();
+            this.drawingFeature();
         },
         resetCanvasView() {
             this.canvas.view = this.$refs.canvasView;
@@ -518,16 +547,25 @@ export default {
             let canvasView_center = lineCount * 80 < 600 ? true : false;
             let canvasView_height = canvasView_center ? this.canvas.default_height : 72 + 72 + lineCount * 80;
             let canvasView_width = this.canvas.default_width;
+
+            /**
+             * 特殊樣式重新賦予長寬
+             */
             switch (this.theme.selector) {
                 case "32d2a897602ef652ed8e15d66128aa74":
                     canvasView_height += 360;
                     break;
 
                 case "05326525f82b9a036e1bcb53a392ff7c":
-                    canvasView_height += 580;
+                    canvasView_height += 140;
                     canvasView_width += 349;
                     break;
             }
+
+            /**
+             * Feature
+             */
+            if (this.canvas.feature.is_to_be_continued) canvasView_height += 160;
 
             this.canvas.is_center = canvasView_center;
             this.canvas.view.width = canvasView_width;
@@ -538,6 +576,13 @@ export default {
         drawingBackground() {
             this.canvas.ctx.fillStyle = this.canvas.background_color;
             this.canvas.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+        },
+        drawingFeature() {
+            let img = new Image();
+            if (this.canvas.feature.is_to_be_continued) {
+                img.src = "/img/frontend/cards/to_be_continued.png";
+                this.canvas.ctx.drawImage(img, 24, this.canvas.view.height - 240);
+            }
         },
         drawingBackgroundImage() {
             let img = new Image();
@@ -560,10 +605,10 @@ export default {
                     this.canvas.ctx.lineJoin = "round";
                     this.canvas.ctx.lineWidth = 8;
                     this.canvas.ctx.strokeRect(353, 40, this.canvas.width - 381, this.canvas.height - 282);
-                    img.src = "/img/frontend/cards/fragmented_background_top_left.png";
-                    this.canvas.ctx.drawImage(img, 349, 36);
-                    img.src = "/img/frontend/cards/fragmented_background_top_right.png";
-                    this.canvas.ctx.drawImage(img, this.canvas.width - 72, 36);
+                    this.canvas.ctx.fillRect(357, 44, this.canvas.width - 389, this.canvas.height - 290);
+                    img.src = "/img/frontend/cards/fragmented_background_arrow.png";
+                    // img.src = "https://i.imgur.com/8kMDGcA.png";
+                    this.canvas.ctx.drawImage(img, 312, this.canvas.height - 388);
                     return;
             }
         },
@@ -624,6 +669,11 @@ export default {
                     switch (this.theme.selector) {
                         case "32d2a897602ef652ed8e15d66128aa74":
                             y_point += 240;
+                            break;
+
+                        case "05326525f82b9a036e1bcb53a392ff7c":
+                            x_point += 349;
+                            y_point += 24;
                             break;
                     }
 
@@ -722,6 +772,7 @@ export default {
                             themeStyle: this.theme.selector,
                             fontStyle: this.font.selector,
                             isManagerLine: this.canvas.is_manager_line,
+                            isFeatureToBeCoutinued: this.canvas.feature.is_to_be_continued,
                         }
                     }
 

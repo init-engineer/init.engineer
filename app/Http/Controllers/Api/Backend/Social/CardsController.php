@@ -82,7 +82,7 @@ class CardsController extends Controller
 
         $avatar = $request->has('avatar')?
             $this->imagesService->uploadImage([], $request->file('avatar')) :
-            $this->imagesService->buildImage($request->only('content', 'themeStyle', 'fontStyle', 'isManagerLine'));
+            $this->imagesService->buildImage($request->only('content', 'themeStyle', 'fontStyle', 'isFeatureToBeCoutinued', 'isManagerLine'));
 
         $this->imagesRepository->create([
             'card_id' => $modelCard->id,

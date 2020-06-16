@@ -138,13 +138,25 @@ class ImagesService extends BaseService implements ImagesContract
             case '32d2a897602ef652ed8e15d66128aa74':
                 $this->canvasHeight += 360;
                 break;
+
+            /** 支離滅裂な思考・発言 */
+            case '05326525f82b9a036e1bcb53a392ff7c':
+                $this->canvasHeight += 140;
+                $this->canvasWidth += 349;
+                break;
         }
+
+        /**
+         * Feature
+         */
+        if (isset($data['isFeatureToBeCoutinued']) && $data['isFeatureToBeCoutinued']) $this->canvasHeight += 160;
 
         $this->createCanvas();
         $this->drawingTheme($data['themeStyle']);
         $this->drawingFont($data['fontStyle']);
         $this->drawingLogo($data['themeStyle']);
         $this->drawingUrl($data['themeStyle']);
+        $this->drawingFeature($data);
 
         if (isset($data['isManagerLine']) && $data['isManagerLine'])
         {
@@ -156,6 +168,9 @@ class ImagesService extends BaseService implements ImagesContract
          */
         foreach ($content as $key => $value)
         {
+            /**
+             * 計算錨點(x, y)
+             */
             $xPoint = 36;
             $yPoint = $this->canvasTextCenter? 24 + ($this->canvasTextCenter)? 440 + ((($key - 1) * 80) - (count($content) * 40)) : (($key + 1) * 80) : 72 + ($key * 80);
 
@@ -164,6 +179,12 @@ class ImagesService extends BaseService implements ImagesContract
                 /** Windows 最棒的畫面 */
                 case '32d2a897602ef652ed8e15d66128aa74':
                     $yPoint += 240;
+                    break;
+
+                /** 支離滅裂な思考・発言 */
+                case '05326525f82b9a036e1bcb53a392ff7c':
+                    $xPoint += 349;
+                    $yPoint += 24;
                     break;
             }
 
@@ -315,6 +336,32 @@ class ImagesService extends BaseService implements ImagesContract
                 imageTTFtext($this->canvas, 26, $this->canvasAngle, 228, $this->canvasHeight - 40,  $this->canvasTextColor, $this->canvasFont, sprintf('請訪問 %s', app_url()));
                 break;
 
+            case '05326525f82b9a036e1bcb53a392ff7c':
+                $fontSize   = 24;
+                $fontWidth  = imageFontWidth($fontSize) * strlen(app_name());
+                $fontHeight = imageFontHeight($fontSize);
+                $xPoint     = $this->canvasWidth - ($fontWidth * 1.2) - $fontSize;
+                $yPoint     = $this->canvasHeight - $fontHeight - $fontSize;
+                $content    = mb_convert_encoding(app_name(), 'UTF-8', 'auto');
+                imageTTFtext($this->canvas, $fontSize, $this->canvasAngle, $xPoint, $yPoint, $this->canvasTextColor, $this->canvasFont, $content);
+
+                $fontSize   = 48;
+                $fontWidth  = imageFontWidth($fontSize) * strlen('支離滅裂な');
+                $fontHeight = imageFontHeight($fontSize);
+                $xPoint     = 360;
+                $yPoint     = $this->canvasHeight - 160;
+                $content    = mb_convert_encoding('支離滅裂な', 'UTF-8', 'auto');
+                imageTTFtext($this->canvas, $fontSize, $this->canvasAngle, $xPoint, $yPoint, $this->canvasTextColor, $this->canvasFont, $content);
+
+                $fontSize   = 48;
+                $fontWidth  = imageFontWidth($fontSize) * strlen('思考・発言');
+                $fontHeight = imageFontHeight($fontSize);
+                $xPoint     = 360;
+                $yPoint     = $this->canvasHeight - 80;
+                $content    = mb_convert_encoding('思考・発言', 'UTF-8', 'auto');
+                imageTTFtext($this->canvas, $fontSize, $this->canvasAngle, $xPoint, $yPoint, $this->canvasTextColor, $this->canvasFont, $content);
+                break;
+
             default:
                 $fontSize   = 24;
                 $fontWidth  = imageFontWidth($fontSize) * strlen(app_name());
@@ -355,6 +402,21 @@ class ImagesService extends BaseService implements ImagesContract
         }
 
         return $this->canvas;
+    }
+
+    /**
+     * 繪製特殊樣式
+     *
+     * @param array $data
+     * @return resource
+     */
+    private function drawingFeature($data)
+    {
+        if (isset($data['isFeatureToBeCoutinued']) && $data['isFeatureToBeCoutinued'])
+        {
+            $overlayImage = imageCreateFromPng(asset('img/frontend/cards/to_be_continued.png'));
+            imageCopy($this->canvas, $overlayImage, 24, $this->canvasHeight - 240, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
+        };
     }
 
     /**
@@ -477,6 +539,13 @@ class ImagesService extends BaseService implements ImagesContract
                 $this->canvasBackgroundColor = imageColorAllocate($this->canvas, 248, 192, 200);
                 break;
 
+            /** 支離滅裂な思考・発言 */
+            case '05326525f82b9a036e1bcb53a392ff7c':
+                $this->canvasTextColor = imageColorAllocate($this->canvas, 0, 0, 0);
+                $this->canvasBackgroundColor = imageColorAllocate($this->canvas, 248, 249, 250);
+                $this->drawingBackgroundImage('05326525f82b9a036e1bcb53a392ff7c');
+                break;
+
             /** 預設: 黑底綠字 */
             default:
                 $this->canvasTextColor = imageColorAllocate($this->canvas, 0, 255, 59);
@@ -577,6 +646,21 @@ class ImagesService extends BaseService implements ImagesContract
             case '32d2a897602ef652ed8e15d66128aa74':
                 $overlayImage = imageCreateFromPng(asset('img/frontend/cards/qrcode.png'));
                 imageCopy($this->canvas, $overlayImage, 24, imageSY($this->canvas) - 204, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
+                break;
+
+            /** 支離滅裂な思考・発言 */
+            case '05326525f82b9a036e1bcb53a392ff7c':
+                // $overlayImage = imageCreateFromPng(asset('img/frontend/cards/fragmented_background.png'));
+                $overlayImage = imageCreateFromPng('https://kaobei.engineer/img/frontend/cards/fragmented_background.png');
+                imageCopy($this->canvas, $overlayImage, 0, imageSY($this->canvas) - 560, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
+
+                // $overlayImage = imageCreateFromPng(asset('img/frontend/cards/fragmented_people.png'));
+                $overlayImage = imageCreateFromPng('https://kaobei.engineer/img/frontend/cards/fragmented_people.png');
+                imageCopy($this->canvas, $overlayImage, 36, imageSY($this->canvas) - 542, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
+
+                // $overlayImage = imageCreateFromPng(asset('img/frontend/cards/fragmented_background_arrow.png'));
+                // $overlayImage = imageCreateFromPng('https://i.imgur.com/8kMDGcA.png');
+                // imageCopy($this->canvas, $overlayImage, 312, imageSY($this->canvas) - 388, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
                 break;
 
             default:

@@ -31,7 +31,8 @@ class StoreCardsRequest extends FormRequest
             'themeStyle' => ['required', 'string'],
             'fontStyle' => ['required', 'string'],
             'avatar' => ['nullable', 'mimes:jpeg,jpg,png,gif', 'max:2048'],
-            'isManagerLine' => ['nullable'],
+            'isFeatureToBeCoutinued' => ['nullable', 'boolean'],
+            'isManagerLine' => ['nullable', 'boolean'],
         ];
     }
 }
