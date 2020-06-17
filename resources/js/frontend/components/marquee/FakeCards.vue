@@ -69,7 +69,7 @@ export default {
                     ipAddress: "192.168.***.***"
                 },
                 {
-                    imageUrl: "https://www.gravatar.com/avatar/default.jpg?s=80&d=mm&r=g",
+                    imageUrl: "https://avatars.plurk.com/6820974-big17396954.jpg",
                     username: "小風**姊",
                     message: "在 4 小時前發表了一篇廢文。",
                     ipAddress: "192.168.***.***"
