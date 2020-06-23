@@ -92,8 +92,9 @@
                 <ul>
                     <li>凡是使用者(User)身份，都擁有 1 票。</li>
                     <li>凡是初級使用者(Junior)身份，會再附加 1 票，也就是 2 票。</li>
-                    <li>凡是資深使用者(Senior)身份，會再附加 2 票，也就是 4 票。</li>
-                    <li>凡是傳奇使用者(Legend)身份，目前還沒想到。</li>
+                    <li>凡是資深使用者(Senior)身份，會再附加 1 票，也就是 3 票。</li>
+                    <li>凡是專家使用者(Export)身份，會再附加 2 票，也就是 5 票。</li>
+                    <li>凡是傳奇使用者(Legend)身份，會再附加 3 票，也就是 8 票。</li>
                 </ul>
                 <hr class="my-2">
                 <h3><span class="badge badge-pill badge-dark m-1" v-for="(role, index) in roles" :key="index">{{ role.name }}<br />+ {{ role.point }} 票</span></h3>

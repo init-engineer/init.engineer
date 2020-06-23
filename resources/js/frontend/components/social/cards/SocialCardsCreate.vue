@@ -73,7 +73,7 @@
 
                     <div class="custom-control custom-checkbox">
                         <input type="checkbox" id="manager-line" class="control-input" v-model="canvas.feature.is_to_be_continued" @click="drawingAll">
-                        <label class="text-white control-label" for="manager-line">是否在文章當中繪製 To Be Coutinued</label>
+                        <label class="text-white control-label" for="manager-line">是否在文章當中繪製 To Be Coutinued，建議主題選擇「黑底白字」</label>
                     </div>
                 </div>
                 <!--form-group-->

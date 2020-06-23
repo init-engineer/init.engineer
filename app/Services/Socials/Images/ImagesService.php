@@ -657,10 +657,6 @@ class ImagesService extends BaseService implements ImagesContract
                 // $overlayImage = imageCreateFromPng(asset('img/frontend/cards/fragmented_people.png'));
                 $overlayImage = imageCreateFromPng('https://kaobei.engineer/img/frontend/cards/fragmented_people.png');
                 imageCopy($this->canvas, $overlayImage, 36, imageSY($this->canvas) - 542, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
-
-                // $overlayImage = imageCreateFromPng(asset('img/frontend/cards/fragmented_background_arrow.png'));
-                // $overlayImage = imageCreateFromPng('https://i.imgur.com/8kMDGcA.png');
-                // imageCopy($this->canvas, $overlayImage, 312, imageSY($this->canvas) - 388, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
                 break;
 
             default:
