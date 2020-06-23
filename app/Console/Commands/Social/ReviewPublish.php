@@ -71,7 +71,7 @@ class ReviewPublish extends Command
      */
     public function handle()
     {
-        $paginator = $this->frontendCardsRepository->getUnactivePaginated(10, 'created_at', 'asc');
+        $paginator = $this->frontendCardsRepository->getUnactivePaginated(1000, 'created_at', 'asc');
         foreach ($paginator as $card)
         {
             $range = 50;
