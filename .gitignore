@@ -4,6 +4,7 @@
 /public/.htaccess
 /public/hot
 /public/storage
+/public/.well-known
 
 /storage/*.key
 /storage/backups/*
@@ -33,3 +34,4 @@ output.txt
 coverage.xml
 /coverage
 .phpunit.result.cache
+*.rnd
