@@ -5,7 +5,7 @@
 @section('content')
     <div class="container my-4">
         <social-cards-point></social-cards-point>
-        <social-cards-review></social-cards-review>
+        <social-cards-review :is-admin="{{ $logged_in_user->isAdmin()? 1 : 0 }}"></social-cards-review>
     </div><!--container-->
 
     <hr>
