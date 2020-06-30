@@ -6,8 +6,8 @@ export default {
     props: {
         chartdata: {
             type: Array,
-            default: null,
-        },
+            default: null
+        }
     },
     mounted() {
         this.renderChart(
@@ -21,7 +21,7 @@ export default {
                             "#33f78b",
                             "#3891a6"
                         ],
-                        data: [0,0,0,0],
+                        data: [0, 0, 0, 0]
                     }
                 ]
             },
@@ -29,31 +29,33 @@ export default {
         );
     },
     watch: {
-      	chartdata: function() {
-            this.addPlugin(
-                {
-                    afterDraw: function (chart) {
-                        var e = 0;
-                        chart.data.datasets[0].data.forEach(element => {
-                            e += element;
-                        });
-                        if (e === 0) {
-                            // No data is present
-                            var ctx = chart.chart.ctx;
-                            var width = chart.chart.width;
-                            var height = chart.chart.height
-                            // chart.clear();
+        chartdata: function() {
+            this.addPlugin({
+                afterDraw: function(chart) {
+                    var e = 0;
+                    chart.data.datasets[0].data.forEach(element => {
+                        e += element;
+                    });
+                    if (e === 0) {
+                        // No data is present
+                        var ctx = chart.chart.ctx;
+                        var width = chart.chart.width;
+                        var height = chart.chart.height;
+                        // chart.clear();
 
-                            ctx.save();
-                            ctx.textAlign = 'center';
-                            ctx.textBaseline = 'middle';
-                            ctx.font = "36px 'Helvetica'";
-                            ctx.fillText('慘了 ... 預測失效', width / 2, height / 2);
-                            ctx.restore();
-                        }
+                        ctx.save();
+                        ctx.textAlign = "center";
+                        ctx.textBaseline = "middle";
+                        ctx.font = "36px 'Helvetica'";
+                        ctx.fillText(
+                            "慘了 ... 預測失效",
+                            width / 2,
+                            height / 2
+                        );
+                        ctx.restore();
                     }
                 }
-            );
+            });
             this.renderChart(
                 {
                     labels: ["波型", "三期型", "遞減型", "四期型"],
@@ -65,16 +67,16 @@ export default {
                                 "#33f78b",
                                 "#3891a6"
                             ],
-                            data: this.chartdata,
+                            data: this.chartdata
                         }
-                    ],
+                    ]
                 },
                 { responsive: true, maintainAspectRatio: false }
             );
 
             // var ctx = this.$refs.canvas.getContext("2d");
             // var width = this.$refs.canvas.width;
-			// var height = this.$refs.canvas.height;
+            // var height = this.$refs.canvas.height;
             // chart.clear();
 
             // ctx.save();

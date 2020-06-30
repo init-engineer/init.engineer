@@ -1,7 +1,7 @@
 <style scoped>
-    .action-link {
-        cursor: pointer;
-    }
+.action-link {
+    cursor: pointer;
+}
 </style>
 
 <template>
@@ -24,22 +24,18 @@
                         <tbody>
                             <tr v-for="token in tokens" :key="token.client.id">
                                 <!-- Client Name -->
-                                <td style="vertical-align: middle;">
-                                    {{ token.client.name }}
-                                </td>
+                                <td style="vertical-align: middle;">{{ token.client.name }}</td>
 
                                 <!-- Scopes -->
                                 <td style="vertical-align: middle;">
-                                    <span v-if="token.scopes.length > 0">
-                                        {{ token.scopes.join(', ') }}
-                                    </span>
+                                    <span
+                                        v-if="token.scopes.length > 0"
+                                    >{{ token.scopes.join(', ') }}</span>
                                 </td>
 
                                 <!-- Revoke Button -->
                                 <td style="vertical-align: middle;">
-                                    <a class="action-link text-danger" @click="revoke(token)">
-                                        撤銷
-                                    </a>
+                                    <a class="action-link text-danger" @click="revoke(token)">撤銷</a>
                                 </td>
                             </tr>
                         </tbody>
@@ -51,57 +47,55 @@
 </template>
 
 <script>
-    export default {
-        /*
-         * The component's data.
-         */
-        data() {
-            return {
-                tokens: []
-            };
-        },
+export default {
+    /*
+     * The component's data.
+     */
+    data() {
+        return {
+            tokens: []
+        };
+    },
 
-        /**
-         * Prepare the component (Vue 1.x).
-         */
-        ready() {
-            this.prepareComponent();
-        },
+    /**
+     * Prepare the component (Vue 1.x).
+     */
+    ready() {
+        this.prepareComponent();
+    },
 
+    /**
+     * Prepare the component (Vue 2.x).
+     */
+    mounted() {
+        this.prepareComponent();
+    },
+
+    methods: {
         /**
          * Prepare the component (Vue 2.x).
          */
-        mounted() {
-            this.prepareComponent();
+        prepareComponent() {
+            this.getTokens();
         },
 
-        methods: {
-            /**
-             * Prepare the component (Vue 2.x).
-             */
-            prepareComponent() {
+        /**
+         * Get all of the authorized tokens for the user.
+         */
+        getTokens() {
+            axios.get("/oauth/tokens").then(response => {
+                this.tokens = response.data;
+            });
+        },
+
+        /**
+         * Revoke the given token.
+         */
+        revoke(token) {
+            axios.delete("/oauth/tokens/" + token.id).then(response => {
                 this.getTokens();
-            },
-
-            /**
-             * Get all of the authorized tokens for the user.
-             */
-            getTokens() {
-                axios.get('/oauth/tokens')
-                        .then(response => {
-                            this.tokens = response.data;
-                        });
-            },
-
-            /**
-             * Revoke the given token.
-             */
-            revoke(token) {
-                axios.delete('/oauth/tokens/' + token.id)
-                        .then(response => {
-                            this.getTokens();
-                        });
-            }
+            });
         }
     }
+};
 </script>

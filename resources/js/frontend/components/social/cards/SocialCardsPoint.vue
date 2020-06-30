@@ -2,24 +2,42 @@
     <div class="jumbotron py-4">
         <h3>
             您代表了 {{ point }} 張票，好棒！
-            <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#展開詳細規則" aria-expanded="false" aria-controls="展開詳細規則">展開詳細規則</button>
-            <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#展開你與身份組的距離" aria-expanded="false" aria-controls="展開你與身份組的距離">展開你與身份組的距離</button>
+            <button
+                class="btn btn-info"
+                type="button"
+                data-toggle="collapse"
+                data-target="#展開詳細規則"
+                aria-expanded="false"
+                aria-controls="展開詳細規則"
+            >展開詳細規則</button>
+            <button
+                class="btn btn-info"
+                type="button"
+                data-toggle="collapse"
+                data-target="#展開你與身份組的距離"
+                aria-expanded="false"
+                aria-controls="展開你與身份組的距離"
+            >展開你與身份組的距離</button>
         </h3>
         <div class="collapse" id="展開你與身份組的距離">
-            <hr>
+            <hr />
             <h3>你與下個身份組的距離：</h3>
             <div class="flex-wrapper">
                 <div class="single-chart" v-if="percentage.junior != null">
                     <svg viewBox="0 0 36 36" class="circular-chart red">
-                        <path class="circle-bg"
+                        <path
+                            class="circle-bg"
                             d="M18 2.0845
                             a 15.9155 15.9155 0 0 1 0 31.831
-                            a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                        <path class="circle"
+                            a 15.9155 15.9155 0 0 1 0 -31.831"
+                        />
+                        <path
+                            class="circle"
                             :stroke-dasharray="`${percentage.junior}, 100`"
                             d="M18 2.0845
                             a 15.9155 15.9155 0 0 1 0 31.831
-                            a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                            a 15.9155 15.9155 0 0 1 0 -31.831"
+                        />
                         <text x="18" y="18.35" class="percentage">{{ percentage.junior }}%</text>
                         <text x="18" y="24.35" class="percentage-text">Junior</text>
                     </svg>
@@ -27,15 +45,19 @@
 
                 <div class="single-chart" v-if="percentage.senior != null">
                     <svg viewBox="0 0 36 36" class="circular-chart orange">
-                        <path class="circle-bg"
+                        <path
+                            class="circle-bg"
                             d="M18 2.0845
                             a 15.9155 15.9155 0 0 1 0 31.831
-                            a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                        <path class="circle"
+                            a 15.9155 15.9155 0 0 1 0 -31.831"
+                        />
+                        <path
+                            class="circle"
                             :stroke-dasharray="`${percentage.senior}, 100`"
                             d="M18 2.0845
                             a 15.9155 15.9155 0 0 1 0 31.831
-                            a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                            a 15.9155 15.9155 0 0 1 0 -31.831"
+                        />
                         <text x="18" y="18.35" class="percentage">{{ percentage.senior }}%</text>
                         <text x="18" y="24.35" class="percentage-text">Senior</text>
                     </svg>
@@ -43,15 +65,19 @@
 
                 <div class="single-chart" v-if="percentage.expert != null">
                     <svg viewBox="0 0 36 36" class="circular-chart yellow">
-                        <path class="circle-bg"
+                        <path
+                            class="circle-bg"
                             d="M18 2.0845
                             a 15.9155 15.9155 0 0 1 0 31.831
-                            a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                        <path class="circle"
+                            a 15.9155 15.9155 0 0 1 0 -31.831"
+                        />
+                        <path
+                            class="circle"
                             :stroke-dasharray="`${percentage.expert}, 100`"
                             d="M18 2.0845
                             a 15.9155 15.9155 0 0 1 0 31.831
-                            a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                            a 15.9155 15.9155 0 0 1 0 -31.831"
+                        />
                         <text x="18" y="18.35" class="percentage">{{ percentage.expert }}%</text>
                         <text x="18" y="24.35" class="percentage-text">Expert</text>
                     </svg>
@@ -59,15 +85,19 @@
 
                 <div class="single-chart" v-if="percentage.legend != null">
                     <svg viewBox="0 0 36 36" class="circular-chart green">
-                        <path class="circle-bg"
+                        <path
+                            class="circle-bg"
                             d="M18 2.0845
                             a 15.9155 15.9155 0 0 1 0 31.831
-                            a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                        <path class="circle"
+                            a 15.9155 15.9155 0 0 1 0 -31.831"
+                        />
+                        <path
+                            class="circle"
                             :stroke-dasharray="`${percentage.legend}, 100`"
                             d="M18 2.0845
                             a 15.9155 15.9155 0 0 1 0 31.831
-                            a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                            a 15.9155 15.9155 0 0 1 0 -31.831"
+                        />
                         <text x="18" y="18.35" class="percentage">{{ percentage.legend }}%</text>
                         <text x="18" y="24.35" class="percentage-text">Legend</text>
                     </svg>
@@ -75,10 +105,8 @@
             </div>
         </div>
         <div class="collapse" id="展開詳細規則">
-            <hr>
+            <hr />
             <div class="card card-body">
-                <p>文章發佈頻率目前設置為半小時就會檢查一次，符合上面規則的文章就會直接發佈，並且只會發佈最舊的一則。</p>
-                <p></p>
                 <p class="lead">文章審核通過規則:</p>
                 <ul>
                     <li>文章發表時間在 1 小時內，通過票數大於否決票數 10 票。</li>
@@ -86,7 +114,7 @@
                     <li>文章發表時間在 6 小時內，通過票數大於否決票數 30 票。</li>
                     <li>文章發表時間已經超過 6 小時以上，通過票數大於否決票數 50 票。</li>
                 </ul>
-                <hr class="my-2">
+                <hr class="my-2" />
                 <p class="lead">獎勵辦法:</p>
                 <p>只要參與投票，並且達到參與數量的話，就會給予身份以資鼓勵。</p>
                 <ul>
@@ -96,8 +124,18 @@
                     <li>凡是專家使用者(Export)身份，會再附加 2 票，也就是 5 票。</li>
                     <li>凡是傳奇使用者(Legend)身份，會再附加 3 票，也就是 8 票。</li>
                 </ul>
-                <hr class="my-2">
-                <h3><span class="badge badge-pill badge-dark m-1" v-for="(role, index) in roles" :key="index">{{ role.name }}<br />+ {{ role.point }} 票</span></h3>
+                <hr class="my-2" />
+                <h3>
+                    <span
+                        class="badge badge-pill badge-dark m-1"
+                        v-for="(role, index) in roles"
+                        :key="index"
+                    >
+                        {{ role.name }}
+                        <br />
+                        + {{ role.point }} 票
+                    </span>
+                </h3>
             </div>
         </div>
     </div>
@@ -116,8 +154,8 @@ export default {
                 junior: null,
                 senior: null,
                 expert: null,
-                legend: null,
-            },
+                legend: null
+            }
         };
     },
     mounted() {
@@ -126,27 +164,46 @@ export default {
     },
     methods: {
         getPoint() {
-            axios.get('/api/frontend/user/profile/roles')
-                .then((response) => {
+            axios
+                .get("/api/frontend/user/profile/roles")
+                .then(response => {
                     response.data.forEach(element => {
-                        if (element == "administrator") this.roles.push({name: element, point: 99});
-                        if (element == "junior vip") this.roles.push({name: element, point: 1});
-                        if (element == "senior vip") this.roles.push({name: element, point: 2});
-                        if (element == "expert vip") this.roles.push({name: element, point: 3});
-                        if (element == "legend vip") this.roles.push({name: element, point: 4});
-                        if (element == "junior donate") this.roles.push({name: element, point: 1});
-                        if (element == "senior donate") this.roles.push({name: element, point: 2});
-                        if (element == "expert donate") this.roles.push({name: element, point: 3});
-                        if (element == "legend donate") this.roles.push({name: element, point: 4});
-                        if (element == "junior user") this.roles.push({name: element, point: 1});
-                        if (element == "senior user") this.roles.push({name: element, point: 1});
-                        if (element == "expert user") this.roles.push({name: element, point: 2});
-                        if (element == "legend user") this.roles.push({name: element, point: 3});
-                        if (element == "junior manager") this.roles.push({name: element, point: 2});
-                        if (element == "senior manager") this.roles.push({name: element, point: 2});
-                        if (element == "expert manager") this.roles.push({name: element, point: 3});
-                        if (element == "legend manager") this.roles.push({name: element, point: 4});
-                        if (element == "user") this.roles.push({name: element, point: 1});
+                        if (element == "administrator")
+                            this.roles.push({ name: element, point: 99 });
+                        if (element == "junior vip")
+                            this.roles.push({ name: element, point: 1 });
+                        if (element == "senior vip")
+                            this.roles.push({ name: element, point: 2 });
+                        if (element == "expert vip")
+                            this.roles.push({ name: element, point: 3 });
+                        if (element == "legend vip")
+                            this.roles.push({ name: element, point: 4 });
+                        if (element == "junior donate")
+                            this.roles.push({ name: element, point: 1 });
+                        if (element == "senior donate")
+                            this.roles.push({ name: element, point: 2 });
+                        if (element == "expert donate")
+                            this.roles.push({ name: element, point: 3 });
+                        if (element == "legend donate")
+                            this.roles.push({ name: element, point: 4 });
+                        if (element == "junior user")
+                            this.roles.push({ name: element, point: 1 });
+                        if (element == "senior user")
+                            this.roles.push({ name: element, point: 1 });
+                        if (element == "expert user")
+                            this.roles.push({ name: element, point: 2 });
+                        if (element == "legend user")
+                            this.roles.push({ name: element, point: 3 });
+                        if (element == "junior manager")
+                            this.roles.push({ name: element, point: 2 });
+                        if (element == "senior manager")
+                            this.roles.push({ name: element, point: 2 });
+                        if (element == "expert manager")
+                            this.roles.push({ name: element, point: 3 });
+                        if (element == "legend manager")
+                            this.roles.push({ name: element, point: 4 });
+                        if (element == "user")
+                            this.roles.push({ name: element, point: 1 });
                     });
 
                     this.randerPoint();
@@ -154,14 +211,23 @@ export default {
                 .catch(error => console.log(error));
         },
         getCount() {
-            axios.get('/api/frontend/user/profile/reviewCount')
-                .then((response) => {
+            axios
+                .get("/api/frontend/user/profile/reviewCount")
+                .then(response => {
                     this.count = response.data.count;
 
-                    this.percentage.junior = Math.round((this.count * 100) / 200);
-                    this.percentage.senior = Math.round((this.count * 100) / 500);
-                    this.percentage.expert = Math.round((this.count * 100) / 1000);
-                    this.percentage.legend = Math.round((this.count * 100) / 3000);
+                    this.percentage.junior = Math.round(
+                        (this.count * 100) / 200
+                    );
+                    this.percentage.senior = Math.round(
+                        (this.count * 100) / 500
+                    );
+                    this.percentage.expert = Math.round(
+                        (this.count * 100) / 1000
+                    );
+                    this.percentage.legend = Math.round(
+                        (this.count * 100) / 3000
+                    );
                 })
                 .catch(error => console.log(error));
         },
@@ -170,7 +236,7 @@ export default {
             this.roles.forEach(element => {
                 this.point += element.point;
             });
-        },
+        }
     }
 };
 </script>
@@ -183,7 +249,7 @@ export default {
 
 .single-chart {
     width: 33%;
-    justify-content: space-around ;
+    justify-content: space-around;
 }
 
 .circular-chart {
