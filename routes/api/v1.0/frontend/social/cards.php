@@ -29,6 +29,7 @@ Route::group([
         ], function () {
             // Cards CRUD
             Route::get('/', [CardsController::class, 'index'])->name('index');
+            Route::get('/review-top', [CardsController::class, 'reviewTop'])->name('review.top');
 
             /**
              * TOKEN

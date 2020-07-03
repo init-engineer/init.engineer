@@ -2,26 +2,34 @@
 
 namespace App\Http\Controllers\Api\Frontend\Social;
 
+use Illuminate\Support\Facades\File;
+
 use League\Fractal\Manager;
-use App\Models\Social\Cards;
 use League\Fractal\Resource\Item;
-use App\Http\Controllers\Controller;
 use League\Fractal\Resource\Collection;
+
+use App\Models\Social\Cards;
+
 use App\Services\Socials\Cards\CardsService;
 use App\Services\Socials\Images\ImagesService;
+
+use App\Http\Controllers\Controller;
+
+use App\Http\Transformers\IlluminatePaginatorAdapter;
 use App\Http\Transformers\Social\CardsTransformer;
 use App\Http\Transformers\Social\ReviewTransformer;
 use App\Http\Transformers\Social\CommentsTransformer;
-use App\Http\Transformers\IlluminatePaginatorAdapter;
-use App\Repositories\Frontend\Social\CardsRepository;
-use App\Repositories\Frontend\Social\ImagesRepository;
-use App\Repositories\Frontend\Social\ReviewRepository;
 use App\Http\Transformers\Social\MediaCardsTransformer;
-use App\Repositories\Frontend\Social\CommentsRepository;
 use App\Http\Transformers\Social\DashboardCardsTransformer;
+
 use App\Http\Requests\Api\Frontend\Social\Cards\ReviewRequest;
 use App\Http\Requests\Api\Frontend\Social\Cards\DashboardRequest;
 use App\Http\Requests\Api\Frontend\Social\Cards\StoreCardsRequest;
+
+use App\Repositories\Frontend\Social\CardsRepository;
+use App\Repositories\Frontend\Social\ImagesRepository;
+use App\Repositories\Frontend\Social\ReviewRepository;
+use App\Repositories\Frontend\Social\CommentsRepository;
 
 /**
  * Class CardsController.
@@ -105,6 +113,16 @@ class CardsController extends Controller
         $response = $this->fractal->createData($cards);
 
         return response()->json($response->toArray());
+    }
+
+    /**
+     * @return \Illuminate\Http\Response
+     */
+    public function reviewTop()
+    {
+        $json = File::get(public_path() . '/json/social/reviewTop.json');
+
+        return response()->json(json_decode($json, true));
     }
 
     /**
