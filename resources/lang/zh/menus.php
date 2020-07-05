@@ -28,7 +28,7 @@ return [
                 'all' => '所有用户',
                 'change-password' => '更改密码',
                 'create' => '新建用户',
-                'deactivated' => '未激活的用户',
+                'deactivated' => '未啟用的用户',
                 'deleted' => '已删除的用户',
                 'edit' => '编辑用户',
                 'main' => '用户',

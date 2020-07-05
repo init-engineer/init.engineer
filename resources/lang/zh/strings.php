@@ -33,7 +33,7 @@ return [
             'continue' => '继续',
             'member_since' => '会员自',
             'minutes' => ' 分钟',
-            'search_placeholder' => '搜索...',
+            'search_placeholder' => '搜尋...',
             'timeout' => '出于安全原因已自动注销，因为您没有操作超过 ',
 
             'see_all' => [
@@ -55,10 +55,10 @@ return [
         ],
 
         'search' => [
-            'empty' => '请输入搜索关键词。',
-            'incomplete' => '您必须为此系统编写您自己的搜索逻辑。',
-            'title' => '搜索结果',
-            'results' => '搜索 :query 的结果',
+            'empty' => '请输入搜尋关键词。',
+            'incomplete' => '您必须为此系统编写您自己的搜尋逻辑。',
+            'title' => '搜尋结果',
+            'results' => '搜尋 :query 的结果',
         ],
 
         'welcome' => 'Welcome to the Dashboard',

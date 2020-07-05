@@ -18,7 +18,7 @@ return [
         'no' => '否',
         'custom' => '自定义',
         'actions' => '操作',
-        'active' => '激活',
+        'active' => '啟用',
         'buttons' => [
             'save' => '保存',
             'update' => '更新',
@@ -47,7 +47,7 @@ return [
             ],
 
             'users' => [
-                'active' => '激活用户',
+                'active' => '啟用用户',
                 'all_permissions' => '所有权限',
                 'change_password' => '更改密码',
                 'change_password_for' => '为 :user 更改密码',

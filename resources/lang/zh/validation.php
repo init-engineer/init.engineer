@@ -169,7 +169,7 @@ return [
                 ],
 
                 'users' => [
-                    'active' => '激活',
+                    'active' => '啟用',
                     'associated_roles' => '关联的角色',
                     'confirmed' => '已确认',
                     'email' => '电子邮件地址',

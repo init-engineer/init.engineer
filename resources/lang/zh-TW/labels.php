@@ -71,7 +71,6 @@ return [
                     'confirmed' => '認證',
                     'created' => '新增',
                     'email' => '電子信箱(E-mail)',
-                    'id' => 'ID',
                     'last_updated' => '最後更新',
                     'name' => '名稱',
                     'first_name' => '名稱',

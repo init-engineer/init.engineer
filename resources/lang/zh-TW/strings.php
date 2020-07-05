@@ -15,7 +15,7 @@ return [
     'backend' => [
         'access' => [
             'users' => [
-                'delete_user_confirm' => '您確定要永久刪除此使用者嗎？引用此使用者ID的應用程序中的任何地方都很可能是錯誤。繼續自行承擔風險。這不能被撤消。',
+                'delete_user_confirm' => '您確定要永久刪除此使用者嗎？引用此使用者ID的應用程式中的任何地方都很可能是錯誤。繼續自行承擔風險。這不能被撤消。',
                 'if_confirmed_off' => '(確認關閉)',
                 'no_deactivated' => 'There are no deactivated users.',
                 'no_deleted' => 'There are no deleted users.',
@@ -41,7 +41,7 @@ return [
             'continue' => '繼續',
             'member_since' => '會員自',
             'minutes' => ' 分鐘',
-            'search_placeholder' => '搜索...',
+            'search_placeholder' => '搜尋...',
             'timeout' => '您因為沒有活動而被自動註銷為了安全原因',
 
             'see_all' => [
@@ -63,10 +63,10 @@ return [
         ],
 
         'search' => [
-            'empty' => '請輸入搜索字詞。',
-            'incomplete' => '您必須為此系統編寫您自己的搜索邏輯。',
-            'title' => '搜索結果',
-            'results' => '搜索結果 :query',
+            'empty' => '請輸入搜尋字詞。',
+            'incomplete' => '您必須為此系統編寫您自己的搜尋邏輯。',
+            'title' => '搜尋結果',
+            'results' => '搜尋結果 :query',
         ],
 
         'welcome' => 'Welcome to the Dashboard',
@@ -79,7 +79,7 @@ return [
             'greeting' => '您好!',
             'regards' => '問候,',
             'trouble_clicking_button' => '如果您在點擊 ":action_text" 按鈕時遇到問題, 請將以下網址複製並粘貼到您的網絡瀏覽器中:',
-            'thank_you_for_using_app' => '謝謝您使用我們的應用程序！ ',
+            'thank_you_for_using_app' => '謝謝您使用我們的應用程式！ ',
 
             'password_reset_subject' => '重置密碼',
             'password_cause_of_email' => '您收到此電子信箱(E-mail)是因為我們收到了您帳號的密碼重設要求',
