@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 /**
  * Class CreateLedgersTable.
@@ -31,7 +31,7 @@ class CreateLedgersTable extends Migration
             $table->text('extra');
             $table->text('url')->nullable();
             $table->ipAddress('ip_address')->nullable();
-            $table->longText('user_agent')->nullable();
+            $table->string('user_agent')->nullable();
             $table->string('signature');
             $table->timestamps();
 

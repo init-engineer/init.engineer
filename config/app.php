@@ -23,7 +23,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', sprintf('Laravel %s Boilerplate', app()->version())),
+    'name' => env('APP_NAME', 'Laravel '.app()->version().' Boilerplate'),
 
     /*
     |--------------------------------------------------------------------------

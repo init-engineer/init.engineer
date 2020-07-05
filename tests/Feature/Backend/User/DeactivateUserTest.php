@@ -1,13 +1,13 @@
 <?php
 
-namespace Tests\Backend\User;
+namespace Tests\Feature\Backend\User;
 
-use Tests\TestCase;
-use App\Models\Auth\User;
-use Illuminate\Support\Facades\Event;
 use App\Events\Backend\Auth\User\UserDeactivated;
 use App\Events\Backend\Auth\User\UserReactivated;
+use App\Models\Auth\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Event;
+use Tests\TestCase;
 
 class DeactivateUserTest extends TestCase
 {

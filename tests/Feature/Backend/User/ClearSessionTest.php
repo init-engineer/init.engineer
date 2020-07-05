@@ -1,10 +1,10 @@
 <?php
 
-namespace Tests\Backend\User;
+namespace Tests\Feature\Backend\User;
 
-use Tests\TestCase;
 use App\Models\Auth\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 /**
  * Class ClearSessionTest.

@@ -1,15 +1,15 @@
 <?php
 
-namespace Tests\Backend\User;
+namespace Tests\Feature\Backend\User;
 
-use Tests\TestCase;
-use App\Models\Auth\User;
-use Illuminate\Support\Facades\Event;
-use Illuminate\Support\Facades\Notification;
 use App\Events\Backend\Auth\User\UserConfirmed;
 use App\Events\Backend\Auth\User\UserUnconfirmed;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\Models\Auth\User;
 use App\Notifications\Backend\Auth\UserAccountActive;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Notification;
+use Tests\TestCase;
 
 class ConfirmUserTest extends TestCase
 {
