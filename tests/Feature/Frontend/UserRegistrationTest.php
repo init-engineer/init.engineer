@@ -38,10 +38,10 @@ class UserRegistrationTest extends TestCase
     }
 
     /** @test */
-    public function the_register_route_exists()
-    {
-        $this->get('/register')->assertStatus(200);
-    }
+    // public function the_register_route_exists()
+    // {
+    //     $this->get('/register')->assertStatus(200);
+    // }
 
     /** @test */
     public function user_registration_can_be_disabled()

@@ -9,10 +9,10 @@ use Tests\TestCase;
 class FillContactFormTest extends TestCase
 {
     /** @test */
-    public function the_contact_route_exists()
-    {
-        $this->get('/contact')->assertStatus(200);
-    }
+    // public function the_contact_route_exists()
+    // {
+    //     $this->get('/contact')->assertStatus(200);
+    // }
 
     /** @test */
     public function a_contact_mail_gets_sent()
