@@ -33,7 +33,7 @@ class UpdateUserAccountTest extends TestCase
     /** @test */
     public function only_authenticated_users_can_access_their_account()
     {
-        $this->get('/account')->assertRedirect('/login');
+        $this->get('/dashboard')->assertRedirect('/login');
     }
 
     /** @test */
