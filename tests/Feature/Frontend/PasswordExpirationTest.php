@@ -71,7 +71,7 @@ class PasswordExpirationTest extends TestCase
                 'password_confirmation' => 'secret',
             ]);
 
-        $this->assertStringContainsString('The password must be at least 8 characters.', $response->content());
+        $this->assertStringContainsString(__('validation.min.string', ['attribute' => 'password', 'min' => 8]), $response->content());
     }
 
     /** @test */

@@ -15,7 +15,7 @@ return [
     'backend' => [
         'access' => [
             'users' => [
-                'delete_user_confirm' => '您確定要永久刪除此使用者嗎？引用此使用者ID的應用程式中的任何地方都很可能是錯誤。繼續自行承擔風險。這不能被撤消。',
+                'delete_user_confirm' => '您確定要永久刪除此使用者嗎？引用此使用者 ID 的應用程式中的任何地方都很可能是錯誤。繼續自行承擔風險。這不能被撤消。',
                 'if_confirmed_off' => '(確認關閉)',
                 'no_deactivated' => 'There are no deactivated users.',
                 'no_deleted' => 'There are no deleted users.',

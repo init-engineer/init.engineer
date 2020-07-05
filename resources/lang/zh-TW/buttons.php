@@ -15,7 +15,7 @@ return [
     'backend' => [
         'access' => [
             'users' => [
-                'activate' => '激活',
+                'activate' => '啟用',
                 'change_password' => '更改密碼',
                 'clear_session' => '清除 Session',
                 'confirm' => 'Confirm',

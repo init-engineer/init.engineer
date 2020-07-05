@@ -6,6 +6,7 @@ use App\Models\Auth\Role;
 use App\Models\Auth\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Response;
+use Illuminate\Support\Str;
 use Tests\TestCase;
 
 class CheckForReadOnlyModeTest extends TestCase
@@ -49,11 +50,13 @@ class CheckForReadOnlyModeTest extends TestCase
         $user = factory(User::class)->create([
             'email' => 'john@example.com',
             'password' => 'secret',
+            'api_token' => Str::random(60),
         ]);
 
         $this->post('/login', [
             'email' => 'john@example.com',
             'password' => 'secret',
+            'api_token' => Str::random(60),
         ]);
 
         $this->assertAuthenticatedAs($user);

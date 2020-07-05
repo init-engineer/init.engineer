@@ -18,7 +18,7 @@ class ReadUsersTest extends TestCase
         $response = $this->get('/admin/auth/user/create');
 
         $response->assertStatus(200)
-            ->assertSee('E-mail Address');
+            ->assertSee(__('validation.attributes.backend.access.users.email'));
     }
 
     /** @test */
@@ -30,6 +30,6 @@ class ReadUsersTest extends TestCase
         $response = $this->get("/admin/auth/user/{$user->id}");
 
         $response->assertStatus(200)
-            ->assertSee('Overview');
+            ->assertSee(__('labels.backend.access.users.tabs.titles.overview'));
     }
 }
