@@ -1,6 +1,6 @@
 <template>
-    <marquee-text class="mb-3" :repeat="10" :duration="60">
-        <div class="d-flex justify-content-start">
+    <marquee-text :repeat="10" :duration="60">
+        <div class="pb-4 d-flex justify-content-start">
             <div
                 class="card bg-img-rock text-white m-2 animated fadeIn"
                 v-for="(card, $index) in cards"

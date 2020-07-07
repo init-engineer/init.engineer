@@ -3,68 +3,7 @@
 @section('title', app_name() . ' | ' . __('navs.general.home'))
 
 @section('content')
-    <!-- ケモノ着ぐるみ -->
-    <div class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="https://i.ytimg.com/vi/BrCwa3O8fdo/maxresdefault.jpg" class="d-block w-100" style="height: 60vh; object-fit: cover;" alt="ケモノ着ぐるみ">
-                <div class="carousel-caption text-left mb-5 pb-5 text-dark">
-                    <h1 class="text-black-stroke display-3">純靠北工程師</h1>
-                    <p class="lead">發源自臉書──全台最大工程師廢文社群</p>
-                    <a class="btn btn-warning btn-lg shake-slow shake-constant shake-constant--hover" href="{{ route('frontend.social.cards.create') }}" role="button">開始去發廢文 <i class="fas fa-poop"></i></a>
-                </div>
-                <iframe class="mt-2" width="0" height="0" src="https://www.youtube.com/embed/BrCwa3O8fdo?rel=0&autoplay=1&loop=1&playlist=BrCwa3O8fdo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-        </div>
-    </div>
-
-    <!-- Wonder of Wonder Art -->
-    <!--
-    <div class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <iframe src="https://aidn.jp/wowa/94697596" class="pt-1 w-100" style="height: 60vh;" frameborder="0"></iframe>
-                <div class="carousel-caption text-left mb-5 pb-5 text-dark">
-                    <h1 class="text-black-stroke display-3">純靠北工程師</h1>
-                    <p class="lead">發源自臉書──全台最大工程師廢文社群</p>
-                    <a class="btn btn-warning btn-lg shake-slow shake-constant shake-constant--hover" href="{{ route('frontend.social.cards.create') }}" role="button">開始去發廢文 <i class="fas fa-poop"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-    -->
-
-    <!-- 駭客任務 Neo -->
-    <!--
-    <div class="carousel slide d-none d-md-block" data-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                {{-- 吉祥物 --}}
-                {{-- <img class="position-fixed" style="right: 24px; max-width: 192px; bottom: 0px;z-index: 1;" src="https://upload.cc/i1/2018/11/07/7l1RGe.gif" alt="贊助吉祥物"> --}}
-                <img src="{{ asset("img/frontend/background/rlaVme5.png") }}" class="d-block w-100" alt="你是工程師嗎">
-                <div class="carousel-caption text-left mb-5 pb-5 text-dark">
-                    <h1 class="text-black-stroke display-3">純靠北工程師</h1>
-                    <p class="lead">發源自臉書──全台最大工程師廢文社群</p>
-                    <a class="btn btn-warning btn-lg shake-slow shake-constant shake-constant--hover" href="{{ route('frontend.social.cards.create') }}" role="button">開始去發廢文 <i class="fas fa-poop"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="carousel slide d-md-none" data-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                {{-- 吉祥物 --}}
-                {{-- <img class="position-fixed" style="right: 0px; max-width: 128px; bottom: 0px; z-index: 1;" src="https://upload.cc/i1/2018/11/07/7l1RGe.gif" alt="贊助吉祥物"> --}}
-                <img src="{{ asset("img/frontend/background/vznInUz.png") }}" class="d-block w-100" alt="你是工程師嗎">
-                <div class="carousel-caption text-left mb-5 text-dark">
-                    <h3 class="text-black-stroke">純靠北工程師</h3>
-                    <a class="btn btn-warning btn-md shake-slow shake-constant shake-constant--hover" href="{{ route('frontend.social.cards.create') }}" role="button">開始去發廢文 <i class="fas fa-poop"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-    -->
+    @include('frontend.banner.the_matrix_neo')
 
     <div class="container-fluid mb-5 animated fadeIn">
         <div class="row my-4">
@@ -92,7 +31,9 @@
     <div class="container-fluid my-5 animated fadeIn">
         <div class="row">
             <div class="col-md-12 my-4">
+                <mrt-list></mrt-list>
                 <fake-cards></fake-cards>
+                <mrt-list></mrt-list>
             </div>
         </div>
     </div>
@@ -127,7 +68,7 @@
                     </div>
                     <div class="timeline">
                         <div class="timeline-icon"><i class="fa fa-poo"></i></div>
-                        <span class="year">2019</span>
+                        <span class="year">{{ date('Y') }}</span>
                         <div class="timeline-content">
                             <h5 class="title animated fadeInRight delay-1s">你</h5>
                             <p class="description animated fadeInRight delay-1s">來到這裡發文。</p>

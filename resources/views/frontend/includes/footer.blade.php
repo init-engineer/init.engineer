@@ -44,6 +44,8 @@
                 <p><a href="{{ route('frontend.policies') }}">{{ __('navs.frontend.policies') }}</a></p>
                 <p><a href="{{ route('frontend.social.cards.index') }}">{{ __('navs.frontend.social.cards.index') }}</a></p>
                 <p><a href="{{ route('frontend.social.cards.create') }}">{{ __('navs.frontend.social.cards.create') }}</a></p>
+                <p><a href="{{ route('frontend.social.cards.review') }}">群眾審核</a></p>
+                <p><a href="{{ route('frontend.animal.index') }}">大頭菜計算機</a></p>
             </div>
             <!-- Grid column -->
 
