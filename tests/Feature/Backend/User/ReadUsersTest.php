@@ -30,6 +30,6 @@ class ReadUsersTest extends TestCase
         $response = $this->get("/admin/auth/user/{$user->id}");
 
         $response->assertStatus(200)
-            ->assertSee(__('labels.backend.access.users.tabs.titles.overview'));
+            ->assertSee(__('labels.backend.access.users.view'));
     }
 }
