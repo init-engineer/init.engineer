@@ -129,6 +129,8 @@ return [
                     'id' => 'ID/編號',
                     'user' => 'User(E-mail)',
                     'content' => '文章內容',
+                    'active' => '審核狀態',
+                    'banned' => '黑名單',
                     'last_updated' => '最後更新',
                     'name' => '名稱',
                     'first_name' => '名稱',

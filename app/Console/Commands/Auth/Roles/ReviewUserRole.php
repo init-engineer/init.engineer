@@ -43,17 +43,16 @@ class ReviewUserRole extends Command
     public function handle()
     {
         $reviews = Review::all()->groupBy('model_id');
-        foreach ($reviews as $key => $value)
-        {
+        foreach ($reviews as $key => $value) {
             $user = User::find($key);
-            if (count($value) >= 200  && !$user->isJuniorUser())
-                $user->assignRole(config('access.users.junior_user_role'));
-            if (count($value) >= 500  && !$user->isSeniorUser())
-                $user->assignRole(config('access.users.senior_user_role'));
-            if (count($value) >= 1000 && !$user->isExpertUser())
-                $user->assignRole(config('access.users.expert_user_role'));
             if (count($value) >= 3000 && !$user->isLegendUser())
                 $user->assignRole(config('access.users.legend_user_role'));
+            else if (count($value) >= 1000 && !$user->isExpertUser())
+                $user->assignRole(config('access.users.expert_user_role'));
+            else if (count($value) >= 500 && !$user->isSeniorUser())
+                $user->assignRole(config('access.users.senior_user_role'));
+            else if (count($value) >= 200 && !$user->isJuniorUser())
+                $user->assignRole(config('access.users.junior_user_role'));
         }
     }
 }

@@ -93,15 +93,21 @@ class UserController extends Controller
     }
 
     /**
-     * @param ManageUserRequest $request
-     * @param User              $user
+     * @param ManageUserRequest    $request
+     * @param RoleRepository       $roleRepository
+     * @param PermissionRepository $permissionRepository
+     * @param User                 $user
      *
      * @return mixed
      */
-    public function show(ManageUserRequest $request, User $user)
+    public function show(ManageUserRequest $request, RoleRepository $roleRepository, PermissionRepository $permissionRepository, User $user)
     {
         return view('backend.auth.user.show')
-            ->withUser($user);
+            ->withUser($user)
+            ->withRoles($roleRepository->get())
+            ->withUserRoles($user->roles->pluck('name')->all())
+            ->withPermissions($permissionRepository->get(['id', 'name']))
+            ->withUserPermissions($user->permissions->pluck('name')->all());
     }
 
     /**
