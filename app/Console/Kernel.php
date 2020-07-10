@@ -31,6 +31,7 @@ class Kernel extends ConsoleKernel
          */
         $schedule->command('backup:database')->daily()->at('23:00');
 
+
         /**
          * 自動化 對社群平台爬蟲更新 Likes、分享數。
          */
@@ -39,6 +40,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('social:media-cards-update 6')->everyTenMinutes();
         $schedule->command('social:media-cards-update 2')->everyFiveMinutes();
         // $schedule->command('social:media-cards-update 1')->everyMinute();
+
 
         /**
          * 自動化 對社群平台爬蟲更新留言
@@ -49,15 +51,19 @@ class Kernel extends ConsoleKernel
         $schedule->command('social:comments-update 2')->everyFiveMinutes();
         // $schedule->command('social:comments-update 1')->everyMinute();
 
+
         /**
-         * 自動化 檢查群眾審核
+         * 自動化 群眾審核相關功能
          */
         $schedule->command('social:review-publish')->everyThirtyMinutes();
+        // $schedule->command('social:review-top')->everyThirtyMinutes();
+
 
         /**
          * 自動化 每小時檢查是否有使用者可以賦予身份
          */
         $schedule->command('roles:review-user-role')->hourly();
+
 
         /**
          * 自動化 偵測 IP Address 是否有變更
