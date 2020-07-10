@@ -83,6 +83,12 @@ export default {
           ipAddress: "192.168.***.***"
         },
         {
+          imageUrl: "https://images.plurk.com/5x8WC3mJJ8qG67e1pE9DLH.jpg",
+          username: "泥**馬",
+          message: "在 3.14 小時前發表了一篇廢文。",
+          ipAddress: "192.168.***.***"
+        },
+        {
           imageUrl: "https://avatars.plurk.com/6820974-big17396954.jpg",
           username: "小風**姊",
           message: "在 4 小時前發表了一篇廢文。",
