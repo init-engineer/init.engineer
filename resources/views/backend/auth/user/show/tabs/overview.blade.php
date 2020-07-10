@@ -58,15 +58,22 @@
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active" data-toggle="tab" href="#abilities"
-                        role="tab">角色與權限</a>
+                        role="tab">@lang('labels.backend.access.users.table.abilities')</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#active" role="tab">發表文章 <span
+                    <a class="nav-link" data-toggle="tab" href="#active"
+                        role="tab">@lang('labels.backend.social.cards.active')<span
                             class="badge badge-light p-1">{{ \App\Models\Social\Cards::where('model_id', $user->id)->banned(false)->count() }}</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#deactivated" role="tab">被刪除的文章 <span
+                    <a class="nav-link" data-toggle="tab" href="#deactivated"
+                        role="tab">@lang('labels.backend.social.cards.deactivated')<span
                             class="badge badge-light p-1">{{ \App\Models\Social\Cards::where('model_id', $user->id)->banned(true)->count() }}</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#reviews"
+                        role="tab">@lang('labels.backend.social.cards.table.review')<span
+                            class="badge badge-light p-1">{{ \App\Models\Social\Review::where('model_id', $user->id)->count() }}</span></a>
                 </li>
             </ul>
 
@@ -251,6 +258,73 @@
                                     </td>
                                     <td>{{ $card->updated_at->diffForHumans() }}</td>
                                     <td>@include('backend.social.cards.includes.actions', ['card' => $card])</td>
+                                </tr>
+                                @empty
+                                <tr>
+                                    <td class="text-center" colspan="6">NaN</td>
+                                </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-pane" id="review" role="tabpanel">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>@lang('labels.backend.social.cards.table.id')</th>
+                                    <th>@lang('labels.backend.social.cards.table.content')</th>
+                                    <th>@lang('labels.backend.social.cards.table.active')</th>
+                                    <th>@lang('labels.backend.social.cards.table.banned')</th>
+                                    <th>@lang('labels.backend.social.cards.table.review')</th>
+                                    <th>@lang('labels.backend.social.cards.table.socials')</th>
+                                    <th>@lang('labels.backend.social.cards.table.last_updated')</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse (\App\Models\Social\Review::where('model_id',
+                                $user->id)->orderBy('id', 'desc')->get() as $review)
+                                <tr>
+                                    <td>
+                                        <h4><span class="badge badge-dark" data-toggle="tooltip" data-placement="top"
+                                                title="ID: {{ $review->card_id }}">#{{ app_name() . base_convert($review->card_id, 10, 36) }}</span>
+                                        </h4>
+                                    </td>
+                                    <td style="max-width: 16rem;">
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <img class="media-object img-fluid rounded mr-1" data-toggle="tooltip"
+                                                    data-placement="bottom" title="{{ $review->card()->content }}"
+                                                    src="{{ $review->card()->images->first()->getPicture() }}"
+                                                    style="max-width: 128px;max-height: 128px;"
+                                                    alt="{{ $review->card()->content }}">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>@include('backend.social.cards.includes.active', ['card' => $review->card()])
+                                    </td>
+                                    <td>@include('backend.social.cards.includes.banned', ['card' => $review->card()])
+                                    </td>
+                                    <td>
+                                        @if ($review->point > 0)
+                                        <span class="badge badge-success p-1">@lang('labels.general.yes')</span>
+                                        @else
+                                        <span class="badge badge-danger p-1">@lang('labels.general.no')</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <ul>
+                                            @forelse ($review->card()->medias as $media)
+                                            <li><span href="#" class="badge badge-light p-1">{{ $media->social_type }} |
+                                                    {{ ($media->social_connections == 'primary') ? '主站' : '次站' }}</a>
+                                            </li>
+                                            @empty
+                                            <span class="badge badge-danger p-1">NaN</span>
+                                            @endforelse
+                                        </ul>
+                                    </td>
+                                    <td>{{ $review->card()->updated_at->diffForHumans() }}</td>
                                 </tr>
                                 @empty
                                 <tr>

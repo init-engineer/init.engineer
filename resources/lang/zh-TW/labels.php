@@ -79,7 +79,7 @@ return [
                     'no_deleted' => '沒有已刪除的使用者',
                     'other_permissions' => '其他權限',
                     'permissions' => '權限',
-                    'abilities' => 'Abilities',
+                    'abilities' => '角色及權限',
                     'roles' => '角色',
                     'social' => '社群媒體',
                     'total' => '使用者總計|使用者總計',
@@ -116,9 +116,9 @@ return [
 
         'social' => [
             'cards' => [
-                'management' => 'Cards',
-                'active' => 'Active',
-                'deactivated' => 'Deactivated',
+                'management' => '文章',
+                'active' => '通過審核文章',
+                'deactivated' => '已軟刪除文章',
                 'deleted' => 'Deleted',
                 'card_actions' => '文章動作',
 
@@ -131,6 +131,7 @@ return [
                     'content' => '文章內容',
                     'active' => '審核狀態',
                     'banned' => '黑名單',
+                    'review' => '群眾審核',
                     'last_updated' => '最後更新',
                     'name' => '名稱',
                     'first_name' => '名稱',
