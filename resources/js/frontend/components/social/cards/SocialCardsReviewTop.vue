@@ -4,17 +4,17 @@
       <div v-if="isOpen" class="vote-list-content">
           <div class="title-content">
               <h2>群眾審核排行榜 !!!</h2>
-              <h4 v-if="ranking!==-1">
-                  你的排名是第 {{ranking+1}} 名 !
+              <h4 v-if="ranking !== -1">
+                  你的排名是第 {{ranking + 1}} 名 !
               </h4>
               <h4 v-else>
                   你不再排行榜內請再接再厲
               </h4>
           </div>
           <ul>
-              <li v-for="(item,index) in voteList" v-bind:key="item.id" :class="{active:item.id===id}">
+              <li v-for="(item,index) in voteList" v-bind:key="item.id" :class="{active:item.id === id}">
                   <div>
-                    <span class="rank">{{index+1}}</span>
+                    <span class="rank">{{index + 1}}</span>
                     <img :src="item.picture" alt="">
                     <span class="name">{{item.name}}</span>
                   </div> 
@@ -31,41 +31,40 @@
 
 <script>
 export default {
+    name: "SocialCardsReviewTop",
+    props:{
+        id:{
+            type:Number,
+            required:false,
+            default:-1
+        }
+    },
     data(){
         return {
            voteList:[],
            isOpen:false, 
         }
     },
-    props:{
-        id:Number
-    },
     computed:{
         ranking:function(){
-            return this.voteList.findIndex(item=>item.id===this.id)
+            return this.voteList.findIndex(item => item.id === this.id);
         }
     },
     methods:{
-        fetching(){
-            return new Promise((resolve,reject)=>{
-                fetch('/api').then(res=>{
-                    return res.json()
-                }).then(res=>{
-                    resolve(res.data)
-                }).catch(err=>{
-                    reject(err)
-                })
+        voteListData(){
+            axios
+            .get("/json/social/reviewTop.json")
+            .then(response => {
+                this.voteList = response.data
             })
+            .catch(error => console.log(error));
         },
         toggle(){
-            this.isOpen=!this.isOpen
+            this.isOpen = !this.isOpen;
         }
     },
     mounted(){
-        this.fetching().then(data=>{
-            this.voteList=data
-            this.ranking=data.findIndex(item=>item.id===this.id)
-        })
+        this.voteListData();
     }
 }
 </script>
@@ -75,7 +74,6 @@ export default {
         position: fixed;
         display: flex;
         flex-direction: column;
-        justify-content: start;
         bottom: 0;
         left: 0;
         margin:30px 30px;
