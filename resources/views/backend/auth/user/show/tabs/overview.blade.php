@@ -71,7 +71,7 @@
                             class="badge badge-light p-1">{{ \App\Models\Social\Cards::where('model_id', $user->id)->banned(true)->count() }}</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#reviews"
+                    <a class="nav-link" data-toggle="tab" href="#review"
                         role="tab">@lang('labels.backend.social.cards.table.review')<span
                             class="badge badge-light p-1">{{ \App\Models\Social\Review::where('model_id', $user->id)->count() }}</span></a>
                 </li>
@@ -295,27 +295,27 @@
                                         <div class="media">
                                             <div class="media-left">
                                                 <img class="media-object img-fluid rounded mr-1" data-toggle="tooltip"
-                                                    data-placement="bottom" title="{{ $review->card()->content }}"
-                                                    src="{{ $review->card()->images->first()->getPicture() }}"
+                                                    data-placement="bottom" title="{{ $review->card->content }}"
+                                                    src="{{ $review->card->images->first()->getPicture() }}"
                                                     style="max-width: 128px;max-height: 128px;"
-                                                    alt="{{ $review->card()->content }}">
+                                                    alt="{{ $review->card->content }}">
                                             </div>
                                         </div>
                                     </td>
-                                    <td>@include('backend.social.cards.includes.active', ['card' => $review->card()])
+                                    <td>@include('backend.social.cards.includes.active', ['card' => $review->card])
                                     </td>
-                                    <td>@include('backend.social.cards.includes.banned', ['card' => $review->card()])
+                                    <td>@include('backend.social.cards.includes.banned', ['card' => $review->card])
                                     </td>
                                     <td>
                                         @if ($review->point > 0)
-                                        <span class="badge badge-success p-1">@lang('labels.general.yes')</span>
+                                        <span class="badge badge-success p-1">通過</span>
                                         @else
-                                        <span class="badge badge-danger p-1">@lang('labels.general.no')</span>
+                                        <span class="badge badge-danger p-1">否決</span>
                                         @endif
                                     </td>
                                     <td>
                                         <ul>
-                                            @forelse ($review->card()->medias as $media)
+                                            @forelse ($review->card->medias as $media)
                                             <li><span href="#" class="badge badge-light p-1">{{ $media->social_type }} |
                                                     {{ ($media->social_connections == 'primary') ? '主站' : '次站' }}</a>
                                             </li>
@@ -324,11 +324,11 @@
                                             @endforelse
                                         </ul>
                                     </td>
-                                    <td>{{ $review->card()->updated_at->diffForHumans() }}</td>
+                                    <td>{{ $review->card->updated_at->diffForHumans() }}</td>
                                 </tr>
                                 @empty
                                 <tr>
-                                    <td class="text-center" colspan="6">NaN</td>
+                                    <td class="text-center" colspan="7">NaN</td>
                                 </tr>
                                 @endforelse
                             </tbody>
