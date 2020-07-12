@@ -44,16 +44,16 @@ class ReviewTop extends Command
     {
         $result = ['data' => []];
         $reviews = Review::all()->groupBy('model_id');
-        $i = 1;
+        // $i = 1;
         foreach ($reviews as $review) {
             $user = $review[0]->model;
             array_push($result['data'], [
-                'id' => $i++,
-                'name' => 'Defalut',
-                'picture' => 'https://www.gravatar.com/avatar/6e4adcf002af9a4381c39fde1b75bd6c.jpg',
-                // 'id' => $user->id,
-                // 'name' => $user->last_name ? $user->first_name . ' ' . $user->last_name : $user->first_name,
-                // 'picture' => $user->getPicture(),
+                // 'id' => $i++,
+                // 'name' => 'Defalut',
+                // 'picture' => 'https://www.gravatar.com/avatar/6e4adcf002af9a4381c39fde1b75bd6c.jpg',
+                'id' => $user->id,
+                'name' => $user->last_name ? $user->first_name . ' ' . $user->last_name : $user->first_name,
+                'picture' => $user->getPicture(),
                 'count' => $review->count(),
             ]);
         }

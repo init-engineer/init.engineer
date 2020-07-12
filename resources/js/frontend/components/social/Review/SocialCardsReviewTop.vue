@@ -53,7 +53,7 @@ export default {
       axios
         .get(`/json/social/reviewTop.json`)
         .then(response => {
-          this.voteList = response.data;
+          this.voteList = response.data.data;
         })
         .catch(error => console.log(error));
     },
