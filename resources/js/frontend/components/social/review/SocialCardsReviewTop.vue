@@ -94,7 +94,6 @@ export default {
 .title-content {
   font-size: 20px;
   padding: 10px 20px;
-  border-radius: 8px 8px 0 0;
   background-color: #4d4d4d;
 }
 .title-content h2 {
@@ -109,15 +108,17 @@ export default {
 .vote-list-content {
   margin-bottom: 20px;
   transform-origin: bottom left;
+  border-radius: 10px;
+  overflow: hidden;
 }
 .vote-list-content ul {
   margin: 0;
   list-style: none;
   max-height: 400px;
+  width: calc(100% + 17px);
   overflow-y: scroll;
   padding: 0;
   background-color: #4d4d4d;
-  border-radius: 0 0 8px 8px;
 }
 .vote-list-content ul img {
   max-width: 40px;
@@ -180,9 +181,11 @@ export default {
   top: -100%;
   left: 0%;
   font-size: 20px;
-  line-height: 2;
+  line-height: 2.5;
   font-weight: bold;
+  text-align: center;
   text-shadow: 0.1em 0.1em #000000;
+  letter-spacing: 0.2em;
   background-image: linear-gradient(45deg, #ff5151, #1abf59, #1f9da7);
   transition: 0.3s;
 }
@@ -230,6 +233,11 @@ export default {
 }
 .popup-leave-active {
   transition: all 0.3s ease;
+}
+@media screen and (max-width: 1367px){
+  .vote-list-content ul {
+    width: 100%;
+  }
 }
 @media screen and (max-width: 769px) {
   .name {
