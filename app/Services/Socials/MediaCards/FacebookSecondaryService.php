@@ -43,14 +43,10 @@ class FacebookSecondaryService extends BaseService implements SocialCardsContrac
      */
     public function publish(Cards $cards)
     {
-        if ($this->mediaCardsRepository->findByCardId($cards->id, 'facebook', 'secondary'))
-        {
+        if ($this->mediaCardsRepository->findByCardId($cards->id, 'facebook', 'secondary')) {
             throw new GeneralException(__('exceptions.backend.social.media.cards.repeated_error'));
-        }
-        else
-        {
-            try
-            {
+        } else {
+            try {
                 $this->getAccessToken();
                 $response = $this->facebook->post(
                     sprintf(
@@ -72,13 +68,9 @@ class FacebookSecondaryService extends BaseService implements SocialCardsContrac
                     'social_connections' => 'secondary',
                     'social_card_id' => $response->getGraphUser()->getId(),
                 ]);
-            }
-            catch (\Facebook\Exceptions\FacebookSDKException $e)
-            {
+            } catch (\Facebook\Exceptions\FacebookSDKException $e) {
                 \Log::error($e->getMessage());
-            }
-            catch (Exception $e)
-            {
+            } catch (Exception $e) {
                 \Log::error($e->getMessage());
             }
         }
@@ -90,10 +82,8 @@ class FacebookSecondaryService extends BaseService implements SocialCardsContrac
      */
     public function update(Cards $cards)
     {
-        if ($mediaCards = $this->mediaCardsRepository->findByCardId($cards->id, 'facebook', 'secondary'))
-        {
-            try
-            {
+        if ($mediaCards = $this->mediaCardsRepository->findByCardId($cards->id, 'facebook', 'secondary')) {
+            try {
                 $this->getAccessToken();
                 $response = $this->facebook->get(
                     sprintf(
@@ -107,13 +97,9 @@ class FacebookSecondaryService extends BaseService implements SocialCardsContrac
                     'num_like' => $this->slicerCardsLikes($decodedBody),
                     'num_share' => $this->slicerCardsShare($decodedBody),
                 ]);
-            }
-            catch (\Facebook\Exceptions\FacebookSDKException $e)
-            {
+            } catch (\Facebook\Exceptions\FacebookSDKException $e) {
                 \Log::error($e->getMessage());
-            }
-            catch (Exception $e)
-            {
+            } catch (Exception $e) {
                 \Log::error($e->getMessage());
             }
         }
@@ -129,10 +115,8 @@ class FacebookSecondaryService extends BaseService implements SocialCardsContrac
      */
     public function destory(User $user, Cards $cards, array $options)
     {
-        if ($mediaCards = $this->mediaCardsRepository->findByCardId($cards->id, 'facebook', 'secondary'))
-        {
-            try
-            {
+        if ($mediaCards = $this->mediaCardsRepository->findByCardId($cards->id, 'facebook', 'secondary')) {
+            try {
                 $this->getAccessToken();
                 $response = $this->facebook->delete(sprintf('/%s', $mediaCards->social_card_id));
                 $decodedBody = $response->getDecodedBody();
@@ -143,16 +127,12 @@ class FacebookSecondaryService extends BaseService implements SocialCardsContrac
                     'active' => false,
                     'is_banned' => true,
                     'banned_user_id' => $user->id,
-                    'banned_remarks' => isset($options['remarks'])? $options['remarks'] : null,
+                    'banned_remarks' => isset($options['remarks']) ? $options['remarks'] : null,
                     'banned_at' => now(),
                 ]);
-            }
-            catch (\Facebook\Exceptions\FacebookSDKException $e)
-            {
+            } catch (\Facebook\Exceptions\FacebookSDKException $e) {
                 \Log::error($e->getMessage());
-            }
-            catch (Exception $e)
-            {
+            } catch (Exception $e) {
                 \Log::error($e->getMessage());
             }
         }
@@ -166,14 +146,21 @@ class FacebookSecondaryService extends BaseService implements SocialCardsContrac
      */
     public function buildContent($content = '', array $options = [])
     {
-        return sprintf(
-            "#純靠北工程師%s\r\n%s\r\n%s\r\n📢 匿名發文請至 %s\r\n🥙 全平台留言 %s",
-            base_convert($options['id'], 10, 36),
-            $content,
-            '👉 去 GitHub 給我們🌟用行動支持純靠北工程師 https://github.com/init-engineer/init.engineer',
-            route('frontend.social.cards.create'),
-            route('frontend.social.cards.show', ['id' => $options['id']])
-        );
+        return '#純靠北工程師' . base_convert($options['id'], 10, 36) . "\n\r----------\n\r" .
+            $content . "\n\r----------\n\r" .
+            '🗳️ [群眾審核] ' . route('frontend.social.cards.review') . "\n\r" .
+            '👉 [GitHub Repo] https://github.com/init-engineer/init.engineer' . "\n\r" .
+            '📢 [匿名發文] ' . route('frontend.social.cards.create') . "\n\r" .
+            '🥙 [全平台留言] ' . route('frontend.social.cards.show', ['id' => $options['id']]);
+
+        // return sprintf(
+        //     "%s\r\n%s\r\n%s\r\n%s\r\n%s\r\n%s",
+        //     '#純靠北工程師' . base_convert($options['id'], 10, 36),
+        //     $content,
+        //     '👉 去 GitHub 給我們🌟用行動支持純靠北工程師 https://github.com/init-engineer/init.engineer',
+        //     '📢 匿名發文請至 ' . route('frontend.social.cards.create'),
+        //     '🥙 全平台留言 ' . route('frontend.social.cards.show', ['id' => $options['id']])
+        // );
     }
 
     /**
@@ -198,8 +185,7 @@ class FacebookSecondaryService extends BaseService implements SocialCardsContrac
      */
     private function getAccessToken()
     {
-        try
-        {
+        try {
             $facebookApp = new FacebookApp(
                 $this->facebook->getApp()->getId(),
                 $this->facebook->getApp()->getSecret()
@@ -216,13 +202,9 @@ class FacebookSecondaryService extends BaseService implements SocialCardsContrac
             $accessToken = $this->facebook->getClient()->sendRequest($facebookRequest)->getDecodedBody();
             $foreverPageAccessToken = $accessToken['access_token'];
             $this->facebook->setDefaultAccessToken($foreverPageAccessToken);
-        }
-        catch (\Facebook\Exceptions\FacebookSDKException $e)
-        {
+        } catch (\Facebook\Exceptions\FacebookSDKException $e) {
             \Log::error($e->getMessage());
-        }
-        catch (Exception $e)
-        {
+        } catch (Exception $e) {
             \Log::error($e->getMessage());
         }
     }
@@ -231,14 +213,14 @@ class FacebookSecondaryService extends BaseService implements SocialCardsContrac
      * @param array $body
      * @return int
      */
-    private function slicerCardsLikes($body) : int
+    private function slicerCardsLikes($body): int
     {
-        $fb_like  = (! empty($body['reactions_like'])) ? $body['reactions_like']['summary']['total_count']  : 0 ;
-        $fb_love  = (! empty($body['reactions_love'])) ? $body['reactions_love']['summary']['total_count']  : 0 ;
-        $fb_wow   = (! empty($body['reactions_wow']))  ? $body['reactions_wow']['summary']['total_count']   : 0 ;
-        $fb_haha  = (! empty($body['reactions_haha'])) ? $body['reactions_haha']['summary']['total_count']  : 0 ;
-        $fb_sad   = (! empty($body['reactions_sad']))  ? $body['reactions_sad']['summary']['total_count']   : 0 ;
-        $fb_angry = (! empty($body['reactions_angry']))? $body['reactions_angry']['summary']['total_count'] : 0 ;
+        $fb_like  = (!empty($body['reactions_like'])) ? $body['reactions_like']['summary']['total_count']  : 0;
+        $fb_love  = (!empty($body['reactions_love'])) ? $body['reactions_love']['summary']['total_count']  : 0;
+        $fb_wow   = (!empty($body['reactions_wow']))  ? $body['reactions_wow']['summary']['total_count']   : 0;
+        $fb_haha  = (!empty($body['reactions_haha'])) ? $body['reactions_haha']['summary']['total_count']  : 0;
+        $fb_sad   = (!empty($body['reactions_sad']))  ? $body['reactions_sad']['summary']['total_count']   : 0;
+        $fb_angry = (!empty($body['reactions_angry'])) ? $body['reactions_angry']['summary']['total_count'] : 0;
         $fb_count = $fb_like + $fb_love + $fb_wow + $fb_haha + $fb_sad + $fb_angry;
 
         return $fb_count;
@@ -248,8 +230,8 @@ class FacebookSecondaryService extends BaseService implements SocialCardsContrac
      * @param array $body
      * @return int
      */
-    private function slicerCardsShare($body) : int
+    private function slicerCardsShare($body): int
     {
-        return (! empty($body['shares']))? $body['shares']['count'] : 0 ;
+        return (!empty($body['shares'])) ? $body['shares']['count'] : 0;
     }
 }

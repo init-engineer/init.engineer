@@ -139,13 +139,20 @@ class TwitterPrimaryService extends BaseService implements SocialCardsContract
     {
         $_content = (mb_strlen($content, 'utf-8') > 20)? mb_substr($content, 0, 20, 'utf-8') . ' ...' : $content;
 
-        return sprintf(
-            "#純靠北工程師%s\r\n%s\r\n%s\r\n📢 匿名發文請至 %s\r\n🥙 全平台留言 %s",
-            base_convert($options['id'], 10, 36),
-            $_content,
-            '👉 去 GitHub 給我們🌟用行動支持純靠北工程師 https://github.com/init-engineer/init.engineer',
-            route('frontend.social.cards.create'),
-            route('frontend.social.cards.show', ['id' => $options['id']])
-        );
+        return '#純靠北工程師' . base_convert($options['id'], 10, 36) . "\n\r----------\n\r" .
+            $_content . "\n\r----------\n\r" .
+            '🗳️ [群眾審核] ' . route('frontend.social.cards.review') . "\n\r" .
+            '👉 [GitHub Repo] https://github.com/init-engineer/init.engineer' . "\n\r" .
+            '📢 [匿名發文] ' . route('frontend.social.cards.create') . "\n\r" .
+            '🥙 [全平台留言] ' . route('frontend.social.cards.show', ['id' => $options['id']]);
+
+        // return sprintf(
+        //     "#純靠北工程師%s\r\n%s\r\n%s\r\n📢 匿名發文請至 %s\r\n🥙 全平台留言 %s",
+        //     base_convert($options['id'], 10, 36),
+        //     $_content,
+        //     '👉 去 GitHub 給我們🌟用行動支持純靠北工程師 https://github.com/init-engineer/init.engineer',
+        //     route('frontend.social.cards.create'),
+        //     route('frontend.social.cards.show', ['id' => $options['id']])
+        // );
     }
 }
