@@ -18,7 +18,7 @@
               <img :src="item.picture" alt />
               <span class="name">{{item.name}}</span>
             </div>
-            <span class="count">{{item.count}}</span>
+            <span class="count">{{item.count}} 🗳️</span>
           </li>
         </ul>
       </div>
@@ -141,9 +141,13 @@ export default {
 .rank {
   width: 2em;
   text-align: left;
+  margin-right: 4px;
 }
 .name {
   max-width: 500px;
+}
+.count{
+  font-size: 18px;
 }
 .vote-list-content li:nth-child(1) {
   animation: colorchange 3s linear infinite;
