@@ -55,7 +55,7 @@ export default {
             axios
             .get("/json/social/reviewTop.json")
             .then(response => {
-                this.voteList = response.data
+                this.voteList = response.data.data
             })
             .catch(error => console.log(error));
         },
@@ -167,6 +167,44 @@ export default {
         background-image: linear-gradient(90deg,rgb(58, 180, 133),rgb(243, 104, 104));
 
     }
+
+    /* 審核稱號 */
+    .vote-list-content li:nth-child(-n+5){
+        position: relative;
+        overflow: hidden;
+    }
+    .vote-list-content li:nth-child(-n+5)::before{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top:-100%;
+        left:0%;
+        font-size: 20px;
+        line-height: 2;
+        font-weight: bold;
+        text-shadow:0.1em 0.1em #000000;
+        background-image: linear-gradient(45deg,#ff5151,#1abf59,#1f9da7);
+        transition: 0.3s;
+    }
+    .vote-list-content li:nth-child(1)::before{
+        content: '工程師的法槌';
+    }
+    .vote-list-content li:nth-child(2)::before{
+        content: '究極審判長';
+    }
+    .vote-list-content li:nth-child(3)::before{
+        content: '審核大將軍';
+    }
+    .vote-list-content li:nth-child(4)::before{
+        content: '審核大隊長';
+    }
+    .vote-list-content li:nth-child(5)::before{
+        content: '審核參謀';
+    }
+    .vote-list-content li:nth-child(-n+5):hover:before{
+        top:0;
+    }
+
     @keyframes colorchange{
         0%{
             background-color: #00f08c;
