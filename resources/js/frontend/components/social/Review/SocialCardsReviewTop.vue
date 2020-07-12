@@ -51,7 +51,7 @@ export default {
   methods: {
     voteListData() {
       axios
-        .get("/json/social/reviewTop.json")
+        .get("./json/social/reviewTop.json")
         .then(response => {
           this.voteList = response.data;
         })
