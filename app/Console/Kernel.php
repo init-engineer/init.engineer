@@ -56,7 +56,7 @@ class Kernel extends ConsoleKernel
          * 自動化 群眾審核相關功能
          */
         $schedule->command('social:review-publish')->everyThirtyMinutes();
-        // $schedule->command('social:review-top')->everyThirtyMinutes();
+        $schedule->command('social:review-top')->everyThirtyMinutes();
 
 
         /**
