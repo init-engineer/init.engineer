@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Api\Frontend\Social\Cards;
+namespace App\Http\Requests\Api\Frontend\Social\Review;
 
 use Illuminate\Foundation\Http\FormRequest;
 

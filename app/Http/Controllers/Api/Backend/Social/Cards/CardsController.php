@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\Backend\Social;
+namespace App\Http\Controllers\Api\Backend\Social\Cards;
 
 use League\Fractal\Manager;
 use League\Fractal\Resource\Item;

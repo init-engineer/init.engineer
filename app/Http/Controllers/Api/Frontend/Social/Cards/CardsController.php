@@ -1,8 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\Frontend\Social;
-
-use Illuminate\Support\Facades\File;
+namespace App\Http\Controllers\Api\Frontend\Social\Cards;
 
 use League\Fractal\Manager;
 use League\Fractal\Resource\Item;
@@ -17,18 +15,15 @@ use App\Http\Controllers\Controller;
 
 use App\Http\Transformers\IlluminatePaginatorAdapter;
 use App\Http\Transformers\Social\CardsTransformer;
-use App\Http\Transformers\Social\ReviewTransformer;
 use App\Http\Transformers\Social\CommentsTransformer;
 use App\Http\Transformers\Social\MediaCardsTransformer;
 use App\Http\Transformers\Social\DashboardCardsTransformer;
 
-use App\Http\Requests\Api\Frontend\Social\Cards\ReviewRequest;
 use App\Http\Requests\Api\Frontend\Social\Cards\DashboardRequest;
 use App\Http\Requests\Api\Frontend\Social\Cards\StoreCardsRequest;
 
 use App\Repositories\Frontend\Social\CardsRepository;
 use App\Repositories\Frontend\Social\ImagesRepository;
-use App\Repositories\Frontend\Social\ReviewRepository;
 use App\Repositories\Frontend\Social\CommentsRepository;
 
 /**
@@ -62,11 +57,6 @@ class CardsController extends Controller
     protected $imagesRepository;
 
     /**
-     * @var ReviewRepository
-     */
-    protected $reviewRepository;
-
-    /**
      * @var CommentsRepository
      */
     protected $commentsRepository;
@@ -79,7 +69,6 @@ class CardsController extends Controller
      * @param ImagesService $imagesService
      * @param CardsRepository $cardsRepository
      * @param ImagesRepository $imagesRepository
-     * @param ReviewRepository $reviewRepository
      * @param CommentsRepository $commentsRepository
      */
     public function __construct(
@@ -88,15 +77,13 @@ class CardsController extends Controller
         ImagesService $imagesService,
         CardsRepository $cardsRepository,
         ImagesRepository $imagesRepository,
-        ReviewRepository $reviewRepository,
-        CommentsRepository $commentsRepository)
-    {
+        CommentsRepository $commentsRepository
+    ) {
         $this->fractal = $fractal;
         $this->cardsService = $cardsService;
         $this->imagesService = $imagesService;
         $this->cardsRepository = $cardsRepository;
         $this->imagesRepository = $imagesRepository;
-        $this->reviewRepository = $reviewRepository;
         $this->commentsRepository = $commentsRepository;
     }
 
@@ -113,36 +100,6 @@ class CardsController extends Controller
         $response = $this->fractal->createData($cards);
 
         return response()->json($response->toArray());
-    }
-
-    /**
-     * @return \Illuminate\Http\Response
-     */
-    public function reviewTop()
-    {
-        $json = File::get(public_path() . '/json/social/reviewTop.json');
-
-        return response()->json(json_decode($json, true));
-    }
-
-    /**
-     * @param ReviewRequest $request
-     * @return \Illuminate\Http\Response
-     */
-    public function review(ReviewRequest $request)
-    {
-        $paginator = $this->cardsRepository->getUnactivePaginated();
-        $cards = new Collection($paginator->items(), new ReviewTransformer());
-        $cards->setPaginator(new IlluminatePaginatorAdapter($paginator));
-        $response = $this->fractal->createData($cards);
-        $response = $response->toArray();
-        foreach ($response['data'] as $key => $value)
-        {
-            $review = $this->reviewRepository->findByCardId($value['id'], $request->user()->id);
-            $response['data'][$key]['review'] = $review? $review->point : 0;
-        }
-
-        return response()->json($response);
     }
 
     /**
@@ -173,7 +130,7 @@ class CardsController extends Controller
             'content' => $request->input('content'),
         ]);
 
-        $avatar = $request->has('avatar')?
+        $avatar = $request->has('avatar') ?
             $this->imagesService->uploadImage([], $request->file('avatar')) :
             $this->imagesService->buildImage($request->only('content', 'themeStyle', 'fontStyle', 'isFeatureToBeCoutinued'), $modelCard);
 
@@ -186,8 +143,6 @@ class CardsController extends Controller
                 'type' => $avatar['avatar']['type'],
             ],
         ]);
-
-        // $this->cardsService->publish($modelCard);
 
         $cards = new Item($modelCard, new CardsTransformer());
         $response = $this->fractal->createData($cards);
@@ -203,7 +158,7 @@ class CardsController extends Controller
      */
     public function show(Cards $id)
     {
-        $cards = new Item($id->isPublish()? $id : null, new CardsTransformer());
+        $cards = new Item($id->isPublish() ? $id : null, new CardsTransformer());
         $response = $this->fractal->createData($cards);
 
         return response()->json($response->toArray());

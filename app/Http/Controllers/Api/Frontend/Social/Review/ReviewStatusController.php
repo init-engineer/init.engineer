@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\Frontend\Social;
+namespace App\Http\Controllers\Api\Frontend\Social\Review;
 
 use League\Fractal\Manager;
 use App\Models\Social\Cards;
@@ -12,13 +12,13 @@ use App\Http\Transformers\Social\ReviewTransformer;
 use App\Repositories\Backend\Social\CardsRepository as BackendCardsRepository;
 use App\Repositories\Frontend\Social\CardsRepository as FrontendCardsRepository;
 use App\Repositories\Frontend\Social\ReviewRepository;
-use App\Http\Requests\Api\Frontend\Social\Cards\ReviewFailedRequest;
-use App\Http\Requests\Api\Frontend\Social\Cards\ReviewSucceededRequest;
+use App\Http\Requests\Api\Frontend\Social\Review\ReviewFailedRequest;
+use App\Http\Requests\Api\Frontend\Social\Review\ReviewSucceededRequest;
 
 /**
- * Class CardsConfirmationController.
+ * Class ReviewStatusController.
  */
-class CardsConfirmationController extends Controller
+class ReviewStatusController extends Controller
 {
     /**
      * @var Manager

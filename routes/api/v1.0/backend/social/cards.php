@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Api\Backend\Social\CardsController;
+use App\Http\Controllers\Api\Backend\Social\Cards\CardsController;
 
 /**
  * All route names are prefixed with 'api.backend'.

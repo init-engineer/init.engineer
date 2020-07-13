@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Requests\Api\Frontend\Social\Cards;
+namespace App\Http\Requests\Api\Frontend\Social\Review;
 
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * Class ReviewRequest.
+ * Class ReviewFailedRequest.
  */
-class ReviewRequest extends FormRequest
+class ReviewFailedRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

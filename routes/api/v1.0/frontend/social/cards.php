@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\Api\Frontend\Social\CardsController;
-use App\Http\Controllers\Api\Frontend\Social\CardsConfirmationController;
+use App\Http\Controllers\Api\Frontend\Social\Cards\CardsController;
+use App\Http\Controllers\Api\Frontend\Social\Review\ReviewController;
+use App\Http\Controllers\Api\Frontend\Social\Review\ReviewStatusController;
 
 /**
  * All route names are prefixed with 'api.frontend'.
@@ -29,7 +30,6 @@ Route::group([
         ], function () {
             // Cards CRUD
             Route::get('/', [CardsController::class, 'index'])->name('index');
-            Route::get('/review-top', [CardsController::class, 'reviewTop'])->name('review.top');
 
             /**
              * TOKEN
@@ -49,11 +49,11 @@ Route::group([
                     'as' => 'review.',
                     'namespace' => 'Review',
                 ], function () {
-                    Route::get('/', [CardsController::class, 'review'])->name('review');
+                    Route::get('/', [ReviewController::class, 'review'])->name('review');
 
                     Route::group(['prefix' => '/{id}'], function () {
-                        Route::get('/succeeded', [CardsConfirmationController::class, 'succeeded'])->name('succeeded');
-                        Route::get('/failed', [CardsConfirmationController::class, 'failed'])->name('failed');
+                        Route::get('/succeeded', [ReviewStatusController::class, 'succeeded'])->name('succeeded');
+                        Route::get('/failed', [ReviewStatusController::class, 'failed'])->name('failed');
                     });
                 });
             });
@@ -76,11 +76,11 @@ Route::group([
                     'as' => 'review.',
                     'namespace' => 'Review',
                 ], function () {
-                    Route::get('/', [CardsController::class, 'review'])->name('review');
+                    Route::get('/', [ReviewController::class, 'review'])->name('review');
 
                     Route::group(['prefix' => '/{id}'], function () {
-                        Route::get('/succeeded', [CardsConfirmationController::class, 'succeeded'])->name('succeeded');
-                        Route::get('/failed', [CardsConfirmationController::class, 'failed'])->name('failed');
+                        Route::get('/succeeded', [ReviewStatusController::class, 'succeeded'])->name('succeeded');
+                        Route::get('/failed', [ReviewStatusController::class, 'failed'])->name('failed');
                     });
                 });
             });
