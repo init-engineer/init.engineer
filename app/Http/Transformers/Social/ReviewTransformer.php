@@ -20,14 +20,10 @@ class ReviewTransformer extends TransformerAbstract
     {
         $succeeded = 0;
         $failed = 0;
-        foreach ($cards->reviews as $review)
-        {
-            if ($review->point > 0)
-            {
+        foreach ($cards->reviews as $review) {
+            if ($review->point > 0) {
                 $succeeded = $succeeded + $review->point;
-            }
-            else
-            {
+            } else {
                 $failed = $failed + $review->point;
             }
         }
@@ -35,7 +31,7 @@ class ReviewTransformer extends TransformerAbstract
         return [
             'id' => $cards->id,
             'content' => $cards->content,
-            'image' => $cards->images->first()->getPicture(),
+            'image' => ($cards->images->first() !== null) ? $cards->images->first()->getPicture() : null,
             'succeeded' => $succeeded,
             'failed' => $failed,
             'created_at' => $cards->created_at,

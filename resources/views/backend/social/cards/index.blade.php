@@ -49,7 +49,7 @@
                                         <div class="media-left">
                                             <a href="{{ route('admin.auth.user.show', $card->model) }}">
                                                 <img class="media-object img-fluid rounded mr-1"
-                                                src="{{ $card->model->getPicture() }}"
+                                                src="{{ $card->model->getPicture() ?? asset('img/frontend/default-image.png') }}"
                                                 style="max-width: 48px;max-height: 48px;"
                                                 alt="{{ $card->model->email }}">
                                             </a>
@@ -65,7 +65,7 @@
                                         <div class="media-left">
                                             <img class="media-object img-fluid rounded mr-1" data-toggle="tooltip"
                                                 data-placement="bottom" title="{{ $card->content }}"
-                                                src="{{ $card->images->first()->getPicture() }}"
+                                                src="{{ ($card->images->first() !== null)? $card->images->first()->getPicture() : asset('img/frontend/default-image.png') }}"
                                                 style="max-width: 128px;max-height: 128px;" alt="{{ $card->content }}">
                                         </div>
                                     </div>

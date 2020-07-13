@@ -21,7 +21,7 @@ class CardsTransformer extends TransformerAbstract
         return [
             'id' => $cards->id,
             'content' => $cards->content,
-            'image' => $cards->images->first()->getPicture(),
+            'image' => ($cards->images->first() !== null)? $cards->images->first()->getPicture() : null,
             'created_at' => $cards->created_at,
             'created_diff' => $cards->created_at->diffForHumans(),
             'updated_at' => $cards->updated_at,

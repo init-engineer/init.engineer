@@ -22,7 +22,7 @@ class DashboardCardsTransformer extends TransformerAbstract
         return [
             'id' => $cards->id,
             'content' => $cards->content,
-            'image' => $cards->images->first()->getPicture(),
+            'image' => ($cards->images->first() !== null)? $cards->images->first()->getPicture() : null,
             'is_banned' => $cards->is_banned,
             'banned_remarks' => isset($cards->banned_remarks)? Markdown::convertToHtml($cards->banned_remarks) : null,
             'created_at' => $cards->created_at,

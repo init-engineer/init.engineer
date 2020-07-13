@@ -63,7 +63,7 @@ trait ImagesMethod
                 {
                     $size = config('gravatar.default.size');
                 }
-                return gravatar()->get($this->email, ['size' => $size]);
+                // return gravatar()->get($this->email, ['size' => $size]);
 
             case 'storage':
                 return url(sprintf('storage/%s/%s.%s', str_replace('public/', '', $this->avatar_path), $this->avatar_name, $this->avatar_type));
