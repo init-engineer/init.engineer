@@ -30,7 +30,7 @@ class ToBeLoggedOut
         }
 
         // If the user is deactiveren
-        if (!$request->user()->isActive()) {
+        if ($request->user() && !$request->user()->isActive()) {
             // Kill the current session and force back to the login screen
             session()->flush();
             auth()->logout();
