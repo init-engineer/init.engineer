@@ -75,6 +75,7 @@ export default {
   bottom: 0;
   left: 0;
   margin: 30px 30px;
+  z-index: 999;
 }
 .btn {
   cursor: pointer;
