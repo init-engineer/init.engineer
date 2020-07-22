@@ -16,7 +16,7 @@
     },
     "devDependencies": {
         "@coreui/coreui": "^2.1.16",
-        "@fortawesome/fontawesome-free": "^5.13.0",
+        "@fortawesome/fontawesome-free": "^5.14.0",
         "@vue/test-utils": "^1.0.3",
         "axios": "^0.19.2",
         "babel-core": "^7.0.0-bridge.0",
@@ -26,7 +26,7 @@
         "cross-var": "^1.1.0",
         "eslint": "^6.8.0",
         "eslint-config-standard": "^14.1.1",
-        "eslint-plugin-import": "^2.21.2",
+        "eslint-plugin-import": "^2.22.0",
         "eslint-plugin-node": "^10.0.0",
         "eslint-plugin-promise": "^4.2.1",
         "eslint-plugin-standard": "^4.0.1",
@@ -34,16 +34,16 @@
         "jest": "^24.8.0",
         "jquery": "^3.5.1",
         "laravel-mix": "^4.0.16",
-        "lodash": "^4.17.13",
+        "lodash": "^4.17.19",
         "pace": "github:HubSpot/pace#v1.0.2",
         "perfect-scrollbar": "^1.5.0",
         "popper.js": "^1.16.1",
         "resolve-url-loader": "^2.3.2",
-        "sass": "^1.26.8",
+        "sass": "^1.26.10",
         "sass-loader": "^7.1.0",
         "sweetalert2": "^8.19.0",
         "vue": "^2.6.11",
-        "vue-jest": "^3.0.4",
+        "vue-jest": "^3.0.6",
         "vue-template-compiler": "^2.6.11"
     },
     "browserslist": {
@@ -86,7 +86,7 @@
         "vue-infinite-loading": "^2.4.5",
         "vue-marquee-text-component": "^1.1.1",
         "vue-picture-input": "^2.1.6",
-        "vue-tippy": "^4.4.0",
+        "vue-tippy": "^4.5.1",
         "vuelidate": "^0.7.5"
     }
 }
