@@ -84,8 +84,7 @@
                         <div class="col-12">
                             <img class="media-object img-fluid rounded w-100" data-toggle="tooltip"
                                 data-placement="bottom" title="{{ $card->content }}"
-                                {{-- src="{{ ($card->images->first() !== null)? $card->images->first()->getPicture() : asset('img/frontend/default-image.png') }}"
-                                --}} src="{{ asset('img/frontend/default-image.png') }}" alt="{{ $card->content }}">
+                                src="{{ ($card->images->first() !== null)? $card->images->first()->getPicture() : asset('img/frontend/default-image.png') }}" />
                             <hr />
                             <code class="read" style="white-space: pre-line; font-size: 2rem;">
                                 {{ $card->content }}
