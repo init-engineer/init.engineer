@@ -338,10 +338,7 @@
             </div>
         </div>
         <!--/tab-content-->
-
     </div>
     <!--/col-9-->
-</div>
-<!--/row-->
 </div>
 <!--/row-->

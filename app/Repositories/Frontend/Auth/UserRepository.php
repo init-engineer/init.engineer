@@ -209,7 +209,10 @@ class UserRepository extends BaseRepository
                 $user->password_changed_at = now()->toDateTimeString();
             }
 
-            return $user->update(['password' => $input['password']]);
+            return $user->update([
+                'password' => $input['password'],
+                'api_token' => Str::random(60),
+            ]);
         }
 
         throw new GeneralException(__('exceptions.frontend.auth.password.change_mismatch'));
@@ -308,7 +311,6 @@ class UserRepository extends BaseRepository
             ]);
 
             $user->avatar_type = $provider;
-            $user->api_token = Str::random(60);
             $user->update();
         }
 

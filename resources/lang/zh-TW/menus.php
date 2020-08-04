@@ -44,6 +44,7 @@ return [
                 'all' => '所有文章',
                 'deactivated' => '被停用的文章',
                 'deleted' => '被刪除的文章',
+                'view' => '查看',
             ],
         ],
 

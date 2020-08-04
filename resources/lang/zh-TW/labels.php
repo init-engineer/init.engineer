@@ -121,9 +121,18 @@ return [
                 'deactivated' => '已軟刪除文章',
                 'deleted' => 'Deleted',
                 'card_actions' => '文章動作',
+                'view' => '查看文章',
+                'detail' => '文章詳細資訊',
+                'link' => '社群連結',
+                'comment' => '留言列表',
+                'review' => '審核名單',
 
                 'table' => [
                     'socials' => '社群列表',
+                    'like' => '按讚數量',
+                    'share' => '分享數量',
+                    'content' => '內容',
+                    'roles' => '角色列表',
                     'confirmed' => '認證',
                     'created' => '新增',
                     'id' => 'ID/編號',
