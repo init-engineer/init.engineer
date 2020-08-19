@@ -139,6 +139,11 @@ class ImagesService extends BaseService implements ImagesContract
                 $this->canvasHeight += 360;
                 break;
 
+            /** Windows 最棒的畫面 測試人員組件 */
+            case 'tumx453xqZLjf5kaFFBzNj4gqVXKWqXz':
+                $this->canvasHeight += 360;
+                break;
+
             /** 支離滅裂な思考・発言 */
             case '05326525f82b9a036e1bcb53a392ff7c':
                 $this->canvasHeight += 140;
@@ -178,6 +183,11 @@ class ImagesService extends BaseService implements ImagesContract
             {
                 /** Windows 最棒的畫面 */
                 case '32d2a897602ef652ed8e15d66128aa74':
+                    $yPoint += 240;
+                    break;
+
+                /** Windows 最棒的畫面 測試人員組件 */
+                case 'tumx453xqZLjf5kaFFBzNj4gqVXKWqXz':
                     $yPoint += 240;
                     break;
 
@@ -330,7 +340,15 @@ class ImagesService extends BaseService implements ImagesContract
     {
         switch($theme)
         {
+            /** Windows 最棒的畫面 */
             case '32d2a897602ef652ed8e15d66128aa74':
+                imageTTFtext($this->canvas, 26, $this->canvasAngle, 228, $this->canvasHeight - 160, $this->canvasTextColor, $this->canvasFont, '若要深入了解，您稍候可以線上搜尋此:');
+                imageTTFtext($this->canvas, 26, $this->canvasAngle, 228, $this->canvasHeight - 120, $this->canvasTextColor, $this->canvasFont, sprintf('%s 0xKAOBEI_ENGINEER', app_name()));
+                imageTTFtext($this->canvas, 26, $this->canvasAngle, 228, $this->canvasHeight - 40,  $this->canvasTextColor, $this->canvasFont, sprintf('請訪問 %s', app_url()));
+                break;
+
+            /** Windows 最棒的畫面 測試人員組件 */
+            case 'tumx453xqZLjf5kaFFBzNj4gqVXKWqXz':
                 imageTTFtext($this->canvas, 26, $this->canvasAngle, 228, $this->canvasHeight - 160, $this->canvasTextColor, $this->canvasFont, '若要深入了解，您稍候可以線上搜尋此:');
                 imageTTFtext($this->canvas, 26, $this->canvasAngle, 228, $this->canvasHeight - 120, $this->canvasTextColor, $this->canvasFont, sprintf('%s 0xKAOBEI_ENGINEER', app_name()));
                 imageTTFtext($this->canvas, 26, $this->canvasAngle, 228, $this->canvasHeight - 40,  $this->canvasTextColor, $this->canvasFont, sprintf('請訪問 %s', app_url()));
@@ -386,7 +404,13 @@ class ImagesService extends BaseService implements ImagesContract
     {
         switch($theme)
         {
+            /** Windows 最棒的畫面 */
             case '32d2a897602ef652ed8e15d66128aa74':
+                imageTTFtext($this->canvas, 160, $this->canvasAngle, 48, 192, $this->canvasTextColor, $this->canvasFont, ':(');
+                break;
+
+            /** Windows 最棒的畫面 測試人員組件 */
+            case 'tumx453xqZLjf5kaFFBzNj4gqVXKWqXz':
                 imageTTFtext($this->canvas, 160, $this->canvasAngle, 48, 192, $this->canvasTextColor, $this->canvasFont, ':(');
                 break;
 
@@ -533,6 +557,13 @@ class ImagesService extends BaseService implements ImagesContract
                 $this->drawingBackgroundImage('32d2a897602ef652ed8e15d66128aa74');
                 break;
 
+            /** Windows 最棒的畫面 測試人員組件 */
+            case 'tumx453xqZLjf5kaFFBzNj4gqVXKWqXz':
+                $this->canvasTextColor = imageColorAllocate($this->canvas, 248, 249, 250);
+                $this->canvasBackgroundColor = imageColorAllocate($this->canvas, 16, 124, 16);
+                $this->drawingBackgroundImage('tumx453xqZLjf5kaFFBzNj4gqVXKWqXz');
+                break;
+
             /** 粉紅色 */
             case 'j874kwoxi2nh64yt67wtphy9m5dmea4q':
                 $this->canvasTextColor = imageColorAllocate($this->canvas, 255, 83, 118);
@@ -644,6 +675,12 @@ class ImagesService extends BaseService implements ImagesContract
 
             /** Windows 最棒的畫面 */
             case '32d2a897602ef652ed8e15d66128aa74':
+                $overlayImage = imageCreateFromPng(asset('img/frontend/cards/qrcode.png'));
+                imageCopy($this->canvas, $overlayImage, 24, imageSY($this->canvas) - 204, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
+                break;
+
+            /** Windows 最棒的畫面 測試人員組件 */
+            case 'tumx453xqZLjf5kaFFBzNj4gqVXKWqXz':
                 $overlayImage = imageCreateFromPng(asset('img/frontend/cards/qrcode.png'));
                 imageCopy($this->canvas, $overlayImage, 24, imageSY($this->canvas) - 204, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
                 break;

@@ -416,6 +416,15 @@ export default {
             }
           },
           {
+            text: "Windows 最棒的畫面 測試人員組件",
+            class: "bg-windows-10-testing-error text-white",
+            value: "tumx453xqZLjf5kaFFBzNj4gqVXKWqXz",
+            color: {
+              background: "#107C10",
+              text: "#F8F9FA"
+            }
+          },
+          {
             text: "粉紅色",
             class: "bg-pink-secondary color-pink",
             value: "j874kwoxi2nh64yt67wtphy9m5dmea4q",
@@ -595,6 +604,10 @@ export default {
           canvasView_height += 360;
           break;
 
+        case "tumx453xqZLjf5kaFFBzNj4gqVXKWqXz":
+          canvasView_height += 360;
+          break;
+
         case "05326525f82b9a036e1bcb53a392ff7c":
           canvasView_height += 140;
           canvasView_width += 349;
@@ -636,6 +649,11 @@ export default {
           this.canvas.ctx.drawImage(img, 24, this.canvas.height - 204);
           return;
 
+        case "tumx453xqZLjf5kaFFBzNj4gqVXKWqXz":
+          img.src = "/img/frontend/cards/qrcode.png";
+          this.canvas.ctx.drawImage(img, 24, this.canvas.height - 204);
+          return;
+
         case "05326525f82b9a036e1bcb53a392ff7c":
           img.src = "/img/frontend/cards/fragmented_background.png";
           this.canvas.ctx.drawImage(img, 0, this.canvas.height - 560);
@@ -664,6 +682,26 @@ export default {
     drawingLogo() {
       switch (this.theme.selector) {
         case "32d2a897602ef652ed8e15d66128aa74":
+          this.canvas.ctx.font = "36px " + this.canvas.font;
+          this.canvas.ctx.fillStyle = this.canvas.color;
+          this.canvas.ctx.fillText(
+            "若要深入了解，您稍候可以線上搜尋此:",
+            228,
+            this.canvas.height - 160
+          );
+          this.canvas.ctx.fillText(
+            "純靠北工程師 0xKAOBEI_ENGINEER",
+            228,
+            this.canvas.height - 120
+          );
+          this.canvas.ctx.fillText(
+            "請訪問 https://kaobei.engineer",
+            228,
+            this.canvas.height - 40
+          );
+          return;
+
+        case "tumx453xqZLjf5kaFFBzNj4gqVXKWqXz":
           this.canvas.ctx.font = "36px " + this.canvas.font;
           this.canvas.ctx.fillStyle = this.canvas.color;
           this.canvas.ctx.fillText(
@@ -716,6 +754,12 @@ export default {
           this.canvas.ctx.fillText(":(", 48, 192);
           return;
 
+        case "tumx453xqZLjf5kaFFBzNj4gqVXKWqXz":
+          this.canvas.ctx.font = "192px " + this.canvas.font;
+          this.canvas.ctx.fillStyle = this.canvas.color;
+          this.canvas.ctx.fillText(":(", 48, 192);
+          return;
+
         default:
           this.canvas.ctx.font = "36px " + this.canvas.font;
           this.canvas.ctx.fillStyle = this.canvas.color;
@@ -746,7 +790,9 @@ export default {
             case "32d2a897602ef652ed8e15d66128aa74":
               y_point += 240;
               break;
-
+            case "tumx453xqZLjf5kaFFBzNj4gqVXKWqXz":
+              y_point += 240;
+              break;
             case "05326525f82b9a036e1bcb53a392ff7c":
               x_point += 349;
               y_point += 24;
