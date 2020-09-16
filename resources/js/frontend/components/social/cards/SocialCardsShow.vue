@@ -6,7 +6,7 @@
       <div class="cards-image mb-4">
         <vue-content-loading
           class="animated faster"
-          :class="{ 'fadeOut position-absolute': loaded.image }"
+          :class="{ 'fadeOut position-absolute h-0': loaded.image }"
           :width="100"
           :height="40"
           :speed="1"
@@ -29,7 +29,7 @@
       <div class="cards-content mb-4">
         <vue-content-loading
           class="animated faster"
-          :class="{ 'fadeOut position-absolute': loaded.avatar }"
+          :class="{ 'fadeOut position-absolute h-0': loaded.avatar }"
           :width="100"
           :height="24"
           :speed="1"
@@ -69,7 +69,7 @@
       <div class="cards-links border-bottom border-white border-w-3 text-right mb-4 pb-2">
         <vue-content-loading
           class="animated faster"
-          :class="{ 'fadeOut position-absolute': loaded.links }"
+          :class="{ 'fadeOut position-absolute h-0': loaded.links }"
           :width="100"
           :height="3"
           :speed="1"
@@ -448,3 +448,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.h-0 {
+    height: 0 !important;
+}
+</style>
