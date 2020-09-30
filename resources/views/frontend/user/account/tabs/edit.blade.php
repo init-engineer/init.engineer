@@ -12,7 +12,7 @@
 
                     @foreach($logged_in_user->providers as $provider)
                         @if(strlen($provider->avatar))
-                            <input type="radio" name="avatar_type" value="{{ $provider->provider }}" {{ $logged_in_user->avatar_type == $provider->provider ? 'checked' : '' }} /> {{ ucfirst($provider->provider) }}
+                            <input type="radio" name="avatar_type" value="{{ $provider->provider }}" {{ $logged_in_user->avatar_type == $provider->provider ? 'checked' : '' }} /> {{ $provider->provider == "github" ? "GitHub" : ucfirst($provider->provider) }}
                         @endif
                     @endforeach
                 </div>
