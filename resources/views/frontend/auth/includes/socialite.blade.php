@@ -11,7 +11,7 @@
 @endif
 
 @if (config('services.github.active'))
-    <a href='{{ route('frontend.auth.social.login', 'github') }}' class='btn btn-lg btn-block btn-github rounded border border-w-3 p-2'><i class='fab fa-github'></i> @lang('labels.frontend.auth.login_with', ['social_media' => 'Github'])</a>
+    <a href='{{ route('frontend.auth.social.login', 'github') }}' class='btn btn-lg btn-block btn-github rounded border border-w-3 p-2'><i class='fab fa-github'></i> @lang('labels.frontend.auth.login_with', ['social_media' => 'GitHub'])</a>
 @endif
 
 @if (config('services.linkedin.active'))
