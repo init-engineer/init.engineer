@@ -3,7 +3,7 @@
     <vue-gallery :images="images" :index="gallery" @close="gallery = null" />
 
     <div class="card-columns">
-      <div v-if="cards.length === 0">
+      <div v-if="cards === undefined">
         <vue-content-loading
           class="mx-2 mb-2"
           :width="100"
@@ -134,7 +134,7 @@ export default {
   },
   data() {
     return {
-      cards: [],
+      cards: undefined,
       images: [],
       gallery: null,
       cardsNext: `/api/frontend/social/cards`
@@ -149,6 +149,7 @@ export default {
           cards.forEach(element => {
             this.images.push(element.image);
           });
+          this.cards = []
           this.cards.push(...cards);
           if (response.data.meta.pagination.links.next) {
             this.cardsNext = response.data.meta.pagination.links.next;
