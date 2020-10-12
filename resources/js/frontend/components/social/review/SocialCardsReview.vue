@@ -3,7 +3,7 @@
     <vue-gallery :images="images" :index="gallery" @close="gallery = null" />
 
     <div class="card-columns">
-      <div v-if="cards.length === 0">
+      <div v-if="cards === undefined">
         <vue-content-loading
           class="mx-2 mb-2"
           :width="100"
@@ -100,7 +100,7 @@
         </div>
       </div>
 
-      <infinite-loading @infinite="infiniteHandler">
+      <infinite-loading @infinite="infiniteHandler" :distance="distance">
         <div slot="spinner">
           <vue-content-loading
             class="mx-2 mb-2"
@@ -181,10 +181,11 @@ export default {
   data() {
     return {
       timerCount: 0,
-      cards: [],
+      cards: undefined,
       images: [],
       gallery: null,
-      cardsNext: `/api/frontend/social/cards/token/review`
+      cardsNext: `/api/frontend/social/cards/token/review`,
+      distance: Infinity
     };
   },
   created() {
@@ -192,6 +193,9 @@ export default {
   },
   methods: {
     infiniteHandler($state) {
+        if( this.distance == Infinity ){
+            this.distance = 100;
+        }
       axios
         .get(this.cardsNext)
         .then(response => {
@@ -199,6 +203,7 @@ export default {
           cards.forEach(element => {
             this.images.push(element.image);
           });
+          this.cards = []
           this.cards.push(...cards);
           if (response.data.meta.pagination.links.next) {
             this.cardsNext = response.data.meta.pagination.links.next;
