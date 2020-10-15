@@ -44,7 +44,11 @@
           <rect x="80" y="88" rx="1" ry="1" width="20" height="8" />
         </vue-content-loading>
       </div>
-      <div class="card animated fadeInUp faster" v-for="(card, $index) in cards" :key="$index">
+      <div
+        class="card animated fadeInUp faster"
+        v-for="(card, $index) in cards"
+        :key="$index"
+      >
         <div v-if="!card.is_banned">
           <img
             class="card-img-top img-fluid mx-auto d-block animated fadeIn faster"
@@ -56,7 +60,9 @@
               <div class="p-1">#{{ card.id.toString(36) }}</div>
               <div class="p-1">{{ card.created_diff }}</div>
               <div class="p-1">
-                <a :href="`/cards/show/${card.id}`" class="ml-auto p-1">詳細內容</a>
+                <a :href="`/cards/show/${card.id}`" class="ml-auto p-1"
+                  >詳細內容</a
+                >
               </div>
             </div>
           </div>
@@ -122,17 +128,30 @@
             <rect x="80" y="88" rx="1" ry="1" width="20" height="8" />
           </vue-content-loading>
         </div>
-        <div class="text-white border-top border-white border-w-3 pt-5 pb-5" slot="no-more">沒有其他文章了。</div>
+        <div
+          class="text-white border-top border-white border-w-3 pt-5 pb-5"
+          slot="no-more"
+        >
+          沒有其他文章了。
+        </div>
         <div
           class="text-white border-top border-white border-w-3 pt-5 pb-5"
           slot="no-results"
-        >沒有其他文章了。</div>
+        >
+          沒有其他文章了。
+        </div>
       </infinite-loading>
       <!-- infinite loading -->
     </div>
     <!-- card-columns -->
 
-    <go-top bg-color="#13cf13" weight="bold" :size="60" :right="92" :bottom="24" />
+    <go-top
+      bg-color="#13cf13"
+      weight="bold"
+      :size="60"
+      :right="92"
+      :bottom="24"
+    />
     <!-- go to the top -->
 
     <a class="text-dark btn btn-dos btn-block">給你按一按舒壓一下的按鈕</a>
@@ -152,26 +171,29 @@ export default {
     GoTop,
     VueGallery,
     InfiniteLoading,
-    VueContentLoading
+    VueContentLoading,
   },
   data() {
     return {
       cards: undefined,
       images: [],
       gallery: null,
-      cardsNext: `/api/frontend/social/cards/token/dashboard`
+      cardsNext: `/api/frontend/social/cards/token/dashboard`,
     };
   },
   methods: {
     infiniteHandler($state) {
+      if (this.cards === undefined) {
+        this.cards = [];
+      }
+
       axios
         .get(this.cardsNext)
-        .then(response => {
+        .then((response) => {
           let cards = response.data.data;
-          cards.forEach(element => {
+          cards.forEach((element) => {
             this.images.push(element.image);
           });
-          this.cards = []
           this.cards.push(...cards);
           if (response.data.meta.pagination.links.next) {
             this.cardsNext = response.data.meta.pagination.links.next;
@@ -181,8 +203,8 @@ export default {
             $state.complete();
           }
         })
-        .catch(error => console.log(error));
-    }
-  }
+        .catch((error) => console.log(error));
+    },
+  },
 };
 </script>
