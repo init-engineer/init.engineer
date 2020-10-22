@@ -193,18 +193,17 @@ export default {
   },
   methods: {
     infiniteHandler($state) {
-        if( this.distance == Infinity ){
-            this.distance = 100;
-        }
+      if (this.distance === Infinity) this.distance = 100;
+      if (this.cards === undefined) this.cards = [];
+
       axios
         .get(this.cardsNext)
         .then(response => {
           let cards = response.data.data;
           cards.forEach(element => {
             this.images.push(element.image);
+            this.cards.push(element);
           });
-          this.cards = []
-          this.cards.push(...cards);
           if (response.data.meta.pagination.links.next) {
             this.cardsNext = response.data.meta.pagination.links.next;
             $state.loaded();
