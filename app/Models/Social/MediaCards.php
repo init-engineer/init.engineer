@@ -36,7 +36,6 @@ class MediaCards extends Model
      * @var array
      */
     protected $fillable = [
-        'id',
         'card_id',
         'model_type',
         'model_id',

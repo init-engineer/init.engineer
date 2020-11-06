@@ -29,7 +29,6 @@ class AccessTokens extends Model
      * @var array
      */
     protected $fillable = [
-        'id',
         'user_id',
         'client_id',
         'name',

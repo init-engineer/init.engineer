@@ -28,7 +28,10 @@ trait Uuid
         return property_exists($this, 'uuidName') ? $this->uuidName : 'uuid';
     }
 
-    protected static function boot()
+    /**
+     * @return void
+     */
+    protected static function boot(): void
     {
         parent::boot();
 

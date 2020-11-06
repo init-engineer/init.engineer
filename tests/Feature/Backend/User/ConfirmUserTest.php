@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
 
+/**
+ * Class ConfirmUserTest.
+ */
 class ConfirmUserTest extends TestCase
 {
     use RefreshDatabase;

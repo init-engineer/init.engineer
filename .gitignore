@@ -1,15 +1,8 @@
 /node_modules
-
-/public/ads.txt
-/public/.htaccess
 /public/hot
 /public/storage
-/public/.well-known
-
+/public/images
 /storage/*.key
-/storage/backups/*
-/storage/geo/*
-
 /vendor
 /.idea
 /.vagrant
@@ -17,6 +10,7 @@
 Homestead.json
 Homestead.yaml
 npm-debug.log
+yarn-error.log
 .env
 .env.backup
 .DS_Store
@@ -34,4 +28,3 @@ output.txt
 coverage.xml
 /coverage
 .phpunit.result.cache
-*.rnd

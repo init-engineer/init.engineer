@@ -8,6 +8,9 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Event;
 use Tests\TestCase;
 
+/**
+ * Class CreateRoleTest.
+ */
 class CreateRoleTest extends TestCase
 {
     use RefreshDatabase;

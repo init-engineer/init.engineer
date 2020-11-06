@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\Auth\User;
-use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 
 /**

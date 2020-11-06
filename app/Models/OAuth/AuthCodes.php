@@ -29,7 +29,6 @@ class AuthCodes extends Model
      * @var array
      */
     protected $fillable = [
-        'id',
         'user_id',
         'client_id',
         'scopes',

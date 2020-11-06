@@ -9,6 +9,9 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Event;
 use Tests\TestCase;
 
+/**
+ * Class DeleteUserTest.
+ */
 class DeleteUserTest extends TestCase
 {
     use RefreshDatabase;

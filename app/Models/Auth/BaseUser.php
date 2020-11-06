@@ -2,26 +2,24 @@
 
 namespace App\Models\Auth;
 
-use App\Models\Traits\Uuid;
-use Altek\Eventually\Eventually;
-use Laravel\Passport\HasApiTokens;
-use Spatie\Permission\Traits\HasRoles;
-use Illuminate\Notifications\Notifiable;
 use Altek\Accountant\Contracts\Recordable;
-use Lab404\Impersonate\Models\Impersonate;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Models\Auth\Traits\SendUserPasswordReset;
 use Altek\Accountant\Recordable as RecordableTrait;
+use Altek\Eventually\Eventually;
+use App\Models\Auth\Traits\SendUserPasswordReset;
+use App\Models\Traits\Uuid;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Lab404\Impersonate\Models\Impersonate;
+use Spatie\Permission\Traits\HasRoles;
 
 /**
- * Class User.
+ * Class BaseUser.
  */
 abstract class BaseUser extends Authenticatable implements Recordable
 {
     use HasRoles,
         Eventually,
-        HasApiTokens,
         Impersonate,
         Notifiable,
         RecordableTrait,
@@ -49,11 +47,11 @@ abstract class BaseUser extends Authenticatable implements Recordable
         'last_login_at',
         'last_login_ip',
         'to_be_logged_out',
-        'api_token',
     ];
 
     /**
      * The dynamic attributes from mutators that should be returned with the user object.
+     *
      * @var array
      */
     protected $appends = [
@@ -94,7 +92,8 @@ abstract class BaseUser extends Authenticatable implements Recordable
      * Return true or false if the user can impersonate an other user.
      *
      * @param void
-     * @return  bool
+     *
+     * @return bool
      */
     public function canImpersonate()
     {
@@ -105,7 +104,8 @@ abstract class BaseUser extends Authenticatable implements Recordable
      * Return true or false if the user can be impersonate.
      *
      * @param void
-     * @return  bool
+     *
+     * @return bool
      */
     public function canBeImpersonated()
     {

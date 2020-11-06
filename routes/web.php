@@ -15,7 +15,7 @@ Route::get('lang/{lang}', [LanguageController::class, 'swap']);
  * Namespaces indicate folder structure
  */
 Route::group(['namespace' => 'Frontend', 'as' => 'frontend.'], function () {
-    include_route_files(__DIR__.'/frontend/');
+    include_route_files(__DIR__ . '/frontend/');
 });
 
 /*
@@ -31,5 +31,5 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin', 'as' => 'admin.', '
      * Note: Administrator has all permissions so you do not have to specify the administrator role everywhere.
      * These routes can not be hit if the password is expired
      */
-    include_route_files(__DIR__.'/backend/');
+    include_route_files(__DIR__ . '/backend/');
 });

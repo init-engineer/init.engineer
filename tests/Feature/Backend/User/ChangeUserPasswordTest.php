@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
+/**
+ * Class ChangeUserPasswordTest.
+ */
 class ChangeUserPasswordTest extends TestCase
 {
     use RefreshDatabase;

@@ -5,6 +5,9 @@ namespace Tests\Feature\Frontend;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+/**
+ * Class UserDashboardTest.
+ */
 class UserDashboardTest extends TestCase
 {
     use RefreshDatabase;

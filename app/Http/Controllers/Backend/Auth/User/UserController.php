@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers\Backend\Auth\User;
 
-use App\Models\Auth\User;
-use App\Http\Controllers\Controller;
 use App\Events\Backend\Auth\User\UserDeleted;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Backend\Auth\User\ManageUserRequest;
+use App\Http\Requests\Backend\Auth\User\StoreUserRequest;
+use App\Http\Requests\Backend\Auth\User\UpdateUserRequest;
+use App\Models\Auth\User;
+use App\Repositories\Backend\Auth\PermissionRepository;
 use App\Repositories\Backend\Auth\RoleRepository;
 use App\Repositories\Backend\Auth\UserRepository;
-use App\Repositories\Backend\Auth\PermissionRepository;
-use App\Http\Requests\Backend\Auth\User\StoreUserRequest;
-use App\Http\Requests\Backend\Auth\User\ManageUserRequest;
-use App\Http\Requests\Backend\Auth\User\SearchUserRequest;
-use App\Http\Requests\Backend\Auth\User\UpdateUserRequest;
 
 /**
  * Class UserController.
@@ -42,17 +41,6 @@ class UserController extends Controller
     {
         return view('backend.auth.user.index')
             ->withUsers($this->userRepository->getActivePaginated(25, 'id', 'asc'));
-    }
-
-    /**
-     * @param SearchUserRequest $request
-     *
-     * @return mixed
-     */
-    public function search(SearchUserRequest $request)
-    {
-        return view('backend.auth.user.index')
-            ->withUsers($this->userRepository->getFuzzyActivePaginated($request->input('email'), 25, 'id', 'asc'));
     }
 
     /**
@@ -93,21 +81,15 @@ class UserController extends Controller
     }
 
     /**
-     * @param ManageUserRequest    $request
-     * @param RoleRepository       $roleRepository
-     * @param PermissionRepository $permissionRepository
-     * @param User                 $user
+     * @param ManageUserRequest $request
+     * @param User              $user
      *
      * @return mixed
      */
-    public function show(ManageUserRequest $request, RoleRepository $roleRepository, PermissionRepository $permissionRepository, User $user)
+    public function show(ManageUserRequest $request, User $user)
     {
         return view('backend.auth.user.show')
-            ->withUser($user)
-            ->withRoles($roleRepository->get())
-            ->withUserRoles($user->roles->pluck('name')->all())
-            ->withPermissions($permissionRepository->get(['id', 'name']))
-            ->withUserPermissions($user->permissions->pluck('name')->all());
+            ->withUser($user);
     }
 
     /**

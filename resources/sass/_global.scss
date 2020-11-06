@@ -1,22 +1,12 @@
-/**
- * Plugins
- */
+// Plugins
 
-/**
- * FontAwesome 5
- */
+// FontAwesome 5
 @import "~@fortawesome/fontawesome-free/scss/fontawesome";
 @import "~@fortawesome/fontawesome-free/scss/brands";
 @import "~@fortawesome/fontawesome-free/scss/regular";
 @import "~@fortawesome/fontawesome-free/scss/solid";
 
-@import "~csshake";
-@import "~animate.css/animate.min.css";
-@import '~pretty-checkbox/src/pretty-checkbox.scss';
-
-/**
- * Header Styles
- */
+// Header Styles
 .read-only, .logged-in-as {
   margin: 0 !important;
   border-radius: 0 !important;

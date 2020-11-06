@@ -29,7 +29,6 @@ class RefreshTokens extends Model
      * @var array
      */
     protected $fillable = [
-        'id',
         'access_token_id',
         'revoked',
         'expires_at',

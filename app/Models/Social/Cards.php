@@ -40,7 +40,6 @@ class Cards extends Model
      * @var array
      */
     protected $fillable = [
-        'id',
         'model_type',
         'model_id',
         'content',

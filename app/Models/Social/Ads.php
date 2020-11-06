@@ -41,7 +41,6 @@ class Ads extends Model
      * @var array
      */
     protected $fillable = [
-        'id',
         'name',
         'ads_path',
         'number_count',

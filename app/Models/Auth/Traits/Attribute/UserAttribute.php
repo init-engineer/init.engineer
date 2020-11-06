@@ -12,7 +12,7 @@ trait UserAttribute
     /**
      * @param $password
      */
-    public function setPasswordAttribute($password) : void
+    public function setPasswordAttribute($password): void
     {
         // If password was accidentally passed in already hashed, try not to double hash it
         if (
@@ -34,7 +34,7 @@ trait UserAttribute
     public function getFullNameAttribute()
     {
         return $this->last_name
-            ? $this->first_name.' '.$this->last_name
+            ? $this->first_name . ' ' . $this->last_name
             : $this->first_name;
     }
 

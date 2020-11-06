@@ -18,22 +18,14 @@ return [
                 'activate' => '啟用',
                 'change_password' => '更改密碼',
                 'clear_session' => '清除 Session',
-                'confirm' => 'Confirm',
+                'confirm' => '認證',
                 'deactivate' => '停用',
                 'delete_permanently' => '永久刪除',
-                'login_as' => '以 :user 身份登入系統',
-                'resend_email' => '重新發送確認電子信箱(E-mail)',
+                'login_as' => '以 :user 登入',
+                'resend_email' => '重新發送認證電子信箱',
                 'restore_user' => '還原使用者',
-                'unconfirm' => 'Un-confirm',
+                'unconfirm' => '取消認證',
                 'unlink' => '取消連結',
-                'search' => '搜尋',
-            ],
-        ],
-
-        'social' => [
-            'cards' => [
-                'delete_permanently' => '永久刪除',
-                'restore_cards' => '還原文章',
             ],
         ],
     ],
@@ -50,18 +42,14 @@ return [
         'continue' => '繼續',
 
         'crud' => [
-            'publish' => '發佈',
-            'create' => '新增',
+            'create' => '建立',
             'delete' => '刪除',
-            'banned' => '禁用',
-            'soft_delete' => '軟刪除',
-            'delete_permanently' => '永久刪除',
             'edit' => '編輯',
             'update' => '更新',
             'view' => '查看',
         ],
 
-        'save' => '保存',
+        'save' => '儲存',
         'view' => '查看',
     ],
 ];

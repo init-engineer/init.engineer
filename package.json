@@ -1,6 +1,6 @@
 {
     "name": "@init-engineer/init.engineer",
-    "author": "init-engineer kantai.developer@gmail.com",
+    "author": "kantai235 kantai.developer@gmail.com",
     "private": true,
     "license": "MIT",
     "scripts": {
@@ -15,33 +15,26 @@
         "tdd": "cross-var $npm_execpath run test -- --watch --notify"
     },
     "devDependencies": {
-        "@coreui/coreui": "^2.1.16",
+        "@coreui/coreui": "^3.2.0",
         "@fortawesome/fontawesome-free": "^5.15.1",
         "@vue/test-utils": "^1.1.0",
-        "axios": "^0.19.2",
+        "axios": "^0.20.0",
         "babel-core": "^7.0.0-bridge.0",
         "babel-jest": "^26.5.2",
-        "bootstrap": "^4.5.2",
-        "cross-env": "^7.0",
+        "bootstrap": "^4.5.3",
+        "cross-env": "^7.0.2",
         "cross-var": "^1.1.0",
-        "eslint": "^6.8.0",
-        "eslint-config-standard": "^14.1.1",
-        "eslint-plugin-import": "^2.22.1",
-        "eslint-plugin-node": "^10.0.0",
-        "eslint-plugin-promise": "^4.2.1",
-        "eslint-plugin-standard": "^4.0.1",
-        "eslint-plugin-vue": "^5.2.3",
         "jest": "^26.5.3",
         "jquery": "^3.5.1",
         "laravel-mix": "^5.0.7",
         "lodash": "^4.17.20",
         "pace": "github:HubSpot/pace#v1.0.2",
         "perfect-scrollbar": "^1.5.0",
-        "popper.js": "^1.16.1",
+        "popper.js": "^1.15.0",
         "resolve-url-loader": "^3.1.1",
         "sass": "^1.27.0",
-        "sass-loader": "^8.0.0",
-        "sweetalert2": "^9.3.5",
+        "sass-loader": "^10.0.3",
+        "sweetalert2": "^10.5.1",
         "vue": "^2.6.12",
         "vue-jest": "^3.0.7",
         "vue-template-compiler": "^2.6.12"
@@ -69,24 +62,5 @@
     },
     "engines": {
         "node": ">=6.0.0"
-    },
-    "dependencies": {
-        "@inotom/vue-go-top": "^1.3.0",
-        "acorn-jsx": "^5.3.1",
-        "animate.css": "^3.7.2",
-        "chart.js": "^2.9.3",
-        "css-doodle": "^0.7.7",
-        "csshake": "^1.5.3",
-        "fontfaceobserver": "^2.1.0",
-        "jshint": "^2.12.0",
-        "pretty-checkbox": "^3.0.3",
-        "vue-chartjs": "^3.5.1",
-        "vue-content-loading": "^1.6.0",
-        "vue-gallery": "^2.0.1",
-        "vue-infinite-loading": "^2.4.5",
-        "vue-marquee-text-component": "^1.2.0",
-        "vue-picture-input": "^2.1.6",
-        "vue-tippy": "^4.7.1",
-        "vuelidate": "^0.7.5"
     }
 }

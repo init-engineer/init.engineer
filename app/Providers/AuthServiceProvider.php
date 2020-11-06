@@ -2,9 +2,7 @@
 
 namespace App\Providers;
 
-use Carbon\Carbon;
-use Laravel\Passport\Passport;
-use Illuminate\Support\Facades\Gate;
+use Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 /**
@@ -28,31 +26,10 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Passport::routes();
-        Passport::tokensExpireIn(Carbon::now()->addDays(15));
-        Passport::refreshTokensExpireIn(Carbon::now()->addDays(30));
-        Passport::personalAccessTokensExpireIn(Carbon::now()->addMonths(6));
-
         // Implicitly grant "Admin" role all permissions
         // This works in the app by using gate-related functions like auth()->user->can() and @can()
         Gate::before(function ($user) {
             return $user->hasRole(config('access.users.admin_role')) ? true : null;
-            return $user->hasRole(config('access.users.junior_vip_role')) ? true : null;
-            return $user->hasRole(config('access.users.senior_vip_role')) ? true : null;
-            return $user->hasRole(config('access.users.expert_vip_role')) ? true : null;
-            return $user->hasRole(config('access.users.legend_vip_role')) ? true : null;
-            return $user->hasRole(config('access.users.junior_donate_role')) ? true : null;
-            return $user->hasRole(config('access.users.senior_donate_role')) ? true : null;
-            return $user->hasRole(config('access.users.expert_donate_role')) ? true : null;
-            return $user->hasRole(config('access.users.legend_donate_role')) ? true : null;
-            return $user->hasRole(config('access.users.junior_user_role')) ? true : null;
-            return $user->hasRole(config('access.users.senior_user_role')) ? true : null;
-            return $user->hasRole(config('access.users.expert_user_role')) ? true : null;
-            return $user->hasRole(config('access.users.legend_user_role')) ? true : null;
-            return $user->hasRole(config('access.users.junior_manager_role')) ? true : null;
-            return $user->hasRole(config('access.users.senior_manager_role')) ? true : null;
-            return $user->hasRole(config('access.users.expert_manager_role')) ? true : null;
-            return $user->hasRole(config('access.users.legend_manager_role')) ? true : null;
         });
     }
 }

@@ -23,24 +23,6 @@ return [
         // The name of the super administrator role
         'admin_role' => 'administrator',
 
-        // The name of the 各種 user role
-        'junior_vip_role' => 'junior vip',
-        'senior_vip_role' => 'senior vip',
-        'expert_vip_role' => 'expert vip',
-        'legend_vip_role' => 'legend vip',
-        'junior_donate_role' => 'junior donate',
-        'senior_donate_role' => 'senior donate',
-        'expert_donate_role' => 'expert donate',
-        'legend_donate_role' => 'legend donate',
-        'junior_user_role'  => 'junior user',
-        'senior_user_role'  => 'senior user',
-        'expert_user_role'  => 'expert user',
-        'legend_user_role'  => 'legend user',
-        'junior_manager_role' => 'junior manager',
-        'senior_manager_role' => 'senior manager',
-        'expert_manager_role' => 'expert manager',
-        'legend_manager_role' => 'legend manager',
-
         // The default role all new registered users get added to
         'default_role' => 'user',
 

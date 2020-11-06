@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Frontend\User;
 
 use App\Http\Controllers\Controller;
-use App\Repositories\Frontend\Auth\UserRepository;
 use App\Http\Requests\Frontend\User\UpdateProfileRequest;
+use App\Repositories\Frontend\Auth\UserRepository;
 
 /**
  * Class ProfileController.
@@ -47,6 +47,6 @@ class ProfileController extends Controller
             return redirect()->route('frontend.auth.login')->withFlashInfo(__('strings.frontend.user.email_changed_notice'));
         }
 
-        return redirect()->route('frontend.user.dashboard')->withFlashSuccess(__('strings.frontend.user.profile_updated'));
+        return redirect()->route('frontend.user.account')->withFlashSuccess(__('strings.frontend.user.profile_updated'));
     }
 }

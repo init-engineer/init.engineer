@@ -29,15 +29,6 @@ class ToBeLoggedOut
             return redirect()->route('frontend.auth.login');
         }
 
-        // If the user is deactiveren
-        if ($request->user() && !$request->user()->isActive()) {
-            // Kill the current session and force back to the login screen
-            session()->flush();
-            auth()->logout();
-
-            return redirect()->route('frontend.auth.login');
-        }
-
         return $next($request);
     }
 }

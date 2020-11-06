@@ -12,14 +12,14 @@
 
                     @foreach($logged_in_user->providers as $provider)
                         @if(strlen($provider->avatar))
-                            <input type="radio" name="avatar_type" value="{{ $provider->provider }}" {{ $logged_in_user->avatar_type == $provider->provider ? 'checked' : '' }} /> {{ $provider->provider == "github" ? "GitHub" : ucfirst($provider->provider) }}
+                            <input type="radio" name="avatar_type" value="{{ $provider->provider }}" {{ $logged_in_user->avatar_type == $provider->provider ? 'checked' : '' }} /> {{ ucfirst($provider->provider) }}
                         @endif
                     @endforeach
                 </div>
             </div><!--form-group-->
 
             <div class="form-group hidden" id="avatar_location">
-                {{ html()->file('avatar_location')->class('form-control form-control-lg text-white input-black') }}
+                {{ html()->file('avatar_location')->class('form-control-file') }}
             </div><!--form-group-->
         </div><!--col-->
     </div><!--row-->
@@ -30,7 +30,7 @@
                 {{ html()->label(__('validation.attributes.frontend.first_name'))->for('first_name') }}
 
                 {{ html()->text('first_name')
-                    ->class('form-control form-control-lg text-white input-black')
+                    ->class('form-control')
                     ->placeholder(__('validation.attributes.frontend.first_name'))
                     ->attribute('maxlength', 191)
                     ->required()
@@ -45,7 +45,7 @@
                 {{ html()->label(__('validation.attributes.frontend.last_name'))->for('last_name') }}
 
                 {{ html()->text('last_name')
-                    ->class('form-control form-control-lg text-white input-black')
+                    ->class('form-control')
                     ->placeholder(__('validation.attributes.frontend.last_name'))
                     ->attribute('maxlength', 191)
                     ->required() }}
@@ -64,7 +64,7 @@
                     {{ html()->label(__('validation.attributes.frontend.email'))->for('email') }}
 
                     {{ html()->email('email')
-                        ->class('form-control form-control-lg text-white input-black')
+                        ->class('form-control')
                         ->placeholder(__('validation.attributes.frontend.email'))
                         ->attribute('maxlength', 191)
                         ->required() }}
@@ -76,7 +76,7 @@
     <div class="row">
         <div class="col">
             <div class="form-group mb-0 clearfix">
-                {{ form_submit(__('labels.general.buttons.update'), 'btn btn-dos btn-block btn-lg mt-4') }}
+                {{ form_submit(__('labels.general.buttons.update')) }}
             </div><!--form-group-->
         </div><!--col-->
     </div><!--row-->

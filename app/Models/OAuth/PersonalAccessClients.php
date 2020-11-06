@@ -29,7 +29,6 @@ class PersonalAccessClients extends Model
      * @var array
      */
     protected $fillable = [
-        'id',
         'client_id',
         'created_at',
         'updated_at',

@@ -18,7 +18,6 @@ use App\Notifications\Frontend\Auth\UserNeedsConfirmation;
 use App\Repositories\BaseRepository;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 /**
  * Class UserRepository.
@@ -50,29 +49,11 @@ class UserRepository extends BaseRepository
      * @param string $orderBy
      * @param string $sort
      *
-     * @return LengthAwarePaginator
+     * @return mixed
      */
     public function getActivePaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc'): LengthAwarePaginator
     {
         return $this->model
-            ->with('roles', 'permissions', 'providers')
-            ->active()
-            ->orderBy($orderBy, $sort)
-            ->paginate($paged);
-    }
-
-    /**
-     * @param string $email
-     * @param int    $paged
-     * @param string $orderBy
-     * @param string $sort
-     *
-     * @return LengthAwarePaginator
-     */
-    public function getFuzzyActivePaginated($email = '', $paged = 25, $orderBy = 'created_at', $sort = 'desc'): LengthAwarePaginator
-    {
-        return $this->model
-            ->where('email', 'LIKE', '%' . $email . '%')
             ->with('roles', 'permissions', 'providers')
             ->active()
             ->orderBy($orderBy, $sort)
@@ -112,25 +93,6 @@ class UserRepository extends BaseRepository
     }
 
     /**
-     * @param $uuid
-     *
-     * @throws GeneralException
-     * @return mixed
-     */
-    public function findByEmail($email)
-    {
-        $user = $this->model
-            ->where('email', $email)
-            ->first();
-
-        if ($user instanceof $this->model) {
-            return $user;
-        }
-
-        throw new GeneralException(__('exceptions.backend.access.users.not_found'));
-    }
-
-    /**
      * @param array $data
      *
      * @throws \Exception
@@ -148,17 +110,16 @@ class UserRepository extends BaseRepository
                 'active' => isset($data['active']) && $data['active'] === '1',
                 'confirmation_code' => md5(uniqid(mt_rand(), true)),
                 'confirmed' => isset($data['confirmed']) && $data['confirmed'] === '1',
-                'api_token' => Str::random(60),
             ]);
 
             // See if adding any additional permissions
-            if (!isset($data['permissions']) || !count($data['permissions'])) {
+            if (! isset($data['permissions']) || ! count($data['permissions'])) {
                 $data['permissions'] = [];
             }
 
             if ($user) {
                 // User must have at least one role
-                if (!count($data['roles'])) {
+                if (! count($data['roles'])) {
                     throw new GeneralException(__('exceptions.backend.access.users.role_needed_create'));
                 }
 
@@ -167,7 +128,7 @@ class UserRepository extends BaseRepository
                 $user->syncPermissions($data['permissions']);
 
                 //Send confirmation email if requested and account approval is off
-                if ($user->confirmed === false && isset($data['confirmation_email']) && !config('access.users.requires_approval')) {
+                if ($user->confirmed === false && isset($data['confirmation_email']) && ! config('access.users.requires_approval')) {
                     $user->notify(new UserNeedsConfirmation($user->confirmation_code));
                 }
 
@@ -194,7 +155,7 @@ class UserRepository extends BaseRepository
         $this->checkUserByEmail($user, $data['email']);
 
         // See if adding any additional permissions
-        if (!isset($data['permissions']) || !count($data['permissions'])) {
+        if (! isset($data['permissions']) || ! count($data['permissions'])) {
             $data['permissions'] = [];
         }
 
@@ -203,7 +164,6 @@ class UserRepository extends BaseRepository
                 'first_name' => $data['first_name'],
                 'last_name' => $data['last_name'],
                 'email' => $data['email'],
-                'api_token' => Str::random(60),
             ])) {
                 // Add selected roles/permissions
                 $user->syncRoles($data['roles']);
@@ -254,10 +214,10 @@ class UserRepository extends BaseRepository
         switch ($status) {
             case 0:
                 event(new UserDeactivated($user));
-                break;
+            break;
             case 1:
                 event(new UserReactivated($user));
-                break;
+            break;
         }
 
         if ($user->save()) {
@@ -304,7 +264,7 @@ class UserRepository extends BaseRepository
      */
     public function unconfirm(User $user): User
     {
-        if (!$user->confirmed) {
+        if (! $user->confirmed) {
             throw new GeneralException(__('exceptions.backend.access.users.not_confirmed'));
         }
 

@@ -14,65 +14,44 @@ return [
 
     'backend' => [
         'access' => [
-            'title' => 'Access',
+            'title' => '帳號管理系統',
 
             'roles' => [
-                'all' => '所有角色',
-                'create' => '新增角色',
+                'all' => '全部角色',
+                'create' => '建立角色',
                 'edit' => '編輯角色',
                 'management' => '角色管理',
-                'main' => '角色列表',
+                'main' => '角色',
             ],
 
             'users' => [
-                'all' => '所有使用者',
-                'change-password' => '修改密碼',
-                'create' => '新增使用者',
-                'deactivated' => '被停用的使用者',
-                'deleted' => '被刪除的使用者',
+                'all' => '全部使用者',
+                'change-password' => '更改密碼',
+                'create' => '建立使用者',
+                'deactivated' => '已被停用的使用者',
+                'deleted' => '已被刪除的使用者',
                 'edit' => '編輯使用者',
-                'main' => '使用者列表',
-                'view' => '使用者',
+                'main' => '使用者',
+                'view' => '查看使用者',
             ],
         ],
 
-        'social' => [
-            'title' => 'Social',
-
-            'cards' => [
-                'main' => '文章列表',
-                'all' => '所有文章',
-                'deactivated' => '被停用的文章',
-                'deleted' => '被刪除的文章',
-                'view' => '查看',
-            ],
+        'course' => [
+            'edit' => '課程編輯',
+            'view' => '學員列表'
         ],
 
         'log-viewer' => [
-            'main' => '日誌列表',
+            'main' => '日誌檢視器',
             'dashboard' => '儀表板',
-            'logs' => '日誌',
+            'logs' => '詳細日誌',
         ],
 
         'sidebar' => [
             'dashboard' => '儀表板',
             'general' => '一般',
             'history' => '歷史',
-            'account' => '使用者',
-            'social' => '文章',
-            'news' => '公告',
             'system' => '系統',
-        ],
-
-        'news' => [
-            'title' => '公告',
-            'all' => '所有文章',
-            'create' => '新增文章',
-            'deactivated' => '被停用的文章',
-            'deleted' => '被刪除的文章',
-            'edit' => '編輯文章',
-            'main' => '文章列表',
-            'view' => '文章',
         ],
     ],
 
@@ -94,7 +73,7 @@ return [
             'el' => '希臘語(Greek)',
             'en' => '英語(English)',
             'es' => '西班牙語(Spanish)',
-            'fa' => '波斯語 (Persian) ',
+            'fa' => '波斯語 (Persian)',
             'fr' => '法語(French)',
             'he' => '希伯來語 (Hebrew)',
             'id' => '印度尼西亞語(Indonesian)',

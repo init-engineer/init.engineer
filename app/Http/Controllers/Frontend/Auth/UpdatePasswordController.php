@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Frontend\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Repositories\Frontend\Auth\UserRepository;
 use App\Http\Requests\Frontend\User\UpdatePasswordRequest;
+use App\Repositories\Frontend\Auth\UserRepository;
 
 /**
  * Class UpdatePasswordController.
@@ -36,6 +36,6 @@ class UpdatePasswordController extends Controller
     {
         $this->userRepository->updatePassword($request->only('old_password', 'password'));
 
-        return redirect()->route('frontend.user.dashboard')->withFlashSuccess(__('strings.frontend.user.password_updated'));
+        return redirect()->route('frontend.user.account')->withFlashSuccess(__('strings.frontend.user.password_updated'));
     }
 }

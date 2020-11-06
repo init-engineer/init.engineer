@@ -6,6 +6,9 @@ use App\Models\Auth\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+/**
+ * Class ReadUsersTest.
+ */
 class ReadUsersTest extends TestCase
 {
     use RefreshDatabase;

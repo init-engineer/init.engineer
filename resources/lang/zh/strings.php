@@ -17,6 +17,8 @@ return [
             'users' => [
                 'delete_user_confirm' => '您确定要永久删除此用户吗？引用此用户ID的应用程序中的任何地方都很可能是错误。继续自行承担风险。这不能被撤消。',
                 'if_confirmed_off' => '(已确认则无效)',
+                'no_deactivated' => '没有未激活的用户。',
+                'no_deleted' => '没有已删除的用户。',
                 'restore_user_confirm' => '将此用户恢复到其原始状态？',
             ],
         ],
@@ -28,13 +30,13 @@ return [
 
         'general' => [
             'all_rights_reserved' => '保留所有权利。',
-            'are_you_sure' => '您确定这样做吗？',
+            'are_you_sure' => '你确定这样做吗？',
             'boilerplate_link' => 'Laravel Boilerplate',
             'continue' => '继续',
             'member_since' => '会员自',
             'minutes' => ' 分钟',
-            'search_placeholder' => '搜尋...',
-            'timeout' => '出于安全原因已自动注销，因为您没有操作超过 ',
+            'search_placeholder' => '搜索...',
+            'timeout' => '出于安全原因已自动注销，因为你没有操作超过 ',
 
             'see_all' => [
                 'messages' => '查看所有消息',
@@ -48,17 +50,17 @@ return [
             ],
 
             'you_have' => [
-                'messages' => '{0} 您没有消息|{1} 您有 1 条消息|[2,Inf] 您有 :number 条消息',
-                'notifications' => '{0} 您没有提醒|{1} 您有 1 条提醒|[2,Inf] 您有 :number 条提醒',
-                'tasks' => '{0} 您没有任务|{1} 您有 1 个任务|[2,Inf] 您有 :number 个任务',
+                'messages' => '{0} 你没有消息|{1} 你有 1 条消息|[2,Inf] 你有 :number 条消息',
+                'notifications' => '{0} 你没有提醒|{1} 你有 1 条提醒|[2,Inf] 你有 :number 条提醒',
+                'tasks' => '{0} 你没有任务|{1} 你有 1 个任务|[2,Inf] 你有 :number 个任务',
             ],
         ],
 
         'search' => [
-            'empty' => '请输入搜尋关键词。',
-            'incomplete' => '您必须为此系统编写您自己的搜尋逻辑。',
-            'title' => '搜尋结果',
-            'results' => '搜尋 :query 的结果',
+            'empty' => '请输入搜索关键词。',
+            'incomplete' => '您必须为此系统编写您自己的搜索逻辑。',
+            'title' => '搜索结果',
+            'results' => '搜索 :query 的结果',
         ],
 
         'welcome' => 'Welcome to the Dashboard',
@@ -66,9 +68,9 @@ return [
 
     'emails' => [
         'auth' => [
-            'account_confirmed' => '您的账户已经被确认',
+            'account_confirmed' => '你的账户已经被确认',
             'error' => '哎呀！',
-            'greeting' => '您好！',
+            'greeting' => '你好！',
             'regards' => '问候,',
             'trouble_clicking_button' => '如果您在点击 ":action_text" 按钮时遇到问题, 请将以下网址复制并粘贴到您的网络浏览器中:',
             'thank_you_for_using_app' => '谢谢您使用我们的应用程序！',
@@ -82,7 +84,7 @@ return [
         ],
 
         'contact' => [
-            'email_body_title' => '您有一个新的联系请求， 详情如下：',
+            'email_body_title' => '你有一个新的联系请求， 详情如下：',
             'subject' => '一个新提交的 :app_name 联系请求',
         ],
     ],
@@ -111,9 +113,9 @@ return [
                 'role_name' => '访问控制-用户拥有指定角色Name',
             ],
 
-            'view_console_it_works' => '检查 console, 您应该看到来自 FrontendController@index 的 \'it works!\' ',
-            'you_can_see_because' => '看到这条訊息是因为您拥有角色 \':role\'!',
-            'you_can_see_because_permission' => '看条这条訊息是因为您拥有权限 \':permission\'!',
+            'view_console_it_works' => '检查 console, 你应该看到来自 FrontendController@index 的 \'it works!\' ',
+            'you_can_see_because' => '看到这条信息是因为你拥有角色 \':role\'!',
+            'you_can_see_because_permission' => '看条这条信息是因为你拥有权限 \':permission\'!',
         ],
 
         'general' => [
@@ -121,8 +123,8 @@ return [
         ],
 
         'user' => [
-            'change_email_notice' => '如果您更改您的邮件地址，您会被登出系统直到您确认您的新邮件地址。',
-            'email_changed_notice' => '在登录之前，您必须确认您的新邮件地址。',
+            'change_email_notice' => '如果你更改你的邮件地址，你会被登出系统直到你确认你的新邮件地址。',
+            'email_changed_notice' => '在登录之前，你必须确认你的新邮件地址。',
             'profile_updated' => '个人资料更新成功。',
             'password_updated' => '密码修改成功。',
         ],

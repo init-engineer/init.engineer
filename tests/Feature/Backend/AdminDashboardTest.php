@@ -7,7 +7,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 /**
- * Class DashboardRouteTest.
+ * Class AdminDashboardTest.
  */
 class AdminDashboardTest extends TestCase
 {

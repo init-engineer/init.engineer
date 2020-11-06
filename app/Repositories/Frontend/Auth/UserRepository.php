@@ -2,18 +2,17 @@
 
 namespace App\Repositories\Frontend\Auth;
 
-use App\Models\Auth\User;
-use Illuminate\Support\Str;
-use Illuminate\Http\UploadedFile;
-use App\Models\Auth\SocialAccount;
-use Illuminate\Support\Facades\DB;
-use App\Exceptions\GeneralException;
-use App\Repositories\BaseRepository;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
 use App\Events\Frontend\Auth\UserConfirmed;
 use App\Events\Frontend\Auth\UserProviderRegistered;
+use App\Exceptions\GeneralException;
+use App\Models\Auth\SocialAccount;
+use App\Models\Auth\User;
 use App\Notifications\Frontend\Auth\UserNeedsConfirmation;
+use App\Repositories\BaseRepository;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Class UserRepository.
@@ -103,7 +102,6 @@ class UserRepository extends BaseRepository
                 'password' => $data['password'],
                 // If users require approval or needs to confirm email
                 'confirmed' => ! (config('access.users.requires_approval') || config('access.users.confirm_email')),
-                'api_token' => Str::random(60),
             ]);
 
             if ($user) {
@@ -142,7 +140,6 @@ class UserRepository extends BaseRepository
         $user->first_name = $input['first_name'];
         $user->last_name = $input['last_name'];
         $user->avatar_type = $input['avatar_type'];
-        $user->api_token = Str::random(60);
 
         // Upload profile image if necessary
         if ($image) {
@@ -209,10 +206,7 @@ class UserRepository extends BaseRepository
                 $user->password_changed_at = now()->toDateTimeString();
             }
 
-            return $user->update([
-                'password' => $input['password'],
-                'api_token' => Str::random(60),
-            ]);
+            return $user->update(['password' => $input['password']]);
         }
 
         throw new GeneralException(__('exceptions.frontend.auth.password.change_mismatch'));
@@ -280,7 +274,6 @@ class UserRepository extends BaseRepository
                 'confirmed' => true,
                 'password' => null,
                 'avatar_type' => $provider,
-                'api_token' => Str::random(60),
             ]);
 
             if ($user) {
@@ -300,9 +293,6 @@ class UserRepository extends BaseRepository
                 'token' => $data->token,
                 'avatar' => $data->avatar,
             ]));
-
-            $user->api_token = Str::random(60);
-            $user->update();
         } else {
             // Update the users information, token and avatar can be updated.
             $user->providers()->update([

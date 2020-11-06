@@ -8,6 +8,6 @@ return [
     'error'     => '错误',
     'warning'   => '警告',
     'notice'    => '注意',
-    'info'      => '訊息',
+    'info'      => '信息',
     'debug'     => '调试',
 ];

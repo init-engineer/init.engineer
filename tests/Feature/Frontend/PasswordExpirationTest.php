@@ -7,6 +7,9 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
+/**
+ * Class PasswordExpirationTest.
+ */
 class PasswordExpirationTest extends TestCase
 {
     use RefreshDatabase;

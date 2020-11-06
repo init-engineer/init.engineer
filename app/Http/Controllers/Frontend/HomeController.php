@@ -16,12 +16,4 @@ class HomeController extends Controller
     {
         return view('frontend.index');
     }
-
-    /**
-     * @return \
-     */
-    public function policies()
-    {
-        return view('frontend.policies');
-    }
 }

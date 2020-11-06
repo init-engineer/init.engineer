@@ -28,7 +28,7 @@ return [
             'account' => '我的账户',
             'administration' => '管理',
             'change_password' => '更改密码',
-            'my_information' => '我的訊息',
+            'my_information' => '我的信息',
             'profile' => '个人资料',
         ],
     ],

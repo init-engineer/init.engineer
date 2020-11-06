@@ -1,12 +1,12 @@
 <?php
 
 use App\Http\Controllers\Backend\Auth\Role\RoleController;
+use App\Http\Controllers\Backend\Auth\User\UserConfirmationController;
 use App\Http\Controllers\Backend\Auth\User\UserController;
+use App\Http\Controllers\Backend\Auth\User\UserPasswordController;
+use App\Http\Controllers\Backend\Auth\User\UserSessionController;
 use App\Http\Controllers\Backend\Auth\User\UserSocialController;
 use App\Http\Controllers\Backend\Auth\User\UserStatusController;
-use App\Http\Controllers\Backend\Auth\User\UserSessionController;
-use App\Http\Controllers\Backend\Auth\User\UserPasswordController;
-use App\Http\Controllers\Backend\Auth\User\UserConfirmationController;
 
 // All route names are prefixed with 'admin.auth'.
 Route::group([
@@ -23,7 +23,6 @@ Route::group([
 
         // User CRUD
         Route::get('user', [UserController::class, 'index'])->name('user.index');
-        Route::post('user/search', [UserController::class, 'search'])->name('user.search');
         Route::get('user/create', [UserController::class, 'create'])->name('user.create');
         Route::post('user', [UserController::class, 'store'])->name('user.store');
 

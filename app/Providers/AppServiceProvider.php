@@ -67,10 +67,9 @@ class AppServiceProvider extends ServiceProvider
         }
 
         // Force SSL in production
-        if ($this->app->environment() === 'production')
-        {
-            \URL::forceScheme('https');
-        }
+        /*if ($this->app->environment() === 'production') {
+            URL::forceScheme('https');
+        }*/
 
         // Set the default template for Pagination to use the included Bootstrap 4 template
         \Illuminate\Pagination\AbstractPaginator::defaultView('pagination::bootstrap-4');

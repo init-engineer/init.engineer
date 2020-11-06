@@ -5,6 +5,9 @@ namespace Tests\Feature\Backend\Role;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+/**
+ * Class ReadRolesTest.
+ */
 class ReadRolesTest extends TestCase
 {
     use RefreshDatabase;

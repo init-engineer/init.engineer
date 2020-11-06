@@ -38,7 +38,6 @@ class Comments extends Model
      * @var array
      */
     protected $fillable = [
-        'id',
         'card_id',
         'media_id',
         'media_comment_id',

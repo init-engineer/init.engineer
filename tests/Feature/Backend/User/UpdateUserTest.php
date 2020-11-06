@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
 
+/**
+ * Class UpdateUserTest.
+ */
 class UpdateUserTest extends TestCase
 {
     use RefreshDatabase;

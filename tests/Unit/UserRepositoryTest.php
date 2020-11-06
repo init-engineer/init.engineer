@@ -12,6 +12,9 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Event;
 use Tests\TestCase;
 
+/**
+ * Class UserRepositoryTest.
+ */
 class UserRepositoryTest extends TestCase
 {
     use RefreshDatabase;
@@ -21,6 +24,9 @@ class UserRepositoryTest extends TestCase
      */
     protected $userRepository;
 
+    /**
+     * @return void
+     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -30,7 +36,12 @@ class UserRepositoryTest extends TestCase
         factory(Role::class)->create(['name' => 'test-role']);
     }
 
-    protected function getValidUserData($userData = [])
+    /**
+     * @param array $userData
+     * 
+     * @return array
+     */
+    protected function getValidUserData($userData = []): array
     {
         return array_merge([
             'first_name' => 'John',

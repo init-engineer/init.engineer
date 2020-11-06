@@ -2,8 +2,8 @@
  * This bootstrap file is used for both frontend and backend
  */
 
-import _ from 'lodash';
-import axios from 'axios';
+import _ from 'lodash'
+import axios from 'axios'
 import Swal from 'sweetalert2';
 import $ from 'jquery';
 import 'popper.js'; // Required for BS4
@@ -59,8 +59,8 @@ if (api_token) {
 // window.Pusher = require('pusher-js');
 
 // window.Echo = new Echo({
-//   broadcaster: 'pusher',
-//   key: process.env.MIX_PUSHER_APP_KEY,
-//   cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-//   encrypted: true
+//     broadcaster: 'pusher',
+//     key: process.env.MIX_PUSHER_APP_KEY,
+//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
+//     forceTLS: true
 // });

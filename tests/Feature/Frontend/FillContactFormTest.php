@@ -6,13 +6,16 @@ use App\Mail\Frontend\Contact\SendContact;
 use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;
 
+/**
+ * Class FillContactFormTest.
+ */
 class FillContactFormTest extends TestCase
 {
     /** @test */
-    // public function the_contact_route_exists()
-    // {
-    //     $this->get('/contact')->assertStatus(200);
-    // }
+    public function the_contact_route_exists()
+    {
+        $this->get('/contact')->assertStatus(200);
+    }
 
     /** @test */
     public function a_contact_mail_gets_sent()

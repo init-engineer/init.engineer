@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
 
+/**
+ * Class UserRegistrationTest.
+ */
 class UserRegistrationTest extends TestCase
 {
     use RefreshDatabase;
@@ -38,10 +41,10 @@ class UserRegistrationTest extends TestCase
     }
 
     /** @test */
-    // public function the_register_route_exists()
-    // {
-    //     $this->get('/register')->assertStatus(200);
-    // }
+    public function the_register_route_exists()
+    {
+        $this->get('/register')->assertStatus(200);
+    }
 
     /** @test */
     public function user_registration_can_be_disabled()

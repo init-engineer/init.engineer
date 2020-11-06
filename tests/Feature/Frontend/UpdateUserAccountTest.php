@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
+/**
+ * Class UpdateUserAccountTest.
+ */
 class UpdateUserAccountTest extends TestCase
 {
     use RefreshDatabase;
@@ -31,10 +34,10 @@ class UpdateUserAccountTest extends TestCase
     }
 
     /** @test */
-    // public function only_authenticated_users_can_access_their_account()
-    // {
-    //     $this->get('/dashboard')->assertRedirect('/login');
-    // }
+    public function only_authenticated_users_can_access_their_account()
+    {
+        $this->get('/account')->assertRedirect('/login');
+    }
 
     /** @test */
     public function a_user_can_update_his_profile()
