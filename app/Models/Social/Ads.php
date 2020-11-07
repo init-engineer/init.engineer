@@ -2,13 +2,10 @@
 
 namespace App\Models\Social;
 
+use App\Models\Social\Traits\Method\AdsMethod;
+use App\Models\Social\Traits\Scope\AdsScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
-use App\Models\Social\Traits\Scope\AdsScope;
-use App\Models\Social\Traits\Method\AdsMethod;
-use App\Models\Social\Traits\Attribute\AdsAttribute;
-use App\Models\Social\Traits\Relationship\AdsRelationship;
 
 /**
  * Class Ads.
@@ -17,9 +14,7 @@ class Ads extends Model
 {
     use SoftDeletes,
         AdsScope,
-        AdsMethod,
-        AdsAttribute,
-        AdsRelationship;
+        AdsMethod;
 
     /**
      * The table associated with the model.
@@ -43,11 +38,10 @@ class Ads extends Model
     protected $fillable = [
         'name',
         'ads_path',
-        'number_count',
         'number_max',
+        'number_min',
         'incidence',
         'active',
-        'options',
         'started_at',
         'end_at',
         'created_at',
@@ -61,8 +55,10 @@ class Ads extends Model
      * @var array
      */
     protected $casts = [
-        'active' => 'boolean',
+        'number_max' => 'integer',
+        'number_min' => 'integer',
         'incidence' => 'integer',
+        'active' => 'boolean',
     ];
 
     /**

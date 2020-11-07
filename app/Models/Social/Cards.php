@@ -2,12 +2,11 @@
 
 namespace App\Models\Social;
 
+use App\Models\Social\Traits\Method\CardsMethod;
+use App\Models\Social\Traits\Relationship\CardsRelationship;
+use App\Models\Social\Traits\Scope\CardsScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Models\Social\Traits\Scope\CardsScope;
-use App\Models\Social\Traits\Method\CardsMethod;
-use App\Models\Social\Traits\Attribute\CardsAttribute;
-use App\Models\Social\Traits\Relationship\CardsRelationship;
 
 /**
  * Class Cards.
@@ -17,7 +16,6 @@ class Cards extends Model
     use SoftDeletes,
         CardsScope,
         CardsMethod,
-        CardsAttribute,
         CardsRelationship;
 
     /**
@@ -43,14 +41,27 @@ class Cards extends Model
         'model_type',
         'model_id',
         'content',
+        'config',
         'active',
-        'is_banned',
-        'banned_user_id',
+        'confirmed',
+        'banned',
+        'banned_by',
         'banned_remarks',
         'banned_at',
         'created_at',
         'updated_at',
         'deleted_at',
+    ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'active' => 'boolean',
+        'confirmed' => 'boolean',
+        'banned' => 'boolean',
     ];
 
     /**

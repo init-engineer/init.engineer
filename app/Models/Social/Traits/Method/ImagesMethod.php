@@ -18,22 +18,6 @@ trait ImagesMethod
     }
 
     /**
-     * @return bool
-     */
-    public function isPublish()
-    {
-        return ! $this->is_banned;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isBanned()
-    {
-        return $this->is_banned;
-    }
-
-    /**
      * @return Storage
      */
     public function getFile()
@@ -56,11 +40,9 @@ trait ImagesMethod
      */
     public function getPicture($size = false)
     {
-        switch ($this->storage)
-        {
+        switch ($this->storage) {
             case 'gravatar':
-                if (! $size)
-                {
+                if (!$size) {
                     $size = config('gravatar.default.size');
                 }
                 // return gravatar()->get($this->email, ['size' => $size]);

@@ -20,7 +20,7 @@ trait CommentsMethod
      */
     public function isPublish()
     {
-        return ! $this->is_banned;
+        return !$this->banned;
     }
 
     /**
@@ -28,6 +28,6 @@ trait CommentsMethod
      */
     public function isBanned()
     {
-        return $this->is_banned;
+        return $this->banned;
     }
 }

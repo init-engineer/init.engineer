@@ -2,9 +2,9 @@
 
 namespace App\Models\Social;
 
+use App\Models\Social\Traits\Relationship\ReviewRelationship;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Models\Social\Traits\Relationship\ReviewRelationship;
 
 /**
  * Class Review.
@@ -38,7 +38,7 @@ class Review extends Model
         'model_type',
         'model_id',
         'point',
-        'roles',
+        'config',
         'created_at',
         'updated_at',
         'deleted_at',

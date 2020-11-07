@@ -18,9 +18,17 @@ trait CardsMethod
     /**
      * @return bool
      */
+    public function isConfirmed()
+    {
+        return $this->confirmed;
+    }
+
+    /**
+     * @return bool
+     */
     public function isPublish()
     {
-        return ! $this->is_banned;
+        return !$this->banned;
     }
 
     /**
@@ -28,6 +36,6 @@ trait CardsMethod
      */
     public function isBanned()
     {
-        return $this->is_banned;
+        return $this->banned;
     }
 }

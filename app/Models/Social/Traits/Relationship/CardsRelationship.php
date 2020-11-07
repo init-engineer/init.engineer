@@ -2,10 +2,10 @@
 
 namespace App\Models\Social\Traits\Relationship;
 
+use App\Models\Social\CardPost;
+use App\Models\Social\Comments;
 use App\Models\Social\Images;
 use App\Models\Social\Review;
-use App\Models\Social\Comments;
-use App\Models\Social\MediaCards;
 
 /**
  * Trait CardsRelationship.
@@ -23,11 +23,11 @@ trait CardsRelationship
     /**
      * Get the media for the card.
      *
-     * @return MediaCards
+     * @return CardPost
      */
-    public function medias()
+    public function posts()
     {
-        return $this->hasMany(MediaCards::class, 'card_id', 'id');
+        return $this->hasMany(CardPost::class, 'card_id', 'id');
     }
 
     /**

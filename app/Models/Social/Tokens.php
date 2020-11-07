@@ -2,24 +2,24 @@
 
 namespace App\Models\Social;
 
-use App\Models\Social\Traits\Method\ImagesMethod;
+use App\Models\Social\Traits\Method\TokensMethod;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class Images.
+ * Class Tokens.
  */
-class Images extends Model
+class Tokens extends Model
 {
     use SoftDeletes,
-        ImagesMethod;
+        TokensMethod;
 
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'card_images';
+    protected $table = 'social_token';
 
     /**
      * Indicates if the model should be timestamped.
@@ -34,12 +34,10 @@ class Images extends Model
      * @var array
      */
     protected $fillable = [
-        'card_id',
-        'storage',
-        'path',
         'name',
         'type',
         'active',
+        'config',
         'created_at',
         'updated_at',
         'deleted_at',

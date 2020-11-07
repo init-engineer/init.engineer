@@ -2,8 +2,8 @@
 
 namespace App\Models\Social\Traits\Relationship;
 
+use App\Models\Social\CardPost;
 use App\Models\Social\Cards;
-use App\Models\Social\MediaCards;
 
 /**
  * Trait CommentsRelationship.
@@ -23,10 +23,10 @@ trait CommentsRelationship
     /**
      * Get the media for the comment.
      *
-     * @return MediaCards
+     * @return CardPost
      */
-    public function media()
+    public function post()
     {
-        return $this->hasOne(MediaCards::class, 'id', 'media_id');
+        return $this->hasOne(CardPost::class, 'id', 'media_id');
     }
 }

@@ -26,7 +26,7 @@ trait CommentsScope
      */
     public function scopePublish($query, $status = false)
     {
-        return $query->where('is_banned', $status);
+        return $query->where('banned', $status);
     }
 
     /**
@@ -37,6 +37,6 @@ trait CommentsScope
      */
     public function scopeBanned($query, $status = true)
     {
-        return $query->where('is_banned', $status);
+        return $query->where('banned', $status);
     }
 }

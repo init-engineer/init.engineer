@@ -2,26 +2,26 @@
 
 namespace App\Models\Social;
 
+use App\Models\Social\Traits\Method\CardPostMethod;
+use App\Models\Social\Traits\Scope\CardPostScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Models\Social\Traits\Scope\MediaCardsScope;
-use App\Models\Social\Traits\Method\MediaCardsMethod;
 
 /**
- * Class MediaCards.
+ * Class CardPost.
  */
-class MediaCards extends Model
+class CardPost extends Model
 {
     use SoftDeletes,
-        MediaCardsScope,
-        MediaCardsMethod;
+        CardPostScope,
+        CardPostMethod;
 
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'social_media_cards';
+    protected $table = 'social_cards_post';
 
     /**
      * Indicates if the model should be timestamped.
@@ -37,21 +37,25 @@ class MediaCards extends Model
      */
     protected $fillable = [
         'card_id',
-        'model_type',
-        'model_id',
-        'social_type',
-        'social_connections',
+        'token_id',
         'social_card_id',
         'num_like',
         'num_share',
         'active',
-        'is_banned',
-        'banned_user_id',
-        'banned_remarks',
-        'banned_at',
         'created_at',
         'updated_at',
         'deleted_at',
+    ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'num_like' => 'integer',
+        'num_share' => 'integer',
+        'active' => 'boolean',
     ];
 
     /**
@@ -60,7 +64,6 @@ class MediaCards extends Model
      * @var array
      */
     protected $dates = [
-        'banned_at',
         'created_at',
         'updated_at',
         'deleted_at',
