@@ -2,24 +2,24 @@
 
 namespace App\Models\Social;
 
-use App\Models\Social\Traits\Method\TokensMethod;
+use App\Models\Social\Traits\Method\PlatformMethod;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class Tokens.
+ * Class Platform.
  */
-class Tokens extends Model
+class Platform extends Model
 {
     use SoftDeletes,
-        TokensMethod;
+        PlatformMethod;
 
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'social_token';
+    protected $table = 'social_platform';
 
     /**
      * Indicates if the model should be timestamped.

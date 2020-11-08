@@ -41,12 +41,6 @@ trait ImagesMethod
     public function getPicture($size = false)
     {
         switch ($this->storage) {
-            case 'gravatar':
-                if (!$size) {
-                    $size = config('gravatar.default.size');
-                }
-                // return gravatar()->get($this->email, ['size' => $size]);
-
             case 'storage':
                 return url(sprintf('storage/%s/%s.%s', str_replace('public/', '', $this->avatar_path), $this->avatar_name, $this->avatar_type));
         }

@@ -17,7 +17,7 @@ class CreateSocialCardsTable extends Migration
     public function up(): void
     {
         /** 社群平台 Token */
-        Schema::create('social_token', function (Blueprint $table) {
+        Schema::create('social_platform', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name')->comment('社群平台名稱');
             $table->string('type')->default('local')->comment('社群平台分類');
@@ -78,7 +78,7 @@ class CreateSocialCardsTable extends Migration
         Schema::create('social_cards_post', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('card_id')->comment('文章 ID');
-            $table->unsignedBigInteger('token_id')->comment('平台 ID');
+            $table->unsignedBigInteger('platform_id')->comment('平台 ID');
             $table->string('social_card_id')->comment('社群平台 ID');
             $table->integer('num_like')->default(0)->comment('按讚數量');
             $table->integer('num_share')->default(0)->comment('分享數量');
@@ -91,9 +91,9 @@ class CreateSocialCardsTable extends Migration
                 ->on('social_cards')
                 ->onDelete('cascade');
 
-            $table->foreign('token_id')
+            $table->foreign('platform_id')
                 ->references('id')
-                ->on('social_token')
+                ->on('social_platform')
                 ->onDelete('cascade');
         });
 
@@ -101,7 +101,8 @@ class CreateSocialCardsTable extends Migration
         Schema::create('social_comments', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('card_id')->comment('文章 ID');
-            $table->unsignedBigInteger('token_id')->comment('平台 ID');
+            $table->unsignedBigInteger('post_id')->comment('社群 ID');
+            $table->unsignedBigInteger('platform_id')->comment('平台 ID');
             $table->string('comment_id')->nullable()->comment('社群平台 ID');
             $table->string('user_name')->comment('使用者名稱');
             $table->string('user_id')->comment('使用者 ID');
@@ -121,9 +122,14 @@ class CreateSocialCardsTable extends Migration
                 ->on('social_cards')
                 ->onDelete('cascade');
 
-            $table->foreign('token_id')
+            $table->foreign('post_id')
                 ->references('id')
                 ->on('social_cards_post')
+                ->onDelete('cascade');
+
+            $table->foreign('platform_id')
+                ->references('id')
+                ->on('social_platform')
                 ->onDelete('cascade');
         });
 
@@ -159,6 +165,6 @@ class CreateSocialCardsTable extends Migration
         Schema::dropIfExists('social_cards_review');
         Schema::dropIfExists('social_cards');
         Schema::dropIfExists('social_cards_ads');
-        Schema::dropIfExists('social_token');
+        Schema::dropIfExists('social_platform');
     }
 }

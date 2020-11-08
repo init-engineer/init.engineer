@@ -39,7 +39,8 @@ class Comments extends Model
      */
     protected $fillable = [
         'card_id',
-        'token_id',
+        'post_id',
+        'platform_id',
         'comment_id',
         'user_name',
         'user_id',

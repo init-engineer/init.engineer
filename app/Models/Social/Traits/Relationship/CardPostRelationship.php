@@ -2,19 +2,18 @@
 
 namespace App\Models\Social\Traits\Relationship;
 
-use App\Models\Social\CardPost;
 use App\Models\Social\Cards;
 use App\Models\Social\Platform;
 
 /**
- * Trait CommentsRelationship.
+ * Trait CardPostRelationship.
  */
-trait CommentsRelationship
+trait CardPostRelationship
 {
     /**
-     * Get the card for the comment.
+     * Get the card for the post.
      *
-     * @return Cards
+     * @return CardPost
      */
     public function card()
     {
@@ -22,17 +21,7 @@ trait CommentsRelationship
     }
 
     /**
-     * Get the media for the comment.
-     *
-     * @return CardPost
-     */
-    public function post()
-    {
-        return $this->hasOne(CardPost::class, 'id', 'post_id');
-    }
-
-    /**
-     * Get the platform for the comment.
+     * Get the platform for the post.
      *
      * @return Platform
      */

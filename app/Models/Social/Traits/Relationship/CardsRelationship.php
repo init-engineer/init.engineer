@@ -21,7 +21,7 @@ trait CardsRelationship
     }
 
     /**
-     * Get the media for the card.
+     * Get the post for the card.
      *
      * @return CardPost
      */

@@ -3,9 +3,9 @@
 namespace App\Models\Social\Traits\Method;
 
 /**
- * Trait TokensMethod.
+ * Trait PlatformMethod.
  */
-trait TokensMethod
+trait PlatformMethod
 {
     /**
      * @return bool

@@ -3,6 +3,7 @@
 namespace App\Models\Social;
 
 use App\Models\Social\Traits\Method\CardPostMethod;
+use App\Models\Social\Traits\Relationship\CardPostRelationship;
 use App\Models\Social\Traits\Scope\CardPostScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -14,7 +15,8 @@ class CardPost extends Model
 {
     use SoftDeletes,
         CardPostScope,
-        CardPostMethod;
+        CardPostMethod,
+        CardPostRelationship;
 
     /**
      * The table associated with the model.
@@ -37,7 +39,7 @@ class CardPost extends Model
      */
     protected $fillable = [
         'card_id',
-        'token_id',
+        'platform_id',
         'social_card_id',
         'num_like',
         'num_share',
