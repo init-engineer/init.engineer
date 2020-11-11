@@ -4,8 +4,8 @@ namespace App\Services\SocialPlatform;
 
 use App\Models\Social\Cards;
 use App\Models\Social\Platform;
-use App\Repositories\Backend\Social\CardPostRepository;
 use App\Services\SocialContent\ContentFluent;
+use Illuminate\Container\Container;
 use Qlurk\ApiClient;
 
 /**
@@ -14,58 +14,40 @@ use Qlurk\ApiClient;
 class PlurkPlatform extends BasePlatform
 {
     /**
-     * @var array
-     */
-    protected $config;
-
-    /**
-     * @var Platform
-     */
-    protected $platform;
-
-    /**
      * @var ApiClient
      */
     protected $plurk;
 
     /**
-     * @var CardPostRepository
-     */
-    protected $cardPostRepository;
-
-    /**
      * PlurkPlatform constructor.
      *
      * @param Platform $platform
-     * @param CardPostRepository $cardPostRepository
      */
-    public function __construct(Platform $platform, CardPostRepository $cardPostRepository)
+    public function __construct(Platform $platform)
     {
-        $this->platform = $platform;
-        $this->config = json_decode($this->platform->config, true);
+        parent::__construct($platform);
+
         $this->plurk = new ApiClient(
             $this->config['client_id'],
             $this->config['client_secret'],
             $this->config['token'],
             $this->config['token_secret'],
         );
-        $this->cardPostRepository = $cardPostRepository;
     }
 
     /**
      * @param Cards $cards
-     * @param ContentFluent $contentFluent
      *
      * @throws Exception
      * @return CardPost
      */
-    public function publish(Cards $cards, ContentFluent $contentFluent)
+    public function publish(Cards $cards)
     {
         try {
             $picture = $this->plurk->call('/APP/Timeline/uploadPicture', array(
                 'image' => $cards->images->first()->getFile(),
             ));
-
+            $contentFluent = Container::getInstance()->make(ContentFluent::class);
             $message = $contentFluent
                 ->header($cards->id)
                 ->body($picture['full'] . "\n\r" . $cards->content, 100)
@@ -76,7 +58,6 @@ class PlurkPlatform extends BasePlatform
                     'show' => true,
                 ))
                 ->get();
-
             $response = $this->plurk->call('/APP/Timeline/plurkAdd', array(
                 'content' => $message,
                 'qualifier' => 'says',

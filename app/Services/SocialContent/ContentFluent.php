@@ -18,9 +18,9 @@ class ContentFluent
     protected string $content = 'Undefined';
 
     /**
-     * @var string
+     * @var int
      */
-    protected string $limit;
+    protected int $limit = 0;
 
     /**
      * @var array

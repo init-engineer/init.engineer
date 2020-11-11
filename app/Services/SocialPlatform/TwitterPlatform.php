@@ -4,8 +4,8 @@ namespace App\Services\SocialPlatform;
 
 use App\Models\Social\Cards;
 use App\Models\Social\Platform;
-use App\Repositories\Backend\Social\CardPostRepository;
 use App\Services\SocialContent\ContentFluent;
+use Illuminate\Container\Container;
 use ReliqArts\Thujohn\Twitter\Facades\Twitter;
 
 /**
@@ -14,46 +14,28 @@ use ReliqArts\Thujohn\Twitter\Facades\Twitter;
 class TwitterPlatform extends BasePlatform
 {
     /**
-     * @var array
-     */
-    protected $config;
-
-    /**
-     * @var Platform
-     */
-    protected $platform;
-
-    /**
-     * @var CardPostRepository
-     */
-    protected $cardPostRepository;
-
-    /**
      * TwitterPlatform constructor.
      *
      * @param Platform $platform
-     * @param CardPostRepository $cardPostRepository
      */
-    public function __construct(Platform $platform, CardPostRepository $cardPostRepository)
+    public function __construct(Platform $platform)
     {
-        $this->platform = $platform;
-        $this->config = json_decode($this->platform->config, true);
-        $this->cardPostRepository = $cardPostRepository;
+        parent::__construct($platform);
     }
 
     /**
      * @param Cards $cards
-     * @param ContentFluent $contentFluent
      *
      * @throws Exception
      * @return CardPost
      */
-    public function publish(Cards $cards, ContentFluent $contentFluent)
+    public function publish(Cards $cards)
     {
         try {
             $picture = Twitter::uploadMedia([
                 'media' => $cards->images->first()->getFile(),
             ]);
+            $contentFluent = Container::getInstance()->make(ContentFluent::class);
             $message = $contentFluent
                 ->header($cards->id)
                 ->body($cards->content, 20)

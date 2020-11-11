@@ -4,11 +4,11 @@ namespace App\Services\SocialPlatform;
 
 use App\Models\Social\Cards;
 use App\Models\Social\Platform;
-use App\Repositories\Backend\Social\CardPostRepository;
 use App\Services\SocialContent\ContentFluent;
 use Facebook\Facebook;
 use Facebook\FacebookApp;
 use Facebook\FacebookRequest;
+use Illuminate\Container\Container;
 
 /**
  * Class FacebookPlatform.
@@ -16,55 +16,38 @@ use Facebook\FacebookRequest;
 class FacebookPlatform extends BasePlatform
 {
     /**
-     * @var array
-     */
-    protected $config;
-
-    /**
-     * @var Platform
-     */
-    protected $platform;
-
-    /**
      * @var Facebook
      */
     protected $facebook;
 
     /**
-     * @var CardPostRepository
-     */
-    protected $cardPostRepository;
-
-    /**
      * FacebookPlatform constructor.
      *
      * @param Platform $platform
-     * @param CardPostRepository $cardPostRepository
      */
-    public function __construct(Platform $platform, CardPostRepository $cardPostRepository)
+    public function __construct(Platform $platform)
     {
-        $this->platform = $platform;
-        $this->config = json_decode($this->platform->config, true);
+        parent::__construct($platform);
+
         $this->facebook = new Facebook([
             'app_id' => $this->config['app_id'],
             'app_secret' => $this->config['app_secret'],
             'default_graph_version' => $this->config['graph_version'],
             'default_access_token' => $this->config['access_token'],
         ]);
-        $this->cardPostRepository = $cardPostRepository;
     }
 
     /**
      * @param Cards $cards
-     * @param ContentFluent $contentFluent
      *
      * @throws FacebookSDKException
      * @throws Exception
      * @return CardPost
      */
-    public function publish(Cards $cards, ContentFluent $contentFluent)
+    public function publish(Cards $cards)
     {
         try {
+            $contentFluent = Container::getInstance()->make(ContentFluent::class);
             $message = $contentFluent
                 ->header($cards->id)
                 ->body($cards->content)
@@ -80,6 +63,7 @@ class FacebookPlatform extends BasePlatform
                 'message' => $message,
                 'source' => $this->facebook->fileToUpload($cards->images->first()->getPicture()),
             ));
+
             return $this->cardPostRepository->create(array(
                 'card_id' => $cards->id,
                 'platform_id' => $this->platform->id,
