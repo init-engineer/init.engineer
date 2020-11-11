@@ -25,7 +25,7 @@ interface RepositoryContract
 
     public function limit($limit);
 
-    public function orderBy($column, $value);
+    public function orderBy($column, $direction = 'asc');
 
     public function paginate($limit = 25, array $columns = ['*'], $pageName = 'page', $page = null);
 
