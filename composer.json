@@ -17,6 +17,7 @@
         "creativeorange/gravatar": "~1.0",
         "davejamesmiller/laravel-breadcrumbs": "^5.0",
         "facade/ignition": "^1.11",
+        "facebook/graph-sdk": "^5.7",
         "fideloper/proxy": "^4.0",
         "graham-campbell/markdown": "^11.1",
         "guzzlehttp/guzzle": "^6.4",
@@ -30,8 +31,7 @@
         "reliqarts/thujohn-twitter": "^2.2",
         "spatie/laravel-html": "^2.22",
         "spatie/laravel-permission": "^3.0",
-        "torann/geoip": "^1.0",
-        "vinkla/facebook": "^4.0"
+        "torann/geoip": "^1.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
