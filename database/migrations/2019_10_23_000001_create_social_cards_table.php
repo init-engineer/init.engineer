@@ -49,7 +49,6 @@ class CreateSocialCardsTable extends Migration
             $table->longText('content')->comment('內文');
             $table->longText('config')->comment('設定');
             $table->unsignedTinyInteger('active')->default(1)->comment('啟用');
-            $table->boolean('confirmed')->default(false)->comment('驗證狀態');
             $table->boolean('banned')->default(false)->comment('封鎖狀態');
             $table->unsignedBigInteger('banned_by')->nullable()->comment('被誰封鎖');
             $table->string('banned_remarks')->nullable()->comment('封鎖原因');

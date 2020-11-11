@@ -43,7 +43,6 @@ class Cards extends Model
         'content',
         'config',
         'active',
-        'confirmed',
         'banned',
         'banned_by',
         'banned_remarks',
@@ -60,7 +59,6 @@ class Cards extends Model
      */
     protected $casts = [
         'active' => 'boolean',
-        'confirmed' => 'boolean',
         'banned' => 'boolean',
     ];
 
