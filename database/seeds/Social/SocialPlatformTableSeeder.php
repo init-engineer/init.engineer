@@ -27,8 +27,8 @@ class SocialPlatformTableSeeder extends Seeder
         ]);
 
         Platform::create([
-            'name' => 'primary',
-            'type' => 'facebook',
+            'name' => 'facebook',
+            'type' => 'primary',
             'active' => false,
             'config' => json_encode([
                 'user_id' => null,
@@ -41,8 +41,8 @@ class SocialPlatformTableSeeder extends Seeder
         ]);
 
         Platform::create([
-            'name' => 'secondary',
-            'type' => 'facebook',
+            'name' => 'facebook',
+            'type' => 'secondary',
             'active' => false,
             'config' => json_encode([
                 'user_id' => null,
@@ -55,8 +55,8 @@ class SocialPlatformTableSeeder extends Seeder
         ]);
 
         Platform::create([
-            'name' => 'primary',
-            'type' => 'twitter',
+            'name' => 'twitter',
+            'type' => 'primary',
             'active' => false,
             'config' => json_encode([
                 'consumer_key' => null,
@@ -68,8 +68,8 @@ class SocialPlatformTableSeeder extends Seeder
         ]);
 
         Platform::create([
-            'name' => 'secondary',
-            'type' => 'twitter',
+            'name' => 'twitter',
+            'type' => 'secondary',
             'active' => false,
             'config' => json_encode([
                 'consumer_key' => null,
@@ -81,8 +81,8 @@ class SocialPlatformTableSeeder extends Seeder
         ]);
 
         Platform::create([
-            'name' => 'primary',
-            'type' => 'plurk',
+            'name' => 'plurk',
+            'type' => 'primary',
             'active' => false,
             'config' => json_encode([
                 'client_id' => null,
@@ -94,8 +94,8 @@ class SocialPlatformTableSeeder extends Seeder
         ]);
 
         Platform::create([
-            'name' => 'secondary',
-            'type' => 'plurk',
+            'name' => 'plurk',
+            'type' => 'secondary',
             'active' => false,
             'config' => json_encode([
                 'client_id' => null,
