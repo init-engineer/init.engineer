@@ -42,7 +42,7 @@ trait ImagesMethod
     {
         switch ($this->storage) {
             case 'storage':
-                return url(sprintf('storage/%s/%s.%s', str_replace('public/', '', $this->avatar_path), $this->avatar_name, $this->avatar_type));
+                return url(sprintf('storage/%s/%s.%s', str_replace('public/', '', $this->path), $this->name, $this->type));
         }
 
         return false;
