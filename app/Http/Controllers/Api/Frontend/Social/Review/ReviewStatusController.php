@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Api\Frontend\Social\Review;
 
 use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\Frontend\Social\Review\ReviewFailedRequest;
 use App\Http\Requests\Api\Frontend\Social\Review\ReviewSucceededRequest;
+use App\Http\Transformers\Social\ReviewTransformer;
 use App\Models\Social\Cards;
 use League\Fractal\Manager;
+use League\Fractal\Resource\Item;
 
 /**
  * Class ReviewStatusController.
