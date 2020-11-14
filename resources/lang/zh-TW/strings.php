@@ -23,6 +23,12 @@ return [
             ],
         ],
 
+        'social' => [
+            'cards' => [
+                'no_deleted' => 'There are no deleted cards.',
+            ],
+        ],
+
         'dashboard' => [
             'title' => '管理儀表板',
             'welcome' => '哈囉',
@@ -119,9 +125,6 @@ return [
 
         'general' => [
             'joined' => '加入',
-            'hexschool_author' => '六角學院 HexSchool',
-            'hexschool_description' => '打破影音課程售後不理，我們在線上等著你。',
-            'hexschool_url' => 'https://www.hexschool.com',
         ],
 
         'user' => [

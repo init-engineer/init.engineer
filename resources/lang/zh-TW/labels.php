@@ -66,6 +66,7 @@ return [
                 'user_actions' => '使用者功能',
 
                 'table' => [
+                    'id' => 'ID/編號',
                     'confirmed' => '認證',
                     'created' => '建立',
                     'email' => '電子信箱',
@@ -112,6 +113,48 @@ return [
                 'view' => '查看使用者',
             ],
         ],
+
+        'social' => [
+            'cards' => [
+                'management' => '文章',
+                'active' => '通過審核文章',
+                'deactivated' => '已軟刪除文章',
+                'deleted' => 'Deleted',
+                'card_actions' => '文章動作',
+                'view' => '查看文章',
+                'detail' => '文章詳細資訊',
+                'link' => '社群連結',
+                'comment' => '留言列表',
+                'review' => '審核名單',
+
+                'table' => [
+                    'socials' => '社群列表',
+                    'like' => '按讚數量',
+                    'share' => '分享數量',
+                    'content' => '內容',
+                    'roles' => '角色列表',
+                    'confirmed' => '認證',
+                    'created' => '新增',
+                    'id' => 'ID/編號',
+                    'user' => 'User(E-mail)',
+                    'content' => '文章內容',
+                    'active' => '審核狀態',
+                    'banned' => '黑名單',
+                    'review' => '群眾審核',
+                    'last_updated' => '最後更新',
+                    'name' => '名稱',
+                    'first_name' => '名稱',
+                    'last_name' => '姓氏',
+                    'no_deactivated' => '沒有已停用的文章',
+                    'no_deleted' => '沒有已刪除的文章',
+                    'total' => '文章總計|文章總計',
+                ],
+            ],
+
+            'comments' => [
+                'management' => 'Comments',
+            ],
+        ],
     ],
 
     'frontend' => [
@@ -136,6 +179,11 @@ return [
             'reset_password_button' => '重置密碼',
             'update_password_button' => '更新密碼',
             'send_password_reset_link_button' => '發送密碼重置連結',
+        ],
+
+        'policies' => [
+            'policies_title' => 'POLICIES',
+            'policies_text' => '網站服務條款 & 隱私權政策',
         ],
 
         'user' => [

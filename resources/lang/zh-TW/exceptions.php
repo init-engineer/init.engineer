@@ -50,6 +50,41 @@ return [
                 'update_password_error' => '更改此使用者密碼時出現問題，請再試一次。',
             ],
         ],
+
+        'social' => [
+            'cards' => [
+                'create_error' => '新增文章時出現問題，請再試一次。',
+                'update_error' => '更新文章時出現問題，請再試一次。',
+                'not_found' => '該文章不存在。',
+                'banned_error' => '禁用此文章時出現問題，請再試一次。',
+                'banned_first' => '此文章必須先禁用，才能進行軟刪除。',
+                'delete_error' => '刪除此文章時出現問題，請再試一次。',
+                'delete_first' => '此文章必須先刪除，才能進行永久刪除。',
+                'cant_restore' => '此文章未刪除，因此無法恢復。',
+                'restore_error' => '還原此文章時出現問題，請再試一次。',
+            ],
+
+            'images' => [
+                'create_error' => '新增圖片時出現問題，請再試一次。',
+                'update_error' => '更新圖片時出現問題，請再試一次。',
+                'not_found' => '該圖片不存在。',
+            ],
+
+            'media' => [
+                'cards' => [
+                    'repeated_error' => '將文章準備發表至社群平台時，發現該篇文章已經發表過了。',
+                    'create_error' => '新增社群文章時出現問題，請再試一次。',
+                    'update_error' => '更新社群文章時出現問題，請再試一次。',
+                    'not_found' => '該社群文章不存在。',
+                ],
+
+                'comments' => [
+                    'create_error' => '新增社群留言時出現問題，請再試一次。',
+                    'update_error' => '更新社群留言時出現問題，請再試一次。',
+                    'not_found' => '該社群留言不存在。',
+                ],
+            ],
+        ],
     ],
 
     'frontend' => [
@@ -76,6 +111,41 @@ return [
             ],
 
             'registration_disabled' => '註冊目前已關閉。',
+        ],
+
+        'social' => [
+            'cards' => [
+                'create_error' => '新增文章時出現問題，請再試一次。',
+                'update_error' => '更新文章時出現問題，請再試一次。',
+                'not_found' => '該文章不存在。',
+                'review' => [
+                    'not_found' => '找不到審核紀錄。',
+                    'create_error' => '審核時意外失敗。',
+                    'card_is_active' => '該篇文章已通過審核。',
+                    'already_succeeded' => '您已經審核過了。',
+                    'already_failed' => '您已經審核過了。',
+                ],
+            ],
+
+            'images' => [
+                'create_error' => '新增圖片時出現問題，請再試一次。',
+                'update_error' => '更新圖片時出現問題，請再試一次。',
+                'not_found' => '該圖片不存在。',
+            ],
+
+            'media' => [
+                'cards' => [
+                    'create_error' => '新增社群文章時出現問題，請再試一次。',
+                    'update_error' => '更新社群文章時出現問題，請再試一次。',
+                    'not_found' => '該社群文章不存在。',
+                ],
+
+                'comments' => [
+                    'create_error' => '新增社群留言時出現問題，請再試一次。',
+                    'update_error' => '更新社群留言時出現問題，請再試一次。',
+                    'not_found' => '該社群留言不存在。',
+                ],
+            ],
         ],
     ],
 ];

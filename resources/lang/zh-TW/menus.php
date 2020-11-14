@@ -36,9 +36,16 @@ return [
             ],
         ],
 
-        'course' => [
-            'edit' => '課程編輯',
-            'view' => '學員列表'
+        'social' => [
+            'title' => 'Social',
+
+            'cards' => [
+                'main' => '文章列表',
+                'all' => '所有文章',
+                'deactivated' => '被停用的文章',
+                'deleted' => '被刪除的文章',
+                'view' => '查看',
+            ],
         ],
 
         'log-viewer' => [
@@ -51,6 +58,8 @@ return [
             'dashboard' => '儀表板',
             'general' => '一般',
             'history' => '歷史',
+            'account' => '使用者',
+            'social' => '文章',
             'system' => '系統',
         ],
     ],
