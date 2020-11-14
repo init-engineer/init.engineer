@@ -1,0 +1,221 @@
+/**
+ * Buttons
+ */
+
+a, span, button {
+
+    &.btn-bitbucket {
+        color: white;
+        background-color: #274970;
+
+        &:active {
+            color: darkgrey;
+            background-color: #192F48;
+        }
+    }
+
+    &.btn-facebook {
+        color: white;
+        background-color: #3B5998;
+
+        &:active {
+            color: darkgrey;
+            background-color: #263961;
+        }
+    }
+
+    &.btn-google {
+        color: white;
+        background-color: #D34836;
+
+        &:active {
+            color: darkgrey;
+            background-color: #872E23;
+        }
+    }
+
+    &.btn-github {
+        color: white;
+        background-color: #464646;
+
+        &:active {
+            color: darkgrey;
+            background-color: #2D2D2D;
+        }
+    }
+
+    &.btn-linkedin {
+        color: white;
+        background-color: #0077B5;
+
+        &:active {
+            color: darkgrey;
+            background-color: #004C74;
+        }
+    }
+
+    &.btn-twitter {
+        color: white;
+        background-color: #1DCAFF;
+
+        &:active {
+            color: darkgrey;
+            background-color: #1381A3;
+        }
+    }
+
+    &.btn-pink {
+        color: white;
+        background-color: #E83E8C;
+
+        &:active {
+            color: darkgrey;
+            background-color: #94285A;
+        }
+    }
+
+    &.btn-plurk {
+        color: white;
+        background-color: #FF4E47;
+
+        &:active {
+            color: darkgrey;
+            background-color: #A3322E;
+        }
+    }
+
+    &.btn-orange {
+        color: white;
+        background-color: #FD7E14;
+
+        &:active {
+            color: darkgrey;
+            background-color: #A2510D;
+        }
+    }
+
+    &.btn-laravel {
+        color: white;
+        background-color: #F4645F;
+
+        &:active {
+            color: darkgrey;
+            background-color: #9C403D;
+        }
+    }
+
+    &.btn-softgreen {
+        color: white;
+        background-color: #39C5BB;
+
+        &:active {
+            color: darkgrey;
+            background-color: #257E77;
+        }
+    }
+
+    &.btn-switch {
+        color: white;
+        background-color: #2F3437;
+
+        &:active {
+            color: darkgrey;
+            background-color: #1E2223;
+        }
+    }
+
+    &.btn-pikachu {
+        color: white;
+        background-color: #FFD547;
+
+        &:active {
+            color: darkgrey;
+            background-color: #A3882E;
+        }
+    }
+
+    &.btn-eevee {
+        color: white;
+        background-color: #E7AF56;
+
+        &:active {
+            color: darkgrey;
+            background-color: #937037;
+        }
+    }
+
+    &.btn-ch-new-year-2019-red {
+        color: white;
+        background-color: #A61723;
+
+        &:active {
+            color: darkgrey;
+            background-color: #6A0F17;
+        }
+    }
+
+    &.btn-ch-new-year-2019-yellow {
+        color: white;
+        background-color: #D8B06A;
+
+        &:active {
+            color: darkgrey;
+            background-color: #8A7144;
+        }
+    }
+
+    &.btn-devotion {
+        color: white;
+        background-color: #F11541;
+
+        &:active {
+            color: darkgrey;
+            background-color: #9A0E2A;
+        }
+    }
+
+    &.btn-windows-10-error {
+        color: white;
+        background-color: #007BD0;
+
+        &:active {
+            color: darkgrey;
+            background-color: #004F85;
+        }
+    }
+
+    &.btn-dos {
+        background: #bbb;
+        border-radius: 0em;
+        box-shadow: 10px 10px 0 #333;
+
+        &:active {
+            margin: 10px 0 10px 10px;
+            outline: 0;
+            box-shadow: 0 0 0;
+        }
+
+        &.active {
+            background-image: url('../../../../public/img/frontend/background/animated-rainbow.gif');
+        }
+    }
+
+    &.btn-platform {
+        color: white;
+        background-color: #21897E;
+
+        &:active {
+            color: darkgrey;
+            background-color: #155851;
+        }
+    }
+
+    &.btn-rainbow {
+        color: white;
+        background-image: url('../../../../public/img/frontend/background/animated-rainbow.gif');
+
+        &:active {
+            color: darkgrey;
+        }
+    }
+}

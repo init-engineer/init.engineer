@@ -1,0 +1,97 @@
+/**
+ * Basic website settings.
+ *
+ * E.x. font-family, etc...
+ */
+
+/**
+ * AURAKA 點陣宋字型
+ */
+@font-face {
+    font-family: 'Auraka';
+    src: url('/fonts/Auraka.ttf');
+}
+
+/**
+ * 蒙納繁圓點陣
+ */
+@font-face {
+    font-family: 'MBitmapRoundHK';
+    src: url('/fonts/MBitmapRoundHK-Light.otf');
+}
+
+/**
+ * 國喬點陣字型
+ */
+@font-face {
+    font-family: 'KC24M';
+    src: url('/fonts/kc24m.ttf');
+}
+
+/**
+ * ZPIX 點陣字型
+ */
+@font-face {
+    font-family: 'Zfull';
+    src: url('/fonts/Zfull-GB.ttf');
+}
+
+/**
+ * 新細明體
+ */
+@font-face {
+    font-family: 'Mingliu';
+    src: url('/fonts/mingliu.ttc');
+}
+
+/**
+ * 張海山銳諧體
+ */
+@font-face {
+    font-family: 'Harmonic';
+    src: url('/fonts/ZHS-Harmonic.ttf');
+}
+
+/**
+ * 標楷體
+ */
+@font-face {
+    font-family: 'kaiu';
+    src: url('/fonts/kaiu.ttf');
+}
+
+/**
+ * 微軟正黑體
+ */
+@font-face {
+    font-family: 'Microsoft JhengHei';
+    src: url('/fonts/microsoft_jheng_hei.ttf');
+}
+
+/**
+ * 極粗明朝體
+ */
+@font-face {
+    font-family: 'MatissePro EB';
+    src: url('/fonts/FOT-MatissePro-EB.otf');
+}
+
+/**
+ * 台北黑體
+ */
+@font-face {
+    font-family: 'Taipei Sans TC Beta';
+    src: url('/fonts/TaipeiSansTCBeta-Bold.ttf');
+}
+
+/**
+ * DOS
+ * 只支援英文、數字
+ */
+@font-face {
+    font-family: 'DOS';
+    src: url('/fonts/Fixedsys500c.eot')  format("eot"),
+         url('/fonts/Fixedsys500c.woff') format('woff'),
+         url('/fonts/Fixedsys500c.ttf')  format('truetype'),
+         url('/fonts/Fixedsys500c.svg')  format('svg');
+}

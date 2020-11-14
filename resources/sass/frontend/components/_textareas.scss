@@ -1,0 +1,19 @@
+/**
+ * Textareas
+ */
+
+textarea {
+
+    &.cards-editor {
+        font-size: 2em;
+        background-color: #000000;
+        color: lightgray;
+
+        &:focus {
+            background-color: #232323;
+            color: lightgray;
+            opacity: 1;
+        }
+    }
+
+}

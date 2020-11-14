@@ -1,0 +1,113 @@
+/**
+ * Buttons
+ */
+
+ a, span, button {
+
+    &.badge-bitbucket {
+        color: white;
+        background-color: #274970;
+    }
+
+    &.badge-facebook {
+        color: white;
+        background-color: #3B5998;
+    }
+
+    &.badge-google {
+        color: white;
+        background-color: #D34836;
+    }
+
+    &.badge-github {
+        color: white;
+        background-color: #464646;
+    }
+
+    &.badge-linkedin {
+        color: white;
+        background-color: #0077B5;
+    }
+
+    &.badge-twitter {
+        color: white;
+        background-color: #1DCAFF;
+    }
+
+    &.badge-pink {
+        color: white;
+        background-color: #E83E8C;
+    }
+
+    &.badge-plurk {
+        color: white;
+        background-color: #FF4E47;
+    }
+
+    &.badge-orange {
+        color: white;
+        background-color: #FD7E14;
+    }
+
+    &.badge-laravel {
+        color: white;
+        background-color: #F4645F;
+    }
+
+    &.badge-softgreen {
+        color: white;
+        background-color: #39C5BB;
+    }
+
+    &.badge-switch {
+        color: white;
+        background-color: #2F3437;
+    }
+
+    &.badge-pikachu {
+        color: white;
+        background-color: #FFD547;
+    }
+
+    &.badge-eevee {
+        color: white;
+        background-color: #E7AF56;
+    }
+
+    &.badge-ch-new-year-2019-red {
+        color: white;
+        background-color: #A61723;
+    }
+
+    &.badge-ch-new-year-2019-yellow {
+        color: white;
+        background-color: #D8B06A;
+    }
+
+    &.badge-devotion {
+        color: white;
+        background-color: #F11541;
+    }
+
+    &.badge-windows-10-error {
+        color: white;
+        background-color: #007BD0;
+    }
+
+    &.badge-dos {
+        background: #bbb;
+        border-radius: 0em;
+        box-shadow: 10px 10px 0 #333;
+    }
+
+    &.badge-platform {
+        color: white;
+        background-color: #21897E;
+    }
+
+    &.badge-rainbow {
+        color: white;
+        background-image: url('../../../../public/img/frontend/background/animated-rainbow.gif');
+    }
+
+ }
