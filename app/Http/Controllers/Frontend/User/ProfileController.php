@@ -47,6 +47,6 @@ class ProfileController extends Controller
             return redirect()->route('frontend.auth.login')->withFlashInfo(__('strings.frontend.user.email_changed_notice'));
         }
 
-        return redirect()->route('frontend.user.account')->withFlashSuccess(__('strings.frontend.user.profile_updated'));
+        return redirect()->route('frontend.user.dashboard')->withFlashSuccess(__('strings.frontend.user.profile_updated'));
     }
 }

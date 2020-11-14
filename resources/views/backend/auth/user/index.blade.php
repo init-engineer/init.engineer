@@ -3,7 +3,7 @@
 @section('title', app_name() . ' | ' . __('labels.backend.access.users.management'))
 
 @section('breadcrumb-links')
-    @include('backend.auth.user.includes.breadcrumb-links')
+@include('backend.auth.user.includes.breadcrumb-links')
 @endsection
 
 @section('content')
@@ -12,35 +12,59 @@
         <div class="row">
             <div class="col-sm-5">
                 <h4 class="card-title mb-0">
-                    {{ __('labels.backend.access.users.management') }} <small class="text-muted">{{ __('labels.backend.access.users.active') }}</small>
+                    {{ __('labels.backend.access.users.management') }} <small
+                        class="text-muted">{{ __('labels.backend.access.users.active') }}</small>
                 </h4>
-            </div><!--col-->
+            </div>
+            <!--col-->
 
             <div class="col-sm-7">
                 @include('backend.auth.user.includes.header-buttons')
-            </div><!--col-->
-        </div><!--row-->
+            </div>
+            <!--col-->
+
+            <div class="col-sm-12 mt-3">
+                {{ html()->form('POST', route('admin.auth.user.search'))->class('form-horizontal')->open() }}
+                <div class="input-group">
+                    {{ html()->text('email')
+                            ->class('form-control')
+                            ->placeholder(__('validation.attributes.backend.access.users.email'))
+                            ->attribute('maxlength', 191)
+                            ->required() }}
+                    <div class="input-group-append">
+                        {{ form_submit(__('buttons.backend.access.users.search'), 'btn btn-outline-secondary') }}
+                    </div>
+                </div>
+                {{ html()->form()->close() }}
+            </div>
+        </div>
+        <!--row-->
 
         <div class="row mt-4">
             <div class="col">
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
-                        <tr>
-                            <th>@lang('labels.backend.access.users.table.last_name')</th>
-                            <th>@lang('labels.backend.access.users.table.first_name')</th>
-                            <th>@lang('labels.backend.access.users.table.email')</th>
-                            <th>@lang('labels.backend.access.users.table.confirmed')</th>
-                            <th>@lang('labels.backend.access.users.table.roles')</th>
-                            <th>@lang('labels.backend.access.users.table.other_permissions')</th>
-                            <th>@lang('labels.backend.access.users.table.social')</th>
-                            <th>@lang('labels.backend.access.users.table.last_updated')</th>
-                            <th>@lang('labels.general.actions')</th>
-                        </tr>
+                            <tr>
+                                <th>@lang('labels.backend.access.users.table.id')</th>
+                                <th>@lang('labels.backend.access.users.table.picture')</th>
+                                <th>@lang('labels.backend.access.users.table.last_name')</th>
+                                <th>@lang('labels.backend.access.users.table.first_name')</th>
+                                <th>@lang('labels.backend.access.users.table.email')</th>
+                                <th>@lang('labels.backend.access.users.table.confirmed')</th>
+                                <th>@lang('labels.backend.access.users.table.roles')</th>
+                                <th>@lang('labels.backend.access.users.table.other_permissions')</th>
+                                <th>@lang('labels.backend.access.users.table.social')</th>
+                                <th>@lang('labels.backend.access.users.table.last_updated')</th>
+                                <th>@lang('labels.general.actions')</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        @foreach($users as $user)
+                            @foreach($users as $user)
                             <tr>
+                                <td>{{ $user->id }}</td>
+                                <td><img src="{{ $user->getPicture() }}" class="img-fluid rounded"
+                                        style="max-width: 48px;max-height: 48px;" alt=""></td>
                                 <td>{{ $user->last_name }}</td>
                                 <td>{{ $user->first_name }}</td>
                                 <td>{{ $user->email }}</td>
@@ -49,27 +73,35 @@
                                 <td>{{ $user->permissions_label }}</td>
                                 <td>@include('backend.auth.user.includes.social-buttons', ['user' => $user])</td>
                                 <td>{{ $user->updated_at->diffForHumans() }}</td>
-                                <td class="btn-td">@include('backend.auth.user.includes.actions', ['user' => $user])</td>
+                                <td>@include('backend.auth.user.includes.actions', ['user' => $user])</td>
                             </tr>
-                        @endforeach
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
-            </div><!--col-->
-        </div><!--row-->
+            </div>
+            <!--col-->
+        </div>
+        <!--row-->
         <div class="row">
             <div class="col-7">
                 <div class="float-left">
-                    {!! $users->total() !!} {{ trans_choice('labels.backend.access.users.table.total', $users->total()) }}
+                    {!! $users->total() !!}
+                    {{ trans_choice('labels.backend.access.users.table.total', $users->total()) }}
                 </div>
-            </div><!--col-->
+            </div>
+            <!--col-->
 
             <div class="col-5">
                 <div class="float-right">
                     {!! $users->render() !!}
                 </div>
-            </div><!--col-->
-        </div><!--row-->
-    </div><!--card-body-->
-</div><!--card-->
+            </div>
+            <!--col-->
+        </div>
+        <!--row-->
+    </div>
+    <!--card-body-->
+</div>
+<!--card-->
 @endsection

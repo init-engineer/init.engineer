@@ -1,8 +1,8 @@
 <div class="table-responsive">
-    <table class="table table-striped table-hover table-bordered">
+    <table class="table table-striped table-bordered bg-img-rock text-white">
         <tr>
             <th>@lang('labels.frontend.user.profile.avatar')</th>
-            <td><img src="{{ $logged_in_user->picture }}" class="user-profile-image" /></td>
+            <td><img src="{{ $logged_in_user->picture }}" class="user-profile-image rounded" /></td>
         </tr>
         <tr>
             <th>@lang('labels.frontend.user.profile.name')</th>

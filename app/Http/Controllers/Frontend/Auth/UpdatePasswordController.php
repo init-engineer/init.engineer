@@ -36,6 +36,6 @@ class UpdatePasswordController extends Controller
     {
         $this->userRepository->updatePassword($request->only('old_password', 'password'));
 
-        return redirect()->route('frontend.user.account')->withFlashSuccess(__('strings.frontend.user.password_updated'));
+        return redirect()->route('frontend.user.dashboard')->withFlashSuccess(__('strings.frontend.user.password_updated'));
     }
 }

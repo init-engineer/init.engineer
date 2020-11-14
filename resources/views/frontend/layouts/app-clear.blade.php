@@ -61,20 +61,9 @@
 
         @stack('after-styles')
     </head>
-    <body class="bg-img-star pt-5" style="background-color: black;">
-        @include('includes.partials.read-only')
-
+    <body class="bg-img-star" style="background-color: black;">
         <div id="app">
-            @include('includes.partials.logged-in-as')
-            @include('frontend.includes.nav')
-
-            <div class="container">
-                @include('includes.partials.messages')
-            </div><!-- container -->
-
             @yield('content')
-
-            @include('frontend.includes.footer')
         </div><!-- #app -->
 
         <!-- Scripts -->
