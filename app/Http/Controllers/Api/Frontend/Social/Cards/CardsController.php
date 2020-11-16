@@ -12,6 +12,7 @@ use App\Http\Transformers\Social\CommentsTransformer;
 use App\Http\Transformers\Social\DashboardCardsTransformer;
 use App\Models\Social\Cards;
 use App\Repositories\Frontend\Social\CardsRepository;
+use App\Repositories\Frontend\Social\CommentsRepository;
 use App\Repositories\Frontend\Social\ImagesRepository;
 use App\Services\SocialImage\ImagesService;
 use Illuminate\Container\Container;
@@ -150,7 +151,8 @@ class CardsController extends Controller
      */
     public function comments(Cards $id)
     {
-        $paginator = $this->commentsRepository->getActivePaginated($id);
+        $commentsRepository = Container::getInstance()->make(CommentsRepository::class);
+        $paginator = $commentsRepository->getActivePaginated($id);
         $collection = new Collection($paginator->items(), new CommentsTransformer());
         $collection->setPaginator(new IlluminatePaginatorAdapter($paginator));
         $response = $this->fractal->createData($collection);
