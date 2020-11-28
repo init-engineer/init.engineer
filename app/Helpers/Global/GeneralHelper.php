@@ -1,53 +1,50 @@
 <?php
 
-if (! function_exists('app_name')) {
+use Carbon\Carbon;
+
+if (! function_exists('appName')) {
     /**
      * Helper to grab the application name.
      *
      * @return mixed
      */
-    function app_name()
+    function appName()
     {
-        return config('app.name');
+        return config('app.name', 'Laravel Boilerplate');
     }
 }
 
-if (! function_exists('app_url')) {
+if (! function_exists('carbon')) {
     /**
-     * Helper to grab the application url.
+     * Create a new Carbon instance from a time.
      *
-     * @return mixed
+     * @param $time
+     *
+     * @return Carbon
+     * @throws Exception
      */
-    function app_url()
+    function carbon($time)
     {
-        return config('app.url');
+        return new Carbon($time);
     }
 }
 
-if (! function_exists('gravatar')) {
-    /**
-     * Access the gravatar helper.
-     */
-    function gravatar()
-    {
-        return app('gravatar');
-    }
-}
-
-if (! function_exists('home_route')) {
+if (! function_exists('homeRoute')) {
     /**
      * Return the route to the "home" page depending on authentication/authorization status.
      *
      * @return string
      */
-    function home_route()
+    function homeRoute()
     {
         if (auth()->check()) {
-            if (auth()->user()->can('view backend')) {
+            if (auth()->user()->isAdmin()) {
                 return 'admin.dashboard';
             }
 
-            return 'frontend.user.dashboard';
+            if (auth()->user()->isUser()) {
+                return 'frontend.user.dashboard';
+            }
         }
 
         return 'frontend.index';

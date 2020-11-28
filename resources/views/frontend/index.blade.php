@@ -1,106 +1,113 @@
-@extends('frontend.layouts.app')
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{{ appName() }}</title>
+        <meta name="description" content="@yield('meta_description', appName())">
+        <meta name="author" content="@yield('meta_author', 'Anthony Rappa')">
+        @yield('meta')
 
-@section('title', app_name() . ' | ' . __('navs.general.home'))
+        @stack('before-styles')
+        <link rel="dns-prefetch" href="//fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+        <link href="{{ mix('css/frontend.css') }}" rel="stylesheet">
+        <style>
+            html, body {
+                background-color: #fff;
+                color: #636b6f;
+                font-family: 'Nunito', sans-serif;
+                font-weight: 200;
+                height: 100vh;
+                margin: 0;
+            }
 
-@section('content')
-    @include('frontend.banner.the_matrix_neo')
+            .full-height {
+                height: 100vh;
+            }
 
-    <div class="container-fluid my-5 animated fadeIn">
-        <div class="row">
-            <div class="col-md-12 my-4">
-                <mrt-list></mrt-list>
-                <fake-cards></fake-cards>
-                <mrt-list></mrt-list>
-            </div>
-        </div>
-    </div>
+            .flex-center {
+                align-items: center;
+                display: flex;
+                justify-content: center;
+            }
 
-    <div class="container my-5 animated fadeIn">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="main-timeline">
-                    <div class="timeline">
-                        <div class="timeline-icon"><i class="fas fa-globe-americas"></i></div>
-                        <span class="year">不曉得什麼時候</span>
-                        <div class="timeline-content">
-                            <h5 class="title animated fadeInLeft delay-1s">諾亞學會了備份這個概念</h5>
-                            <p class="description animated fadeInLeft delay-1s">諾亞在很久以前，PM 命令他去建造了一艘大船，把世界上的各種陸上生物都備份進那艘船當中，以免哪天地球壞掉，資料救不回來。</p>
-                        </div>
-                    </div>
-                    <div class="timeline">
-                        <div class="timeline-icon"><i class="fa fa-robot"></i></div>
-                        <span class="year">1912</span>
-                        <div class="timeline-content">
-                            <h5 class="title animated fadeInRight delay-1s">艾倫·圖靈</h5>
-                            <p class="description animated fadeInRight delay-1s">圖靈建造了一台可以破解密碼的機電機器，據說這台機器還可以破解側漏小天使，此外，圖靈提出的著名的圖靈機模型為現代計算機的邏輯工作方式奠定了基礎。 </p>
-                        </div>
-                    </div>
-                    <div class="timeline">
-                        <div class="timeline-icon"><i class="fa fa-bug"></i></div>
-                        <span class="year">2017</span>
-                        <div class="timeline-content">
-                            <h5 class="title animated fadeInLeft delay-1s">純靠北工程師</h5>
-                            <p class="description animated fadeInLeft delay-1s">我們很懷念最開始的那個靠北工程師，這個版將會以舊文重發的方式，重現最初的那個靠北工程師。</p>
-                        </div>
-                    </div>
-                    <div class="timeline">
-                        <div class="timeline-icon"><i class="fa fa-poo"></i></div>
-                        <span class="year">{{ date('Y') }}</span>
-                        <div class="timeline-content">
-                            <h5 class="title animated fadeInRight delay-1s">你</h5>
-                            <p class="description animated fadeInRight delay-1s">來到這裡發文。</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+            .position-ref {
+                position: relative;
+            }
 
-    <div class="container my-4">
-        <section class="my-5 text-white">
-            <h2 class="h1-responsive font-weight-bold text-center my-5">這裡能給你什麼？</h2>
-            <p class="lead grey-text text-center w-responsive mx-auto mb-5"></p>
+            .top-right {
+                position: absolute;
+                right: 10px;
+                top: 18px;
+            }
 
-            <div class="row"><!-- Grid row -->
-                <div class="col-md-4 mb-md-0 mb-5"><!-- Grid column -->
-                    <div class="row"><!-- Grid row -->
-                        <div class="col-lg-2 col-md-3 col-2"><!-- Grid column -->
-                            <i class="fas fa-dog blue-text fa-2x shake-hard shake-constant shake-constant--hover"></i>
-                        </div><!-- Grid column -->
-                        <div class="col-lg-10 col-md-9 col-10"><!-- Grid column -->
-                            <h4 class="font-weight-bold">汪汪汪汪汪汪</h4>
-                            <p class="grey-text">汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪</p>
-                            <a href="{{ route('frontend.social.cards.create') }}" class="btn btn-rainbow btn-block btn-lg"><i class="fas fa-heart shake-little shake-constant shake-constant--hover"> 汪汪汪</i></a>
-                        </div><!-- Grid column -->
-                    </div><!-- Grid row -->
-                </div><!-- Grid column -->
+            .content {
+                text-align: center;
+            }
 
-                <div class="col-md-4 mb-md-0 mb-5"><!-- Grid column -->
-                    <div class="row"><!-- Grid row -->
-                        <div class="col-lg-2 col-md-3 col-2"><!-- Grid column -->
-                            <i class="fas fa-cat pink-text fa-2x shake-hard shake-constant shake-constant--hover"></i>
-                        </div><!-- Grid column -->
-                        <div class="col-lg-10 col-md-9 col-10"><!-- Grid column -->
-                            <h4 class="font-weight-bold">喵喵喵喵喵喵</h4>
-                            <p class="grey-text">喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵喵</p>
-                            <a href="{{ route('frontend.social.cards.create') }}" class="btn btn-rainbow btn-block btn-lg"><i class="fas fa-heart shake-little shake-constant shake-constant--hover"> 喵喵喵</i></a>
-                        </div><!-- Grid column -->
-                    </div><!-- Grid row -->
-                </div><!-- Grid column -->
+            .title {
+                font-size: 84px;
+            }
 
-                <div class="col-md-4"><!-- Grid column -->
-                    <div class="row"><!-- Grid row -->
-                        <div class="col-lg-2 col-md-3 col-2"><!-- Grid column -->
-                            <i class="fas fa-bug purple-text fa-2x shake-hard shake-constant shake-constant--hover"></i>
-                        </div><!-- Grid column -->
-                        <div class="col-lg-10 col-md-9 col-10"><!-- Grid column -->
-                            <h4 class="font-weight-bold">哞哞哞哞哞哞</h4>
-                            <p class="grey-text">哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞哞</p>
-                            <a href="{{ route('frontend.social.cards.create') }}" class="btn btn-rainbow btn-block btn-lg"><i class="fas fa-heart shake-little shake-constant shake-constant--hover"> 哞哞哞</i></a>
-                        </div><!-- Grid column -->
-                    </div><!-- Grid row -->
-                </div><!-- Grid column -->
-            </div><!-- Grid row -->
-        </section>
-    </div><!-- Container -->
-@endsection
+            .links > a {
+                color: #636b6f;
+                padding: 0 25px;
+                font-size: 13px;
+                font-weight: 600;
+                letter-spacing: .1rem;
+                text-decoration: none;
+                text-transform: uppercase;
+            }
+
+            .m-b-md {
+                margin-bottom: 30px;
+            }
+        </style>
+        @stack('after-styles')
+
+        @include('includes.partials.ga')
+    </head>
+    <body>
+        @include('includes.partials.read-only')
+        @include('includes.partials.logged-in-as')
+        @include('includes.partials.announcements')
+
+        <div id="app" class="flex-center position-ref full-height">
+            <div class="top-right links">
+                @auth
+                    @if ($logged_in_user->isUser())
+                        <a href="{{ route('frontend.user.dashboard') }}">@lang('Dashboard')</a>
+                    @endif
+
+                    <a href="{{ route('frontend.user.account') }}">@lang('Account')</a>
+                @else
+                    <a href="{{ route('frontend.auth.login') }}">@lang('Login')</a>
+
+                    @if (config('boilerplate.access.user.registration'))
+                        <a href="{{ route('frontend.auth.register') }}">@lang('Register')</a>
+                    @endif
+                @endauth
+            </div><!--top-right-->
+
+            <div class="content">
+                @include('includes.partials.messages')
+
+                <div class="title m-b-md">
+                    <example-component></example-component>
+                </div><!--title-->
+
+                <div class="links">
+                    <a href="http://laravel-boilerplate.com" target="_blank"><i class="fa fa-book"></i> @lang('Docs')</a>
+                    <a href="https://github.com/rappasoft/laravel-boilerplate" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                </div><!--links-->
+            </div><!--content-->
+        </div><!--app-->
+
+        @stack('before-scripts')
+        <script src="{{ mix('js/manifest.js') }}"></script>
+        <script src="{{ mix('js/vendor.js') }}"></script>
+        <script src="{{ mix('js/frontend.js') }}"></script>
+        @stack('after-scripts')
+    </body>
+</html>

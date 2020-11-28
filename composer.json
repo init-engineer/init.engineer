@@ -9,57 +9,53 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.2",
-        "albertcht/invisible-recaptcha": "^1.9",
-        "altek/accountant": "^1.2",
-        "altek/eventually": "^1.0",
-        "arcanedev/log-viewer": "^5.0",
-        "creativeorange/gravatar": "~1.0",
-        "davejamesmiller/laravel-breadcrumbs": "^5.0",
-        "facade/ignition": "^1.11",
-        "facebook/graph-sdk": "^5.7",
-        "fideloper/proxy": "^4.0",
-        "graham-campbell/markdown": "^11.1",
-        "guzzlehttp/guzzle": "^6.4",
-        "lab404/laravel-impersonate": "^1.4",
-        "langleyfoxall/laravel-nist-password-rules": "^4.0",
-        "laravel/framework": "^6.3",
-        "laravel/passport": "^8.4",
-        "laravel/socialite": "^4.1",
-        "league/fractal": "^0.18.0",
-        "qlurk/qlurk": "^0.2.2",
-        "reliqarts/thujohn-twitter": "^2.2",
-        "spatie/laravel-html": "^2.22",
-        "spatie/laravel-permission": "^3.0",
-        "torann/geoip": "^1.0"
+        "php": "^7.3",
+        "arcanedev/log-viewer": "8.x",
+        "darkghosthunter/laraguard": "dev-master",
+        "fideloper/proxy": "^4.2",
+        "fruitcake/laravel-cors": "^2.0",
+        "guzzlehttp/guzzle": "^7.0.1",
+        "jamesmills/laravel-timezone": "^1.9",
+        "lab404/laravel-impersonate": "^1.6",
+        "langleyfoxall/laravel-nist-password-rules": "^4.1",
+        "laravel/framework": "^8.0",
+        "laravel/socialite": "^5.0",
+        "laravel/tinker": "^2.0",
+        "laravel/ui": "^3.0",
+        "livewire/livewire": "^2.0",
+        "rappasoft/laravel-livewire-tables": "^0.3",
+        "rappasoft/lockout": "^3.0",
+        "spatie/laravel-activitylog": "^3.14",
+        "spatie/laravel-permission": "^3.11",
+        "tabuna/breadcrumbs": "^2.2"
     },
     "require-dev": {
+        "roave/security-advisories": "dev-master",
         "barryvdh/laravel-debugbar": "^3.2",
         "barryvdh/laravel-ide-helper": "^2.6",
-        "codedungeon/phpunit-result-printer": "^0.26.1",
-        "facade/ignition": "^1.4",
-        "facade/ignition-code-editor": "^1.0",
-        "facade/ignition-self-diagnosis": "^1.0",
-        "facade/ignition-tinker-tab": "^1.0",
-        "friendsofphp/php-cs-fixer": "^2.14",
+        "codedungeon/phpunit-result-printer": "^0.29",
+        "facade/ignition": "^2.3.6",
+        "friendsofphp/php-cs-fixer": "^2.16",
         "fzaninotto/faker": "^1.9.1",
-        "mockery/mockery": "^1.0",
-        "nunomaduro/collision": "^3.0",
-        "phpunit/phpunit": "^8.0",
-        "roave/security-advisories": "dev-master"
+        "mockery/mockery": "^1.3.1",
+        "nunomaduro/collision": "^5.0",
+        "phpunit/phpunit": "^9.0"
     },
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
         "sort-packages": true
     },
+    "extra": {
+        "laravel": {
+            "dont-discover": []
+        }
+    },
     "autoload": {
-        "classmap": [
-            "database/seeds",
-            "database/factories"
-        ],
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
         }
     },
     "autoload-dev": {
@@ -67,26 +63,22 @@
             "Tests\\": "tests/"
         }
     },
-    "extra": {
-        "laravel": {
-            "dont-discover": []
-        }
-    },
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi",
-            "@php artisan ide-helper:generate",
-            "@php artisan ide-helper:meta"
+            "@php artisan package:discover --ansi"
         ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
-            "@php artisan key:generate --ansi",
-            "@php artisan passport:keys"
+            "@php artisan key:generate --ansi"
+        ],
+        "post-update-dump": [
+            "@php artisan ide-helper:generate",
+            "@php artisan ide-helper:meta"
         ],
         "clear-all": [
             "@php artisan clear-compiled",
@@ -94,30 +86,19 @@
             "@php artisan route:clear",
             "@php artisan view:clear",
             "@php artisan config:clear",
+            "@php artisan permission:cache-reset",
             "composer dumpautoload -o"
         ],
         "cache-all": [
             "@php artisan config:cache",
             "@php artisan route:cache"
         ],
-        "cc": [
+        "reset": [
             "composer clear-all",
             "composer cache-all"
         ],
-        "phpunit": [
-            "phpunit > output.txt -d memory_limit=2048M"
-        ],
-        "coverage-xml": [
-            "phpunit --coverage-clover ./coverage.xml"
-        ],
-        "coverage-html": [
-            "phpunit --coverage-html ./coverage"
-        ],
-        "coverage-text": [
-            "phpunit --coverage-text"
-        ],
-        "format": [
-            "php-cs-fixer fix --show-progress=estimating --config=.php_cs.dist"
-        ]
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage",
+        "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes"
     }
 }

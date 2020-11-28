@@ -1,135 +1,70 @@
 @extends('frontend.layouts.app')
 
-@section('title', app_name() . ' | ' . __('labels.frontend.auth.login_box_title'))
+@section('title', __('Login'))
 
 @section('content')
-    <div class="container my-5">
-        <div class="row justify-content-center align-items-center">
-            <div class="col col-sm-8 align-self-center">
-                <label class="col-label">login.blade.php</label>
-                <div class="card text-white bg-img-rock rounded-0 border border-w-6">
-                    <div class="card-header display-1">
-                        <strong>
-                            @lang('labels.frontend.auth.login_box_title')
-                        </strong>
-                    </div>
-                    <!--card-header-->
+    <div class="container py-4">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <x-frontend.card>
+                    <x-slot name="header">
+                        @lang('Login')
+                    </x-slot>
 
-                    <div class="card-body">
-                        {{ html()->form('POST', route('frontend.auth.login.post'))->open() }}
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-group">
-                                    {{ html()->label(__('validation.attributes.frontend.email'), '')->for('email') }}
+                    <x-slot name="body">
+                        <x-forms.post :action="route('frontend.auth.login')">
+                            <div class="form-group row">
+                                <label for="email" class="col-md-4 col-form-label text-md-right">@lang('E-mail Address')</label>
 
-                                    {{ html()->email('email')
-                                                ->class('form-control form-control-lg text-white input-black')
-                                                ->placeholder(__('validation.attributes.frontend.email'))
-                                                ->attribute('maxlength', 191)
-                                                ->required() }}
+                                <div class="col-md-6">
+                                    <input type="email" name="email" id="email" class="form-control" placeholder="{{ __('E-mail Address') }}" value="{{ old('email') }}" maxlength="255" required autofocus autocomplete="email" />
                                 </div>
-                                <!--form-group-->
-                            </div>
-                            <!--col-->
-                        </div>
-                        <!--row-->
+                            </div><!--form-group-->
 
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-group">
-                                    {{ html()->label(__('validation.attributes.frontend.password'))->for('password') }}
+                            <div class="form-group row">
+                                <label for="password" class="col-md-4 col-form-label text-md-right">@lang('Password')</label>
 
-                                    {{ html()->password('password')
-                                                ->class('form-control form-control-lg text-white input-black')
-                                                ->placeholder(__('validation.attributes.frontend.password'))
-                                                ->required() }}
+                                <div class="col-md-6">
+                                    <input type="password" name="password" id="password" class="form-control" placeholder="{{ __('Password') }}" maxlength="100" required autocomplete="current-password" />
                                 </div>
-                                <!--form-group-->
-                            </div>
-                            <!--col-->
-                        </div>
-                        <!--row-->
+                            </div><!--form-group-->
 
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-group">
-                                    <div class="checkbox">
-                                        {{ html()->label(html()->checkbox('remember', true, 1) . ' ' . __('labels.frontend.auth.remember_me'))->for('remember') }}
-                                    </div>
+                            <div class="form-group row">
+                                <div class="col-md-6 offset-md-4">
+                                    <div class="form-check">
+                                        <input name="remember" id="remember" class="form-check-input" type="checkbox" {{ old('remember') ? 'checked' : '' }} />
+
+                                        <label class="form-check-label" for="remember">
+                                            @lang('Remember Me')
+                                        </label>
+                                    </div><!--form-check-->
                                 </div>
-                                <!--form-group-->
-                            </div>
-                            <!--col-->
-                        </div>
-                        <!--row-->
+                            </div><!--form-group-->
 
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-group clearfix">
-                                    {{ form_submit(__('labels.frontend.auth.login_button'), 'btn btn-dos btn-lg btn-block my-4') }}
+                            @if(config('boilerplate.access.captcha.login'))
+                                <div class="row">
+                                    <div class="col">
+                                        @captcha
+                                        <input type="hidden" name="captcha_status" value="true" />
+                                    </div><!--col-->
+                                </div><!--row-->
+                            @endif
+
+                            <div class="form-group row mb-0">
+                                <div class="col-md-8 offset-md-4">
+                                    <button class="btn btn-primary" type="submit">@lang('Login')</button>
+
+                                    <x-utils.link :href="route('frontend.auth.password.request')" class="btn btn-link" :text="__('Forgot Your Password?')" />
                                 </div>
-                                <!--form-group-->
-                            </div>
-                            <!--col-->
-                        </div>
-                        <!--row-->
+                            </div><!--form-group-->
 
-                        @if(config('access.captcha.login'))
-                        <div class="row">
-                            <div class="col">
-                                @captcha
-                                {{ html()->hidden('captcha_status', 'true') }}
+                            <div class="text-center">
+                                @include('frontend.auth.includes.social')
                             </div>
-                            <!--col-->
-                        </div>
-                        <!--row-->
-                        @endif
-
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="form-group text-left">
-                                <a href="{{ route('frontend.policies') }}">@lang('labels.frontend.policies.policies_text')</a>
-                                </div>
-                                <!--form-group-->
-                            </div>
-                            <!--col-->
-
-                            <div class="col-6">
-                                <div class="form-group text-right">
-                                    <a href="{{ route('frontend.auth.password.reset') }}">@lang('labels.frontend.passwords.forgot_password')</a>
-                                </div>
-                                <!--form-group-->
-                            </div>
-                            <!--col-->
-                        </div>
-                        <!--row-->
-                        {{ html()->form()->close() }}
-
-                        <hr class="border-bottom border-w-6">
-                        <!--border-->
-
-                        <div class="row">
-                            <div class="col">
-                                <div class="text-center">
-                                    @include('frontend.auth.includes.socialite')
-                                </div>
-                            </div>
-                            <!--col-->
-                        </div>
-                        <!--row-->
-                    </div>
-                    <!--card body-->
-                </div>
-                <!--card-->
-            </div><!-- col-md-8 -->
-        </div><!-- row -->
+                        </x-forms.post>
+                    </x-slot>
+                </x-frontend.card>
+            </div><!--col-md-8-->
+        </div><!--row-->
     </div><!--container-->
-
-    <img class="nyan mb-5" style="margin-left: -25vw; width: 80vw; height: auto;" src="https://ziad-saab.github.io/nyan/nyan.gif">
 @endsection
-
-@push('after-scripts')
-    @if(config('access.captcha.login'))
-        @captchaScripts
-    @endif
-@endpush

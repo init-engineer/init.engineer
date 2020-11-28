@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -15,6 +17,6 @@
  * Api Routes
  * Namespaces indicate folder structure
  */
-Route::group(['namespace' => 'Api', 'as' => 'api.'], function () {
-    include_route_files(__DIR__.'/api/');
-});
+// Route::group(['namespace' => 'Api', 'as' => 'api.'], function () {
+//     includeRouteFiles(__DIR__.'/api/');
+// });

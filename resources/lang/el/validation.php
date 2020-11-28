@@ -144,54 +144,5 @@ return [
     |
     */
 
-    'attributes' => [
-        'backend' => [
-            'access' => [
-                'permissions' => [
-                    'associated_roles' => 'Associated Roles',
-                    'dependencies' => 'Dependencies',
-                    'display_name' => 'Display Name',
-                    'group' => 'Group',
-                    'group_sort' => 'Group Sort',
-
-                    'groups' => [
-                        'name' => 'Group Name',
-                    ],
-
-                    'name' => 'Name',
-                    'system' => 'System?',
-                ],
-
-                'roles' => [
-                    'associated_permissions' => 'Associated Permissions',
-                    'name' => 'Name',
-                    'sort' => 'Sort',
-                ],
-
-                'users' => [
-                    'active' => 'Active',
-                    'associated_roles' => 'Associated Roles',
-                    'confirmed' => 'Confirmed',
-                    'email' => 'E-mail Address',
-                    'name' => 'Name',
-                    'other_permissions' => 'Other Permissions',
-                    'password' => 'Password',
-                    'password_confirmation' => 'Password Confirmation',
-                    'send_confirmation_email' => 'Send Confirmation E-mail',
-                ],
-            ],
-        ],
-
-        'frontend' => [
-            'email' => 'E-mail Address',
-            'name' => 'Name',
-            'password' => 'Password',
-            'password_confirmation' => 'Password Confirmation',
-            'phone' => 'Phone',
-            'message' => 'Message',
-            'old_password' => 'Old Password',
-            'new_password' => 'New Password',
-            'new_password_confirmation' => 'New Password Confirmation',
-        ],
-    ],
+    'attributes' => [],
 ];

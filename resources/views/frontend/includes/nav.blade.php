@@ -1,63 +1,106 @@
-<nav class="navbar navbar-expand-lg navbar-full-bg navbar-dark bg-black fixed-top pt-0 pb-0 border-bottom border-white border-w-3">
-    <div>
-        <a href="{{ route('frontend.index') }}" class="navbar-brand">{{ app_name() }}</a>
-        <a class="mr-2" href="{{ env('FACEBOOK_PRIMARY_SOCIAL_URL') }}"><img src="https://image.flaticon.com/icons/svg/220/220200.svg" alt="Facebook" class="rounded" width="30" height="30"></a>
-        <a class="mr-2" href="{{ env('TWITTER_SOCIAL_URL') }}"><img src="https://image.flaticon.com/icons/svg/124/124021.svg" alt="Twitter" class="rounded" width="30" height="30"></a>
-        <a class="mr-2" href="{{ env('PLURK_SOCIAL_URL') }}"><img src="https://image.flaticon.com/icons/svg/124/124026.svg" alt="Plurk" class="rounded" width="30" height="30"></a>
-    </div>
+<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+    <div class="container">
+        <x-utils.link
+            :href="route('frontend.index')"
+            :text="appName()"
+            class="navbar-brand" />
 
-    <button class="navbar-toggler navbar-toggler-right border-0 collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="@lang('labels.general.toggle_navigation')">
-        <span class="navbar-toggler-icon icon-bar top-bar"></span>
-        <span class="navbar-toggler-icon icon-bar middle-bar"></span>
-        <span class="navbar-toggler-icon icon-bar bottom-bar"></span>
-        {{-- <span class="navbar-toggler-icon"></span> --}}
-    </button>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="@lang('Toggle navigation')">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-        <ul class="navbar-nav">
-            {{-- @if(config('locale.status') && count(config('locale.languages')) > 1)
-                <li class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownLanguageLink" data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false">@lang('menus.language-picker.language') ({{ strtoupper(app()->getLocale()) }})</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                @if(config('boilerplate.locale.status') && count(config('boilerplate.locale.languages')) > 1)
+                    <li class="nav-item dropdown">
+                        <x-utils.link
+                            :text="__(getLocaleName(app()->getLocale()))"
+                            class="nav-link dropdown-toggle"
+                            id="navbarDropdownLanguageLink"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false" />
 
-                    @include('includes.partials.lang')
-                </li>
-            @endif --}}
+                        @include('includes.partials.lang')
+                    </li>
+                @endif
 
-            <li class="nav-item"><a href="{{ route('frontend.animal.index') }}" class="nav-link {{ active_class(Route::is('frontend.animal.index')) }}">大頭菜計算機</a></li>
+                @guest
+                    <li class="nav-item">
+                        <x-utils.link
+                            :href="route('frontend.auth.login')"
+                            :active="activeClass(Route::is('frontend.auth.login'))"
+                            :text="__('Login')"
+                            class="nav-link" />
+                    </li>
 
-            <li class="nav-item"><a href="{{ route('frontend.social.cards.review') }}" class="nav-link {{ active_class(Route::is('frontend.social.cards.review')) }}"><span class="badge badge-pill badge-danger">NEW</span> 群眾審核</a></li>
+                    @if (config('boilerplate.access.user.registration'))
+                        <li class="nav-item">
+                            <x-utils.link
+                                :href="route('frontend.auth.register')"
+                                :active="activeClass(Route::is('frontend.auth.register'))"
+                                :text="__('Register')"
+                                class="nav-link" />
 
-            <li class="nav-item"><a href="{{ route('frontend.social.cards.index') }}" class="nav-link {{ active_class(Route::is('frontend.social.cards.index')) }}">@lang('navs.frontend.social.cards.index')</a></li>
+                        </li>
+                    @endif
+                @else
+                    <li class="nav-item dropdown">
+                        <x-utils.link
+                            href="#"
+                            id="navbarDropdown"
+                            class="nav-link dropdown-toggle"
+                            role="button"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                            v-pre
+                        >
+                            <x-slot name="text">
+                                <img class="rounded-circle" style="max-height: 20px" src="{{ $logged_in_user->avatar }}" />
+                                {{ $logged_in_user->name }} <span class="caret"></span>
+                            </x-slot>
+                        </x-utils.link>
 
-            <li class="nav-item"><a href="{{ route('frontend.social.cards.create') }}" class="nav-link {{ active_class(Route::is('frontend.social.cards.create')) }}">@lang('navs.frontend.social.cards.create')</a></li>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            @if ($logged_in_user->isAdmin())
+                                <x-utils.link
+                                    :href="route('admin.dashboard')"
+                                    :text="__('Administration')"
+                                    class="dropdown-item" />
+                            @endif
 
-            @guest
-                <li class="nav-item"><a href="{{ route('frontend.auth.login') }}" class="nav-link {{ active_class(Route::is('frontend.auth.login')) }}">@lang('navs.frontend.login')</a></li>
+                            @if ($logged_in_user->isUser())
+                                <x-utils.link
+                                    :href="route('frontend.user.dashboard')"
+                                    :active="activeClass(Route::is('frontend.user.dashboard'))"
+                                    :text="__('Dashboard')"
+                                    class="dropdown-item"/>
+                            @endif
 
-                {{-- @if(config('access.registration'))
-                    <li class="nav-item"><a href="{{ route('frontend.auth.register') }}" class="nav-link {{ active_class(Route::is('frontend.auth.register')) }}">@lang('navs.frontend.register')</a></li>
-                @endif --}}
-            @else
-                <li class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuUser" data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false">
-                       <img src="{{ $logged_in_user->picture }}" class="img-avatar rounded" alt="{{ $logged_in_user->email }}">
-                        {{ $logged_in_user->name }}
-                    </a>
+                            <x-utils.link
+                                :href="route('frontend.user.account')"
+                                :active="activeClass(Route::is('frontend.user.account'))"
+                                :text="__('My Account')"
+                                class="dropdown-item" />
 
-                    <div class="dropdown-menu animated fadeInDown faster rounded-0 mb-2" aria-labelledby="navbarDropdownMenuUser">
-                        @can('view backend')
-                            <a href="{{ route('admin.dashboard') }}" class="dropdown-item py-2">@lang('navs.frontend.user.administration')</a>
-                        @endcan
-                        <a href="{{ route('frontend.user.dashboard') }}" class="dropdown-item py-2">@lang('navs.frontend.dashboard')</a>
-
-                        <a href="{{ route('frontend.auth.logout') }}" class="dropdown-item py-2">@lang('navs.general.logout')</a>
-                    </div>
-                </li>
-            @endguest
-
-            {{-- <li class="nav-item"><a href="{{ route('frontend.contact') }}" class="nav-link {{ active_class(Route::is('frontend.contact')) }}">@lang('navs.frontend.contact')</a></li> --}}
-        </ul>
-    </div>
+                            <x-utils.link
+                                :text="__('Logout')"
+                                class="dropdown-item"
+                                onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                <x-slot name="text">
+                                    @lang('Logout')
+                                    <x-forms.post :action="route('frontend.auth.logout')" id="logout-form" class="d-none" />
+                                </x-slot>
+                            </x-utils.link>
+                        </div>
+                    </li>
+                @endguest
+            </ul>
+        </div><!--navbar-collapse-->
+    </div><!--container-->
 </nav>
+
+@if (config('boilerplate.frontend_breadcrumbs'))
+    @include('frontend.includes.partials.breadcrumbs')
+@endif

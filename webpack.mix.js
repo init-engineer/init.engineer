@@ -13,19 +13,12 @@ const mix = require('laravel-mix');
 
 mix.setPublicPath('public')
     .setResourceRoot('../') // Turns assets paths in css relative to css file
-    // .options({
-    //     processCssUrls: false,
-    // })
     .sass('resources/sass/frontend/app.scss', 'css/frontend.css')
     .sass('resources/sass/backend/app.scss', 'css/backend.css')
     .js('resources/js/frontend/app.js', 'js/frontend.js')
-    .js([
-        'resources/js/backend/before.js',
-        'resources/js/backend/app.js',
-        'resources/js/backend/after.js'
-    ], 'js/backend.js')
+    .js('resources/js/backend/app.js', 'js/backend.js')
     .extract([
-        // Extract packages from node_modules to vendor.js
+        'alpinejs',
         'jquery',
         'bootstrap',
         'popper.js',
@@ -36,15 +29,7 @@ mix.setPublicPath('public')
     .sourceMaps();
 
 if (mix.inProduction()) {
-    mix.version()
-        .options({
-            // Optimize JS minification process
-            terser: {
-                cache: true,
-                parallel: true,
-                sourceMap: true
-            }
-        });
+    mix.version();
 } else {
     // Uses inline source-maps on development
     mix.webpackConfig({

@@ -142,58 +142,5 @@ return [
     |
     */
 
-    'attributes' => [
-        'backend' => [
-            'access' => [
-                'permissions' => [
-                    'associated_roles' => 'Geassocieerde Rollen',
-                    'dependencies' => 'Afhankelijkheden',
-                    'display_name' => 'Weergave Naam',
-                    'group' => 'Groep',
-                    'group_sort' => 'Groep Sorteren',
-
-                    'groups' => [
-                        'name' => 'Groep Naam',
-                    ],
-
-                    'name' => 'Naam',
-                    'system' => 'Systeem?',
-                ],
-
-                'roles' => [
-                    'associated_permissions' => 'Geassocieerde Permissies',
-                    'name' => 'Naam',
-                    'sort' => 'Sorteren',
-                ],
-
-                'users' => [
-                    'active' => 'Actief',
-                    'associated_roles' => 'Geassocieerde Rollen',
-                    'confirmed' => 'Bevestigd',
-                    'email' => 'E-mailadres',
-                    'first_name' => 'Voornaam',
-                    'last_name' => 'Achternaam',
-                    'name' => 'Naam',
-                    'other_permissions' => 'Overige Permissies',
-                    'password' => 'Wachtwoord',
-                    'password_confirmation' => 'Wachtwoord bevestiging',
-                    'send_confirmation_email' => 'Stuur Bevestigings E-mail',
-                ],
-            ],
-        ],
-
-        'frontend' => [
-            'email' => 'E-mailadres',
-            'first_name' => 'Voornaam',
-            'last_name' => 'Achternaam',
-            'name' => 'Naam',
-            'password' => 'Wachwoord',
-            'password_confirmation' => 'Wachtwoord Bevestiging',
-            'phone' => 'Telefoonnummer',
-            'message' => 'Bericht',
-            'old_password' => 'Oud Wachtwoord',
-            'new_password' => 'Nieuw Wachtwoord',
-            'new_password_confirmation' => 'Nieuw Wachtwoord Bevestigen',
-        ],
-    ],
+    'attributes' => [],
 ];

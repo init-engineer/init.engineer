@@ -13,11 +13,5 @@ return [
     */
 
     'failed' => 'Las credenciales no se han encontrado.',
-    'general_error' => 'No tiene suficientes permisos.',
-    'password_used' => 'No puede establecer una contraseña que haya usado previamente.',
-    'socialite' => [
-        'unacceptable' => ':provider no es un tipo de autenticación válido.',
-    ],
     'throttle' => 'Demasiados intentos de inicio de sesión. Vuelva a intentarlo en :seconds segundos.',
-    'unknown' => 'Se ha producido un error desconocido.',
 ];

@@ -1,73 +1,8 @@
 @import "../global";
+@import "global";
 
-/**
- * Fonts
- */
-@import url('https://fonts.googleapis.com/css?family=Nunito');
-
-/**
- * Bootstrap Overrides
- */
+// Variables
 @import 'variables';
 
-/**
- * Bootstrap
- */
+// Bootstrap
 @import '~bootstrap/scss/bootstrap';
-
-/**
- * Base
- */
-@import 'base/basic';
-@import 'base/border';
-@import 'base/float';
-@import 'base/reset';
-@import 'base/typography';
-
-/**
- * Components
- */
-@import 'components/badge';
-@import 'components/buttons';
-@import 'components/carousel';
-@import 'components/cover';
-@import 'components/dropdown';
-@import 'components/input';
-@import 'components/labels';
-@import 'components/navigation';
-@import 'components/textareas';
-
-/**
- * Helpers
- */
-@import 'helpers/functions';
-@import 'helpers/helpers';
-@import 'helpers/mixins';
-@import 'helpers/variables';
-@import 'helpers/skins';
-
-/**
- * Layout
- */
-@import 'layout/footer';
-@import 'layout/forms';
-@import 'layout/grid';
-@import 'layout/header';
-@import 'layout/navbar';
-@import 'layout/sidebar';
-
-/**
- * Pages
- */
-@import 'pages/contact';
-@import 'pages/dashboard';
-@import 'pages/home';
-@import 'pages/index';
-@import 'pages/leaderboard';
-@import 'pages/news';
-@import 'pages/social';
-
-/**
- * Themes
- */
-@import 'themes/theme';

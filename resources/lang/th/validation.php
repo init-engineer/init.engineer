@@ -142,54 +142,5 @@ return [
     |
     */
 
-    'attributes' => [
-        'backend' => [
-            'access' => [
-                'permissions' => [
-                    'associated_roles' => 'บทบาทที่เกี่ยวข้อง',
-                    'dependencies' => 'สิ่งที่จำเป็นต้องมี',
-                    'display_name' => 'ชื่อที่แสดง',
-                    'group' => 'กลุ่ม',
-                    'group_sort' => 'เรียงตามกลุ่ม',
-
-                    'groups' => [
-                        'name' => 'ชื่อกลุ่ม',
-                    ],
-
-                    'name' => 'ชื่อ',
-                    'system' => 'ระบบ?',
-                ],
-
-                'roles' => [
-                    'associated_permissions' => 'สิทธิ์ที่เกี่ยวข้อง',
-                    'name' => 'ชื่อ',
-                    'sort' => 'เรียง',
-                ],
-
-                'users' => [
-                    'active' => 'เปิดใช้งาน',
-                    'associated_roles' => 'บทบาทที่เกี่ยวข้อง',
-                    'confirmed' => 'ยืนยันตัวตน',
-                    'email' => 'ที่อยู่อีเมล',
-                    'name' => 'ชื่อ',
-                    'other_permissions' => 'สิทธิ์อื่นๆ',
-                    'password' => 'รหัสผ่าน',
-                    'password_confirmation' => 'ยืนยันรหัสผ่าน',
-                    'send_confirmation_email' => 'ส่งอีเมลยืนยันตัวตน',
-                ],
-            ],
-        ],
-
-        'frontend' => [
-            'email' => 'ที่อยู่อีเมล',
-            'name' => 'ชื่อ',
-            'password' => 'รหัสผ่าน',
-            'password_confirmation' => 'ยืนยันรหัสผ่าน',
-            'phone' => 'Phone',
-            'message' => 'Message',
-            'old_password' => 'รหัสผ่านเดิม',
-            'new_password' => 'รหัสผ่านใหม่',
-            'new_password_confirmation' => 'ยืนยันรหัสผ่านใหม่',
-        ],
-    ],
+    'attributes' => [],
 ];

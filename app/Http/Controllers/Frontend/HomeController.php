@@ -10,18 +10,10 @@ use App\Http\Controllers\Controller;
 class HomeController extends Controller
 {
     /**
-     * @return \Illuminate\View\View
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
         return view('frontend.index');
-    }
-
-    /**
-     * @return \
-     */
-    public function policies()
-    {
-        return view('frontend.policies');
     }
 }

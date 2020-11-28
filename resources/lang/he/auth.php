@@ -13,11 +13,5 @@ return [
     */
 
     'failed' => 'פרטי ההתחברות שהזנת לא נכונים.',
-    'general_error' => 'אין לך גישה לפה.',
-    'password_used' => 'You can not set a password that you have previously used.',
-    'socialite' => [
-        'unacceptable' => 'לא ניתן להתחבר באמצעות :provider.',
-    ],
-    'throttle' => 'יותר מדי ניסיונות התחברות. אפשר לנסות שוב בעוד :seconds שניות.',
-    'unknown' => 'התרחשה שגיאה.',
+    'throttle' => 'יותר מדי ניסיונות התחברות. אנא נסה שוב בעוד :seconds שניות.',
 ];

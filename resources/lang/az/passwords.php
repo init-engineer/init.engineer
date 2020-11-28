@@ -12,9 +12,9 @@ return [
     |
     */
 
-    'password' => 'Şifrə ən azı 6 simvol olmalıdır və təkrar şifrən ilə eyni olmalıdır.',
     'reset' => 'Şifrəniz sıfırlandı!',
     'sent' => 'Elektron poçt ünvanınıza şifrənin sıfırlanması üçün məktub göndərildi',
+    'throttled' => 'Please wait before retrying.',
     'token' => 'Şifrəni sıfırlamaq üçün istifadə etdiyiniz token keçərsizdir.',
     'user' => ' Qeyd etdiyiniz Elektron poçt ünvanına aid istifadəçi tapa bilmədik',
 ];

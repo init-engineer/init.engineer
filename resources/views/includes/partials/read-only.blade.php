@@ -1,5 +1,5 @@
 @readonly
-    <div class="alert alert-info read-only">
-        【先行預覽】網站目前處於唯讀模式，除了 GET 以外的所有請求均被禁用。
-    </div>
+    <x-utils.alert type="info" class="alert-header" :dismissable="false" class="pt-1 pb-1 mb-0">
+        @lang('The Application is currently in read only mode. All requests other than GET are disabled.')
+    </x-utils.alert>
 @endreadonly

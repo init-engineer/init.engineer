@@ -4,17 +4,10 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-import '../bootstrap';
-import '../plugins';
-import 'css-doodle';
-import Vue from 'vue';
-import Vuelidate from 'vuelidate';
-import VueTippy, { TippyComponent } from 'vue-tippy';
+require('../bootstrap');
+require('../plugins');
 
-window.Vue = Vue;
-Vue.use(Vuelidate);
-Vue.use(VueTippy);
-Vue.component('tippy', TippyComponent);
+window.Vue = require('vue');
 
 /**
  * The following block of code may be used to automatically register your
@@ -24,8 +17,8 @@ Vue.component('tippy', TippyComponent);
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
-const files = require.context('./', true, /\.vue$/i);
-files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
+const files = require.context('./', true, /\.vue$/i)
+files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

@@ -142,54 +142,5 @@ return [
     |
     */
 
-    'attributes' => [
-        'backend' => [
-            'access' => [
-                'permissions' => [
-                    'associated_roles' => 'Associated Roles',
-                    'dependencies' => 'Dependencies',
-                    'display_name' => 'Display Name',
-                    'group' => 'Group',
-                    'group_sort' => 'Group Sort',
-
-                    'groups' => [
-                        'name' => 'Group Name',
-                    ],
-
-                    'name' => 'Name',
-                    'system' => 'System?',
-                ],
-
-                'roles' => [
-                    'associated_permissions' => 'Associated Permissions',
-                    'name' => 'Name',
-                    'sort' => 'Sort',
-                ],
-
-                'users' => [
-                    'active' => 'Active',
-                    'associated_roles' => 'Associated Roles',
-                    'confirmed' => 'Confirmed',
-                    'email' => 'E-mail Address',
-                    'name' => 'Name',
-                    'other_permissions' => 'Other Permissions',
-                    'password' => 'Password',
-                    'password_confirmation' => 'Password Confirmation',
-                    'send_confirmation_email' => 'Send Confirmation E-mail',
-                ],
-            ],
-        ],
-
-        'frontend' => [
-            'email' => 'メールアドレス',
-            'name' => 'ユーザ名',
-            'password' => 'パスワード',
-            'password_confirmation' => 'パスワード（確認）',
-            'phone' => 'Phone',
-            'message' => 'Message',
-            'old_password' => '旧パスワード',
-            'new_password' => '新パスワード',
-            'new_password_confirmation' => '新パスワード（確認）',
-        ],
-    ],
+    'attributes' => [],
 ];
