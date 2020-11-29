@@ -14,6 +14,7 @@ use App\Services\BaseService;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 /**
  * Class UserService.
@@ -331,6 +332,7 @@ class UserService extends BaseService
             'provider_id' => $data['provider_id'] ?? null,
             'email_verified_at' => $data['email_verified_at'] ?? null,
             'active' => $data['active'] ?? true,
+            'api_token' => Str::random(60),
         ]);
     }
 }
