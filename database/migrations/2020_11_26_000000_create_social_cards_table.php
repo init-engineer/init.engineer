@@ -48,7 +48,9 @@ class CreateSocialCardsTable extends Migration
             $table->bigIncrements('id');
             $table->morphs('model');
             $table->longText('content')->comment('內文');
-            $table->json('config')->comment('設定');
+            $table->json('config')->comment('文章設定');
+            $table->json('platform')->comment('社群資訊');
+            $table->json('image')->comment('圖片資訊');
             $table->unsignedTinyInteger('active')->default(1)->comment('啟用');
             $table->boolean('banned')->default(false)->comment('封鎖狀態');
             $table->unsignedBigInteger('banned_by')->nullable()->comment('被誰封鎖');
@@ -80,9 +82,9 @@ class CreateSocialCardsTable extends Migration
             $table->unsignedBigInteger('card_id')->comment('文章 ID');
             $table->unsignedBigInteger('platform_id')->comment('平台 ID');
             $table->string('comment_id')->nullable()->comment('社群平台 ID');
-            $table->string('user_name')->comment('使用者名稱');
-            $table->string('user_id')->comment('使用者 ID');
-            $table->longText('user_avatar')->comment('使用者大頭貼');
+            $table->string('user_name')->nullable()->comment('使用者名稱');
+            $table->string('user_id')->nullable()->comment('使用者 ID');
+            $table->longText('user_avatar')->nullable()->comment('使用者大頭貼');
             $table->longText('content')->comment('留言內容');
             $table->unsignedTinyInteger('active')->default(1)->comment('啟用');
             $table->string('reply')->nullable()->comment('回覆自社群平台 ID');
@@ -103,24 +105,6 @@ class CreateSocialCardsTable extends Migration
                 ->on('social_platform')
                 ->onDelete('cascade');
         });
-
-        /** 文章圖片 */
-        Schema::create('card_images', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->unsignedBigInteger('card_id')->comment('文章 ID');
-            $table->string('storage')->comment('存放載體');
-            $table->string('path')->nullable()->comment('檔案路徑');
-            $table->string('name')->nullable()->comment('檔案名稱');
-            $table->string('type')->nullable()->comment('檔案類型');
-            $table->unsignedTinyInteger('active')->default(1)->comment('啟用');
-            $table->timestamps();
-            $table->softDeletes();
-
-            $table->foreign('card_id')
-                ->references('id')
-                ->on('social_cards')
-                ->onDelete('cascade');
-        });
     }
 
     /**
@@ -130,7 +114,6 @@ class CreateSocialCardsTable extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('card_images');
         Schema::dropIfExists('social_comments');
         Schema::dropIfExists('social_cards_review');
         Schema::dropIfExists('social_cards');
