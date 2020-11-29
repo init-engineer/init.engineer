@@ -25,7 +25,7 @@
     "The user was successfully deleted.": "使用者已成功刪除。",
     "The user was successfully restored.": "使用者已成功還原。",
     "The user was permanently deleted.": "該使用者已被永久刪除。",
-    "You can not set a password that you have previously used within the last :num times.": "您無法設置最近一次 :num 次使用的密碼。",
+    "You can not set a password that you have previously used within the last :num times.": "您無法設置最近 :num 次使用過的密碼。",
     "Reset Password Notification": "重置密碼通知",
     "You are receiving this email because we received a password reset request for your account.": "您收到此電子郵件是因為我們收到了您帳號的密碼重置請求。",
     "Reset Password": "重設密碼",
