@@ -94,6 +94,11 @@ return [
              * It is not recommended to change
              */
             'admin' => 'Administrator',
+
+            /**
+             * Custom
+             */
+            'social_admin' => 'Social Management',
         ],
     ],
 
