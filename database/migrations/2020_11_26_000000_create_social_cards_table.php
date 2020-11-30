@@ -61,7 +61,7 @@ class CreateSocialCardsTable extends Migration
         });
 
         /** 群眾審核 */
-        Schema::create('social_cards_review', function (Blueprint $table) {
+        Schema::create('social_cards_reviews', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('card_id')->comment('文章 ID');
             $table->morphs('model');
@@ -115,7 +115,7 @@ class CreateSocialCardsTable extends Migration
     public function down(): void
     {
         Schema::dropIfExists('social_comments');
-        Schema::dropIfExists('social_cards_review');
+        Schema::dropIfExists('social_cards_reviews');
         Schema::dropIfExists('social_cards');
         Schema::dropIfExists('social_cards_ads');
         Schema::dropIfExists('social_platform');

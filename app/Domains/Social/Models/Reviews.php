@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class Review.
+ * Class Reviews.
  */
-class Review extends Model
+class Reviews extends Model
 {
     use SoftDeletes,
         ReviewRelationship;
@@ -19,7 +19,7 @@ class Review extends Model
      *
      * @var string
      */
-    protected $table = 'social_cards_review';
+    protected $table = 'social_cards_reviews';
 
     /**
      * Indicates if the model should be timestamped.
