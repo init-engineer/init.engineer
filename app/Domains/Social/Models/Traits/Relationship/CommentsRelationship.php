@@ -2,7 +2,6 @@
 
 namespace App\Domains\Social\Models\Traits\Relationship;
 
-use App\Models\Social\CardPost;
 use App\Models\Social\Cards;
 use App\Models\Social\Platform;
 
