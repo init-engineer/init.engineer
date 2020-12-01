@@ -36,9 +36,10 @@ class CreateSocialCardsTable extends Migration
             $table->integer('number_max')->default(-1)->comment('最多部署上限');
             $table->integer('number_min')->default(-1)->comment('最少部署下限');
             $table->integer('incidence')->default(0)->comment('部署機率');
+            $table->unsignedTinyInteger('payment')->default(0)->comment('付款狀態');
             $table->unsignedTinyInteger('active')->default(1)->comment('啟用');
             $table->timestamp('started_at')->nullable()->comment('開始日期');
-            $table->timestamp('end_at')->nullable()->comment('結束日期');
+            $table->timestamp('ended_at')->nullable()->comment('結束日期');
             $table->timestamps();
             $table->softDeletes();
         });
