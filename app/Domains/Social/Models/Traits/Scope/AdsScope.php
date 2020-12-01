@@ -13,6 +13,17 @@ trait AdsScope
      *
      * @return mixed
      */
+    public function scopePayment($query, $status = true)
+    {
+        return $query->where('payment', $status);
+    }
+
+    /**
+     * @param $query
+     * @param bool $status
+     *
+     * @return mixed
+     */
     public function scopeActive($query, $status = true)
     {
         return $query->where('active', $status);

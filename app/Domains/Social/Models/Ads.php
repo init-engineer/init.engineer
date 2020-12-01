@@ -2,9 +2,11 @@
 
 namespace App\Domains\Social\Models;
 
+use App\Domains\Social\Models\Traits\Attribute\AdsAttribute;
 use App\Domains\Social\Models\Traits\Method\AdsMethod;
 use App\Domains\Social\Models\Traits\Relationship\AdsRelationship;
 use App\Domains\Social\Models\Traits\Scope\AdsScope;
+use App\Models\Traits\Profile;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -14,8 +16,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Ads extends Model
 {
     use SoftDeletes,
+        Profile,
         AdsScope,
         AdsMethod,
+        AdsAttribute,
         AdsRelationship;
 
     /**
@@ -45,9 +49,10 @@ class Ads extends Model
         'number_max',
         'number_min',
         'incidence',
+        'payment',
         'active',
         'started_at',
-        'end_at',
+        'ended_at',
     ];
 
     /**
@@ -59,6 +64,7 @@ class Ads extends Model
         'number_max' => 'integer',
         'number_min' => 'integer',
         'incidence' => 'integer',
+        'payment' => 'boolean',
         'active' => 'boolean',
     ];
 
@@ -69,6 +75,6 @@ class Ads extends Model
      */
     protected $dates = [
         'started_at',
-        'end_at',
+        'ended_at',
     ];
 }
