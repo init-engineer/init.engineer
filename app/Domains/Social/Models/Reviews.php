@@ -3,6 +3,7 @@
 namespace App\Domains\Social\Models;
 
 use App\Domains\Social\Models\Traits\Relationship\ReviewRelationship;
+use App\Domains\Social\Models\Traits\Scope\ReviewsScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -12,6 +13,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Reviews extends Model
 {
     use SoftDeletes,
+        ReviewsScope,
         ReviewRelationship;
 
     /**

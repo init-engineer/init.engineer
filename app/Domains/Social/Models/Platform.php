@@ -3,6 +3,7 @@
 namespace App\Domains\Social\Models;
 
 use App\Domains\Social\Models\Traits\Method\PlatformMethod;
+use App\Domains\Social\Models\Traits\Scope\PlatformScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -12,6 +13,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Platform extends Model
 {
     use SoftDeletes,
+        PlatformScope,
         PlatformMethod;
 
     /**

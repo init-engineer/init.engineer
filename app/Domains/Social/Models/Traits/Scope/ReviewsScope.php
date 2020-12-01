@@ -3,21 +3,10 @@
 namespace App\Domains\Social\Models\Traits\Scope;
 
 /**
- * Trait AdsScope.
+ * Trait ReviewsScope.
  */
-trait AdsScope
+trait ReviewsScope
 {
-    /**
-     * @param $query
-     * @param bool $status
-     *
-     * @return mixed
-     */
-    public function scopeActive($query, $status = true)
-    {
-        return $query->where('active', $status);
-    }
-
     /**
      * @param $query
      *
