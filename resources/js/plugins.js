@@ -56,10 +56,10 @@ $(function () {
         e.preventDefault();
 
         Swal.fire({
-            title: 'Are you sure you want to delete this item?',
+            title: '您確定要刪除此項目嗎？',
             showCancelButton: true,
-            confirmButtonText: 'Confirm Delete',
-            cancelButtonText: 'Cancel',
+            confirmButtonText: '確認刪除',
+            cancelButtonText: '取消',
             icon: 'warning'
         }).then((result) => {
             if (result.value) {
@@ -73,10 +73,10 @@ $(function () {
             e.preventDefault();
 
             Swal.fire({
-                title: 'Are you sure you want to do this?',
+                title: '您確定您要這麼做嗎？',
                 showCancelButton: true,
-                confirmButtonText: 'Continue',
-                cancelButtonText: 'Cancel',
+                confirmButtonText: '繼續',
+                cancelButtonText: '取消',
                 icon: 'warning'
             }).then((result) => {
                 if (result.value) {
@@ -93,10 +93,10 @@ $(function () {
         e.preventDefault();
 
         Swal.fire({
-            title: 'Are you sure you want to do this?',
+            title: '您確定您要這麼做嗎？',
             showCancelButton: true,
-            confirmButtonText: 'Continue',
-            cancelButtonText: 'Cancel',
+            confirmButtonText: '繼續',
+            cancelButtonText: '取消',
             icon: 'info',
         }).then((result) => {
             result.value && window.location.assign($(this).attr('href'));
