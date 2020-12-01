@@ -10,7 +10,7 @@ trait CardsMethod
     /**
      * @return bool
      */
-    public function isActive()
+    public function isActive(): bool
     {
         return $this->active;
     }
@@ -18,7 +18,7 @@ trait CardsMethod
     /**
      * @return bool
      */
-    public function isPublish()
+    public function isPublish(): bool
     {
         return !$this->banned;
     }
@@ -26,7 +26,7 @@ trait CardsMethod
     /**
      * @return bool
      */
-    public function isBanned()
+    public function isBanned(): bool
     {
         return $this->banned;
     }
