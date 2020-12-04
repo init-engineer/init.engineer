@@ -44,7 +44,7 @@ class DeletedAdsController extends Controller
     {
         $this->adsService->restore($deletedAds);
 
-        return redirect()->route('admin.social.ads.index')->withFlashSuccess(__('The user was successfully restored.'));
+        return redirect()->route('admin.social.ads.index')->withFlashSuccess(__('The ads was successfully restored.'));
     }
 
     /**
