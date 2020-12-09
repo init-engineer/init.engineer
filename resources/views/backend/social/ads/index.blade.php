@@ -12,7 +12,12 @@
             @lang('Ads Management')
         </x-slot>
 
-        @if ($logged_in_user->hasAllAccess())
+        @if ($logged_in_user->hasAllAccess() |
+             $logged_in_user->can('admin.social') ||
+             $logged_in_user->can('admin.social.ads') ||
+             $logged_in_user->can('admin.social.ads.list') ||
+             $logged_in_user->can('admin.social.ads.deactivate') ||
+             $logged_in_user->can('admin.social.ads.reactivate'))
             <x-slot name="headerActions">
                 <x-utils.link
                     icon="c-icon cil-plus"
