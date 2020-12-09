@@ -107,7 +107,7 @@
             , 'c-open c-show') }}">
                 <x-utils.link
                     href="#"
-                    icon="c-sidebar-nav-icon cil-user"
+                    icon="c-sidebar-nav-icon cil-chat-bubble"
                     class="c-sidebar-nav-dropdown-toggle"
                     :text="__('Social')" />
 
