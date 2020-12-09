@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Domains\Auth\Models\User;
 use App\Domains\Social\Models\Ads;
+use App\Domains\Social\Models\Platform;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -66,6 +67,11 @@ class RouteServiceProvider extends ServiceProvider
         // To be able to restore a ads, since the default binding is a find and would result in a 404
         Route::bind('deletedAds', function ($id) {
             return Ads::onlyTrashed()->find($id);
+        });
+
+        // To be able to restore a platform, since the default binding is a find and would result in a 404
+        Route::bind('deletedPlatform', function ($id) {
+            return Platform::onlyTrashed()->find($id);
         });
     }
 

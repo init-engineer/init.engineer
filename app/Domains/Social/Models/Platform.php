@@ -16,6 +16,15 @@ class Platform extends Model
         PlatformScope,
         PlatformMethod;
 
+    public const PLATFORM_PRIMARY = 'primary';
+    public const PLATFORM_SECONDARY = 'secondary';
+    public const PLATFORM_TESTING = 'testing';
+
+    public const TYPE_LOCAL = 'local';
+    public const TYPE_FACEBOOK = 'facebook';
+    public const TYPE_TWITTER = 'twitter';
+    public const TYPE_PLURK = 'plurk';
+
     /**
      * The table associated with the model.
      *

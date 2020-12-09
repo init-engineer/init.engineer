@@ -3,6 +3,9 @@
 use App\Domains\Social\Http\Controllers\Backend\Ads\AdsController;
 use App\Domains\Social\Http\Controllers\Backend\Ads\DeactivatedAdsController;
 use App\Domains\Social\Http\Controllers\Backend\Ads\DeletedAdsController;
+use App\Domains\Social\Http\Controllers\Backend\Platform\PlatformController;
+use App\Domains\Social\Http\Controllers\Backend\Platform\DeactivatedPlatformController;
+use App\Domains\Social\Http\Controllers\Backend\Platform\DeletedPlatformController;
 use App\Domains\Social\Models\Ads;
 use App\Domains\Social\Models\Cards;
 use App\Domains\Social\Models\Comments;
