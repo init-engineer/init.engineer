@@ -10,7 +10,19 @@ if (! function_exists('appName')) {
      */
     function appName()
     {
-        return config('app.name', 'Laravel Boilerplate');
+        return config('app.name', '純靠北工程師');
+    }
+}
+
+if (! function_exists('appUrl')) {
+    /**
+     * Helper to grab the application name.
+     *
+     * @return mixed
+     */
+    function appUrl()
+    {
+        return config('app.url', 'http://localhost');
     }
 }
 
