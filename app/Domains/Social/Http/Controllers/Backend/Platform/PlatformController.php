@@ -85,7 +85,7 @@ class PlatformController extends Controller
     }
 
     /**
-     * @param UpdateAdsRequest $request
+     * @param UpdatePlatformRequest $request
      * @param Platform $platform
      *
      * @return mixed
