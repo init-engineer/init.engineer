@@ -31,7 +31,8 @@
                 $logged_in_user->can('admin.access.user.change-password')
             )
         )
-            <li class="c-sidebar-nav-dropdown {{ activeClass(Route::is('admin.auth.user.*') || Route::is('admin.auth.role.*'), 'c-open c-show') }}">
+            <li class="c-sidebar-nav-dropdown {{ activeClass(Route::is('admin.auth.user.*') ||
+                                                             Route::is('admin.auth.role.*'), 'c-open c-show') }}">
                 <x-utils.link
                     href="#"
                     icon="c-sidebar-nav-icon cil-user"
@@ -103,8 +104,7 @@
                 Route::is('admin.social.ads.*') ||
                 Route::is('admin.social.cards.*') ||
                 Route::is('admin.social.comments.*') ||
-                Route::is('admin.social.reviews.*')
-            , 'c-open c-show') }}">
+                Route::is('admin.social.reviews.*'), 'c-open c-show') }}">
                 <x-utils.link
                     href="#"
                     icon="c-sidebar-nav-icon cil-chat-bubble"
