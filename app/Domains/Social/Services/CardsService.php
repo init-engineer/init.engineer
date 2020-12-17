@@ -226,4 +226,54 @@ class CardsService extends BaseService
             'banned' => $data['banned'] ?? false,
         ]);
     }
+
+    /**
+     * @param array $data
+     *
+     * @return array
+     */
+    protected function createConfig(array $data = []): array
+    {
+        return [];
+    }
+
+    /**
+     * @param array $data
+     * @param array $origin
+     *
+     * @return array
+     */
+    protected function createPlatform(array $data, array $origin = []): array
+    {
+        $platforms = $origin;
+        array_push($platforms, [
+            'platform' => [
+                'id' => $data['platform']['id'],
+                'name' => $data['platform']['name'],
+                'type' => $data['platform']['type'],
+            ],
+            'post_id' => $data['post_id'],
+            'like' => 0,
+            'share' => 0,
+            'active' => true,
+            'created_at' => $data['created_at'],
+            'updated_at' => Carbon::now(),
+        ]);
+        return $platforms;
+    }
+
+    /**
+     * @param array $data
+     *
+     * @return array
+     */
+    protected function createImage(array $data = []): array
+    {
+        return [
+            'storage' => $data['storage'] ?? 'storage',
+            'path' => $data['path'],
+            'name' => $data['name'],
+            'type' => $data['type'],
+        ];
+    }
 }
