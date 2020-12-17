@@ -12,6 +12,7 @@
         "php": "^7.3",
         "arcanedev/log-viewer": "8.x",
         "darkghosthunter/laraguard": "dev-master",
+        "facebook/graph-sdk": "^5.7",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
