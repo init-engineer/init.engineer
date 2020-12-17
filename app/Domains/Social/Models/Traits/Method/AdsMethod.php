@@ -27,7 +27,6 @@ trait AdsMethod
 
     /**
      * @return mixed|string
-     * @throws \Creativeorange\Gravatar\Exceptions\InvalidEmailException
      */
     public function getBanner()
     {
