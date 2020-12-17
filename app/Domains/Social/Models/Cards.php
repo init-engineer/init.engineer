@@ -42,6 +42,8 @@ class Cards extends Model
         'model_id',
         'content',
         'config',
+        'platform',
+        'image',
         'active',
         'banned',
         'banned_by',
