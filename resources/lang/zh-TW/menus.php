@@ -60,19 +60,7 @@ return [
             'history' => '歷史',
             'account' => '使用者',
             'social' => '文章',
-            'news' => '公告',
             'system' => '系統',
-        ],
-
-        'news' => [
-            'title' => '公告',
-            'all' => '所有文章',
-            'create' => '新增文章',
-            'deactivated' => '被停用的文章',
-            'deleted' => '被刪除的文章',
-            'edit' => '編輯文章',
-            'main' => '文章列表',
-            'view' => '文章',
         ],
     ],
 

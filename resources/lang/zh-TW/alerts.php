@@ -44,12 +44,6 @@ return [
                 'restored' => '文章已成功還原。',
             ],
         ],
-
-        'news' => [
-            'created' => '文章已成功新增。',
-            'deleted' => '文章已成功刪除。',
-            'updated' => '文章已成功更新。',
-        ],
     ],
 
     'frontend' => [
