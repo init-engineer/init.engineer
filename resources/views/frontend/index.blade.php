@@ -5,29 +5,6 @@
 @section('content')
     @include('frontend.banner.the_matrix_neo')
 
-    <div class="container-fluid mb-5 animated fadeIn">
-        <div class="row my-4">
-            <div class="col-md-12 mb-2">
-                <h1 class="h1-responsive font-weight-bold display-4 text-center text-white my-5 shake-slow shake-constant shake-constant--hover"><span class="badge badge-danger">HOT</span> 2019 排行榜</h1>
-            </div>
-            <div class="col-md-4 my-2">
-                <a href="{{ route('frontend.leaderboard.2019.show.yuu-chien') }}">
-                    <img src="https://i.imgur.com/4drN4eL.png" class="rounded w-100 h-100 border border-w-5" alt="純靠北工程師 2019 年度排行榜 | Author by @yuu-chien">
-                </a>
-            </div>
-            <div class="col-md-4 my-2">
-                <a href="{{ route('frontend.leaderboard.2019.show.fizzy-elt') }}">
-                    <img src="https://i.imgur.com/pAGZXNU.png" class="rounded w-100 h-100 border border-w-5" alt="純靠北工程師 2019 年度排行榜 | Author by @fizzy-elt">
-                </a>
-            </div>
-            <div class="col-md-4 my-2">
-                <a href="{{ route('frontend.leaderboard.2019.show.dong-gua-lemon') }}">
-                    <img src="https://i.imgur.com/zXQhFp2.png" class="rounded w-100 h-100 border border-w-5" alt="純靠北工程師 2019 年度排行榜 | Author by @dong-gua-lemon">
-                </a>
-            </div>
-        </div>
-    </div>
-
     <div class="container-fluid my-5 animated fadeIn">
         <div class="row">
             <div class="col-md-12 my-4">
