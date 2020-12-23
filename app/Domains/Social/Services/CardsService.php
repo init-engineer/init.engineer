@@ -49,6 +49,26 @@ class CardsService extends BaseService
     }
 
     /**
+     * @param Cards $cards
+     * @param array $data
+     *
+     * @return Cards
+     */
+    public function registerPlatform(Cards $cards, array $data): Cards
+    {
+        $platforms = $this->createPlatform($data, json_decode($cards->platform, true));
+        $cards->platform = json_encode($platforms);
+
+        if ($cards->save()) {
+            // event(new CardsRegisterPlatform($cards, $data));
+
+            return $cards;
+        }
+
+        throw new GeneralException(__('There was a problem updating this cards. Please try again.'));
+    }
+
+    /**
      * @param array $data
      *
      * @return Cards
