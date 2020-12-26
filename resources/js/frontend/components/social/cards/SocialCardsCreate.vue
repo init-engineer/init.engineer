@@ -1,7 +1,7 @@
 <template>
   <div>
     <marquee-text class="mb-3">
-      <h1 class="text-white">發源自臉書──全台最大工程師廢文社群 (´◓Д◔`) 我看你是不夠敏捷ㄛ？</h1>
+      <h1 class="color-color-primary">發源自臉書──全台最大工程師廢文社群 (´◓Д◔`) 我看你是不夠敏捷ㄛ？</h1>
     </marquee-text>
 
     <div class="row">
@@ -100,7 +100,7 @@
               @click="drawingAll"
             />
             <label
-              class="text-white control-label"
+              class="color-color-primary control-label"
               for="manager-line"
             >是否在文章當中繪製 To Be Coutinued，建議主題選擇「黑底白字」</label>
           </div>
@@ -196,7 +196,7 @@
               v-model="canvas.is_manager_line"
               @click="drawingAll"
             />
-            <label class="text-white control-label" for="manager-line">是否在文章當中繪製版主群識別框線</label>
+            <label class="color-color-primary control-label" for="manager-line">是否在文章當中繪製版主群識別框線</label>
           </div>
         </div>
         <!--form-group-->

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 @langrtl
-    <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="rtl">
+    <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="rtl" class="theme-dark">
 @else
-    <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="theme-dark">
 @endlangrtl
     <head>
         <meta charset="utf-8">
@@ -61,7 +61,7 @@
 
         @stack('after-styles')
     </head>
-    <body class="bg-img-star pt-5" style="background-color: black;">
+    <body>
         @include('includes.partials.read-only')
 
         <div id="app">

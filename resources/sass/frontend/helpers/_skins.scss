@@ -48,6 +48,17 @@
 .bg-windows-10-testing-error {  background-color: #107C10 !important; }
 .bg-pink-secondary {            background-color: #F8C0C8 !important; }
 
+.bg-color-primary {             background-color: var(--background-primary)     !important; }
+.bg-color-secondary {           background-color: var(--background-secondary)   !important; }
+.bg-primary {                   background-color: var(--color-primary)          !important; }
+.bg-info {                      background-color: var(--color-info)             !important; }
+.bg-success {                   background-color: var(--color-success)          !important; }
+.bg-danger {                    background-color: var(--color-danger)           !important; }
+.bg-warning {                   background-color: var(--color-warning)          !important; }
+.bg-dark {                      background-color: var(--color-dark)             !important; }
+.bg-light {                     background-color: var(--color-light)            !important; }
+.bg-gray {                      background-color: var(--color-gray)             !important; }
+
 /**
  * Backgrounds Images
  */
@@ -75,12 +86,23 @@
 .gray {       color: $gray; }
 .black {      color: $black; }
 
-.color-switch {                     color:#2F3437 !important; }
-.color-pikachu {                    color:#FFD547 !important; }
-.color-eevee {                      color:#E7AF56 !important; }
-.color-ch-new-year-2019-red {       color:#A61723 !important; }
-.color-ch-new-year-2019-yellow {    color:#D8B06A !important; }
-.color-pink {                       color:#FF5376 !important; }
+.color-switch {                     color: #2F3437 !important; }
+.color-pikachu {                    color: #FFD547 !important; }
+.color-eevee {                      color: #E7AF56 !important; }
+.color-ch-new-year-2019-red {       color: #A61723 !important; }
+.color-ch-new-year-2019-yellow {    color: #D8B06A !important; }
+.color-pink {                       color: #FF5376 !important; }
+
+.color-color-primary {              color: var(--font-primary-color)     !important; }
+.color-color-secondary {            color: var(--font-secondary-color)   !important; }
+.color-primary {                    color: var(--color-primary)          !important; }
+.color-info {                       color: var(--color-info)             !important; }
+.color-success {                    color: var(--color-success)          !important; }
+.color-danger {                     color: var(--color-danger)           !important; }
+.color-warning {                    color: var(--color-warning)          !important; }
+.color-dark {                       color: var(--color-dark)             !important; }
+.color-light {                      color: var(--color-light)            !important; }
+.color-gray {                       color: var(--color-gray)             !important; }
 
 /**
  * Border colors

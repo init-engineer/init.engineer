@@ -8,6 +8,22 @@
 }
 
 .navbar {
+    min-height: 0rem !important;
+    padding: 0rem 1rem;
+    background-color: var(--background-primary);
+
+    a {
+        color: var(--font-secondary-color);
+    }
+
+    .nav-link {
+        padding: 0.3rem;
+    }
+
+    .navbar-brand {
+        padding: 0rem;
+    }
+
     .img-avatar {
         height: 1.6em;
     }
@@ -67,6 +83,7 @@
 .navbar-full-bg .nav-item.active .nav-link,
 .navbar-full-bg .nav-item:hover .nav-link,
 .navbar-full-bg .nav-item .active {
-    color: #ffffff;
-    background-color: #333333;
+    padding: 0rem;
+    color: var(--font-primary-color);
+    background-color: var(--background-secondary);
 }

@@ -4,6 +4,51 @@
 
  a, span, button {
 
+    &.badge-bg {
+        color: var(--font-primary-color);
+        background-color: var(--background-primary);
+    }
+
+    &.badge-primary-bg {
+        color: var(--font-primary-color);
+        background-color: var(--color-primary);
+    }
+
+    &.badge-info-bg {
+        color: var(--color-dark);
+        background-color: var(--color-info);
+    }
+
+    &.badge-success-bg {
+        color: var(--color-dark);
+        background-color: var(--color-success);
+    }
+
+    &.badge-danger-bg {
+        color: var(--color-dark);
+        background-color: var(--color-danger);
+    }
+
+    &.badge-warning-bg {
+        color: var(--color-dark);
+        background-color: var(--color-warning);
+    }
+
+    &.badge-dark-bg {
+        color: var(--color-light);
+        background-color: var(--color-dark);
+    }
+
+    &.badge-light-bg {
+        color: var(--color-dark);
+        background-color: var(--color-light);
+    }
+
+    &.badge-gray-bg {
+        color: var(--color-dark);
+        background-color: var(--color-gray);
+    }
+
     &.badge-bitbucket {
         color: white;
         background-color: #274970;

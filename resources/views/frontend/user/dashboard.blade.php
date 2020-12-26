@@ -4,7 +4,7 @@
     <div class="container my-5">
         <div class="row mb-4">
             <div class="col">
-                <div class="text-white">
+                <div class="color-color-primary">
                     <div class="card-header display-4">
                         <strong>
                             <i class="fas fa-tachometer-alt"></i> {{ __('labels.frontend.user.dashboard.dashboard_text') }}

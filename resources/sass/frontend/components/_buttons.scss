@@ -4,6 +4,141 @@
 
 a, span, button {
 
+    &.btn-bg {
+        color: var(--font-primary-color);
+        background-color: var(--background-primary);
+
+        &:active {
+            color: var(--font-primary-color-dark);
+            background-color: var(--background-primary-dark);
+        }
+
+        &:hover {
+            color: var(--font-primary-color);
+            background-color: var(--background-primary-dark);
+        }
+    }
+
+    &.btn-primary-bg {
+        color: var(--font-primary-color);
+        background-color: var(--color-primary);
+
+        &:active {
+            color: var(--font-primary-color-dark);
+            background-color: var(--color-primary-dark);
+        }
+
+        &:hover {
+            color: var(--font-primary-color);
+            background-color: var(--color-primary-dark);
+        }
+    }
+
+    &.btn-info-bg {
+        color: var(--color-dark);
+        background-color: var(--color-info);
+
+        &:active {
+            color: var(--color-dark-dark);
+            background-color: var(--color-info-dark);
+        }
+
+        &:hover {
+            color: var(--color-dark-dark);
+            background-color: var(--color-info-dark);
+        }
+    }
+
+    &.btn-success-bg {
+        color: var(--color-dark);
+        background-color: var(--color-success);
+
+        &:active {
+            color: var(--color-dark-dark);
+            background-color: var(--color-success-dark);
+        }
+
+        &:hover {
+            color: var(--color-dark-dark);
+            background-color: var(--color-success-dark);
+        }
+    }
+
+    &.btn-danger-bg {
+        color: var(--color-dark);
+        background-color: var(--color-danger);
+
+        &:active {
+            color: var(--color-dark-dark);
+            background-color: var(--color-danger-dark);
+        }
+
+        &:hover {
+            color: var(--color-dark-dark);
+            background-color: var(--color-danger-dark);
+        }
+    }
+
+    &.btn-warning-bg {
+        color: var(--color-dark);
+        background-color: var(--color-warning);
+
+        &:active {
+            color: var(--color-dark-dark);
+            background-color: var(--color-warning-dark);
+        }
+
+        &:hover {
+            color: var(--color-dark-dark);
+            background-color: var(--color-warning-dark);
+        }
+    }
+
+    &.btn-dark-bg {
+        color: var(--color-light);
+        background-color: var(--color-dark);
+
+        &:active {
+            color: var(--color-light-light);
+            background-color: var(--color-dark-dark);
+        }
+
+        &:hover {
+            color: var(--color-light-light);
+            background-color: var(--color-dark-dark);
+        }
+    }
+
+    &.btn-light-bg {
+        color: var(--color-dark);
+        background-color: var(--color-light);
+
+        &:active {
+            color: var(--color-dark-dark);
+            background-color: var(--color-light-dark);
+        }
+
+        &:hover {
+            color: var(--color-dark-dark);
+            background-color: var(--color-light-dark);
+        }
+    }
+
+    &.btn-gray-bg {
+        color: var(--color-dark);
+        background-color: var(--color-gray);
+
+        &:active {
+            color: var(--color-dark-dark);
+            background-color: var(--color-gray-dark);
+        }
+
+        &:hover {
+            color: var(--color-dark-dark);
+            background-color: var(--color-gray-dark);
+        }
+    }
+
     &.btn-bitbucket {
         color: white;
         background-color: #274970;

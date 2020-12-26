@@ -1,22 +1,22 @@
 <template>
     <div>
         <marquee-text class="mb-3">
-            <h1 class="text-white">{{ 標題 }}</h1>
+            <h1 class="color-color-primary">{{ 標題 }}</h1>
         </marquee-text>
 
         <div class="checkout-container my-2">
             <form class="form cf">
                 <section class="plan cf text-center my-2">
-                    <h1 class="text-white">第一次購買</h1>
-                    <h2 class="text-white">這是您第一次在島上跟曹賣購買大頭菜嗎？</h2>
-                    <h3 class="text-white">（這會影響您的判斷模式）</h3>
+                    <h1 class="color-color-primary">第一次購買</h1>
+                    <h2 class="color-color-primary">這是您第一次在島上跟曹賣購買大頭菜嗎？</h2>
+                    <h3 class="color-color-primary">（這會影響您的判斷模式）</h3>
                     <input type="radio" v-model="first_time" id="first-time-radio-no" name="first-time" :value="false" checked><label class="col first-col" for="first-time-radio-no">不是</label>
                     <input type="radio" v-model="first_time" id="first-time-radio-yes" name="first-time" :value="true"><label class="col first-col" for="first-time-radio-yes">是的</label>
                 </section>
                 <section class="plan cf text-center my-2">
-                    <h1 class="text-white">上一期的模式</h1>
-                    <h2 class="text-white">上週您的大頭菜價格走勢如何呢？</h2>
-                    <h3 class="text-white">（這會影響您的判斷模式）</h3>
+                    <h1 class="color-color-primary">上一期的模式</h1>
+                    <h2 class="color-color-primary">上週您的大頭菜價格走勢如何呢？</h2>
+                    <h3 class="color-color-primary">（這會影響您的判斷模式）</h3>
                     <input type="radio" v-model.number="pattern" id="pattern-radio-unknown" name="pattern" :value="-1" checked><label class="col pattern-col" for="pattern-radio-unknown">我不知道</label>
                     <input type="radio" v-model.number="pattern" id="pattern-radio-fluctuating" name="pattern" :value="0"><label class="col pattern-col" for="pattern-radio-fluctuating">波型</label>
                     <input type="radio" v-model.number="pattern" id="pattern-radio-small-spike" name="pattern" :value="3"><label class="col pattern-col" for="pattern-radio-small-spike">四期型</label>

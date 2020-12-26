@@ -4,6 +4,11 @@
  * E.x. font-family, etc...
  */
 
+body {
+    color: var(--font-primary-color);
+    background-color: var(--background-secondary);
+}
+
 /**
  * AURAKA 點陣宋字型
  */
