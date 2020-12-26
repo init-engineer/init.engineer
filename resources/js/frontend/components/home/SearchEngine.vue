@@ -8,8 +8,8 @@
         <label for="yahoo" class="switch switch--on">Yahoo</label>
         <input type="radio" id="ptt" value="PTT" v-model="platform" @click="setSearch('PTT')" hidden />
         <label for="ptt" class="switch switch--on">PTT</label>
-        <input type="radio" id="stackoverflow" value="Stack Overflow" v-model="platform" @click="setSearch('Stack Overflow')" hidden />
-        <label for="stackoverflow" class="switch switch--on">Stack Overflow</label>
+        <input type="radio" id="stackoverflow" value="StackOverflow" v-model="platform" @click="setSearch('StackOverflow')" hidden />
+        <label for="stackoverflow" class="switch switch--on">StackOverflow</label>
       </div>
     </div>
     <div class="input-group mb-3">
@@ -19,7 +19,8 @@
       <input
         type="text" class="form-control color-color-primary bg-color-secondary" v-model="content"
         :placeholder="'來跟 ' + platform + ' 說，你想要跟 ' + platform + ' 問甚麼？'"
-        :aria-label="'來跟 ' + platform + ' 說，你想要跟 ' + platform + ' 問甚麼？'" />
+        :aria-label="'來跟 ' + platform + ' 說，你想要跟 ' + platform + ' 問甚麼？'"
+        v-on:keyup.enter="search" />
       <div class="input-group-append">
         <button class="input-group-text bg-color-primary color-color-primary" type="button" @click="search">
           <i class="fa fa-search" aria-hidden="true"></i>
@@ -59,7 +60,7 @@ export default {
             case 'PTT':
                 document.location.href = 'https://www.pttweb.cc/ptt-search#gsc.q=' + keywords;
                 break;
-            case 'Stack Overflow':
+            case 'StackOverflow':
                 document.location.href = 'https://stackoverflow.com/search?q=' + keywords;
                 break;
         }
