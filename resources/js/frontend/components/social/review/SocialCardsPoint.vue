@@ -1,5 +1,5 @@
 <template>
-  <div class="jumbotron py-4">
+  <div class="jumbotron py-4 color-dark">
     <h3>
       您代表了 {{ point }} 張票，好棒！
       <button

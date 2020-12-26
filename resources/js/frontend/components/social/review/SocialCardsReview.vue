@@ -1,5 +1,5 @@
 <template>
-  <div class="social-cards">
+  <div class="social-cards color-dark">
     <vue-gallery :images="images" :index="gallery" @close="gallery = null" />
 
     <div class="card-columns">
