@@ -66,16 +66,29 @@
                     <tbody>
                         <tr><th scope="row" style="border-top: 0px; border-bottom: 1px solid var(--font-primary-color);">
                             ["平台功能":[
-                            "<a href="{{ route('frontend.animal.index') }}">大頭菜計算機</a>",&nbsp;
-                            "<a href="{{ route('frontend.social.cards.create') }}">發表文章</a>",&nbsp;
-                            "<a href="{{ route('frontend.social.cards.review') }}">群眾審核</a>"]]
+                            "<a href="{{ route('frontend.animal.index') }}"><img src="/img/frontend/banner/navbar01.png" alt=""> 大頭菜計算機</a>",&nbsp;
+                            "<a href="{{ route('frontend.social.cards.create') }}"><img src="/img/frontend/banner/navbar02.png" alt=""> 發表文章</a>",&nbsp;
+                            "<a href="{{ route('frontend.social.cards.review') }}"><img src="/img/frontend/banner/navbar03.png" alt=""> 群眾審核</a>"]]
                         </th></tr>
                         <tr><th scope="row" style="border-top: 0px;">
                             ["研討會":[
-                            "<a href="https://mopcon.org">MOPCON</a>",&nbsp;
-                            "<a href="https://sitcon.org">SITCON</a>",&nbsp;
-                            "<a href="https://hitcon.org">HITCON</a>",&nbsp;
-                            "<a href="https://coscup.org">COSCUP</a>"]]
+                            "<a href="https://mopcon.org"><img src="https://t.kfs.io/upload_images/102093/Image_from_iOS_original.jpg" alt=""> MOPCON</a>",&nbsp;
+                            "<a href="https://sitcon.org"><img src="https://sitcon.org/2016/image/stone.png" alt="sitcon"> SITCON</a>",&nbsp;
+                            "<a href="https://hitcon.org"><img src="https://ctf.hitcon.org/img/og_img.png" alt="hitcon"> HITCON</a>",&nbsp;
+                            "<a href="https://coscup.org"><img src="https://coscup.org/2019/avatar.jpg" alt="coscup"> COSCUP</a>"]]
+                        </th></tr>
+                        <tr><th scope="row" style="border-top: 0px;">
+                            ["臉書社團":[
+                            "<a href="https://www.facebook.com/groups/1182255762153380"><img src="https://scontent.fkhh1-1.fna.fbcdn.net/v/t1.0-9/117382620_882376012294771_230083542757351495_o.jpg?_nc_cat=103&ccb=2&_nc_sid=825194&_nc_ohc=PKdl6pl9BBYAX-B73DA&_nc_ht=scontent.fkhh1-1.fna&oh=f92f8e0dde95b34b827ce1a268c1b3d1&oe=600F82E1" alt=""> 程式語言讀書會</a>",&nbsp;
+                            "<a href="https://www.facebook.com/groups/kaobei.engineer"><img src="https://scontent.fkhh1-1.fna.fbcdn.net/v/t1.0-9/p960x960/126900516_963381837527521_8778510908854194782_o.jpg?_nc_cat=102&ccb=2&_nc_sid=825194&_nc_ohc=vbS-sevn90kAX9UvhN2&_nc_ht=scontent.fkhh1-1.fna&tp=6&oh=2e0772124bcf43a405b5ffcbfedabc99&oe=600E82E4" alt=""> 純靠北工程師 同溫層</a>",&nbsp;
+                            "<a href="https://www.facebook.com/groups/616369245163622"><img src="https://scontent.fkhh1-1.fna.fbcdn.net/v/t31.0-0/p180x540/12419361_10153759937808955_3887148722139652033_o.jpg?_nc_cat=100&ccb=2&_nc_sid=825194&_nc_ohc=W7d9v4_jMrgAX8X8FU2&_nc_ht=scontent.fkhh1-1.fna&tp=6&oh=2f78ff7e2ee4ffd35fc0c7cc902db394&oe=600CC7EB" alt=""> Backend 台灣</a>"]]
+                        </th></tr>
+                        <tr><th scope="row" style="border-top: 0px;">
+                            ["瀏覽器":[
+                            "<a href="https://www.mozilla.org/zh-TW/firefox/new"><img src="https://www.flaticon.com/svg/static/icons/svg/183/183320.svg" alt="firefox"> Firefox</a>",&nbsp;
+                            "<a href="https://www.google.com/intl/zh-TW/chrome"><img src="https://www.flaticon.com/svg/static/icons/svg/183/183316.svg" alt="chrome"> Chrome</a>",&nbsp;
+                            "<a href="https://www.opera.com/zh-cn"><img src="https://www.flaticon.com/svg/static/icons/svg/732/732233.svg" alt="opera"> Opera</a>",&nbsp;
+                            "<a href="https://brave.com/zh"><img src="https://brave.com/wp-content/uploads/2019/03/brave-logo.png" alt="brave"> Brave</a>"]]
                         </th></tr>
                         <tr><th scope="row" style="border-top: 0px;">
                             ["undefined": null]
@@ -142,6 +155,11 @@ tr a {
 }
 tr a:hover {
     color: var(--color-info) !important;
+}
+tr img {
+    width: auto;
+    max-height: 24px;
+    border-radius: 4px;
 }
 </style>
 @endpush
