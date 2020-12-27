@@ -68,7 +68,8 @@
                             ["平台功能":[
                             "<a href="{{ route('frontend.animal.index') }}"><img src="/img/frontend/banner/navbar01.png" alt=""> 大頭菜計算機</a>",&nbsp;
                             "<a href="{{ route('frontend.social.cards.create') }}"><img src="/img/frontend/banner/navbar02.png" alt=""> 發表文章</a>",&nbsp;
-                            "<a href="{{ route('frontend.social.cards.review') }}"><img src="/img/frontend/banner/navbar03.png" alt=""> 群眾審核</a>"]]
+                            "<a href="{{ route('frontend.social.cards.review') }}"><img src="/img/frontend/banner/navbar03.png" alt=""> 群眾審核</a>",&nbsp;
+                            "<a href="{{ route('frontend.social.cards.index') }}"><img src="/img/frontend/banner/navbar04.png" alt=""> 文章列表</a>"]]
                         </th></tr>
                         <tr><th scope="row" style="border-top: 0px;">
                             ["研討會":[
@@ -126,6 +127,9 @@
                 </div>
                 <div class="col-6 mt-0 mb-1 pr-1 pl-0">
                     <a class="my-2" href="{{ route('frontend.animal.index') }}"><img class="w-100" src="/img/frontend/banner/navbar01.png" alt="大頭菜計算機"></a>
+                </div>
+                <div class="col-6 mt-0 mb-1 pr-1 pl-0">
+                    <a class="my-2" href="{{ route('frontend.social.cards.index') }}"><img class="w-100" src="/img/frontend/banner/navbar04.png" alt="文章列表"></a>
                 </div>
             </div>
 
