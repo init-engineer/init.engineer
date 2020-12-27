@@ -66,10 +66,10 @@
                     <tbody>
                         <tr><th scope="row" style="border-top: 0px; border-bottom: 1px solid var(--font-primary-color);">
                             ["平台功能":[
-                            "<a href="{{ route('frontend.animal.index') }}"><img src="/img/frontend/banner/navbar01.png" alt=""> 大頭菜計算機</a>",&nbsp;
-                            "<a href="{{ route('frontend.social.cards.create') }}"><img src="/img/frontend/banner/navbar02.png" alt=""> 發表文章</a>",&nbsp;
-                            "<a href="{{ route('frontend.social.cards.review') }}"><img src="/img/frontend/banner/navbar03.png" alt=""> 群眾審核</a>",&nbsp;
-                            "<a href="{{ route('frontend.social.cards.index') }}"><img src="/img/frontend/banner/navbar04.png" alt=""> 文章列表</a>"]]
+                            "<a class="color-warning" href="{{ route('frontend.animal.index') }}">大頭菜計算機</a>",&nbsp;
+                            "<a class="color-warning" href="{{ route('frontend.social.cards.create') }}">發表文章</a>",&nbsp;
+                            "<a class="color-warning" href="{{ route('frontend.social.cards.review') }}">群眾審核</a>",&nbsp;
+                            "<a class="color-warning" href="{{ route('frontend.social.cards.index') }}">文章列表</a>"]]
                         </th></tr>
                         <tr><th scope="row" style="border-top: 0px;">
                             ["研討會":[
@@ -148,12 +148,6 @@
 
 @push('before-styles')
 <style>
-th {
-    display: flex;
-}
-th a {
-    display: flex;
-}
 tr {
     color: var(--color-gray) !important;
 }
@@ -167,7 +161,7 @@ tr a:hover {
     color: var(--color-info) !important;
 }
 tr img {
-    width: auto;
+    max-width: 24px;
     max-height: 24px;
     border-radius: 4px;
 }
