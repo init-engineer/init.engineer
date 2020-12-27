@@ -148,6 +148,12 @@
 
 @push('before-styles')
 <style>
+th {
+    display: flex;
+}
+th a {
+    display: flex;
+}
 tr {
     color: var(--color-gray) !important;
 }
