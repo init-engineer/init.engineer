@@ -40,7 +40,7 @@ export default {
     };
   },
   mounted() {
-    if (localStorage.getItem("search") != "null") {
+    if (localStorage.getItem("search") != null) {
       this.platform = localStorage.getItem("search");
     }
   },
@@ -49,19 +49,19 @@ export default {
       localStorage.setItem("search", value);
     },
     search() {
-        let keywords = this.content.replace(' ', '+');
+        let keywords = this.content.replace(" ", "+");
         switch (this.platform) {
-            case 'Google':
-                document.location.href = 'https://www.google.com/search?q=' + keywords;
+            case "Google":
+                document.location.href = "https://www.google.com/search?q=" + keywords;
                 break;
-            case 'Yahoo':
-                document.location.href = 'https://tw.search.yahoo.com/search?q=' + keywords;
+            case "Yahoo":
+                document.location.href = "https://tw.search.yahoo.com/search?q=" + keywords;
                 break;
-            case 'PTT':
-                document.location.href = 'https://www.pttweb.cc/ptt-search#gsc.q=' + keywords;
+            case "PTT":
+                document.location.href = "https://www.pttweb.cc/ptt-search#gsc.q=" + keywords;
                 break;
-            case 'StackOverflow':
-                document.location.href = 'https://stackoverflow.com/search?q=' + keywords;
+            case "StackOverflow":
+                document.location.href = "https://stackoverflow.com/search?q=" + keywords;
                 break;
         }
     },
