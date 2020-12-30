@@ -61,6 +61,24 @@
             </div>
         </div>
         <div class="col-12 col-md-8 col-lg-6 mx-auto my-2 px-0">
+            <label class="pt-2 col-label bg-color-primary color-color-primary">《全新服務》線上抽籤系統 上線啦！</label>
+            <div class="w-100 bg-color-primary p-2 mb-2">
+                <a href="{{ route('frontend.fortunes.index') }}"><img class="w-100" src="/img/frontend/banner/navbar05.png" alt="線上抽籤系統"></a>
+            </div>
+            <label class="pt-2 col-label bg-color-primary color-color-primary">斗內計數器</label>
+            <div class="w-100 bg-color-primary p-4 mb-2">
+                <h2 class="text-center"><strong>你斗內，我穿毛，站上研討會！</strong></h2>
+                <div class="progress" style="height: 3rem;">
+                    <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 1%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar bg-white text-dark" role="progressbar" style="width: 100%; height: 4rem;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"><h1>NTD$ 0 (0%)</h1></div>
+                </div>
+                <div class="row">
+                    <div class="col-4 text-left"><p class="mb-0">NTD$ 0</p></div>
+                    <div class="col-4 text-center"><p class="mb-0">NTD$ 30,000</p></div>
+                    <div class="col-4 text-right"><p class="mb-0">NTD$ 60,000</p></div>
+                </div>
+                <a class="btn btn-dos btn-lg btn-block my-2 px-2" href="https://cart.cashier.ecpay.com.tw/qp/jnb0">手刀衝去斗內</a>
+            </div>
             <div class="w-100 bg-color-primary">
                 <table class="table table-sm table-hover color-color-primary">
                     <tbody>
@@ -122,6 +140,10 @@
                 <div class="col-12 mt-0 mb-1 pr-1 pl-0">
                     <a class="my-2" href="{{ route('frontend.social.cards.create') }}"><img class="w-100" src="/img/frontend/banner/navbar02.png" alt="發表文章"></a>
                 </div>
+                <div class="col-6 mt-0 mb-1 pr-1 pl-0">
+                    <a class="my-2" href="{{ route('frontend.fortunes.index') }}"><img class="w-100" src="/img/frontend/banner/navbar05.png" alt="線上抽籤系統"></a>
+                </div>
+
                 <div class="col-6 mt-0 mb-1 pr-1 pl-0">
                     <a class="my-2" href="{{ route('frontend.social.cards.review') }}"><img class="w-100" src="/img/frontend/banner/navbar03.png" alt="群眾審核"></a>
                 </div>
