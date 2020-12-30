@@ -5,8 +5,11 @@
         <div class="w-100 m-0 p-2 bg-color-primary text-center">
             <div v-if="籤號 === null" class="descendant-main">
                 <img class="descendant-C" src="https://images.669pic.com/element_min_new_pic/16/10/0/53/b5b0118a0da191f257b51d2485e6ec7b.png" v-if="求籤" />
-                <img class="descendant-A" src="/img/frontend/Chim.png" v-if="求籤" />
-                <img class="descendant-B" src="/img/frontend/Kauchim.png" alt="求籤筒" v-bind:class="{ 'shake-hard': !求籤 }" @click="kauchim" />
+                <img class="descendant-A" src="/img/frontend/fortunes/chim.png" v-if="求籤" />
+                <img class="descendant-B" src="/img/frontend/fortunes/kauchim.png" alt="求籤筒" v-bind:class="{ 'shake-hard': !求籤 }" @click="kauchim" />
+
+                <img class="shake-slow shake-constant shake-constant--hover" style="height: 72px; margin-top: -120px; margin-right: 120px;" src="/img/frontend/fortunes/clickme_right.png" />
+                <img class="shake-slow shake-constant shake-constant--hover" style="height: 72px; margin-top: 80px;" src="/img/frontend/fortunes/clickme_left.png" />
             </div>
             <div v-if="籤號 !== null">
                 <button class="btn btn-dos btn-lg btn-block my-2 px-2" @click="reset">重新抽籤</button>
@@ -58,7 +61,7 @@ div.descendant-main {
 }
 div.descendant-main .descendant-A {
   height: 128px;
-  top: 136px;
+  top: 260px;
   position: absolute;
   animation-name: upA;
   animation-duration: 2s;
@@ -70,25 +73,25 @@ div.descendant-main .descendant-B {
 }
 div.descendant-main .descendant-C {
   height: 192px;
-  top: 52px;
+  top: 176px;
   position: absolute;
   animation: upB 2s, fadein 3s, rotate 6s linear infinite;
   transition-timing-function: cubic-bezier(1, 0, .5, 1);
 }
 @keyframes upA {
   from{
-    top: 242px;
+    top: 392px;
   }
   to{
-    top: 136px;
+    top: 260px;
   }
 }
 @keyframes upB {
   from{
-    top: 158px;
+    top: 392px;
   }
   to{
-    top: 52px;
+    top: 176px;
   }
 }
 @keyframes fadein {
