@@ -7,9 +7,8 @@
                 <img class="descendant-C" src="https://images.669pic.com/element_min_new_pic/16/10/0/53/b5b0118a0da191f257b51d2485e6ec7b.png" v-if="求籤" />
                 <img class="descendant-A" src="/img/frontend/fortunes/chim.png" v-if="求籤" />
                 <img class="descendant-B" src="/img/frontend/fortunes/kauchim.png" alt="求籤筒" v-bind:class="{ 'shake-hard': !求籤 }" @click="kauchim" />
-
-                <img class="shake-slow shake-constant shake-constant--hover" style="height: 72px; margin-top: -120px; margin-right: 120px;" src="/img/frontend/fortunes/clickme_right.png" />
-                <img class="shake-slow shake-constant shake-constant--hover" style="height: 72px; margin-top: 80px;" src="/img/frontend/fortunes/clickme_left.png" />
+                <img class="shake-constant shake-constant--hover" style="height: 72px; margin-top: -120px; margin-right: 120px;" src="/img/frontend/fortunes/clickme_right.png" v-bind:class="{ 'shake-slow': !求籤, 'fadeout': 求籤 }" />
+                <img class="shake-constant shake-constant--hover" style="height: 72px; margin-top: 80px;" src="/img/frontend/fortunes/clickme_left.png" v-bind:class="{ 'shake-slow': !求籤, 'fadeout': 求籤 }" />
             </div>
             <div v-if="籤號 !== null">
                 <button class="btn btn-dos btn-lg btn-block my-2 px-2" @click="reset">重新抽籤</button>
@@ -61,7 +60,7 @@ div.descendant-main {
 }
 div.descendant-main .descendant-A {
   height: 128px;
-  top: 260px;
+  margin-top: -256px;
   position: absolute;
   animation-name: upA;
   animation-duration: 2s;
@@ -73,25 +72,28 @@ div.descendant-main .descendant-B {
 }
 div.descendant-main .descendant-C {
   height: 192px;
-  top: 176px;
+  margin-top: -355px;
   position: absolute;
   animation: upB 2s, fadein 3s, rotate 6s linear infinite;
   transition-timing-function: cubic-bezier(1, 0, .5, 1);
 }
+.fadeout {
+  animation: fadeout 1s forwards;
+}
 @keyframes upA {
   from{
-    top: 392px;
+    margin-top: 0px;
   }
   to{
-    top: 260px;
+    margin-top: -256px;
   }
 }
 @keyframes upB {
   from{
-    top: 392px;
+    margin-top: 0px;
   }
   to{
-    top: 176px;
+    margin-top: -355px;
   }
 }
 @keyframes fadein {
@@ -101,6 +103,14 @@ div.descendant-main .descendant-C {
   60% {opacity: .5;}
   80% {opacity: .7;}
   100% {opacity: 1;}
+}
+@keyframes fadeout {
+  0% {opacity: 1;}
+  20% {opacity: .7;}
+  40% {opacity: .5;}
+  60% {opacity: .3;}
+  80% {opacity: .1;}
+  100% {opacity: 0;}
 }
 @keyframes rotate{
     from{transform: rotate(0deg)}
