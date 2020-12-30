@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-sm navbar-bg bg-black" style="font-size: 90%;">
-    <a href="{{ route('frontend.index') }}" class="navbar-brand" style="font-size: 100%;">🏠純靠首頁</a>
+    <a href="{{ route('frontend.index') }}" class="navbar-brand mr-1" style="font-size: 100%;">🏠純靠首頁</a>
     <a href="javascript:void(0);" class="nav-item px-1">幫助中心</a>
     <a href="javascript:void(0);" class="nav-item px-1">網站地圖</a>
     <a href="javascript:void(0);" class="nav-item px-1">加入最愛</a>
