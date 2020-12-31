@@ -68,10 +68,10 @@
             <label class="pt-2 col-label bg-color-primary color-color-primary">斗內計數器</label>
             <div class="w-100 bg-color-primary p-4 mb-2">
                 <h2 class="text-center"><strong>你斗內，我穿毛，站上研討會！</strong></h2>
-                <div class="progress" style="height: 3rem;">
+                <div class="progress" style="height: 2rem;">
                     <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 1.78%"></div>
                 </div>
-                <div class="text-center text-dark" role="progressbar" style="width: 100%; height: 4rem; margin-top: -3rem;"><h1>NTD$ 1,069 (1.78%)</h1></div>
+                <div class="text-center text-dark" role="progressbar" style="width: 100%; height: 3rem; margin-top: -2rem;"><h3>NTD$ 1,069 (1.78%)</h3></div>
                 <div class="row" style="margin-top: -1rem;">
                     <div class="col-4 text-left"><p class="mb-0">NTD$ 0</p></div>
                     <div class="col-4 text-center"><p class="mb-0">NTD$ 30,000</p></div>
