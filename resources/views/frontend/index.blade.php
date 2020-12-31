@@ -45,6 +45,10 @@
 
             <label class="pt-2 col-label bg-color-primary color-color-primary">公告欄</label>
             <div class="w-100 mb-2 bg-color-primary">
+                <p class="p-1 mx-2 my-0">2020/12/30 (週三)</p>
+                <hr class="p-0 mx-2 my-0" style="border: 1px var(--font-primary-color) solid;">
+                <p class="pt-2 mx-2 my-0 text-center"><strong>新增服務</strong></p>
+                <p class="pb-2 mx-2 my-0">新增了《線上抽籤服務》解決大家選擇困難症的煩惱。</p>
                 <p class="p-1 mx-2 my-0">2020/12/27 (週日)</p>
                 <hr class="p-0 mx-2 my-0" style="border: 1px var(--font-primary-color) solid;">
                 <p class="pt-2 mx-2 my-0 text-center"><strong>更新首頁</strong></p>
