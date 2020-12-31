@@ -69,10 +69,10 @@
             <div class="w-100 bg-color-primary p-4 mb-2">
                 <h2 class="text-center"><strong>你斗內，我穿毛，站上研討會！</strong></h2>
                 <div class="progress" style="height: 3rem;">
-                    <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 1%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                    <div class="progress-bar bg-white text-dark" role="progressbar" style="width: 100%; height: 4rem;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"><h1>NTD$ 0 (0%)</h1></div>
+                    <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 1.78%"></div>
                 </div>
-                <div class="row">
+                <div class="text-center text-dark" role="progressbar" style="width: 100%; height: 4rem; margin-top: -3rem;"><h1>NTD$ 1,069 (1.78%)</h1></div>
+                <div class="row" style="margin-top: -1rem;">
                     <div class="col-4 text-left"><p class="mb-0">NTD$ 0</p></div>
                     <div class="col-4 text-center"><p class="mb-0">NTD$ 30,000</p></div>
                     <div class="col-4 text-right"><p class="mb-0">NTD$ 60,000</p></div>
