@@ -14,8 +14,8 @@
         <label class="col-label bg-color-primary color-color-primary mt-2">資料來源</label>
         <div class="w-100 m-0 p-2 bg-color-primary">
             <ul class="mb-0 pl-4">
-                <li><a href="http://www.chance.org.tw">籤詩網‧淺草觀音寺一百籤</a></li>
-                <li><a href="https://omikuji-guide.com">おみくじ1～100番の解説まとめ</a></li>
+                <li><a class="color-color-primary" href="http://www.chance.org.tw">籤詩網‧淺草觀音寺一百籤</a></li>
+                <li><a class="color-color-primary" href="https://omikuji-guide.com">おみくじ1～100番の解説まとめ</a></li>
             </ul>
         </div>
     </div><!--container-->
