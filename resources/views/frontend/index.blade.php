@@ -45,6 +45,10 @@
 
             <label class="pt-2 col-label bg-color-primary color-color-primary">公告欄</label>
             <div class="w-100 mb-2 bg-color-primary">
+                <p class="p-1 mx-2 my-0">2021/01/04 (週一)</p>
+                <hr class="p-0 mx-2 my-0" style="border: 1px var(--font-primary-color) solid;">
+                <p class="pt-2 mx-2 my-0 text-center"><strong>更新服務</strong></p>
+                <p class="pb-2 mx-2 my-0">《線上抽籤服務》新增了籤詩百科，《搜尋引擎》新增了直接搜尋或開啟新頁的選項。</p>
                 <p class="p-1 mx-2 my-0">2020/12/30 (週三)</p>
                 <hr class="p-0 mx-2 my-0" style="border: 1px var(--font-primary-color) solid;">
                 <p class="pt-2 mx-2 my-0 text-center"><strong>新增服務</strong></p>
