@@ -16,6 +16,7 @@
                 <p>
                     熱門話題:
                     <a class="color-danger" style="text-decoration: underline;" href="https://github.com/init-engineer/init.engineer">純靠北工程師</a>
+                    <a class="color-color-primary" style="text-decoration: underline;" href="https://www.google.com/search?q=富王鴨肉">炎上鴨肉飯</a>
                     <a class="color-color-primary" style="text-decoration: underline;" href="https://www.php.net/releases/8.0/en.php">PHP 8 Released</a>
                     <a class="color-color-primary" style="text-decoration: underline;" href="https://www.ruby-lang.org/en/news/2020/12/25/ruby-3-0-0-released">Ruby 3 Released</a>
                     <a class="color-primary" style="text-decoration: underline;" href="https://www.apple.com/tw/mac/m1/">Apple M1 晶片</a>
@@ -36,10 +37,10 @@
 
     <div class="row flex-column-reverse flex-md-row my-2">
         <div class="col-12 col-md-4 col-lg-2 mx-auto my-2">
-            <label class="col-label bg-color-primary color-color-primary">《近日熱門文章》</label>
+            <label class="col-label bg-color-primary color-color-primary">《近日炎上文章》</label>
             <div class="w-100 mb-2 bg-color-primary">
-                <a href="https://kaobei.engineer/cards/show/5659">
-                    <img class="p-2 w-100" src="https://kaobei.engineer/storage/cards/custom/LLmX1vkbxQt4bkvlo7pE5higIObX3ZOPii5zAoD9D4wWiR3UfjkFxxsr1dQ82UBMgq4GOB56Vd3pCQh9e0txvd1mlvcQF8iUwz71fxwCBL8sKVhMTUsoMe3M6XrShqHu.png">
+                <a href="https://kaobei.engineer/cards/show/5668">
+                    <img class="p-2 w-100" src="https://kaobei.engineer/storage/cards/images/fCyGLsd9sSVtUoJJnioPCn2IW8GeuosNVkIXm2QTs4wwjbY6672KZ5y3xxeyJAIPNzpYOZJJp1FAFzy9idNVPYX5fGPNg17Lqsr68VMlHbkUINbxKiApOCZUPnQYmBVk.jpeg">
                 </a>
             </div>
 
