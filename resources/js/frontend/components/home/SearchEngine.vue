@@ -22,9 +22,11 @@
         :aria-label="'來跟 ' + platform + ' 說，你想要跟 ' + platform + ' 問甚麼？'"
         v-on:keyup.enter="search" />
       <div class="input-group-append">
-        <button class="input-group-text bg-color-primary color-color-primary" type="button" @click="search">
-          <i class="fa fa-search" aria-hidden="true"></i>
-        </button>
+        <button class="input-group-text bg-color-primary color-color-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ action }}</button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" @click="setAction('直接搜尋')">直接搜尋</a>
+          <a class="dropdown-item" @click="setAction('開啟新頁')">開啟新頁</a>
+        </div>
       </div>
     </div>
   </div>
@@ -36,6 +38,7 @@ export default {
   data() {
     return {
       platform: "Google",
+      action: "直接搜尋",
       content: null,
     };
   },
@@ -43,28 +46,44 @@ export default {
     if (localStorage.getItem("search") != null) {
       this.platform = localStorage.getItem("search");
     }
+    if (localStorage.getItem("action") != null) {
+      this.action = localStorage.getItem("action");
+    }
   },
   methods: {
     setSearch(value) {
       localStorage.setItem("search", value);
     },
+    setAction(value) {
+      localStorage.setItem("action", value);
+      this.action = value;
+    },
     search() {
-        let keywords = this.content.replace(" ", "+");
-        keywords = encodeURIComponent(keywords);
-        switch (this.platform) {
-            case "Google":
-                document.location.href = "https://www.google.com/search?q=" + keywords;
-                break;
-            case "Yahoo":
-                document.location.href = "https://tw.search.yahoo.com/search?q=" + keywords;
-                break;
-            case "PTT":
-                document.location.href = "https://www.pttweb.cc/ptt-search#gsc.q=" + keywords;
-                break;
-            case "StackOverflow":
-                document.location.href = "https://stackoverflow.com/search?q=" + keywords;
-                break;
-        }
+      let url = this.content.replace(" ", "+");
+      url = encodeURIComponent(url);
+      switch (this.platform) {
+        case "Google":
+          url = "https://www.google.com/search?q=" + url;
+          break;
+        case "Yahoo":
+          url = "https://tw.search.yahoo.com/search?q=" + url;
+          break;
+        case "PTT":
+          url = "https://www.pttweb.cc/ptt-search#gsc.q=" + url;
+          break;
+        case "StackOverflow":
+          url = "https://stackoverflow.com/search?q=" + url;
+          break;
+      }
+
+      switch (this.action) {
+        case '直接搜尋':
+          document.location.href = url;
+          break;
+        case '開啟新頁':
+          window.open(url, '_blank');
+          break;
+      }
     },
   },
 };
