@@ -9,7 +9,7 @@
 
 @section('content')
     <div class="container my-3">
-        <fortunes-tools></fortunes-tools>
+        <fortunes-switch></fortunes-switch>
 
         <label class="col-label bg-color-primary color-color-primary mt-2">資料來源</label>
         <div class="w-100 m-0 p-2 bg-color-primary">

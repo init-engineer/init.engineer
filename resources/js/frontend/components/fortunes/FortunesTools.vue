@@ -1,29 +1,27 @@
 <template>
     <div>
-        <label class="col-label bg-color-primary color-color-primary">【抽籤抽起來】</label>
-        <label class="col-label bg-color-primary color-color-gray">【每日抽籤運】</label>
         <div class="w-100 m-0 p-2 bg-color-primary text-center">
             <div v-if="籤號 === null" class="descendant-main">
                 <img class="descendant-C" src="https://images.669pic.com/element_min_new_pic/16/10/0/53/b5b0118a0da191f257b51d2485e6ec7b.png" v-if="求籤" />
                 <img class="descendant-A" src="/img/frontend/fortunes/chim.png" v-if="求籤" />
                 <img class="descendant-B" src="/img/frontend/fortunes/kauchim.png" alt="求籤筒" v-bind:class="{ 'shake-hard': !求籤 }" @click="kauchim" />
-                <img class="shake-constant shake-constant--hover" style="height: 72px; margin-top: -120px; margin-right: 120px;" src="/img/frontend/fortunes/clickme_right.png" v-bind:class="{ 'shake-slow': !求籤, 'fadeout': 求籤 }" />
-                <img class="shake-constant shake-constant--hover" style="height: 72px; margin-top: 80px;" src="/img/frontend/fortunes/clickme_left.png" v-bind:class="{ 'shake-slow': !求籤, 'fadeout': 求籤 }" />
+                <img class="shake-constant shake-constant--hover" style="height: 72px; margin-top: -120px; margin-right: 120px;" src="/img/frontend/fortunes/clickme_right.png" v-bind:class="{ 'shake-slow': !求籤, 'fadeout': 求籤 }" @click="kauchim" />
+                <img class="shake-constant shake-constant--hover" style="height: 72px; margin-top: 80px;" src="/img/frontend/fortunes/clickme_left.png" v-bind:class="{ 'shake-slow': !求籤, 'fadeout': 求籤 }" @click="kauchim" />
             </div>
             <div v-if="籤號 !== null">
                 <button class="btn btn-dos btn-lg btn-block my-2 px-2" @click="reset">重新抽籤</button>
-                <FortuneCards :index="籤號"></FortuneCards>
+                <FortunesCards :index="籤號"></FortunesCards>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import FortuneCards from "./FortunesCards.vue";
+import FortunesCards from "./FortunesCards.vue";
 export default {
   name: "FortunesTools",
   components: {
-    FortuneCards,
+    FortunesCards,
   },
   props: {},
   data() {
