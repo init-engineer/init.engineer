@@ -50,6 +50,7 @@ export default {
     },
     search() {
         let keywords = this.content.replace(" ", "+");
+        keywords = encodeURIComponent(keywords);
         switch (this.platform) {
             case "Google":
                 document.location.href = "https://www.google.com/search?q=" + keywords;
