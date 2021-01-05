@@ -18,7 +18,7 @@
         "@coreui/coreui": "^2.1.16",
         "@fortawesome/fontawesome-free": "^5.15.1",
         "@vue/test-utils": "^1.1.0",
-        "axios": "^0.19.2",
+        "axios": "^0.21.1",
         "babel-core": "^7.0.0-bridge.0",
         "babel-jest": "^26.5.2",
         "bootstrap": "^4.5.2",
