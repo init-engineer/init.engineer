@@ -89,19 +89,19 @@
 
       <div class="col-12 col-md-6">
         <div class="form-group">
-          <label class="col-label">To Be Coutinued</label>
+          <label class="col-label">To Be Continued</label>
 
           <div class="custom-control custom-checkbox">
             <input
               type="checkbox"
-              id="manager-line"
+              id="to-be-continued"
               class="control-input"
               v-model="canvas.feature.is_to_be_continued"
               @click="drawingAll"
             />
             <label
               class="color-color-primary control-label"
-              for="manager-line"
+              for="to-be-continued"
             >是否在文章當中繪製 To Be Coutinued，建議主題選擇「黑底白字」</label>
           </div>
         </div>
