@@ -12,7 +12,7 @@
 
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
         <ul class="navbar-nav">
-            <li><a class="nav-link">{{ date('m月d日') }}(週{{ ['日', '一', '二', '三', '四', '五', '六'][date('w')] }}) 天氣有點冷</a></li>
+            <li><a class="nav-link">{{ date('m月d日') }}(週{{ ['日', '一', '二', '三', '四', '五', '六'][date('w')] }}) 超冷的啦</a></li>
             @guest
                 <li class="nav-item"><a href="{{ route('frontend.auth.login') }}" class="nav-link {{ active_class(Route::is('frontend.auth.login')) }}">@lang('navs.frontend.login')</a></li>
                 <li class="nav-item"><a href="{{ route('frontend.auth.register') }}" class="nav-link {{ active_class(Route::is('frontend.auth.register')) }}">@lang('navs.frontend.register')</a></li>
