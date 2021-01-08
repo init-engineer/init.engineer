@@ -37,10 +37,10 @@
 
     <div class="row flex-column-reverse flex-md-row my-2">
         <div class="col-12 col-md-4 col-lg-2 mx-auto my-2">
-            <label class="col-label bg-color-primary color-color-primary">《近日炎上文章》</label>
+            <label class="col-label bg-color-primary color-color-primary">《近日熱門文章》</label>
             <div class="w-100 mb-2 bg-color-primary">
-                <a href="https://kaobei.engineer/cards/show/5668">
-                    <img class="p-2 w-100" src="https://kaobei.engineer/storage/cards/images/fCyGLsd9sSVtUoJJnioPCn2IW8GeuosNVkIXm2QTs4wwjbY6672KZ5y3xxeyJAIPNzpYOZJJp1FAFzy9idNVPYX5fGPNg17Lqsr68VMlHbkUINbxKiApOCZUPnQYmBVk.jpeg">
+                <a href="https://kaobei.engineer/cards/show/5689">
+                    <img class="p-2 w-100" src="https://kaobei.engineer/storage/cards/images/tR1TNYuaKCJ2rMVOoHmVvyhm4EV0CdJiASLbrrJzwweaRZHjO8oRGsQSHvEZG1uSfso01FTytTn6FmzjZ6WbpfNMc0At8lSVPDcpYo7jEB3rKWgKFTzS57mnR8qqNdgQ.jpeg">
                 </a>
             </div>
 
