@@ -70,10 +70,6 @@
             </div>
         </div>
         <div class="col-12 col-md-8 col-lg-6 mx-auto my-2 px-0">
-            <label class="pt-2 col-label bg-color-primary color-color-primary">《全新服務》線上抽籤系統 上線啦！</label>
-            <div class="w-100 bg-color-primary p-2 mb-2">
-                <a href="{{ route('frontend.fortunes.index') }}"><img class="w-100" src="/img/frontend/banner/navbar05.png" alt="線上抽籤系統"></a>
-            </div>
             <label class="pt-2 col-label bg-color-primary color-color-primary">斗內計數器</label>
             <div class="w-100 bg-color-primary p-4 mb-2">
                 <h2 class="text-center"><strong>你斗內，我穿毛，站上研討會！</strong></h2>
