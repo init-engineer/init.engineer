@@ -216,6 +216,8 @@
       <!--col-->
     </div>
     <!--row-->
+
+    <audio ref="audio" src="/music/種子.mp3"></audio>
   </div>
   <!--container-->
 </template>
@@ -925,6 +927,8 @@ export default {
       }).then(result => {
         switch (result.value.status) {
           case 200:
+            this.$refs.audio.play();
+
             let timerInterval;
             Swal.fire({
               title: "射射射！",

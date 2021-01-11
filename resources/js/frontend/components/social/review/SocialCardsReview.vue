@@ -153,6 +153,8 @@
 
     <go-top bg-color="#13cf13" weight="bold" :size="60" :right="92" :bottom="24" />
     <!-- go to the top -->
+
+    <audio ref="audio" src="/music/種子.mp3"></audio>
   </div>
   <!-- social cards -->
 </template>
@@ -217,6 +219,8 @@ export default {
       axios
         .get(`/api/frontend/social/cards/token/review/${id}/succeeded`)
         .then(response => {
+          this.$refs.audio.play();
+
           let card = response.data.data;
           this.cards.find(x => x.id === card.id).succeeded = card.succeeded;
           this.cards.find(x => x.id === card.id).review = 1;
