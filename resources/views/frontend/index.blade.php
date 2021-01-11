@@ -44,22 +44,6 @@
                 </a>
             </div>
 
-            <label class="pt-2 col-label bg-color-primary color-color-primary">公告欄</label>
-            <div class="w-100 mb-2 bg-color-primary">
-                <p class="p-1 mx-2 my-0">2021/01/04 (週一)</p>
-                <hr class="p-0 mx-2 my-0" style="border: 1px var(--font-primary-color) solid;">
-                <p class="pt-2 mx-2 my-0 text-center"><strong>更新服務</strong></p>
-                <p class="pb-2 mx-2 my-0">《線上抽籤服務》新增了籤詩百科，《搜尋引擎》新增了直接搜尋或開啟新頁的選項。</p>
-                <p class="p-1 mx-2 my-0">2020/12/30 (週三)</p>
-                <hr class="p-0 mx-2 my-0" style="border: 1px var(--font-primary-color) solid;">
-                <p class="pt-2 mx-2 my-0 text-center"><strong>新增服務</strong></p>
-                <p class="pb-2 mx-2 my-0">新增了《線上抽籤服務》解決大家選擇困難症的煩惱。</p>
-                <p class="p-1 mx-2 my-0">2020/12/27 (週日)</p>
-                <hr class="p-0 mx-2 my-0" style="border: 1px var(--font-primary-color) solid;">
-                <p class="pt-2 mx-2 my-0 text-center"><strong>更新首頁</strong></p>
-                <p class="pb-2 mx-2 my-0">把首頁整個大翻新，並提供了閃亮模式、暗黑模式，</p>
-            </div>
-
             <label class="pt-2 col-label bg-color-primary color-color-primary">暫定</label>
             <div class="w-100 mb-2 bg-color-primary">
                 <div class="w-100 m-0 p-1">
@@ -160,14 +144,7 @@
                 </div>
             </div>
 
-            <label class="pt-2 col-label bg-color-primary color-color-primary">暫定</label>
-            <div class="w-100 mb-2 bg-color-primary">
-                <div class="w-100 m-0 p-1">
-                    <div class="w-100 my-2 color-warning" style="height: 3rem; border-style: dashed;">
-                        <p class="text-center py-2">提&nbsp;供</p>
-                    </div>
-                </div>
-            </div>
+            <bulletin-board></bulletin-board>
         </div>
     </div>
 </div>
