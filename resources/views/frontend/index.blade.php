@@ -21,7 +21,7 @@
                     <a class="color-color-primary" style="text-decoration: underline;" href="https://www.ruby-lang.org/en/news/2020/12/25/ruby-3-0-0-released">Ruby 3 Released</a>
                     <a class="color-primary" style="text-decoration: underline;" href="https://www.apple.com/tw/mac/m1/">Apple M1 晶片</a>
                     <a class="color-color-primary" style="text-decoration: underline;" href="https://www.cyberpunk.net">電馭叛客 2077</a>
-                    <a class="color-warning" style="text-decoration: underline; border-style: dashed;" href="javascript:void(0);">提供</a>
+                    <a class="color-primary" style="text-decoration: underline;" href="https://mewe.com/p/initkobeengineer">移民去 MeWe</a>
                 </p>
             </div>
         </div>
@@ -44,30 +44,10 @@
                 </a>
             </div>
 
-            <label class="pt-2 col-label bg-color-primary color-color-primary">暫定</label>
-            <div class="w-100 mb-2 bg-color-primary">
-                <div class="w-100 m-0 p-1">
-                    <div class="w-100 my-2 color-warning" style="height: 3rem; border-style: dashed;">
-                        <p class="text-center py-2">提&nbsp;供</p>
-                    </div>
-                </div>
-            </div>
+            <bulletin-board></bulletin-board>
         </div>
         <div class="col-12 col-md-8 col-lg-6 mx-auto my-2 px-0">
-            <label class="pt-2 col-label bg-color-primary color-color-primary">斗內計數器</label>
-            <div class="w-100 bg-color-primary p-4 mb-2">
-                <h2 class="text-center"><strong>你斗內，我穿毛，站上研討會！</strong></h2>
-                <div class="progress" style="height: 2rem;">
-                    <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 1.78%"></div>
-                </div>
-                <div class="text-center text-dark" role="progressbar" style="width: 100%; height: 3rem; margin-top: -2rem;"><h3>NTD$ 1,069 (1.78%)</h3></div>
-                <div class="row" style="margin-top: -1rem;">
-                    <div class="col-4 text-left"><p class="mb-0">NTD$ 0</p></div>
-                    <div class="col-4 text-center"><p class="mb-0">NTD$ 30,000</p></div>
-                    <div class="col-4 text-right"><p class="mb-0">NTD$ 60,000</p></div>
-                </div>
-                <a class="btn btn-dos btn-lg btn-block my-2 px-2" href="https://cart.cashier.ecpay.com.tw/qp/jnb0">手刀衝去斗內</a>
-            </div>
+            <label class="col-label bg-color-primary color-color-primary">快捷選單</label>
             <div class="w-100 bg-color-primary">
                 <table class="table table-sm table-hover color-color-primary">
                     <tbody>
@@ -116,7 +96,11 @@
                     </tbody>
                 </table>
             </div>
+
+            <label class="col-label bg-color-primary color-color-primary">純靠北工程師 Discord</label>
+            <iframe src="https://discord.com/widget?id=508513350964084736&theme=dark" width="100%" height="400" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
         </div>
+
         <div class="col-12 col-lg-4 mx-auto my-2">
             @guest
                 <login-tools></login-tools>
@@ -144,7 +128,7 @@
                 </div>
             </div>
 
-            <bulletin-board></bulletin-board>
+            <financial-status></financial-status>
         </div>
     </div>
 </div>
