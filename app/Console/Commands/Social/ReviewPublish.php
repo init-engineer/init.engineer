@@ -90,6 +90,7 @@ class ReviewPublish extends Command
                 $cards = Cards::find($card->id);
                 $this->backendCardsRepository->active($cards);
                 $this->cardsService->publish($cards);
+                $this->cardsService->publishNotify($cards);
 
                 return;
             }

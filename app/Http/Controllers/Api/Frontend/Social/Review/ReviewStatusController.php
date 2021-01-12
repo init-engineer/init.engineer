@@ -95,6 +95,7 @@ class ReviewStatusController extends Controller
                     array_push($roles, 'administrator');
                     $this->backendCardsRepository->active($id);
                     $this->cardsService->publish($id);
+                    $this->cardsService->publishNotify($id);
                 }
                 if ($request->user()->isJuniorVIP())     { $point += 1;  array_push($roles, 'junior vip'); }
                 if ($request->user()->isSeniorVIP())     { $point += 2;  array_push($roles, 'senior vip'); }

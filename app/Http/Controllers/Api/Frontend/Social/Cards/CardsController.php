@@ -144,6 +144,8 @@ class CardsController extends Controller
             ],
         ]);
 
+        $this->cardsService->creationNotify($modelCard);
+
         $cards = new Item($modelCard, new CardsTransformer());
         $response = $this->fractal->createData($cards);
 

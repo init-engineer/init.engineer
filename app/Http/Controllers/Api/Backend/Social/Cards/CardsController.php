@@ -95,6 +95,7 @@ class CardsController extends Controller
         ]);
 
         $this->cardsService->publish($modelCard);
+        $this->cardsService->publishNotify($modelCard);
 
         $cards = new Item($modelCard, new CardsTransformer());
         $response = $this->fractal->createData($cards);

@@ -14,6 +14,7 @@ use App\Jobs\Social\MediaCards\FacebookPrimaryPublish;
 use App\Jobs\Social\MediaCards\FacebookSecondaryDestory;
 use App\Jobs\Social\MediaCards\FacebookSecondaryPublish;
 use App\Repositories\Backend\Social\MediaCardsRepository;
+use GuzzleHttp\Client;
 
 /**
  * Class CardsService.
@@ -47,6 +48,60 @@ class CardsService extends BaseService implements CardsContract
             TwitterPrimaryPublish::dispatch($cards);
         if (env('PLURK_CREATE_POST', false) && (! $this->mediaCardsRepository->findByCardId($cards->id, 'plurk', 'primary')))
             PlurkPrimaryPublish::dispatch($cards);
+    }
+
+    /**
+     * @param Cards $cards
+     * @return void
+     */
+    public function creationNotify(Cards $cards)
+    {
+        if (env('DISCORD_CREATION_NOTIFY') !== "") {
+            $client = new Client();
+            $client->request('POST', env('DISCORD_CREATION_NOTIFY'), [
+                'json' => [
+                    "embeds" => [
+                        [
+                            "title" => "#純靠北工程師" . base_convert($cards->id, 10, 36),
+                            "url" => "https://kaobei.engineer/cards/show/" . $cards->id,
+                            "description" => $cards->content,
+                            "color" => 15258703,
+                            "image" => [
+                                "url" => $cards->images->first()->getPicture()
+                            ],
+                            "timestamp" => $cards->created_at,
+                        ],
+                    ],
+                ],
+            ]);
+        }
+    }
+
+    /**
+     * @param Cards $cards
+     * @return void
+     */
+    public function publishNotify(Cards $cards)
+    {
+        if (env('DISCORD_PUBLISH_NOTIFY') !== "") {
+            $client = new Client();
+            $client->request('POST', env('DISCORD_PUBLISH_NOTIFY'), [
+                'json' => [
+                    "embeds" => [
+                        [
+                            "title" => "#純靠北工程師" . base_convert($cards->id, 10, 36),
+                            "url" => "https://kaobei.engineer/cards/show/" . $cards->id,
+                            "description" => $cards->content,
+                            "color" => 15258703,
+                            "image" => [
+                                "url" => $cards->images->first()->getPicture()
+                            ],
+                            "timestamp" => $cards->created_at,
+                        ],
+                    ],
+                ],
+            ]);
+        }
     }
 
     /**
