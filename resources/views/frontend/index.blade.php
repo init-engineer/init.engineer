@@ -37,6 +37,8 @@
 
     <div class="row flex-column-reverse flex-md-row my-2">
         <div class="col-12 col-md-4 col-lg-2 mx-auto my-2">
+            <music-player></music-player>
+
             <label class="col-label bg-color-primary color-color-primary">《近日熱門文章》</label>
             <div class="w-100 mb-2 bg-color-primary">
                 <a href="https://kaobei.engineer/cards/show/5689">
