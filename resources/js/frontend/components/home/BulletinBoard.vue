@@ -19,6 +19,11 @@ export default {
     return {
         bulletins: [
             {
+                date: "2021/01/16 (週六)",
+                title: "更新首頁",
+                content: "新增《音樂播放器》。",
+            },
+            {
                 date: "2021/01/12 (週二)",
                 title: "更新首頁",
                 content: "部分區塊改為 Vue Component、新增財務狀況區塊。",
