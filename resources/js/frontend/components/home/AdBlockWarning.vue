@@ -24,7 +24,7 @@ export default {
 
     let vm = this;
     setTimeout(function () {
-      if (typeof window.google_jobrunner === "undefined") {
+      if (typeof window.google_ad_modifications === "undefined") {
         vm.block = true;
       } else {
         vm.block = false;
