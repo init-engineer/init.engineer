@@ -10,62 +10,6 @@
 @section('content')
     <div class="container my-5">
         <div class="row justify-content-center">
-            <div class="col col-12">
-                <label class="col-label">史蒂夫和戴夫都參與<a class="text-warning" href="{{ route('frontend.social.cards.review') }}">群眾審核系統</a>來實踐自己的版友權益。</label>
-                <div class="messaging">
-                    <div class="inbox_msg">
-                        <div class="mesgs">
-                            <div class="msg_history">
-                                <div class="incoming_msg">
-                                    <div class="incoming_msg_img">
-                                        <img src="https://image.flaticon.com/icons/svg/2945/2945360.svg" alt="sunil">
-                                    </div>
-                                    <div class="received_msg">
-                                        <div class="received_withd_msg">
-                                            <p>奇怪？為什麼我發了文章，文章卻沒有被發表出去？</p>
-                                            <span class="time_date"> 你</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="outgoing_msg">
-                                    <div class="sent_msg">
-                                        <p>那是因為<a class="text-warning" href="{{ route('frontend.social.cards.review') }}">群眾審核系統</a>上線啦！</p>
-                                    </div>
-                                </div>
-                                <div class="outgoing_msg">
-                                    <div class="sent_msg">
-                                        <p>以後文章都會先經過群眾審核，通過才會發表出去。</p>
-                                        <span class="time_date"> 乾太₍₍ ◝(･◡･)◟ ⁾⁾</span>
-                                    </div>
-                                </div>
-                                <div class="incoming_msg">
-                                    <div class="incoming_msg_img">
-                                        <img src="https://image.flaticon.com/icons/svg/2945/2945360.svg" alt="sunil">
-                                    </div>
-                                    <div class="received_msg">
-                                        <div class="received_withd_msg">
-                                            <p>哇！這麼酷炫喔，所以我的文章什麼時候才會發到粉絲團上面呢？</p>
-                                            <span class="time_date"> 你</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="outgoing_msg p-0 m-o">
-                                    <div class="sent_msg">
-                                        <p>BBBBBB嘴，跟我吵並不會讓這件事情實現得越快。</p>
-                                    </div>
-                                </div>
-                                <div class="outgoing_msg p-0 m-0">
-                                    <div class="sent_msg">
-                                        <p>參與<a class="text-warning" href="{{ route('frontend.social.cards.review') }}">群眾審核系統</a>才會讓你的文章發到粉絲團，快還要更快！</p>
-                                        <span class="time_date"> 乾太₍₍ ◝(･◡･)◟ ⁾⁾</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <div class="col col-12 align-self-center my-2">
                 <social-cards-show id="{{ $card->id }}" content="{{ $card->content }}" image="{{ $image }}" created="{{ $card->created_at->diffForHumans() }}"></social-cards-show>
             </div><!--col-->
