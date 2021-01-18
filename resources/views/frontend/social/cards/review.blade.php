@@ -21,9 +21,3 @@
             data-full-width-responsive="true"></ins>
     </div>
 @endsection
-
-@push('after-scripts')
-    <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <script> (adsbygoogle = window.adsbygoogle || []).push({}); </script>
-@endpush

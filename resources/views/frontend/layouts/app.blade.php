@@ -82,6 +82,9 @@
         {!! script(mix('js/manifest.js')) !!}
         {!! script(mix('js/vendor.js')) !!}
         {!! script(mix('js/frontend.js')) !!}
+        <!-- Google AdSense -->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <script> (adsbygoogle = window.adsbygoogle || []).push({}); </script>
         @stack('after-scripts')
 
         @include('includes.partials.fb-customerchat')

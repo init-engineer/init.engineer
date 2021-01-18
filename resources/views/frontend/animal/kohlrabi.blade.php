@@ -30,7 +30,5 @@
 @endsection
 
 @push('before-scripts')
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <script> (adsbygoogle = window.adsbygoogle || []).push({}); </script>
     {!! script('js/animal/kohlrabi/predictions.min.js?date=20200507') !!}
 @endpush
