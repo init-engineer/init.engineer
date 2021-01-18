@@ -3,6 +3,8 @@
     <vue-gallery :images="images" :index="gallery" @close="gallery = null" />
 
     <div class="card-columns">
+      <financial-status></financial-status>
+
       <div v-if="cards === undefined">
         <vue-content-loading
           class="mx-2 mb-2"
@@ -98,6 +100,15 @@
             </div>
           </div>
         </div>
+        <div v-if="$index % 5 === 0" style="min-height: 12rem;">
+          <label class="col-label">這裡是 Ads 廣告</label>
+          <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-3028179090690423"
+            data-ad-slot="2486547757"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        </div>
       </div>
 
       <infinite-loading @infinite="infiniteHandler" :distance="distance">
@@ -164,6 +175,7 @@ import GoTop from "@inotom/vue-go-top";
 import VueGallery from "vue-gallery";
 import InfiniteLoading from "vue-infinite-loading";
 import VueContentLoading from "vue-content-loading";
+import FinancialStatus from "../../home/FinancialStatus";
 
 export default {
   name: "SocialCardsReview",
@@ -171,7 +183,8 @@ export default {
     GoTop,
     VueGallery,
     InfiniteLoading,
-    VueContentLoading
+    VueContentLoading,
+    FinancialStatus
   },
   props: {
     isAdmin: {
