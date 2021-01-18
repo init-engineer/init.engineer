@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="color-primary p-2">
     <div v-if="tokens.length > 0">
       <div class="card card-default">
         <div class="card-header text-dark">

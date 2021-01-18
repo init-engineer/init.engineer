@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="color-primary p-2">
     <div>
       <div class="card card-default">
         <div class="card-header">

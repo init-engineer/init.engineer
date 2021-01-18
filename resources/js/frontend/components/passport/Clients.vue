@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="color-primary p-2">
     <div class="card card-default">
       <div class="card-header">
         <div style="display: flex; justify-content: space-between; align-items: center;">
