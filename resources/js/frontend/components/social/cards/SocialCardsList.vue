@@ -66,7 +66,7 @@
           </div>
         </div>
 
-        <div v-if="$index % 10 === 0" style="min-height: 12rem;">
+        <div v-if="$index % 10 === 0" style="min-height: 24rem;">
           <label class="col-label">這裡是 Ads 廣告</label>
           <ins class="adsbygoogle"
             style="display:block"
