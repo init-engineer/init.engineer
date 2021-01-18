@@ -68,6 +68,8 @@
             @include('includes.partials.logged-in-as')
             @include('frontend.includes.nav')
 
+            <ad-block-warning></ad-block-warning>
+
             <div class="container">
                 @include('includes.partials.messages')
             </div><!-- container -->
