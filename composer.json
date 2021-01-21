@@ -21,6 +21,7 @@
         "fideloper/proxy": "^4.0",
         "graham-campbell/markdown": "^11.1",
         "guzzlehttp/guzzle": "^6.4",
+        "intervention/image": "^2.5",
         "lab404/laravel-impersonate": "^1.4",
         "langleyfoxall/laravel-nist-password-rules": "^4.0",
         "laravel/framework": "^6.0",
