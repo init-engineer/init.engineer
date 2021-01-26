@@ -17,6 +17,7 @@
                     熱門話題:
                     <a class="color-danger" style="text-decoration: underline;" href="https://github.com/init-engineer/init.engineer">純靠北工程師</a>
                     <a class="color-primary" style="text-decoration: underline;" href="https://mewe.com/p/initkobeengineer">移民去 MeWe</a>
+                    <a class="color-color-primary" style="text-decoration: underline;" href="https://www.youtube.com/watch?v=_6TtTRrno3E&list=PL12UaAf_xzfq1Qw3hO43WvcgAo_Sju6Ix">天竺鼠車車</a>
                 </p>
             </div>
         </div>
