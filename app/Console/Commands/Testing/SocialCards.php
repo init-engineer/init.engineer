@@ -13,6 +13,8 @@ use App\Services\Socials\Comments\FacebookPrimaryService as FacebookPrimaryComme
 use App\Services\Socials\MediaCards\FacebookPrimaryService as FacebookPrimaryMediaCardsService;
 use App\Services\Socials\Comments\FacebookSecondaryService as FacebookSecondaryCommentsService;
 use App\Services\Socials\MediaCards\FacebookSecondaryService as FacebookSecondaryMediaCardsService;
+use App\Services\Socials\Comments\TumblrPrimaryService as TumblrPrimaryCommentsService;
+use App\Services\Socials\MediaCards\TumblrPrimaryService as TumblrPrimaryMediaCardsService;
 
 /**
  * Class SocialCards.
@@ -44,6 +46,11 @@ class SocialCards extends Command
     protected $twitterPrimaryCommentsService;
 
     /**
+     * @var App\Services\Socials\Comments\TumblrPrimaryService
+     */
+    protected $tumblrPrimaryCommentsService;
+
+    /**
      * @var App\Services\Socials\Comments\FacebookPrimaryService
      */
     protected $facebookPrimaryCommentsService;
@@ -62,6 +69,11 @@ class SocialCards extends Command
      * @var App\Services\Socials\MediaCards\TwitterPrimaryService
      */
     protected $twitterPrimaryMediaCardsService;
+
+    /**
+     * @var App\Services\Socials\MediaCards\TumblrPrimaryService
+     */
+    protected $tumblrPrimaryMediaCardsService;
 
     /**
      * @var App\Services\Socials\MediaCards\FacebookPrimaryService
@@ -83,6 +95,8 @@ class SocialCards extends Command
         PlurkPrimaryMediaCardsService $plurkPrimaryMediaCardsService,
         TwitterPrimaryCommentsService $twitterPrimaryCommentsService,
         TwitterPrimaryMediaCardsService $twitterPrimaryMediaCardsService,
+        TumblrPrimaryCommentsService $tumblrPrimaryCommentsService,
+        TumblrPrimaryMediaCardsService $tumblrPrimaryMediaCardsService,
         FacebookPrimaryCommentsService $facebookPrimaryCommentsService,
         FacebookPrimaryMediaCardsService $facebookPrimaryMediaCardsService,
         FacebookSecondaryCommentsService $facebookSecondaryCommentsService,
@@ -94,6 +108,8 @@ class SocialCards extends Command
         $this->plurkPrimaryMediaCardsService = $plurkPrimaryMediaCardsService;
         $this->twitterPrimaryCommentsService = $twitterPrimaryCommentsService;
         $this->twitterPrimaryMediaCardsService = $twitterPrimaryMediaCardsService;
+        $this->tumblrPrimaryCommentsService = $tumblrPrimaryCommentsService;
+        $this->tumblrPrimaryMediaCardsService = $tumblrPrimaryMediaCardsService;
         $this->facebookPrimaryCommentsService = $facebookPrimaryCommentsService;
         $this->facebookPrimaryMediaCardsService = $facebookPrimaryMediaCardsService;
         $this->facebookSecondaryCommentsService = $facebookSecondaryCommentsService;
@@ -108,13 +124,14 @@ class SocialCards extends Command
     public function handle()
     {
         // $user = User::find(1);
-        $cards = Cards::find(3151);
+        $cards = Cards::find(70);
 
         /**
          * 測試發表文章到社群平台
          */
         // $this->plurkPrimaryMediaCardsService->publish($cards);
         // $this->twitterPrimaryMediaCardsService->publish($cards);
+        $this->tumblrPrimaryMediaCardsService->publish($cards);
         // $this->facebookPrimaryMediaCardsService->publish($cards);
         // $this->facebookSecondaryMediaCardsService->publish($cards);
 

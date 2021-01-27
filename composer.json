@@ -32,6 +32,7 @@
         "spatie/laravel-html": "^2.22",
         "spatie/laravel-permission": "^3.0",
         "torann/geoip": "^1.0",
+        "tumblr/tumblr": "dev-master",
         "vinkla/facebook": "^4.0"
     },
     "require-dev": {

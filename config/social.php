@@ -42,4 +42,13 @@ return [
             'post_path' => env('PLURK_POST_PATH', 'https://www.plurk.com/p/'),
         ],
     ],
+
+    'tumblr' => [
+        'primary' => [
+            'create_post' => env('TUMBLR_CREATE_POST', false),
+            'user_id' => env('TUMBLR_USER_ID', 'TUMBLR_USER_ID'),
+            'social_url' => env('TUMBLR_SOCIAL_URL', 'TUMBLR_SOCIAL_URL'),
+            'post_path' => env('TUMBLR_POST_PATH', 'TUMBLR_POST_PATH'),
+        ],
+    ],
 ];
