@@ -9,6 +9,8 @@ use App\Services\Socials\Comments\PlurkPrimaryService as PlurkPrimaryCommentsSer
 use App\Services\Socials\MediaCards\PlurkPrimaryService as PlurkPrimaryMediaCardsService;
 use App\Services\Socials\Comments\TwitterPrimaryService as TwitterPrimaryCommentsService;
 use App\Services\Socials\MediaCards\TwitterPrimaryService as TwitterPrimaryMediaCardsService;
+use App\Services\Socials\Comments\TelegramPrimaryService as TelegramPrimaryCommentsService;
+use App\Services\Socials\MediaCards\TelegramPrimaryService as TelegramPrimaryMediaCardsService;
 use App\Services\Socials\Comments\FacebookPrimaryService as FacebookPrimaryCommentsService;
 use App\Services\Socials\MediaCards\FacebookPrimaryService as FacebookPrimaryMediaCardsService;
 use App\Services\Socials\Comments\FacebookSecondaryService as FacebookSecondaryCommentsService;
@@ -44,6 +46,11 @@ class SocialCards extends Command
     protected $twitterPrimaryCommentsService;
 
     /**
+     * @var App\Services\Socials\Comments\TelegramPrimaryService
+     */
+    protected $telegramPrimaryCommentsService;
+
+    /**
      * @var App\Services\Socials\Comments\FacebookPrimaryService
      */
     protected $facebookPrimaryCommentsService;
@@ -62,6 +69,11 @@ class SocialCards extends Command
      * @var App\Services\Socials\MediaCards\TwitterPrimaryService
      */
     protected $twitterPrimaryMediaCardsService;
+
+    /**
+     * @var App\Services\Socials\MediaCards\TelegramPrimaryService
+     */
+    protected $telegramPrimaryMediaCardsService;
 
     /**
      * @var App\Services\Socials\MediaCards\FacebookPrimaryService
@@ -83,6 +95,8 @@ class SocialCards extends Command
         PlurkPrimaryMediaCardsService $plurkPrimaryMediaCardsService,
         TwitterPrimaryCommentsService $twitterPrimaryCommentsService,
         TwitterPrimaryMediaCardsService $twitterPrimaryMediaCardsService,
+        TelegramPrimaryCommentsService $telegramPrimaryCommentsService,
+        TelegramPrimaryMediaCardsService $telegramPrimaryMediaCardsService,
         FacebookPrimaryCommentsService $facebookPrimaryCommentsService,
         FacebookPrimaryMediaCardsService $facebookPrimaryMediaCardsService,
         FacebookSecondaryCommentsService $facebookSecondaryCommentsService,
@@ -94,6 +108,8 @@ class SocialCards extends Command
         $this->plurkPrimaryMediaCardsService = $plurkPrimaryMediaCardsService;
         $this->twitterPrimaryCommentsService = $twitterPrimaryCommentsService;
         $this->twitterPrimaryMediaCardsService = $twitterPrimaryMediaCardsService;
+        $this->telegramPrimaryCommentsService = $telegramPrimaryCommentsService;
+        $this->telegramPrimaryMediaCardsService = $telegramPrimaryMediaCardsService;
         $this->facebookPrimaryCommentsService = $facebookPrimaryCommentsService;
         $this->facebookPrimaryMediaCardsService = $facebookPrimaryMediaCardsService;
         $this->facebookSecondaryCommentsService = $facebookSecondaryCommentsService;
@@ -113,6 +129,7 @@ class SocialCards extends Command
         /**
          * 測試發表文章到社群平台
          */
+        $this->telegramPrimaryMediaCardsService->publish($cards);
         // $this->plurkPrimaryMediaCardsService->publish($cards);
         // $this->twitterPrimaryMediaCardsService->publish($cards);
         // $this->facebookPrimaryMediaCardsService->publish($cards);
