@@ -37,3 +37,4 @@ coverage.xml
 *.rnd
 
 public/json/social/reviewTop.json
+!.keep
