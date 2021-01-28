@@ -10,7 +10,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2">{{-- 乾太 --}}
             <div class="our-team">
                 <div class="picture">
                     <img class="img-fluid" src="https://avatars.githubusercontent.com/u/11679504">
@@ -19,20 +19,18 @@
                     <h3 class="name">乾太</h3>
                     <h4 class="title">中央委員會總書記</h4>
                     <span class="badge badge-pill badge-danger">主服務</span><br />
-                    <hr class="accent-2 mb-2 mt-0 d-inline-block mx-auto"
-                        style="width: 128px; background: var(--font-primary-color);">
+                    <hr class="accent-2 mb-2 mt-0 d-inline-block mx-auto" style="width: 128px; background: var(--font-primary-color);">
                     <p>我覺得我不會寫程式。</p>
                 </div>
                 <ul class="social">
                     <li><a href="https://github.com/Kantai235" class="fab fa-github" aria-hidden="true"></a></li>
-                    <li><a href="https://www.facebook.com/kantai.zeng" class="fab fa-facebook" aria-hidden="true"></a>
-                    </li>
+                    <li><a href="https://www.facebook.com/kantai.zeng" class="fab fa-facebook" aria-hidden="true"></a></li>
                     <li><a href="https://kantai235.github.io" class="fas fa-globe" aria-hidden="true"></a></li>
                     <li><a href="mailto:kantai.developer@gmail.com" class="fas fa-envelope" aria-hidden="true"></a></li>
                 </ul>
             </div>
         </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2">{{-- Flexolk --}}
             <div class="our-team">
                 <div class="picture">
                     <img class="img-fluid" src="https://avatars.githubusercontent.com/u/25818802">
@@ -41,8 +39,7 @@
                     <h3 class="name">Flexolk</h3>
                     <h4 class="title">開發組</h4>
                     <span class="badge badge-pill badge-light">Android</span><br />
-                    <hr class="accent-2 mb-2 mt-0 d-inline-block mx-auto"
-                        style="width: 128px; background: var(--font-primary-color);">
+                    <hr class="accent-2 mb-2 mt-0 d-inline-block mx-auto" style="width: 128px; background: var(--font-primary-color);">
                     <p>目前就讀國立臺灣海洋大學資訊工程系，UwU 同時也是獸控。</p>
                 </div>
                 <ul class="social">
@@ -51,7 +48,7 @@
                 </ul>
             </div>
         </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2">{{-- Kagamine Rin --}}
             <div class="our-team">
                 <div class="picture">
                     <img class="img-fluid" src="https://avatars.githubusercontent.com/u/17496418">
@@ -60,16 +57,17 @@
                     <h3 class="name">Kagamine Rin</h3>
                     <h4 class="title">開發組</h4>
                     <span class="badge badge-pill badge-light">iOS</span><br />
-                    <hr class="accent-2 mb-2 mt-0 d-inline-block mx-auto"
-                        style="width: 128px; background: var(--font-primary-color);">
-                    <p>Hello! I'm tico88612. Medical Informatics & Teacher Education @ Tzu Chi University.</p>
+                    <hr class="accent-2 mb-2 mt-0 d-inline-block mx-auto" style="width: 128px; background: var(--font-primary-color);">
+                    <p>Medical Informatics & Teacher Education @ Tzu Chi University. 同時也是一位鈴醬控。</p>
                 </div>
                 <ul class="social">
                     <li><a href="https://github.com/tico88612" class="fab fa-github" aria-hidden="true"></a></li>
+                    <li><a href="https://blog.yangjerry.tw" class="fas fa-globe" aria-hidden="true"></a></li>
+                    <li><a href="mailto:tico88612@gmail.com" class="fas fa-envelope" aria-hidden="true"></a></li>
                 </ul>
             </div>
         </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2">{{-- horowolf --}}
             <div class="our-team">
                 <div class="picture">
                     <img class="img-fluid" src="https://avatars.githubusercontent.com/u/13122358">
@@ -78,8 +76,7 @@
                     <h3 class="name">horowolf</h3>
                     <h4 class="title">開發組</h4>
                     <span class="badge badge-pill badge-light">iOS</span><br />
-                    <hr class="accent-2 mb-2 mt-0 d-inline-block mx-auto"
-                        style="width: 128px; background: var(--font-primary-color);">
+                    <hr class="accent-2 mb-2 mt-0 d-inline-block mx-auto" style="width: 128px; background: var(--font-primary-color);">
                     <p>我是誰？我在哪？為什麼我鄰居跟我講不一樣的語言？</p>
                 </div>
                 <ul class="social">
@@ -87,7 +84,7 @@
                 </ul>
             </div>
         </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2">{{-- money626 --}}
             <div class="our-team">
                 <div class="picture">
                     <img class="img-fluid" src="https://avatars.githubusercontent.com/u/36372865">
@@ -96,8 +93,7 @@
                     <h3 class="name">money626</h3>
                     <h4 class="title">開發組</h4>
                     <span class="badge badge-pill badge-light">Discord Bot</span><br />
-                    <hr class="accent-2 mb-2 mt-0 d-inline-block mx-auto"
-                        style="width: 128px; background: var(--font-primary-color);">
+                    <hr class="accent-2 mb-2 mt-0 d-inline-block mx-auto" style="width: 128px; background: var(--font-primary-color);">
                     <p>りしれ跨さ小</p>
                 </div>
                 <ul class="social">
@@ -105,7 +101,7 @@
                 </ul>
             </div>
         </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2">{{-- 威力 --}}
             <div class="our-team">
                 <div class="picture">
                     <img class="img-fluid" src="https://avatars.githubusercontent.com/u/30784371">
@@ -114,38 +110,36 @@
                     <h3 class="name">威力</h3>
                     <h4 class="title">開發組</h4>
                     <span class="badge badge-pill badge-light">電競徽章</span><br />
-                    <hr class="accent-2 mb-2 mt-0 d-inline-block mx-auto"
-                        style="width: 128px; background: var(--font-primary-color);">
+                    <hr class="accent-2 mb-2 mt-0 d-inline-block mx-auto" style="width: 128px; background: var(--font-primary-color);">
                     <p>Arduino 好好玩 ...</p>
                 </div>
                 <ul class="social">
                     <li><a href="https://github.com/willie183tw" class="fab fa-github" aria-hidden="true"></a></li>
-                    <li><a href="https://www.facebook.com/willie183tw" class="fab fa-facebook" aria-hidden="true"></a>
-                    </li>
+                    <li><a href="https://www.facebook.com/willie183tw" class="fab fa-facebook" aria-hidden="true"></a></li>
                     <li><a href="https://home.gamer.com.tw/willie183tw" class="fas fa-globe" aria-hidden="true"></a></li>
                     <li><a href="mailto:willie183tw@gmail.com" class="fas fa-envelope" aria-hidden="true"></a></li>
                 </ul>
             </div>
         </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2">{{-- 野貓 --}}
             <div class="our-team">
                 <div class="picture">
-                    <img class="img-fluid" src="https://www.computerhope.com/jargon/g/guest-user.jpg">
+                    <img class="img-fluid" src="https://avatars.githubusercontent.com/u/11533425">
                 </div>
                 <div class="team-content">
-                    <h3 class="name">蔡孟廷</h3>
+                    <h3 class="name">野貓</h3>
                     <h4 class="title">公關組</h4>
                     <span class="badge badge-pill badge-primary">Facebook 社群</span>
                     <span class="badge badge-pill badge-success">Line 社群</span><br />
-                    <hr class="accent-2 mb-2 mt-0 d-inline-block mx-auto"
-                        style="width: 128px; background: var(--font-primary-color);">
+                    <hr class="accent-2 mb-2 mt-0 d-inline-block mx-auto" style="width: 128px; background: var(--font-primary-color);">
                     <p>台灣門薩會員。</p>
                 </div>
                 <ul class="social">
+                    <li><a href="https://github.com/caracaltaiwan" class="fab fa-github" aria-hidden="true"></a></li>
                 </ul>
             </div>
         </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2">{{-- 阿任 --}}
             <div class="our-team">
                 <div class="picture">
                     <img class="img-fluid" src="https://avatars.githubusercontent.com/u/25150003">
@@ -155,16 +149,18 @@
                     <h4 class="title">公關組</h4>
                     <span class="badge badge-pill badge-info">MeWe 社群</span>
                     <span class="badge badge-pill badge-success">Line 社群</span><br />
-                    <hr class="accent-2 mb-2 mt-0 d-inline-block mx-auto"
-                        style="width: 128px; background: var(--font-primary-color);">
-                    <p>只是一位普通的大學生，資訊工程系。</p>
+                    <hr class="accent-2 mb-2 mt-0 d-inline-block mx-auto" style="width: 128px; background: var(--font-primary-color);">
+                    <p>尼豪，我是阿任，是一名快爆肝的大學生。</p>
                 </div>
                 <ul class="social">
                     <li><a href="https://github.com/haer0248" class="fab fa-github" aria-hidden="true"></a></li>
+                    <li><a href="https://www.facebook.com/haer0248" class="fab fa-facebook" aria-hidden="true"></a></li>
+                    <li><a href="https://haer0248.me" class="fas fa-globe" aria-hidden="true"></a></li>
+                    <li><a href="mailto:admin@haer0248.me" class="fas fa-envelope" aria-hidden="true"></a></li>
                 </ul>
             </div>
         </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2">{{-- 沃克 --}}
             <div class="our-team">
                 <div class="picture">
                     <img class="img-fluid" src="https://avatars.githubusercontent.com/u/34863780">
@@ -173,8 +169,7 @@
                     <h3 class="name">沃克</h3>
                     <h4 class="title">公關組</h4>
                     <span class="badge badge-pill badge-primary">Facebook 社群</span><br />
-                    <hr class="accent-2 mb-2 mt-0 d-inline-block mx-auto"
-                        style="width: 128px; background: var(--font-primary-color);">
+                    <hr class="accent-2 mb-2 mt-0 d-inline-block mx-auto" style="width: 128px; background: var(--font-primary-color);">
                     <p>後端小廢物。</p>
                 </div>
                 <ul class="social">
@@ -182,7 +177,7 @@
                 </ul>
             </div>
         </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2">{{-- FizzyElt --}}
             <div class="our-team">
                 <div class="picture">
                     <img class="img-fluid" src="https://avatars.githubusercontent.com/u/43887006">
@@ -191,8 +186,7 @@
                     <h3 class="name">FizzyElt</h3>
                     <h4 class="title">公關組</h4>
                     <span class="badge badge-pill badge-success">Line 社群</span><br />
-                    <hr class="accent-2 mb-2 mt-0 d-inline-block mx-auto"
-                        style="width: 128px; background: var(--font-primary-color);">
+                    <hr class="accent-2 mb-2 mt-0 d-inline-block mx-auto" style="width: 128px; background: var(--font-primary-color);">
                     <p>一位平凡的前端技術追求者，JavaScript 高深莫測，永遠學不好，偶爾會用 Golang 取暖。</p>
                 </div>
                 <ul class="social">
