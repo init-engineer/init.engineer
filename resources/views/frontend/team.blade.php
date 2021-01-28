@@ -111,16 +111,19 @@
                     <img class="img-fluid" src="https://avatars.githubusercontent.com/u/30784371">
                 </div>
                 <div class="team-content">
-                    <h3 class="name">Willie Yo</h3>
+                    <h3 class="name">威力</h3>
                     <h4 class="title">開發組</h4>
                     <span class="badge badge-pill badge-light">電競徽章</span><br />
                     <hr class="accent-2 mb-2 mt-0 d-inline-block mx-auto"
                         style="width: 128px; background: var(--font-primary-color);">
-                    <p>TXkgbmFtZSBpcyBXaWxsaWUgWW8u
-                        (Base64->ASCII)</p>
+                    <p>Arduino 好好玩 ...</p>
                 </div>
                 <ul class="social">
                     <li><a href="https://github.com/willie183tw" class="fab fa-github" aria-hidden="true"></a></li>
+                    <li><a href="https://www.facebook.com/willie183tw" class="fab fa-facebook" aria-hidden="true"></a>
+                    </li>
+                    <li><a href="https://home.gamer.com.tw/willie183tw" class="fas fa-globe" aria-hidden="true"></a></li>
+                    <li><a href="mailto:willie183tw@gmail.com" class="fas fa-envelope" aria-hidden="true"></a></li>
                 </ul>
             </div>
         </div>
