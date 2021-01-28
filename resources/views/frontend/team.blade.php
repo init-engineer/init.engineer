@@ -148,25 +148,6 @@
         <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2">
             <div class="our-team">
                 <div class="picture">
-                    <img class="img-fluid" src="https://avatars.githubusercontent.com/u/34863780">
-                </div>
-                <div class="team-content">
-                    <h3 class="name">沃克</h3>
-                    <h4 class="title">公關組</h4>
-                    <span class="badge badge-pill badge-primary">Facebook 社群</span>
-                    <span class="badge badge-pill badge-success">Line 社群</span><br />
-                    <hr class="accent-2 mb-2 mt-0 d-inline-block mx-auto"
-                        style="width: 128px; background: var(--font-primary-color);">
-                    <p>後端小廢物。</p>
-                </div>
-                <ul class="social">
-                    <li><a href="https://github.com/Geekgryphon" class="fab fa-github" aria-hidden="true"></a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2">
-            <div class="our-team">
-                <div class="picture">
                     <img class="img-fluid" src="https://avatars.githubusercontent.com/u/25150003">
                 </div>
                 <div class="team-content">
@@ -180,6 +161,24 @@
                 </div>
                 <ul class="social">
                     <li><a href="https://github.com/haer0248" class="fab fa-github" aria-hidden="true"></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2">
+            <div class="our-team">
+                <div class="picture">
+                    <img class="img-fluid" src="https://avatars.githubusercontent.com/u/34863780">
+                </div>
+                <div class="team-content">
+                    <h3 class="name">沃克</h3>
+                    <h4 class="title">公關組</h4>
+                    <span class="badge badge-pill badge-primary">Facebook 社群</span><br />
+                    <hr class="accent-2 mb-2 mt-0 d-inline-block mx-auto"
+                        style="width: 128px; background: var(--font-primary-color);">
+                    <p>後端小廢物。</p>
+                </div>
+                <ul class="social">
+                    <li><a href="https://github.com/Geekgryphon" class="fab fa-github" aria-hidden="true"></a></li>
                 </ul>
             </div>
         </div>
