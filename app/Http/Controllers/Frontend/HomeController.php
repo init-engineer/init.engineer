@@ -24,4 +24,12 @@ class HomeController extends Controller
     {
         return view('frontend.policies');
     }
+
+    /**
+     * @return \Illuminate\View\View
+     */
+    public function team()
+    {
+        return view('frontend.team');
+    }
 }
