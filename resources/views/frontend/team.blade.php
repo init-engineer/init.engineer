@@ -80,7 +80,7 @@
                     <span class="badge badge-pill badge-light">iOS</span><br />
                     <hr class="accent-2 mb-2 mt-0 d-inline-block mx-auto"
                         style="width: 128px; background: var(--font-primary-color);">
-                    <p>Null</p>
+                    <p>我是誰？我在哪？為什麼我鄰居跟我講不一樣的語言？</p>
                 </div>
                 <ul class="social">
                     <li><a href="https://github.com/horowolf" class="fab fa-github" aria-hidden="true"></a></li>
@@ -139,7 +139,7 @@
                     <span class="badge badge-pill badge-success">Line 社群</span><br />
                     <hr class="accent-2 mb-2 mt-0 d-inline-block mx-auto"
                         style="width: 128px; background: var(--font-primary-color);">
-                    <p>後端小廢物。</p>
+                    <p>台灣門薩會員。</p>
                 </div>
                 <ul class="social">
                 </ul>
@@ -176,7 +176,7 @@
                     <span class="badge badge-pill badge-success">Line 社群</span><br />
                     <hr class="accent-2 mb-2 mt-0 d-inline-block mx-auto"
                         style="width: 128px; background: var(--font-primary-color);">
-                    <p>一位平凡的前端技術追求者，JavaScript 高深莫測，永遠學不好，偶爾會用 Golang 取暖。</p>
+                    <p>只是一位普通的大學生，資訊工程系。</p>
                 </div>
                 <ul class="social">
                     <li><a href="https://github.com/haer0248" class="fab fa-github" aria-hidden="true"></a></li>
