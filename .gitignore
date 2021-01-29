@@ -36,5 +36,5 @@ coverage.xml
 .phpunit.result.cache
 *.rnd
 
-public/json/social/reviewTop.json
-!.keep
+public/json/social/*
+

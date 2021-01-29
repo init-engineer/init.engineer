@@ -43,12 +43,22 @@ return [
         ],
     ],
 
+
     'tumblr' => [
         'primary' => [
             'create_post' => env('TUMBLR_CREATE_POST', false),
             'user_id' => env('TUMBLR_USER_ID', 'TUMBLR_USER_ID'),
             'social_url' => env('TUMBLR_SOCIAL_URL', 'TUMBLR_SOCIAL_URL'),
             'post_path' => env('TUMBLR_POST_PATH', 'TUMBLR_POST_PATH'),
+        ],
+    ],
+
+    'telegram' => [
+        'primary' => [
+            'create_post' => env('TELEGRAM_CREATE_POST', false),
+            'user_id' => env('TELEGRAM_CHAT_ID', 'TELEGRAM_CHAT_ID'),
+            'social_url' => env('TELEGRAM_SOCIAL_URL', 'TELEGRAM_SOCIAL_URL'),
+            'post_path' => env('TELEGRAM_POST_PATH', 'TELEGRAM_POST_PATH'),
         ],
     ],
 ];
