@@ -46,7 +46,7 @@ body {
  */
 @font-face {
     font-family: 'Mingliu';
-    src: url('/fonts/mingliu.ttc');
+    src: url('/fonts/PMingLiU-02.ttf');
 }
 
 /**
@@ -54,7 +54,9 @@ body {
  */
 @font-face {
     font-family: 'Harmonic';
-    src: url('/fonts/ZHS-Harmonic.ttf');
+    src: url('/fonts/ZHS-Harmonic.ttf') format('truetype'), 
+        url('/fonts/ZHS-Harmonic.woff2') format('woff2'),
+        url('/fonts/ZHS-Harmonic.woff') format('woff');
 }
 
 /**
