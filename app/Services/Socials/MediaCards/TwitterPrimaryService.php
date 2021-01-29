@@ -35,14 +35,10 @@ class TwitterPrimaryService extends BaseService implements SocialCardsContract
      */
     public function publish(Cards $cards)
     {
-        if ($this->mediaCardsRepository->findByCardId($cards->id, 'twitter', 'primary'))
-        {
+        if ($this->mediaCardsRepository->findByCardId($cards->id, 'twitter', 'primary')) {
             throw new GeneralException(__('exceptions.backend.social.media.cards.repeated_error'));
-        }
-        else
-        {
-            try
-            {
+        } else {
+            try {
                 $picture = Twitter::uploadMedia([
                     'media' => $cards->images->first()->getFile(),
                 ]);
@@ -60,9 +56,7 @@ class TwitterPrimaryService extends BaseService implements SocialCardsContract
                     'social_connections' => 'primary',
                     'social_card_id' => $response->id,
                 ]);
-            }
-            catch (Exception $e)
-            {
+            } catch (Exception $e) {
                 \Log::error($e->getMessage());
             }
         }
@@ -74,18 +68,14 @@ class TwitterPrimaryService extends BaseService implements SocialCardsContract
      */
     public function update(Cards $cards)
     {
-        if ($mediaCards = $this->mediaCardsRepository->findByCardId($cards->id, 'twitter', 'primary'))
-        {
-            try
-            {
+        if ($mediaCards = $this->mediaCardsRepository->findByCardId($cards->id, 'twitter', 'primary')) {
+            try {
                 $response = Twitter::getTweet($mediaCards->social_card_id);
                 return $this->mediaCardsRepository->update($mediaCards, [
                     'num_like' => $response->favorite_count,
                     'num_share' => $response->retweet_count,
                 ]);
-            }
-            catch (Exception $e)
-            {
+            } catch (Exception $e) {
                 \Log::error($e->getMessage());
             }
         }
@@ -101,10 +91,8 @@ class TwitterPrimaryService extends BaseService implements SocialCardsContract
      */
     public function destory(User $user, Cards $cards, array $options)
     {
-        if ($mediaCards = $this->mediaCardsRepository->findByCardId($cards->id, 'twitter', 'primary'))
-        {
-            try
-            {
+        if ($mediaCards = $this->mediaCardsRepository->findByCardId($cards->id, 'twitter', 'primary')) {
+            try {
                 $response = Twitter::destroyTweet($mediaCards->social_card_id);
 
                 // TODO: 解析 response 的資訊
@@ -113,16 +101,12 @@ class TwitterPrimaryService extends BaseService implements SocialCardsContract
                     'active' => false,
                     'is_banned' => true,
                     'banned_user_id' => $user->id,
-                    'banned_remarks' => isset($options['remarks'])? $options['remarks'] : null,
+                    'banned_remarks' => isset($options['remarks']) ? $options['remarks'] : null,
                     'banned_at' => now(),
                 ]);
-            }
-            catch (\Facebook\Exceptions\FacebookSDKException $e)
-            {
+            } catch (\Facebook\Exceptions\FacebookSDKException $e) {
                 \Log::error($e->getMessage());
-            }
-            catch (Exception $e)
-            {
+            } catch (Exception $e) {
                 \Log::error($e->getMessage());
             }
         }

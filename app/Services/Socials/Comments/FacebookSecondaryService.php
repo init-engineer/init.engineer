@@ -48,28 +48,21 @@ class FacebookSecondaryService extends BaseService implements SocialCardsContrac
      */
     public function getComments(Cards $cards)
     {
-        if ($mediaCards = $this->mediaCardsRepository->findByCardId($cards->id, 'facebook', 'secondary'))
-        {
-            try
-            {
+        if ($mediaCards = $this->mediaCardsRepository->findByCardId($cards->id, 'facebook', 'secondary')) {
+            try {
                 $this->getAccessToken();
                 $url = sprintf(
                     '/%s?fields=comments{id,message,created_time,comments{id,message,from,created_time}}',
                     $mediaCards->social_card_id
                 );
                 $replys = $this->facebook->get($url)->getDecodedBody();
-                if (isset($replys['comments']['data']))
-                {
+                if (isset($replys['comments']['data'])) {
                     $this->replys($replys['comments']['data'], $cards->id, $mediaCards->id);
                 }
-            }
-            catch (\Facebook\Exceptions\FacebookSDKException $e)
-            {
+            } catch (\Facebook\Exceptions\FacebookSDKException $e) {
                 \Log::error($e->getMessage());
                 // dd($e->getMessage());
-            }
-            catch (Exception $e)
-            {
+            } catch (Exception $e) {
                 \Log::error($e->getMessage());
                 // dd($e->getMessage());
             }
@@ -92,8 +85,7 @@ class FacebookSecondaryService extends BaseService implements SocialCardsContrac
 
         $this->replys($contents['data'], $cards_id, $media_id);
 
-        if (isset($contents['paging']['next']) && $contents['paging']['next'] !== null)
-        {
+        if (isset($contents['paging']['next']) && $contents['paging']['next'] !== null) {
             $this->guzzleGetComments($contents['paging']['next'], $cards_id, $media_id);
         }
     }
@@ -106,18 +98,15 @@ class FacebookSecondaryService extends BaseService implements SocialCardsContrac
      */
     private function replys(array $replys, int $cards_id, int $media_id)
     {
-        foreach ($replys as $reply)
-        {
+        foreach ($replys as $reply) {
             $comment = $this->write(array_merge($reply, [
                 'card_id' => $cards_id,
                 'media_card_id' => $media_id,
                 'media_comment_id' => $reply['id'],
             ]));
 
-            if (isset($reply['comments']))
-            {
-                foreach ($reply['comments']['data'] as $commentReply)
-                {
+            if (isset($reply['comments'])) {
+                foreach ($reply['comments']['data'] as $commentReply) {
                     $this->write(array_merge($commentReply, [
                         'card_id' => $cards_id,
                         'media_card_id' => $media_id,
@@ -136,30 +125,24 @@ class FacebookSecondaryService extends BaseService implements SocialCardsContrac
      */
     private function write(array $data)
     {
-        if ($comment = $this->commentsRepository->findBySocialId($data['card_id'], $data['media_card_id'], $data['media_comment_id']))
-        {
-            if ($comment->content != $data['message'])
-            {
+        if ($comment = $this->commentsRepository->findBySocialId($data['card_id'], $data['media_card_id'], $data['media_comment_id'])) {
+            if ($comment->content != $data['message']) {
                 return $this->commentsRepository->update($comment, [
                     'content' => $data['message'],
                 ]);
-            }
-            else
-            {
+            } else {
                 return $comment;
             }
-        }
-        else
-        {
+        } else {
             return $this->commentsRepository->create([
                 'card_id' => $data['card_id'],
                 'media_id' => $data['media_card_id'],
                 'media_comment_id' => $data['media_comment_id'],
-                'user_id' => isset($data['from'])? $data['from']['id'] : 0,
-                'user_name' => isset($data['from'])? $data['from']['name'] : '匿名',
-                'user_avatar' => isset($data['from'])? sprintf('https://graph.facebook.com/%s/picture?type=large', $data['from']['id']) : '/img/frontend/user/nopic_192.gif',
+                'user_id' => isset($data['from']) ? $data['from']['id'] : 0,
+                'user_name' => isset($data['from']) ? $data['from']['name'] : '匿名',
+                'user_avatar' => isset($data['from']) ? sprintf('https://graph.facebook.com/%s/picture?type=large', $data['from']['id']) : '/img/frontend/user/nopic_192.gif',
                 'content' => $data['message'] ?? $data['content'] ?? null,
-                'reply_media_comment_id' => isset($data['reply_id'])? $data['reply_id'] : null,
+                'reply_media_comment_id' => isset($data['reply_id']) ? $data['reply_id'] : null,
                 'created_at' => $data['created_time'],
             ]);
         }

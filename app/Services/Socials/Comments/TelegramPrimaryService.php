@@ -4,8 +4,6 @@ namespace App\Services\Socials\Comments;
 
 use App\Models\Social\Cards;
 use App\Services\BaseService;
-use App\Exceptions\GeneralException;
-use Telegram\Bot\Laravel\Facades\Telegram;
 use App\Repositories\Backend\Social\CommentsRepository;
 use App\Repositories\Backend\Social\MediaCardsRepository;
 
