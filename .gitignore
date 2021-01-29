@@ -37,4 +37,3 @@ coverage.xml
 *.rnd
 
 public/json/social/*
-!.keep
