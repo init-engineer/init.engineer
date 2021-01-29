@@ -13,6 +13,8 @@ use App\Jobs\Social\MediaCards\FacebookPrimaryDestory;
 use App\Jobs\Social\MediaCards\FacebookPrimaryPublish;
 use App\Jobs\Social\MediaCards\FacebookSecondaryDestory;
 use App\Jobs\Social\MediaCards\FacebookSecondaryPublish;
+use App\Jobs\Social\MediaCards\TelegramPrimaryDestory;
+use App\Jobs\Social\MediaCards\TelegramPrimaryPublish;
 use App\Repositories\Backend\Social\MediaCardsRepository;
 use GuzzleHttp\Client;
 
@@ -40,14 +42,16 @@ class CardsService extends BaseService implements CardsContract
      */
     public function publish(Cards $cards)
     {
-        if (env('FACEBOOK_PRIMARY_CREATE_POST', false) && (! $this->mediaCardsRepository->findByCardId($cards->id, 'facebook', 'primary')))
+        if (env('FACEBOOK_PRIMARY_CREATE_POST', false) && (!$this->mediaCardsRepository->findByCardId($cards->id, 'facebook', 'primary')))
             FacebookPrimaryPublish::dispatch($cards);
-        if (env('FACEBOOK_SECONDARY_CREATE_POST', false) && (! $this->mediaCardsRepository->findByCardId($cards->id, 'facebook', 'secondary')))
+        if (env('FACEBOOK_SECONDARY_CREATE_POST', false) && (!$this->mediaCardsRepository->findByCardId($cards->id, 'facebook', 'secondary')))
             FacebookSecondaryPublish::dispatch($cards);
-        if (env('TWITTER_CREATE_POST', false) && (! $this->mediaCardsRepository->findByCardId($cards->id, 'twitter', 'primary')))
+        if (env('TWITTER_CREATE_POST', false) && (!$this->mediaCardsRepository->findByCardId($cards->id, 'twitter', 'primary')))
             TwitterPrimaryPublish::dispatch($cards);
-        if (env('PLURK_CREATE_POST', false) && (! $this->mediaCardsRepository->findByCardId($cards->id, 'plurk', 'primary')))
+        if (env('PLURK_CREATE_POST', false) && (!$this->mediaCardsRepository->findByCardId($cards->id, 'plurk', 'primary')))
             PlurkPrimaryPublish::dispatch($cards);
+        if (env('TELEGRAM_CREATE_POST', false) && (!$this->mediaCardsRepository->findByCardId($cards->id, 'telegram', 'primary')))
+            TelegramPrimaryPublish::dispatch($cards);
     }
 
     /**
@@ -123,5 +127,8 @@ class CardsService extends BaseService implements CardsContract
 
         if ($this->mediaCardsRepository->findByCardId($cards->id, 'plurk', 'primary'))
             PlurkPrimaryDestory::dispatch($user, $cards, $options);
+
+        if ($this->mediaCardsRepository->findByCardId($cards->id, 'telegram', 'primary'))
+            TelegramPrimaryDestory::dispatch($user, $cards, $options);
     }
 }

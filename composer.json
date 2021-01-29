@@ -22,6 +22,7 @@
         "graham-campbell/markdown": "^11.1",
         "guzzlehttp/guzzle": "^6.4",
         "intervention/image": "^2.5",
+        "irazasyed/telegram-bot-sdk": "^2",
         "lab404/laravel-impersonate": "^1.4",
         "langleyfoxall/laravel-nist-password-rules": "^4.0",
         "laravel/framework": "^6.0",

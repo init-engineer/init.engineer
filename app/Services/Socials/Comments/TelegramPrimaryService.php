@@ -8,10 +8,15 @@ use App\Repositories\Backend\Social\CommentsRepository;
 use App\Repositories\Backend\Social\MediaCardsRepository;
 
 /**
- * Class TwitterPrimaryService.
+ * Class TelegramPrimaryService.
  */
-class TwitterPrimaryService extends BaseService implements SocialCardsContract
+class TelegramPrimaryService extends BaseService implements SocialCardsContract
 {
+    /**
+     * @var Twitter
+     */
+    protected $twitter;
+
     /**
      * @var CommentsRepository
      */
