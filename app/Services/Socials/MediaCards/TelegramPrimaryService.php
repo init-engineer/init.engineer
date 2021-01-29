@@ -7,16 +7,20 @@ use App\Models\Auth\User;
 use App\Models\Social\Cards;
 use App\Services\BaseService;
 use App\Exceptions\GeneralException;
-use Telegram\Bot\Laravel\Facades\Telegram;
 use App\Repositories\Backend\Social\MediaCardsRepository;
-use GuzzleHttp\Client;
 use Illuminate\Support\Str;
+use Telegram\Bot\Api;
 
 /**
  * Class TelegramPrimaryService.
  */
 class TelegramPrimaryService extends BaseService implements SocialCardsContract
 {
+    /**
+     *
+     */
+    protected $telegram;
+
     /**
      * @var MediaCardsRepository
      */
@@ -27,6 +31,7 @@ class TelegramPrimaryService extends BaseService implements SocialCardsContract
      */
     public function __construct(MediaCardsRepository $mediaCardsRepository)
     {
+        $this->telegram = new Api(env('TELEGRAM_BOT_TOKEN'));
         $this->mediaCardsRepository = $mediaCardsRepository;
     }
 
@@ -36,23 +41,18 @@ class TelegramPrimaryService extends BaseService implements SocialCardsContract
      */
     public function publish(Cards $cards)
     {
-        if ($this->mediaCardsRepository->findByCardId($cards->id, 'telegram', 'primary'))
-        {
+        if ($this->mediaCardsRepository->findByCardId($cards->id, 'telegram', 'primary')) {
             throw new GeneralException(__('exceptions.backend.social.media.cards.repeated_error'));
-        }
-        else
-        {
-            try
-            {
-                $response = Telegram::sendPhoto([
-                    'chat_id' => config('social.telegram.primary.user_id'), 
-                    'photo' => $cards->images->first()->getPicture(), 
+        } else {
+            try {
+                $response = $this->telegram->sendPhoto([
+                    'chat_id' => config('social.telegram.primary.user_id'),
+                    'photo' => $cards->images->first()->getPicture(),
                     'caption' => $this->buildContent($cards->content, [
                         'id' => $cards->id,
-                        'hashtags' => $cards->metadata['hashtags'] ?? [],
                     ])
-                  ]);
-                
+                ]);
+
                 return $this->mediaCardsRepository->create([
                     'card_id' => $cards->id,
                     'model_id' => $cards->model_id,
@@ -60,9 +60,7 @@ class TelegramPrimaryService extends BaseService implements SocialCardsContract
                     'social_connections' => 'primary',
                     'social_card_id' => $response['message_id'],
                 ]);
-            }
-            catch (Exception $e)
-            {
+            } catch (Exception $e) {
                 \Log::error($e->getMessage());
             }
         }
@@ -74,23 +72,6 @@ class TelegramPrimaryService extends BaseService implements SocialCardsContract
      */
     public function update(Cards $cards)
     {
-        if ($mediaCards = $this->mediaCardsRepository->findByCardId($cards->id, 'telegram', 'primary'))
-        {
-            try
-            {
-                // TODO: get message
-
-                return $this->mediaCardsRepository->update($mediaCards, [
-                    'num_like' => $response->favorite_count,
-                    'num_share' => $response->retweet_count,
-                ]);
-            }
-            catch (Exception $e)
-            {
-                \Log::error($e->getMessage());
-            }
-        }
-
         return false;
     }
 
@@ -102,24 +83,10 @@ class TelegramPrimaryService extends BaseService implements SocialCardsContract
      */
     public function destory(User $user, Cards $cards, array $options)
     {
-        if ($mediaCards = $this->mediaCardsRepository->findByCardId($cards->id, 'telegram', 'primary'))
-        {
-            try
-            {
-                // TODO: Delete Photo post not working.
-
-                // TODO: 解析 response 的資訊
-
-                return $this->mediaCardsRepository->update($mediaCards, [
-                    'active' => false,
-                    'is_banned' => true,
-                    'banned_user_id' => $user->id,
-                    'banned_remarks' => isset($options['remarks'])? $options['remarks'] : null,
-                    'banned_at' => now(),
-                ]);
-            }
-            catch (Exception $e)
-            {
+        if ($mediaCards = $this->mediaCardsRepository->findByCardId($cards->id, 'telegram', 'primary')) {
+            try {
+                return $mediaCards;
+            } catch (Exception $e) {
                 \Log::error($e->getMessage());
             }
         }
@@ -135,9 +102,7 @@ class TelegramPrimaryService extends BaseService implements SocialCardsContract
      */
     public function buildContent($content = '', array $options = [])
     {
-
-        // $_content = (mb_strlen($content, 'utf-8') > 20)? mb_substr($content, 0, 20, 'utf-8') . ' ...' : $content;
-        $_content = Str::limit($content, 200, ' ...');
+        $_content = Str::limit($content, 800, ' ...');
 
         return "\n\r----------\n\r" .
             $_content . "\n\r----------\n\r" .
@@ -145,14 +110,5 @@ class TelegramPrimaryService extends BaseService implements SocialCardsContract
             '👉 [GitHub Repo] https://github.com/init-engineer/init.engineer' . "\n\r" .
             '📢 [匿名發文] ' . route('frontend.social.cards.create') . "\n\r" .
             '🥙 [全平台留言] ' . route('frontend.social.cards.show', ['id' => $options['id']]);
-
-        // return sprintf(
-        //     "#純靠北工程師%s\r\n%s\r\n%s\r\n📢 匿名發文請至 %s\r\n🥙 全平台留言 %s",
-        //     base_convert($options['id'], 10, 36),
-        //     $_content,
-        //     '👉 去 GitHub 給我們🌟用行動支持純靠北工程師 https://github.com/init-engineer/init.engineer',
-        //     route('frontend.social.cards.create'),
-        //     route('frontend.social.cards.show', ['id' => $options['id']])
-        // );
     }
 }
