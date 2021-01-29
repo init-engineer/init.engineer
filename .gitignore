@@ -35,3 +35,6 @@ coverage.xml
 /coverage
 .phpunit.result.cache
 *.rnd
+
+public/json/social/*
+!.keep
