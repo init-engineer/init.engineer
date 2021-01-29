@@ -9,6 +9,7 @@ use App\Services\BaseService;
 use App\Exceptions\GeneralException;
 use ReliqArts\Thujohn\Twitter\Facades\Twitter;
 use App\Repositories\Backend\Social\MediaCardsRepository;
+use Illuminate\Support\Str;
 
 /**
  * Class TwitterPrimaryService.
@@ -137,7 +138,7 @@ class TwitterPrimaryService extends BaseService implements SocialCardsContract
      */
     public function buildContent($content = '', array $options = [])
     {
-        $_content = (mb_strlen($content, 'utf-8') > 20)? mb_substr($content, 0, 20, 'utf-8') . ' ...' : $content;
+        $_content = Str::limit($content, 20, ' ...');
 
         return '#純靠北工程師' . base_convert($options['id'], 10, 36) . "\n\r----------\n\r" .
             $_content . "\n\r----------\n\r" .
