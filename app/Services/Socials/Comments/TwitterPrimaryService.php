@@ -4,8 +4,6 @@ namespace App\Services\Socials\Comments;
 
 use App\Models\Social\Cards;
 use App\Services\BaseService;
-use App\Exceptions\GeneralException;
-use ReliqArts\Thujohn\Twitter\Facades\Twitter;
 use App\Repositories\Backend\Social\CommentsRepository;
 use App\Repositories\Backend\Social\MediaCardsRepository;
 
@@ -14,11 +12,6 @@ use App\Repositories\Backend\Social\MediaCardsRepository;
  */
 class TwitterPrimaryService extends BaseService implements SocialCardsContract
 {
-    /**
-     * @var Twitter
-     */
-    protected $twitter;
-
     /**
      * @var CommentsRepository
      */

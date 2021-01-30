@@ -4,8 +4,6 @@
     "description": "這是一份純靠北工程師的專案，請好好愛護它，謝謝。",
     "keywords": [
         "純靠北工程師",
-        "laravel",
-        "boilerplate",
         "init.engineer",
         "kaobei.engineer"
     ],
@@ -21,7 +19,11 @@
         "fideloper/proxy": "^4.0",
         "graham-campbell/markdown": "^11.1",
         "guzzlehttp/guzzle": "^6.4",
+<<<<<<< HEAD
         "intervention/image": "^2.5",
+=======
+        "irazasyed/telegram-bot-sdk": "^2",
+>>>>>>> main
         "lab404/laravel-impersonate": "^1.4",
         "langleyfoxall/laravel-nist-password-rules": "^4.0",
         "laravel/framework": "^6.0",
@@ -33,6 +35,7 @@
         "spatie/laravel-html": "^2.22",
         "spatie/laravel-permission": "^3.0",
         "torann/geoip": "^1.0",
+        "tumblr/tumblr": "dev-master",
         "vinkla/facebook": "^4.0"
     },
     "require-dev": {

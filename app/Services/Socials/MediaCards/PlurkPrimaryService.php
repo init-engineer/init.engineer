@@ -138,7 +138,7 @@ class PlurkPrimaryService extends BaseService implements SocialCardsContract
      */
     public function buildContent($content = '', array $options = [])
     {
-        $_content = (mb_strlen($content, 'utf-8') > 100) ? mb_substr($content, 0, 100, 'utf-8') . ' ...' : $content;
+        $_content = Str::limit($content, 100, ' ...');
 
         return $options['image_url'] . "\n\r" .
             '#純靠北工程師' . base_convert($options['id'], 10, 36) . "\n\r----------\n\r" .

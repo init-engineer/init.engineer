@@ -19,16 +19,16 @@
                 <hr class="my-4">
                 <p class="text-center pt-2">「我不會寫程式。」</p>
                 <p class="text-right">—— Powered by 乾太</p>
-                <hr class="my-4">
-                <p class="text-left"><a href="https://www.facebook.com/kantai.zeng"><i class="fab fa-facebook-square mr-3"></i> Kan-Tai Zeng</a></p>
-                <p class="text-left"><a href="mailto:kantai.developer@gmail.com"><i class="fas fa-envelope mr-3"></i> kantai.developer@gmail.com</a></p>
             </div>
 
             <!-- Grid column -->
             <div class="col-6 col-md-5 mx-auto mb-4">
-                <div class="w-100 h-100" style="border-style: dashed;">
-                    <h1 class="text-center" style="line-height: 6rem;">Not found</h1>
-                </div>
+                <h3 class="font-weight-bold">Our Team</h3>
+                <hr class="accent-2 mb-2 mt-0 d-inline-block mx-auto" style="width: 128px;">
+                <p><a href="{{ route('frontend.team') }}">關於我們團隊</a></p>
+                <hr class="my-4">
+                <p class="text-left"><a href="https://www.facebook.com/kantai.zeng"><i class="fab fa-facebook-square mr-3"></i> Kan-Tai Zeng</a></p>
+                <p class="text-left"><a href="mailto:kantai.developer@gmail.com"><i class="fas fa-envelope mr-3"></i> kantai.developer@gmail.com</a></p>
             </div>
             <!-- Grid column -->
 

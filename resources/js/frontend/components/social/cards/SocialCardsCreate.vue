@@ -97,7 +97,6 @@
               id="to-be-continued"
               class="control-input"
               v-model="canvas.feature.is_to_be_continued"
-              @click="drawingAll"
             />
             <label
               class="color-color-primary control-label"
@@ -194,7 +193,6 @@
               id="manager-line"
               class="control-input"
               v-model="canvas.is_manager_line"
-              @click="drawingAll"
             />
             <label class="color-color-primary control-label" for="manager-line">是否在文章當中繪製版主群識別框線</label>
           </div>
@@ -552,11 +550,10 @@ export default {
       const font = this.font.options.find(
         option => option.value === this.font.selector
       );
-      this.canvas.font = font.font;
       const ffo = new FontFaceObserver(font.font);
-      ffo.load().then(
+      ffo.load(null, 6000).then(
         function() {
-          console.log("Font is available.");
+          console.log(font.font + " is available.");
         },
         function() {
           Swal.fire({
@@ -572,8 +569,8 @@ export default {
           });
         }
       );
-
-      this.drawingAll();
+      
+      this.canvas.font = font.font;
     },
     drawingAll() {
       this.resetCanvasView();
@@ -634,51 +631,67 @@ export default {
     },
     drawingFeature() {
       let img = new Image();
+      let self = this;
       if (this.canvas.feature.is_to_be_continued) {
         img.src = "/img/frontend/cards/to_be_continued.png";
-        this.canvas.ctx.drawImage(img, 24, this.canvas.view.height - 240);
+        img.onload = function () {
+          self.canvas.ctx.drawImage(img, 24, self.canvas.view.height - 240);
+        }
       }
     },
     drawingBackgroundImage() {
       let img = new Image();
+      let self = this;
       switch (this.theme.selector) {
         case "05217b7d4741e38096a54eff4226c217":
           img.src = "/img/frontend/cards/devotion-bg.png";
-          this.canvas.ctx.drawImage(img, 360, 64);
+          img.onload = function () {
+            self.canvas.ctx.drawImage(img, 360, 64);
+          }
           return;
 
         case "32d2a897602ef652ed8e15d66128aa74":
           img.src = "/img/frontend/cards/qrcode.png";
-          this.canvas.ctx.drawImage(img, 24, this.canvas.height - 204);
+          img.onload = function () {
+            self.canvas.ctx.drawImage(img, 24, self.canvas.height - 204);
+          }
           return;
 
         case "tumx453xqZLjf5kaFFBzNj4gqVXKWqXz":
           img.src = "/img/frontend/cards/qrcode.png";
-          this.canvas.ctx.drawImage(img, 24, this.canvas.height - 204);
+          img.onload = function () {
+            self.canvas.ctx.drawImage(img, 24, self.canvas.height - 204);
+          }
           return;
 
         case "05326525f82b9a036e1bcb53a392ff7c":
           img.src = "/img/frontend/cards/fragmented_background.png";
-          this.canvas.ctx.drawImage(img, 0, this.canvas.height - 560);
+          img.onload = function () {
+            self.canvas.ctx.drawImage(img, 0, self.canvas.height - 560);
+          }
           img.src = "/img/frontend/cards/fragmented_people.png";
-          this.canvas.ctx.drawImage(img, 36, this.canvas.height - 542);
-          this.canvas.ctx.lineJoin = "round";
-          this.canvas.ctx.lineWidth = 8;
-          this.canvas.ctx.strokeRect(
+          img.onload = function () {
+            self.canvas.ctx.drawImage(img, 36, self.canvas.height - 542);
+          }
+          self.canvas.ctx.lineJoin = "round";
+          self.canvas.ctx.lineWidth = 8;
+          self.canvas.ctx.strokeRect(
             353,
             40,
-            this.canvas.width - 381,
-            this.canvas.height - 282
+            self.canvas.width - 381,
+            self.canvas.height - 282
           );
-          this.canvas.ctx.fillRect(
+          self.canvas.ctx.fillRect(
             357,
             44,
-            this.canvas.width - 389,
-            this.canvas.height - 290
+            self.canvas.width - 389,
+            self.canvas.height - 290
           );
           img.src = "/img/frontend/cards/fragmented_background_arrow.png";
           // img.src = "https://i.imgur.com/8kMDGcA.png";
-          this.canvas.ctx.drawImage(img, 312, this.canvas.height - 388);
+          img.onload = function () {
+            self.canvas.ctx.drawImage(img, 312, self.canvas.height - 388);
+          }
           return;
       }
     },
@@ -965,6 +978,17 @@ export default {
         }
       });
     }
+  },
+  watch: {
+    "canvas.font": function (val) {
+      this.drawingAll();
+    },
+    "canvas.feature.is_to_be_continued": function (val) {
+      this.drawingAll();
+    },
+    "canvas.is_manager_line": function (val) {
+      this.drawingAll();
+    },
   }
 };
 </script>

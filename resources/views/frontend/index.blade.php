@@ -16,12 +16,9 @@
                 <p>
                     熱門話題:
                     <a class="color-danger" style="text-decoration: underline;" href="https://github.com/init-engineer/init.engineer">純靠北工程師</a>
-                    <a class="color-color-primary" style="text-decoration: underline;" href="https://www.google.com/search?q=富王鴨肉">炎上鴨肉飯</a>
-                    <a class="color-color-primary" style="text-decoration: underline;" href="https://www.php.net/releases/8.0/en.php">PHP 8 Released</a>
-                    <a class="color-color-primary" style="text-decoration: underline;" href="https://www.ruby-lang.org/en/news/2020/12/25/ruby-3-0-0-released">Ruby 3 Released</a>
-                    <a class="color-primary" style="text-decoration: underline;" href="https://www.apple.com/tw/mac/m1/">Apple M1 晶片</a>
-                    <a class="color-color-primary" style="text-decoration: underline;" href="https://www.cyberpunk.net">電馭叛客 2077</a>
                     <a class="color-primary" style="text-decoration: underline;" href="https://mewe.com/p/initkobeengineer">移民去 MeWe</a>
+                    <a class="color-color-primary" style="text-decoration: underline;" href="https://www.youtube.com/watch?v=_6TtTRrno3E&list=PL12UaAf_xzfq1Qw3hO43WvcgAo_Sju6Ix">天竺鼠車車</a>
+                    <a class="color-danger" style="text-decoration: underline;" href="https://www.youtube.com/watch?t=3235&v=ePwN3rrFj9A">這位先生沒有回應</a>
                 </p>
             </div>
         </div>

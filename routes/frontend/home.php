@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Frontend\HomeController;
-use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\User\ProfileController;
 use App\Http\Controllers\Frontend\User\DashboardController;
 use App\Http\Controllers\Frontend\OAuth\CallbackController;
@@ -12,6 +11,7 @@ use App\Http\Controllers\Frontend\OAuth\AuthorizeController;
  * All route names are prefixed with 'frontend.'.
  */
 Route::get('/', [HomeController::class, 'index'])->name('index');
+Route::get('/team', [HomeController::class, 'team'])->name('team');
 Route::get('/policies', [HomeController::class, 'policies'])->name('policies');
 
 /**

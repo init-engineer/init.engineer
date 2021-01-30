@@ -50,17 +50,14 @@ class PlurkPrimaryService extends BaseService implements SocialCardsContract
      */
     public function getComments(Cards $cards)
     {
-        if ($mediaCards = $this->mediaCardsRepository->findByCardId($cards->id, 'plurk', 'primary'))
-        {
-            try
-            {
+        if ($mediaCards = $this->mediaCardsRepository->findByCardId($cards->id, 'plurk', 'primary')) {
+            try {
                 $response = $this->plurk->call('/APP/Responses/get', [
                     'plurk_id' => base_convert($mediaCards->social_card_id, 36, 10),
                     'count'    => 'all'
                 ]);
 
-                foreach ($response['responses'] as $reply)
-                {
+                foreach ($response['responses'] as $reply) {
                     $profile = $this->plurk->call('/APP/Profile/getPublicProfile', ['user_id' => $reply['user_id']]);
                     $reply = array_merge($reply, $profile);
                     $this->write(array_merge($reply, [
@@ -69,9 +66,7 @@ class PlurkPrimaryService extends BaseService implements SocialCardsContract
                         'media_comment_id' => sprintf('%s_%s', $reply['plurk_id'], $reply['id']),
                     ]));
                 }
-            }
-            catch (Exception $e)
-            {
+            } catch (Exception $e) {
                 \Log::error($e->getMessage());
             }
         }
@@ -82,21 +77,15 @@ class PlurkPrimaryService extends BaseService implements SocialCardsContract
      */
     private function write(array $data)
     {
-        if ($comment = $this->commentsRepository->findBySocialId($data['card_id'], $data['media_card_id'], $data['media_comment_id']))
-        {
-            if ($comment->content != $data['content'])
-            {
+        if ($comment = $this->commentsRepository->findBySocialId($data['card_id'], $data['media_card_id'], $data['media_comment_id'])) {
+            if ($comment->content != $data['content']) {
                 return $this->commentsRepository->update($comment, [
                     'content' => $data['content'],
                 ]);
-            }
-            else
-            {
+            } else {
                 return $comment;
             }
-        }
-        else
-        {
+        } else {
             return $this->commentsRepository->create([
                 'card_id' => $data['card_id'],
                 'media_id' => $data['media_card_id'],
