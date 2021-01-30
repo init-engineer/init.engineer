@@ -8,7 +8,6 @@ use App\Models\Social\Cards;
 use App\Services\BaseService;
 use App\Exceptions\GeneralException;
 use App\Repositories\Backend\Social\MediaCardsRepository;
-use Illuminate\Support\Str;
 use Tumblr\API\Client as TumblrClient;
 
 /**
@@ -16,6 +15,11 @@ use Tumblr\API\Client as TumblrClient;
  */
 class TumblrPrimaryService extends BaseService implements SocialCardsContract
 {
+    /**
+     * @var TumblrClient
+     */
+    protected $tumblr;
+
     /**
      * @var MediaCardsRepository
      */
@@ -28,8 +32,14 @@ class TumblrPrimaryService extends BaseService implements SocialCardsContract
     {
         $this->mediaCardsRepository = $mediaCardsRepository;
 
-        $this->tumblr = new TumblrClient(config('tumblr.CONSUMER_KEY'), config('tumblr.CONSUMER_SECRET'));
-        $this->tumblr->setToken(config('tumblr.ACCESS_TOKEN'), config('tumblr.ACCESS_TOKEN_SECRET'));
+        $this->tumblr = new TumblrClient(
+            config('tumblr.CONSUMER_KEY'),
+            config('tumblr.CONSUMER_SECRET')
+        );
+        $this->tumblr->setToken(
+            config('tumblr.ACCESS_TOKEN'),
+            config('tumblr.ACCESS_TOKEN_SECRET')
+        );
     }
 
     /**
@@ -38,14 +48,10 @@ class TumblrPrimaryService extends BaseService implements SocialCardsContract
      */
     public function publish(Cards $cards)
     {
-        if ($this->mediaCardsRepository->findByCardId($cards->id, 'tumblr', 'primary'))
-        {
+        if ($this->mediaCardsRepository->findByCardId($cards->id, 'tumblr', 'primary')) {
             throw new GeneralException(__('exceptions.backend.social.media.cards.repeated_error'));
-        }
-        else
-        {
-            try
-            {
+        } else {
+            try {
                 $content = $this->buildContent($cards->content, [
                     'id' => $cards->id,
                 ]);
@@ -54,7 +60,7 @@ class TumblrPrimaryService extends BaseService implements SocialCardsContract
                     'data' => $cards->images->first()->getPicture(),
                     'type' => 'photo',
                     'format' => 'html',
-                    'caption' => $content['content'],
+                    'caption' => $content,
                 ];
 
                 $response = $this->tumblr->createPost(config('social.tumblr.primary.user_id'), $photoPost);
@@ -66,9 +72,7 @@ class TumblrPrimaryService extends BaseService implements SocialCardsContract
                     'social_connections' => 'primary',
                     'social_card_id' => $response->id,
                 ]);
-            }
-            catch (Exception $e)
-            {
+            } catch (Exception $e) {
                 \Log::error($e->getMessage());
             }
         }
@@ -80,10 +84,8 @@ class TumblrPrimaryService extends BaseService implements SocialCardsContract
      */
     public function update(Cards $cards)
     {
-        if ($mediaCards = $this->mediaCardsRepository->findByCardId($cards->id, 'tumblr', 'primary'))
-        {
-            try
-            {
+        if ($mediaCards = $this->mediaCardsRepository->findByCardId($cards->id, 'tumblr', 'primary')) {
+            try {
                 $params = [
                     'id' => $mediaCards->social_card_id,
                     'mode' => 'all'
@@ -96,14 +98,12 @@ class TumblrPrimaryService extends BaseService implements SocialCardsContract
                 $count = collect($response->notes)->countBy(function ($item) {
                     return $item->type;
                 });
-          
+
                 return $this->mediaCardsRepository->update($mediaCards, [
                     'num_like' => $count['like'],
                     'num_share' => $count['reblog'],
                 ]);
-            }
-            catch (Exception $e)
-            {
+            } catch (Exception $e) {
                 \Log::error($e->getMessage());
             }
         }
@@ -119,12 +119,10 @@ class TumblrPrimaryService extends BaseService implements SocialCardsContract
      */
     public function destory(User $user, Cards $cards, array $options)
     {
-        if ($mediaCards = $this->mediaCardsRepository->findByCardId($cards->id, 'tumblr', 'primary'))
-        {
-            try
-            {
+        if ($mediaCards = $this->mediaCardsRepository->findByCardId($cards->id, 'tumblr', 'primary')) {
+            try {
                 $response = $this->tumblr->deletePost(
-                    config('social.tumblr.primary.user_id'), 
+                    config('social.tumblr.primary.user_id'),
                     $mediaCards->social_card_id,
                     $mediaCards->social_card_id
                 );
@@ -135,12 +133,10 @@ class TumblrPrimaryService extends BaseService implements SocialCardsContract
                     'active' => false,
                     'is_banned' => true,
                     'banned_user_id' => $user->id,
-                    'banned_remarks' => isset($options['remarks'])? $options['remarks'] : null,
+                    'banned_remarks' => isset($options['remarks']) ? $options['remarks'] : null,
                     'banned_at' => now(),
                 ]);
-            }
-            catch (Exception $e)
-            {
+            } catch (Exception $e) {
                 \Log::error($e->getMessage());
             }
         }
@@ -149,28 +145,15 @@ class TumblrPrimaryService extends BaseService implements SocialCardsContract
     }
 
     /**
-     * 
-     *
      * @param string $content
      * @return string
      */
-    public function buildContent($content = '', array $options = [])
+    public function buildContent($content = '', array $options = []): string
     {
-        return [
-            'content' => "<div>" . nl2br($content) . "</div><br /><hr /><br />" .
-                            '<p>🗳️ [群眾審核] <a href="' . route('frontend.social.cards.review') . '">' . route('frontend.social.cards.create') . '</a></p>' .
-                            '<p>👉 [GitHub] <a href="https://github.com/init-engineer/init.engineer">init-engineer/init.engineer</a></p>' .
-                            '<p>📢 [匿名發文] <a href="' . route('frontend.social.cards.create') . '">' . route('frontend.social.cards.create') . '</a></p>' .
-                            '<p>🥙 [全平台留言] <a href="' . route('frontend.social.cards.show', ['id' => $options['id']]) . '">' . route('frontend.social.cards.show', ['id' => $options['id']]) . '</a></p>',
-        ];
-
-        // return sprintf(
-        //     "#純靠北工程師%s\r\n%s\r\n%s\r\n📢 匿名發文請至 %s\r\n🥙 全平台留言 %s",
-        //     base_convert($options['id'], 10, 36),
-        //     $_content,
-        //     '👉 去 GitHub 給我們🌟用行動支持純靠北工程師 https://github.com/init-engineer/init.engineer',
-        //     route('frontend.social.cards.create'),
-        //     route('frontend.social.cards.show', ['id' => $options['id']])
-        // );
+        return '<div>' . nl2br($content) . '</div><br /><hr /><br />' .
+            '<p>🗳️ [群眾審核] <a href="' . route('frontend.social.cards.review') . '">' . route('frontend.social.cards.create') . '</a></p>' .
+            '<p>👉 [GitHub] <a href="https://github.com/init-engineer/init.engineer">init-engineer/init.engineer</a></p>' .
+            '<p>📢 [匿名發文] <a href="' . route('frontend.social.cards.create') . '">' . route('frontend.social.cards.create') . '</a></p>' .
+            '<p>🥙 [全平台留言] <a href="' . route('frontend.social.cards.show', ['id' => $options['id']]) . '">' . route('frontend.social.cards.show', ['id' => $options['id']]) . '</a></p>';
     }
 }
