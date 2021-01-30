@@ -43,7 +43,6 @@ return [
         ],
     ],
 
-
     'tumblr' => [
         'primary' => [
             'create_post' => env('TUMBLR_CREATE_POST', false),
