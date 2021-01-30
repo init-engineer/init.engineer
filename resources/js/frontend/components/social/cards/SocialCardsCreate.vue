@@ -552,11 +552,10 @@ export default {
       const font = this.font.options.find(
         option => option.value === this.font.selector
       );
-      this.canvas.font = font.font;
       const ffo = new FontFaceObserver(font.font);
-      ffo.load().then(
+      ffo.load(null, 6000).then(
         function() {
-          console.log("Font is available.");
+          console.log(font.font + " is available.");
         },
         function() {
           Swal.fire({
@@ -572,8 +571,8 @@ export default {
           });
         }
       );
-
-      this.drawingAll();
+      
+      this.canvas.font = font.font;
     },
     drawingAll() {
       this.resetCanvasView();
@@ -965,6 +964,11 @@ export default {
         }
       });
     }
+  },
+  watch: {
+    "canvas.font": function (val) {
+      this.drawingAll();
+    },
   }
 };
 </script>
