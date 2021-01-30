@@ -4,8 +4,6 @@
     "description": "這是一份純靠北工程師的專案，請好好愛護它，謝謝。",
     "keywords": [
         "純靠北工程師",
-        "laravel",
-        "boilerplate",
         "init.engineer",
         "kaobei.engineer"
     ],
@@ -33,6 +31,7 @@
         "spatie/laravel-html": "^2.22",
         "spatie/laravel-permission": "^3.0",
         "torann/geoip": "^1.0",
+        "tumblr/tumblr": "dev-master",
         "vinkla/facebook": "^4.0"
     },
     "require-dev": {

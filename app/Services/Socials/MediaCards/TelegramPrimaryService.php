@@ -17,7 +17,7 @@ use Telegram\Bot\Api;
 class TelegramPrimaryService extends BaseService implements SocialCardsContract
 {
     /**
-     *
+     * @var Telegram\Bot\Api
      */
     protected $telegram;
 
@@ -104,7 +104,7 @@ class TelegramPrimaryService extends BaseService implements SocialCardsContract
     {
         $_content = Str::limit($content, 800, ' ...');
 
-        return "\n\r----------\n\r" .
+        return '#純靠北工程師' . base_convert($options['id'], 10, 36) . "\n\r----------\n\r" .
             $_content . "\n\r----------\n\r" .
             '🗳️ [群眾審核] ' . route('frontend.social.cards.review') . "\n\r" .
             '👉 [GitHub Repo] https://github.com/init-engineer/init.engineer' . "\n\r" .
