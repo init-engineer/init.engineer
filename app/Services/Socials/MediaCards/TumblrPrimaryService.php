@@ -150,7 +150,8 @@ class TumblrPrimaryService extends BaseService implements SocialCardsContract
      */
     public function buildContent($content = '', array $options = []): string
     {
-        return '<div>' . nl2br($content) . '</div><br /><hr /><br />' .
+        return '<div>#純靠北工程師' . base_convert($options['id'], 10, 36) . '<br /><hr /><br />' .
+            '<div>' . nl2br($content) . '</div><br /><hr /><br />' .
             '<p>🗳️ [群眾審核] <a href="' . route('frontend.social.cards.review') . '">' . route('frontend.social.cards.create') . '</a></p>' .
             '<p>👉 [GitHub] <a href="https://github.com/init-engineer/init.engineer">init-engineer/init.engineer</a></p>' .
             '<p>📢 [匿名發文] <a href="' . route('frontend.social.cards.create') . '">' . route('frontend.social.cards.create') . '</a></p>' .
