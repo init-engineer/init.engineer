@@ -199,16 +199,6 @@ a, span, button {
         }
     }
 
-    &.btn-pink {
-        color: white;
-        background-color: #E83E8C;
-
-        &:active {
-            color: darkgrey;
-            background-color: #94285A;
-        }
-    }
-
     &.btn-plurk {
         color: white;
         background-color: #FF4E47;
@@ -216,6 +206,36 @@ a, span, button {
         &:active {
             color: darkgrey;
             background-color: #A3322E;
+        }
+    }
+
+    &.btn-tumblr {
+        color: white;
+        background-color: #34526f;
+
+        &:active {
+            color: darkgrey;
+            background-color: #294158;
+        }
+    }
+
+    &.btn-telegram {
+        color: white;
+        background-color: #0088cc;
+
+        &:active {
+            color: darkgrey;
+            background-color: #006ca3;
+        }
+    }
+
+    &.btn-pink {
+        color: white;
+        background-color: #E83E8C;
+
+        &:active {
+            color: darkgrey;
+            background-color: #94285A;
         }
     }
 
