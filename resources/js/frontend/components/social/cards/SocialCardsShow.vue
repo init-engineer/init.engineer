@@ -113,7 +113,7 @@
               {{ link.share }}
             </p>
           </tippy>
-          {{ link.type.toUpperCase() }} {{ (link.connections === 'primary') ? '主站' : '次站' }}
+          {{ link.type.toUpperCase() }} {{ link.connectionsString }}
         </a>
       </div>
       <!-- cards links -->
@@ -138,7 +138,7 @@
               <span
                 class="badge badge-sm ml-1 animated fadeInUp faster"
                 :class="'badge-' + comment.media.type"
-              >{{ comment.media.type.toUpperCase() }} {{ (comment.media.connections === 'primary') ? '主站' : '次站' }}</span>
+              >{{ comment.media.type.toUpperCase() }} {{ comment.media.connectionsString }}</span>
               <small class="ml-auto text-white">{{ comment.created }}</small>
             </div>
             <code
@@ -262,16 +262,6 @@ export default {
     this.getLinks();
   },
   methods: {
-    getLinks() {
-      axios
-        .get(`/api/frontend/social/cards/${this.id}/links`)
-        .then(
-          response => (
-            this.links.push(...response.data.data), (this.loaded.links = true)
-          )
-        )
-        .catch(error => console.log(error));
-    },
     infiniteHandler($state) {
       axios
         .get(this.commentsNext)
@@ -279,6 +269,11 @@ export default {
           this.comments.push(...response.data.data);
           this.comments.forEach(element => {
             element.content = element.content.replace(/<br \/>/g, "\n\r");
+            if (element.type === 'telegram') {
+              element.media.connectionsString = '頻道';
+            } else {
+              element.media.connectionsString = (element.media.connections === 'primary') ? '主站' : '次站';
+            }
           });
           if (response.data.meta.pagination.links.next) {
             this.commentsNext = response.data.meta.pagination.links.next;
@@ -286,6 +281,22 @@ export default {
           } else {
             $state.complete();
           }
+        })
+        .catch(error => console.log(error));
+    },
+    getLinks() {
+      axios
+        .get(`/api/frontend/social/cards/${this.id}/links`)
+        .then(response => {
+          this.links.push(...response.data.data);
+          this.links.forEach(element => {
+            if (element.type === 'telegram') {
+              element.connectionsString = '頻道';
+            } else {
+              element.connectionsString = (element.connections === 'primary') ? '主站' : '次站';
+            }
+          });
+          this.loaded.links = true;
         })
         .catch(error => console.log(error));
     },
