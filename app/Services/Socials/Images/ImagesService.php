@@ -672,6 +672,22 @@ class ImagesService extends BaseService implements ImagesContract
                 // $overlayImage = imageCreateFromPng(asset('img/frontend/cards/fragmented_people.png'));
                 $overlayImage = imageCreateFromPng('https://kaobei.engineer/img/frontend/cards/fragmented_people.png');
                 imageCopy($this->canvas, $overlayImage, 36, imageSY($this->canvas) - 542, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
+
+                $square_width = $this->canvasWidth - 375;
+                $square_height = $this->canvasHeight - 250;
+                $newimg = imageCreateTrueColor($square_width, $square_height);
+                $border = imageColorAllocate($newimg, 0, 0, 0);
+                $fill = imageColorAllocate($newimg, 255, 255, 255);
+                imageFilledRectAngle($newimg, 0, 0, $square_width, $square_height, $fill);
+                imageSetThickness($newimg, 6);
+                imageRectAngle($newimg, 6, 6, $square_width - 6, $square_height - 6, $border);
+
+                $top = (72 - $this->canvasHeight * 0.05 > 0) ? 72 - $this->canvasHeight * 0.05 : 20;
+                imageCopy($this->canvas, $newimg, 350, $top , 0, 0, $square_width, $square_height);
+
+                $overlayImage = imageCreateFromPng('https://kaobei.engineer/img/frontend/cards/fragmented_background_arrow.png');
+                imageCopy($this->canvas, $overlayImage, 315, imageSY($this->canvas) - 372, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
+
                 break;
 
             default:
