@@ -630,12 +630,22 @@ export default {
       this.canvas.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
     },
     drawingFeature() {
-      let img = new Image();
-      let self = this;
       if (this.canvas.feature.is_to_be_continued) {
-        img.src = "/img/frontend/cards/to_be_continued.png";
-        img.onload = function () {
-          self.canvas.ctx.drawImage(img, 24, self.canvas.view.height - 240);
+        var sources = {
+          image1: '/img/frontend/cards/to_be_continued.png'
+        };
+        var self = this;
+        switch (this.theme.selector) {
+          case "05326525f82b9a036e1bcb53a392ff7c":
+            this.loadImages(sources, function(images) {
+              self.canvas.ctx.drawImage(images.image1, self.canvas.width - 550, self.canvas.height - 360);
+            });
+            return;
+          default:
+            this.loadImages(sources, function(images) {
+              self.canvas.ctx.drawImage(images.image1, 24, self.canvas.height - 240);
+            });
+            return;
         }
       }
     },
@@ -665,33 +675,40 @@ export default {
           return;
 
         case "05326525f82b9a036e1bcb53a392ff7c":
-          img.src = "/img/frontend/cards/fragmented_background.png";
-          img.onload = function () {
-            self.canvas.ctx.drawImage(img, 0, self.canvas.height - 560);
-          }
-          img.src = "/img/frontend/cards/fragmented_people.png";
-          img.onload = function () {
-            self.canvas.ctx.drawImage(img, 36, self.canvas.height - 542);
-          }
-          self.canvas.ctx.lineJoin = "round";
-          self.canvas.ctx.lineWidth = 8;
-          self.canvas.ctx.strokeRect(
-            353,
-            40,
-            self.canvas.width - 381,
-            self.canvas.height - 282
-          );
-          self.canvas.ctx.fillRect(
-            357,
-            44,
-            self.canvas.width - 389,
-            self.canvas.height - 290
-          );
-          img.src = "/img/frontend/cards/fragmented_background_arrow.png";
-          // img.src = "https://i.imgur.com/8kMDGcA.png";
-          img.onload = function () {
-            self.canvas.ctx.drawImage(img, 312, self.canvas.height - 388);
-          }
+          var sources = {
+            image1: '/img/frontend/cards/fragmented_background.png',
+            image2: '/img/frontend/cards/fragmented_people.png',
+            image3: '/img/frontend/cards/fragmented_background_arrow.png'
+          };
+
+          this.loadImages(sources, function(images) {
+            self.canvas.ctx.drawImage(images.image1, 0, self.canvas.height - 560);
+            self.canvas.ctx.drawImage(images.image2, 36, self.canvas.height - 542);
+
+            self.canvas.ctx.lineJoin = "round";
+            self.canvas.ctx.lineWidth = 8;
+            self.canvas.ctx.strokeRect(
+              353,
+              40,
+              self.canvas.width - 381,
+              self.canvas.height - 282
+            );
+            self.canvas.ctx.fillStyle = '#FFFFFF';
+            self.canvas.ctx.fillRect(
+              357,
+              44,
+              self.canvas.width - 389,
+              self.canvas.height - 290
+            );
+            
+            self.canvas.ctx.drawImage(images.image3, 312, self.canvas.height - 388);
+            
+            self.drawingLogo();
+            self.drawingUrl();
+            self.drawingContent();
+            self.drawingFeature();
+          });
+
           return;
       }
     },
@@ -977,6 +994,24 @@ export default {
             break;
         }
       });
+    },
+    loadImages(sources, callback) {
+      var images = {};
+      var loadedImages = 0;
+      var numImages = 0;
+      // get num of sources
+      for(var src in sources) {
+        numImages++;
+      }
+      for(var src in sources) {
+        images[src] = new Image();
+        images[src].onload = function() {
+          if(++loadedImages >= numImages) {
+            callback(images);
+          }
+        };
+        images[src].src = sources[src];
+      }
     }
   },
   watch: {
