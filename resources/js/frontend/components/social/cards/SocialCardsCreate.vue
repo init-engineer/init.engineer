@@ -569,7 +569,7 @@ export default {
           });
         }
       );
-      
+
       this.canvas.font = font.font;
     },
     drawingAll() {
@@ -609,7 +609,7 @@ export default {
           break;
 
         case "05326525f82b9a036e1bcb53a392ff7c":
-          canvasView_height += 140;
+          canvasView_height += 160;
           canvasView_width += 349;
           break;
       }
@@ -636,9 +636,19 @@ export default {
         };
         var self = this;
         switch (this.theme.selector) {
+          case "32d2a897602ef652ed8e15d66128aa74":
+            this.loadImages(sources, function(images) {
+              self.canvas.ctx.drawImage(images.image1, 24, self.canvas.height - 372);
+            });
+            return;
+          case "tumx453xqZLjf5kaFFBzNj4gqVXKWqXz":
+            this.loadImages(sources, function(images) {
+              self.canvas.ctx.drawImage(images.image1, 24, self.canvas.height - 372);
+            });
+            return;
           case "05326525f82b9a036e1bcb53a392ff7c":
             this.loadImages(sources, function(images) {
-              self.canvas.ctx.drawImage(images.image1, self.canvas.width - 550, self.canvas.height - 360);
+              self.canvas.ctx.drawImage(images.image1, self.canvas.width - 950, self.canvas.height - 400);
             });
             return;
           default:
@@ -700,9 +710,9 @@ export default {
               self.canvas.width - 389,
               self.canvas.height - 290
             );
-            
+
             self.canvas.ctx.drawImage(images.image3, 312, self.canvas.height - 388);
-            
+
             self.drawingLogo();
             self.drawingUrl();
             self.drawingContent();
