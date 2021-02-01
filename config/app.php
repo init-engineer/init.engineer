@@ -261,5 +261,6 @@ return [
         'Facebook' => Vinkla\Facebook\Facades\Facebook::class,
         'Twitter' => ReliqArts\Thujohn\Twitter\Facades\Twitter::class,
         'Markdown' => GrahamCampbell\Markdown\Facades\Markdown::class,
+        'Image' => Intervention\Image\Facades\Image::class,
     ],
 ];
