@@ -9,6 +9,10 @@ textarea {
         background-color: #000000;
         color: lightgray;
 
+        &.thesis {
+            font-size: 1.15em;
+        }
+
         &:focus {
             background-color: #232323;
             color: lightgray;
