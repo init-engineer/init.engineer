@@ -64,7 +64,7 @@ class CardsService extends BaseService implements CardsContract
      */
     public function creationNotify(Cards $cards)
     {
-        if (env('DISCORD_CREATION_NOTIFY') !== "") {
+        if (!is_null(env('DISCORD_CREATION_NOTIFY')) && env('DISCORD_CREATION_NOTIFY') !== "") {
             $client = new Client();
             $client->request('POST', env('DISCORD_CREATION_NOTIFY'), [
                 'json' => [
@@ -91,7 +91,7 @@ class CardsService extends BaseService implements CardsContract
      */
     public function publishNotify(Cards $cards)
     {
-        if (env('DISCORD_PUBLISH_NOTIFY') !== "") {
+        if (!is_null(env('DISCORD_PUBLISH_NOTIFY')) && env('DISCORD_PUBLISH_NOTIFY') !== "") {
             $client = new Client();
             $client->request('POST', env('DISCORD_PUBLISH_NOTIFY'), [
                 'json' => [
