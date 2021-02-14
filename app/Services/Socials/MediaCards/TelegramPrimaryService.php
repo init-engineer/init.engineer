@@ -31,7 +31,7 @@ class TelegramPrimaryService extends BaseService implements SocialCardsContract
      */
     public function __construct(MediaCardsRepository $mediaCardsRepository)
     {
-        $this->telegram = new Api(env('TELEGRAM_BOT_TOKEN'));
+        $this->telegram = new Api(env('TELEGRAM_BOT_TOKEN', 'TELEGRAM_BOT_TOKEN'));
         $this->mediaCardsRepository = $mediaCardsRepository;
     }
 
