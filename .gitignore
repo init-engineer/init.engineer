@@ -29,7 +29,6 @@ _ide_helper.php
 composer.phar
 error.log
 output.txt
-app-ads.txt
 /.vscode
 .php_cs.cache
 coverage.xml
@@ -37,5 +36,6 @@ coverage.xml
 .phpunit.result.cache
 *.rnd
 
+public/app-ads.txt
 public/json/social/*
 
