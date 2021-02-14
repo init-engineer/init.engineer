@@ -1,10 +1,12 @@
 /node_modules
 
 /public/ads.txt
+/public/app-ads.txt
 /public/.htaccess
 /public/hot
 /public/storage
 /public/.well-known
+/public/json/social/*
 
 /storage/*.key
 /storage/backups/*
@@ -35,7 +37,3 @@ coverage.xml
 /coverage
 .phpunit.result.cache
 *.rnd
-
-public/app-ads.txt
-public/json/social/*
-
