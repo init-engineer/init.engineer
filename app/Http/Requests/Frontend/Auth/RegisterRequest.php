@@ -31,7 +31,7 @@ class RegisterRequest extends FormRequest
         return [
             'first_name' => ['required', 'string'],
             'last_name' => ['required', 'string'],
-            'email' => ['required', 'string', 'email', 'regex:/@gmail\.com|@yahoo\.com|@icloud\.com|@me\.com|@*\.edu\.|@hotmail\.com|@outlook\.com', Rule::unique('users')],
+            'email' => ['required', 'string', 'email', 'regex:/@gmail\.com|@yahoo\.com|@icloud\.com|@me\.com|@*\.edu\.|@hotmail\.com|@outlook\.com/', Rule::unique('users')],
             'password' => PasswordRules::register($this->email),
             'g-recaptcha-response' => ['required_if:captcha_status,true', 'captcha'],
         ];
