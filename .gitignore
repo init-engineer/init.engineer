@@ -29,6 +29,7 @@ _ide_helper.php
 composer.phar
 error.log
 output.txt
+app-ads.txt
 /.vscode
 .php_cs.cache
 coverage.xml
