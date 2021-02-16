@@ -10,7 +10,8 @@
           <label class="col-label">內容編輯</label>
           <textarea
             class="form-control cards-editor"
-            rows="7"
+            v-bind:class="{ thesis: canvas.feature.is_thesis_mode }"
+            :rows="params[editorMode]['rows']"
             minlength="30"
             maxlength="4096"
             placeholder="跟大家分享你的靠北事吧。"
@@ -90,7 +91,6 @@
       <div class="col-12 col-md-6">
         <div class="form-group">
           <label class="col-label">To Be Continued</label>
-
           <div class="custom-control custom-checkbox">
             <input
               type="checkbox"
@@ -102,6 +102,22 @@
               class="color-color-primary control-label"
               for="to-be-continued"
             >是否在文章當中繪製 To Be Coutinued，建議主題選擇「黑底白字」</label>
+          </div>
+        </div>
+        <!--form-group-->
+        <div class="form-group">
+          <label class="col-label">論文模式</label>
+          <div class="custom-control custom-checkbox">
+            <input
+              type="checkbox"
+              id="thesis-mode"
+              class="control-input"
+              v-model="canvas.feature.is_thesis_mode"
+            />
+            <label
+              class="color-color-primary control-label"
+              for="thesis-mode"
+            >長篇大論最愛論文模式</label>
           </div>
         </div>
         <!--form-group-->
@@ -242,6 +258,27 @@ export default {
   data() {
     return {
       checked: false,
+      editorMode: "normal",
+      params: {
+        normal: {
+          rows: 7,
+          base1: 40,
+          base2: 80,
+          spacing: 96,
+          fontsize: "63px ",
+          linechars: 42,
+          breakpoint: 14,
+        },
+        thesis: {
+          rows: 14,
+          base1: 20,
+          base2: 40,
+          spacing: 72,
+          fontsize: "32px ",
+          linechars: 84,
+          breakpoint: 28,
+        }
+      },
       canvas: {
         view: null,
         ctx: null,
@@ -256,7 +293,8 @@ export default {
         font: "Auraka",
         is_manager_line: false,
         feature: {
-          is_to_be_continued: false
+          is_to_be_continued: false,
+          is_thesis_mode: false
         }
       },
       avatar: null,
@@ -590,10 +628,10 @@ export default {
     },
     settingCanvasViewSize() {
       let lineCount = this.contentSplit().length;
-      let canvasView_center = lineCount * 80 < 600 ? true : false;
+      let canvasView_center = lineCount * this.params[this.editorMode]['base2'] < 600 ? true : false;
       let canvasView_height = canvasView_center
         ? this.canvas.default_height
-        : 72 + 72 + lineCount * 80;
+        : 72 + 72 + lineCount * this.params[this.editorMode]['base2'];
       let canvasView_width = this.canvas.default_width;
 
       /**
@@ -634,54 +672,48 @@ export default {
         var sources = {
           image1: '/img/frontend/cards/to_be_continued.png'
         };
-        var self = this;
         switch (this.theme.selector) {
           case "32d2a897602ef652ed8e15d66128aa74":
-            this.loadImages(sources, function(images) {
-              self.canvas.ctx.drawImage(images.image1, 24, self.canvas.height - 372);
-            });
-            return;
           case "tumx453xqZLjf5kaFFBzNj4gqVXKWqXz":
             this.loadImages(sources, function(images) {
-              self.canvas.ctx.drawImage(images.image1, 24, self.canvas.height - 372);
-            });
+              this.canvas.ctx.drawImage(images.image1, 24, this.canvas.height - 372);
+            }.bind(this));
             return;
           case "05326525f82b9a036e1bcb53a392ff7c":
             this.loadImages(sources, function(images) {
-              self.canvas.ctx.drawImage(images.image1, self.canvas.width - 950, self.canvas.height - 400);
-            });
+              this.canvas.ctx.drawImage(images.image1, this.canvas.width - 950, this.canvas.height - 400);
+            }.bind(this));
             return;
           default:
             this.loadImages(sources, function(images) {
-              self.canvas.ctx.drawImage(images.image1, 24, self.canvas.height - 240);
-            });
+              this.canvas.ctx.drawImage(images.image1, 24, this.canvas.height - 240);
+            }.bind(this));
             return;
         }
       }
     },
     drawingBackgroundImage() {
       let img = new Image();
-      let self = this;
       switch (this.theme.selector) {
         case "05217b7d4741e38096a54eff4226c217":
           img.src = "/img/frontend/cards/devotion-bg.png";
           img.onload = function () {
-            self.canvas.ctx.drawImage(img, 360, 64);
-          }
+            this.canvas.ctx.drawImage(img, 360, 64);
+          }.bind(this);
           return;
 
         case "32d2a897602ef652ed8e15d66128aa74":
           img.src = "/img/frontend/cards/qrcode.png";
           img.onload = function () {
-            self.canvas.ctx.drawImage(img, 24, self.canvas.height - 204);
-          }
+            this.canvas.ctx.drawImage(img, 24, this.canvas.height - 204);
+          }.bind(this);
           return;
 
         case "tumx453xqZLjf5kaFFBzNj4gqVXKWqXz":
           img.src = "/img/frontend/cards/qrcode.png";
           img.onload = function () {
-            self.canvas.ctx.drawImage(img, 24, self.canvas.height - 204);
-          }
+            this.canvas.ctx.drawImage(img, 24, this.canvas.height - 204);
+          }.bind(this);
           return;
 
         case "05326525f82b9a036e1bcb53a392ff7c":
@@ -692,32 +724,32 @@ export default {
           };
 
           this.loadImages(sources, function(images) {
-            self.canvas.ctx.drawImage(images.image1, 0, self.canvas.height - 560);
-            self.canvas.ctx.drawImage(images.image2, 36, self.canvas.height - 542);
+            this.canvas.ctx.drawImage(images.image1, 0, this.canvas.height - 560);
+            this.canvas.ctx.drawImage(images.image2, 36, this.canvas.height - 542);
 
-            self.canvas.ctx.lineJoin = "round";
-            self.canvas.ctx.lineWidth = 8;
-            self.canvas.ctx.strokeRect(
+            this.canvas.ctx.lineJoin = "round";
+            this.canvas.ctx.lineWidth = 8;
+            this.canvas.ctx.strokeRect(
               353,
               40,
-              self.canvas.width - 381,
-              self.canvas.height - 282
+              this.canvas.width - 381,
+              this.canvas.height - 282
             );
-            self.canvas.ctx.fillStyle = '#FFFFFF';
-            self.canvas.ctx.fillRect(
+            this.canvas.ctx.fillStyle = '#FFFFFF';
+            this.canvas.ctx.fillRect(
               357,
               44,
-              self.canvas.width - 389,
-              self.canvas.height - 290
+              this.canvas.width - 389,
+              this.canvas.height - 290
             );
 
-            self.canvas.ctx.drawImage(images.image3, 312, self.canvas.height - 388);
+            this.canvas.ctx.drawImage(images.image3, 312, this.canvas.height - 388);
 
-            self.drawingLogo();
-            self.drawingUrl();
-            self.drawingContent();
-            self.drawingFeature();
-          });
+            this.drawingLogo();
+            this.drawingUrl();
+            this.drawingContent();
+            this.drawingFeature();
+          }.bind(this));
 
           return;
       }
@@ -823,10 +855,10 @@ export default {
           if (this.canvas.is_center) {
             y_point =
               24 + this.canvas.is_center
-                ? 440 + ((content_key - 1) * 80 - contentList.length * 40)
-                : (content_key + 1) * 80;
+                ? 440 + ((content_key - 1) * this.params[this.editorMode]['base2'] - contentList.length * this.params[this.editorMode]['base1'])
+                : (content_key + 1) * this.params[this.editorMode]['base2'];
           } else {
-            y_point = 96 + content_key * 80;
+            y_point = this.params[this.editorMode]['spacing'] + content_key * this.params[this.editorMode]['base2'];
           }
 
           switch (this.theme.selector) {
@@ -842,7 +874,8 @@ export default {
               break;
           }
 
-          this.canvas.ctx.font = "63px " + this.canvas.font;
+          // this.canvas.ctx.font = "63px " + this.canvas.font;
+          this.canvas.ctx.font = this.params[this.editorMode]['fontsize'] + this.canvas.font;
           this.canvas.ctx.fillStyle = this.canvas.color;
           this.canvas.ctx.fillText(content_value, x_point, y_point);
         }.bind(this)
@@ -867,12 +900,14 @@ export default {
       let content = this.canvas.content !== null ? this.canvas.content : "";
       let response_list = [];
       let content_list = content.split(/\r\n|\r|\n/);
+      let linechars = this.params[this.editorMode]['linechars'];
+      let breakpoint = this.params[this.editorMode]['breakpoint'];
       content_list.forEach(function(content_value) {
         let content_strlen = encodeURIComponent(content_value).replace(
           /%[A-F\d]{2}/g,
           "U"
         ).length;
-        if (content_strlen <= 42) {
+        if (content_strlen <= linechars) {
           response_list.push(content_value);
         } else {
           let content_width = 0;
@@ -890,7 +925,7 @@ export default {
                 _content_value_list[char_key + 1]
               ).replace(/%[A-F\d]{2}/g, "U").length;
               let _next_char_width = _next_char_strlen == 3 ? 1 : 0.5;
-              if (content_width + _next_char_width >= 14) {
+              if (content_width + _next_char_width >= breakpoint) {
                 response_list.push(char_string);
                 content_width = 0;
                 char_string = "";
@@ -1029,6 +1064,14 @@ export default {
       this.drawingAll();
     },
     "canvas.feature.is_to_be_continued": function (val) {
+      this.drawingAll();
+    },
+    "canvas.feature.is_thesis_mode": function (val) {
+      if (this.canvas.feature.is_thesis_mode === true) {
+        this.editorMode = "thesis";
+      } else {
+        this.editorMode = "normal";
+      }
       this.drawingAll();
     },
     "canvas.is_manager_line": function (val) {
