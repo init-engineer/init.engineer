@@ -19,6 +19,8 @@ class UserPasswordController extends Controller
     protected $userRepository;
 
     /**
+     * UserPasswordController constructor.
+     *
      * @param UserRepository $userRepository
      */
     public function __construct(UserRepository $userRepository)

@@ -31,10 +31,10 @@ class UpdateUserAccountTest extends TestCase
     }
 
     /** @test */
-    // public function only_authenticated_users_can_access_their_account()
-    // {
-    //     $this->get('/dashboard')->assertRedirect('/login');
-    // }
+    public function only_authenticated_users_can_access_their_account()
+    {
+        $this->get('/dashboard')->assertRedirect('/login');
+    }
 
     /** @test */
     public function a_user_can_update_his_profile()

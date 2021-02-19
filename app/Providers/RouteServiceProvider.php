@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Auth\SocialAccount;
 use App\Models\Auth\User;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;

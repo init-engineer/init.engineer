@@ -38,10 +38,10 @@ class UserRegistrationTest extends TestCase
     }
 
     /** @test */
-    // public function the_register_route_exists()
-    // {
-    //     $this->get('/register')->assertStatus(200);
-    // }
+    public function the_register_route_exists()
+    {
+        $this->get('/register')->assertStatus(200);
+    }
 
     /** @test */
     public function user_registration_can_be_disabled()
@@ -85,7 +85,7 @@ class UserRegistrationTest extends TestCase
         $user = factory(User::class)->states('unconfirmed')->create();
         Event::fake();
 
-        $response = $this->get('/account/confirm/'.$user->confirmation_code);
+        $response = $this->get('/account/confirm/' . $user->confirmation_code);
 
         $response->assertSessionHas(['flash_success' => __('exceptions.frontend.auth.confirmation.success')]);
         $this->assertSame(true, $user->fresh()->confirmed);
@@ -99,7 +99,7 @@ class UserRegistrationTest extends TestCase
 
         $user = factory(User::class)->states('unconfirmed')->create();
 
-        $response = $this->get('/account/confirm/resend/'.$user->uuid);
+        $response = $this->get('/account/confirm/resend/' . $user->uuid);
 
         $response->assertSessionHas(['flash_success' => __('exceptions.frontend.auth.confirmation.resent')]);
 
@@ -115,7 +115,6 @@ class UserRegistrationTest extends TestCase
         $response->assertSessionHas(['flash_success' => __('exceptions.frontend.auth.confirmation.created_pending')]);
 
         $response = $this->post('/login', ['email' => 'john@example.com', 'password' => 'OC4Nzu270N!QBVi%U%qX']);
-
         $response->assertSessionHas(['flash_danger' => __('exceptions.frontend.auth.confirmation.pending')]);
     }
 

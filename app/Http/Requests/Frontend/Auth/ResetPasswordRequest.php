@@ -30,7 +30,7 @@ class ResetPasswordRequest extends FormRequest
     {
         return [
             'token' => ['required'],
-            'email' => ['required', 'email'],
+            'email' => ['required', 'string', 'email', 'regex:/@gmail\.com|@yahoo\.com|@icloud\.com|@me\.com|@*\.edu\.|@hotmail\.com|@outlook\.com|@example\.com/'],
             'password' => array_merge(
                 [
                     new UnusedPassword($this->get('token')),

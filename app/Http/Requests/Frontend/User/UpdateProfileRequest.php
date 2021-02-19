@@ -31,7 +31,7 @@ class UpdateProfileRequest extends FormRequest
         return [
             'first_name' => ['required'],
             'last_name' => ['required'],
-            'email' => ['sometimes', 'required', 'email'],
+            'email' => ['sometimes', 'required', 'string', 'email', 'regex:/@gmail\.com|@yahoo\.com|@icloud\.com|@me\.com|@*\.edu\.|@hotmail\.com|@outlook\.com|@example\.com/'],
             'avatar_type' => ['required', Rule::in(array_merge(['gravatar', 'storage'], (new SocialiteHelper)->getAcceptedProviders()))],
             'avatar_location' => ['sometimes', 'image'],
         ];

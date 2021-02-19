@@ -14,10 +14,10 @@ class ResetPasswordTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    // public function the_password_reset_route_exists()
-    // {
-    //     $this->get('password/reset')->assertStatus(200);
-    // }
+    public function the_password_reset_route_exists()
+    {
+        $this->get('password/reset')->assertStatus(200);
+    }
 
     /** @test */
     public function email_is_required_in_email_password_form()

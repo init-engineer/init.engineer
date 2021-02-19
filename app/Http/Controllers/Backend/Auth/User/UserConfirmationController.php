@@ -19,6 +19,8 @@ class UserConfirmationController extends Controller
     protected $userRepository;
 
     /**
+     * UserConfirmationController constructor.
+     *
      * @param UserRepository $userRepository
      */
     public function __construct(UserRepository $userRepository)

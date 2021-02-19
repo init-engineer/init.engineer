@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories\Backend\Access\User;
+namespace App\Repositories\Backend\Auth;
 
 use App\Models\Auth\User;
 use App\Models\Auth\SocialAccount;

@@ -15,10 +15,10 @@ class UserLoginTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    // public function the_login_route_exists()
-    // {
-    //     $this->get('/login')->assertStatus(200);
-    // }
+    public function the_login_route_exists()
+    {
+        $this->get('/login')->assertStatus(200);
+    }
 
     /** @test */
     public function a_user_can_login_with_email_and_password()
