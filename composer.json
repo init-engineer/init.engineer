@@ -9,7 +9,7 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.2",
+        "php": "^7.4",
         "albertcht/invisible-recaptcha": "^1.9",
         "altek/accountant": "^1.2",
         "altek/eventually": "^1.0",
