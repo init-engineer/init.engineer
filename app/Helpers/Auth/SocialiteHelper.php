@@ -21,6 +21,7 @@ class SocialiteHelper
             'github',
             'linkedin',
             'twitter',
+            'apple',
         ];
     }
 }
