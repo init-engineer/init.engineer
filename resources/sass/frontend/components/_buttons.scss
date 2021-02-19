@@ -199,6 +199,16 @@ a, span, button {
         }
     }
 
+    &.btn-apple {
+        color: white;
+        background-color: #161612;
+
+        &:active {
+            color: darkgrey;
+            background-color: #131310;
+        }
+    }
+
     &.btn-plurk {
         color: white;
         background-color: #FF4E47;
