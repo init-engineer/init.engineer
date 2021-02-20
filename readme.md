@@ -58,18 +58,23 @@
     php artisan migrate --seed
     ```
 
-6. 最後你需要把 `storage` 與 `public` 製作個連結，這樣部分檔案才能正常讀取，例如使用者的大頭貼。
+6. 本網站有使用 OAuth 的服務，你需要產生 Public Key 跟 Private Key。
+    ```sh
+    php artisan passport:install
+    ```
+
+7. 最後你需要把 `storage` 與 `public` 製作個連結，這樣部分檔案才能正常讀取，例如使用者的大頭貼。
     ```
     php artisan storage:link
     ```
 
-7. 好了，你可以使用你熟悉的伺服器軟體，例如說 `Apache`，但不要使用 `Apache`，不然你會在 `SITCON` 被嗆爆，建議使用 `php artisan serve`，或者使用 `nginx` 也可以，就可以正常打開網站了。
+8. 好了，你可以使用你熟悉的伺服器軟體，例如說 `Apache`，但不要使用 `Apache`，不然你會在 `SITCON` 被嗆爆，建議使用 `php artisan serve`，或者使用 `nginx` 也可以，就可以正常打開網站了。
     ```text
     管理員預設帳號: admin@admin.com
     管理員預設密碼: secret
     ```
 
-8. 如果這樣子你還是架設不起來，那你可以參考其他篇教學文章。
+9. 如果這樣子你還是架設不起來，那你可以參考其他篇教學文章。
     - [Laravel Boilerplate | Quick Start](http://laravel-boilerplate.com/6.0/start.html)
     - [如何建置這個平臺？ · Kantai235/kaobei.opendata Wiki · GitHub](https://github.com/Kantai235/kaobei.opendata/wiki/%E5%A6%82%E4%BD%95%E5%BB%BA%E7%BD%AE%E9%80%99%E5%80%8B%E5%B9%B3%E8%87%BA%EF%BC%9F)
 
