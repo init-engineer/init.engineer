@@ -36,6 +36,14 @@ class LoginController extends Controller
     }
 
     /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function showAppleLoginForm()
+    {
+        return view('frontend.auth.appleLogin');
+    }
+
+    /**
      * Get the login username to be used by the controller.
      *
      * @return string

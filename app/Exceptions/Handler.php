@@ -70,8 +70,16 @@ class Handler extends ExceptionHandler
      */
     protected function unauthenticated($request, AuthenticationException $exception)
     {
-        return $request->expectsJson()
-            ? response()->json(['message' => 'Unauthenticated.'], 401)
-            : redirect()->guest(route('frontend.auth.login'));
+        switch ($request->path()) {
+            case 'oauth/apple/authorize':
+                return $request->expectsJson()
+                    ? response()->json(['message' => 'Unauthenticated.'], 401)
+                    : redirect()->guest(route('frontend.auth.apple.login'));
+
+            default:
+                return $request->expectsJson()
+                    ? response()->json(['message' => 'Unauthenticated.'], 401)
+                    : redirect()->guest(route('frontend.auth.login'));
+        }
     }
 }

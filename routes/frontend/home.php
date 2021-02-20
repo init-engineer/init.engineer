@@ -5,6 +5,7 @@ use App\Http\Controllers\Frontend\User\ProfileController;
 use App\Http\Controllers\Frontend\User\DashboardController;
 use App\Http\Controllers\Frontend\OAuth\CallbackController;
 use App\Http\Controllers\Frontend\OAuth\AuthorizeController;
+use Laravel\Passport\Http\Controllers\AuthorizationController;
 
 /**
  * Frontend Controllers
@@ -49,4 +50,16 @@ Route::group([
         Route::get('authorized/{id}', [AuthorizeController::class, 'authorized'])->name('authorized');
         Route::get('callback', [CallbackController::class, 'callback'])->name('callback');
     });
+});
+
+/**
+ * All route names are prefixed with 'frontend.oauth'
+ */
+Route::group([
+    'prefix' => 'oauth',
+    'as' => 'oauth.',
+    'namespace' => 'OAuth',
+    'middleware' => ['web', 'auth.apple'],
+], function () {
+    Route::get('apple/authorize', [AuthorizationController::class, 'authorize']);
 });

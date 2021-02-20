@@ -33,6 +33,7 @@ Route::group(['namespace' => 'Auth', 'as' => 'auth.'], function () {
     Route::group(['middleware' => 'guest'], function () {
         // Authentication Routes
         Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
+        Route::get('apple/login', [LoginController::class, 'showAppleLoginForm'])->name('apple.login');
         Route::post('login', [LoginController::class, 'login'])->name('login.post');
 
         // Socialite Routes

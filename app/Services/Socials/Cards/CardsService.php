@@ -52,7 +52,7 @@ class CardsService extends BaseService implements CardsContract
             TwitterPrimaryPublish::dispatch($cards);
         if (env('PLURK_CREATE_POST', false) && (!$this->mediaCardsRepository->findByCardId($cards->id, 'plurk', 'primary')))
             PlurkPrimaryPublish::dispatch($cards);
-        if (env('TUMBLR_CREATE_POST', false) && (! $this->mediaCardsRepository->findByCardId($cards->id, 'tumblr', 'primary')))
+        if (env('TUMBLR_CREATE_POST', false) && (!$this->mediaCardsRepository->findByCardId($cards->id, 'tumblr', 'primary')))
             TumblrPrimaryPublish::dispatch($cards);
         if (env('TELEGRAM_CREATE_POST', false) && (!$this->mediaCardsRepository->findByCardId($cards->id, 'telegram', 'primary')))
             TelegramPrimaryPublish::dispatch($cards);
