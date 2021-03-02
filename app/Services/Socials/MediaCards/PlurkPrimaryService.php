@@ -143,10 +143,16 @@ class PlurkPrimaryService extends BaseService implements SocialCardsContract
         return $options['image_url'] . "\n\r" .
             '#純靠北工程師' . base_convert($options['id'], 10, 36) . "\n\r----------\n\r" .
             $_content . "\n\r----------\n\r" .
-            '🗳️ [群眾審核] ' . route('frontend.social.cards.review') . '?' . Str::random(4) . "\n\r" .
-            '👉 [GitHub Repo] https://github.com/init-engineer/init.engineer' . '?' . Str::random(4) . "\n\r" .
-            '📢 [匿名發文] ' . route('frontend.social.cards.create') . '?' . Str::random(4) . "\n\r" .
-            '🥙 [全平台留言] ' . route('frontend.social.cards.show', ['id' => $options['id']]);
+            "純靠北 官方 Discord 歡迎在這找到你的同溫層！\n\r" .
+            '👉 https://discord.gg/tPhnrs2';
+
+        // return $options['image_url'] . "\n\r" .
+        //     '#純靠北工程師' . base_convert($options['id'], 10, 36) . "\n\r----------\n\r" .
+        //     $_content . "\n\r----------\n\r" .
+        //     '🗳️ [群眾審核] ' . route('frontend.social.cards.review') . '?' . Str::random(4) . "\n\r" .
+        //     '👉 [GitHub Repo] https://github.com/init-engineer/init.engineer' . '?' . Str::random(4) . "\n\r" .
+        //     '📢 [匿名發文] ' . route('frontend.social.cards.create') . '?' . Str::random(4) . "\n\r" .
+        //     '🥙 [全平台留言] ' . route('frontend.social.cards.show', ['id' => $options['id']]);
 
         // return sprintf(
         //     "%s\r\n#純靠北工程師%s\r\n%s\r\n%s\r\n🥙 全平台留言 %s",
