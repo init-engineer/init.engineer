@@ -11,7 +11,7 @@
         <div class="row mt-3">
 
             <!-- Grid column -->
-            <div class="col-12 col-md-4 mx-auto mb-4">
+            <div class="col-12 col-md-6 mx-auto mb-4">
                 <!-- Content -->
                 <h3 class="font-weight-bold">關於我們</h3>
                 <hr class="accent-2 mb-2 mt-0 d-inline-block mx-auto" style="width: 128px;">
@@ -19,10 +19,6 @@
                 <hr class="my-4">
                 <p class="text-center pt-2">「我不會寫程式。」</p>
                 <p class="text-right">—— Powered by 乾太</p>
-            </div>
-
-            <!-- Grid column -->
-            <div class="col-6 col-md-5 mx-auto mb-4">
                 <h3 class="font-weight-bold">Our Team</h3>
                 <hr class="accent-2 mb-2 mt-0 d-inline-block mx-auto" style="width: 128px;">
                 <p><a href="{{ route('frontend.team') }}">關於我們團隊</a></p>
@@ -30,7 +26,6 @@
                 <p class="text-left"><a href="https://www.facebook.com/kantai.zeng"><i class="fab fa-facebook-square mr-3"></i> Kan-Tai Zeng</a></p>
                 <p class="text-left"><a href="mailto:kantai.developer@gmail.com"><i class="fas fa-envelope mr-3"></i> kantai.developer@gmail.com</a></p>
             </div>
-            <!-- Grid column -->
 
             <!-- Grid column -->
             <div class="col-6 col-md-3 mx-auto mb-4">
@@ -38,11 +33,27 @@
                 <h3 class="font-weight-bold">網站規範</h3>
                 <hr class="accent-2 mb-2 mt-0 d-inline-block mx-auto" style="width: 128px;">
                 <p><a href="{{ route('frontend.policies') }}">{{ __('navs.frontend.policies') }}</a></p>
-                <p class="mt-5"><a href="https://play.google.com/store/apps/details?id=engineer.kaobei"><img class="rounded" style="max-width: 100%;width: 12rem;" src="https://www.dashsuites.com/wp-content/uploads/2017/07/android-download.png" alt="Android APP Download"></a></p>
-                {{-- <p><a href="{{ route('frontend.social.cards.index') }}">{{ __('navs.frontend.social.cards.index') }}</a></p> --}}
-                {{-- <p><a href="{{ route('frontend.social.cards.create') }}">{{ __('navs.frontend.social.cards.create') }}</a></p> --}}
-                {{-- <p><a href="{{ route('frontend.social.cards.review') }}">群眾審核</a></p> --}}
-                {{-- <p><a href="{{ route('frontend.animal.index') }}">大頭菜計算機</a></p> --}}
+
+                <!-- Links -->
+                <h3 class="font-weight-bold mt-5">行動應用程式</h3>
+                <hr class="accent-2 mb-2 mt-0 d-inline-block mx-auto" style="width: 128px;">
+                <p><a href="https://play.google.com/store/apps/details?id=engineer.kaobei"><img class="rounded" style="max-width: 100%; width: 100%;" src="{{ asset('img/frontend/banner/get-it-on-google-play.png') }}" alt="Get it on Google Play"></a></p>
+                <p><a href="javascript:void(0);" onclick="Swal.fire('噢哦！', '我們還沒上架到 App Store 當中，但是有 <a href=\'https\:\/\/testflight.apple.com\/join\/8ZSMJ5fZ\'>TestFlight Beta Testing</a> 可以參與測試計畫。', 'warning');"><img class="rounded" style="max-width: 100%; width: 100%;" src="{{ asset('img/frontend/banner/download-on-the-app-store.png') }}" alt="Download on the App Store"></a></p>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-6 col-md-3 mx-auto mb-4">
+                <!-- Links -->
+                <h3 class="font-weight-bold">Podcast</h3>
+                <hr class="accent-2 mb-2 mt-0 d-inline-block mx-auto" style="width: 128px;">
+                <p><a href="https://podcasts.apple.com/podcast/id1555933629"><img class="rounded" style="max-width: 100%; width: 100%;" src="{{ asset('img/frontend/banner/listen-on-apple-podcasts.png') }}" alt="Listen on Apple Podcasts"></a></p>
+                <p><a href="javascript:void(0);" onclick="Swal.fire('噢哦！', '好像還沒上架，因為 Google 還在審核當中，你可以試試其他平台？', 'warning');"><img class="rounded" style="max-width: 100%; width: 100%;" src="{{ asset('img/frontend/banner/listen-on-google-podcasts.png') }}" alt="Listen on Google Podcasts"></a></p>
+                <p><a href="https://open.firstory.me/user/kantai235"><img class="rounded" style="max-width: 100%; width: 100%;" src="{{ asset('img/frontend/banner/listen-on-firstory-podcasts.png') }}" alt="Listen on Firstory Podcasts"></a></p>
+                <p><a href="https://open.spotify.com/show/547wJSj4gNMVavGm3X6USM"><img class="rounded" style="max-width: 100%; width: 100%;" src="{{ asset('img/frontend/banner/listen-on-spotify-podcasts.png') }}" alt="Listen on Spotify Podcasts"></a></p>
+                <p><a href="https://podcast.kkbox.com/channel/KtJNI76NqwOGJbYV9y"><img class="rounded" style="max-width: 100%; width: 100%;" src="{{ asset('img/frontend/banner/listen-on-kkbox-podcasts.png') }}" alt="Listen on KKBOX Podcasts"></a></p>
+                <p><a href="https://pca.st/wijp2bzn"><img class="rounded" style="max-width: 100%; width: 100%;" src="{{ asset('img/frontend/banner/listen-on-pocket-casts-podcasts.png') }}" alt="Listen on Pocket Casts Podcasts"></a></p>
+                {{-- <p><a href="#"><img class="rounded" style="max-width: 100%; width: 100%;" src="{{ asset('img/frontend/banner/listen-on-soundon-podcasts.png') }}" alt="Listen on SoundOn Podcasts"></a></p> --}}
             </div>
             <!-- Grid column -->
 
