@@ -39,8 +39,8 @@
 
             <label class="col-label bg-color-primary color-color-primary">《近日熱門文章》</label>
             <div class="w-100 mb-2 bg-color-primary">
-                <a href="https://kaobei.engineer/cards/show/5689">
-                    <img class="p-2 w-100" src="https://kaobei.engineer/storage/cards/images/tR1TNYuaKCJ2rMVOoHmVvyhm4EV0CdJiASLbrrJzwweaRZHjO8oRGsQSHvEZG1uSfso01FTytTn6FmzjZ6WbpfNMc0At8lSVPDcpYo7jEB3rKWgKFTzS57mnR8qqNdgQ.jpeg">
+                <a href="https://kaobei.engineer/cards/show/5905">
+                    <img class="p-2 w-100" src="https://kaobei.engineer/storage/cards/custom/JMBif6Zd6dZMcRpE826QEKN4a6Q2vThCVrxWO1eElTj6kPOmUDGTFCbcRHm9cxgrQ0X0tCTLbETftQIfmZrVbs1doetASNBI69xA8jQLkGq5o2PQ9inaSbimjBhqXbAN.jpg">
                 </a>
             </div>
 
