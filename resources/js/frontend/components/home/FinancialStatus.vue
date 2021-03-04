@@ -1,8 +1,6 @@
 <template>
   <div class="pb-2">
-    <label class="pt-2 col-label bg-color-primary color-color-primary"
-      >財務狀況</label
-    >
+    <label class="pt-2 col-label bg-color-primary color-color-primary">財務狀況</label>
     <div class="w-100 mb-2 p-2 bg-color-primary">
       <p class="text-center color-color-primary">【各項基金】</p>
       <div
@@ -16,22 +14,16 @@
         <div class="progress" style="height: 16px">
           <div
             class="progress-bar progress-bar-striped progress-bar-animated"
-            :class="基金.顏色"
             role="progressbar"
-            :aria-valuenow="基金.金額.百分比"
             aria-valuemin="0"
             aria-valuemax="100"
+            :class="基金.顏色"
+            :aria-valuenow="基金.金額.百分比"
             :style="'width:' + 基金.金額.百分比 + '%'"
           ></div>
         </div>
-        <div
-          class="text-center text-dark"
-          role="progressbar"
-          style="width: 100%; height: 16px; margin-top: -18px"
-        >
-          $ {{ 基金.金額.目前.toLocaleString("en-US") }} ({{
-            基金.金額.百分比
-          }}%)
+        <div class="text-center text-dark" role="progressbar" style="width: 100%; height: 16px; margin-top: -18px">
+          $ {{ 基金.金額.目前.toLocaleString("en-US") }} ({{ 基金.金額.百分比 }}%)
         </div>
         <div class="row">
           <div class="col-4 text-left">
@@ -44,15 +36,9 @@
       </div>
 
       <div class="text-center">
-        <p class="color-color-primary">
-          希望標註一下您所想贊助的基金選項，若無標註預設將入款至頂端項目。
-        </p>
-        <a class="btn btn-success" href="https://p.ecpay.com.tw/1ADBA06"
-          >單筆小額贊助</a
-        >
-        <a class="btn btn-success" href="https://p.ecpay.com.tw/3D1AF5E"
-          >定期定額贊助</a
-        >
+        <p class="color-color-primary">希望標註一下您所想贊助的基金選項，若無標註預設將入款至頂端項目。</p>
+        <a class="btn btn-success" href="https://p.ecpay.com.tw/1ADBA06" target="_blank">單筆小額贊助</a>
+        <a class="btn btn-success" href="https://p.ecpay.com.tw/3D1AF5E" target="_blank">定期定額贊助</a>
       </div>
     </div>
   </div>

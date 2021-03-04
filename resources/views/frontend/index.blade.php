@@ -15,11 +15,11 @@
             <div class="w-100">
                 <p>
                     熱門話題:
-                    <a class="color-danger" style="text-decoration: underline;" href="https://github.com/init-engineer/init.engineer">純靠北工程師</a>
-                    <a class="color-color-primary" style="text-decoration: underline;" href="https://www.youtube.com/watch?v=_6TtTRrno3E&list=PL12UaAf_xzfq1Qw3hO43WvcgAo_Sju6Ix">天竺鼠車車</a>
-                    <a class="color-danger" style="text-decoration: underline;" href="https://www.youtube.com/watch?v=rU4k1jRAO3I">HowHow 素材</a>
-                    <a class="color-primary" style="text-decoration: underline;" href="https://www.youtube.com/watch?v=072tU1tamd0">統神端火鍋</a>
-                    <a class="color-primary" style="text-decoration: underline;" href="https://news.pts.org.tw/article/514964">全民買鳳梨</a>
+                    <a class="color-danger" style="text-decoration: underline;" href="https://github.com/init-engineer/init.engineer" target="_blank">純靠北工程師</a>
+                    <a class="color-color-primary" style="text-decoration: underline;" href="https://www.youtube.com/watch?v=_6TtTRrno3E&list=PL12UaAf_xzfq1Qw3hO43WvcgAo_Sju6Ix" target="_blank">天竺鼠車車</a>
+                    <a class="color-danger" style="text-decoration: underline;" href="https://www.youtube.com/watch?v=rU4k1jRAO3I" target="_blank">HowHow 素材</a>
+                    <a class="color-primary" style="text-decoration: underline;" href="https://www.youtube.com/watch?v=072tU1tamd0" target="_blank">統神端火鍋</a>
+                    <a class="color-primary" style="text-decoration: underline;" href="https://news.pts.org.tw/article/514964" target="_blank">全民買鳳梨</a>
                 </p>
             </div>
         </div>
@@ -60,35 +60,23 @@
                         </th></tr>
                         <tr><th scope="row" style="border-top: 0px;">
                             ["研討會":[
-                            "<a href="https://mopcon.org"><img src="https://t.kfs.io/upload_images/102093/Image_from_iOS_original.jpg" alt=""> MOPCON</a>",&nbsp;
-                            "<a href="https://sitcon.org"><img src="https://sitcon.org/2016/image/stone.png" alt="sitcon"> SITCON</a>",&nbsp;
-                            "<a href="https://hitcon.org"><img src="https://ctf.hitcon.org/img/og_img.png" alt="hitcon"> HITCON</a>",&nbsp;
-                            "<a href="https://coscup.org"><img src="https://coscup.org/2019/avatar.jpg" alt="coscup"> COSCUP</a>"]]
+                            "<a href="https://mopcon.org" target="_blank"><img src="https://t.kfs.io/upload_images/102093/Image_from_iOS_original.jpg" alt=""> MOPCON</a>",&nbsp;
+                            "<a href="https://sitcon.org" target="_blank"><img src="https://sitcon.org/2016/image/stone.png" alt="sitcon"> SITCON</a>",&nbsp;
+                            "<a href="https://hitcon.org" target="_blank"><img src="https://ctf.hitcon.org/img/og_img.png" alt="hitcon"> HITCON</a>",&nbsp;
+                            "<a href="https://coscup.org" target="_blank"><img src="https://coscup.org/2019/avatar.jpg" alt="coscup"> COSCUP</a>"]]
                         </th></tr>
                         <tr><th scope="row" style="border-top: 0px;">
                             ["臉書社團":[
-                            "<a href="https://www.facebook.com/groups/1182255762153380"><img src="https://scontent.fkhh1-1.fna.fbcdn.net/v/t1.0-9/117382620_882376012294771_230083542757351495_o.jpg?_nc_cat=103&ccb=2&_nc_sid=825194&_nc_ohc=PKdl6pl9BBYAX-B73DA&_nc_ht=scontent.fkhh1-1.fna&oh=f92f8e0dde95b34b827ce1a268c1b3d1&oe=600F82E1" alt=""> 程式語言讀書會</a>",&nbsp;
-                            "<a href="https://www.facebook.com/groups/kaobei.engineer"><img src="https://scontent.fkhh1-1.fna.fbcdn.net/v/t1.0-9/p960x960/126900516_963381837527521_8778510908854194782_o.jpg?_nc_cat=102&ccb=2&_nc_sid=825194&_nc_ohc=vbS-sevn90kAX9UvhN2&_nc_ht=scontent.fkhh1-1.fna&tp=6&oh=2e0772124bcf43a405b5ffcbfedabc99&oe=600E82E4" alt=""> 純靠北工程師 同溫層</a>",&nbsp;
-                            "<a href="https://www.facebook.com/groups/616369245163622"><img src="https://scontent.fkhh1-1.fna.fbcdn.net/v/t31.0-0/p180x540/12419361_10153759937808955_3887148722139652033_o.jpg?_nc_cat=100&ccb=2&_nc_sid=825194&_nc_ohc=W7d9v4_jMrgAX8X8FU2&_nc_ht=scontent.fkhh1-1.fna&tp=6&oh=2f78ff7e2ee4ffd35fc0c7cc902db394&oe=600CC7EB" alt=""> Backend 台灣</a>"]]
+                            "<a href="https://www.facebook.com/groups/1182255762153380" target="_blank">程式語言讀書會</a>",&nbsp;
+                            "<a href="https://www.facebook.com/groups/kaobei.engineer" target="_blank">純靠北工程師 同溫層</a>",&nbsp;
+                            "<a href="https://www.facebook.com/groups/616369245163622" target="_blank">Backend 台灣</a>"]]
                         </th></tr>
                         <tr><th scope="row" style="border-top: 0px;">
                             ["瀏覽器":[
-                            "<a href="https://www.mozilla.org/zh-TW/firefox/new"><img src="https://www.flaticon.com/svg/static/icons/svg/183/183320.svg" alt="firefox"> Firefox</a>",&nbsp;
-                            "<a href="https://www.google.com/intl/zh-TW/chrome"><img src="https://www.flaticon.com/svg/static/icons/svg/183/183316.svg" alt="chrome"> Chrome</a>",&nbsp;
-                            "<a href="https://www.opera.com/zh-cn"><img src="https://www.flaticon.com/svg/static/icons/svg/732/732233.svg" alt="opera"> Opera</a>",&nbsp;
-                            "<a href="https://brave.com/zh"><img src="https://brave.com/wp-content/uploads/2019/03/brave-logo.png" alt="brave"> Brave</a>"]]
-                        </th></tr>
-                        <tr><th scope="row" style="border-top: 0px;">
-                            ["undefined": null]
-                        </th></tr>
-                        <tr><th scope="row" style="border-top: 0px;">
-                            ["undefined": null]
-                        </th></tr>
-                        <tr><th scope="row" style="border-top: 0px;">
-                            ["undefined": null]
-                        </th></tr>
-                        <tr><th scope="row" style="border-top: 0px;">
-                            ["undefined": null]
+                            "<a href="https://www.mozilla.org/zh-TW/firefox/new" target="_blank"><img src="https://www.flaticon.com/svg/static/icons/svg/183/183320.svg" alt="firefox"> Firefox</a>",&nbsp;
+                            "<a href="https://www.google.com/intl/zh-TW/chrome" target="_blank"><img src="https://www.flaticon.com/svg/static/icons/svg/183/183316.svg" alt="chrome"> Chrome</a>",&nbsp;
+                            "<a href="https://www.opera.com/zh-cn" target="_blank"><img src="https://www.flaticon.com/svg/static/icons/svg/732/732233.svg" alt="opera"> Opera</a>",&nbsp;
+                            "<a href="https://brave.com/zh" target="_blank"><img src="https://brave.com/wp-content/uploads/2019/03/brave-logo.png" alt="brave"> Brave</a>"]]
                         </th></tr>
                         <tr><th scope="row" style="border-top: 0px;">
                             ["undefined": null]
