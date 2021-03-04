@@ -51,6 +51,12 @@
                     data-trans-button-confirm="@lang('buttons.general.crud.delete')"
                     data-trans-title="@lang('strings.backend.general.are_you_sure')"
                     class="dropdown-item py-2">@lang('buttons.general.crud.publish')</a>
+                <a href="{{ route('admin.social.cards.notify', $card) }}"
+                    data-method="post"
+                    data-trans-button-cancel="@lang('buttons.general.cancel')"
+                    data-trans-button-confirm="@lang('buttons.general.crud.delete')"
+                    data-trans-title="@lang('strings.backend.general.are_you_sure')"
+                    class="dropdown-item py-2">@lang('buttons.general.crud.notify')</a>
             </div>
         </div>
     </div>

@@ -51,6 +51,7 @@ return [
 
         'crud' => [
             'publish' => '發佈',
+            'notify' => '通知',
             'create' => '新增',
             'delete' => '刪除',
             'banned' => '禁用',
@@ -61,7 +62,7 @@ return [
             'view' => '查看',
         ],
 
-        'save' => '保存',
+        'save' => '儲存',
         'view' => '查看',
     ],
 ];

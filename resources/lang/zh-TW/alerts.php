@@ -38,6 +38,7 @@ return [
             'cards' => [
                 'cant_resend_confirmation' => '該應用程式當前設定為手動核准使用者。',
                 'publish' => '文章已重新排程發佈。',
+                'notify' => '文章已重新發佈通知。',
                 'banned' => '文章已成功禁用。',
                 'deleted' => '文章已成功刪除。',
                 'deleted_permanently' => '文章被永久刪除。',

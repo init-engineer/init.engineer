@@ -8,6 +8,7 @@ use App\Services\Socials\Cards\CardsService;
 use App\Repositories\Backend\Social\CardsRepository;
 use App\Http\Requests\Backend\Social\Cards\BannedCardsRequest;
 use App\Http\Requests\Backend\Social\Cards\ManageCardsRequest;
+use App\Http\Requests\Backend\Social\Cards\NotifyCardsRequest;
 use App\Http\Requests\Backend\Social\Cards\PublishCardsRequest;
 
 /**
@@ -68,6 +69,19 @@ class CardsStatusController extends Controller
         $this->cardsService->publish($cards);
 
         return redirect()->route('admin.social.cards.index')->withFlashSuccess(__('alerts.backend.social.cards.publish'));
+    }
+
+    /**
+     * @param NotifyCardsRequest $request
+     * @param Cards              $cards
+     *
+     * @return mixed
+     */
+    public function notify(NotifyCardsRequest $request, Cards $cards)
+    {
+        $this->cardsService->publishNotify($cards);
+
+        return redirect()->route('admin.social.cards.index')->withFlashSuccess(__('alerts.backend.social.cards.notify'));
     }
 
     /**
