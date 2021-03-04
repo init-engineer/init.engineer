@@ -61,15 +61,17 @@
             <div class="col-12 mx-auto mb-md-0 mb-4 text-center">
                 <h3 class="m-0 pt-4 font-weight-bold">社群平台</h3>
                 <hr class="accent-2 m-0 d-inline-block" style="width: 100%;">
-                <div class="col-12 mx-auto mb-md-0 mb-4 text-center">
-                    <p style="display: inline-block; margin: 0px; padding: 2px;"><a href="https://kaobei.engineer"><img class="img-fluid rounded" style="width: 100%; max-width: 16rem;" src="{{ asset('img/frontend/banner/Zl6Mrfs.png') }}" alt="官方網站" /></a></p>
-                    <p style="display: inline-block; margin: 0px; padding: 2px;"><a href="https://www.facebook.com/kaobei.engineer"><img class="img-fluid rounded" style="width: 100%; max-width: 16rem;" src="{{ asset('img/frontend/banner/zgwvd6x.png') }}" alt="Facebook 測試機" /></a></p>
-                    <p style="display: inline-block; margin: 0px; padding: 2px;"><a href="https://www.facebook.com/init.kobeengineer"><img class="img-fluid rounded" style="width: 100%; max-width: 16rem;" src="{{ asset('img/frontend/banner/3qOl69x.png') }}" alt="Facebook 正式機" /></a></p>
-                    <p style="display: inline-block; margin: 0px; padding: 2px;"><a href="https://twitter.com/kaobei_engineer"><img class="img-fluid rounded" style="width: 100%; max-width: 16rem;" src="{{ asset('img/frontend/banner/aPI28fr.png') }}" alt="Twitter" /></a></p>
-                    <p style="display: inline-block; margin: 0px; padding: 2px;"><a href="https://www.plurk.com/kaobei_engineer"><img class="img-fluid rounded" style="width: 100%; max-width: 16rem;" src="{{ asset('img/frontend/banner/SFcRaLN.png') }}" alt="Plurk" /></a></p>
-                    <p style="display: inline-block; margin: 0px; padding: 2px;"><a href="https://www.instagram.com/kaobei.engineer"><img class="img-fluid rounded" style="width: 100%; max-width: 16rem;" src="{{ asset('img/frontend/banner/6FgkF3R.png') }}" alt="Instagram" /></a></p>
-                    <p style="display: inline-block; margin: 0px; padding: 2px;"><a href="https://kaobei-engineer.tumblr.com"><img class="img-fluid rounded" style="width: 100%; max-width: 16rem;" src="{{ asset('img/frontend/banner/dffwOx9.png') }}" alt="Tumblr" /></a></p>
-                    <p style="display: inline-block; margin: 0px; padding: 2px;"><a href="https://discord.gg/tPhnrs2"><img class="img-fluid rounded" style="width: 100%; max-width: 16rem;" src="{{ asset('img/frontend/banner/tknHq2i.png') }}" alt="Discord" /></a></p>
+                <div style="display: flex; flex-wrap: wrap; justify-content: center;">
+                    <a href="https://www.facebook.com/init.kobeengineer"><img class="img-fluid rounded m-1" style="width: 12rem; max-width: 100%;" src="{{ asset('img/frontend/banner/follow-on-facebook-official.png') }}" alt="Follow on Facebook Official" /></a>
+                    <a href="https://www.facebook.com/kaobei.engineer"><img class="img-fluid rounded m-1" style="width: 12rem; max-width: 100%;" src="{{ asset('img/frontend/banner/follow-on-facebook-testing.png') }}" alt="Follow on Facebook Testing" /></a>
+                    <a href="https://twitter.com/kaobei_engineer"><img class="img-fluid rounded m-1" style="width: 12rem; max-width: 100%;" src="{{ asset('img/frontend/banner/follow-on-twitter-official.png') }}" alt="Follow on Twitter Official" /></a>
+                    <a href="https://www.plurk.com/kaobei_engineer"><img class="img-fluid rounded m-1" style="width: 12rem; max-width: 100%;" src="{{ asset('img/frontend/banner/follow-on-plurk-official.png') }}" alt="Follow on Plurk Official" /></a>
+                    <a href="https://mewe.com/p/init.kobeengineer"><img class="img-fluid rounded m-1" style="width: 12rem; max-width: 100%;" src="{{ asset('img/frontend/banner/follow-on-mewe-official.png') }}" alt="Follow on MeWe Official" /></a>
+                    <a href="https://www.instagram.com/kaobei.engineer"><img class="img-fluid rounded m-1" style="width: 12rem; max-width: 100%;" src="{{ asset('img/frontend/banner/follow-on-instagram-official.png') }}" alt="Follow on Instagram Official" /></a>
+                    <a href="https://kaobei-engineer.tumblr.com"><img class="img-fluid rounded m-1" style="width: 12rem; max-width: 100%;" src="{{ asset('img/frontend/banner/follow-on-tumblr-official.png') }}" alt="Follow on Tumblr Official" /></a>
+                    <a href="https://t.me/init_engineer"><img class="img-fluid rounded m-1" style="width: 12rem; max-width: 100%;" src="{{ asset('img/frontend/banner/follow-on-telegram-official.png') }}" alt="Follow on Telegram Official" /></a>
+                    <a href="https://discord.gg/pRuFQPC"><img class="img-fluid rounded m-1" style="width: 12rem; max-width: 100%;" src="{{ asset('img/frontend/banner/join-on-discord-guild.png') }}" alt="Join on Discord Guild" /></a>
+                    <a href="https://line.me/ti/g2/ln-BcNGvIkD6Kj_-v9DRYg"><img class="img-fluid rounded m-1" style="width: 12rem; max-width: 100%;" src="{{ asset('img/frontend/banner/join-on-line-community.png') }}" alt="Join on Line Community" /></a>
                 </div>
             </div>
             <!-- Grid column -->
