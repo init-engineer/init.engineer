@@ -16,9 +16,10 @@
                 <p>
                     熱門話題:
                     <a class="color-danger" style="text-decoration: underline;" href="https://github.com/init-engineer/init.engineer">純靠北工程師</a>
-                    <a class="color-primary" style="text-decoration: underline;" href="https://mewe.com/p/initkobeengineer">移民去 MeWe</a>
                     <a class="color-color-primary" style="text-decoration: underline;" href="https://www.youtube.com/watch?v=_6TtTRrno3E&list=PL12UaAf_xzfq1Qw3hO43WvcgAo_Sju6Ix">天竺鼠車車</a>
-                    <a class="color-danger" style="text-decoration: underline;" href="https://www.youtube.com/watch?t=3235&v=ePwN3rrFj9A">這位先生沒有回應</a>
+                    <a class="color-danger" style="text-decoration: underline;" href="https://www.youtube.com/watch?v=rU4k1jRAO3I">HowHow 素材</a>
+                    <a class="color-primary" style="text-decoration: underline;" href="https://www.youtube.com/watch?v=072tU1tamd0">統神端火鍋</a>
+                    <a class="color-primary" style="text-decoration: underline;" href="https://news.pts.org.tw/article/514964">全民買鳳梨</a>
                 </p>
             </div>
         </div>
