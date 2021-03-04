@@ -37,8 +37,8 @@
                 <!-- Links -->
                 <h3 class="font-weight-bold mt-5">行動應用程式</h3>
                 <hr class="accent-2 mb-2 mt-0 d-inline-block mx-auto" style="width: 128px;">
-                <p><a href="https://play.google.com/store/apps/details?id=engineer.kaobei" target="_blank"><img class="rounded" style="max-width: 100%; width: 100%;" src="{{ asset('img/frontend/banner/get-it-on-google-play.png') }}" alt="Get it on Google Play"></a></p>
-                <p><a href="javascript:void(0);" onclick="Swal.fire('噢哦！', '我們還沒上架到 App Store 當中，但是有 <a href=\'https\:\/\/testflight.apple.com\/join\/8ZSMJ5fZ\' target=\'_blank\'>TestFlight Beta Testing</a> 可以參與測試計畫。', 'warning');"><img class="rounded" style="max-width: 100%; width: 100%;" src="{{ asset('img/frontend/banner/download-on-the-app-store.png') }}" alt="Download on the App Store"></a></p>
+                <p><a href="https://play.google.com/store/apps/details?id=engineer.kaobei" target="_blank"><img class="rounded" style="max-width: 100%; width: 100%;" src="{{ asset('img/frontend/button/get-it-on-google-play.png') }}" alt="Get it on Google Play"></a></p>
+                <p><a href="javascript:void(0);" onclick="Swal.fire('噢哦！', '我們還沒上架到 App Store 當中，但是有 <a href=\'https\:\/\/testflight.apple.com\/join\/8ZSMJ5fZ\' target=\'_blank\'>TestFlight Beta Testing</a> 可以參與測試計畫。', 'warning');"><img class="rounded" style="max-width: 100%; width: 100%;" src="{{ asset('img/frontend/button/download-on-the-app-store.png') }}" alt="Download on the App Store"></a></p>
             </div>
             <!-- Grid column -->
 
@@ -47,13 +47,13 @@
                 <!-- Links -->
                 <h3 class="font-weight-bold">Podcast</h3>
                 <hr class="accent-2 mb-2 mt-0 d-inline-block mx-auto" style="width: 128px;">
-                <p><a href="https://podcasts.apple.com/podcast/id1555933629" target="_blank"><img class="rounded" style="max-width: 100%; width: 100%;" src="{{ asset('img/frontend/banner/listen-on-apple-podcasts.png') }}" alt="Listen on Apple Podcasts"></a></p>
-                <p><a href="javascript:void(0);" onclick="Swal.fire('噢哦！', '好像還沒上架，因為 Google 還在審核當中，你可以試試其他平台？', 'warning');"><img class="rounded" style="max-width: 100%; width: 100%;" src="{{ asset('img/frontend/banner/listen-on-google-podcasts.png') }}" alt="Listen on Google Podcasts"></a></p>
-                <p><a href="https://open.firstory.me/user/kantai235" target="_blank"><img class="rounded" style="max-width: 100%; width: 100%;" src="{{ asset('img/frontend/banner/listen-on-firstory-podcasts.png') }}" alt="Listen on Firstory Podcasts"></a></p>
-                <p><a href="https://open.spotify.com/show/547wJSj4gNMVavGm3X6USM" target="_blank"><img class="rounded" style="max-width: 100%; width: 100%;" src="{{ asset('img/frontend/banner/listen-on-spotify-podcasts.png') }}" alt="Listen on Spotify Podcasts"></a></p>
-                <p><a href="https://podcast.kkbox.com/channel/KtJNI76NqwOGJbYV9y" target="_blank"><img class="rounded" style="max-width: 100%; width: 100%;" src="{{ asset('img/frontend/banner/listen-on-kkbox-podcasts.png') }}" alt="Listen on KKBOX Podcasts"></a></p>
-                <p><a href="https://pca.st/wijp2bzn" target="_blank"><img class="rounded" style="max-width: 100%; width: 100%;" src="{{ asset('img/frontend/banner/listen-on-pocket-casts-podcasts.png') }}" alt="Listen on Pocket Casts Podcasts"></a></p>
-                {{-- <p><a href="#" target="_blank"><img class="rounded" style="max-width: 100%; width: 100%;" src="{{ asset('img/frontend/banner/listen-on-soundon-podcasts.png') }}" alt="Listen on SoundOn Podcasts"></a></p> --}}
+                <p><a href="https://podcasts.apple.com/podcast/id1555933629" target="_blank"><img class="rounded" style="max-width: 100%; width: 100%;" src="{{ asset('img/frontend/button/listen-on-apple-podcasts.png') }}" alt="Listen on Apple Podcasts"></a></p>
+                <p><a href="javascript:void(0);" onclick="Swal.fire('噢哦！', '好像還沒上架，因為 Google 還在審核當中，你可以試試其他平台？', 'warning');"><img class="rounded" style="max-width: 100%; width: 100%;" src="{{ asset('img/frontend/button/listen-on-google-podcasts.png') }}" alt="Listen on Google Podcasts"></a></p>
+                <p><a href="https://open.firstory.me/user/kantai235" target="_blank"><img class="rounded" style="max-width: 100%; width: 100%;" src="{{ asset('img/frontend/button/listen-on-firstory-podcasts.png') }}" alt="Listen on Firstory Podcasts"></a></p>
+                <p><a href="https://open.spotify.com/show/547wJSj4gNMVavGm3X6USM" target="_blank"><img class="rounded" style="max-width: 100%; width: 100%;" src="{{ asset('img/frontend/button/listen-on-spotify-podcasts.png') }}" alt="Listen on Spotify Podcasts"></a></p>
+                <p><a href="https://podcast.kkbox.com/channel/KtJNI76NqwOGJbYV9y" target="_blank"><img class="rounded" style="max-width: 100%; width: 100%;" src="{{ asset('img/frontend/button/listen-on-kkbox-podcasts.png') }}" alt="Listen on KKBOX Podcasts"></a></p>
+                <p><a href="https://pca.st/wijp2bzn" target="_blank"><img class="rounded" style="max-width: 100%; width: 100%;" src="{{ asset('img/frontend/button/listen-on-pocket-casts-podcasts.png') }}" alt="Listen on Pocket Casts Podcasts"></a></p>
+                {{-- <p><a href="#" target="_blank"><img class="rounded" style="max-width: 100%; width: 100%;" src="{{ asset('img/frontend/button/listen-on-soundon-podcasts.png') }}" alt="Listen on SoundOn Podcasts"></a></p> --}}
             </div>
             <!-- Grid column -->
 
@@ -62,16 +62,16 @@
                 <h3 class="m-0 pt-4 font-weight-bold">社群平台</h3>
                 <hr class="accent-2 m-0 d-inline-block" style="width: 100%;">
                 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
-                    <a href="https://www.facebook.com/init.kobeengineer" target="_blank"><img class="img-fluid rounded m-1" style="width: 12rem; max-width: 100%;" src="{{ asset('img/frontend/banner/follow-on-facebook-official.png') }}" alt="Follow on Facebook Official" /></a>
-                    <a href="https://www.facebook.com/kaobei.engineer" target="_blank"><img class="img-fluid rounded m-1" style="width: 12rem; max-width: 100%;" src="{{ asset('img/frontend/banner/follow-on-facebook-testing.png') }}" alt="Follow on Facebook Testing" /></a>
-                    <a href="https://twitter.com/kaobei_engineer" target="_blank"><img class="img-fluid rounded m-1" style="width: 12rem; max-width: 100%;" src="{{ asset('img/frontend/banner/follow-on-twitter-official.png') }}" alt="Follow on Twitter Official" /></a>
-                    <a href="https://www.plurk.com/kaobei_engineer" target="_blank"><img class="img-fluid rounded m-1" style="width: 12rem; max-width: 100%;" src="{{ asset('img/frontend/banner/follow-on-plurk-official.png') }}" alt="Follow on Plurk Official" /></a>
-                    <a href="https://mewe.com/p/init.kobeengineer" target="_blank"><img class="img-fluid rounded m-1" style="width: 12rem; max-width: 100%;" src="{{ asset('img/frontend/banner/follow-on-mewe-official.png') }}" alt="Follow on MeWe Official" /></a>
-                    <a href="https://www.instagram.com/kaobei.engineer" target="_blank"><img class="img-fluid rounded m-1" style="width: 12rem; max-width: 100%;" src="{{ asset('img/frontend/banner/follow-on-instagram-official.png') }}" alt="Follow on Instagram Official" /></a>
-                    <a href="https://kaobei-engineer.tumblr.com" target="_blank"><img class="img-fluid rounded m-1" style="width: 12rem; max-width: 100%;" src="{{ asset('img/frontend/banner/follow-on-tumblr-official.png') }}" alt="Follow on Tumblr Official" /></a>
-                    <a href="https://t.me/init_engineer" target="_blank"><img class="img-fluid rounded m-1" style="width: 12rem; max-width: 100%;" src="{{ asset('img/frontend/banner/follow-on-telegram-official.png') }}" alt="Follow on Telegram Official" /></a>
-                    <a href="https://discord.gg/pRuFQPC" target="_blank"><img class="img-fluid rounded m-1" style="width: 12rem; max-width: 100%;" src="{{ asset('img/frontend/banner/join-on-discord-guild.png') }}" alt="Join on Discord Guild" /></a>
-                    <a href="https://line.me/ti/g2/ln-BcNGvIkD6Kj_-v9DRYg" target="_blank"><img class="img-fluid rounded m-1" style="width: 12rem; max-width: 100%;" src="{{ asset('img/frontend/banner/join-on-line-community.png') }}" alt="Join on Line Community" /></a>
+                    <a href="https://www.facebook.com/init.kobeengineer" target="_blank"><img class="img-fluid rounded m-1" style="width: 12rem; max-width: 100%;" src="{{ asset('img/frontend/button/follow-on-facebook-official.png') }}" alt="Follow on Facebook Official" /></a>
+                    <a href="https://www.facebook.com/kaobei.engineer" target="_blank"><img class="img-fluid rounded m-1" style="width: 12rem; max-width: 100%;" src="{{ asset('img/frontend/button/follow-on-facebook-testing.png') }}" alt="Follow on Facebook Testing" /></a>
+                    <a href="https://twitter.com/kaobei_engineer" target="_blank"><img class="img-fluid rounded m-1" style="width: 12rem; max-width: 100%;" src="{{ asset('img/frontend/button/follow-on-twitter-official.png') }}" alt="Follow on Twitter Official" /></a>
+                    <a href="https://www.plurk.com/kaobei_engineer" target="_blank"><img class="img-fluid rounded m-1" style="width: 12rem; max-width: 100%;" src="{{ asset('img/frontend/button/follow-on-plurk-official.png') }}" alt="Follow on Plurk Official" /></a>
+                    <a href="https://mewe.com/p/init.kobeengineer" target="_blank"><img class="img-fluid rounded m-1" style="width: 12rem; max-width: 100%;" src="{{ asset('img/frontend/button/follow-on-mewe-official.png') }}" alt="Follow on MeWe Official" /></a>
+                    <a href="https://www.instagram.com/kaobei.engineer" target="_blank"><img class="img-fluid rounded m-1" style="width: 12rem; max-width: 100%;" src="{{ asset('img/frontend/button/follow-on-instagram-official.png') }}" alt="Follow on Instagram Official" /></a>
+                    <a href="https://kaobei-engineer.tumblr.com" target="_blank"><img class="img-fluid rounded m-1" style="width: 12rem; max-width: 100%;" src="{{ asset('img/frontend/button/follow-on-tumblr-official.png') }}" alt="Follow on Tumblr Official" /></a>
+                    <a href="https://t.me/init_engineer" target="_blank"><img class="img-fluid rounded m-1" style="width: 12rem; max-width: 100%;" src="{{ asset('img/frontend/button/follow-on-telegram-official.png') }}" alt="Follow on Telegram Official" /></a>
+                    <a href="https://discord.gg/pRuFQPC" target="_blank"><img class="img-fluid rounded m-1" style="width: 12rem; max-width: 100%;" src="{{ asset('img/frontend/button/join-on-discord-guild.png') }}" alt="Join on Discord Guild" /></a>
+                    <a href="https://line.me/ti/g2/ln-BcNGvIkD6Kj_-v9DRYg" target="_blank"><img class="img-fluid rounded m-1" style="width: 12rem; max-width: 100%;" src="{{ asset('img/frontend/button/join-on-line-community.png') }}" alt="Join on Line Community" /></a>
                 </div>
             </div>
             <!-- Grid column -->

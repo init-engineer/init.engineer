@@ -6,7 +6,7 @@
 <div class="container-fluid">
     <div class="row my-2">
         <div class="col-12 col-md-4 col-lg-3 mx-auto" style="display: flex; flex-direction: column; justify-content: center;">
-            <img class="w-100" src="/img/frontend/banner/logo.png" alt="LOGO">
+            <img class="w-100" src="{{ asset('img/frontend/logo.png') }}" alt="LOGO">
         </div>
         <div class="col-12 col-md-8 col-lg-7 mx-auto px-0" style="display: flex; flex-direction: column; justify-content: center;">
             <div class="w-100">
@@ -99,20 +99,20 @@
             <label class="mt-2 col-label bg-color-primary color-color-primary">我的工具</label>
             <div class="row mb-2 m-0 p-2 bg-color-primary text-center">
                 <div class="col-12 mt-0 mb-1 pr-1 pl-0">
-                    <a class="my-2" href="{{ route('frontend.social.cards.create') }}"><img class="w-100" src="/img/frontend/banner/navbar02.png" alt="發表文章"></a>
+                    <a class="my-2" href="{{ route('frontend.social.cards.create') }}"><img class="w-100" src="{{ asset('/img/frontend/button/tools-button-post-publish.png') }}" alt="發表文章"></a>
                 </div>
                 <div class="col-6 mt-0 mb-1 pr-1 pl-0">
-                    <a class="my-2" href="{{ route('frontend.fortunes.index') }}"><img class="w-100" src="/img/frontend/banner/navbar05.png" alt="線上抽籤系統"></a>
+                    <a class="my-2" href="{{ route('frontend.fortunes.index') }}"><img class="w-100" src="{{ asset('/img/frontend/button/tools-button-fortunes.png') }}" alt="線上抽籤系統"></a>
                 </div>
 
                 <div class="col-6 mt-0 mb-1 pr-1 pl-0">
-                    <a class="my-2" href="{{ route('frontend.social.cards.review') }}"><img class="w-100" src="/img/frontend/banner/navbar03.png" alt="群眾審核"></a>
+                    <a class="my-2" href="{{ route('frontend.social.cards.review') }}"><img class="w-100" src="{{ asset('/img/frontend/button/tools-button-post-review.png') }}" alt="群眾審核"></a>
                 </div>
                 <div class="col-6 mt-0 mb-1 pr-1 pl-0">
-                    <a class="my-2" href="{{ route('frontend.animal.index') }}"><img class="w-100" src="/img/frontend/banner/navbar01.png" alt="大頭菜計算機"></a>
+                    <a class="my-2" href="{{ route('frontend.animal.index') }}"><img class="w-100" src="{{ asset('/img/frontend/button/tools-button-turnips-computer.png') }}" alt="大頭菜計算機"></a>
                 </div>
                 <div class="col-6 mt-0 mb-1 pr-1 pl-0">
-                    <a class="my-2" href="{{ route('frontend.social.cards.index') }}"><img class="w-100" src="/img/frontend/banner/navbar04.png" alt="文章列表"></a>
+                    <a class="my-2" href="{{ route('frontend.social.cards.index') }}"><img class="w-100" src="{{ asset('/img/frontend/button/tools-button-post-publish.png') }}" alt="文章列表"></a>
                 </div>
             </div>
 
