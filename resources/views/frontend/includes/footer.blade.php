@@ -45,10 +45,10 @@
             <!-- Grid column -->
             <div class="col-6 col-md-3 mx-auto mb-4">
                 <!-- Links -->
-                <h3 class="font-weight-bold">Podcast</h3>
+                <h3 class="font-weight-bold">Podcasts</h3>
                 <hr class="accent-2 mb-2 mt-0 d-inline-block mx-auto" style="width: 128px;">
                 <p><a href="https://podcasts.apple.com/podcast/id1555933629" target="_blank"><img class="rounded" style="max-width: 100%; width: 100%;" src="{{ asset('img/frontend/button/listen-on-apple-podcasts.png') }}" alt="Listen on Apple Podcasts"></a></p>
-                <p><a href="javascript:void(0);" onclick="Swal.fire('噢哦！', '好像還沒上架，因為 Google 還在審核當中，你可以試試其他平台？', 'warning');"><img class="rounded" style="max-width: 100%; width: 100%;" src="{{ asset('img/frontend/button/listen-on-google-podcasts.png') }}" alt="Listen on Google Podcasts"></a></p>
+                <p><a href="https://podcasts.google.com/feed/aHR0cHM6Ly9vcGVuLmZpcnN0b3J5Lm1lL3Jzcy91c2VyL2NrbHA2Y2FremFsbnUwODA0anlrdWZkZW8=" target="_blank"><img class="rounded" style="max-width: 100%; width: 100%;" src="{{ asset('img/frontend/button/listen-on-google-podcasts.png') }}" alt="Listen on Google Podcasts"></a></p>
                 <p><a href="https://open.firstory.me/user/kantai235" target="_blank"><img class="rounded" style="max-width: 100%; width: 100%;" src="{{ asset('img/frontend/button/listen-on-firstory-podcasts.png') }}" alt="Listen on Firstory Podcasts"></a></p>
                 <p><a href="https://open.spotify.com/show/547wJSj4gNMVavGm3X6USM" target="_blank"><img class="rounded" style="max-width: 100%; width: 100%;" src="{{ asset('img/frontend/button/listen-on-spotify-podcasts.png') }}" alt="Listen on Spotify Podcasts"></a></p>
                 <p><a href="https://podcast.kkbox.com/channel/KtJNI76NqwOGJbYV9y" target="_blank"><img class="rounded" style="max-width: 100%; width: 100%;" src="{{ asset('img/frontend/button/listen-on-kkbox-podcasts.png') }}" alt="Listen on KKBOX Podcasts"></a></p>
