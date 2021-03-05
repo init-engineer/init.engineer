@@ -112,7 +112,7 @@
                     <a class="my-2" href="{{ route('frontend.animal.index') }}"><img class="w-100" src="{{ asset('/img/frontend/button/tools-button-turnips-computer.png') }}" alt="大頭菜計算機"></a>
                 </div>
                 <div class="col-6 mt-0 mb-1 pr-1 pl-0">
-                    <a class="my-2" href="{{ route('frontend.social.cards.index') }}"><img class="w-100" src="{{ asset('/img/frontend/button/tools-button-post-publish.png') }}" alt="文章列表"></a>
+                    <a class="my-2" href="{{ route('frontend.social.cards.index') }}"><img class="w-100" src="{{ asset('/img/frontend/button/tools-button-post-list.png') }}" alt="文章列表"></a>
                 </div>
             </div>
 
