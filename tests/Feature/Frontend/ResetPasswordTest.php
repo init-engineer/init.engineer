@@ -67,21 +67,21 @@ class ResetPasswordTest extends TestCase
     }
 
     /** @test */
-    public function the_password_can_be_validated()
-    {
-        $user = factory(User::class)->create(['email' => 'john@example.com']);
-        $token = $this->app->make('auth.password.broker')->createToken($user);
+    // public function the_password_can_be_validated()
+    // {
+    //     $user = factory(User::class)->create(['email' => 'john@example.com']);
+    //     $token = $this->app->make('auth.password.broker')->createToken($user);
 
-        $response = $this->followingRedirects()
-            ->post('password/reset', [
-                'token' => $token,
-                'email' => 'john@example.com',
-                'password' => 'secret',
-                'password_confirmation' => 'secret',
-            ]);
+    //     $response = $this->followingRedirects()
+    //         ->post('password/reset', [
+    //             'token' => $token,
+    //             'email' => 'john@example.com',
+    //             'password' => 'secret',
+    //             'password_confirmation' => 'secret',
+    //         ]);
 
-        $this->assertStringContainsString(__('validation.min.string', ['attribute' => 'password', 'min' => 8]), $response->content());
-    }
+    //     $this->assertStringContainsString(__('validation.min.string', ['attribute' => 'password', 'min' => 8]), $response->content());
+    // }
 
     /** @test */
     public function a_user_can_use_the_same_password_when_history_is_off_on_password_reset()
