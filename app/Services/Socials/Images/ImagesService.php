@@ -557,7 +557,7 @@ class ImagesService extends BaseService implements ImagesContract
                 $this->drawingBackgroundImage('05326525f82b9a036e1bcb53a392ff7c');
                 break;
 
-                /** 預設: 黑底綠字 */
+                /** 預設 黑底綠字 */
             default:
                 $this->canvasTextColor = imageColorAllocate($this->canvas, 0, 255, 59);
                 $this->canvasBackgroundColor = imageColorAllocate($this->canvas, 0, 0, 0);
@@ -629,6 +629,46 @@ class ImagesService extends BaseService implements ImagesContract
                 $this->canvasFont = public_path('fonts/TaipeiSansTCBeta-Bold.ttf');
                 break;
 
+                /** RocknRoll One-Regular */
+            case '7yQkdi3Q0lIt0GTZ3GToByiQoQuUGT2c':
+                $this->canvasFont = public_path('fonts/RocknRollOne-Regular.ttf');
+                break;
+
+                /** DotGothic16-Regular */
+            case 'bxwe3vU47DyWTEM17sLNQTCHOBbB13xh':
+                $this->canvasFont = public_path('fonts/DotGothic16-Regular.ttf');
+                break;
+
+                /** Rampart One-Regular */
+            case 'DVAgml6ZFScVZ05aZQmo1bzSZDGtfDZV':
+                $this->canvasFont = public_path('fonts/RampartOne-Regular.ttf');
+                break;
+
+                /** Reggae One-Regular */
+            case 'hfPg6Tb250eMRlEnew2PHEdqzfCK2bbu':
+                $this->canvasFont = public_path('fonts/ReggaeOne-Regular.ttf');
+                break;
+
+                /** Stick-Regular */
+            case 'Fwc7qnSDTtQ5gAwDOHJXU251ZovUEEtN':
+                $this->canvasFont = public_path('fonts/Stick-Regular.ttf');
+                break;
+
+                /** Klee One Regular */
+            case '2EEqzp9EHqHTu1jKGhOZ3lspfsbvwOar':
+                $this->canvasFont = public_path('fonts/KleeOne-Regular.ttf');
+                break;
+
+                /** Klee One SemiBold */
+            case 'wWyUkCWL5HW8nhw9wwawx0WbVAyxZjEN':
+                $this->canvasFont = public_path('fonts/KleeOne-SemiBold.ttf');
+                break;
+
+                /** Train One-Regular */
+            case 'LrDE83PVGCbTlMTShdkpEdna5FrXy1P0':
+                $this->canvasFont = public_path('fonts/TrainOne-Regular.ttf');
+                break;
+
                 /** 預設: AURAKA 點陣宋字型 */
             default:
                 $this->canvasFont = public_path('fonts/Auraka.ttf');
@@ -683,7 +723,7 @@ class ImagesService extends BaseService implements ImagesContract
                 imageRectAngle($newimg, 6, 6, $square_width - 6, $square_height - 6, $border);
 
                 $top = (72 - $this->canvasHeight * 0.05 > 0) ? 72 - $this->canvasHeight * 0.05 : 20;
-                imageCopy($this->canvas, $newimg, 350, $top , 0, 0, $square_width, $square_height);
+                imageCopy($this->canvas, $newimg, 350, $top, 0, 0, $square_width, $square_height);
 
                 $overlayImage = imageCreateFromPng('https://kaobei.engineer/img/frontend/cards/fragmented_background_arrow.png');
                 imageCopy($this->canvas, $overlayImage, 315, imageSY($this->canvas) - 372, 0, 0, imageSX($overlayImage), imageSY($overlayImage));

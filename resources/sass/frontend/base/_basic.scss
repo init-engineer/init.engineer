@@ -54,7 +54,7 @@ body {
  */
 @font-face {
     font-family: 'Harmonic';
-    src: url('/fonts/ZHS-Harmonic.ttf') format('truetype'), 
+    src: url('/fonts/ZHS-Harmonic.ttf') format('truetype'),
         url('/fonts/ZHS-Harmonic.woff2') format('woff2'),
         url('/fonts/ZHS-Harmonic.woff') format('woff');
 }
@@ -89,6 +89,70 @@ body {
 @font-face {
     font-family: 'Taipei Sans TC Beta';
     src: url('/fonts/TaipeiSansTCBeta-Bold.ttf');
+}
+
+/**
+ * RocknRoll One-Regular
+ */
+@font-face {
+    font-family: 'RocknRoll One-Regular';
+    src: url('/fonts/RocknRollOne-Regular.ttf');
+}
+
+/**
+ * DotGothic16-Regular
+ */
+@font-face {
+    font-family: 'DotGothic16-Regular';
+    src: url('/fonts/DotGothic16-Regular.ttf');
+}
+
+/**
+ * Rampart One-Regular
+ */
+@font-face {
+    font-family: 'Rampart One-Regular';
+    src: url('/fonts/RampartOne-Regular.ttf');
+}
+
+/**
+ * Reggae One-Regular
+ */
+@font-face {
+    font-family: 'Reggae One-Regular';
+    src: url('/fonts/ReggaeOne-Regular.ttf');
+}
+
+/**
+ * Stick-Regular
+ */
+@font-face {
+    font-family: 'Stick-Regular';
+    src: url('/fonts/Stick-Regular.ttf');
+}
+
+/**
+ * Klee One Regular
+ */
+@font-face {
+    font-family: 'Klee One Regular';
+    src: url('/fonts/KleeOne-Regular.ttf');
+}
+
+/**
+ * Klee One SemiBold
+ */
+@font-face {
+    font-family: 'Klee One SemiBold';
+    src: url('/fonts/KleeOne-SemiBold.ttf');
+}
+
+/**
+ * Train One-Regular
+ */
+@font-face {
+    font-family: 'Train One-Regular';
+    src: url('/fonts/TrainOne-Regular.ttf');
 }
 
 /**

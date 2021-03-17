@@ -497,6 +497,46 @@ export default {
             text: "台北黑體",
             font: "Taipei Sans TC Beta",
             value: "yc45sgsfbss490dqgs2g23a7z24slhoj"
+          },
+          {
+            text: "搖滾樂♪",
+            font: "RocknRoll One-Regular",
+            value: "7yQkdi3Q0lIt0GTZ3GToByiQoQuUGT2c"
+          },
+          {
+            text: "點陣哥特 16",
+            font: "DotGothic16-Regular",
+            value: "bxwe3vU47DyWTEM17sLNQTCHOBbB13xh"
+          },
+          {
+            text: "壁壘 XwX",
+            font: "Rampart One-Regular",
+            value: "DVAgml6ZFScVZ05aZQmo1bzSZDGtfDZV"
+          },
+          {
+            text: "雷鬼 UwU",
+            font: "Reggae One-Regular",
+            value: "hfPg6Tb250eMRlEnew2PHEdqzfCK2bbu"
+          },
+          {
+            text: "戳戳 OwO",
+            font: "Stick-Regular",
+            value: "Fwc7qnSDTtQ5gAwDOHJXU251ZovUEEtN"
+          },
+          {
+            text: "克萊一般般",
+            font: "Klee One Regular",
+            value: "2EEqzp9EHqHTu1jKGhOZ3lspfsbvwOar"
+          },
+          {
+            text: "克萊粗一點",
+            font: "Klee One SemiBold",
+            value: "wWyUkCWL5HW8nhw9wwawx0WbVAyxZjEN"
+          },
+          {
+            text: "火車便當",
+            font: "Train One-Regular",
+            value: "LrDE83PVGCbTlMTShdkpEdna5FrXy1P0"
           }
         ]
       }
