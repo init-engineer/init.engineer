@@ -152,8 +152,11 @@ class TumblrPrimaryService extends BaseService implements SocialCardsContract
     {
         return '<div>#純靠北工程師' . base_convert($options['id'], 10, 36) . '<br /><hr /><br />' .
             '<div>' . nl2br($content) . '</div><br /><hr /><br />' .
-            '<p>純靠北 官方 Discord 歡迎在這找到你的同溫層！</p>' .
-            '<p>👉 <a href="https://discord.gg/tPhnrs2">https://discord.gg/tPhnrs2</a></p>';
+            '<p>💖 純靠北 官方 Discord 歡迎在這找到你的同溫層！</p>' .
+            '<p>👉 <a href="https://discord.gg/tPhnrs2">https://discord.gg/tPhnrs2</a></p>' .
+            '<br /><hr /><br />' .
+            '<p>💖 全平台留言、文章詳細內容</p>' .
+            '<p>👉 <a href="' . route('frontend.social.cards.show', ['id' => $options['id']]) . '">' . route('frontend.social.cards.show', ['id' => $options['id']]) . '</a></p>';
 
         // return '<div>#純靠北工程師' . base_convert($options['id'], 10, 36) . '<br /><hr /><br />' .
         //     '<div>' . nl2br($content) . '</div><br /><hr /><br />' .
