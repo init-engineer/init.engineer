@@ -706,11 +706,11 @@ class ImagesService extends BaseService implements ImagesContract
                 /** 支離滅裂な思考・発言 */
             case '05326525f82b9a036e1bcb53a392ff7c':
                 // $overlayImage = imageCreateFromPng(asset('img/frontend/cards/fragmented_background.png'));
-                $overlayImage = imageCreateFromPng('https://kaobei.engineer/img/frontend/cards/fragmented_background.png');
+                $overlayImage = imageCreateFromPng('https://init.engineer/img/frontend/cards/fragmented_background.png');
                 imageCopy($this->canvas, $overlayImage, 0, imageSY($this->canvas) - 560, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
 
                 // $overlayImage = imageCreateFromPng(asset('img/frontend/cards/fragmented_people.png'));
-                $overlayImage = imageCreateFromPng('https://kaobei.engineer/img/frontend/cards/fragmented_people.png');
+                $overlayImage = imageCreateFromPng('https://init.engineer/img/frontend/cards/fragmented_people.png');
                 imageCopy($this->canvas, $overlayImage, 36, imageSY($this->canvas) - 542, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
 
                 $square_width = $this->canvasWidth - 375;
@@ -725,7 +725,7 @@ class ImagesService extends BaseService implements ImagesContract
                 $top = (72 - $this->canvasHeight * 0.05 > 0) ? 72 - $this->canvasHeight * 0.05 : 20;
                 imageCopy($this->canvas, $newimg, 350, $top, 0, 0, $square_width, $square_height);
 
-                $overlayImage = imageCreateFromPng('https://kaobei.engineer/img/frontend/cards/fragmented_background_arrow.png');
+                $overlayImage = imageCreateFromPng('https://init.engineer/img/frontend/cards/fragmented_background_arrow.png');
                 imageCopy($this->canvas, $overlayImage, 315, imageSY($this->canvas) - 372, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
 
                 break;
