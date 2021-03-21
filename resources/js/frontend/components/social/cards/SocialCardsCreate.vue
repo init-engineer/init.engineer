@@ -829,12 +829,12 @@ export default {
             this.canvas.height - 160
           );
           this.canvas.ctx.fillText(
-            "純靠北工程師 0xKAOBEI_ENGINEER",
+            "純靠北工程師 0xINIT_ENGINEER",
             228,
             this.canvas.height - 120
           );
           this.canvas.ctx.fillText(
-            "請訪問 https://kaobei.engineer",
+            "請訪問 https://init.engineer",
             228,
             this.canvas.height - 40
           );
@@ -849,12 +849,12 @@ export default {
             this.canvas.height - 160
           );
           this.canvas.ctx.fillText(
-            "純靠北工程師 0xKAOBEI_ENGINEER",
+            "純靠北工程師 0xINIT_ENGINEER",
             228,
             this.canvas.height - 120
           );
           this.canvas.ctx.fillText(
-            "請訪問 https://kaobei.engineer",
+            "請訪問 https://init.engineer",
             228,
             this.canvas.height - 40
           );
@@ -917,7 +917,7 @@ export default {
           this.canvas.ctx.font = "36px " + this.canvas.font;
           this.canvas.ctx.fillStyle = this.canvas.color;
           this.canvas.ctx.fillText(
-            "發文傳送門 https://kaobei.engineer",
+            "發文傳送門 https://init.engineer",
             16,
             this.canvas.height - 24
           );

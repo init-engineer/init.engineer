@@ -338,14 +338,14 @@ class ImagesService extends BaseService implements ImagesContract
                 /** Windows 最棒的畫面 */
             case '32d2a897602ef652ed8e15d66128aa74':
                 imageTTFtext($this->canvas, 26, $this->canvasAngle, 228, $this->canvasHeight - 160, $this->canvasTextColor, $this->canvasFont, '若要深入了解，您稍候可以線上搜尋此:');
-                imageTTFtext($this->canvas, 26, $this->canvasAngle, 228, $this->canvasHeight - 120, $this->canvasTextColor, $this->canvasFont, sprintf('%s 0xKAOBEI_ENGINEER', app_name()));
+                imageTTFtext($this->canvas, 26, $this->canvasAngle, 228, $this->canvasHeight - 120, $this->canvasTextColor, $this->canvasFont, sprintf('%s 0xINIT_ENGINEER', app_name()));
                 imageTTFtext($this->canvas, 26, $this->canvasAngle, 228, $this->canvasHeight - 40,  $this->canvasTextColor, $this->canvasFont, sprintf('請訪問 %s', app_url()));
                 break;
 
                 /** Windows 最棒的畫面 測試人員組件 */
             case 'tumx453xqZLjf5kaFFBzNj4gqVXKWqXz':
                 imageTTFtext($this->canvas, 26, $this->canvasAngle, 228, $this->canvasHeight - 160, $this->canvasTextColor, $this->canvasFont, '若要深入了解，您稍候可以線上搜尋此:');
-                imageTTFtext($this->canvas, 26, $this->canvasAngle, 228, $this->canvasHeight - 120, $this->canvasTextColor, $this->canvasFont, sprintf('%s 0xKAOBEI_ENGINEER', app_name()));
+                imageTTFtext($this->canvas, 26, $this->canvasAngle, 228, $this->canvasHeight - 120, $this->canvasTextColor, $this->canvasFont, sprintf('%s 0xINIT_ENGINEER', app_name()));
                 imageTTFtext($this->canvas, 26, $this->canvasAngle, 228, $this->canvasHeight - 40,  $this->canvasTextColor, $this->canvasFont, sprintf('請訪問 %s', app_url()));
                 break;
 
