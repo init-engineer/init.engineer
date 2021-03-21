@@ -142,12 +142,13 @@ class PlurkPrimaryService extends BaseService implements SocialCardsContract
 
         return $options['image_url'] . "\n\r" .
             '#純靠北工程師' . base_convert($options['id'], 10, 36) . "\n\r----------\n\r" .
-            $_content . "\n\r----------\n\r" .
+            $_content . "\n\r" .
+            "\n\r----------\n\r" .
             "💖 純靠北 官方 Discord 歡迎在這找到你的同溫層！\n\r" .
             "👉 https://discord.gg/tPhnrs2" .
             "\n\r----------\n\r" .
             "💖 全平台留言、文章詳細內容\n\r" .
-            "👉 " . route('frontend.social.cards.show', ['id' => $options['id']]);
+            "👉 https://init.engineer/cards/show/" . $options['id'];
 
         // return $options['image_url'] . "\n\r" .
         //     '#純靠北工程師' . base_convert($options['id'], 10, 36) . "\n\r----------\n\r" .
