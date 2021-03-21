@@ -28,20 +28,20 @@
         logged_in_greeting="哈囉，因為版主不在家，所以這邊整理一些常見問題來給你們自己找答案，如果有其他問題，您可以靜待版主回來再回覆您。
 
         投稿、發表文章
-        https://kaobei.engineer/cards/create
+        https://init.engineer/cards/create
 
         參與群眾審核
-        https://kaobei.engineer/cards/review
+        https://init.engineer/cards/review
 
         參與專案開發
         https://github.com/init-engineer/init.engineer"
         logged_out_greeting="哈囉，因為版主不在家，所以這邊整理一些常見問題來給你們自己找答案，如果有其他問題，您可以靜待版主回來再回覆您。
 
         投稿、發表文章
-        https://kaobei.engineer/cards/create
+        https://init.engineer/cards/create
 
         參與群眾審核
-        https://kaobei.engineer/cards/review
+        https://init.engineer/cards/review
 
         參與專案開發
         https://github.com/init-engineer/init.engineer">

@@ -71,7 +71,7 @@ class CardsService extends BaseService implements CardsContract
                     "embeds" => [
                         [
                             "title" => "#純靠北工程師" . base_convert($cards->id, 10, 36),
-                            "url" => "https://kaobei.engineer/cards/show/" . $cards->id,
+                            "url" => "https://init.engineer/cards/show/" . $cards->id,
                             "description" => $cards->content,
                             "color" => 15258703,
                             "image" => [
@@ -98,7 +98,7 @@ class CardsService extends BaseService implements CardsContract
                     "embeds" => [
                         [
                             "title" => "#純靠北工程師" . base_convert($cards->id, 10, 36),
-                            "url" => "https://kaobei.engineer/cards/show/" . $cards->id,
+                            "url" => "https://init.engineer/cards/show/" . $cards->id,
                             "description" => $cards->content,
                             "color" => 15258703,
                             "image" => [
