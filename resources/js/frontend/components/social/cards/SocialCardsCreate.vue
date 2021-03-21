@@ -686,7 +686,7 @@ export default {
     drawingFeature() {
       if (this.canvas.feature.is_to_be_continued) {
         var sources = {
-          image1: '/img/frontend/cards/to_be_continued.png'
+          image1: "/img/frontend/cards/to_be_continued.png"
         };
         var self = this;
         switch (this.theme.selector) {
@@ -745,9 +745,9 @@ export default {
 
         case "05326525f82b9a036e1bcb53a392ff7c":
           var sources = {
-            image1: '/img/frontend/cards/fragmented_background.png',
-            image2: '/img/frontend/cards/fragmented_people.png',
-            image3: '/img/frontend/cards/fragmented_background_arrow.png'
+            image1: "/img/frontend/cards/fragmented_background.png",
+            image2: "/img/frontend/cards/fragmented_people.png",
+            image3: "/img/frontend/cards/fragmented_background_arrow.png"
           };
 
           this.loadImages(sources, function(images) {
@@ -762,7 +762,7 @@ export default {
               self.canvas.width - 381,
               self.canvas.height - 282
             );
-            self.canvas.ctx.fillStyle = '#FFFFFF';
+            self.canvas.ctx.fillStyle = "#FFFFFF";
             self.canvas.ctx.fillRect(
               357,
               44,
@@ -782,14 +782,14 @@ export default {
 
         case "W6FTE8fL66w2u5Xo5s3OxdqmAMpzptvK":
           var sources = {
-            image1: '/img/frontend/cards/fragmented_background.png',
-            image2: '/img/frontend/cards/fragmented_furry.png',
-            image3: '/img/frontend/cards/fragmented_background_arrow.png'
+            image1: "/img/frontend/cards/fragmented_background.png",
+            image2: "/img/frontend/cards/fragmented_wolf.png",
+            image3: "/img/frontend/cards/fragmented_background_arrow.png"
           };
 
           this.loadImages(sources, function(images) {
             self.canvas.ctx.drawImage(images.image1, 0, self.canvas.height - 560);
-            self.canvas.ctx.drawImage(images.image2, 36, self.canvas.height - 542);
+            self.canvas.ctx.drawImage(images.image2, 12, self.canvas.height - 482);
 
             self.canvas.ctx.lineJoin = "round";
             self.canvas.ctx.lineWidth = 8;
@@ -799,7 +799,7 @@ export default {
               self.canvas.width - 381,
               self.canvas.height - 282
             );
-            self.canvas.ctx.fillStyle = '#FFFFFF';
+            self.canvas.ctx.fillStyle = "#FFFFFF";
             self.canvas.ctx.fillRect(
               357,
               44,

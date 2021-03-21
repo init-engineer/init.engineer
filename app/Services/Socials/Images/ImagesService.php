@@ -778,7 +778,7 @@ class ImagesService extends BaseService implements ImagesContract
                 imageCopy($this->canvas, $overlayImage, 0, imageSY($this->canvas) - 560, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
 
                 $overlayImage = imageCreateFromPng(asset('img/frontend/cards/fragmented_wolf.png'));
-                imageCopy($this->canvas, $overlayImage, 36, imageSY($this->canvas) - 542, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
+                imageCopy($this->canvas, $overlayImage, 12, imageSY($this->canvas) - 482, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
 
                 $square_width = $this->canvasWidth - 375;
                 $square_height = $this->canvasHeight - 250;
