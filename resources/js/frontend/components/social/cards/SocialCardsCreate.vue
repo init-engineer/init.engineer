@@ -442,6 +442,15 @@ export default {
               background: "#F8F9FA",
               text: "#000000"
             }
+          },
+          {
+            text: "不獸控制な思考・発言",
+            class: "bg-light text-dark",
+            value: "W6FTE8fL66w2u5Xo5s3OxdqmAMpzptvK",
+            color: {
+              background: "#F8F9FA",
+              text: "#000000"
+            }
           }
         ]
       },
@@ -652,6 +661,11 @@ export default {
           canvasView_height += 160;
           canvasView_width += 349;
           break;
+
+        case "W6FTE8fL66w2u5Xo5s3OxdqmAMpzptvK":
+          canvasView_height += 160;
+          canvasView_width += 349;
+          break;
       }
 
       /**
@@ -687,6 +701,11 @@ export default {
             });
             return;
           case "05326525f82b9a036e1bcb53a392ff7c":
+            this.loadImages(sources, function(images) {
+              self.canvas.ctx.drawImage(images.image1, self.canvas.width - 950, self.canvas.height - 400);
+            });
+            return;
+          case "W6FTE8fL66w2u5Xo5s3OxdqmAMpzptvK":
             this.loadImages(sources, function(images) {
               self.canvas.ctx.drawImage(images.image1, self.canvas.width - 950, self.canvas.height - 400);
             });
@@ -728,6 +747,43 @@ export default {
           var sources = {
             image1: '/img/frontend/cards/fragmented_background.png',
             image2: '/img/frontend/cards/fragmented_people.png',
+            image3: '/img/frontend/cards/fragmented_background_arrow.png'
+          };
+
+          this.loadImages(sources, function(images) {
+            self.canvas.ctx.drawImage(images.image1, 0, self.canvas.height - 560);
+            self.canvas.ctx.drawImage(images.image2, 36, self.canvas.height - 542);
+
+            self.canvas.ctx.lineJoin = "round";
+            self.canvas.ctx.lineWidth = 8;
+            self.canvas.ctx.strokeRect(
+              353,
+              40,
+              self.canvas.width - 381,
+              self.canvas.height - 282
+            );
+            self.canvas.ctx.fillStyle = '#FFFFFF';
+            self.canvas.ctx.fillRect(
+              357,
+              44,
+              self.canvas.width - 389,
+              self.canvas.height - 290
+            );
+
+            self.canvas.ctx.drawImage(images.image3, 312, self.canvas.height - 388);
+
+            self.drawingLogo();
+            self.drawingUrl();
+            self.drawingContent();
+            self.drawingFeature();
+          });
+
+          return;
+
+        case "W6FTE8fL66w2u5Xo5s3OxdqmAMpzptvK":
+          var sources = {
+            image1: '/img/frontend/cards/fragmented_background.png',
+            image2: '/img/frontend/cards/fragmented_furry.png',
             image3: '/img/frontend/cards/fragmented_background_arrow.png'
           };
 
@@ -818,6 +874,20 @@ export default {
           );
           return;
 
+        case "W6FTE8fL66w2u5Xo5s3OxdqmAMpzptvK":
+          this.canvas.ctx.font = "72px " + this.canvas.font;
+          this.canvas.ctx.fillStyle = this.canvas.color;
+          this.canvas.ctx.fillText("不獸控制な", 360, this.canvas.height - 160);
+          this.canvas.ctx.fillText("思考・発言", 360, this.canvas.height - 80);
+          this.canvas.ctx.font = "36px " + this.canvas.font;
+          this.canvas.ctx.fillStyle = this.canvas.color;
+          this.canvas.ctx.fillText(
+            "純靠北工程師",
+            this.canvas.width - 232,
+            this.canvas.height - 24
+          );
+          return;
+
         default:
           this.canvas.ctx.font = "36px " + this.canvas.font;
           this.canvas.ctx.fillStyle = this.canvas.color;
@@ -877,6 +947,10 @@ export default {
               y_point += 240;
               break;
             case "05326525f82b9a036e1bcb53a392ff7c":
+              x_point += 349;
+              y_point += 24;
+              break;
+            case "W6FTE8fL66w2u5Xo5s3OxdqmAMpzptvK":
               x_point += 349;
               y_point += 24;
               break;
