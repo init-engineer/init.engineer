@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Authentication Language Lines
@@ -11,10 +10,10 @@ return [
     | messages that we need to display to the user. You are free to modify
     | these language lines according to your application's requirements.
     |
+    |--------------------------------------------------------------------------
     */
 
-    'failed' => '您所輸入的帳號不存在或密碼有誤，請重新輸入。',
-    'password' => '您所輸入的密碼不正確，請重新輸入。',
-    'throttle' => '登入失敗次數過多，請您在 :seconds 秒後再重新嘗試。',
-
+    'failed' => 'Essas credenciais não foram encontradas na nossa base de dados.',
+    'password' => 'A palavra-passe introduzida está incorreta.',
+    'throttle' => 'Excedeu as tentativas de login. Por favor tente novamente em :seconds segundos.',
 ];

@@ -13,10 +13,10 @@ return [
     |
     */
 
-    'reset' => '您的密碼已重置！',
-    'sent' => '我們已通過電子郵件發送您的密碼重置連結！',
-    'throttled' => '請稍後再重新嘗試。',
-    'token' => '此密碼重置識別碼是無效的。',
-    'user' => '我們找不到具有該電子郵件地址的使用者。',
+    'reset' => 'Parola dumneavoastra a fost resetata!',
+    'sent' => 'V-am trimis un email cu linkul de resetare al parolei!',
+    'throttled' => 'Va rugam sa asteptati inainte de a incerca din nou.',
+    'token' => 'Token-ul de resetare al parolei este invalid.',
+    'user' => 'Nu putem gasi un user cu aceasta adresa de e-mail.',
 
 ];
