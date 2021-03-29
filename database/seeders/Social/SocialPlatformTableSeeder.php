@@ -23,15 +23,16 @@ class SocialPlatformTableSeeder extends Seeder
         $this->disableForeignKeys();
 
         Platform::create([
-            'name' => 'primary',
-            'type' => 'local',
+            'name' => '本地平台',
+            'action' => Platform::ACTION_INACTION,
+            'type' => Platform::TYPE_LOCAL,
             'active' => true,
-            'config' => json_encode([]),
         ]);
 
         Platform::create([
-            'name' => 'primary',
-            'type' => 'facebook',
+            'name' => '官方正式 @init.kobeengineer',
+            'action' => Platform::ACTION_PUBLISH,
+            'type' => Platform::TYPE_FACEBOOK,
             'active' => false,
             'config' => json_encode([
                 'user_id' => null,
@@ -44,8 +45,9 @@ class SocialPlatformTableSeeder extends Seeder
         ]);
 
         Platform::create([
-            'name' => 'secondary',
-            'type' => 'facebook',
+            'name' => '官方測試 @kaobei.engineer',
+            'action' => Platform::ACTION_PUBLISH,
+            'type' => Platform::TYPE_FACEBOOK,
             'active' => false,
             'config' => json_encode([
                 'user_id' => null,
@@ -58,8 +60,9 @@ class SocialPlatformTableSeeder extends Seeder
         ]);
 
         Platform::create([
-            'name' => 'primary',
-            'type' => 'twitter',
+            'name' => '官方正式 @kaobei_engineer',
+            'action' => Platform::ACTION_PUBLISH,
+            'type' => Platform::TYPE_TWITTER,
             'active' => false,
             'config' => json_encode([
                 'consumer_key' => null,
@@ -71,8 +74,9 @@ class SocialPlatformTableSeeder extends Seeder
         ]);
 
         Platform::create([
-            'name' => 'secondary',
-            'type' => 'twitter',
+            'name' => '官方測試 @kobeengineer',
+            'action' => Platform::ACTION_PUBLISH,
+            'type' => Platform::TYPE_TWITTER,
             'active' => false,
             'config' => json_encode([
                 'consumer_key' => null,
@@ -84,8 +88,9 @@ class SocialPlatformTableSeeder extends Seeder
         ]);
 
         Platform::create([
-            'name' => 'primary',
-            'type' => 'plurk',
+            'name' => '官方 @kaobei_engineer',
+            'action' => Platform::ACTION_PUBLISH,
+            'type' => Platform::TYPE_PLURK,
             'active' => false,
             'config' => json_encode([
                 'client_id' => null,
@@ -97,8 +102,9 @@ class SocialPlatformTableSeeder extends Seeder
         ]);
 
         Platform::create([
-            'name' => 'secondary',
-            'type' => 'plurk',
+            'name' => '官方 @kaobei-engineer',
+            'action' => Platform::ACTION_PUBLISH,
+            'type' => Platform::TYPE_TUMBLR,
             'active' => false,
             'config' => json_encode([
                 'client_id' => null,
@@ -106,6 +112,26 @@ class SocialPlatformTableSeeder extends Seeder
                 'token' => null,
                 'token_secret' => null,
                 'pages_name' => null,
+            ]),
+        ]);
+
+        Platform::create([
+            'name' => '官方 @init.engineer',
+            'action' => Platform::ACTION_NOTIFICATION,
+            'type' => Platform::TYPE_DISCORD,
+            'active' => false,
+            'config' => json_encode([
+                'webhook' => null,
+            ]),
+        ]);
+
+        Platform::create([
+            'name' => '官方 @init.engineer',
+            'action' => Platform::ACTION_NOTIFICATION,
+            'type' => Platform::TYPE_TELEGRAM,
+            'active' => false,
+            'config' => json_encode([
+                'webhook' => null,
             ]),
         ]);
 
