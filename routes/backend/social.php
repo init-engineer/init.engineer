@@ -13,18 +13,26 @@ use App\Domains\Social\Models\Platform;
 use App\Domains\Social\Models\Reviews;
 use Tabuna\Breadcrumbs\Trail;
 
-// All route names are prefixed with 'admin.social'.
+/**
+ * All route names are prefixed with 'admin.social'.
+ * 主要服務
+ */
 Route::group([
     'prefix' => 'social',
     'as' => 'social.',
     'middleware' => config('boilerplate.access.middleware.confirm'),
 ], function () {
+
+    /**
+     * All route names are prefixed with 'admin.social.ads'.
+     * Ads 廣告服務
+     */
     Route::group([
         'prefix' => 'ads',
         'as' => 'ads.',
     ], function () {
         Route::group([
-            'middleware' => 'role:'.config('boilerplate.access.role.admin'),
+            'middleware' => 'role:' . config('boilerplate.access.role.admin'),
         ], function () {
             Route::get('deleted', [DeletedAdsController::class, 'index'])
                 ->name('deleted')
@@ -96,12 +104,16 @@ Route::group([
         });
     });
 
+    /**
+     * All route names are prefixed with 'admin.social.platform'.
+     * Platform 社群平台
+     */
     Route::group([
         'prefix' => 'platform',
         'as' => 'platform.',
     ], function () {
         Route::group([
-            'middleware' => 'role:'.config('boilerplate.access.role.admin'),
+            'middleware' => 'role:' . config('boilerplate.access.role.admin'),
         ], function () {
             Route::get('deleted', [DeletedPlatformController::class, 'index'])
                 ->name('deleted')
@@ -173,12 +185,16 @@ Route::group([
         });
     });
 
+    /**
+     * All route names are prefixed with 'admin.social.cards'.
+     * Cards 文章
+     */
     Route::group([
         'prefix' => 'cards',
         'as' => 'cards.',
     ], function () {
         Route::group([
-            'middleware' => 'role:'.config('boilerplate.access.role.admin'),
+            'middleware' => 'role:' . config('boilerplate.access.role.admin'),
         ], function () {
             Route::get('deleted', [DeletedCardsController::class, 'index'])
                 ->name('deleted')
@@ -250,12 +266,16 @@ Route::group([
         });
     });
 
+    /**
+     * All route names are prefixed with 'admin.social.comments'.
+     * Comments 文章留言
+     */
     Route::group([
         'prefix' => 'comments',
         'as' => 'comments.',
     ], function () {
         Route::group([
-            'middleware' => 'role:'.config('boilerplate.access.role.admin'),
+            'middleware' => 'role:' . config('boilerplate.access.role.admin'),
         ], function () {
             Route::get('deleted', [DeletedCommentsController::class, 'index'])
                 ->name('deleted')
@@ -327,12 +347,16 @@ Route::group([
         });
     });
 
+    /**
+     * All route names are prefixed with 'admin.social.reviews'.
+     * Reviews 群眾審核
+     */
     Route::group([
         'prefix' => 'reviews',
         'as' => 'reviews.',
     ], function () {
         Route::group([
-            'middleware' => 'role:'.config('boilerplate.access.role.admin'),
+            'middleware' => 'role:' . config('boilerplate.access.role.admin'),
         ], function () {
             Route::get('deleted', [DeletedReviewsController::class, 'index'])
                 ->name('deleted')
