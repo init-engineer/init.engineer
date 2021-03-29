@@ -1,14 +1,17 @@
 /coverage
 /node_modules
+/public/css
+/public/js
+/public/fonts
 /public/hot
 /public/storage
+/public/mix-manifest.json
 /storage/*.key
 /vendor
 /.vscode
 *.sublime-project
 *.sublime-workspace
 _ide_helper.php
-_ide_helper_models.php
 .DS_Store
 .env
 .env.backup
@@ -19,6 +22,7 @@ _ide_helper_models.php
 .project
 composer.phar
 coverage.xml
+docker-compose.override.yml
 error.log
 Homestead.json
 Homestead.yaml
