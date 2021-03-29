@@ -16,7 +16,7 @@ if (! function_exists('appName')) {
 
 if (! function_exists('appUrl')) {
     /**
-     * Helper to grab the application name.
+     * Helper to grab the application url.
      *
      * @return mixed
      */
