@@ -1,5 +1,5 @@
 <template>
-    <span>Laravel Boilerplate</span>
+    <span>純靠北工程師 init.engineer</span>
 </template>
 
 <script>
