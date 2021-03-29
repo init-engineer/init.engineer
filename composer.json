@@ -1,47 +1,46 @@
 {
-    "name": "init-engineer/init.engineer",
+    "name": "init.engineer/init.engineer",
     "type": "project",
     "description": "這是一份純靠北工程師的專案，請好好愛護它，謝謝。",
     "keywords": [
         "純靠北工程師",
-        "init.engineer",
-        "kaobei.engineer"
+        "init.engineer"
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.3",
+        "php": "^7.4|^8.0",
         "arcanedev/log-viewer": "8.x",
         "darkghosthunter/laraguard": "dev-master",
-        "facebook/graph-sdk": "^5.7",
-        "fideloper/proxy": "^4.2",
+        "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "jamesmills/laravel-timezone": "^1.9",
         "lab404/laravel-impersonate": "^1.6",
         "langleyfoxall/laravel-nist-password-rules": "^4.1",
-        "laravel/framework": "^8.0",
+        "laravel/framework": "^8.24",
+        "laravel/passport": "^10.1",
         "laravel/socialite": "^5.0",
-        "laravel/tinker": "^2.0",
+        "laravel/tinker": "^2.5",
         "laravel/ui": "^3.0",
         "livewire/livewire": "^2.0",
         "rappasoft/laravel-livewire-tables": "^0.3",
         "rappasoft/lockout": "^3.0",
         "spatie/laravel-activitylog": "^3.14",
         "spatie/laravel-permission": "^3.11",
-        "tabuna/breadcrumbs": "^2.2",
-        "thujohn/twitter": "^2.3"
+        "tabuna/breadcrumbs": "^2.2"
     },
     "require-dev": {
         "roave/security-advisories": "dev-master",
         "barryvdh/laravel-debugbar": "^3.2",
         "barryvdh/laravel-ide-helper": "^2.6",
         "codedungeon/phpunit-result-printer": "^0.29",
-        "facade/ignition": "^2.3.6",
+        "facade/ignition": "^2.5",
         "friendsofphp/php-cs-fixer": "^2.16",
-        "fzaninotto/faker": "^1.9.1",
-        "mockery/mockery": "^1.3.1",
+        "fakerphp/faker": "^1.9.1",
+        "laravel/sail": "^1.0.1",
+        "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^5.0",
-        "phpunit/phpunit": "^9.0"
+        "phpunit/phpunit": "^9.3.3"
     },
     "config": {
         "optimize-autoloader": true,
@@ -78,7 +77,7 @@
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
         ],
-        "post-update-dump": [
+        "post-update-cmd": [
             "@php artisan ide-helper:generate",
             "@php artisan ide-helper:meta"
         ],
@@ -88,7 +87,6 @@
             "@php artisan route:clear",
             "@php artisan view:clear",
             "@php artisan config:clear",
-            "@php artisan permission:cache-reset",
             "composer dumpautoload -o"
         ],
         "cache-all": [
