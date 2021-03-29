@@ -4,6 +4,13 @@
     </IfModule>
 
     RewriteEngine On
+    RewriteCond %{HTTPS} !=on
+    RewriteCond %{HTTP:X-Forwarded-Proto} !https
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+    RewriteCond %{HTTP_HOST} ^kaobei\.engineer$ [OR]
+    RewriteCond %{HTTP_HOST} ^www\.kaobei\.engineer$
+    RewriteRule (.*)$ https://init.engineer/$1 [R=301,L]
 
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
