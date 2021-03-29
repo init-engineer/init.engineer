@@ -4,7 +4,6 @@ about: 為這個專案提出一些想法
 title: ''
 labels: feature
 assignees: Kantai235
-
 ---
 
 **您的功能要求與問題有關嗎？請描述。**
