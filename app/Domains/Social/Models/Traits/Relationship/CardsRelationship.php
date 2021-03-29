@@ -2,10 +2,8 @@
 
 namespace App\Domains\Social\Models\Traits\Relationship;
 
-use App\Models\Social\CardPost;
-use App\Models\Social\Comments;
-use App\Models\Social\Images;
-use App\Models\Social\Reviews;
+use App\Domains\Auth\Models\User;
+use App\Domains\Social\Models\PlatformCards;
 
 /**
  * Trait CardsRelationship.
@@ -21,23 +19,13 @@ trait CardsRelationship
     }
 
     /**
-     * Get the post for the card.
+     * Get the platform cards for the card.
      *
-     * @return CardPost
+     * @return PlatformCards
      */
-    public function posts()
+    public function platformCards()
     {
-        return $this->hasMany(CardPost::class, 'card_id', 'id');
-    }
-
-    /**
-     * Get the images for the card.
-     *
-     * @return Images
-     */
-    public function images()
-    {
-        return $this->hasMany(Images::class, 'card_id', 'id');
+        return $this->hasMany(PlatformCards::class, 'card_id', 'id');
     }
 
     /**
@@ -58,5 +46,15 @@ trait CardsRelationship
     public function reviews()
     {
         return $this->hasMany(Reviews::class, 'card_id', 'id');
+    }
+
+    /**
+     * Get the blockade user for the card.
+     *
+     * @return User
+     */
+    public function blockade()
+    {
+        return $this->hasOne(User::class, 'blockade_by', 'id');
     }
 }

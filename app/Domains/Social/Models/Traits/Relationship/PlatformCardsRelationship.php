@@ -5,14 +5,14 @@ namespace App\Domains\Social\Models\Traits\Relationship;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
- * Trait ReviewRelationship.
+ * Trait PlatformCardsRelationship.
  */
-trait ReviewRelationship
+trait PlatformCardsRelationship
 {
     /**
-     * Get all of the owning user models.
+     * Get all of the owning platform models.
      */
-    public function model()
+    public function platform()
     {
         return $this->morphTo();
     }

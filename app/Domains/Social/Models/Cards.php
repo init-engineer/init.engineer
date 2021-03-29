@@ -5,6 +5,9 @@ namespace App\Domains\Social\Models;
 use App\Domains\Social\Models\Traits\Method\CardsMethod;
 use App\Domains\Social\Models\Traits\Relationship\CardsRelationship;
 use App\Domains\Social\Models\Traits\Scope\CardsScope;
+use App\Models\Traits\Config;
+use App\Models\Traits\Picture;
+use App\Models\Traits\Uuid;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -16,7 +19,10 @@ class Cards extends Model
     use SoftDeletes,
         CardsScope,
         CardsMethod,
-        CardsRelationship;
+        CardsRelationship,
+        Config,
+        Picture,
+        Uuid;
 
     /**
      * The table associated with the model.
@@ -42,13 +48,12 @@ class Cards extends Model
         'model_id',
         'content',
         'config',
-        'platform',
-        'image',
+        'picture',
         'active',
-        'banned',
-        'banned_by',
-        'banned_remarks',
-        'banned_at',
+        'blockade',
+        'blockade_by',
+        'blockade_remarks',
+        'blockade_at',
     ];
 
     /**
@@ -58,7 +63,7 @@ class Cards extends Model
      */
     protected $casts = [
         'active' => 'boolean',
-        'banned' => 'boolean',
+        'blockade' => 'boolean',
     ];
 
     /**
@@ -67,6 +72,6 @@ class Cards extends Model
      * @var array
      */
     protected $dates = [
-        'banned_at',
+        'blockade_at',
     ];
 }

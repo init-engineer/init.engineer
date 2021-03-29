@@ -2,6 +2,7 @@
 
 namespace App\Domains\Auth\Models\Traits\Method;
 
+use App\Domains\Auth\Models\User;
 use Illuminate\Support\Collection;
 
 /**
@@ -22,7 +23,7 @@ trait UserMethod
      */
     public function isAdmin(): bool
     {
-        return $this->type === self::TYPE_ADMIN;
+        return $this->type === User::TYPE_ADMIN;
     }
 
     /**
@@ -30,7 +31,7 @@ trait UserMethod
      */
     public function isUser(): bool
     {
-        return $this->type === self::TYPE_USER;
+        return $this->type === User::TYPE_USER;
     }
 
     /**

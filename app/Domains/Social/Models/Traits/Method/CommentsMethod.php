@@ -20,14 +20,14 @@ trait CommentsMethod
      */
     public function isPublish(): bool
     {
-        return !$this->banned;
+        return !$this->blockade;
     }
 
     /**
      * @return bool
      */
-    public function isBanned(): bool
+    public function isBlockade(): bool
     {
-        return $this->banned;
+        return $this->blockade;
     }
 }

@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Lab404\Impersonate\Models\Impersonate;
+use Laravel\Passport\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
 /**
@@ -25,7 +26,8 @@ use Spatie\Permission\Traits\HasRoles;
  */
 class User extends Authenticatable implements MustVerifyEmail, TwoFactorAuthenticatable
 {
-    use HasFactory,
+    use HasApiTokens,
+        HasFactory,
         HasRoles,
         Impersonate,
         MustVerifyEmailTrait,
@@ -147,7 +149,7 @@ class User extends Authenticatable implements MustVerifyEmail, TwoFactorAuthenti
      */
     public function canBeImpersonated(): bool
     {
-        return ! $this->isMasterAdmin();
+        return !$this->isMasterAdmin();
     }
 
     /**

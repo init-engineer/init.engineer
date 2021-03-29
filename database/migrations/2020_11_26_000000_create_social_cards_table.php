@@ -1,5 +1,6 @@
 <?php
 
+use App\Domains\Social\Models\Platform;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,60 +17,118 @@ class CreateSocialCardsTable extends Migration
      */
     public function up(): void
     {
-        /** 社群平台 Token */
+        /** 社群平台 */
         Schema::create('social_platform', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->uuid('uuid')->nullable();
             $table->string('name')->comment('社群平台名稱');
-            $table->string('type')->default('local')->comment('社群平台分類');
+            $table->enum('action', array(
+                Platform::ACTION_INACTION,
+                Platform::ACTION_NOTIFICATION,
+                Platform::ACTION_PUBLISH,
+            ))->default(Platform::ACTION_PUBLISH)->comment('社群平台行為');
+            $table->enum('type', array(
+                Platform::TYPE_LOCAL,
+                Platform::TYPE_FACEBOOK,
+                Platform::TYPE_TWITTER,
+                Platform::TYPE_PLURK,
+                Platform::TYPE_TUMBLR,
+                Platform::TYPE_DISCORD,
+                Platform::TYPE_TELEGRAM,
+            ))->default(Platform::TYPE_LOCAL)->comment('社群平台分類');
             $table->unsignedTinyInteger('active')->default(0)->comment('啟用');
             $table->json('config')->comment('設定');
             $table->timestamps();
             $table->softDeletes();
         });
 
-        /** 廣告 */
+        /** Ads 廣告 */
         Schema::create('social_cards_ads', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->uuid('uuid')->nullable();
             $table->morphs('model');
             $table->string('name')->nullable()->comment('廣告名稱');
-            $table->string('ads_path')->nullable()->comment('圖檔路徑');
-            $table->integer('number_max')->default(-1)->comment('最多部署上限');
-            $table->integer('number_min')->default(-1)->comment('最少部署下限');
-            $table->integer('incidence')->default(0)->comment('部署機率');
+            $table->json('picture')->nullable()->comment('圖片資訊');
+            $table->integer('probability')->default(0)->comment('部署機率');
             $table->unsignedTinyInteger('payment')->default(0)->comment('付款狀態');
             $table->unsignedTinyInteger('active')->default(1)->comment('啟用');
             $table->timestamp('started_at')->nullable()->comment('開始日期');
             $table->timestamp('ended_at')->nullable()->comment('結束日期');
             $table->timestamps();
             $table->softDeletes();
+
+            $table->index([
+                'id',
+                'model_id',
+                'model_type',
+            ], 'social_cards_ads_id_model_id_model_type_index');
         });
 
         /** 主要文章 */
         Schema::create('social_cards', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->uuid('uuid')->nullable();
             $table->morphs('model');
             $table->longText('content')->comment('內文');
-            $table->json('config')->comment('文章設定');
-            $table->json('platform')->comment('社群資訊');
-            $table->json('image')->comment('圖片資訊');
+            $table->json('config')->default('{}')->comment('文章設定');
+            $table->json('picture')->default('{}')->comment('圖片資訊');
             $table->unsignedTinyInteger('active')->default(1)->comment('啟用');
-            $table->boolean('banned')->default(false)->comment('封鎖狀態');
-            $table->unsignedBigInteger('banned_by')->nullable()->comment('被誰封鎖');
-            $table->string('banned_remarks')->nullable()->comment('封鎖原因');
-            $table->timestamp('banned_at')->nullable()->comment('在什麼時候被封鎖');
+            $table->boolean('blockade')->default(0)->comment('封鎖狀態');
+            $table->unsignedBigInteger('blockade_by')->nullable()->comment('被誰封鎖');
+            $table->string('blockade_remarks')->nullable()->comment('封鎖原因');
+            $table->timestamp('blockade_at')->nullable()->comment('在什麼時候被封鎖');
             $table->timestamps();
             $table->softDeletes();
+
+            $table->index([
+                'id',
+                'model_id',
+                'model_type',
+            ], 'social_cards_id_model_id_model_type_index');
+        });
+
+        /** 社群平台文章 */
+        Schema::create('social_platform_cards', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->uuid('uuid')->nullable();
+            $table->morphs('platform');
+            $table->unsignedBigInteger('card_id')->comment('文章 ID');
+            $table->unsignedTinyInteger('active')->default(1)->comment('啟用');
+            $table->integer('likes')->default(0)->comment('按讚數量');
+            $table->integer('shares')->default(0)->comment('分享數量');
+            $table->timestamps();
+            $table->softDeletes();
+
+            $table->index([
+                'id',
+                'platform_id',
+                'platform_type',
+                'card_id',
+            ], 'social_platform_cards_id_platform_id_platform_type_card_id_index');
+
+            $table->foreign('card_id')
+                ->references('id')
+                ->on('social_cards')
+                ->onDelete('cascade');
         });
 
         /** 群眾審核 */
         Schema::create('social_cards_reviews', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('card_id')->comment('文章 ID');
+            $table->uuid('uuid')->nullable();
             $table->morphs('model');
+            $table->unsignedBigInteger('card_id')->comment('文章 ID');
             $table->integer('point')->default(0)->comment('票數權重');
-            $table->json('config')->comment('設定');
+            $table->json('config')->default('{}')->comment('設定');
             $table->timestamps();
             $table->softDeletes();
+
+            $table->index([
+                'id',
+                'model_id',
+                'model_type',
+                'card_id',
+            ], 'social_cards_reviews_id_model_id_model_type_card_id_index');
 
             $table->foreign('card_id')
                 ->references('id')
@@ -80,6 +139,7 @@ class CreateSocialCardsTable extends Migration
         /** 社群平台留言 */
         Schema::create('social_comments', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->uuid('uuid')->nullable();
             $table->unsignedBigInteger('card_id')->comment('文章 ID');
             $table->unsignedBigInteger('platform_id')->comment('平台 ID');
             $table->string('comment_id')->nullable()->comment('社群平台 ID');
@@ -89,12 +149,18 @@ class CreateSocialCardsTable extends Migration
             $table->longText('content')->comment('留言內容');
             $table->unsignedTinyInteger('active')->default(1)->comment('啟用');
             $table->string('reply')->nullable()->comment('回覆自社群平台 ID');
-            $table->unsignedTinyInteger('banned')->default(0)->comment('封鎖狀態');
-            $table->unsignedBigInteger('banned_by')->nullable()->comment('被誰封鎖');
-            $table->string('banned_remarks')->nullable()->comment('封鎖原因');
-            $table->timestamp('banned_at')->nullable()->comment('在什麼時候被封鎖');
+            $table->unsignedTinyInteger('blockade')->default(0)->comment('封鎖狀態');
+            $table->unsignedBigInteger('blockade_by')->nullable()->comment('被誰封鎖');
+            $table->string('blockade_remarks')->nullable()->comment('封鎖原因');
+            $table->timestamp('blockade_at')->nullable()->comment('在什麼時候被封鎖');
             $table->timestamps();
             $table->softDeletes();
+
+            $table->index([
+                'id',
+                'card_id',
+                'platform_id',
+            ], 'social_comments_id_card_id_platform_id_index');
 
             $table->foreign('card_id')
                 ->references('id')
@@ -117,6 +183,7 @@ class CreateSocialCardsTable extends Migration
     {
         Schema::dropIfExists('social_comments');
         Schema::dropIfExists('social_cards_reviews');
+        Schema::dropIfExists('social_platform_cards');
         Schema::dropIfExists('social_cards');
         Schema::dropIfExists('social_cards_ads');
         Schema::dropIfExists('social_platform');

@@ -5,6 +5,7 @@ namespace App\Domains\Social\Models;
 use App\Domains\Social\Models\Traits\Method\CommentsMethod;
 use App\Domains\Social\Models\Traits\Relationship\CommentsRelationship;
 use App\Domains\Social\Models\Traits\Scope\CommentsScope;
+use App\Models\Traits\Uuid;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -16,7 +17,8 @@ class Comments extends Model
     use SoftDeletes,
         CommentsScope,
         CommentsMethod,
-        CommentsRelationship;
+        CommentsRelationship,
+        Uuid;
 
     /**
      * The table associated with the model.
@@ -47,10 +49,10 @@ class Comments extends Model
         'content',
         'active',
         'reply',
-        'banned',
-        'banned_by',
-        'banned_remarks',
-        'banned_at',
+        'blockade',
+        'blockade_by',
+        'blockade_remarks',
+        'blockade_at',
     ];
 
     /**
@@ -60,7 +62,7 @@ class Comments extends Model
      */
     protected $casts = [
         'active' => 'boolean',
-        'banned' => 'boolean',
+        'blockade' => 'boolean',
     ];
 
     /**
@@ -69,6 +71,6 @@ class Comments extends Model
      * @var array
      */
     protected $dates = [
-        'banned_at',
+        'blockade_at',
     ];
 }

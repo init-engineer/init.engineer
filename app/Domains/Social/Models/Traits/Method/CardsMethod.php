@@ -22,30 +22,14 @@ trait CardsMethod
      */
     public function isPublish(): bool
     {
-        return !$this->banned;
+        return !$this->blockade;
     }
 
     /**
      * @return bool
      */
-    public function isBanned(): bool
+    public function isBlockade(): bool
     {
-        return $this->banned;
-    }
-
-    /**
-     * @return string
-     */
-    public function getImage(): string
-    {
-        $image = json_decode($this->image, true);
-        if (isset($image['storage'])) {
-            switch ($image['storage']) {
-                case 'storage':
-                    return Storage::url(sprintf('%s/%s.%s', $image['path'], $image['name'], $image['type']));
-            }
-        }
-
-        return '';
+        return $this->blockade;
     }
 }

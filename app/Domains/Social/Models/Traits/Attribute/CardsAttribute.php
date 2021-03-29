@@ -10,8 +10,8 @@ trait CardsAttribute
     /**
      * @return mixed
      */
-    public function getImageAttribute()
+    public function getPictureAttribute()
     {
-        return $this->getImage();
+        return $this->getPicture();
     }
 }

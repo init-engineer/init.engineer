@@ -2,22 +2,16 @@
 
 namespace App\Domains\Social\Models;
 
-use App\Domains\Social\Models\Traits\Relationship\ReviewRelationship;
-use App\Domains\Social\Models\Traits\Scope\ReviewsScope;
-use App\Models\Traits\Config;
 use App\Models\Traits\Uuid;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class Reviews.
+ * Class PlatformCards.
  */
-class Reviews extends Model
+class PlatformCards extends Model
 {
     use SoftDeletes,
-        ReviewsScope,
-        ReviewRelationship,
-        Config,
         Uuid;
 
     /**
@@ -25,7 +19,7 @@ class Reviews extends Model
      *
      * @var string
      */
-    protected $table = 'social_cards_reviews';
+    protected $table = 'social_platform_cards';
 
     /**
      * Indicates if the model should be timestamped.
@@ -40,11 +34,12 @@ class Reviews extends Model
      * @var array
      */
     protected $fillable = [
-        'model_type',
-        'model_id',
+        'platform_type',
+        'platform_id',
         'card_id',
-        'point',
-        'config',
+        'active',
+        'likes',
+        'shares',
     ];
 
     /**
@@ -53,6 +48,8 @@ class Reviews extends Model
      * @var array
      */
     protected $casts = [
-        'point' => 'integer',
+        'active' => 'boolean',
+        'likes' => 'integer',
+        'shares' => 'integer',
     ];
 }

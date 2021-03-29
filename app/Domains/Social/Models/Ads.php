@@ -6,7 +6,8 @@ use App\Domains\Social\Models\Traits\Attribute\AdsAttribute;
 use App\Domains\Social\Models\Traits\Method\AdsMethod;
 use App\Domains\Social\Models\Traits\Relationship\AdsRelationship;
 use App\Domains\Social\Models\Traits\Scope\AdsScope;
-use App\Models\Traits\Profile;
+use App\Models\Traits\Picture;
+use App\Models\Traits\Uuid;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -16,11 +17,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Ads extends Model
 {
     use SoftDeletes,
-        Profile,
         AdsScope,
         AdsMethod,
         AdsAttribute,
-        AdsRelationship;
+        AdsRelationship,
+        Picture,
+        Uuid;
 
     /**
      * The table associated with the model.
@@ -45,10 +47,8 @@ class Ads extends Model
         'model_type',
         'model_id',
         'name',
-        'ads_path',
-        'number_max',
-        'number_min',
-        'incidence',
+        'picture',
+        'probability',
         'payment',
         'active',
         'started_at',
@@ -61,9 +61,7 @@ class Ads extends Model
      * @var array
      */
     protected $casts = [
-        'number_max' => 'integer',
-        'number_min' => 'integer',
-        'incidence' => 'integer',
+        'probability' => 'integer',
         'payment' => 'boolean',
         'active' => 'boolean',
     ];

@@ -29,4 +29,14 @@ trait CommentsRelationship
     {
         return $this->hasOne(Platform::class, 'id', 'platform_id');
     }
+
+    /**
+     * Get the blockade user for the card.
+     *
+     * @return User
+     */
+    public function blockade()
+    {
+        return $this->hasOne(User::class, 'blockade_by', 'id');
+    }
 }

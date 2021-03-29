@@ -28,8 +28,8 @@ trait AdsMethod
     /**
      * @return mixed|string
      */
-    public function getBanner()
+    public function getPicture()
     {
-        return Storage::url($this->ads_path);
+        // return Storage::url($this->picture_location);
     }
 }

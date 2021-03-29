@@ -10,8 +10,8 @@ trait AdsAttribute
     /**
      * @return mixed
      */
-    public function getBannerAttribute()
+    public function getPictureAttribute()
     {
-        return $this->getBanner();
+        return $this->getPicture();
     }
 }

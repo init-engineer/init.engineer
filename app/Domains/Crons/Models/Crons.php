@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Models;
+namespace App\Domains\Crons\Models;
 
+use App\Domains\Crons\Models\Traits\Method\CronsMethod;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Models\Traits\Method\CronsMethod;
 
 /**
  * Class Crons.
@@ -44,17 +44,5 @@ class Crons extends Model
         'command',
         'next_run',
         'last_run',
-        'created_at',
-        'updated_at',
-    ];
-
-    /**
-     * The attributes that should be mutated to dates.
-     *
-     * @var array
-     */
-    protected $dates = [
-        'created_at',
-        'updated_at',
     ];
 }
