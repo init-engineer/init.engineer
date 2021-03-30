@@ -99,6 +99,7 @@ return [
              * Custom
              */
             'social_admin' => 'Social Management',
+            'announcement_admin' => 'Announcement Management',
         ],
     ],
 

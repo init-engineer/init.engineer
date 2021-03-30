@@ -22,6 +22,7 @@ class UserRoleSeeder extends Seeder
 
         User::find(1)->assignRole(config('boilerplate.access.role.admin'));
         User::find(1)->assignRole(config('boilerplate.access.role.social_admin'));
+        User::find(1)->assignRole(config('boilerplate.access.role.announcement_admin'));
 
         $this->enableForeignKeys();
     }

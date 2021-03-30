@@ -71,6 +71,13 @@ class PermissionRoleSeeder extends Seeder
             'name' => 'Social Reviews Management',
         ]);
 
+        // Create Announcements Management Roles
+        $announcementsRole = Role::create([
+            'id' => 8,
+            'type' => User::TYPE_ADMIN,
+            'name' => 'Announcement Management',
+        ]);
+
         // Non Grouped Permissions
         //
 
@@ -158,6 +165,12 @@ class PermissionRoleSeeder extends Seeder
             'name' => 'admin.social.reviews',
             'description' => 'All Social Reviews Permissions',
             'sort' => 5,
+        ]);
+
+        $announcementsPremission = Permission::create([
+            'type' => User::TYPE_ADMIN,
+            'name' => 'admin.announcement',
+            'description' => 'All Announcements Permissions',
         ]);
 
         $socialPremission->children()->saveMany([
@@ -274,6 +287,28 @@ class PermissionRoleSeeder extends Seeder
         $socialCardsRole->syncPermissions([$socialCardsPremission]);
         $socialCommentsRole->syncPermissions([$socialCommentsPremission]);
         $socialReviewsRole->syncPermissions([$socialReviewsPremission]);
+
+        $announcementsRole->children()->saveMany([
+            new Permission([
+                'type' => User::TYPE_ADMIN,
+                'name' => 'admin.announcement.list',
+                'description' => 'View Announcements',
+            ]),
+            new Permission([
+                'type' => User::TYPE_ADMIN,
+                'name' => 'admin.announcement.deactivate',
+                'description' => 'Deactivate Announcements',
+                'sort' => 2,
+            ]),
+            new Permission([
+                'type' => User::TYPE_ADMIN,
+                'name' => 'admin.announcement.reactivate',
+                'description' => 'Reactivate Announcements',
+                'sort' => 3,
+            ]),
+        ]);
+
+        $announcementsRole->syncPermissions([$announcementsPremission]);
 
         // Assign Permissions to other Roles
         //
