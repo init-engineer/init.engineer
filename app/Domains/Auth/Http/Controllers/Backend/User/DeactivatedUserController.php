@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 /**
- * Class UserStatusController.
+ * Class DeactivatedUserController.
  */
 class DeactivatedUserController extends Controller
 {
