@@ -167,12 +167,6 @@ class PermissionRoleSeeder extends Seeder
             'sort' => 5,
         ]);
 
-        $announcementsPremission = Permission::create([
-            'type' => User::TYPE_ADMIN,
-            'name' => 'admin.announcement',
-            'description' => 'All Announcements Permissions',
-        ]);
-
         $socialPremission->children()->saveMany([
             $socialPlatformPremission,
             $socialAdsPremission,
@@ -288,7 +282,13 @@ class PermissionRoleSeeder extends Seeder
         $socialCommentsRole->syncPermissions([$socialCommentsPremission]);
         $socialReviewsRole->syncPermissions([$socialReviewsPremission]);
 
-        $announcementsRole->children()->saveMany([
+        $announcement = Permission::create([
+            'type' => User::TYPE_ADMIN,
+            'name' => 'admin.announcement',
+            'description' => 'All Announcements Permissions',
+        ]);
+
+        $announcement->children()->saveMany([
             new Permission([
                 'type' => User::TYPE_ADMIN,
                 'name' => 'admin.announcement.list',
@@ -307,8 +307,6 @@ class PermissionRoleSeeder extends Seeder
                 'sort' => 3,
             ]),
         ]);
-
-        $announcementsRole->syncPermissions([$announcementsPremission]);
 
         // Assign Permissions to other Roles
         //
