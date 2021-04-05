@@ -19,6 +19,7 @@ _ide_helper.php
 .php_cs.cache
 .phpunit.result.cache
 .phpstorm.meta.php
+.rnd
 .project
 composer.phar
 coverage.xml
