@@ -46,7 +46,17 @@ trait Picture
     {
         static::creating(function ($model) {
             if (!$model->{$model->getPictureName()}) {
-                $model->{$model->getPictureName()} = '{}';
+                $model->{$model->getPictureName()} = json_encode(array(
+                    'storage' => array(
+                        'path' => null,
+                        'name' => null,
+                        'type' => null,
+                    ),
+                    'imgur' => array(
+                        'link' => null,
+                        'type' => null,
+                    ),
+                ));
             }
         });
     }

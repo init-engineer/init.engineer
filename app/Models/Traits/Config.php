@@ -28,13 +28,15 @@ trait Config
     }
 
     /**
-     * @param array $config
+     * @param array $data
      *
      * @return bool
      */
-    public function setConfig(array $config)
+    public function setConfig(array $data)
     {
-        $this->config = json_encode($config);
+        $config = json_decode($this->config, true);
+        $result = array_merge($config, $data);
+        $this->config = json_encode($result);
 
         return $this->save();
     }
