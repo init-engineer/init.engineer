@@ -28,12 +28,19 @@ trait Picture
     }
 
     /**
-     * @param array $picture
+     * @param array $data
      *
      * @return bool
      */
-    public function setPicture(array $picture)
+    public function setPicture(array $data)
     {
+        $picture = json_decode($this->picture, true);
+        $picture['storage']['path'] = $data['storage']['path'] ?? $picture['storage']['path'] ?? null;
+        $picture['storage']['name'] = $data['storage']['name'] ?? $picture['storage']['name'] ?? null;
+        $picture['storage']['type'] = $data['storage']['type'] ?? $picture['storage']['type'] ?? null;
+        $picture['imgur']['link'] = $data['imgur']['link'] ?? $picture['imgur']['link'] ?? null;
+        $picture['imgur']['type'] = $data['imgur']['type'] ?? $picture['imgur']['type'] ?? null;
+
         $this->picture = json_encode($picture);
 
         return $this->save();
