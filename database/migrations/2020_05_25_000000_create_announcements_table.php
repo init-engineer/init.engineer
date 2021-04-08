@@ -1,5 +1,6 @@
 <?php
 
+use App\Domains\Announcement\Models\Announcement;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -18,8 +19,20 @@ class CreateAnnouncementsTable extends Migration
     {
         Schema::create('announcements', function (Blueprint $table) {
             $table->id();
-            $table->enum('area', ['frontend', 'backend'])->nullable();
-            $table->enum('type', ['info', 'danger', 'warning', 'success'])->default('info');
+            $table->enum('area', array(
+                Announcement::AREA_FRONTEND,
+                Announcement::AREA_BACKEND,
+            ))->nullable();
+            $table->enum('type', array(
+                Announcement::TYPE_PRIMARY,
+                Announcement::TYPE_SECONDARY,
+                Announcement::TYPE_SUCCESS,
+                Announcement::TYPE_DANGER,
+                Announcement::TYPE_WARNING,
+                Announcement::TYPE_INFO,
+                Announcement::TYPE_LIGHT,
+                Announcement::TYPE_DARK,
+            ))->default('info');
             $table->text('message');
             $table->boolean('enabled')->default(true);
             $table->timestamp('starts_at')->nullable();
