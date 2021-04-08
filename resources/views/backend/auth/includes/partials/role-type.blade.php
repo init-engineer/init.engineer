@@ -1,17 +1,9 @@
 @forelse($roles->where('type', $type) as $role)
     <div class="mb-2">
         <div class="form-check">
-            <input
-                name="roles[]"
-                id="role_{{ $role->id }}"
-                value="{{ $role->id }}"
-                class="form-check-input"
-                type="checkbox"
-                {{ (old('rules') && in_array($role->id, old('rules'), true)) || (isset($user) && in_array($role->id, $user->roles->modelKeys(), true)) ? 'checked' : '' }} />
-
-            <label class="form-check-label" for="role_{{ $role->id }}">
-                {{ $role->name }}
-            </label>
+            <input type="checkbox" name="roles[]" id="role_{{ $role->id }}" value="{{ $role->id }}" class="form-check-input" {{ (old('rules') && in_array($role->id, old('rules'), true)) || (isset($user) && in_array($role->id, $user->roles->modelKeys(), true)) ? 'checked' : '' }} />
+            <label class="form-check-label check-box" for="role_{{ $role->id }}"></label>
+            <label for="role_{{ $role->id }}" class="check-box-content">{{ $role->name }}</label>
         </div><!--form-check-->
     </div>
 

@@ -1,5 +1,13 @@
 @import "../global";
 
-// Coreui
+/**
+ * CoreUI at:
+ * https://coreui.io
+ */
 @import '~@coreui/coreui/scss/coreui';
 @import '~@coreui/icons/css/free.min.css';
+
+/**
+ * Layout
+ */
+ @import 'layout/button';

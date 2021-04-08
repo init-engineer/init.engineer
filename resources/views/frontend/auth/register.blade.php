@@ -49,9 +49,8 @@
                                 <div class="col-md-6 offset-md-4">
                                     <div class="form-check">
                                         <input type="checkbox" name="terms" value="1" id="terms" class="form-check-input" required>
-                                        <label class="form-check-label" for="terms">
-                                            @lang('I agree to the') <a href="{{ route('frontend.pages.terms') }}" target="_blank">@lang('Terms & Conditions')</a>
-                                        </label>
+                                        <label class="form-check-label check-box" for="terms"></label>
+                                        <label for="terms" class="check-box-content" style="vertical-align: bottom;">@lang('I agree to the') <a href="{{ route('frontend.pages.terms') }}" target="_blank">@lang('Terms & Conditions')</a></label>
                                     </div>
                                 </div>
                             </div><!--form-group-->

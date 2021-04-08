@@ -6,7 +6,8 @@
             @foreach($general->where('type', $type) as $permission)
                 <span class="d-block">
                         <input type="checkbox" name="permissions[]" {{ in_array($permission->id, $usedPermissions ?? [], true) ? 'checked' : '' }} value="{{ $permission->id }}" id="{{ $permission->id }}" />
-                        <label for="{{ $permission->id }}">{{ $permission->description ?? $permission->name }}</label>
+                        <label for="{{ $permission->id }}" class="check-box"></label>
+                        <label for="{{ $permission->id }}" class="check-box-content">{{ $permission->description ?? $permission->name }}</label>
                     </span>
             @endforeach
         </div><!--col-->
@@ -24,7 +25,8 @@
         @foreach($categories->where('type', $type) as $permission)
             <li>
                 <input type="checkbox" name="permissions[]" {{ in_array($permission->id, $usedPermissions ?? [], true) ? 'checked' : '' }} value="{{ $permission->id }}" id="{{ $permission->id }}" />
-                <label for="{{ $permission->id }}">{{ $permission->description ?? $permission->name }}</label>
+                <label for="{{ $permission->id }}" class="check-box"></label>
+                <label for="{{ $permission->id }}" class="check-box-content">{{ $permission->description ?? $permission->name }}</label>
 
                 @if($permission->children->count())
                     @include('backend.auth.role.includes.children', ['children' => $permission->children])

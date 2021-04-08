@@ -66,6 +66,7 @@
                         <div class="col-md-10">
                             <div class="form-check">
                                 <input name="active" id="active" class="form-check-input" type="checkbox" value="1" {{ old('active', true) ? 'checked' : '' }} />
+                                <label for="active" class="check-box"></label>
                             </div><!--form-check-->
                         </div>
                     </div><!--form-group-->
@@ -76,14 +77,8 @@
 
                             <div class="col-md-10">
                                 <div class="form-check">
-                                    <input
-                                        type="checkbox"
-                                        name="email_verified"
-                                        id="email_verified"
-                                        value="1"
-                                        class="form-check-input"
-                                        x-on:click="emailVerified = !emailVerified"
-                                        {{ old('email_verified') ? 'checked' : '' }} />
+                                    <input type="checkbox" name="email_verified" id="email_verified" value="1" class="form-check-input" x-on:click="emailVerified = !emailVerified" {{ old('email_verified') ? 'checked' : '' }} />
+                                    <label for="email_verified" class="check-box"></label>
                                 </div><!--form-check-->
                             </div>
                         </div><!--form-group-->
@@ -94,13 +89,8 @@
 
                                 <div class="col-md-10">
                                     <div class="form-check">
-                                        <input
-                                            type="checkbox"
-                                            name="send_confirmation_email"
-                                            id="send_confirmation_email"
-                                            value="1"
-                                            class="form-check-input"
-                                            {{ old('send_confirmation_email') ? 'checked' : '' }} />
+                                        <input type="checkbox" name="send_confirmation_email" id="send_confirmation_email" value="1" class="form-check-input" {{ old('send_confirmation_email') ? 'checked' : '' }} />
+                                        <label for="send_confirmation_email" class="check-box"></label>
                                     </div><!--form-check-->
                                 </div>
                             </div><!--form-group-->

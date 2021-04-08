@@ -1,8 +1,18 @@
 @import "../global";
 @import "global";
 
-// Variables
+/**
+ * 全域變數 Variables
+ */
 @import 'variables';
 
-// Bootstrap
+/*
+ * Bootstrap at:
+ * https://getbootstrap.com
+ */
 @import '~bootstrap/scss/bootstrap';
+
+/**
+ * Layout
+ */
+ @import 'layout/button';

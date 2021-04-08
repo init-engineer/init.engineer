@@ -32,11 +32,9 @@
                             <div class="form-group row">
                                 <div class="col-md-6 offset-md-4">
                                     <div class="form-check">
-                                        <input name="remember" id="remember" class="form-check-input" type="checkbox" {{ old('remember') ? 'checked' : '' }} />
-
-                                        <label class="form-check-label" for="remember">
-                                            @lang('Remember Me')
-                                        </label>
+                                        <input type="checkbox" name="remember" id="remember" class="form-check-input" {{ old('remember') ? 'checked' : '' }} />
+                                        <label class="form-check-label check-box" for="remember"></label>
+                                        <label class="check-box-content" for="remember" style="vertical-align: bottom;">@lang('Remember Me')</label>
                                     </div><!--form-check-->
                                 </div>
                             </div><!--form-group-->
