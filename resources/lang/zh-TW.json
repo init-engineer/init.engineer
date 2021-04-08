@@ -242,5 +242,19 @@
     "Platform Created": "社群平台建立時間",
     "Platform Name": "平台分類",
     "Platform Type": "社群平台",
-    "Config": "設定"
+    "Announcement Management": "公告管理",
+    "Deactivated Announcements": "停用的公告",
+    "Deleted Announcements": "刪除的公告",
+    "Create Announcement": "新增公告",
+    "Config": "設定",
+    "Message": "訊息",
+    "Area": "區域",
+    "Starts At": "啟用時間",
+    "Ends At": "結束時間",
+    "Enabled Status": "啟用狀態",
+    "Enabled": "已啟用",
+    "Inenabled": "未啟用",
+    "Frontend": "前臺",
+    "Backend": "後臺",
+    "Fullstack": "全域"
 }

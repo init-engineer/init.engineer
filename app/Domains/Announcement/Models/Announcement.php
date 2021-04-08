@@ -2,6 +2,7 @@
 
 namespace App\Domains\Announcement\Models;
 
+use App\Domains\Announcement\Models\Traits\Method\AnnouncementMethod;
 use App\Domains\Announcement\Models\Traits\Scope\AnnouncementScope;
 use Database\Factories\AnnouncementFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -42,11 +43,69 @@ use Spatie\Activitylog\Traits\LogsActivity;
 class Announcement extends Model
 {
     use AnnouncementScope,
+        AnnouncementMethod,
         HasFactory,
         LogsActivity;
 
-    public const TYPE_FRONTEND = 'frontend';
-    public const TYPE_BACKEND = 'backend';
+    /**
+     * 列舉 area 作用區域
+     * Frontend 前台
+     */
+    public const AREA_FRONTEND = 'frontend';
+
+    /**
+     * 列舉 area 作用區域
+     * Backend 後台
+     */
+    public const AREA_BACKEND = 'backend';
+
+    /**
+     * 列舉 type 分類
+     * primary
+     */
+    public const TYPE_PRIMARY = 'primary';
+
+    /**
+     * 列舉 type 分類
+     * secondary
+     */
+    public const TYPE_SECONDARY = 'secondary';
+
+    /**
+     * 列舉 type 分類
+     * success
+     */
+    public const TYPE_SUCCESS = 'success';
+
+    /**
+     * 列舉 type 分類
+     * danger
+     */
+    public const TYPE_DANGER = 'danger';
+
+    /**
+     * 列舉 type 分類
+     * warning
+     */
+    public const TYPE_WARNING = 'warning';
+
+    /**
+     * 列舉 type 分類
+     * info
+     */
+    public const TYPE_INFO = 'info';
+
+    /**
+     * 列舉 type 分類
+     * light
+     */
+    public const TYPE_LIGHT = 'light';
+
+    /**
+     * 列舉 type 分類
+     * dark
+     */
+    public const TYPE_DARK = 'dark';
 
     protected static $logFillable = true;
     protected static $logOnlyDirty = true;

@@ -2,7 +2,7 @@
 
 @extends('backend.layouts.app')
 
-@section('title', __('Create Announcement'))
+@section('title', __('Update Announcement'))
 
 @push('before-styles')
     <style>
@@ -27,10 +27,10 @@
 @endpush
 
 @section('content')
-    <x-forms.post :action="route('admin.announcement.store')">
+    <x-forms.patch :action="route('admin.announcement.update', $announcement)">
         <x-backend.card>
             <x-slot name="header">
-                @lang('Create Announcement')
+                @lang('Update Announcement')
             </x-slot>
 
             <x-slot name="headerActions">
@@ -43,9 +43,9 @@
 
                     <div class="col-md-10">
                         <select name="area" class="form-control" required>
-                            <option value="all">@lang('All')</option>
-                            <option value="{{ $model::AREA_FRONTEND }}">@lang('Frontend')</option>
-                            <option value="{{ $model::AREA_BACKEND }}">@lang('Backend')</option>
+                            <option value="all" {{ $announcement->area === null ? 'selected' : '' }}>@lang('All')</option>
+                            <option value="{{ $model::AREA_FRONTEND }}" {{ $announcement->area === $model::AREA_FRONTEND ? 'selected' : '' }}>@lang('Frontend')</option>
+                            <option value="{{ $model::AREA_BACKEND }}" {{ $announcement->area === $model::AREA_BACKEND ? 'selected' : '' }}>@lang('Backend')</option>
                         </select>
                     </div>
                 </div><!--form-group-->
@@ -106,7 +106,7 @@
                                 <tr>
                                     <th scope="row">
                                         <label>
-                                            <input type="radio" name="type" value="{{ $model::TYPE_PRIMARY }}" checked/>
+                                            <input type="radio" name="type" value="{{ $model::TYPE_PRIMARY }}" {{ $announcement->type === $model::TYPE_PRIMARY ? 'checked' : '' }} />
                                             <span>@lang('Primary')</span>
                                         </label>
                                     </th>
@@ -119,7 +119,7 @@
                                 <tr>
                                     <th scope="row">
                                         <label>
-                                            <input type="radio" name="type" value="{{ $model::TYPE_SECONDARY }}" />
+                                            <input type="radio" name="type" value="{{ $model::TYPE_SECONDARY }}" {{ $announcement->type === $model::TYPE_SECONDARY ? 'checked' : '' }} />
                                             <span>@lang('Secondary')</span>
                                         </label>
                                     </th>
@@ -132,7 +132,7 @@
                                 <tr>
                                     <th scope="row">
                                         <label>
-                                            <input type="radio" name="type" value="{{ $model::TYPE_SUCCESS }}" />
+                                            <input type="radio" name="type" value="{{ $model::TYPE_SUCCESS }}" {{ $announcement->type === $model::TYPE_SUCCESS ? 'checked' : '' }} />
                                             <span>@lang('Success')</span>
                                         </label>
                                     </th>
@@ -145,7 +145,7 @@
                                 <tr>
                                     <th scope="row">
                                         <label>
-                                            <input type="radio" name="type" value="{{ $model::TYPE_DANGER }}" />
+                                            <input type="radio" name="type" value="{{ $model::TYPE_DANGER }}" {{ $announcement->type === $model::TYPE_DANGER ? 'checked' : '' }} />
                                             <span>@lang('Danger')</span>
                                         </label>
                                     </th>
@@ -158,7 +158,7 @@
                                 <tr>
                                     <th scope="row">
                                         <label>
-                                            <input type="radio" name="type" value="{{ $model::TYPE_WARNING }}" />
+                                            <input type="radio" name="type" value="{{ $model::TYPE_WARNING }}" {{ $announcement->type === $model::TYPE_WARNING ? 'checked' : '' }} />
                                             <span>@lang('Warning')</span>
                                         </label>
                                     </th>
@@ -171,7 +171,7 @@
                                 <tr>
                                     <th scope="row">
                                         <label>
-                                            <input type="radio" name="type" value="{{ $model::TYPE_INFO }}" />
+                                            <input type="radio" name="type" value="{{ $model::TYPE_INFO }}" {{ $announcement->type === $model::TYPE_INFO ? 'checked' : '' }} />
                                             <span>@lang('Info')</span>
                                         </label>
                                     </th>
@@ -184,7 +184,7 @@
                                 <tr>
                                     <th scope="row">
                                         <label>
-                                            <input type="radio" name="type" value="{{ $model::TYPE_LIGHT }}" />
+                                            <input type="radio" name="type" value="{{ $model::TYPE_LIGHT }}" {{ $announcement->type === $model::TYPE_LIGHT ? 'checked' : '' }} />
                                             <span>@lang('Light')</span>
                                         </label>
                                     </th>
@@ -197,7 +197,7 @@
                                 <tr>
                                     <th scope="row">
                                         <label>
-                                            <input type="radio" name="type" value="{{ $model::TYPE_DARK }}" />
+                                            <input type="radio" name="type" value="{{ $model::TYPE_DARK }}" {{ $announcement->type === $model::TYPE_DARK ? 'checked' : '' }} />
                                             <span>@lang('Dark')</span>
                                         </label>
                                     </th>
@@ -214,8 +214,8 @@
             </x-slot>
 
             <x-slot name="footer">
-                <button class="btn btn-sm btn-primary float-right" type="submit">@lang('Create Announcement')</button>
+                <button class="btn btn-sm btn-primary float-right" type="submit">@lang('Update Announcement')</button>
             </x-slot>
         </x-backend.card>
-    </x-forms.post>
+    </x-forms.patch>
 @endsection

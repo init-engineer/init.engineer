@@ -77,7 +77,8 @@
 
                     <div class="col-md-10">
                         <div class="form-check">
-                            <input name="payment" id="payment" class="form-check-input" type="checkbox" value="1" {{ old('payment', true) ? 'checked' : '' }} />
+                            <input type="checkbox" name="payment" id="payment" class="form-check-input" value="1" {{ old('payment', true) ? 'checked' : '' }} />
+                            <label for="payment" class="check-box"></label>
                         </div><!--form-check-->
                     </div>
                 </div><!--form-group-->
@@ -87,7 +88,8 @@
 
                     <div class="col-md-10">
                         <div class="form-check">
-                            <input name="active" id="active" class="form-check-input" type="checkbox" value="1" {{ old('active', true) ? 'checked' : '' }} />
+                            <input type="checkbox" name="active" id="active" class="form-check-input" value="1" {{ old('active', true) ? 'checked' : '' }} />
+                            <label for="active" class="check-box"></label>
                         </div><!--form-check-->
                     </div>
                 </div><!--form-group-->
