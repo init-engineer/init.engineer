@@ -1,10 +1,10 @@
 @switch($announcement->area)
     @case('frontend')
-        <span class='badge badge-success'>@lang('Frontend')</span>
+        <span class='badge badge-warning'>@lang('Frontend')</span>
         @break
 
     @case('backend')
-        <span class='badge badge-success'>@lang('Backend')</span>
+        <span class='badge badge-danger'>@lang('Backend')</span>
         @break
 
     @default

@@ -54,7 +54,7 @@
                     <label for="message" class="col-md-2 col-form-label">@lang('Message')</label>
 
                     <div class="col-md-10">
-                        <textarea type="message" name="message" id="message" class="form-control" placeholder="{{ __('Message') }}" value="{{ old('message') }}" required></textarea>
+                        <textarea type="message" name="message" id="message" class="form-control" placeholder="{{ __('Message') }}" required>{{ $announcement->message }}</textarea>
                     </div>
                 </div><!--form-group-->
 
@@ -62,10 +62,10 @@
                     <label for="starts_at" class="col-md-2 col-form-label">@lang('Starts At')</label>
 
                     <div class="col-md-5">
-                        <input type="date" name="starts_at_date" class="form-control" placeholder="{{ __('Starts At Date') }}" value="{{ old('starts_at_date') }}" />
+                        <input type="date" name="starts_at_date" class="form-control" placeholder="{{ __('Starts At Date') }}" value="{{ $announcement->starts_at->toDateString() }}" />
                     </div>
                     <div class="col-md-5">
-                        <input type="time" name="starts_at_time" class="form-control" placeholder="{{ __('Starts At Time') }}" value="{{ old('starts_at_time') }}" />
+                        <input type="time" name="starts_at_time" class="form-control" placeholder="{{ __('Starts At Time') }}" value="{{ $announcement->starts_at->toTimeString() }}" />
                     </div>
                 </div><!--form-group-->
 
@@ -73,10 +73,10 @@
                     <label for="ends_at" class="col-md-2 col-form-label">@lang('Ends At')</label>
 
                     <div class="col-md-5">
-                        <input type="date" name="ends_at_date" class="form-control" placeholder="{{ __('Ends At Date') }}" value="{{ old('ends_at_date') }}" />
+                        <input type="date" name="ends_at_date" class="form-control" placeholder="{{ __('Ends At Date') }}" value="{{ $announcement->ends_at->toDateString() }}" />
                     </div>
                     <div class="col-md-5">
-                        <input type="time" name="ends_at_time" class="form-control" placeholder="{{ __('Ends At Time') }}" value="{{ old('ends_at_time') }}" />
+                        <input type="time" name="ends_at_time" class="form-control" placeholder="{{ __('Ends At Time') }}" value="{{ $announcement->starts_at->toTimeString() }}" />
                     </div>
                 </div><!--form-group-->
 

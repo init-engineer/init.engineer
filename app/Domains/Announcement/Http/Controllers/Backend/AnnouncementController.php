@@ -8,7 +8,6 @@ use App\Domains\Announcement\Http\Requests\Backend\StoreAnnouncementRequest;
 use App\Domains\Announcement\Http\Requests\Backend\UpdateAnnouncementRequest;
 use App\Domains\Announcement\Models\Announcement;
 use App\Domains\Announcement\Services\AnnouncementService;
-use App\Domains\Auth\Models\User;
 use App\Http\Controllers\Controller;
 
 /**
@@ -56,9 +55,9 @@ class AnnouncementController extends Controller
      */
     public function store(StoreAnnouncementRequest $request)
     {
-        $announcement = $this->service->store($request->validated());
+        $this->service->store($request->validated());
 
-        return redirect()->route('admin.announcement.show', $announcement)->withFlashSuccess(__('The announcement was successfully created.'));
+        return redirect()->route('admin.announcement.index')->withFlashSuccess(__('The announcement was successfully created.'));
     }
 
     /**
@@ -74,17 +73,17 @@ class AnnouncementController extends Controller
     }
 
     /**
-     * @param  UpdateUserRequest  $request
-     * @param  User  $user
+     * @param UpdateAnnouncementRequest $request
+     * @param Announcement $announcement
      *
      * @return mixed
      * @throws \Throwable
      */
     public function update(UpdateAnnouncementRequest $request, Announcement $announcement)
     {
-        $this->userService->update($announcement, $request->validated());
+        $this->service->update($announcement, $request->validated());
 
-        return redirect()->route('admin.announcement.show', $announcement)->withFlashSuccess(__('The announcement was successfully updated.'));
+        return redirect()->route('admin.announcement.index')->withFlashSuccess(__('The announcement was successfully updated.'));
     }
 
     /**
@@ -98,6 +97,6 @@ class AnnouncementController extends Controller
     {
         $this->service->delete($announcement);
 
-        return redirect()->route('admin.announcement.deleted')->withFlashSuccess(__('The announcement was successfully deleted.'));
+        return redirect()->route('admin.announcement.index')->withFlashSuccess(__('The announcement was successfully deleted.'));
     }
 }

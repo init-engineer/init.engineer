@@ -72,7 +72,7 @@ class AnnouncementService extends BaseService
 
         try {
             $starts_at = ($data['starts_at_date'] !== null) ? $data['starts_at_date'] . ' ' . $data['starts_at_time'] : null;
-            $ends_at = ($data['ends_at_date'] !== null) ? $data['ends_at_date'] . ' ' . $data['ends_at_date'] : null;
+            $ends_at = ($data['ends_at_date'] !== null) ? $data['ends_at_date'] . ' ' . $data['ends_at_time'] : null;
             $announcement = $this->createAnnouncement([
                 'type' => $data['type'],
                 'area' => $data['area'],
@@ -95,42 +95,38 @@ class AnnouncementService extends BaseService
     }
 
     /**
-     * @param  User  $user
-     * @param  array  $data
+     * @param Announcement $announcement
+     * @param array $data
      *
      * @return User
      * @throws \Throwable
      */
-    public function update(User $user, array $data = []): User
+    public function update(Announcement $announcement, array $data = []): Announcement
     {
         DB::beginTransaction();
 
         try {
-            $user->update([
-                'type' => $user->isMasterAdmin() ? User::TYPE_ADMIN : $data['type'] ?? $user->type,
-                'name' => $data['name'],
-                'email' => $data['email'],
+            $starts_at = ($data['starts_at_date'] !== null) ? $data['starts_at_date'] . ' ' . $data['starts_at_time'] : null;
+            $ends_at = ($data['ends_at_date'] !== null) ? $data['ends_at_date'] . ' ' . $data['ends_at_time'] : null;
+            $announcement->update([
+                'type' => $data['type'],
+                'area' => $data['area'],
+                'message' => $data['message'],
+                'starts_at' => $starts_at,
+                'ends_at' => $ends_at,
+                'enabled' => isset($data['enabled']) && $data['enabled'] === '1',
             ]);
-
-            if (!$user->isMasterAdmin()) {
-                // Replace selected roles/permissions
-                $user->syncRoles($data['roles'] ?? []);
-
-                if (!config('boilerplate.access.user.only_roles')) {
-                    $user->syncPermissions($data['permissions'] ?? []);
-                }
-            }
         } catch (Exception $e) {
             DB::rollBack();
 
-            throw new GeneralException(__('There was a problem updating this user. Please try again.'));
+            throw new GeneralException(__('There was a problem updating this announcement. Please try again.'));
         }
 
-        event(new UserUpdated($user));
+        // event(new AnnouncementUpdated($announcement));
 
         DB::commit();
 
-        return $user;
+        return $announcement;
     }
 
     /**
@@ -151,6 +147,23 @@ class AnnouncementService extends BaseService
         }
 
         throw new GeneralException(__('There was a problem updating this announcement. Please try again.'));
+    }
+
+    /**
+     * @param Announcement $announcement
+     *
+     * @return Announcement
+     * @throws GeneralException
+     */
+    public function delete(Announcement $announcement): Announcement
+    {
+        if ($announcement->delete()) {
+            // event(new AnnouncementDeleted($announcement));
+
+            return $announcement;
+        }
+
+        throw new GeneralException('There was a problem deleting this announcement. Please try again.');
     }
 
     /**

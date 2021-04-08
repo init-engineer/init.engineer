@@ -2,10 +2,9 @@
 
 namespace App\Domains\Announcement\Http\Requests\Backend;
 
-use App\Domains\Auth\Models\User;
+use App\Domains\Announcement\Models\Announcement;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
-use LangleyFoxall\LaravelNISTPasswordRules\PasswordRules;
 
 /**
  * Class UpdateAnnouncementRequest.
@@ -30,28 +29,27 @@ class UpdateAnnouncementRequest extends FormRequest
     public function rules()
     {
         return [
-            'type' => ['required', Rule::in([User::TYPE_ADMIN, User::TYPE_USER])],
-            'name' => ['required', 'max:100'],
-            'email' => ['required', 'max:255', 'email', Rule::unique('users')],
-            'password' => ['max:100', PasswordRules::register($this->email)],
-            'active' => ['sometimes', 'in:1'],
-            'email_verified' => ['sometimes', 'in:1'],
-            'send_confirmation_email' => ['sometimes', 'in:1'],
-            'roles' => ['sometimes', 'array'],
-            'roles.*' => [Rule::exists('roles', 'id')->where('type', $this->type)],
-            'permissions' => ['sometimes', 'array'],
-            'permissions.*' => [Rule::exists('permissions', 'id')->where('type', $this->type)],
-        ];
-    }
-
-    /**
-     * @return array
-     */
-    public function messages()
-    {
-        return [
-            'roles.*.exists' => __('One or more roles were not found or are not allowed to be associated with this user type.'),
-            'permissions.*.exists' => __('One or more permissions were not found or are not allowed to be associated with this user type.'),
+            'type' => ['required', Rule::in([
+                Announcement::TYPE_PRIMARY,
+                Announcement::TYPE_SECONDARY,
+                Announcement::TYPE_SUCCESS,
+                Announcement::TYPE_DANGER,
+                Announcement::TYPE_WARNING,
+                Announcement::TYPE_INFO,
+                Announcement::TYPE_LIGHT,
+                Announcement::TYPE_DARK
+            ])],
+            'area' => ['required', Rule::in([
+                'all',
+                Announcement::AREA_FRONTEND,
+                Announcement::AREA_BACKEND
+            ])],
+            'message' => ['required', 'string'],
+            'starts_at_date' => ['nullable', 'date'],
+            'starts_at_time' => ['nullable'],
+            'ends_at_date' => ['nullable', 'date'],
+            'ends_at_time' => ['nullable'],
+            'enabled' => ['sometimes', 'in:1'],
         ];
     }
 }

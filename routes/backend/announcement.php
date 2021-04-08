@@ -35,22 +35,17 @@ Route::group([
             Route::get('edit', [AnnouncementController::class, 'edit'])
                 ->name('edit')
                 ->breadcrumbs(function (Trail $trail, Announcement $announcement) {
-                    $trail->parent('admin.announcement.edit', $announcement)
+                    $trail->parent('admin.announcement.index', $announcement)
                         ->push(__('Edit'), route('admin.announcement.edit', $announcement));
                 });
 
             Route::patch('/', [AnnouncementController::class, 'update'])->name('update');
             Route::delete('/', [AnnouncementController::class, 'destroy'])->name('destroy');
         });
-
-        Route::group(['prefix' => '{deletedAnnouncement}'], function () {
-            Route::patch('restore', [DeletedAnnouncementController::class, 'update'])->name('restore');
-            Route::delete('permanently-delete', [DeletedAnnouncementController::class, 'destroy'])->name('permanently-delete');
-        });
     });
 
     Route::group([
-        'middleware' => 'permission:admin.announcement.list|admin.announcement.deactivate|admin.announcement.reactivate|admin.announcement.clear-session|admin.announcement.impersonate|admin.announcement.change-password',
+        'middleware' => 'permission:admin.announcement.list|admin.announcement.deactivate|admin.announcement.reactivate',
     ], function () {
         Route::get('deactivated', [DeactivatedAnnouncementController::class, 'index'])
             ->name('deactivated')
@@ -62,7 +57,7 @@ Route::group([
 
         Route::get('/', [AnnouncementController::class, 'index'])
             ->name('index')
-            ->middleware('permission:admin.announcement.list|admin.announcement.deactivate|admin.announcement.clear-session|admin.announcement.impersonate|admin.announcement.change-password')
+            ->middleware('permission:admin.announcement.list|admin.announcement.deactivate')
             ->breadcrumbs(function (Trail $trail) {
                 $trail->parent('admin.dashboard')
                     ->push(__('Announcement Management'), route('admin.announcement.index'));
