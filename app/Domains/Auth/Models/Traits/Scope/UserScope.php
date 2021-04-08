@@ -2,6 +2,8 @@
 
 namespace App\Domains\Auth\Models\Traits\Scope;
 
+use App\Domains\Auth\Models\User;
+
 /**
  * Class UserScope.
  */
@@ -57,7 +59,7 @@ trait UserScope
      */
     public function scopeAdmins($query)
     {
-        return $query->where('type', $this::TYPE_ADMIN);
+        return $query->where('type', User::TYPE_ADMIN);
     }
 
     /**
@@ -67,6 +69,6 @@ trait UserScope
      */
     public function scopeUsers($query)
     {
-        return $query->where('type', $this::TYPE_USER);
+        return $query->where('type', User::TYPE_USER);
     }
 }
