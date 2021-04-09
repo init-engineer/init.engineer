@@ -84,7 +84,7 @@
             <li class="c-sidebar-nav-item {{ activeClass(Route::is('admin.annnouncement.*'), 'c-open c-show') }}">
                 <x-utils.link
                     :href="route('admin.announcement.index')"
-                    icon="c-sidebar-nav-icon cil-speedometer"
+                    icon="c-sidebar-nav-icon cil-book"
                     class="c-sidebar-nav-link"
                     :text="__('Announcement Management')"
                     :active="activeClass(Route::is('admin.annnouncement.*'), 'c-active')" />
