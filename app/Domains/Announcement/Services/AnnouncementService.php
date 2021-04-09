@@ -110,7 +110,7 @@ class AnnouncementService extends BaseService
             $ends_at = ($data['ends_at_date'] !== null) ? $data['ends_at_date'] . ' ' . $data['ends_at_time'] : null;
             $announcement->update([
                 'type' => $data['type'],
-                'area' => $data['area'],
+                'area' => ($data['area'] !== 'all') ? $data['area'] : null,
                 'message' => $data['message'],
                 'starts_at' => $starts_at,
                 'ends_at' => $ends_at,
