@@ -55,20 +55,9 @@ class PlatformController extends Controller
      */
     public function store(StorePlatformRequest $request)
     {
-        $platform = $this->platformService->store($request->validated());
+        $this->platformService->store($request->validated());
 
-        return redirect()->route('admin.social.platform.show', $platform)->withFlashSuccess(__('The platform was successfully created.'));
-    }
-
-    /**
-     * @param Platform $platform
-     *
-     * @return mixed
-     */
-    public function show(Platform $platform)
-    {
-        return view('backend.social.platform.show')
-            ->withPlatform($platform);
+        return redirect()->route('admin.social.platform.index')->withFlashSuccess(__('The platform was successfully created.'));
     }
 
     /**
@@ -95,7 +84,7 @@ class PlatformController extends Controller
     {
         $this->platformService->update($platform, $request->validated());
 
-        return redirect()->route('admin.social.platform.show', $platform)->withFlashSuccess(__('The platform was successfully updated.'));
+        return redirect()->route('admin.social.platform.index')->withFlashSuccess(__('The platform was successfully updated.'));
     }
 
     /**

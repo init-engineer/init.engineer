@@ -29,30 +29,78 @@ class UpdatePlatformRequest extends FormRequest
     public function rules()
     {
         return [
-            'platformName' => ['required', Rule::in([
+            'name' => ['required', 'string'],
+            'action' => ['required', Rule::in([
+                Platform::ACTION_INACTION,
+                Platform::ACTION_NOTIFICATION,
+                Platform::ACTION_PUBLISH,
+            ])],
+            'type' => ['required', Rule::in([
+                Platform::TYPE_LOCAL,
                 Platform::TYPE_FACEBOOK,
                 Platform::TYPE_TWITTER,
                 Platform::TYPE_PLURK,
-            ])],
-            'platformType' => ['required', Rule::in([
-                Platform::PLATFORM_PRIMARY,
-                Platform::PLATFORM_SECONDARY,
-                Platform::PLATFORM_TESTING,
+                Platform::TYPE_TUMBLR,
+                Platform::TYPE_TELEGRAM,
+                Platform::TYPE_DISCORD,
             ])],
             'active' => ['sometimes', 'in:1'],
-            'user_id' => ['required_if:name,' . Platform::TYPE_FACEBOOK],
-            'app_id' => ['required_if:name,' . Platform::TYPE_FACEBOOK],
-            'app_secret' => ['required_if:name,' . Platform::TYPE_FACEBOOK],
-            'graph_version' => ['required_if:name,' . Platform::TYPE_FACEBOOK],
-            'access_token' => ['required_if:name,' . Platform::TYPE_FACEBOOK . ',' . Platform::TYPE_TWITTER],
-            'access_token_secret' => ['required_if:name,' . Platform::TYPE_TWITTER],
-            'consumer_key' => ['required_if:name,' . Platform::TYPE_TWITTER],
-            'consumer_secret' => ['required_if:name,' . Platform::TYPE_TWITTER],
-            'client_id' => ['required_if:name,' . Platform::TYPE_PLURK],
-            'client_secret' => ['required_if:name,' . Platform::TYPE_PLURK],
-            'token' => ['required_if:name,' . Platform::TYPE_PLURK],
-            'token_secret' => ['required_if:name,' . Platform::TYPE_PLURK],
-            'pages_name' => ['required', 'string', 'max:191'],
+            'user_id' => ['required_if:' . implode(',', array(
+                'type',
+                Platform::TYPE_FACEBOOK,
+                Platform::TYPE_TUMBLR,
+            ))],
+            'consumer_app_id' => ['required_if:' . implode(',', array(
+                'type',
+                Platform::TYPE_FACEBOOK,
+                Platform::TYPE_PLURK,
+            ))],
+            'consumer_app_key' => ['required_if:' . implode(',', array(
+                'type',
+                Platform::TYPE_TWITTER,
+                Platform::TYPE_TUMBLR,
+            ))],
+            'consumer_app_secret' => ['required_if:' . implode(',', array(
+                'type',
+                Platform::TYPE_FACEBOOK,
+                Platform::TYPE_TWITTER,
+                Platform::TYPE_PLURK,
+                Platform::TYPE_TUMBLR,
+            ))],
+            'graph_version' => ['required_if:' . implode(',', array(
+                'type',
+                Platform::TYPE_FACEBOOK,
+            ))],
+            'access_token' => ['required_if:' . implode(',', array(
+                'type',
+                Platform::TYPE_FACEBOOK,
+                Platform::TYPE_TWITTER,
+                Platform::TYPE_PLURK,
+                Platform::TYPE_TUMBLR,
+                Platform::TYPE_TELEGRAM,
+            ))],
+            'access_token_secret' => ['required_if:' . implode(',', array(
+                'type',
+                Platform::TYPE_TWITTER,
+                Platform::TYPE_PLURK,
+                Platform::TYPE_TUMBLR,
+            ))],
+            'chat_id' => ['required_if:' . implode(',', array(
+                'type',
+                Platform::TYPE_TELEGRAM,
+            ))],
+            'webhook' => ['required_if:' . implode(',', array(
+                'type',
+                Platform::TYPE_DISCORD,
+            ))],
+            'pages_name' => ['required_if:' . implode(',', array(
+                'type',
+                Platform::TYPE_FACEBOOK,
+                Platform::TYPE_TWITTER,
+                Platform::TYPE_PLURK,
+                Platform::TYPE_TUMBLR,
+                Platform::TYPE_TELEGRAM,
+            ))],
         ];
     }
 }

@@ -16,27 +16,39 @@
             </x-slot>
 
             <x-slot name="body">
-                <div x-data="{platformName : '{{ $platform->name }}', platformType : '{{ $platform->type }}'}">
-                    <div class="form-group row" >
-                        <label for="platformName" class="col-md-2 col-form-label">@lang('Platform Name')</label>
+                <div x-data="{type : '{{ $platform->type }}'}">
+                    <div class="form-group row">
+                        <label for="name" class="col-md-2 col-form-label">@lang('Name')</label>
 
                         <div class="col-md-10">
-                            <select name="platformName" class="form-control" required x-on:change="platformName = $event.target.value">
-                                <option value="{{ $model::PLATFORM_PRIMARY }}" {{ $platform->name === $model::PLATFORM_PRIMARY ? 'selected' : '' }}>@lang('Primary')</option>
-                                <option value="{{ $model::PLATFORM_SECONDARY }}" {{ $platform->name === $model::PLATFORM_SECONDARY ? 'selected' : '' }}>@lang('Secondary')</option>
-                                <option value="{{ $model::PLATFORM_TESTING }}" {{ $platform->name === $model::PLATFORM_TESTING ? 'selected' : '' }}>@lang('Testing')</option>
+                            <input type="text" name="name" class="form-control" placeholder="{{ __('Name') }}" value="{{ $platform->name }}" required />
+                        </div>
+                    </div><!--form-group-->
+
+                    <div class="form-group row">
+                        <label for="action" class="col-md-2 col-form-label">@lang('Platform Name')</label>
+
+                        <div class="col-md-10">
+                            <select name="action" class="form-control" required>
+                                <option value="{{ $model::ACTION_INACTION }}" {{ $platform->action === $model::ACTION_INACTION ? 'selected' : '' }}>@lang('Inaction')</option>
+                                <option value="{{ $model::ACTION_NOTIFICATION }}" {{ $platform->action === $model::ACTION_NOTIFICATION ? 'selected' : '' }}>@lang('Notification')</option>
+                                <option value="{{ $model::ACTION_PUBLISH }}" {{ $platform->action === $model::ACTION_PUBLISH ? 'selected' : '' }}>@lang('Publish')</option>
                             </select>
                         </div>
                     </div><!--form-group-->
 
                     <div class="form-group row">
-                        <label for="platformType" class="col-md-2 col-form-label">@lang('Platform Type')</label>
+                        <label for="type" class="col-md-2 col-form-label">@lang('Platform Type')</label>
 
                         <div class="col-md-10">
-                            <select name="platformType" class="form-control" required x-on:change="platformType = $event.target.value">
+                            <select name="type" class="form-control type-select" required x-on:change="type = $event.target.value">
+                                <option value="{{ $model::TYPE_LOCAL }}" {{ $platform->type === $model::TYPE_LOCAL ? 'selected' : '' }}>@lang('Local')</option>
                                 <option value="{{ $model::TYPE_FACEBOOK }}" {{ $platform->type === $model::TYPE_FACEBOOK ? 'selected' : '' }}>@lang('Facebook')</option>
                                 <option value="{{ $model::TYPE_TWITTER }}" {{ $platform->type === $model::TYPE_TWITTER ? 'selected' : '' }}>@lang('Twitter')</option>
                                 <option value="{{ $model::TYPE_PLURK }}" {{ $platform->type === $model::TYPE_PLURK ? 'selected' : '' }}>@lang('Plurk')</option>
+                                <option value="{{ $model::TYPE_TUMBLR }}" {{ $platform->type === $model::TYPE_TUMBLR ? 'selected' : '' }}>@lang('Tumblr')</option>
+                                <option value="{{ $model::TYPE_TELEGRAM }}" {{ $platform->type === $model::TYPE_TELEGRAM ? 'selected' : '' }}>@lang('Telegram')</option>
+                                <option value="{{ $model::TYPE_DISCORD }}" {{ $platform->type === $model::TYPE_DISCORD ? 'selected' : '' }}>@lang('Discord')</option>
                             </select>
                         </div>
                     </div><!--form-group-->
@@ -46,7 +58,7 @@
 
                         <div class="col-md-10">
                             <div class="form-check">
-                                <input type="checkbox" name="active" id="active" class="form-check-input" value="1" {{ old('active', true) ? 'checked' : '' }} />
+                                <input type="checkbox" name="active" id="active" class="form-check-input" value="1" {{ $platform->isActive() ? 'checked' : '' }} />
                                 <label for="active" class="check-box"></label>
                             </div><!--form-check-->
                         </div>
@@ -55,22 +67,66 @@
                     <hr />
 
                     <div class="form-group row">
-                        <label for="type" class="col-md-2 col-form-label">@lang('Config')</label>
+                        <label for="config" class="col-md-2 col-form-label">@lang('Config')</label>
 
                         <div class="col-md-10">
-                            <input type="text" name="user_id" id="user_id" class="form-control mb-2" value="{{ $config['user_id'] ?? null }}" placeholder="{{ __('User ID') }}" x-show="platformType === '{{ $model::TYPE_FACEBOOK }}'" />
-                            <input type="text" name="app_id" id="app_id" class="form-control mb-2" value="{{ $config['app_id'] ?? null }}" placeholder="{{ __('App ID') }}" x-show="platformType === '{{ $model::TYPE_FACEBOOK }}'" />
-                            <input type="text" name="app_secret" id="app_secret" class="form-control mb-2" value="{{ $config['app_secret'] ?? null }}" placeholder="{{ __('App Secret') }}" x-show="platformType === '{{ $model::TYPE_FACEBOOK }}'" />
-                            <input type="text" name="graph_version" id="graph_version" class="form-control mb-2" value="{{ $config['graph_version'] ?? null }}" placeholder="{{ __('Graph Version') }}" x-show="platformType === '{{ $model::TYPE_FACEBOOK }}'" />
-                            <input type="text" name="consumer_key" id="consumer_key" class="form-control mb-2" value="{{ $config['consumer_key'] ?? null }}" placeholder="{{ __('Consumer Key') }}" x-show="platformType === '{{ $model::TYPE_TWITTER }}'" />
-                            <input type="text" name="consumer_secret" id="consumer_secret" class="form-control mb-2" value="{{ $config['consumer_secret'] ?? null }}" placeholder="{{ __('Consumer Secret') }}" x-show="platformType === '{{ $model::TYPE_TWITTER }}'" />
-                            <input type="text" name="access_token" id="access_token" class="form-control mb-2" value="{{ $config['access_token'] ?? null }}" placeholder="{{ __('Access Token') }}" x-show="platformType === '{{ $model::TYPE_FACEBOOK }}' || platformType === '{{ $model::TYPE_TWITTER }}'" />
-                            <input type="text" name="access_token_secret" id="access_token_secret" class="form-control mb-2" value="{{ $config['access_token_secret'] ?? null }}" placeholder="{{ __('Access Token Secret') }}" x-show="platformType === '{{ $model::TYPE_TWITTER }}'" />
-                            <input type="text" name="client_id" id="client_id" class="form-control mb-2" value="{{ $config['client_id'] ?? null }}" placeholder="{{ __('Client ID') }}" x-show="platformType === '{{ $model::TYPE_PLURK }}'" />
-                            <input type="text" name="client_secret" id="client_secret" class="form-control mb-2" value="{{ $config['client_secret'] ?? null }}" placeholder="{{ __('Client Secret') }}" x-show="platformType === '{{ $model::TYPE_PLURK }}'" />
-                            <input type="text" name="token" id="token" class="form-control mb-2" value="{{ $config['token'] ?? null }}" placeholder="{{ __('Token') }}" x-show="platformType === '{{ $model::TYPE_PLURK }}'" />
-                            <input type="text" name="token_secret" id="token_secret" class="form-control mb-2" value="{{ $config['token_secret'] ?? null }}" placeholder="{{ __('Token Secret') }}" x-show="platformType === '{{ $model::TYPE_PLURK }}'" />
-                            <input type="text" name="pages_name" id="pages_name" class="form-control mb-2" value="{{ $config['pages_name'] ?? null }}" placeholder="{{ __('Pages Name') }}" />
+                            <p x-show="type === '{{ $model::TYPE_LOCAL }}'">@lang('Local does not need to set.')</p>
+
+                            <input x-show="type === '{{ $model::TYPE_FACEBOOK }}' ||
+                                           type === '{{ $model::TYPE_TUMBLR }}'"
+                                value="{{ isset($config['user_id']) ? $config['user_id'] : null }}"
+                                type="text" name="user_id" id="user_id" class="form-control mb-2" placeholder="{{ __('User ID') }}" />
+
+                            <input x-show="type === '{{ $model::TYPE_FACEBOOK }}' ||
+                                           type === '{{ $model::TYPE_PLURK }}'"
+                                value="{{ isset($config['consumer_app_id']) ? $config['consumer_app_id'] : null }}"
+                                type="text" name="consumer_app_id" id="consumer_app_id" class="form-control mb-2" placeholder="{{ __('Consumer App ID') }}" />
+
+                            <input x-show="type === '{{ $model::TYPE_TWITTER }}' ||
+                                           type === '{{ $model::TYPE_TUMBLR }}'"
+                                value="{{ isset($config['consumer_app_key']) ? $config['consumer_app_key'] : null }}"
+                                type="text" name="consumer_app_key" id="consumer_app_key" class="form-control mb-2" placeholder="{{ __('Consumer App Key') }}" />
+
+                            <input x-show="type === '{{ $model::TYPE_FACEBOOK }}' ||
+                                           type === '{{ $model::TYPE_TWITTER }}' ||
+                                           type === '{{ $model::TYPE_PLURK }}' ||
+                                           type === '{{ $model::TYPE_TUMBLR }}'"
+                                value="{{ isset($config['consumer_app_secret']) ? $config['consumer_app_secret'] : null }}"
+                                type="text" name="consumer_app_secret" id="consumer_app_secret" class="form-control mb-2" placeholder="{{ __('Consumer App Secret') }}" />
+
+                            <input x-show="type === '{{ $model::TYPE_FACEBOOK }}' ||
+                                           type === '{{ $model::TYPE_TWITTER }}' ||
+                                           type === '{{ $model::TYPE_PLURK }}' ||
+                                           type === '{{ $model::TYPE_TUMBLR }}' ||
+                                           type === '{{ $model::TYPE_TELEGRAM }}'"
+                                value="{{ isset($config['access_token']) ? $config['access_token'] : null }}"
+                                type="text" name="access_token" id="access_token" class="form-control mb-2" placeholder="{{ __('Access Token') }}" />
+
+                            <input x-show="type === '{{ $model::TYPE_TWITTER }}' ||
+                                           type === '{{ $model::TYPE_PLURK }}' ||
+                                           type === '{{ $model::TYPE_TUMBLR }}'"
+                                value="{{ isset($config['access_token_secret']) ? $config['access_token_secret'] : null }}"
+                                type="text" name="access_token_secret" id="access_token_secret" class="form-control mb-2" placeholder="{{ __('Access Token Secret') }}" />
+
+                            <input x-show="type === '{{ $model::TYPE_FACEBOOK }}'"
+                                value="{{ isset($config['graph_version']) ? $config['graph_version'] : null }}"
+                                type="text" name="graph_version" id="graph_version" class="form-control mb-2" placeholder="{{ __('Graph Version') }}" />
+
+                            <input x-show="type === '{{ $model::TYPE_FACEBOOK }}' ||
+                                           type === '{{ $model::TYPE_TWITTER }}' ||
+                                           type === '{{ $model::TYPE_PLURK }}' ||
+                                           type === '{{ $model::TYPE_TUMBLR }}' ||
+                                           type === '{{ $model::TYPE_TELEGRAM }}'"
+                                value="{{ isset($config['pages_name']) ? $config['pages_name'] : null }}"
+                                type="text" name="pages_name" id="pages_name" class="form-control mb-2" placeholder="{{ __('Pages Name') }}" />
+
+                            <input x-show="type === '{{ $model::TYPE_TELEGRAM }}'"
+                                value="{{ isset($config['chat_id']) ? $config['chat_id'] : null }}"
+                                type="text" name="chat_id" id="chat_id" class="form-control mb-2" placeholder="{{ __('Chat ID') }}" />
+
+                            <input x-show="type === '{{ $model::TYPE_DISCORD }}'"
+                                value="{{ isset($config['webhook']) ? $config['webhook'] : null }}"
+                                type="text" name="webhook" id="webhook" class="form-control mb-2" placeholder="{{ __('Webhook') }}" />
                         </div>
                     </div><!--form-group-->
                 </div>

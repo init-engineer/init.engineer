@@ -13,7 +13,6 @@
         :href="route('admin.social.platform.permanently-delete', $platform)"
         :text="__('Permanently Delete')" />
 @else
-    <x-utils.view-button :href="route('admin.social.platform.show', $platform)" />
     <x-utils.edit-button :href="route('admin.social.platform.edit', $platform)" />
 
     @if (! $platform->isActive())

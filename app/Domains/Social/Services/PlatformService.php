@@ -53,17 +53,17 @@ class PlatformService extends BaseService
      * @throws GeneralException
      * @throws \Throwable
      */
-    public function store(array $data = []): Platform
+    public function store(array $data): Platform
     {
         DB::beginTransaction();
 
         try {
-            $config = $this->createConfig($data);
             $platform = $this->createPlatform([
-                'name' => $data['platformName'],
-                'type' => $data['platformType'],
+                'name' => $data['name'],
+                'action' => $data['action'],
+                'type' => $data['type'],
                 'active' => $data['active'],
-                'config' => $config,
+                'config' => $this->createConfig($data),
             ]);
         } catch (Exception $e) {
             DB::rollBack();
@@ -85,16 +85,17 @@ class PlatformService extends BaseService
      * @return Platform
      * @throws \Throwable
      */
-    public function update(Platform $platform, array $data = []): Platform
+    public function update(Platform $platform, array $data): Platform
     {
         DB::beginTransaction();
 
         try {
-            $config = $this->createConfig($data);
             $platform->update([
-                'name' => $data['platformName'] ?? $platform->name,
-                'type' => $data['platformType'] ?? $platform->type,
-                'config' => $config,
+                'name' => $data['name'],
+                'action' => $data['action'] ?? $platform->action,
+                'type' => $data['type'] ?? $platform->type,
+                'active' => $data['active'],
+                'config' => $this->createConfig($data),
             ]);
         } catch (Exception $e) {
             DB::rollBack();
@@ -187,22 +188,22 @@ class PlatformService extends BaseService
      */
     protected function createConfig(array $data): array
     {
-        switch ($data['platformType']) {
+        switch ($data['type']) {
             case Platform::TYPE_FACEBOOK:
                 $config = [
                     'user_id' => $data['user_id'],
-                    'app_id' => $data['app_id'],
-                    'app_secret' => $data['app_secret'],
-                    'graph_version' => $data['graph_version'],
+                    'consumer_app_id' => $data['consumer_app_id'],
+                    'consumer_app_secret' => $data['consumer_app_secret'],
                     'access_token' => $data['access_token'],
+                    'graph_version' => $data['graph_version'],
                     'pages_name' => $data['pages_name'],
                 ];
                 break;
 
             case Platform::TYPE_TWITTER:
                 $config = [
-                    'consumer_key' => $data['consumer_key'],
-                    'consumer_secret' => $data['consumer_secret'],
+                    'consumer_app_key' => $data['consumer_app_key'],
+                    'consumer_app_secret' => $data['consumer_app_secret'],
                     'access_token' => $data['access_token'],
                     'access_token_secret' => $data['access_token_secret'],
                     'pages_name' => $data['pages_name'],
@@ -211,11 +212,36 @@ class PlatformService extends BaseService
 
             case Platform::TYPE_PLURK:
                 $config = [
-                    'client_id' => $data['client_id'],
-                    'client_secret' => $data['client_secret'],
-                    'token' => $data['token'],
-                    'token_secret' => $data['token_secret'],
+                    'consumer_app_id' => $data['consumer_app_id'],
+                    'consumer_app_secret' => $data['consumer_app_secret'],
+                    'access_token' => $data['access_token'],
+                    'access_token_secret' => $data['access_token_secret'],
                     'pages_name' => $data['pages_name'],
+                ];
+                break;
+
+            case Platform::TYPE_TUMBLR:
+                $config = [
+                    'user_id' => $data['user_id'],
+                    'consumer_app_key' => $data['consumer_app_key'],
+                    'consumer_app_secret' => $data['consumer_app_secret'],
+                    'access_token' => $data['access_token'],
+                    'access_token_secret' => $data['access_token_secret'],
+                    'pages_name' => $data['pages_name'],
+                ];
+                break;
+
+            case Platform::TYPE_TELEGRAM:
+                $config = [
+                    'chat_id' => $data['chat_id'],
+                    'access_token' => $data['access_token'],
+                    'pages_name' => $data['pages_name'],
+                ];
+                break;
+
+            case Platform::TYPE_DISCORD:
+                $config = [
+                    'webhook' => $data['webhook'],
                 ];
                 break;
 

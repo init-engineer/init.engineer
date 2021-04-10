@@ -36,10 +36,10 @@ class SocialPlatformTableSeeder extends Seeder
             'active' => false,
             'config' => json_encode([
                 'user_id' => null,
-                'app_id' => null,
-                'app_secret' => null,
-                'graph_version' => null,
+                'consumer_app_id' => null,
+                'consumer_app_secret' => null,
                 'access_token' => null,
+                'graph_version' => null,
                 'pages_name' => null,
             ]),
         ]);
@@ -51,10 +51,10 @@ class SocialPlatformTableSeeder extends Seeder
             'active' => false,
             'config' => json_encode([
                 'user_id' => null,
-                'app_id' => null,
-                'app_secret' => null,
-                'graph_version' => null,
+                'consumer_app_id' => null,
+                'consumer_app_secret' => null,
                 'access_token' => null,
+                'graph_version' => null,
                 'pages_name' => null,
             ]),
         ]);
@@ -65,8 +65,8 @@ class SocialPlatformTableSeeder extends Seeder
             'type' => Platform::TYPE_TWITTER,
             'active' => false,
             'config' => json_encode([
-                'consumer_key' => null,
-                'consumer_secret' => null,
+                'consumer_app_key' => null,
+                'consumer_app_secret' => null,
                 'access_token' => null,
                 'access_token_secret' => null,
                 'pages_name' => null,
@@ -79,8 +79,8 @@ class SocialPlatformTableSeeder extends Seeder
             'type' => Platform::TYPE_TWITTER,
             'active' => false,
             'config' => json_encode([
-                'consumer_key' => null,
-                'consumer_secret' => null,
+                'consumer_app_key' => null,
+                'consumer_app_secret' => null,
                 'access_token' => null,
                 'access_token_secret' => null,
                 'pages_name' => null,
@@ -93,10 +93,10 @@ class SocialPlatformTableSeeder extends Seeder
             'type' => Platform::TYPE_PLURK,
             'active' => false,
             'config' => json_encode([
-                'client_id' => null,
-                'client_secret' => null,
-                'token' => null,
-                'token_secret' => null,
+                'consumer_app_id' => null,
+                'consumer_app_secret' => null,
+                'access_token' => null,
+                'access_token_secret' => null,
                 'pages_name' => null,
             ]),
         ]);
@@ -107,16 +107,29 @@ class SocialPlatformTableSeeder extends Seeder
             'type' => Platform::TYPE_TUMBLR,
             'active' => false,
             'config' => json_encode([
-                'client_id' => null,
-                'client_secret' => null,
-                'token' => null,
-                'token_secret' => null,
+                'user_id' => null,
+                'consumer_app_key' => null,
+                'consumer_app_secret' => null,
+                'access_token' => null,
+                'access_token_secret' => null,
                 'pages_name' => null,
             ]),
         ]);
 
         Platform::create([
             'name' => '官方 @init.engineer',
+            'action' => Platform::ACTION_PUBLISH,
+            'type' => Platform::TYPE_TELEGRAM,
+            'active' => false,
+            'config' => json_encode([
+                'chat_id' => null,
+                'access_token' => null,
+                'pages_name' => null,
+            ]),
+        ]);
+
+        Platform::create([
+            'name' => '官方發表文章通知 @init.engineer',
             'action' => Platform::ACTION_NOTIFICATION,
             'type' => Platform::TYPE_DISCORD,
             'active' => false,
@@ -126,9 +139,9 @@ class SocialPlatformTableSeeder extends Seeder
         ]);
 
         Platform::create([
-            'name' => '官方 @init.engineer',
-            'action' => Platform::ACTION_NOTIFICATION,
-            'type' => Platform::TYPE_TELEGRAM,
+            'name' => '官方審核通過通知 @init.engineer',
+            'action' => Platform::ACTION_PUBLISH,
+            'type' => Platform::TYPE_DISCORD,
             'active' => false,
             'config' => json_encode([
                 'webhook' => null,
