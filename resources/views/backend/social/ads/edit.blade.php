@@ -5,7 +5,7 @@
 @section('title', __('Update Ads'))
 
 @section('content')
-    <x-forms.patch :action="route('admin.social.ads.update', $ads)">
+    <x-forms.patch :action="route('admin.social.ads.update', $ads)" enctype="multipart/form-data">
         <x-backend.card>
             <x-slot name="header">
                 @lang('Update Ads')
@@ -16,6 +16,20 @@
             </x-slot>
 
             <x-slot name="body">
+                <div class="form-group row">
+                    <label for="author" class="col-md-2 col-form-label">@lang('Author')</label>
+
+                    <div class="col-md-10">
+                        <a href="{{ route('admin.auth.user.show', ['user' => $ads->model]) }}">
+                            <img src="{{ $ads->model->avatar }}" class="img-fluid rounded user-profile-image">
+                            <div class="m-2" style="display: inline; position: absolute;">
+                                <strong style="font-weight: 600; font-size: 24px; color: #597a96; display: inherit;">{{ $ads->model->name }}</strong>
+                                <span style="font-size: 16px; font-weight: 400; color: #aab8c2;">{{ $ads->model->email }}</span>
+                            </div>
+                        </a>
+                    </div>
+                </div><!--form-group-->
+
                 <div class="form-group row">
                     <label for="name" class="col-md-2 col-form-label">@lang('Name')</label>
 
@@ -28,32 +42,16 @@
                     <label for="ads_banner" class="col-md-2 col-form-label">@lang('Ads Banner')</label>
 
                     <div class="col-md-10">
-                        <img src="{{ old('ads_path') ?? $ads->getBanner() }}" alt="{{ old('name') ?? $ads->name }}" class="rounded w-100 mb-2">
+                        <img src="{{ $ads->getPicture() }}" class="img-fluid rounded mb-2" style="max-width: 100%;" alt="{{ old('name') ?? $ads->name }}" />
                         <input type="file" name="ads_banner" class="form-control" placeholder="{{ __('Ads Banner') }}" value="{{ old('ads_banner') }}" />
                     </div>
                 </div><!--form-group-->
 
                 <div class="form-group row">
-                    <label for="number_max" class="col-md-2 col-form-label">@lang('Number Max')</label>
+                    <label for="probability" class="col-md-2 col-form-label">@lang('Probability')</label>
 
                     <div class="col-md-10">
-                        <input type="number" name="number_max" class="form-control" placeholder="{{ __('Number Max') }}" value="{{ old('number_max') ?? $ads->number_max }}" max="1000" />
-                    </div>
-                </div><!--form-group-->
-
-                <div class="form-group row">
-                    <label for="number_min" class="col-md-2 col-form-label">@lang('Number Min')</label>
-
-                    <div class="col-md-10">
-                        <input type="number" name="number_min" class="form-control" placeholder="{{ __('Number Min') }}" value="{{ old('number_min') ?? $ads->number_min }}" min="1" />
-                    </div>
-                </div><!--form-group-->
-
-                <div class="form-group row">
-                    <label for="incidence" class="col-md-2 col-form-label">@lang('Incidence')</label>
-
-                    <div class="col-md-10">
-                        <input type="number" name="incidence" class="form-control" placeholder="{{ __('Incidence') }}" value="{{ old('incidence') ?? $ads->incidence }}" max="10000" min="1" />
+                        <input type="number" name="probability" class="form-control" placeholder="{{ __('Probability') }}" value="{{ old('probability') ?? $ads->probability }}" max="10000" min="1" />
                     </div>
                 </div><!--form-group-->
 

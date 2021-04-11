@@ -8,6 +8,7 @@ use App\Exceptions\GeneralException;
 use App\Services\BaseService;
 use Exception;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Class AdsService.
@@ -62,15 +63,18 @@ class AdsService extends BaseService
             $ads = $this->createAds([
                 'model_id' => $data['model_id'],
                 'name' => $data['name'],
-                'ads_path' => $data['ads_path'] ?? null,
-                'number_max' => $data['number_max'] ?? 0,
-                'number_min' => $data['number_min'] ?? 0,
-                'incidence' => $data['incidence'] ?? 0,
-                'active' => $data['active'] ?? false,
+                'probability' => $data['probability'] ?? 0,
                 'payment' => $data['payment'] ?? false,
+                'active' => $data['active'] ?? false,
                 'starts_at' => $data['starts_at'] ?? null,
                 'ends_at' => $data['ends_at'] ?? null,
             ]);
+
+            if (isset($data['ads_banner'])) {
+                $ads->setPicture(array(
+                    'storage' => $data['ads_banner']->store('/ads/banner', 'public'),
+                ));
+            }
         } catch (Exception $e) {
             DB::rollBack();
 
@@ -98,12 +102,24 @@ class AdsService extends BaseService
         try {
             $ads->update([
                 'name' => $data['name'] ?? $ads->name,
-                'number_max' => $data['number_max'] ?? $ads->number_max,
-                'number_min' => $data['number_min'] ?? $ads->number_min,
-                'incidence' => $data['incidence'] ?? $ads->incidence,
-                'active' => $data['active'] ?? $ads->active,
-                'payment' => $data['payment'] ?? $ads->payment,
+                'probability' => $data['probability'] ?? $ads->probability,
+                'payment' => isset($data['payment']) ? true : false,
+                'active' => isset($data['active']) ? true : false,
+                'starts_at' => isset($data['starts_at']) ? $data['starts_at'] . ' 12:00:00' : $ads->starts_at,
+                'ends_at' => isset($data['ends_at']) ? $data['ends_at'] . ' 12:00:00' : $ads->ends_at,
             ]);
+
+            if (isset($data['ads_banner'])) {
+                $pictureJson = $ads->getPictureJson();
+                $url = $pictureJson['storage'];
+                if ($url !== 'img/default/banner-ads.png') {
+                    Storage::disk('public')->delete($url);
+                }
+
+                $ads->setPicture(array(
+                    'storage' => $data['ads_banner']->store('/ads/banner', 'public'),
+                ));
+            }
         } catch (Exception $e) {
             DB::rollBack();
 
@@ -115,33 +131,6 @@ class AdsService extends BaseService
         DB::commit();
 
         return $ads;
-    }
-
-    /**
-     * @param Ads $ads
-     * @param array $data
-     *
-     * @return Ads
-     */
-    public function updateStartEnded(Ads $ads, array $data = []): Ads
-    {
-        if (isset($data['starts_at'])) $ads->starts_at = $data['starts_at'];
-        if (isset($data['ends_at'])) $ads->ends_at = $data['ends_at'];
-
-        return tap($ads)->save();
-    }
-
-    /**
-     * @param Ads $ads
-     * @param array $data
-     *
-     * @return Ads
-     */
-    public function updateBanner(Ads $ads, array $data = []): Ads
-    {
-        $ads->ads_path = $data['ads_path'];
-
-        return tap($ads)->save();
     }
 
     /**
@@ -226,10 +215,8 @@ class AdsService extends BaseService
             'model_type' => User::class,
             'model_id' => $data['model_id'],
             'name' => $data['name'],
-            'ads_path' => $data['ads_path'],
-            'number_max' => $data['number_max'] ?? 0,
-            'number_min' => $data['number_min'] ?? 0,
-            'incidence' => $data['incidence'] ?? 0,
+            'probability' => $data['probability'] ?? 0,
+            'payment' => $data['payment'] ?? false,
             'active' => $data['active'] ?? false,
             'starts_at' => $data['starts_at'] ?? null,
             'ends_at' => $data['ends_at'] ?? null,

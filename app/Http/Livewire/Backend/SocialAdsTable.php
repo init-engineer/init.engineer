@@ -66,9 +66,14 @@ class SocialAdsTable extends TableComponent
             Column::make(__('Name'), 'name')
                 ->searchable()
                 ->sortable(),
-            Column::make(__('Incidence'), 'incidence')
+            Column::make(__('Probability'), 'probability')
                 ->format(function(Ads $model) {
-                    return $this->html(($model->incidence / 100) . '%');
+                    return $this->html(sprintf(
+                        '<div style="position: inherit;">
+                            <strong style="font-weight: 600; font-size: 24px; color: #597a96; display: inherit;">%s</strong>
+                        </div>',
+                        ($model->probability / 100) . '%'
+                    ));
                 })
                 ->searchable()
                 ->sortable(),
@@ -78,7 +83,7 @@ class SocialAdsTable extends TableComponent
                 })
                 ->searchable()
                 ->sortable(),
-            Column::make(__('PaymentStatus'), 'payment')
+            Column::make(__('Payment Status'), 'payment')
                 ->format(function(Ads $model) {
                     return $this->html(view('backend.social.ads.includes.payment', ['ads' => $model]));
                 })

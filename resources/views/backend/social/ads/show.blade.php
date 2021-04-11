@@ -16,7 +16,20 @@
             <table class="table table-hover">
                 <tr>
                     <th>@lang('Ads Banner')</th>
-                    <td><img src="{{ $ads->getBanner() }}" class="img-fluid rounded" style="max-width: 720px;" /></td>
+                    <td><img src="{{ $ads->getPicture() }}" class="img-fluid rounded" style="max-width: 100%;" alt="{{ old('name') ?? $ads->name }}" /></td>
+                </tr>
+
+                <tr>
+                    <th>@lang('Author')</th>
+                    <td>
+                        <a href="{{ route('admin.auth.user.show', ['user' => $ads->model]) }}">
+                            <img src="{{ $ads->model->avatar }}" class="img-fluid rounded user-profile-image">
+                            <div class="m-2" style="display: inline; position: absolute;">
+                                <strong style="font-weight: 600; font-size: 24px; color: #597a96; display: inherit;">{{ $ads->model->name }}</strong>
+                                <span style="font-size: 16px; font-weight: 400; color: #aab8c2;">{{ $ads->model->email }}</span>
+                            </div>
+                        </a>
+                    </td>
                 </tr>
 
                 <tr>
@@ -25,33 +38,28 @@
                 </tr>
 
                 <tr>
-                    <th>@lang('Creator')</th>
-                    <td>{!! $ads->getProfileHtml() !!}</td>
-                </tr>
-
-                <tr>
-                    <th>@lang('Number Max')</th>
-                    <td>{{ $ads->number_max }}</td>
-                </tr>
-
-                <tr>
-                    <th>@lang('Number Min')</th>
-                    <td>{{ $ads->number_min }}</td>
-                </tr>
-
-                <tr>
-                    <th>@lang('Incidence')</th>
-                    <td>{{ $ads->incidence / 100 }}%</td>
+                    <th>@lang('Probability')</th>
+                    <td><strong style="font-weight: 600; font-size: 24px; color: #597a96; display: inherit;">{{ $ads->probability / 100 }}%</strong></td>
                 </tr>
 
                 <tr>
                     <th>@lang('Starts At')</th>
-                    <td>{{ $ads->starts_at->toDateString() }}</td>
+                    <td>
+                        <div style="position: inherit;">
+                            <strong style="font-weight: 600; font-size: 16px; color: #597a96; display: inherit;">{{ $ads->starts_at->toDateString() }}</strong>
+                            <span style="font-size: 12px; font-weight: 400; color: #aab8c2;">{{ $ads->starts_at->diffForHumans() }}</span>
+                        </div>
+                    </td>
                 </tr>
 
                 <tr>
                     <th>@lang('Ends At')</th>
-                    <td>{{ $ads->ends_at->toDateString() }}</td>
+                    <td>
+                        <div style="position: inherit;">
+                            <strong style="font-weight: 600; font-size: 16px; color: #597a96; display: inherit;">{{ $ads->ends_at->toDateString() }}</strong>
+                            <span style="font-size: 12px; font-weight: 400; color: #aab8c2;">{{ $ads->ends_at->diffForHumans() }}</span>
+                        </div>
+                    </td>
                 </tr>
 
                 <tr>
@@ -60,7 +68,7 @@
                 </tr>
 
                 <tr>
-                    <th>@lang('Payment')</th>
+                    <th>@lang('Payment Status')</th>
                     <td>@include('backend.social.ads.includes.payment', ['ads' => $ads])</td>
                 </tr>
             </table>

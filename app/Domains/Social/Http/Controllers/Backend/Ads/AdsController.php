@@ -96,12 +96,6 @@ class AdsController extends Controller
     public function update(UpdateAdsRequest $request, Ads $ads)
     {
         $this->adsService->update($ads, $request->validated());
-        $this->adsService->updateStartEnded($ads, $request->validated());
-        if ($request->has('ads_banner')) {
-            $this->adsService->updateBanner($ads, array(
-                'ads_path' => $request->file('ads_banner')->storePublicly('public/ads'),
-            ));
-        }
 
         return redirect()->route('admin.social.ads.show', $ads)->withFlashSuccess(__('The ads was successfully updated.'));
     }

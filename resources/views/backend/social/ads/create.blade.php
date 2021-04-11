@@ -33,26 +33,10 @@
                 </div><!--form-group-->
 
                 <div class="form-group row">
-                    <label for="number_max" class="col-md-2 col-form-label">@lang('Number Max')</label>
+                    <label for="probability" class="col-md-2 col-form-label">@lang('Probability')</label>
 
                     <div class="col-md-10">
-                        <input type="number" name="number_max" class="form-control" placeholder="{{ __('Number Max') }}" value="{{ old('number_max') }}" max="1000" />
-                    </div>
-                </div><!--form-group-->
-
-                <div class="form-group row">
-                    <label for="number_min" class="col-md-2 col-form-label">@lang('Number Min')</label>
-
-                    <div class="col-md-10">
-                        <input type="number" name="number_min" class="form-control" placeholder="{{ __('Number Min') }}" value="{{ old('number_min') }}" min="1" />
-                    </div>
-                </div><!--form-group-->
-
-                <div class="form-group row">
-                    <label for="incidence" class="col-md-2 col-form-label">@lang('Incidence')</label>
-
-                    <div class="col-md-10">
-                        <input type="number" name="incidence" class="form-control" placeholder="{{ __('Incidence') }}" value="{{ old('incidence') }}" max="10000" min="1" />
+                        <input type="number" name="probability" class="form-control" placeholder="{{ __('Probability') }}" value="{{ old('probability') }}" max="10000" min="1" />
                     </div>
                 </div><!--form-group-->
 
