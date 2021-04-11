@@ -12,6 +12,21 @@
             @lang('Announcement Management')
         </x-slot>
 
+        @if ($logged_in_user->hasAllAccess() |
+             $logged_in_user->can('admin.announcement') ||
+             $logged_in_user->can('admin.announcement.list') ||
+             $logged_in_user->can('admin.announcement.deactivate') ||
+             $logged_in_user->can('admin.announcement.reactivate'))
+            <x-slot name="headerActions">
+                <x-utils.link
+                    icon="c-icon cil-plus"
+                    class="card-header-action"
+                    :href="route('admin.social.ads.create')"
+                    :text="__('Create Ads')"
+                />
+            </x-slot>
+        @endif
+
         <x-slot name="headerActions">
             <x-utils.link
                 icon="c-icon cil-plus"
