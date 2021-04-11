@@ -12,6 +12,41 @@ trait Picture
      */
     public function getPicture()
     {
+        if (isset($this->picture) &&
+            $this->picture !== null) {
+            $picture = json_decode($this->picture, true);
+            if (isset($picture['imgur']['link']) &&
+                isset($picture['imgur']['type']) &&
+                $picture['imgur']['link'] !== null &&
+                $picture['imgur']['type'] !== null) {
+                return asset(sprintf(
+                    '%s.%s',
+                    $picture['imgur']['link'],
+                    $picture['imgur']['type']));
+            }
+
+            if (isset($picture['storage']['path']) &&
+                isset($picture['storage']['name']) &&
+                isset($picture['storage']['type']) &&
+                $picture['storage']['path'] !== null &&
+                $picture['storage']['name'] !== null &&
+                $picture['storage']['type'] !== null) {
+                return asset(sprintf(
+                    '%s%s.%s',
+                    $picture['storage']['path'],
+                    $picture['storage']['name'],
+                    $picture['storage']['type']));
+            }
+        }
+
+        return asset('img/default/960x240.png');
+    }
+
+    /**
+     * @return array
+     */
+    public function getPictureJson()
+    {
         if ($this->picture !== null) {
             return json_decode($this->picture, true);
         }

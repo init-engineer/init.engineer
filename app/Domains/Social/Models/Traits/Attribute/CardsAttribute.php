@@ -7,11 +7,5 @@ namespace App\Domains\Social\Models\Traits\Attribute;
  */
 trait CardsAttribute
 {
-    /**
-     * @return mixed
-     */
-    public function getPictureAttribute()
-    {
-        return $this->getPicture();
-    }
+    // ...
 }

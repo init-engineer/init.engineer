@@ -24,12 +24,4 @@ trait AdsMethod
     {
         return $this->active;
     }
-
-    /**
-     * @return mixed|string
-     */
-    public function getPicture()
-    {
-        // return Storage::url($this->picture_location);
-    }
 }
