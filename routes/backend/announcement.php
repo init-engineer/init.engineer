@@ -6,7 +6,10 @@ use App\Domains\Announcement\Http\Controllers\Backend\DeletedAnnouncementControl
 use App\Domains\Announcement\Models\Announcement;
 use Tabuna\Breadcrumbs\Trail;
 
-// All route names are prefixed with 'admin.announcement'.
+/**
+ * All route names are prefixed with 'admin.announcement'.
+ * 公告管理
+ */
 Route::group([
     'prefix' => 'announcement',
     'as' => 'announcement.',
