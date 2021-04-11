@@ -51,8 +51,8 @@ class Ads extends Model
         'probability',
         'payment',
         'active',
-        'started_at',
-        'ended_at',
+        'starts_at',
+        'ends_at',
     ];
 
     /**
@@ -72,7 +72,7 @@ class Ads extends Model
      * @var array
      */
     protected $dates = [
-        'started_at',
-        'ended_at',
+        'starts_at',
+        'ends_at',
     ];
 }

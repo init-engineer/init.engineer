@@ -57,18 +57,18 @@
                 </div><!--form-group-->
 
                 <div class="form-group row">
-                    <label for="started_at" class="col-md-2 col-form-label">@lang('Started At')</label>
+                    <label for="starts_at" class="col-md-2 col-form-label">@lang('Starts At')</label>
 
                     <div class="col-md-10">
-                        <input type="date" name="started_at" class="form-control" placeholder="{{ __('Started At') }}" value="{{ old('started_at') }}" />
+                        <input type="date" name="starts_at" class="form-control" placeholder="{{ __('Starts At') }}" value="{{ old('starts_at') }}" />
                     </div>
                 </div><!--form-group-->
 
                 <div class="form-group row">
-                    <label for="ended_at" class="col-md-2 col-form-label">@lang('Ended At')</label>
+                    <label for="ends_at" class="col-md-2 col-form-label">@lang('Ends At')</label>
 
                     <div class="col-md-10">
-                        <input type="date" name="ended_at" class="form-control" placeholder="{{ __('Ended At') }}" value="{{ old('ended_at') }}" />
+                        <input type="date" name="ends_at" class="form-control" placeholder="{{ __('Ends At') }}" value="{{ old('ends_at') }}" />
                     </div>
                 </div><!--form-group-->
 

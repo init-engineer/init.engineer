@@ -45,13 +45,13 @@
                 </tr>
 
                 <tr>
-                    <th>@lang('Started At')</th>
-                    <td>{{ $ads->started_at->toDateString() }}</td>
+                    <th>@lang('Starts At')</th>
+                    <td>{{ $ads->starts_at->toDateString() }}</td>
                 </tr>
 
                 <tr>
-                    <th>@lang('Ended At')</th>
-                    <td>{{ $ads->ended_at->toDateString() }}</td>
+                    <th>@lang('Ends At')</th>
+                    <td>{{ $ads->ends_at->toDateString() }}</td>
                 </tr>
 
                 <tr>

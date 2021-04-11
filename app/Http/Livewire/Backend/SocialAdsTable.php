@@ -66,20 +66,6 @@ class SocialAdsTable extends TableComponent
             Column::make(__('Name'), 'name')
                 ->searchable()
                 ->sortable(),
-            Column::make(__('Ads Banner'), 'ads_banner')
-                ->format(function(Ads $model) {
-                    return $this->image($model->getBanner(), $model->name, ['class' => 'img-fluid rounded', 'style' => 'max-width: 220px;']);
-                }),
-            Column::make(__('Creator'), 'creator')
-                ->format(function(Ads $model) {
-                    return $this->html($model->getProfileHtml());
-                }),
-            Column::make(__('Number max'), 'number_max')
-                ->searchable()
-                ->sortable(),
-            Column::make(__('Number min'), 'number_min')
-                ->searchable()
-                ->sortable(),
             Column::make(__('Incidence'), 'incidence')
                 ->format(function(Ads $model) {
                     return $this->html(($model->incidence / 100) . '%');
@@ -98,28 +84,28 @@ class SocialAdsTable extends TableComponent
                 })
                 ->searchable()
                 ->sortable(),
-            Column::make(__('Started At'), 'started_at')
+            Column::make(__('Starts At'), 'starts_at')
                 ->format(function(Ads $model) {
                     return $this->html(sprintf(
                         '<div style="position: inherit;">
                             <strong style="font-weight: 600; font-size: 16px; color: #597a96; display: inherit;">%s</strong>
                             <span style="font-size: 12px; font-weight: 400; color: #aab8c2;">%s</span>
                         </div>',
-                        $model->started_at->toDateString(),
-                        $model->started_at->diffForHumans()
+                        $model->starts_at->toDateString(),
+                        $model->starts_at->diffForHumans()
                     ));
                 })
                 ->searchable()
                 ->sortable(),
-            Column::make(__('Ended At'), 'ended_at')
+            Column::make(__('Ends At'), 'ends_at')
                 ->format(function(Ads $model) {
                     return $this->html(sprintf(
                         '<div style="position: inherit;">
                             <strong style="font-weight: 600; font-size: 16px; color: #597a96; display: inherit;">%s</strong>
                             <span style="font-size: 12px; font-weight: 400; color: #aab8c2;">%s</span>
                         </div>',
-                        $model->ended_at->toDateString(),
-                        $model->ended_at->diffForHumans()
+                        $model->ends_at->toDateString(),
+                        $model->ends_at->diffForHumans()
                     ));
                 })
                 ->searchable()

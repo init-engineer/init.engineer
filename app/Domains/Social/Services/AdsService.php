@@ -68,8 +68,8 @@ class AdsService extends BaseService
                 'incidence' => $data['incidence'] ?? 0,
                 'active' => $data['active'] ?? false,
                 'payment' => $data['payment'] ?? false,
-                'started_at' => $data['started_at'] ?? null,
-                'ended_at' => $data['ended_at'] ?? null,
+                'starts_at' => $data['starts_at'] ?? null,
+                'ends_at' => $data['ends_at'] ?? null,
             ]);
         } catch (Exception $e) {
             DB::rollBack();
@@ -125,8 +125,8 @@ class AdsService extends BaseService
      */
     public function updateStartEnded(Ads $ads, array $data = []): Ads
     {
-        if (isset($data['started_at'])) $ads->started_at = $data['started_at'];
-        if (isset($data['ended_at'])) $ads->ended_at = $data['ended_at'];
+        if (isset($data['starts_at'])) $ads->starts_at = $data['starts_at'];
+        if (isset($data['ends_at'])) $ads->ends_at = $data['ends_at'];
 
         return tap($ads)->save();
     }
@@ -231,8 +231,8 @@ class AdsService extends BaseService
             'number_min' => $data['number_min'] ?? 0,
             'incidence' => $data['incidence'] ?? 0,
             'active' => $data['active'] ?? false,
-            'started_at' => $data['started_at'] ?? null,
-            'ended_at' => $data['ended_at'] ?? null,
+            'starts_at' => $data['starts_at'] ?? null,
+            'ends_at' => $data['ends_at'] ?? null,
         ]);
     }
 }

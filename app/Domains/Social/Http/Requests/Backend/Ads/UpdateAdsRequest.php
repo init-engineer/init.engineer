@@ -35,8 +35,8 @@ class UpdateAdsRequest extends FormRequest
             'incidence' => ['required', 'integer', 'min:1', 'max:10000'],
             'payment' => ['sometimes', 'in:1'],
             'active' => ['sometimes', 'in:1'],
-            'started_at' => ['required', 'date'],
-            'ended_at' => ['required', 'date'],
+            'starts_at' => ['required', 'date'],
+            'ends_at' => ['required', 'date'],
         ];
     }
 }
