@@ -27,15 +27,8 @@ class SocialAdsTableSeeder extends Seeder
                 'model_id' => 1,
                 'name' => '橫幅廣告測試，已付款、已啟用',
                 'picture' => json_encode(array(
-                    'storage' => array(
-                        'path' => 'img/default/',
-                        'name' => 'banner-ads',
-                        'type' => 'png',
-                    ),
-                    'imgur' => array(
-                        'link' => null,
-                        'type' => null,
-                    ),
+                    'storage' => 'img/default/banner-ads.png',
+                    'imgur' => null,
                 )),
                 'probability' => 1000,
                 'payment' => true,
@@ -47,21 +40,14 @@ class SocialAdsTableSeeder extends Seeder
             Ads::create([
                 'model_type' => User::class,
                 'model_id' => 1,
-                'name' => '橫幅廣告測試，已付款、未啟用',
+                'name' => '橫幅廣告測試，未付款、已啟用',
                 'picture' => json_encode(array(
-                    'storage' => array(
-                        'path' => 'img/default/',
-                        'name' => 'banner-ads',
-                        'type' => 'png',
-                    ),
-                    'imgur' => array(
-                        'link' => null,
-                        'type' => null,
-                    ),
+                    'storage' => 'img/default/banner-ads.png',
+                    'imgur' => null,
                 )),
                 'probability' => 1000,
-                'payment' => true,
-                'active' => false,
+                'payment' => false,
+                'active' => true,
                 'starts_at' => now()->subWeek(),
                 'ends_at' => now()->addWeek()
             ]);
@@ -71,15 +57,8 @@ class SocialAdsTableSeeder extends Seeder
                 'model_id' => 1,
                 'name' => '橫幅廣告測試，未付款、未啟用',
                 'picture' => json_encode(array(
-                    'storage' => array(
-                        'path' => 'img/default/',
-                        'name' => 'banner-ads',
-                        'type' => 'png',
-                    ),
-                    'imgur' => array(
-                        'link' => null,
-                        'type' => null,
-                    ),
+                    'storage' => 'img/default/banner-ads.png',
+                    'imgur' => null,
                 )),
                 'probability' => 1000,
                 'payment' => false,

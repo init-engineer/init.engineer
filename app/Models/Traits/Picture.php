@@ -12,30 +12,14 @@ trait Picture
      */
     public function getPicture()
     {
-        if (isset($this->picture) &&
-            $this->picture !== null) {
+        if (isset($this->picture) && $this->picture !== null) {
             $picture = json_decode($this->picture, true);
-            if (isset($picture['imgur']['link']) &&
-                isset($picture['imgur']['type']) &&
-                $picture['imgur']['link'] !== null &&
-                $picture['imgur']['type'] !== null) {
-                return asset(sprintf(
-                    '%s.%s',
-                    $picture['imgur']['link'],
-                    $picture['imgur']['type']));
+            if (isset($picture['imgur']) && $picture['imgur'] !== null) {
+                return $picture['imgur'];
             }
 
-            if (isset($picture['storage']['path']) &&
-                isset($picture['storage']['name']) &&
-                isset($picture['storage']['type']) &&
-                $picture['storage']['path'] !== null &&
-                $picture['storage']['name'] !== null &&
-                $picture['storage']['type'] !== null) {
-                return asset(sprintf(
-                    '%s%s.%s',
-                    $picture['storage']['path'],
-                    $picture['storage']['name'],
-                    $picture['storage']['type']));
+            if (isset($picture['storage']) && $picture['storage'] !== null) {
+                return asset('storage/' . $picture['storage']);
             }
         }
 
@@ -70,11 +54,8 @@ trait Picture
     public function setPicture(array $data)
     {
         $picture = json_decode($this->picture, true);
-        $picture['storage']['path'] = $data['storage']['path'] ?? $picture['storage']['path'] ?? null;
-        $picture['storage']['name'] = $data['storage']['name'] ?? $picture['storage']['name'] ?? null;
-        $picture['storage']['type'] = $data['storage']['type'] ?? $picture['storage']['type'] ?? null;
-        $picture['imgur']['link'] = $data['imgur']['link'] ?? $picture['imgur']['link'] ?? null;
-        $picture['imgur']['type'] = $data['imgur']['type'] ?? $picture['imgur']['type'] ?? null;
+        $picture['storage'] = $data['storage'] ?? $picture['storage'] ?? null;
+        $picture['imgur'] = $data['imgur'] ?? $picture['imgur'] ?? null;
 
         $this->picture = json_encode($picture);
 
@@ -89,15 +70,8 @@ trait Picture
         static::creating(function ($model) {
             if (!$model->{$model->getPictureName()}) {
                 $model->{$model->getPictureName()} = json_encode(array(
-                    'storage' => array(
-                        'path' => null,
-                        'name' => null,
-                        'type' => null,
-                    ),
-                    'imgur' => array(
-                        'link' => null,
-                        'type' => null,
-                    ),
+                    'storage' => null,
+                    'imgur' => null,
                 ));
             }
         });
