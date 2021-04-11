@@ -2,8 +2,6 @@
 
 namespace App\Domains\Social\Models\Traits\Method;
 
-use Illuminate\Support\Facades\Storage;
-
 /**
  * Trait CardsMethod.
  */
