@@ -48,6 +48,7 @@ class Ads extends Model
         'model_id',
         'name',
         'picture',
+        'deploy',
         'probability',
         'payment',
         'active',

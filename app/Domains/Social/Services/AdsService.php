@@ -4,6 +4,7 @@ namespace App\Domains\Social\Services;
 
 use App\Domains\Auth\Models\User;
 use App\Domains\Social\Models\Ads;
+use App\Domains\Social\Models\Cards;
 use App\Exceptions\GeneralException;
 use App\Services\BaseService;
 use Exception;
@@ -131,6 +132,28 @@ class AdsService extends BaseService
         DB::commit();
 
         return $ads;
+    }
+
+    /**
+     * @param Ads $ads
+     * @param Cards $cards
+     *
+     * @return Ads
+     * @throws GeneralException
+     */
+    public function deploy(Ads $ads, Cards $cards)
+    {
+        $deploy = json_decode($ads->deploy, true);
+        array_push($deploy, $cards->uuid);
+        $ads->deploy = json_encode($deploy);
+
+        if ($ads->save()) {
+            // event(new AdsDeploy($ads, $cards));
+
+            return $ads;
+        }
+
+        throw new GeneralException(__('There was a problem updating this ads. Please try again.'));
     }
 
     /**

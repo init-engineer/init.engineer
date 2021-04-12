@@ -49,6 +49,7 @@ class CreateSocialCardsTable extends Migration
             $table->morphs('model');
             $table->string('name')->nullable()->comment('廣告名稱');
             $table->json('picture')->nullable()->comment('圖片資訊');
+            $table->json('deploy')->default('[]')->comment('部署文章');
             $table->integer('probability')->default(0)->comment('部署機率');
             $table->unsignedTinyInteger('payment')->default(0)->comment('付款狀態');
             $table->unsignedTinyInteger('active')->default(1)->comment('啟用');
