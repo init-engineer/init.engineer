@@ -27,7 +27,8 @@ class SocialAdsTableSeeder extends Seeder
                 'model_id' => 1,
                 'name' => '橫幅廣告測試，已付款、已啟用',
                 'picture' => json_encode(array(
-                    'storage' => 'img/default/banner-ads.png',
+                    'local' => 'img/default/banner-ads.png',
+                    'storage' => null,
                     'imgur' => null,
                 )),
                 'probability' => 1000,
@@ -42,7 +43,8 @@ class SocialAdsTableSeeder extends Seeder
                 'model_id' => 1,
                 'name' => '橫幅廣告測試，未付款、已啟用',
                 'picture' => json_encode(array(
-                    'storage' => 'img/default/banner-ads.png',
+                    'local' => 'img/default/banner-ads.png',
+                    'storage' => null,
                     'imgur' => null,
                 )),
                 'probability' => 1000,
@@ -57,7 +59,8 @@ class SocialAdsTableSeeder extends Seeder
                 'model_id' => 1,
                 'name' => '橫幅廣告測試，未付款、未啟用',
                 'picture' => json_encode(array(
-                    'storage' => 'img/default/banner-ads.png',
+                    'local' => 'img/default/banner-ads.png',
+                    'storage' => null,
                     'imgur' => null,
                 )),
                 'probability' => 1000,

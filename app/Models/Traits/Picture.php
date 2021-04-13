@@ -21,6 +21,10 @@ trait Picture
             if (isset($picture['storage']) && $picture['storage'] !== null) {
                 return asset('storage/' . $picture['storage']);
             }
+
+            if (isset($picture['local']) && $picture['local'] !== null) {
+                return asset($picture['local']);
+            }
         }
 
         return asset('img/default/960x240.png');
@@ -54,6 +58,7 @@ trait Picture
     public function setPicture(array $data)
     {
         $picture = json_decode($this->picture, true);
+        $picture['local'] = $data['local'] ?? $picture['local'] ?? null;
         $picture['storage'] = $data['storage'] ?? $picture['storage'] ?? null;
         $picture['imgur'] = $data['imgur'] ?? $picture['imgur'] ?? null;
 
@@ -70,6 +75,7 @@ trait Picture
         static::creating(function ($model) {
             if (!$model->{$model->getPictureName()}) {
                 $model->{$model->getPictureName()} = json_encode(array(
+                    'local' => null,
                     'storage' => null,
                     'imgur' => null,
                 ));
