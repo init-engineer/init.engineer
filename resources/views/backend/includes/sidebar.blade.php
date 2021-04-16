@@ -1,11 +1,12 @@
 <div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
     <div class="c-sidebar-brand d-lg-down-none">
-        <svg class="c-sidebar-brand-full" width="118" height="46" alt="CoreUI Logo">
+        <img src="{{ asset('img/brand/logo-light.png') }}" width="128" alt="INIT.ENGINEER Logo">
+        {{-- <svg class="c-sidebar-brand-full" width="118" height="46" alt="CoreUI Logo">
             <use xlink:href="{{ asset('img/brand/coreui.svg#full') }}"></use>
-        </svg>
-        <svg class="c-sidebar-brand-minimized" width="46" height="46" alt="CoreUI Logo">
+        </svg> --}}
+        {{-- <svg class="c-sidebar-brand-minimized" width="46" height="46" alt="CoreUI Logo">
             <use xlink:href="{{ asset('img/brand/coreui.svg#signet') }}"></use>
-        </svg>
+        </svg> --}}
     </div><!--c-sidebar-brand-->
 
     <ul class="c-sidebar-nav">
@@ -127,7 +128,7 @@
                     href="#"
                     icon="c-sidebar-nav-icon cil-chat-bubble"
                     class="c-sidebar-nav-dropdown-toggle"
-                    :text="__('Social')" />
+                    :text="__('Social Sidebar')" />
 
                 <ul class="c-sidebar-nav-dropdown-items">
                     @if (

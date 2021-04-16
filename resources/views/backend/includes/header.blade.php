@@ -4,9 +4,10 @@
     </button>
 
     <a class="c-header-brand d-lg-none" href="#">
-        <svg width="118" height="46" alt="CoreUI Logo">
+        <img src="{{ asset('img/brand/logo-dark.png') }}" width="128" alt="INIT.ENGINEER Logo">
+        {{-- <svg width="118" height="46" alt="CoreUI Logo">
             <use xlink:href="{{ asset('img/brand/coreui.svg#full') }}"></use>
-        </svg>
+        </svg> --}}
     </a>
 
     <button class="c-header-toggler c-class-toggler mfs-3 d-md-down-none" type="button" data-target="#sidebar" data-class="c-sidebar-lg-show" responsive="true">
