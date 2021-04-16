@@ -17,8 +17,17 @@ class SocialAdsTable extends TableComponent
 
     /**
      * @var string
+     *
+     * The initial field to be sorting by.
      */
     public $sortField = 'name';
+
+    /**
+     * @var string
+     *
+     * The initial direction to sort.
+     */
+    public $sortDirection = 'desc';
 
     /**
      * @var string
@@ -29,12 +38,17 @@ class SocialAdsTable extends TableComponent
      * @var array
      */
     protected $options = [
-        'bootstrap.container' => false,
+        // The class set on the table when using bootstrap
         'bootstrap.classes.table' => 'table table-striped',
+
+        // Whether or not the table is wrapped in a `.container-fluid` or not
+        'bootstrap.container' => false,
     ];
 
     /**
-     * @param  string  $status
+     * @param string $status
+     *
+     * @return void
      */
     public function mount($status = 'active'): void
     {
@@ -67,7 +81,7 @@ class SocialAdsTable extends TableComponent
                 ->searchable()
                 ->sortable(),
             Column::make(__('Probability'), 'probability')
-                ->format(function(Ads $model) {
+                ->format(function (Ads $model) {
                     return $this->html(sprintf(
                         '<div style="position: inherit;">
                             <strong style="font-weight: 600; font-size: 24px; color: #597a96; display: inherit;">%s</strong>
@@ -78,19 +92,19 @@ class SocialAdsTable extends TableComponent
                 ->searchable()
                 ->sortable(),
             Column::make(__('Active'), 'active')
-                ->format(function(Ads $model) {
+                ->format(function (Ads $model) {
                     return $this->html(view('backend.social.ads.includes.active', ['ads' => $model]));
                 })
                 ->searchable()
                 ->sortable(),
             Column::make(__('Payment Status'), 'payment')
-                ->format(function(Ads $model) {
+                ->format(function (Ads $model) {
                     return $this->html(view('backend.social.ads.includes.payment', ['ads' => $model]));
                 })
                 ->searchable()
                 ->sortable(),
             Column::make(__('Starts At'), 'starts_at')
-                ->format(function(Ads $model) {
+                ->format(function (Ads $model) {
                     return $this->html(sprintf(
                         '<div style="position: inherit;">
                             <strong style="font-weight: 600; font-size: 16px; color: #597a96; display: inherit;">%s</strong>
@@ -103,7 +117,7 @@ class SocialAdsTable extends TableComponent
                 ->searchable()
                 ->sortable(),
             Column::make(__('Ends At'), 'ends_at')
-                ->format(function(Ads $model) {
+                ->format(function (Ads $model) {
                     return $this->html(sprintf(
                         '<div style="position: inherit;">
                             <strong style="font-weight: 600; font-size: 16px; color: #597a96; display: inherit;">%s</strong>

@@ -18,8 +18,17 @@ class AnnouncementTable extends TableComponent
 
     /**
      * @var string
+     *
+     * The initial field to be sorting by.
      */
     public $sortField = 'message';
+
+    /**
+     * @var string
+     *
+     * The initial direction to sort.
+     */
+    public $sortDirection = 'desc';
 
     /**
      * @var string
@@ -30,12 +39,17 @@ class AnnouncementTable extends TableComponent
      * @var array
      */
     protected $options = [
-        'bootstrap.container' => false,
+        // The class set on the table when using bootstrap
         'bootstrap.classes.table' => 'table table-striped',
+
+        // Whether or not the table is wrapped in a `.container-fluid` or not
+        'bootstrap.container' => false,
     ];
 
     /**
-     * @param  string  $status
+     * @param string $status
+     *
+     * @return void
      */
     public function mount($status = 'enabled'): void
     {
@@ -77,13 +91,13 @@ class AnnouncementTable extends TableComponent
                 ->searchable()
                 ->sortable(),
             Column::make(__('Enabled Status'), 'enabled')
-                ->format(function(Announcement $model) {
+                ->format(function (Announcement $model) {
                     return $this->html(view('backend.announcement.includes.status', ['announcement' => $model]));
                 })
                 ->searchable()
                 ->sortable(),
             Column::make(__('Starts At'), 'starts_at')
-                ->format(function(Announcement $model) {
+                ->format(function (Announcement $model) {
                     if ($model->starts_at) {
                         return $this->html(sprintf(
                             '<div style="position: inherit;">
@@ -100,7 +114,7 @@ class AnnouncementTable extends TableComponent
                 ->searchable()
                 ->sortable(),
             Column::make(__('Ends At'), 'ends_at')
-                ->format(function(Announcement $model) {
+                ->format(function (Announcement $model) {
                     if ($model->ends_at) {
                         return $this->html(sprintf(
                             '<div style="position: inherit;">

@@ -17,6 +17,8 @@ class SocialPlatformTable extends TableComponent
 
     /**
      * @var string
+     *
+     * The initial field to be sorting by.
      */
     public $sortField = 'name';
 
@@ -29,12 +31,17 @@ class SocialPlatformTable extends TableComponent
      * @var array
      */
     protected $options = [
-        'bootstrap.container' => false,
+        // The class set on the table when using bootstrap
         'bootstrap.classes.table' => 'table table-striped',
+
+        // Whether or not the table is wrapped in a `.container-fluid` or not
+        'bootstrap.container' => false,
     ];
 
     /**
-     * @param  string  $status
+     * @param string $status
+     *
+     * @return void
      */
     public function mount($status = 'active'): void
     {
@@ -67,13 +74,13 @@ class SocialPlatformTable extends TableComponent
                 ->searchable()
                 ->sortable(),
             Column::make(__('Type'), 'type')
-                ->format(function(Platform $model) {
+                ->format(function (Platform $model) {
                     return $this->html(view('backend.social.platform.includes.type', ['platform' => $model]));
                 })
                 ->searchable()
                 ->sortable(),
             Column::make(__('Active'), 'active')
-                ->format(function(Platform $model) {
+                ->format(function (Platform $model) {
                     return $this->html(view('backend.social.platform.includes.active', ['platform' => $model]));
                 })
                 ->searchable()

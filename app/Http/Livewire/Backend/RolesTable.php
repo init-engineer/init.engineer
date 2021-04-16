@@ -18,6 +18,8 @@ class RolesTable extends TableComponent
 
     /**
      * @var string
+     *
+     * The initial field to be sorting by.
      */
     public $sortField = 'name';
 
@@ -25,8 +27,11 @@ class RolesTable extends TableComponent
      * @var array
      */
     protected $options = [
-        'bootstrap.container' => false,
+        // The class set on the table when using bootstrap
         'bootstrap.classes.table' => 'table table-striped',
+
+        // Whether or not the table is wrapped in a `.container-fluid` or not
+        'bootstrap.container' => false,
     ];
 
     /**
@@ -63,7 +68,7 @@ class RolesTable extends TableComponent
             Column::make(__('Permissions'), 'permissions_label')
                 ->searchable(function ($builder, $term) {
                     return $builder->orWhereHas('permissions', function ($query) use ($term) {
-                        return $query->where('name', 'like', '%'.$term.'%');
+                        return $query->where('name', 'like', '%' . $term . '%');
                     });
                 })
                 ->format(function (Role $model) {

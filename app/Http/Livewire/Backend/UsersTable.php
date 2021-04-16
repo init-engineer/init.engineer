@@ -17,6 +17,8 @@ class UsersTable extends TableComponent
 
     /**
      * @var string
+     *
+     * The initial field to be sorting by.
      */
     public $sortField = 'name';
 
@@ -29,12 +31,17 @@ class UsersTable extends TableComponent
      * @var array
      */
     protected $options = [
-        'bootstrap.container' => false,
+        // The class set on the table when using bootstrap
         'bootstrap.classes.table' => 'table table-striped',
+
+        // Whether or not the table is wrapped in a `.container-fluid` or not
+        'bootstrap.container' => false,
     ];
 
     /**
-     * @param  string  $status
+     * @param string $status
+     *
+     * @return void
      */
     public function mount($status = 'active'): void
     {
@@ -95,7 +102,7 @@ class UsersTable extends TableComponent
             Column::make(__('Roles'), 'roles_label')
                 ->searchable(function ($builder, $term) {
                     return $builder->orWhereHas('roles', function ($query) use ($term) {
-                        return $query->where('name', 'like', '%'.$term.'%');
+                        return $query->where('name', 'like', '%' . $term . '%');
                     });
                 })
                 ->format(function (User $model) {
@@ -104,7 +111,7 @@ class UsersTable extends TableComponent
             Column::make(__('Additional Permissions'), 'permissions_label')
                 ->searchable(function ($builder, $term) {
                     return $builder->orWhereHas('permissions', function ($query) use ($term) {
-                        return $query->where('name', 'like', '%'.$term.'%');
+                        return $query->where('name', 'like', '%' . $term . '%');
                     });
                 })
                 ->format(function (User $model) {
