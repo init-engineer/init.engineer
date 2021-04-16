@@ -2,8 +2,8 @@
 
 namespace App\Domains\Social\Models\Traits\Relationship;
 
-use App\Models\Social\Cards;
-use App\Models\Social\Platform;
+use App\Domains\Social\Models\Cards;
+use App\Domains\Social\Models\Platform;
 
 /**
  * Trait CommentsRelationship.
