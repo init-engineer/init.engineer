@@ -75,7 +75,13 @@ class SocialPlatformTable extends TableComponent
                 ->sortable(),
             Column::make(__('Type'), 'type')
                 ->format(function (Platform $model) {
-                    return $this->html(view('backend.social.platform.includes.type', ['platform' => $model]));
+                    return $this->html(
+                        sprintf(
+                            '<img src="%s" class="img-fluid" style="width: 32px;" alt="%s" />',
+                            asset('img/icon/' . $model->type . '.png'),
+                            ucfirst($model->type),
+                        )
+                    );
                 })
                 ->searchable()
                 ->sortable(),
