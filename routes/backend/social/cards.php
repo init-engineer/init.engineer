@@ -1,6 +1,10 @@
 <?php
 
+use App\Domains\Social\Http\Controllers\Backend\Cards\CardsController;
+use App\Domains\Social\Http\Controllers\Backend\Cards\DeactivatedCardsController;
+use App\Domains\Social\Http\Controllers\Backend\Cards\DeletedCardsController;
 use App\Domains\Social\Models\Cards;
+use Illuminate\Support\Str;
 use Tabuna\Breadcrumbs\Trail;
 
 /**
@@ -82,7 +86,7 @@ Route::group([
                     ->middleware('permission:admin.social.cards.list')
                     ->breadcrumbs(function (Trail $trail, Cards $cards) {
                         $trail->parent('admin.social.cards.index')
-                            ->push($cards->name, route('admin.social.cards.show', $cards));
+                            ->push(Str::limit($cards->content, 24, '...'), route('admin.social.cards.show', $cards));
                     });
 
                 Route::patch('mark/{status}', [DeactivatedCardsController::class, 'update'])

@@ -82,7 +82,7 @@ Route::group([
                     ->middleware('permission:admin.social.reviews.list')
                     ->breadcrumbs(function (Trail $trail, Reviews $reviews) {
                         $trail->parent('admin.social.reviews.index')
-                            ->push($reviews->name, route('admin.social.reviews.show', $reviews));
+                            ->push($reviews->id, route('admin.social.reviews.show', $reviews));
                     });
 
                 Route::patch('mark/{status}', [DeactivatedReviewsController::class, 'update'])

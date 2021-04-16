@@ -82,7 +82,7 @@ Route::group([
                     ->middleware('permission:admin.social.comments.list')
                     ->breadcrumbs(function (Trail $trail, Comments $comments) {
                         $trail->parent('admin.social.comments.index')
-                            ->push($comments->name, route('admin.social.comments.show', $comments));
+                            ->push($comments->comment_id, route('admin.social.comments.show', $comments));
                     });
 
                 Route::patch('mark/{status}', [DeactivatedCommentsController::class, 'update'])
