@@ -14,4 +14,12 @@ trait AdsMethod
     {
         return $this->active;
     }
+
+    /**
+     * @return bool
+     */
+    public function isRender()
+    {
+        return $this->render;
+    }
 }

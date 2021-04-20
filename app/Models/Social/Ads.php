@@ -48,6 +48,7 @@ class Ads extends Model
         'number_max',
         'incidence',
         'active',
+        'render',
         'options',
         'started_at',
         'end_at',
@@ -63,6 +64,7 @@ class Ads extends Model
      */
     protected $casts = [
         'active' => 'boolean',
+        'render' => 'boolean',
         'incidence' => 'integer',
     ];
 
