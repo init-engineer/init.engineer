@@ -2,6 +2,7 @@
 
 namespace App\Services\Socials\Images;
 
+use App\Models\Social\Ads;
 use Illuminate\Support\Str;
 use App\Models\Social\Cards;
 use App\Services\BaseService;
@@ -213,89 +214,109 @@ class ImagesService extends BaseService implements ImagesContract
          * 渲染廣告。
          */
         if (isset($cards)) {
+            /**
+             * 隨機抽選廣告。
+             */
             if ($ads = $this->adsRepository->findRandom($cards)) {
-                if ($ads->isRender()) {
-                    $adsImage = imageCreateFromPng(asset($ads->ads_path));
-                    $adsCanvas = imageCreateTrueColor(imageSX($adsImage), imageSY($adsImage));
-                    imageCopy($adsCanvas, $adsImage, 0, 0, 0, 0, imageSX($adsImage), imageSY($adsImage));
+                /**
+                 * 如果廣告類別是需要添增文字的話。
+                 */
+                if ($ads->type === Ads::TYPE_ALL ||
+                    $ads->type === Ads::TYPE_CONTENT) {
+                    $content = $cards->content;
+                    $content = $content . "\n\r------------\n\r【廣告內容】\n\r" . $ads->content . "\n\r------------\n\r";
+                    $cards->content = $content;
+                    $cards->save();
+                }
 
-                    $backgroundRGB = $this->getColorInfo($this->canvasBackgroundColor);
-                    $backgroundRGB = array(255 - $backgroundRGB['red'], 255 - $backgroundRGB['green'], 255 - $backgroundRGB['blue']);
+                /**
+                 * 如果廣告類別是需要渲染圖片的話。
+                 */
+                if ($ads->type === Ads::TYPE_ALL ||
+                    $ads->type === Ads::TYPE_BANNER) {
+                    if ($ads->isRender()) {
+                        $adsImage = imageCreateFromPng(asset($ads->ads_path));
+                        $adsCanvas = imageCreateTrueColor(imageSX($adsImage), imageSY($adsImage));
+                        imageCopy($adsCanvas, $adsImage, 0, 0, 0, 0, imageSX($adsImage), imageSY($adsImage));
 
-                    $textRGB = $this->getColorInfo($this->canvasTextColor);
-                    $textRGB = array($textRGB['red'], $textRGB['green'], $textRGB['blue']);
+                        $backgroundRGB = $this->getColorInfo($this->canvasBackgroundColor);
+                        $backgroundRGB = array(255 - $backgroundRGB['red'], 255 - $backgroundRGB['green'], 255 - $backgroundRGB['blue']);
 
-                    /**
-                     * 如果背景顏色是黑色
-                     */
-                    if ($backgroundRGB[0] == 255 && $backgroundRGB[1] == 255 && $backgroundRGB[2] == 255) {
-                        if ($textRGB[0] == 248 && $textRGB[1] == 249 && $textRGB[2] == 250) {
-                            /**
-                             * 如果背景顏色是黑色
-                             * 且字體顏色是白色，那就甚麼事情都不做
-                             */
+                        $textRGB = $this->getColorInfo($this->canvasTextColor);
+                        $textRGB = array($textRGB['red'], $textRGB['green'], $textRGB['blue']);
+
+                        /**
+                         * 如果背景顏色是黑色
+                         */
+                        if ($backgroundRGB[0] == 255 && $backgroundRGB[1] == 255 && $backgroundRGB[2] == 255) {
+                            if ($textRGB[0] == 248 && $textRGB[1] == 249 && $textRGB[2] == 250) {
+                                /**
+                                 * 如果背景顏色是黑色
+                                 * 且字體顏色是白色，那就甚麼事情都不做
+                                 */
+                            } else {
+                                /**
+                                 * 如果背景顏色是黑色
+                                 * 但文字並不是白色，那就只渲染文字顏色就好
+                                 */
+                                imageFilter($adsCanvas, IMG_FILTER_NEGATE);
+                                imageFilter($adsCanvas, IMG_FILTER_COLORIZE, 255 - $textRGB[0], 255 - $textRGB[1], 255 - $textRGB[2]);
+                                imageFilter($adsCanvas, IMG_FILTER_NEGATE);
+                            }
                         } else {
-                            /**
-                             * 如果背景顏色是黑色
-                             * 但文字並不是白色，那就只渲染文字顏色就好
-                             */
-                            imageFilter($adsCanvas, IMG_FILTER_NEGATE);
-                            imageFilter($adsCanvas, IMG_FILTER_COLORIZE, 255 - $textRGB[0], 255 - $textRGB[1], 255 - $textRGB[2]);
-                            imageFilter($adsCanvas, IMG_FILTER_NEGATE);
+                            if ($textRGB[0] == 248 && $textRGB[1] == 249 && $textRGB[2] == 250) {
+                                /**
+                                 * 如果背景顏色不是黑色
+                                 * 但文字顏色是白色，那麼只要渲染背景顏色就好
+                                 */
+                                imageFilter($adsCanvas, IMG_FILTER_COLORIZE, 255 - $backgroundRGB[0], 255 - $backgroundRGB[1], 255 - $backgroundRGB[2]);
+                            } else {
+                                /**
+                                 * 如果背景顏色不是黑色
+                                 * 且文字顏色也不是白色，那麼背景跟文字都需要被上色
+                                 */
+                                imageFilter($adsCanvas, IMG_FILTER_NEGATE);
+                                imageFilter($adsCanvas, IMG_FILTER_COLORIZE, $textRGB[0], $textRGB[1], $textRGB[2]);
+                                imageFilter($adsCanvas, IMG_FILTER_NEGATE);
+                                imageFilter($adsCanvas, IMG_FILTER_COLORIZE, $backgroundRGB[0], $backgroundRGB[1], $backgroundRGB[2]);
+                                imageFilter($adsCanvas, IMG_FILTER_NEGATE);
+                            }
                         }
+
+                        $adsSY = imageSY($adsCanvas);
+                        $canvasSY = imageSY($this->canvas);
+                        $newCanvasSY = $adsSY + $canvasSY;
+
+                        $newCanvas = imageCreateTrueColor(imageSX($this->canvas), $newCanvasSY);
+                        imageCopy($newCanvas, $this->canvas, 0, 0, 0, 0, imageSX($this->canvas), imageSY($this->canvas));
+                        imageCopy($newCanvas, $adsCanvas, 0, $canvasSY, 0, 0, imageSX($adsCanvas), imageSY($adsCanvas));
+                        $this->canvas = $newCanvas;
                     } else {
-                        if ($textRGB[0] == 248 && $textRGB[1] == 249 && $textRGB[2] == 250) {
-                            /**
-                             * 如果背景顏色不是黑色
-                             * 但文字顏色是白色，那麼只要渲染背景顏色就好
-                             */
-                            imageFilter($adsCanvas, IMG_FILTER_COLORIZE, 255 - $backgroundRGB[0], 255 - $backgroundRGB[1], 255 - $backgroundRGB[2]);
-                        } else {
-                            /**
-                             * 如果背景顏色不是黑色
-                             * 且文字顏色也不是白色，那麼背景跟文字都需要被上色
-                             */
-                            imageFilter($adsCanvas, IMG_FILTER_NEGATE);
-                            imageFilter($adsCanvas, IMG_FILTER_COLORIZE, $textRGB[0], $textRGB[1], $textRGB[2]);
-                            imageFilter($adsCanvas, IMG_FILTER_NEGATE);
-                            imageFilter($adsCanvas, IMG_FILTER_COLORIZE, $backgroundRGB[0], $backgroundRGB[1], $backgroundRGB[2]);
-                            imageFilter($adsCanvas, IMG_FILTER_NEGATE);
-                        }
+                        /**
+                         * 建立透明圖層背景
+                         */
+                        $adsImage = imageCreateFromPng(asset($ads->ads_path));
+                        $adsCanvas = imageCreateTrueColor(imageSX($adsImage), imageSY($adsImage));
+                        $transColour = imageColorAllocateAlpha($adsCanvas, 0, 0, 0, 127);
+                        imageFill($adsCanvas, 0, 0, $transColour);
+                        imageCopy($adsCanvas, $adsImage, 0, 0, 0, 0, imageSX($adsImage), imageSY($adsImage));
+
+                        /**
+                         * 計算 Y 軸
+                         */
+                        $adsSY = imageSY($adsCanvas);
+                        $canvasSY = imageSY($this->canvas);
+                        $newCanvasSY = $adsSY + $canvasSY;
+
+                        /**
+                         * 建立新的圖層並覆蓋
+                         */
+                        $newCanvas = imageCreateTrueColor(imageSX($this->canvas), $newCanvasSY);
+                        imageFill($newCanvas, 0, 0, $this->canvasBackgroundColor);
+                        imageCopy($newCanvas, $this->canvas, 0, 0, 0, 0, imageSX($this->canvas), imageSY($this->canvas));
+                        imageCopy($newCanvas, $adsCanvas, 0, $canvasSY, 0, 0, imageSX($adsCanvas), imageSY($adsCanvas));
+                        $this->canvas = $newCanvas;
                     }
-
-                    $adsSY = imageSY($adsCanvas);
-                    $canvasSY = imageSY($this->canvas);
-                    $newCanvasSY = $adsSY + $canvasSY;
-
-                    $newCanvas = imageCreateTrueColor(imageSX($this->canvas), $newCanvasSY);
-                    imageCopy($newCanvas, $this->canvas, 0, 0, 0, 0, imageSX($this->canvas), imageSY($this->canvas));
-                    imageCopy($newCanvas, $adsCanvas, 0, $canvasSY, 0, 0, imageSX($adsCanvas), imageSY($adsCanvas));
-                    $this->canvas = $newCanvas;
-                } else {
-                    /**
-                     * 建立透明圖層背景
-                     */
-                    $adsImage = imageCreateFromPng(asset($ads->ads_path));
-                    $adsCanvas = imageCreateTrueColor(imageSX($adsImage), imageSY($adsImage));
-                    $transColour = imageColorAllocateAlpha($adsCanvas, 0, 0, 0, 127);
-                    imageFill($adsCanvas, 0, 0, $transColour);
-                    imageCopy($adsCanvas, $adsImage, 0, 0, 0, 0, imageSX($adsImage), imageSY($adsImage));
-
-                    /**
-                     * 計算 Y 軸
-                     */
-                    $adsSY = imageSY($adsCanvas);
-                    $canvasSY = imageSY($this->canvas);
-                    $newCanvasSY = $adsSY + $canvasSY;
-
-                    /**
-                     * 建立新的圖層並覆蓋
-                     */
-                    $newCanvas = imageCreateTrueColor(imageSX($this->canvas), $newCanvasSY);
-                    imageFill($newCanvas, 0, 0, $this->canvasBackgroundColor);
-                    imageCopy($newCanvas, $this->canvas, 0, 0, 0, 0, imageSX($this->canvas), imageSY($this->canvas));
-                    imageCopy($newCanvas, $adsCanvas, 0, $canvasSY, 0, 0, imageSX($adsCanvas), imageSY($adsCanvas));
-                    $this->canvas = $newCanvas;
                 }
             }
         }
@@ -799,7 +820,7 @@ class ImagesService extends BaseService implements ImagesContract
                 imageCopy($this->canvas, $overlayImage, 315, imageSY($this->canvas) - 372, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
                 break;
 
-            /** 不獸控制な思考・発言 */
+                /** 不獸控制な思考・発言 */
             case 'W6FTE8fL66w2u5Xo5s3OxdqmAMpzptvK':
                 $overlayImage = imageCreateFromPng(asset('img/frontend/cards/fragmented_background.png'));
                 imageCopy($this->canvas, $overlayImage, 0, imageSY($this->canvas) - 560, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
