@@ -235,7 +235,7 @@ class ImagesService extends BaseService implements ImagesContract
                 if ($ads->type === Ads::TYPE_ALL ||
                     $ads->type === Ads::TYPE_BANNER) {
                     if ($ads->isRender()) {
-                        $adsImage = imageCreateFromPng(asset($ads->ads_path));
+                        $adsImage = imageCreateFromPng($this->getImageUrl($ads->ads_path));
                         $adsCanvas = imageCreateTrueColor(imageSX($adsImage), imageSY($adsImage));
                         imageCopy($adsCanvas, $adsImage, 0, 0, 0, 0, imageSX($adsImage), imageSY($adsImage));
 
@@ -295,7 +295,7 @@ class ImagesService extends BaseService implements ImagesContract
                         /**
                          * 建立透明圖層背景
                          */
-                        $adsImage = imageCreateFromPng(asset($ads->ads_path));
+                        $adsImage = imageCreateFromPng($this->getImageUrl($ads->ads_path));
                         $adsCanvas = imageCreateTrueColor(imageSX($adsImage), imageSY($adsImage));
                         $transColour = imageColorAllocateAlpha($adsCanvas, 0, 0, 0, 127);
                         imageFill($adsCanvas, 0, 0, $transColour);
@@ -505,7 +505,7 @@ class ImagesService extends BaseService implements ImagesContract
     private function drawingFeature($data)
     {
         if (isset($data['isFeatureToBeCoutinued']) && $data['isFeatureToBeCoutinued']) {
-            $overlayImage = imageCreateFromPng(asset('img/frontend/cards/to_be_continued.png'));
+            $overlayImage = imageCreateFromPng($this->getImageUrl('img/frontend/cards/to_be_continued.png'));
             imageCopy($this->canvas, $overlayImage, 24, $this->canvasHeight - 240, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
         };
     }
@@ -780,28 +780,28 @@ class ImagesService extends BaseService implements ImagesContract
         switch ($theme) {
                 /** 恭迎慈孤觀音 渡世靈顯四方 */
             case '05217b7d4741e38096a54eff4226c217':
-                $overlayImage = imageCreateFromPng(asset('img/frontend/cards/devotion-bg.png'));
+                $overlayImage = imageCreateFromPng($this->getImageUrl('img/frontend/cards/devotion-bg.png'));
                 imageCopy($this->canvas, $overlayImage, 360, 64, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
                 break;
 
                 /** Windows 最棒的畫面 */
             case '32d2a897602ef652ed8e15d66128aa74':
-                $overlayImage = imageCreateFromPng(asset('img/frontend/cards/qrcode.png'));
+                $overlayImage = imageCreateFromPng($this->getImageUrl('img/frontend/cards/qrcode.png'));
                 imageCopy($this->canvas, $overlayImage, 24, imageSY($this->canvas) - 204, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
                 break;
 
                 /** Windows 最棒的畫面 測試人員組件 */
             case 'tumx453xqZLjf5kaFFBzNj4gqVXKWqXz':
-                $overlayImage = imageCreateFromPng(asset('img/frontend/cards/qrcode.png'));
+                $overlayImage = imageCreateFromPng($this->getImageUrl('img/frontend/cards/qrcode.png'));
                 imageCopy($this->canvas, $overlayImage, 24, imageSY($this->canvas) - 204, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
                 break;
 
                 /** 支離滅裂な思考・発言 */
             case '05326525f82b9a036e1bcb53a392ff7c':
-                $overlayImage = imageCreateFromPng(asset('img/frontend/cards/fragmented_background.png'));
+                $overlayImage = imageCreateFromPng($this->getImageUrl('img/frontend/cards/fragmented_background.png'));
                 imageCopy($this->canvas, $overlayImage, 0, imageSY($this->canvas) - 560, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
 
-                $overlayImage = imageCreateFromPng(asset('img/frontend/cards/fragmented_people.png'));
+                $overlayImage = imageCreateFromPng($this->getImageUrl('img/frontend/cards/fragmented_people.png'));
                 imageCopy($this->canvas, $overlayImage, 36, imageSY($this->canvas) - 542, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
 
                 $square_width = $this->canvasWidth - 375;
@@ -816,16 +816,16 @@ class ImagesService extends BaseService implements ImagesContract
                 $top = (72 - $this->canvasHeight * 0.05 > 0) ? 72 - $this->canvasHeight * 0.05 : 20;
                 imageCopy($this->canvas, $newimg, 350, $top, 0, 0, $square_width, $square_height);
 
-                $overlayImage = imageCreateFromPng(asset('img/frontend/cards/fragmented_background_arrow.png'));
+                $overlayImage = imageCreateFromPng($this->getImageUrl('img/frontend/cards/fragmented_background_arrow.png'));
                 imageCopy($this->canvas, $overlayImage, 315, imageSY($this->canvas) - 372, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
                 break;
 
                 /** 不獸控制な思考・発言 */
             case 'W6FTE8fL66w2u5Xo5s3OxdqmAMpzptvK':
-                $overlayImage = imageCreateFromPng(asset('img/frontend/cards/fragmented_background.png'));
+                $overlayImage = imageCreateFromPng($this->getImageUrl('img/frontend/cards/fragmented_background.png'));
                 imageCopy($this->canvas, $overlayImage, 0, imageSY($this->canvas) - 560, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
 
-                $overlayImage = imageCreateFromPng(asset('img/frontend/cards/fragmented_wolf.png'));
+                $overlayImage = imageCreateFromPng($this->getImageUrl('img/frontend/cards/fragmented_wolf.png'));
                 imageCopy($this->canvas, $overlayImage, 12, imageSY($this->canvas) - 482, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
 
                 $square_width = $this->canvasWidth - 375;
@@ -840,7 +840,7 @@ class ImagesService extends BaseService implements ImagesContract
                 $top = (72 - $this->canvasHeight * 0.05 > 0) ? 72 - $this->canvasHeight * 0.05 : 20;
                 imageCopy($this->canvas, $newimg, 350, $top, 0, 0, $square_width, $square_height);
 
-                $overlayImage = imageCreateFromPng(asset('img/frontend/cards/fragmented_background_arrow.png'));
+                $overlayImage = imageCreateFromPng($this->getImageUrl('img/frontend/cards/fragmented_background_arrow.png'));
                 imageCopy($this->canvas, $overlayImage, 315, imageSY($this->canvas) - 372, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
                 break;
 
@@ -913,5 +913,14 @@ class ImagesService extends BaseService implements ImagesContract
         $rgb = imageColorSforIndex($canvas, $color);
 
         return $rgb;
+    }
+
+    /**
+     * 取得圖片網址的方式。
+     */
+    private function getImageUrl(string $url)
+    {
+        // return 'https://init.engineer/' . $url;
+        return asset($url);
     }
 }
