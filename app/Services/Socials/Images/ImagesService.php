@@ -77,6 +77,13 @@ class ImagesService extends BaseService implements ImagesContract
     protected $canvasAngle = 0;
 
     /**
+     * Ads 廣告
+     *
+     * @var bool|Ads
+     */
+    protected $ads = false;
+
+    /**
      * @var AdsRepository
      */
     protected $adsRepository;
@@ -150,11 +157,18 @@ class ImagesService extends BaseService implements ImagesContract
                 $this->canvasWidth += 349;
                 break;
 
-                /** 不獸控制な思考・発言 */
+                /** 不獣控制な思考・発言 */
             case 'W6FTE8fL66w2u5Xo5s3OxdqmAMpzptvK':
                 $this->canvasHeight += 140;
                 $this->canvasWidth += 349;
                 break;
+        }
+
+        /**
+         * 隨機抽選廣告。
+         */
+        if ($this->ads = $this->adsRepository->findRandom($cards)) {
+            $this->canvasHeight += 240;
         }
 
         /**
@@ -169,6 +183,9 @@ class ImagesService extends BaseService implements ImagesContract
         $this->drawingUrl($data['themeStyle']);
         $this->drawingFeature($data);
 
+        /**
+         * 渲染管理員外框。
+         */
         if (isset($data['isManagerLine']) && $data['isManagerLine']) {
             $this->drawingManagerLine();
         }
@@ -213,111 +230,107 @@ class ImagesService extends BaseService implements ImagesContract
         /**
          * 渲染廣告。
          */
-        if (isset($cards)) {
+        if ($this->ads !== false) {
             /**
-             * 隨機抽選廣告。
+             * 如果廣告類別是需要添增文字的話。
              */
-            if ($ads = $this->adsRepository->findRandom($cards)) {
+            if (
+                $this->ads->type === Ads::TYPE_ALL ||
+                $this->ads->type === Ads::TYPE_CONTENT
+            ) {
+                $content = $cards->content;
+                $content = $content . "\n\r------------\n\r【廣告內容】\n\r" . $this->ads->content . "\n\r------------\n\r";
+                $cards->content = $content;
+                $cards->save();
+            }
+
+            /**
+             * 如果廣告類別是需要渲染圖片的話。
+             */
+            if (
+                $this->ads->type === Ads::TYPE_ALL ||
+                $this->ads->type === Ads::TYPE_BANNER
+            ) {
                 /**
-                 * 如果廣告類別是需要添增文字的話。
+                 * 建立透明圖層背景
                  */
-                if ($ads->type === Ads::TYPE_ALL ||
-                    $ads->type === Ads::TYPE_CONTENT) {
-                    $content = $cards->content;
-                    $content = $content . "\n\r------------\n\r【廣告內容】\n\r" . $ads->content . "\n\r------------\n\r";
-                    $cards->content = $content;
-                    $cards->save();
-                }
+                $adsImage = imageCreateFromPng($this->getImageUrl($this->ads->ads_path));
+                $adsCanvas = imageCreateTrueColor(imageSX($adsImage), imageSY($adsImage));
+                $transColour = imageColorAllocateAlpha($adsCanvas, 0, 0, 0, 127);
+                imageFill($adsCanvas, 0, 0, $transColour);
+                imageCopy($adsCanvas, $adsImage, 0, 0, 0, 0, imageSX($adsImage), imageSY($adsImage));
 
                 /**
-                 * 如果廣告類別是需要渲染圖片的話。
+                 * 渲染黑白廣告。
                  */
-                if ($ads->type === Ads::TYPE_ALL ||
-                    $ads->type === Ads::TYPE_BANNER) {
-                    if ($ads->isRender()) {
-                        $adsImage = imageCreateFromPng($this->getImageUrl($ads->ads_path));
-                        $adsCanvas = imageCreateTrueColor(imageSX($adsImage), imageSY($adsImage));
-                        imageCopy($adsCanvas, $adsImage, 0, 0, 0, 0, imageSX($adsImage), imageSY($adsImage));
+                if ($this->ads->isRender()) {
+                    /**
+                     * 取得背景 RGB Hex 資訊。
+                     */
+                    $backgroundRGB = $this->getColorInfo($this->canvasBackgroundColor);
+                    $backgroundRGB = array(
+                        255 - $backgroundRGB['red'],
+                        255 - $backgroundRGB['green'],
+                        255 - $backgroundRGB['blue'],
+                    );
 
-                        $backgroundRGB = $this->getColorInfo($this->canvasBackgroundColor);
-                        $backgroundRGB = array(255 - $backgroundRGB['red'], 255 - $backgroundRGB['green'], 255 - $backgroundRGB['blue']);
+                    /**
+                     * 取得文字 RGB Hex 資訊。
+                     */
+                    $textRGB = $this->getColorInfo($this->canvasTextColor);
+                    $textRGB = array(
+                        $textRGB['red'],
+                        $textRGB['green'],
+                        $textRGB['blue'],
+                    );
 
-                        $textRGB = $this->getColorInfo($this->canvasTextColor);
-                        $textRGB = array($textRGB['red'], $textRGB['green'], $textRGB['blue']);
-
-                        /**
-                         * 如果背景顏色是黑色
-                         */
-                        if ($backgroundRGB[0] == 255 && $backgroundRGB[1] == 255 && $backgroundRGB[2] == 255) {
-                            if ($textRGB[0] == 248 && $textRGB[1] == 249 && $textRGB[2] == 250) {
-                                /**
-                                 * 如果背景顏色是黑色
-                                 * 且字體顏色是白色，那就甚麼事情都不做
-                                 */
-                            } else {
-                                /**
-                                 * 如果背景顏色是黑色
-                                 * 但文字並不是白色，那就只渲染文字顏色就好
-                                 */
-                                imageFilter($adsCanvas, IMG_FILTER_NEGATE);
-                                imageFilter($adsCanvas, IMG_FILTER_COLORIZE, 255 - $textRGB[0], 255 - $textRGB[1], 255 - $textRGB[2]);
-                                imageFilter($adsCanvas, IMG_FILTER_NEGATE);
-                            }
+                    /**
+                     * 如果背景顏色是黑色
+                     */
+                    if ($backgroundRGB[0] == 255 && $backgroundRGB[1] == 255 && $backgroundRGB[2] == 255) {
+                        if ($textRGB[0] == 248 && $textRGB[1] == 249 && $textRGB[2] == 250) {
+                            /**
+                             * 如果背景顏色是黑色
+                             * 且字體顏色是白色，那就甚麼事情都不做
+                             */
                         } else {
-                            if ($textRGB[0] == 248 && $textRGB[1] == 249 && $textRGB[2] == 250) {
-                                /**
-                                 * 如果背景顏色不是黑色
-                                 * 但文字顏色是白色，那麼只要渲染背景顏色就好
-                                 */
-                                imageFilter($adsCanvas, IMG_FILTER_COLORIZE, 255 - $backgroundRGB[0], 255 - $backgroundRGB[1], 255 - $backgroundRGB[2]);
-                            } else {
-                                /**
-                                 * 如果背景顏色不是黑色
-                                 * 且文字顏色也不是白色，那麼背景跟文字都需要被上色
-                                 */
-                                imageFilter($adsCanvas, IMG_FILTER_NEGATE);
-                                imageFilter($adsCanvas, IMG_FILTER_COLORIZE, $textRGB[0], $textRGB[1], $textRGB[2]);
-                                imageFilter($adsCanvas, IMG_FILTER_NEGATE);
-                                imageFilter($adsCanvas, IMG_FILTER_COLORIZE, $backgroundRGB[0], $backgroundRGB[1], $backgroundRGB[2]);
-                                imageFilter($adsCanvas, IMG_FILTER_NEGATE);
-                            }
+                            /**
+                             * 如果背景顏色是黑色
+                             * 但文字並不是白色，那就只渲染文字顏色就好
+                             */
+                            imageFilter($adsCanvas, IMG_FILTER_NEGATE);
+                            imageFilter($adsCanvas, IMG_FILTER_COLORIZE, 255 - $textRGB[0], 255 - $textRGB[1], 255 - $textRGB[2]);
+                            imageFilter($adsCanvas, IMG_FILTER_NEGATE);
                         }
-
-                        $adsSY = imageSY($adsCanvas);
-                        $canvasSY = imageSY($this->canvas);
-                        $newCanvasSY = $adsSY + $canvasSY;
-
-                        $newCanvas = imageCreateTrueColor(imageSX($this->canvas), $newCanvasSY);
-                        imageCopy($newCanvas, $this->canvas, 0, 0, 0, 0, imageSX($this->canvas), imageSY($this->canvas));
-                        imageCopy($newCanvas, $adsCanvas, 0, $canvasSY, 0, 0, imageSX($adsCanvas), imageSY($adsCanvas));
-                        $this->canvas = $newCanvas;
                     } else {
-                        /**
-                         * 建立透明圖層背景
-                         */
-                        $adsImage = imageCreateFromPng($this->getImageUrl($ads->ads_path));
-                        $adsCanvas = imageCreateTrueColor(imageSX($adsImage), imageSY($adsImage));
-                        $transColour = imageColorAllocateAlpha($adsCanvas, 0, 0, 0, 127);
-                        imageFill($adsCanvas, 0, 0, $transColour);
-                        imageCopy($adsCanvas, $adsImage, 0, 0, 0, 0, imageSX($adsImage), imageSY($adsImage));
-
-                        /**
-                         * 計算 Y 軸
-                         */
-                        $adsSY = imageSY($adsCanvas);
-                        $canvasSY = imageSY($this->canvas);
-                        $newCanvasSY = $adsSY + $canvasSY;
-
-                        /**
-                         * 建立新的圖層並覆蓋
-                         */
-                        $newCanvas = imageCreateTrueColor(imageSX($this->canvas), $newCanvasSY);
-                        imageFill($newCanvas, 0, 0, $this->canvasBackgroundColor);
-                        imageCopy($newCanvas, $this->canvas, 0, 0, 0, 0, imageSX($this->canvas), imageSY($this->canvas));
-                        imageCopy($newCanvas, $adsCanvas, 0, $canvasSY, 0, 0, imageSX($adsCanvas), imageSY($adsCanvas));
-                        $this->canvas = $newCanvas;
+                        if ($textRGB[0] == 248 && $textRGB[1] == 249 && $textRGB[2] == 250) {
+                            /**
+                             * 如果背景顏色不是黑色
+                             * 但文字顏色是白色，那麼只要渲染背景顏色就好
+                             */
+                            imageFilter($adsCanvas, IMG_FILTER_COLORIZE, 255 - $backgroundRGB[0], 255 - $backgroundRGB[1], 255 - $backgroundRGB[2]);
+                        } else {
+                            /**
+                             * 如果背景顏色不是黑色
+                             * 且文字顏色也不是白色，那麼背景跟文字都需要被上色
+                             */
+                            imageFilter($adsCanvas, IMG_FILTER_NEGATE);
+                            imageFilter($adsCanvas, IMG_FILTER_COLORIZE, $textRGB[0], $textRGB[1], $textRGB[2]);
+                            imageFilter($adsCanvas, IMG_FILTER_NEGATE);
+                            imageFilter($adsCanvas, IMG_FILTER_COLORIZE, $backgroundRGB[0], $backgroundRGB[1], $backgroundRGB[2]);
+                            imageFilter($adsCanvas, IMG_FILTER_NEGATE);
+                        }
                     }
                 }
+
+                /**
+                 * 建立新的圖層並覆蓋
+                 */
+                $newCanvas = imageCreateTrueColor(imageSX($this->canvas), imageSY($this->canvas));
+                imageFill($newCanvas, 0, 0, $this->canvasBackgroundColor);
+                imageCopy($newCanvas, $this->canvas, 0, 0, 0, 0, imageSX($this->canvas), imageSY($this->canvas));
+                imageCopy($newCanvas, $adsCanvas, 0, imageSY($this->canvas) - 240, 0, 0, imageSX($adsCanvas), imageSY($adsCanvas));
+                $this->canvas = $newCanvas;
             }
         }
 
@@ -385,24 +398,26 @@ class ImagesService extends BaseService implements ImagesContract
         switch ($theme) {
                 /** Windows 最棒的畫面 */
             case '32d2a897602ef652ed8e15d66128aa74':
-                imageTTFtext($this->canvas, 26, $this->canvasAngle, 228, $this->canvasHeight - 160, $this->canvasTextColor, $this->canvasFont, '若要深入了解，您稍候可以線上搜尋此:');
-                imageTTFtext($this->canvas, 26, $this->canvasAngle, 228, $this->canvasHeight - 120, $this->canvasTextColor, $this->canvasFont, sprintf('%s 0xINIT_ENGINEER', app_name()));
-                imageTTFtext($this->canvas, 26, $this->canvasAngle, 228, $this->canvasHeight - 40,  $this->canvasTextColor, $this->canvasFont, sprintf('請訪問 %s', app_url()));
+                imageTTFtext($this->canvas, 26, $this->canvasAngle, 228, ($this->ads === false) ? $this->canvasHeight - 160 : $this->canvasHeight - 400, $this->canvasTextColor, $this->canvasFont, '若要深入了解，您稍候可以線上搜尋此:');
+                imageTTFtext($this->canvas, 26, $this->canvasAngle, 228, ($this->ads === false) ? $this->canvasHeight - 120 : $this->canvasHeight - 360, $this->canvasTextColor, $this->canvasFont, sprintf('%s 0xINIT_ENGINEER', app_name()));
+                imageTTFtext($this->canvas, 26, $this->canvasAngle, 228, ($this->ads === false) ? $this->canvasHeight - 40 : $this->canvasHeight - 280,  $this->canvasTextColor, $this->canvasFont, sprintf('請訪問 %s', app_url()));
                 break;
 
                 /** Windows 最棒的畫面 測試人員組件 */
             case 'tumx453xqZLjf5kaFFBzNj4gqVXKWqXz':
-                imageTTFtext($this->canvas, 26, $this->canvasAngle, 228, $this->canvasHeight - 160, $this->canvasTextColor, $this->canvasFont, '若要深入了解，您稍候可以線上搜尋此:');
-                imageTTFtext($this->canvas, 26, $this->canvasAngle, 228, $this->canvasHeight - 120, $this->canvasTextColor, $this->canvasFont, sprintf('%s 0xINIT_ENGINEER', app_name()));
-                imageTTFtext($this->canvas, 26, $this->canvasAngle, 228, $this->canvasHeight - 40,  $this->canvasTextColor, $this->canvasFont, sprintf('請訪問 %s', app_url()));
+                imageTTFtext($this->canvas, 26, $this->canvasAngle, 228, ($this->ads === false) ? $this->canvasHeight - 160 : $this->canvasHeight - 400, $this->canvasTextColor, $this->canvasFont, '若要深入了解，您稍候可以線上搜尋此:');
+                imageTTFtext($this->canvas, 26, $this->canvasAngle, 228, ($this->ads === false) ? $this->canvasHeight - 120 : $this->canvasHeight - 360, $this->canvasTextColor, $this->canvasFont, sprintf('%s 0xINIT_ENGINEER', app_name()));
+                imageTTFtext($this->canvas, 26, $this->canvasAngle, 228, ($this->ads === false) ? $this->canvasHeight - 40 : $this->canvasHeight - 280,  $this->canvasTextColor, $this->canvasFont, sprintf('請訪問 %s', app_url()));
                 break;
 
+                /** 支離滅裂な思考・発言 */
             case '05326525f82b9a036e1bcb53a392ff7c':
                 $fontSize   = 24;
                 $fontWidth  = imageFontWidth($fontSize) * strlen(app_name());
                 $fontHeight = imageFontHeight($fontSize);
                 $xPoint     = $this->canvasWidth - ($fontWidth * 1.2) - $fontSize;
                 $yPoint     = $this->canvasHeight - $fontHeight - $fontSize;
+                $yPoint     = ($this->ads === false) ? $yPoint : $yPoint - 240;
                 $content    = mb_convert_encoding(app_name(), 'UTF-8', 'auto');
                 imageTTFtext($this->canvas, $fontSize, $this->canvasAngle, $xPoint, $yPoint, $this->canvasTextColor, $this->canvasFont, $content);
 
@@ -411,6 +426,7 @@ class ImagesService extends BaseService implements ImagesContract
                 $fontHeight = imageFontHeight($fontSize);
                 $xPoint     = 360;
                 $yPoint     = $this->canvasHeight - 160;
+                $yPoint     = ($this->ads === false) ? $yPoint : $yPoint - 240;
                 $content    = mb_convert_encoding('支離滅裂な', 'UTF-8', 'auto');
                 imageTTFtext($this->canvas, $fontSize, $this->canvasAngle, $xPoint, $yPoint, $this->canvasTextColor, $this->canvasFont, $content);
 
@@ -419,25 +435,29 @@ class ImagesService extends BaseService implements ImagesContract
                 $fontHeight = imageFontHeight($fontSize);
                 $xPoint     = 360;
                 $yPoint     = $this->canvasHeight - 80;
+                $yPoint     = ($this->ads === false) ? $yPoint : $yPoint - 240;
                 $content    = mb_convert_encoding('思考・発言', 'UTF-8', 'auto');
                 imageTTFtext($this->canvas, $fontSize, $this->canvasAngle, $xPoint, $yPoint, $this->canvasTextColor, $this->canvasFont, $content);
                 break;
 
+                /** 不獣控制な思考・発言 */
             case 'W6FTE8fL66w2u5Xo5s3OxdqmAMpzptvK':
                 $fontSize   = 24;
                 $fontWidth  = imageFontWidth($fontSize) * strlen(app_name());
                 $fontHeight = imageFontHeight($fontSize);
                 $xPoint     = $this->canvasWidth - ($fontWidth * 1.2) - $fontSize;
                 $yPoint     = $this->canvasHeight - $fontHeight - $fontSize;
+                $yPoint     = ($this->ads === false) ? $yPoint : $yPoint - 240;
                 $content    = mb_convert_encoding(app_name(), 'UTF-8', 'auto');
                 imageTTFtext($this->canvas, $fontSize, $this->canvasAngle, $xPoint, $yPoint, $this->canvasTextColor, $this->canvasFont, $content);
 
                 $fontSize   = 48;
-                $fontWidth  = imageFontWidth($fontSize) * strlen('不獸控制な');
+                $fontWidth  = imageFontWidth($fontSize) * strlen('不獣控制な');
                 $fontHeight = imageFontHeight($fontSize);
                 $xPoint     = 360;
                 $yPoint     = $this->canvasHeight - 160;
-                $content    = mb_convert_encoding('不獸控制な', 'UTF-8', 'auto');
+                $yPoint     = ($this->ads === false) ? $yPoint : $yPoint - 240;
+                $content    = mb_convert_encoding('不獣控制な', 'UTF-8', 'auto');
                 imageTTFtext($this->canvas, $fontSize, $this->canvasAngle, $xPoint, $yPoint, $this->canvasTextColor, $this->canvasFont, $content);
 
                 $fontSize   = 48;
@@ -445,6 +465,7 @@ class ImagesService extends BaseService implements ImagesContract
                 $fontHeight = imageFontHeight($fontSize);
                 $xPoint     = 360;
                 $yPoint     = $this->canvasHeight - 80;
+                $yPoint     = ($this->ads === false) ? $yPoint : $yPoint - 240;
                 $content    = mb_convert_encoding('思考・発言', 'UTF-8', 'auto');
                 imageTTFtext($this->canvas, $fontSize, $this->canvasAngle, $xPoint, $yPoint, $this->canvasTextColor, $this->canvasFont, $content);
                 break;
@@ -455,6 +476,7 @@ class ImagesService extends BaseService implements ImagesContract
                 $fontHeight = imageFontHeight($fontSize);
                 $xPoint     = $this->canvasWidth - ($fontWidth * 1.2) - $fontSize;
                 $yPoint     = $this->canvasHeight - $fontHeight - $fontSize;
+                $yPoint     = ($this->ads === false) ? $yPoint : $yPoint - 240;
                 $content    = mb_convert_encoding(app_name(), 'UTF-8', 'auto');
                 imageTTFtext($this->canvas, $fontSize, $this->canvasAngle, $xPoint, $yPoint, $this->canvasTextColor, $this->canvasFont, $content);
                 break;
@@ -488,6 +510,7 @@ class ImagesService extends BaseService implements ImagesContract
                 $fontHeight = imageFontHeight($fontSize);
                 $xPoint     = $fontSize;
                 $yPoint     = $this->canvasHeight - $fontHeight - $fontSize;
+                $yPoint     = ($this->ads === false) ? $yPoint : $yPoint - 240;
                 $content    = mb_convert_encoding(sprintf('發文傳送門 %s', app_url()), 'UTF-8', 'auto');
                 imageTTFtext($this->canvas, $fontSize, $this->canvasAngle, $xPoint, $yPoint, $this->canvasTextColor, $this->canvasFont, $content);
                 break;
@@ -506,7 +529,32 @@ class ImagesService extends BaseService implements ImagesContract
     {
         if (isset($data['isFeatureToBeCoutinued']) && $data['isFeatureToBeCoutinued']) {
             $overlayImage = imageCreateFromPng($this->getImageUrl('img/frontend/cards/to_be_continued.png'));
-            imageCopy($this->canvas, $overlayImage, 24, $this->canvasHeight - 240, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
+            $xPoint = 24;
+            $yPoint = ($this->ads === false) ? $this->canvasHeight - 240 : $this->canvasHeight - 480;
+            switch ($data['themeStyle']) {
+                    /** Windows 最棒的畫面 */
+                case '32d2a897602ef652ed8e15d66128aa74':
+                    $yPoint = $yPoint - 140;
+                    break;
+
+                    /** Windows 最棒的畫面 測試人員組件 */
+                case 'tumx453xqZLjf5kaFFBzNj4gqVXKWqXz':
+                    $yPoint = $yPoint - 140;
+                    break;
+
+                    /** 支離滅裂な思考・発言 */
+                case '05326525f82b9a036e1bcb53a392ff7c':
+                    $xPoint = $xPoint + 360;
+                    $yPoint = $yPoint - 168;
+                    break;
+
+                    /** 不獣控制な思考・発言 */
+                case 'W6FTE8fL66w2u5Xo5s3OxdqmAMpzptvK':
+                    $xPoint = $xPoint + 360;
+                    $yPoint = $yPoint - 168;
+                    break;
+            }
+            imageCopy($this->canvas, $overlayImage, $xPoint, $yPoint, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
         };
     }
 
@@ -643,7 +691,7 @@ class ImagesService extends BaseService implements ImagesContract
                 $this->drawingBackgroundImage('05326525f82b9a036e1bcb53a392ff7c');
                 break;
 
-                /** 不獸控制な思考・発言 */
+                /** 不獣控制な思考・発言 */
             case 'W6FTE8fL66w2u5Xo5s3OxdqmAMpzptvK':
                 $this->canvasTextColor = imageColorAllocate($this->canvas, 0, 0, 0);
                 $this->canvasBackgroundColor = imageColorAllocate($this->canvas, 248, 249, 250);
@@ -787,25 +835,30 @@ class ImagesService extends BaseService implements ImagesContract
                 /** Windows 最棒的畫面 */
             case '32d2a897602ef652ed8e15d66128aa74':
                 $overlayImage = imageCreateFromPng($this->getImageUrl('img/frontend/cards/qrcode.png'));
-                imageCopy($this->canvas, $overlayImage, 24, imageSY($this->canvas) - 204, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
+                $yPoint = ($this->ads === false) ? imageSY($this->canvas) - 204 : imageSY($this->canvas) - 444;
+                imageCopy($this->canvas, $overlayImage, 24, $yPoint, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
                 break;
 
                 /** Windows 最棒的畫面 測試人員組件 */
             case 'tumx453xqZLjf5kaFFBzNj4gqVXKWqXz':
                 $overlayImage = imageCreateFromPng($this->getImageUrl('img/frontend/cards/qrcode.png'));
-                imageCopy($this->canvas, $overlayImage, 24, imageSY($this->canvas) - 204, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
+                $yPoint = ($this->ads === false) ? imageSY($this->canvas) - 204 : imageSY($this->canvas) - 444;
+                imageCopy($this->canvas, $overlayImage, 24, $yPoint, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
                 break;
 
                 /** 支離滅裂な思考・発言 */
             case '05326525f82b9a036e1bcb53a392ff7c':
                 $overlayImage = imageCreateFromPng($this->getImageUrl('img/frontend/cards/fragmented_background.png'));
-                imageCopy($this->canvas, $overlayImage, 0, imageSY($this->canvas) - 560, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
+                $yPoint = ($this->ads === false) ? imageSY($this->canvas) - 560 : imageSY($this->canvas) - 800;
+                imageCopy($this->canvas, $overlayImage, 0, $yPoint, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
 
                 $overlayImage = imageCreateFromPng($this->getImageUrl('img/frontend/cards/fragmented_people.png'));
-                imageCopy($this->canvas, $overlayImage, 36, imageSY($this->canvas) - 542, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
+                $yPoint = ($this->ads === false) ? imageSY($this->canvas) - 542 : imageSY($this->canvas) - 782;
+                imageCopy($this->canvas, $overlayImage, 36, $yPoint, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
 
                 $square_width = $this->canvasWidth - 375;
                 $square_height = $this->canvasHeight - 250;
+                $square_height = ($this->ads === false) ? $square_height : $square_height - 240;
                 $newimg = imageCreateTrueColor($square_width, $square_height);
                 $border = imageColorAllocate($newimg, 0, 0, 0);
                 $fill = imageColorAllocate($newimg, 255, 255, 255);
@@ -817,19 +870,23 @@ class ImagesService extends BaseService implements ImagesContract
                 imageCopy($this->canvas, $newimg, 350, $top, 0, 0, $square_width, $square_height);
 
                 $overlayImage = imageCreateFromPng($this->getImageUrl('img/frontend/cards/fragmented_background_arrow.png'));
-                imageCopy($this->canvas, $overlayImage, 315, imageSY($this->canvas) - 372, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
+                $yPoint = ($this->ads === false) ? imageSY($this->canvas) - 372 : imageSY($this->canvas) - 612;
+                imageCopy($this->canvas, $overlayImage, 315, $yPoint, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
                 break;
 
-                /** 不獸控制な思考・発言 */
+                /** 不獣控制な思考・発言 */
             case 'W6FTE8fL66w2u5Xo5s3OxdqmAMpzptvK':
                 $overlayImage = imageCreateFromPng($this->getImageUrl('img/frontend/cards/fragmented_background.png'));
-                imageCopy($this->canvas, $overlayImage, 0, imageSY($this->canvas) - 560, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
+                $yPoint = ($this->ads === false) ? imageSY($this->canvas) - 560 : imageSY($this->canvas) - 800;
+                imageCopy($this->canvas, $overlayImage, 0, $yPoint, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
 
                 $overlayImage = imageCreateFromPng($this->getImageUrl('img/frontend/cards/fragmented_wolf.png'));
-                imageCopy($this->canvas, $overlayImage, 12, imageSY($this->canvas) - 482, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
+                $yPoint = ($this->ads === false) ? imageSY($this->canvas) - 502 : imageSY($this->canvas) - 742;
+                imageCopy($this->canvas, $overlayImage, 12, $yPoint, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
 
                 $square_width = $this->canvasWidth - 375;
                 $square_height = $this->canvasHeight - 250;
+                $square_height = ($this->ads === false) ? $square_height : $square_height - 240;
                 $newimg = imageCreateTrueColor($square_width, $square_height);
                 $border = imageColorAllocate($newimg, 0, 0, 0);
                 $fill = imageColorAllocate($newimg, 255, 255, 255);
@@ -841,7 +898,8 @@ class ImagesService extends BaseService implements ImagesContract
                 imageCopy($this->canvas, $newimg, 350, $top, 0, 0, $square_width, $square_height);
 
                 $overlayImage = imageCreateFromPng($this->getImageUrl('img/frontend/cards/fragmented_background_arrow.png'));
-                imageCopy($this->canvas, $overlayImage, 315, imageSY($this->canvas) - 372, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
+                $yPoint = ($this->ads === false) ? imageSY($this->canvas) - 372 : imageSY($this->canvas) - 612;
+                imageCopy($this->canvas, $overlayImage, 315, $yPoint, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
                 break;
 
             default:
