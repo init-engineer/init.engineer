@@ -444,7 +444,7 @@ export default {
             }
           },
           {
-            text: "不獸控制な思考・発言",
+            text: "不獣控制な思考・発言",
             class: "bg-light text-dark",
             value: "W6FTE8fL66w2u5Xo5s3OxdqmAMpzptvK",
             color: {
@@ -877,7 +877,7 @@ export default {
         case "W6FTE8fL66w2u5Xo5s3OxdqmAMpzptvK":
           this.canvas.ctx.font = "72px " + this.canvas.font;
           this.canvas.ctx.fillStyle = this.canvas.color;
-          this.canvas.ctx.fillText("不獸控制な", 360, this.canvas.height - 160);
+          this.canvas.ctx.fillText("不獣控制な", 360, this.canvas.height - 160);
           this.canvas.ctx.fillText("思考・発言", 360, this.canvas.height - 80);
           this.canvas.ctx.font = "36px " + this.canvas.font;
           this.canvas.ctx.fillStyle = this.canvas.color;
