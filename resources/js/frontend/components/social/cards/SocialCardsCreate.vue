@@ -1,7 +1,9 @@
 <template>
   <div>
     <marquee-text class="mb-3">
-      <h1 class="color-color-primary">發源自臉書──全台最大工程師廢文社群 (´◓Д◔`) 我看你是不夠敏捷ㄛ？</h1>
+      <h1 class="color-color-primary">
+        發源自臉書──全台最大工程師廢文社群 (´◓Д◔`) 我看你是不夠敏捷ㄛ？
+      </h1>
     </marquee-text>
 
     <div class="row">
@@ -29,7 +31,12 @@
       <div class="col-12 col-md-6">
         <div class="form-group">
           <label class="col-label">預覽</label>
-          <canvas class="rounded mx-auto d-block w-100" width="960" height="720" ref="canvasView">
+          <canvas
+            class="rounded mx-auto d-block w-100"
+            width="960"
+            height="720"
+            ref="canvasView"
+          >
             <!-- 倘若使用者的瀏覽器並不支援 canvas，將會顯示該段內容。 -->
             您的瀏覽器必須支援 HTML5 標籤語法，才能使用圖片(即時)預覽功能。
           </canvas>
@@ -48,7 +55,11 @@
               <label class="col-label">選擇主題樣式(文字、背景顏色)</label>
               <select
                 class="form-control form-control-lg"
-                :class="theme.options.find(option => option.value === theme.selector).class"
+                :class="
+                  theme.options.find(
+                    (option) => option.value === theme.selector
+                  ).class
+                "
                 v-model="theme.selector"
                 @change="onThemeChange($event)"
               >
@@ -57,7 +68,9 @@
                   v-for="option in theme.options"
                   :key="option.value"
                   :value="option.value"
-                >{{ option.text }}</option>
+                >
+                  {{ option.text }}
+                </option>
               </select>
             </div>
             <!--form-group-->
@@ -76,7 +89,9 @@
                   v-for="option in font.options"
                   :key="option.value"
                   :value="option.value"
-                >{{ option.text }}</option>
+                >
+                  {{ option.text }}
+                </option>
               </select>
             </div>
             <!--input-group-->
@@ -101,7 +116,9 @@
             <label
               class="color-color-primary control-label"
               for="to-be-continued"
-            >是否在文章當中繪製 To Be Coutinued，建議主題選擇「黑底白字」</label>
+              >是否在文章當中繪製 To Be
+              Coutinued，建議主題選擇「黑底白字」</label
+            >
           </div>
         </div>
         <!--form-group-->
@@ -126,9 +143,9 @@
             :crop="false"
             ref="avatarInput"
             :customStrings="{
-                            drag: '點我可以直接上傳圖片ㄛ🐱',
-                            change: '換別張圖好惹',
-                        }"
+              drag: '點我可以直接上傳圖片ㄛ🐱',
+              change: '換別張圖好惹',
+            }"
             @change="onAvatarChange"
           ></picture-input>
         </div>
@@ -166,13 +183,16 @@
 1. 本站歡迎網友互相討論發表己見，唯請務必遵守上述規定。
 2. 是否違反上述規定，由版主主觀認定，請謹慎用詞。
 3. 請學習包容各種意見，如遇惡意批評或攻擊之文章，切勿加入爭執，並且善用檢舉，版主會有適當之處理，否則雙方皆依上述規定處理。
-                        </pre>
+                        </pre
+            >
             <hr />
             <div class="pretty p-icon p-smooth">
               <input type="checkbox" id="checkbox" v-model="checked" />
               <div class="state p-success">
                 <i class="icon fas fa-check"></i>
-                <label class="text-danger">我看完了，我願意遵守以上的板規，所以我按了勾勾以表示我同意。</label>
+                <label class="text-danger"
+                  >我看完了，我願意遵守以上的板規，所以我按了勾勾以表示我同意。</label
+                >
               </div>
             </div>
           </div>
@@ -194,7 +214,9 @@
               class="control-input"
               v-model="canvas.is_manager_line"
             />
-            <label class="color-color-primary control-label" for="manager-line">是否在文章當中繪製版主群識別框線</label>
+            <label class="color-color-primary control-label" for="manager-line"
+              >是否在文章當中繪製版主群識別框線</label
+            >
           </div>
         </div>
         <!--form-group-->
@@ -207,7 +229,9 @@
       <div class="col">
         <div class="form-group clearfix">
           <label class="col-label">將文章發表出去</label>
-          <button class="h3 btn btn-block btn-dos btn-lg" @click="publish">發表文章</button>
+          <button class="h3 btn btn-block btn-dos btn-lg" @click="publish">
+            發表文章
+          </button>
         </div>
         <!--form-group-->
       </div>
@@ -230,14 +254,14 @@ export default {
   name: "SocialCardsCreate",
   components: {
     MarqueeText,
-    PictureInput
+    PictureInput,
   },
   props: {
     isAdmin: {
       type: Number,
       required: false,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     return {
@@ -256,8 +280,8 @@ export default {
         font: "Auraka",
         is_manager_line: false,
         feature: {
-          is_to_be_continued: false
-        }
+          is_to_be_continued: false,
+        },
       },
       avatar: null,
       theme: {
@@ -269,8 +293,8 @@ export default {
             value: "2e6046c7387d8fbe9acd700394a3add3",
             color: {
               background: "#000000",
-              text: "#00FF3B"
-            }
+              text: "#00FF3B",
+            },
           },
           {
             text: "黑底黃字",
@@ -278,8 +302,8 @@ export default {
             value: "be551aa525b9d13790278b008a9ec7bf",
             color: {
               background: "#000000",
-              text: "#EBD443"
-            }
+              text: "#EBD443",
+            },
           },
           {
             text: "黑底白字",
@@ -287,8 +311,8 @@ export default {
             value: "8a755c0bd32e29f813c1aa4267357d5a",
             color: {
               background: "#000000",
-              text: "#F8F9FA"
-            }
+              text: "#F8F9FA",
+            },
           },
           {
             text: "黑底紅字",
@@ -296,8 +320,8 @@ export default {
             value: "507d8c23bdcc98850c7be1c1286d5dcf",
             color: {
               background: "#000000",
-              text: "#DC3545"
-            }
+              text: "#DC3545",
+            },
           },
           {
             text: "甜甜香草巧克力熊貓",
@@ -305,8 +329,8 @@ export default {
             value: "7d37ef838c73b3397403eec4bf4f3839",
             color: {
               background: "#E83E8C",
-              text: "#F8F9FA"
-            }
+              text: "#F8F9FA",
+            },
           },
           {
             text: "藍白屏",
@@ -314,8 +338,8 @@ export default {
             value: "4834578267bcb800feb2762d2a3ccff2",
             color: {
               background: "#007BFF",
-              text: "#F8F9FA"
-            }
+              text: "#F8F9FA",
+            },
           },
           {
             text: "PostgreSQL",
@@ -323,8 +347,8 @@ export default {
             value: "dc7b1c2c41639e5cf10f725d60ad8c64",
             color: {
               background: "#F8F9FA",
-              text: "#007BFF"
-            }
+              text: "#007BFF",
+            },
           },
           {
             text: "Laravel",
@@ -332,8 +356,8 @@ export default {
             value: "a5c95b86291ea299fcbe64458ed12702",
             color: {
               background: "#F4645F",
-              text: "#F8F9FA"
-            }
+              text: "#F8F9FA",
+            },
           },
           {
             text: "軟體綠",
@@ -341,8 +365,8 @@ export default {
             value: "731019ad725385614d65fbcc5fb1758e",
             color: {
               background: "#39C5BB",
-              text: "#000000"
-            }
+              text: "#000000",
+            },
           },
           {
             text: "皮卡丘",
@@ -350,8 +374,8 @@ export default {
             value: "9CE44F88A25272B6D9CBB430EBBCFCF1",
             color: {
               background: "#2F3437",
-              text: "#FFD547"
-            }
+              text: "#FFD547",
+            },
           },
           {
             text: "伊布",
@@ -359,8 +383,8 @@ export default {
             value: "640ED62B7D35C1765A05EB8724535A53",
             color: {
               background: "#2F3437",
-              text: "#E7AF56"
-            }
+              text: "#E7AF56",
+            },
           },
           {
             text: "反向 皮卡丘",
@@ -368,8 +392,8 @@ export default {
             value: "9A2E33D968A1AF98B09E26AC63CB6DCB",
             color: {
               background: "#FFD547",
-              text: "#2F3437"
-            }
+              text: "#2F3437",
+            },
           },
           {
             text: "反向 伊布",
@@ -377,8 +401,8 @@ export default {
             value: "98C614FBC16CCF5D5740BD4D4E00757C",
             color: {
               background: "#E7AF56",
-              text: "#2F3437"
-            }
+              text: "#2F3437",
+            },
           },
           {
             text: "新年限定主題",
@@ -386,8 +410,8 @@ export default {
             value: "2be6c9a365a26a12876145e9229639b1",
             color: {
               background: "#A61723",
-              text: "#D8B06A"
-            }
+              text: "#D8B06A",
+            },
           },
           {
             text: "反向 新年限定主題",
@@ -395,8 +419,8 @@ export default {
             value: "b9b8ae80a601616cb9af07aaabe532f4",
             color: {
               background: "#D8B06A",
-              text: "#A61723"
-            }
+              text: "#A61723",
+            },
           },
           {
             text: "恭迎慈孤觀音 渡世靈顯四方",
@@ -404,8 +428,8 @@ export default {
             value: "05217b7d4741e38096a54eff4226c217",
             color: {
               background: "#F11541",
-              text: "#000000"
-            }
+              text: "#000000",
+            },
           },
           {
             text: "Windows 最棒的畫面",
@@ -413,8 +437,8 @@ export default {
             value: "32d2a897602ef652ed8e15d66128aa74",
             color: {
               background: "#007BD0",
-              text: "#F8F9FA"
-            }
+              text: "#F8F9FA",
+            },
           },
           {
             text: "Windows 最棒的畫面 測試人員組件",
@@ -422,8 +446,8 @@ export default {
             value: "tumx453xqZLjf5kaFFBzNj4gqVXKWqXz",
             color: {
               background: "#107C10",
-              text: "#F8F9FA"
-            }
+              text: "#F8F9FA",
+            },
           },
           {
             text: "粉紅色",
@@ -431,8 +455,8 @@ export default {
             value: "j874kwoxi2nh64yt67wtphy9m5dmea4q",
             color: {
               background: "#F8C0C8",
-              text: "#FF5376"
-            }
+              text: "#FF5376",
+            },
           },
           {
             text: "支離滅裂な思考・発言",
@@ -440,8 +464,8 @@ export default {
             value: "05326525f82b9a036e1bcb53a392ff7c",
             color: {
               background: "#F8F9FA",
-              text: "#000000"
-            }
+              text: "#000000",
+            },
           },
           {
             text: "不獣控制な思考・発言",
@@ -449,10 +473,10 @@ export default {
             value: "W6FTE8fL66w2u5Xo5s3OxdqmAMpzptvK",
             color: {
               background: "#F8F9FA",
-              text: "#000000"
-            }
-          }
-        ]
+              text: "#000000",
+            },
+          },
+        ],
       },
       font: {
         selector: "ea98dde8987df3cd8aef75479019b688",
@@ -460,95 +484,95 @@ export default {
           {
             text: "AURAKA 點陣宋字型",
             font: "Auraka",
-            value: "ea98dde8987df3cd8aef75479019b688"
+            value: "ea98dde8987df3cd8aef75479019b688",
           },
           {
             text: "國喬點陣字型",
             font: "KC24M",
-            value: "813ca6cbbd95d7e08fa2af59bc12072d"
+            value: "813ca6cbbd95d7e08fa2af59bc12072d",
           },
           {
             text: "ZPIX 點陣字型",
             font: "Zfull",
-            value: "1b23b3cd9223930ac694b7f29f38ff21"
+            value: "1b23b3cd9223930ac694b7f29f38ff21",
           },
           {
             text: "張海山銳諧體",
             font: "Harmonic",
-            value: "68068fcf50e7cae709cb8ed0b7b9b0f3"
+            value: "68068fcf50e7cae709cb8ed0b7b9b0f3",
           },
           {
             text: "蒙納繁圓點陣",
             font: "MBitmapRoundHK",
-            value: "f762e3a99692b40e5929ab3668606a4a"
+            value: "f762e3a99692b40e5929ab3668606a4a",
           },
           {
             text: "微軟正黑體",
             font: "Microsoft JhengHei",
-            value: "13f5333afe00f8c7e8da7e0b13ec2c94"
+            value: "13f5333afe00f8c7e8da7e0b13ec2c94",
           },
           {
             text: "新細明體",
             font: "Mingliu",
-            value: "c0b5dd764ede0ca105be22cf13ebadff"
+            value: "c0b5dd764ede0ca105be22cf13ebadff",
           },
           {
             text: "標楷體",
             font: "Kaiu",
-            value: "21881fc6a87aca0dd1afc685cb6ee891"
+            value: "21881fc6a87aca0dd1afc685cb6ee891",
           },
           {
             text: "極粗明朝體",
             font: "MatissePro EB",
-            value: "ozke4ri3gkpy7e9c312u5l0w5vr9jdqq"
+            value: "ozke4ri3gkpy7e9c312u5l0w5vr9jdqq",
           },
           {
             text: "台北黑體",
             font: "Taipei Sans TC Beta",
-            value: "yc45sgsfbss490dqgs2g23a7z24slhoj"
+            value: "yc45sgsfbss490dqgs2g23a7z24slhoj",
           },
           {
             text: "搖滾樂♪",
             font: "RocknRoll One-Regular",
-            value: "7yQkdi3Q0lIt0GTZ3GToByiQoQuUGT2c"
+            value: "7yQkdi3Q0lIt0GTZ3GToByiQoQuUGT2c",
           },
           {
             text: "點陣哥特 16",
             font: "DotGothic16-Regular",
-            value: "bxwe3vU47DyWTEM17sLNQTCHOBbB13xh"
+            value: "bxwe3vU47DyWTEM17sLNQTCHOBbB13xh",
           },
           {
             text: "壁壘 XwX",
             font: "Rampart One-Regular",
-            value: "DVAgml6ZFScVZ05aZQmo1bzSZDGtfDZV"
+            value: "DVAgml6ZFScVZ05aZQmo1bzSZDGtfDZV",
           },
           {
             text: "雷鬼 UwU",
             font: "Reggae One-Regular",
-            value: "hfPg6Tb250eMRlEnew2PHEdqzfCK2bbu"
+            value: "hfPg6Tb250eMRlEnew2PHEdqzfCK2bbu",
           },
           {
             text: "戳戳 OwO",
             font: "Stick-Regular",
-            value: "Fwc7qnSDTtQ5gAwDOHJXU251ZovUEEtN"
+            value: "Fwc7qnSDTtQ5gAwDOHJXU251ZovUEEtN",
           },
           {
             text: "克萊一般般",
             font: "Klee One Regular",
-            value: "2EEqzp9EHqHTu1jKGhOZ3lspfsbvwOar"
+            value: "2EEqzp9EHqHTu1jKGhOZ3lspfsbvwOar",
           },
           {
             text: "克萊粗一點",
             font: "Klee One SemiBold",
-            value: "wWyUkCWL5HW8nhw9wwawx0WbVAyxZjEN"
+            value: "wWyUkCWL5HW8nhw9wwawx0WbVAyxZjEN",
           },
           {
             text: "火車便當",
             font: "Train One-Regular",
-            value: "LrDE83PVGCbTlMTShdkpEdna5FrXy1P0"
-          }
-        ]
-      }
+            value: "LrDE83PVGCbTlMTShdkpEdna5FrXy1P0",
+          },
+        ],
+      },
     };
   },
   mounted() {
@@ -558,19 +582,19 @@ export default {
     canvas: {
       content: {
         required,
-        minLength: minLength(6)
-      }
+        minLength: minLength(6),
+      },
     },
     theme: {
       selector: {
-        required
-      }
+        required,
+      },
     },
     font: {
       selector: {
-        required
-      }
-    }
+        required,
+      },
+    },
   },
   methods: {
     onAvatarChange(avatar) {
@@ -588,7 +612,7 @@ export default {
     },
     onThemeChange(event) {
       const theme = this.theme.options.find(
-        option => option.value === this.theme.selector
+        (option) => option.value === this.theme.selector
       );
       this.canvas.color = theme.color.text;
       this.canvas.background_color = theme.color.background;
@@ -597,14 +621,14 @@ export default {
     },
     onFontChange(event) {
       const font = this.font.options.find(
-        option => option.value === this.font.selector
+        (option) => option.value === this.font.selector
       );
       const ffo = new FontFaceObserver(font.font);
       ffo.load(null, 6000).then(
-        function() {
+        function () {
           console.log(font.font + " is available.");
         },
-        function() {
+        function () {
           Swal.fire({
             title: "字體需要一點時間載入，載入完成後將會自動替換字體。",
             width: 600,
@@ -614,7 +638,7 @@ export default {
                             url('/img/frontend/gif/nyan-cat.gif')
                             center left
                             no-repeat
-                        `
+                        `,
           });
         }
       );
@@ -626,8 +650,8 @@ export default {
 
       this.settingCanvasViewSize();
       this.drawingBackground();
-      this.drawingManagerLine();
       this.drawingBackgroundImage();
+      this.drawingManagerLine();
       this.drawingLogo();
       this.drawingUrl();
       this.drawingContent();
@@ -686,33 +710,53 @@ export default {
     drawingFeature() {
       if (this.canvas.feature.is_to_be_continued) {
         var sources = {
-          image1: "/img/frontend/cards/to_be_continued.png"
+          image1: "/img/frontend/cards/to_be_continued.png",
         };
         var self = this;
         switch (this.theme.selector) {
           case "32d2a897602ef652ed8e15d66128aa74":
-            this.loadImages(sources, function(images) {
-              self.canvas.ctx.drawImage(images.image1, 24, self.canvas.height - 372);
+            this.loadImages(sources, function (images) {
+              self.canvas.ctx.drawImage(
+                images.image1,
+                24,
+                self.canvas.height - 372
+              );
             });
             return;
           case "tumx453xqZLjf5kaFFBzNj4gqVXKWqXz":
-            this.loadImages(sources, function(images) {
-              self.canvas.ctx.drawImage(images.image1, 24, self.canvas.height - 372);
+            this.loadImages(sources, function (images) {
+              self.canvas.ctx.drawImage(
+                images.image1,
+                24,
+                self.canvas.height - 372
+              );
             });
             return;
           case "05326525f82b9a036e1bcb53a392ff7c":
-            this.loadImages(sources, function(images) {
-              self.canvas.ctx.drawImage(images.image1, self.canvas.width - 950, self.canvas.height - 400);
+            this.loadImages(sources, function (images) {
+              self.canvas.ctx.drawImage(
+                images.image1,
+                self.canvas.width - 950,
+                self.canvas.height - 400
+              );
             });
             return;
           case "W6FTE8fL66w2u5Xo5s3OxdqmAMpzptvK":
-            this.loadImages(sources, function(images) {
-              self.canvas.ctx.drawImage(images.image1, self.canvas.width - 950, self.canvas.height - 400);
+            this.loadImages(sources, function (images) {
+              self.canvas.ctx.drawImage(
+                images.image1,
+                self.canvas.width - 950,
+                self.canvas.height - 400
+              );
             });
             return;
           default:
-            this.loadImages(sources, function(images) {
-              self.canvas.ctx.drawImage(images.image1, 24, self.canvas.height - 240);
+            this.loadImages(sources, function (images) {
+              self.canvas.ctx.drawImage(
+                images.image1,
+                24,
+                self.canvas.height - 240
+              );
             });
             return;
         }
@@ -726,33 +770,45 @@ export default {
           img.src = "/img/frontend/cards/devotion-bg.png";
           img.onload = function () {
             self.canvas.ctx.drawImage(img, 360, 64);
-          }
+            self.drawingLogo();
+            self.drawingUrl();
+            self.drawingContent();
+            self.drawingFeature();
+          };
           return;
 
         case "32d2a897602ef652ed8e15d66128aa74":
           img.src = "/img/frontend/cards/qrcode.png";
           img.onload = function () {
             self.canvas.ctx.drawImage(img, 24, self.canvas.height - 204);
-          }
+          };
           return;
 
         case "tumx453xqZLjf5kaFFBzNj4gqVXKWqXz":
           img.src = "/img/frontend/cards/qrcode.png";
           img.onload = function () {
             self.canvas.ctx.drawImage(img, 24, self.canvas.height - 204);
-          }
+          };
           return;
 
         case "05326525f82b9a036e1bcb53a392ff7c":
           var sources = {
             image1: "/img/frontend/cards/fragmented_background.png",
             image2: "/img/frontend/cards/fragmented_people.png",
-            image3: "/img/frontend/cards/fragmented_background_arrow.png"
+            image3: "/img/frontend/cards/fragmented_background_arrow.png",
           };
 
-          this.loadImages(sources, function(images) {
-            self.canvas.ctx.drawImage(images.image1, 0, self.canvas.height - 560);
-            self.canvas.ctx.drawImage(images.image2, 36, self.canvas.height - 542);
+          this.loadImages(sources, function (images) {
+            self.canvas.ctx.drawImage(
+              images.image1,
+              0,
+              self.canvas.height - 560
+            );
+            self.canvas.ctx.drawImage(
+              images.image2,
+              36,
+              self.canvas.height - 542
+            );
 
             self.canvas.ctx.lineJoin = "round";
             self.canvas.ctx.lineWidth = 8;
@@ -770,7 +826,11 @@ export default {
               self.canvas.height - 290
             );
 
-            self.canvas.ctx.drawImage(images.image3, 312, self.canvas.height - 388);
+            self.canvas.ctx.drawImage(
+              images.image3,
+              312,
+              self.canvas.height - 388
+            );
 
             self.drawingLogo();
             self.drawingUrl();
@@ -784,12 +844,20 @@ export default {
           var sources = {
             image1: "/img/frontend/cards/fragmented_background.png",
             image2: "/img/frontend/cards/fragmented_wolf.png",
-            image3: "/img/frontend/cards/fragmented_background_arrow.png"
+            image3: "/img/frontend/cards/fragmented_background_arrow.png",
           };
 
-          this.loadImages(sources, function(images) {
-            self.canvas.ctx.drawImage(images.image1, 0, self.canvas.height - 560);
-            self.canvas.ctx.drawImage(images.image2, 12, self.canvas.height - 482);
+          this.loadImages(sources, function (images) {
+            self.canvas.ctx.drawImage(
+              images.image1,
+              0,
+              self.canvas.height - 560
+            );
+            self.canvas.ctx.drawImage(
+              images.image2,
+              12,
+              self.canvas.height - 482
+            );
 
             self.canvas.ctx.lineJoin = "round";
             self.canvas.ctx.lineWidth = 8;
@@ -807,7 +875,11 @@ export default {
               self.canvas.height - 290
             );
 
-            self.canvas.ctx.drawImage(images.image3, 312, self.canvas.height - 388);
+            self.canvas.ctx.drawImage(
+              images.image3,
+              312,
+              self.canvas.height - 388
+            );
 
             self.drawingLogo();
             self.drawingUrl();
@@ -927,7 +999,7 @@ export default {
     drawingContent() {
       let contentList = this.contentSplit();
       contentList.forEach(
-        function(content_value, content_key) {
+        function (content_value, content_key) {
           let x_point = 36;
           let y_point = 0;
           if (this.canvas.is_center) {
@@ -981,7 +1053,7 @@ export default {
       let content = this.canvas.content !== null ? this.canvas.content : "";
       let response_list = [];
       let content_list = content.split(/\r\n|\r|\n/);
-      content_list.forEach(function(content_value) {
+      content_list.forEach(function (content_value) {
         let content_strlen = encodeURIComponent(content_value).replace(
           /%[A-F\d]{2}/g,
           "U"
@@ -992,7 +1064,7 @@ export default {
           let content_width = 0;
           let char_string = "";
           let _content_value_list = content_value.split("");
-          _content_value_list.forEach(function(char_value, char_key) {
+          _content_value_list.forEach(function (char_value, char_key) {
             let char_strlen = encodeURIComponent(char_value).replace(
               /%[A-F\d]{2}/g,
               "U"
@@ -1046,7 +1118,7 @@ export default {
         cancelButtonColor: "#d33",
         cancelButtonText: "不要！",
         allowOutsideClick: () => !Swal.isLoading(),
-        preConfirm: login => {
+        preConfirm: (login) => {
           let data;
           if (this.avatar) {
             data = new FormData();
@@ -1060,7 +1132,7 @@ export default {
               themeStyle: this.theme.selector,
               fontStyle: this.font.selector,
               isManagerLine: this.canvas.is_manager_line,
-              isFeatureToBeCoutinued: this.canvas.feature.is_to_be_continued
+              isFeatureToBeCoutinued: this.canvas.feature.is_to_be_continued,
             };
           }
 
@@ -1071,14 +1143,14 @@ export default {
                 : "/api/frontend/social/cards/token/publish",
               data
             )
-            .then(function(response) {
+            .then(function (response) {
               return response;
             })
-            .catch(function(error) {
+            .catch(function (error) {
               return error;
             });
-        }
-      }).then(result => {
+        },
+      }).then((result) => {
         switch (result.value.status) {
           case 200:
             this.$refs.audio.play();
@@ -1101,8 +1173,8 @@ export default {
               onClose: () => {
                 clearInterval(timerInterval);
                 window.location.href = `/cards/show/${result.value.data.data.id}`;
-              }
-            }).then(result => {
+              },
+            }).then((result) => {
               if (result.dismiss === Swal.DismissReason.timer) {
                 console.log("I was closed by the timer");
               }
@@ -1124,19 +1196,19 @@ export default {
       var loadedImages = 0;
       var numImages = 0;
       // get num of sources
-      for(var src in sources) {
+      for (var src in sources) {
         numImages++;
       }
-      for(var src in sources) {
+      for (var src in sources) {
         images[src] = new Image();
-        images[src].onload = function() {
-          if(++loadedImages >= numImages) {
+        images[src].onload = function () {
+          if (++loadedImages >= numImages) {
             callback(images);
           }
         };
         images[src].src = sources[src];
       }
-    }
+    },
   },
   watch: {
     "canvas.font": function (val) {
@@ -1148,6 +1220,6 @@ export default {
     "canvas.is_manager_line": function (val) {
       this.drawingAll();
     },
-  }
+  },
 };
 </script>
