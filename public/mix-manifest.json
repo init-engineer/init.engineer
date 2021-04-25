@@ -1,14 +1,14 @@
 {
     "/js/manifest.js": "/js/manifest.js?id=d91051ea7d0c9bd1981e",
     "/js/manifest.js.map": "/js/manifest.js.map?id=a07956f82042cc418451",
-    "/js/vendor.js": "/js/vendor.js?id=bee37fb880e9fab75e22",
-    "/js/vendor.js.map": "/js/vendor.js.map?id=048ba8a566ad18087b1a",
+    "/js/vendor.js": "/js/vendor.js?id=43b84c9a431d276ee77f",
+    "/js/vendor.js.map": "/js/vendor.js.map?id=dc33071a18c702bbfab8",
     "/js/backend.js": "/js/backend.js?id=aa5b5f2c699748460064",
     "/js/backend.js.map": "/js/backend.js.map?id=181d96a5b2443e7f0342",
-    "/js/frontend.js": "/js/frontend.js?id=0f742c87a3d6d08faa16",
-    "/css/frontend.css": "/css/frontend.css?id=59d3740792f709b05b6e",
-    "/css/backend.css": "/css/backend.css?id=96176016cc5b82b60f34",
-    "/js/frontend.js.map": "/js/frontend.js.map?id=d331e92f005ef8f33c6d",
-    "/css/frontend.css.map": "/css/frontend.css.map?id=fbbe7dcd8f447f55d21a",
-    "/css/backend.css.map": "/css/backend.css.map?id=75114726937e9ea2b136"
+    "/js/frontend.js": "/js/frontend.js?id=5191935c473c9d143304",
+    "/css/frontend.css": "/css/frontend.css?id=85348569b3dd8119df0f",
+    "/css/backend.css": "/css/backend.css?id=2035c1a3e88f504d1cf3",
+    "/js/frontend.js.map": "/js/frontend.js.map?id=21ff477611e561870a9e",
+    "/css/frontend.css.map": "/css/frontend.css.map?id=a951239bee8166549522",
+    "/css/backend.css.map": "/css/backend.css.map?id=8a71619b087eb4ef444e"
 }
