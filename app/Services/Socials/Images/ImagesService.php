@@ -167,8 +167,10 @@ class ImagesService extends BaseService implements ImagesContract
         /**
          * 隨機抽選廣告。
          */
-        if ($this->ads = $this->adsRepository->findRandom($cards)) {
-            $this->canvasHeight += 240;
+        if (!is_null($cards)) {
+            if ($this->ads = $this->adsRepository->findRandom($cards)) {
+                $this->canvasHeight += 240;
+            }
         }
 
         /**
@@ -238,10 +240,12 @@ class ImagesService extends BaseService implements ImagesContract
                 $this->ads->type === Ads::TYPE_ALL ||
                 $this->ads->type === Ads::TYPE_CONTENT
             ) {
-                $content = $cards->content;
-                $content = $content . "\n\r------------\n\r【廣告內容】\n\r" . $this->ads->content . "\n\r------------\n\r";
-                $cards->content = $content;
-                $cards->save();
+                if (!is_null($cards)) {
+                    $content = $cards->content;
+                    $content = $content . "\n\r---\n\r【廣告內容】\n\r" . $this->ads->content . "\n\r---\n\r";
+                    $cards->content = $content;
+                    $cards->save();
+                }
             }
 
             /**
