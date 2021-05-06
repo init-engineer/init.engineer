@@ -242,7 +242,7 @@ class ImagesService extends BaseService implements ImagesContract
             ) {
                 if (!is_null($cards)) {
                     $content = $cards->content;
-                    $content = $content . "\n\r---\n\r【廣告內容】\n\r" . $this->ads->content . "\n\r---\n\r";
+                    $content = $content . "\n\r---\n\r" . $this->ads->content . "\n\r---\n\r";
                     $cards->content = $content;
                     $cards->save();
                 }
