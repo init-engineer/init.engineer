@@ -70,7 +70,7 @@ class ContentFluent
      */
     public function get(): string
     {
-        $response = "#" . app_name() . base_convert($this->id, 10, 36) . "\n\r----------\n\r";
+        $response = "#" . appName() . base_convert($this->id, 10, 36) . "\n\r----------\n\r";
 
         if (isset($this->footerOption['review']) && $this->footerOption['review']) $response = $response . "🗳️ [群眾審核] " . route('frontend.social.cards.review') . "\n\r";
         if (isset($this->footerOption['github']) && $this->footerOption['github']) $response = $response . "👉 [GitHub Repo] https://github.com/init-engineer/init.engineer" . "\n\r";
