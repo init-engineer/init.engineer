@@ -60,9 +60,9 @@ class UserController extends Controller
     public function create()
     {
         return view('backend.auth.user.create')
-            ->withRoles($this->roleService->get())
-            ->withCategories($this->permissionService->getCategorizedPermissions())
-            ->withGeneral($this->permissionService->getUncategorizedPermissions());
+            ->with('roles',$this->roleService->get())
+            ->with('categories', $this->permissionService->getCategorizedPermissions())
+            ->with('general', $this->permissionService->getUncategorizedPermissions());
     }
 
     /**
@@ -87,7 +87,7 @@ class UserController extends Controller
     public function show(User $user)
     {
         return view('backend.auth.user.show')
-            ->withUser($user);
+            ->with('user', $user);
     }
 
     /**
@@ -99,11 +99,11 @@ class UserController extends Controller
     public function edit(EditUserRequest $request, User $user)
     {
         return view('backend.auth.user.edit')
-            ->withUser($user)
-            ->withRoles($this->roleService->get())
-            ->withCategories($this->permissionService->getCategorizedPermissions())
-            ->withGeneral($this->permissionService->getUncategorizedPermissions())
-            ->withUsedPermissions($user->permissions->modelKeys());
+            ->with('user', $user)
+            ->with('roles', $this->roleService->get())
+            ->with('categories', $this->permissionService->getCategorizedPermissions())
+            ->with('general', $this->permissionService->getUncategorizedPermissions())
+            ->with('usedPermissions', $user->permissions->modelKeys());
     }
 
     /**

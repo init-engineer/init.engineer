@@ -69,8 +69,8 @@ class PlatformController extends Controller
     public function edit(EditPlatformRequest $request, Platform $platform)
     {
         return view('backend.social.platform.edit')
-            ->withPlatform($platform)
-            ->withConfig(json_decode($platform->config, true));
+            ->with('platform', $platform)
+            ->with('config', json_decode($platform->config, true));
     }
 
     /**

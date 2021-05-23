@@ -68,7 +68,7 @@ class CardsController extends Controller
     public function show(Cards $cards)
     {
         return view('backend.social.cards.show')
-            ->withCards($cards);
+            ->with('cards', $cards);
     }
 
     /**
@@ -80,7 +80,7 @@ class CardsController extends Controller
     public function edit(EditCardsRequest $request, Cards $cards)
     {
         return view('backend.social.cards.edit')
-            ->withCards($cards);
+            ->with('cards', $cards);
     }
 
     /**

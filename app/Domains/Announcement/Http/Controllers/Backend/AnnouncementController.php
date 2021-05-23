@@ -69,7 +69,7 @@ class AnnouncementController extends Controller
     public function edit(EditAnnouncementRequest $request, Announcement $announcement)
     {
         return view('backend.announcement.edit')
-            ->withAnnouncement($announcement);
+            ->with('announcement', $announcement);
     }
 
     /**

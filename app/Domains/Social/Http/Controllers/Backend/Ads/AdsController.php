@@ -71,7 +71,7 @@ class AdsController extends Controller
     public function show(Ads $ads)
     {
         return view('backend.social.ads.show')
-            ->withAds($ads);
+            ->with('ads', $ads);
     }
 
     /**
@@ -83,7 +83,7 @@ class AdsController extends Controller
     public function edit(EditAdsRequest $request, Ads $ads)
     {
         return view('backend.social.ads.edit')
-            ->withAds($ads);
+            ->with('ads', $ads);
     }
 
     /**

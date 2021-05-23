@@ -79,10 +79,10 @@ class RoleController extends Controller
     public function edit(EditRoleRequest $request, Role $role)
     {
         return view('backend.auth.role.edit')
-            ->withCategories($this->permissionService->getCategorizedPermissions())
-            ->withGeneral($this->permissionService->getUncategorizedPermissions())
-            ->withRole($role)
-            ->withUsedPermissions($role->permissions->modelKeys());
+            ->with('categories', $this->permissionService->getCategorizedPermissions())
+            ->with('general', $this->permissionService->getUncategorizedPermissions())
+            ->with('role', $role)
+            ->with('usedPermissions', $role->permissions->modelKeys());
     }
 
     /**

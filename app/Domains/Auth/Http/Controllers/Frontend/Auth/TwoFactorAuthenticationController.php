@@ -20,8 +20,8 @@ class TwoFactorAuthenticationController extends Controller
         $secret = $request->user()->createTwoFactorAuth();
 
         return view('frontend.user.account.tabs.two-factor-authentication.enable')
-            ->withQrCode($secret->toQr())
-            ->withSecret($secret->toString());
+            ->with('qrCode', $secret->toQr())
+            ->with('secret', $secret->toString());
     }
 
     /**
@@ -32,7 +32,7 @@ class TwoFactorAuthenticationController extends Controller
     public function show(Request $request)
     {
         return view('frontend.user.account.tabs.two-factor-authentication.recovery')
-            ->withRecoveryCodes($request->user()->getRecoveryCodes());
+            ->with('recoveryCodes', $request->user()->getRecoveryCodes());
     }
 
     /**
