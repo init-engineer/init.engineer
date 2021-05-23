@@ -77,6 +77,12 @@ class SocialAdsTable extends TableComponent
     public function columns(): array
     {
         return [
+            Column::make(__('Type'), 'type')
+                ->format(function (Ads $model) {
+                    return $this->html(__($model->type));
+                })
+                ->searchable()
+                ->sortable(),
             Column::make(__('Name'), 'name')
                 ->searchable()
                 ->sortable(),

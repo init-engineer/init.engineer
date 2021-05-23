@@ -179,6 +179,7 @@
     "Probability": "部屬機率",
     "Payment Status": "付費狀態",
     "Payment": "已付費",
+    "Render": "渲染",
     "Ads Created": "橫幅廣告建立時間",
     "Unpayment": "尚未付費",
     "Deactivated Platform": "停用的社群平台",
@@ -207,6 +208,12 @@
     "Created At": "建立於",
     "Updated At": "更新於",
     "Deleted At": "刪除於",
+
+    "Enum": "列舉",
+        "Social Enum": "社群平台列舉",
+            "Draw All": "渲染全部",
+            "Draw Banner": "渲染橫幅",
+            "Draw Content": "渲染內文",
 
     "General Header": "一般頂端欄",
         "Home": "首頁",

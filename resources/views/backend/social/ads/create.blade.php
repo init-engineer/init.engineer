@@ -17,10 +17,30 @@
 
             <x-slot name="body">
                 <div class="form-group row">
+                    <label for="type" class="col-md-2 col-form-label">@lang('Type')</label>
+
+                    <div class="col-md-10">
+                        <select name="type" class="form-control" required>
+                            <option value="{{ $model::TYPE_ALL }}">@lang('Draw All')</option>
+                            <option value="{{ $model::TYPE_BANNER }}">@lang('Draw Banner')</option>
+                            <option value="{{ $model::TYPE_CONTENT }}">@lang('Draw Content')</option>
+                        </select>
+                    </div>
+                </div><!--form-group-->
+
+                <div class="form-group row">
                     <label for="name" class="col-md-2 col-form-label">@lang('Name')</label>
 
                     <div class="col-md-10">
                         <input type="text" name="name" class="form-control" placeholder="{{ __('Name') }}" value="{{ old('name') }}" maxlength="255" required />
+                    </div>
+                </div><!--form-group-->
+
+                <div class="form-group row">
+                    <label for="content" class="col-md-2 col-form-label">@lang('Content')</label>
+
+                    <div class="col-md-10">
+                        <textarea class="form-control" name="content" id="content" rows="3" placeholder="{{ __('Content') }}" value="{{ old('content') }}" maxlength="1024" required></textarea>
                     </div>
                 </div><!--form-group-->
 
@@ -53,6 +73,17 @@
 
                     <div class="col-md-10">
                         <input type="date" name="ends_at" class="form-control" placeholder="{{ __('Ends At') }}" value="{{ old('ends_at') }}" />
+                    </div>
+                </div><!--form-group-->
+
+                <div class="form-group row">
+                    <label for="render" class="col-md-2 col-form-label">@lang('Render')</label>
+
+                    <div class="col-md-10">
+                        <div class="form-check">
+                            <input type="checkbox" name="render" id="render" class="form-check-input" value="1" {{ old('render', true) ? 'checked' : '' }} />
+                            <label for="render" class="check-box"></label>
+                        </div><!--form-check-->
                     </div>
                 </div><!--form-group-->
 

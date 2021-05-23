@@ -33,13 +33,27 @@
                 </tr>
 
                 <tr>
+                    <th>@lang('Type')</th>
+                    <td>{{ __($ads->type) }}</td>
+                </tr>
+
+                <tr>
                     <th>@lang('Name')</th>
                     <td>{{ $ads->name }}</td>
                 </tr>
 
                 <tr>
+                    <th>@lang('Content')</th>
+                    @if (isset($ads->content))
+                        <td>{{ $ads->content }}</td>
+                    @else
+                        <td>{{ __('Undefined') }}</td>
+                    @endif
+                </tr>
+
+                <tr>
                     <th>@lang('Probability')</th>
-                    <td><strong style="font-weight: 600; font-size: 24px; color: #597a96; display: inherit;">{{ $ads->probability / 100 }}%</strong></td>
+                    <td><strong style="font-weight: 600; font-size: 24px; color: #597a96; display: inherit;">{{ number_format($ads->probability / 100, 2) }}%</strong></td>
                 </tr>
 
                 <tr>
@@ -60,6 +74,11 @@
                             <span style="font-size: 12px; font-weight: 400; color: #aab8c2;">{{ $ads->ends_at->diffForHumans() }}</span>
                         </div>
                     </td>
+                </tr>
+
+                <tr>
+                    <th>@lang('Status')</th>
+                    <td>@include('backend.social.ads.includes.render', ['ads' => $ads])</td>
                 </tr>
 
                 <tr>

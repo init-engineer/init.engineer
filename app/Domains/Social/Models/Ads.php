@@ -30,7 +30,7 @@ class Ads extends Model
      *
      * @var string
      */
-    public const TYPE_ALL = 'all';
+    public const TYPE_ALL = 'Draw All';
 
     /**
      * 分類: 橫幅 Banner
@@ -38,7 +38,7 @@ class Ads extends Model
      *
      * @var string
      */
-    public const TYPE_BANNER = 'banner';
+    public const TYPE_BANNER = 'Draw Banner';
 
     /**
      * 分類: 內文 Content
@@ -46,7 +46,7 @@ class Ads extends Model
      *
      * @var string
      */
-    public const TYPE_CONTENT = 'content';
+    public const TYPE_CONTENT = 'Draw Content';
 
     /**
      * The table associated with the model.

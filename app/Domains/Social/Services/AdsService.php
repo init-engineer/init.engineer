@@ -63,8 +63,11 @@ class AdsService extends BaseService
         try {
             $ads = $this->createAds([
                 'model_id' => $data['model_id'],
+                'type' => $data['type'],
                 'name' => $data['name'],
+                'content' => $data['content'] ?? null,
                 'probability' => $data['probability'] ?? 0,
+                'render' => $data['render'] ?? false,
                 'payment' => $data['payment'] ?? false,
                 'active' => $data['active'] ?? false,
                 'starts_at' => $data['starts_at'] ?? null,
@@ -102,8 +105,11 @@ class AdsService extends BaseService
 
         try {
             $ads->update([
+                'type' => $data['type'] ?? $ads->type,
                 'name' => $data['name'] ?? $ads->name,
+                'content' => $data['content'] ?? $ads->content,
                 'probability' => $data['probability'] ?? $ads->probability,
+                'render' => isset($data['render']) ? true : false,
                 'payment' => isset($data['payment']) ? true : false,
                 'active' => isset($data['active']) ? true : false,
                 'starts_at' => isset($data['starts_at']) ? $data['starts_at'] . ' 12:00:00' : $ads->starts_at,
@@ -237,8 +243,11 @@ class AdsService extends BaseService
         return $this->model::create([
             'model_type' => User::class,
             'model_id' => $data['model_id'],
+            'type' => $data['type'],
             'name' => $data['name'],
+            'content' => $data['content'] ?? null,
             'probability' => $data['probability'] ?? 0,
+            'render' => $data['render'] ?? false,
             'payment' => $data['payment'] ?? false,
             'active' => $data['active'] ?? false,
             'starts_at' => $data['starts_at'] ?? null,
