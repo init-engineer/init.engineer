@@ -86,7 +86,7 @@ class SocialAdsTable extends TableComponent
                         '<div style="position: inherit;">
                             <strong style="font-weight: 600; font-size: 24px; color: #597a96; display: inherit;">%s</strong>
                         </div>',
-                        ($model->probability / 100) . '%'
+                        number_format($model->probability / 100, 2) . '%'
                     ));
                 })
                 ->searchable()
