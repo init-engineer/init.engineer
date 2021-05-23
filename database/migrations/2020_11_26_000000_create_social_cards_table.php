@@ -1,5 +1,6 @@
 <?php
 
+use App\Domains\Social\Models\Ads;
 use App\Domains\Social\Models\Platform;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -47,10 +48,17 @@ class CreateSocialCardsTable extends Migration
             $table->bigIncrements('id');
             $table->uuid('uuid')->nullable();
             $table->morphs('model');
+            $table->enum('type', array(
+                Ads::TYPE_ALL,
+                Ads::TYPE_BANNER,
+                Ads::TYPE_CONTENT,
+            ))->default(Ads::TYPE_BANNER)->comment('廣告分類');
             $table->string('name')->nullable()->comment('廣告名稱');
+            $table->longText('content')->nullable()->comment('廣告內容');
             $table->json('picture')->nullable()->comment('圖片資訊');
             $table->json('deploy')->default('[]')->comment('部署文章');
             $table->integer('probability')->default(0)->comment('部署機率');
+            $table->unsignedTinyInteger('render')->default(0)->comment('彩色渲染');
             $table->unsignedTinyInteger('payment')->default(0)->comment('付款狀態');
             $table->unsignedTinyInteger('active')->default(1)->comment('啟用');
             $table->timestamp('starts_at')->nullable()->comment('開始日期');

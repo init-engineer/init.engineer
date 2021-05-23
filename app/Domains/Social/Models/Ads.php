@@ -25,6 +25,30 @@ class Ads extends Model
         Uuid;
 
     /**
+     * 分類: 全部 All
+     * 全部都會使用。
+     *
+     * @var string
+     */
+    public const TYPE_ALL = 'all';
+
+    /**
+     * 分類: 橫幅 Banner
+     * 圖片插入廣告橫幅。
+     *
+     * @var string
+     */
+    public const TYPE_BANNER = 'banner';
+
+    /**
+     * 分類: 內文 Content
+     * 文章插入廣告內容。
+     *
+     * @var string
+     */
+    public const TYPE_CONTENT = 'content';
+
+    /**
      * The table associated with the model.
      *
      * @var string
@@ -46,10 +70,13 @@ class Ads extends Model
     protected $fillable = [
         'model_type',
         'model_id',
+        'type',
         'name',
+        'content',
         'picture',
         'deploy',
         'probability',
+        'render',
         'payment',
         'active',
         'starts_at',
@@ -63,6 +90,7 @@ class Ads extends Model
      */
     protected $casts = [
         'probability' => 'integer',
+        'render' => 'boolean',
         'payment' => 'boolean',
         'active' => 'boolean',
     ];
