@@ -1100,6 +1100,16 @@ export default {
         return;
       }
 
+      if (-1 !== this.canvas.content.search('靠北工程師') &&
+          -1 === this.canvas.content.search('純靠北工程師')) {
+        Swal.fire(
+          "由於此投稿不符合純靠北工程師版規，內容已遭否決。",
+          "這裡是「純」靠北工程師。",
+          "error"
+        );
+        return;
+      }
+
       if (this.$v.$invalid) {
         Swal.fire(
           "您根本的內容不符合規範啊！",
