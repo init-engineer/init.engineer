@@ -20,3 +20,7 @@ use Illuminate\Http\Request;
 // Route::group(['namespace' => 'Api', 'as' => 'api.'], function () {
 //     includeRouteFiles(__DIR__.'/api/');
 // });
+
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
