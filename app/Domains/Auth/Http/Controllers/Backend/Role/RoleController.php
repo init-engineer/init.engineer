@@ -52,8 +52,8 @@ class RoleController extends Controller
     public function create()
     {
         return view('backend.auth.role.create')
-            ->withCategories($this->permissionService->getCategorizedPermissions())
-            ->withGeneral($this->permissionService->getUncategorizedPermissions());
+            ->with('categories', $this->permissionService->getCategorizedPermissions())
+            ->with('general', $this->permissionService->getUncategorizedPermissions());
     }
 
     /**
