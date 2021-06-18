@@ -178,6 +178,7 @@ return [
             'id' => ['name' => 'Indonesian', 'rtl' => false],
             'it' => ['name' => 'Italian', 'rtl' => false],
             'ja' => ['name' => 'Japanese', 'rtl' => false],
+            'ko' => ['name' => 'Korean', 'rtl' => false],
             'nl' => ['name' => 'Dutch', 'rtl' => false],
             'no' => ['name' => 'Norwegian', 'rtl' => false],
             'pl' => ['name' => 'Polish', 'rtl' => false],
@@ -189,6 +190,7 @@ return [
             'th' => ['name' => 'Thai', 'rtl' => false],
             'tr' => ['name' => 'Turkish', 'rtl' => false],
             'uk' => ['name' => 'Ukrainian', 'rtl' => false],
+            'vi' => ['name' => 'Vietnam', 'rtl' => false],
         ],
     ],
 
