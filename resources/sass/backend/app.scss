@@ -1,13 +1,18 @@
 @import "../global";
 
 /**
+ * 全域變數 Variables
+ */
+@import "variables";
+
+/**
  * CoreUI at:
  * https://coreui.io
  */
-@import '~@coreui/coreui/scss/coreui';
-@import '~@coreui/icons/css/free.min.css';
+@import "~@coreui/coreui/scss/coreui";
+@import "~@coreui/icons/css/free.min.css";
 
 /**
  * Layout
  */
- @import 'layout/button';
+@import "layout/button";
