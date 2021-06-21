@@ -8,6 +8,19 @@ namespace App\Domains\Social\Models\Traits\Scope;
 trait CardsScope
 {
     /**
+     * @param $query
+     * @param $term
+     *
+     * @return mixed
+     */
+    public function scopeSearch($query, $term)
+    {
+        return $query->where(function ($query) use ($term) {
+            $query->Where('content', 'like', '%' . $term . '%');
+        });
+    }
+
+    /**
      * @param      $query
      * @param bool $status
      *
