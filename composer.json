@@ -10,6 +10,7 @@
     "require": {
         "php": "^7.4|^8.0",
         "arcanedev/log-viewer": "8.x",
+        "codedungeon/phpunit-result-printer": "^0.30.1",
         "darkghosthunter/laraguard": "^3.0",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",

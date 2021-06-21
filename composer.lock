@@ -4,8 +4,57 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "179c256c9799911b6189b45ec20781ba",
+    "content-hash": "13f897ec55b2d4fbb23309ae766ac2f8",
     "packages": [
+        {
+            "name": "2bj/phanybar",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/2bj/Phanybar.git",
+                "reference": "88ff671e18f30c2047a34f8cf2465a7ff93c819b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/2bj/Phanybar/zipball/88ff671e18f30c2047a34f8cf2465a7ff93c819b",
+                "reference": "88ff671e18f30c2047a34f8cf2465a7ff93c819b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "bin": [
+                "bin/phanybar"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Bakyt\\": [
+                        "src/"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bakyt Turgumbaev",
+                    "email": "dev2bj@gmail.com"
+                }
+            ],
+            "description": "Control AnyBar from your php",
+            "keywords": [
+                "anybar",
+                "phanybar"
+            ],
+            "support": {
+                "issues": "https://github.com/2bj/Phanybar/issues",
+                "source": "https://github.com/2bj/Phanybar/tree/master"
+            },
+            "time": "2015-03-06T12:14:28+00:00"
+        },
         {
             "name": "arcanedev/log-viewer",
             "version": "8.1.0",
@@ -308,6 +357,110 @@
                 }
             ],
             "time": "2021-01-20T22:51:39+00:00"
+        },
+        {
+            "name": "codedungeon/php-cli-colors",
+            "version": "1.12.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mikeerickson/php-cli-colors.git",
+                "reference": "e346156f75717140a3dd622124d2ec686aa7ff8e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mikeerickson/php-cli-colors/zipball/e346156f75717140a3dd622124d2ec686aa7ff8e",
+                "reference": "e346156f75717140a3dd622124d2ec686aa7ff8e",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": ">=5.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Codedungeon\\PHPCliColors\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mike Erickson",
+                    "email": "codedungeon@gmail.com"
+                }
+            ],
+            "description": "Liven up you PHP Console Apps with standard colors",
+            "homepage": "https://github.com/mikeerickson/php-cli-colors",
+            "keywords": [
+                "color",
+                "colors",
+                "composer",
+                "package",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/mikeerickson/php-cli-colors/issues",
+                "source": "https://github.com/mikeerickson/php-cli-colors/tree/1.12.2"
+            },
+            "time": "2021-01-05T04:48:27+00:00"
+        },
+        {
+            "name": "codedungeon/phpunit-result-printer",
+            "version": "0.30.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mikeerickson/phpunit-pretty-result-printer.git",
+                "reference": "a361009eeb7078c1478ba835976f7722a4952870"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mikeerickson/phpunit-pretty-result-printer/zipball/a361009eeb7078c1478ba835976f7722a4952870",
+                "reference": "a361009eeb7078c1478ba835976f7722a4952870",
+                "shasum": ""
+            },
+            "require": {
+                "2bj/phanybar": "^1.0",
+                "codedungeon/php-cli-colors": "^1.10.2",
+                "hassankhan/config": "^0.11.2|^1.0|^2.0",
+                "php": "^7.1 | ^8.0",
+                "symfony/yaml": "^2.7|^3.0|^4.0|^5.0"
+            },
+            "require-dev": {
+                "spatie/phpunit-watcher": "^1.6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Codedungeon\\PHPUnitPrettyResultPrinter\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mike Erickson",
+                    "email": "codedungeon@gmail.com"
+                }
+            ],
+            "description": "PHPUnit Pretty Result Printer",
+            "keywords": [
+                "TDD",
+                "composer",
+                "package",
+                "phpunit",
+                "printer",
+                "result-printer",
+                "testing"
+            ],
+            "support": {
+                "issues": "https://github.com/mikeerickson/phpunit-pretty-result-printer/issues",
+                "source": "https://github.com/mikeerickson/phpunit-pretty-result-printer/tree/0.30.1"
+            },
+            "time": "2020-12-24T20:19:03+00:00"
         },
         {
             "name": "darkghosthunter/laraguard",
@@ -1619,6 +1772,68 @@
                 "source": "https://github.com/hamcrest/hamcrest-php/tree/v2.0.1"
             },
             "time": "2020-07-09T08:09:16+00:00"
+        },
+        {
+            "name": "hassankhan/config",
+            "version": "2.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hassankhan/config.git",
+                "reference": "62b0fd17540136efa94ab6b39f04044c6dc5e4a7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hassankhan/config/zipball/62b0fd17540136efa94ab6b39f04044c6dc5e4a7",
+                "reference": "62b0fd17540136efa94ab6b39f04044c6dc5e4a7",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.8.36 || ~5.7 || ~6.5 || ~7.5",
+                "scrutinizer/ocular": "~1.1",
+                "squizlabs/php_codesniffer": "~2.2",
+                "symfony/yaml": "~3.4"
+            },
+            "suggest": {
+                "symfony/yaml": "~3.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Noodlehaus\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Hassan Khan",
+                    "homepage": "http://hassankhan.me/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Lightweight configuration file loader that supports PHP, INI, XML, JSON, and YAML files",
+            "homepage": "http://hassankhan.me/config/",
+            "keywords": [
+                "config",
+                "configuration",
+                "ini",
+                "json",
+                "microphp",
+                "unframework",
+                "xml",
+                "yaml",
+                "yml"
+            ],
+            "support": {
+                "issues": "https://github.com/hassankhan/config/issues",
+                "source": "https://github.com/hassankhan/config/tree/2.2.0"
+            },
+            "time": "2020-12-07T16:04:15+00:00"
         },
         {
             "name": "jamesmills/laravel-timezone",
@@ -7329,6 +7544,81 @@
             ],
             "support": {
                 "source": "https://github.com/symfony/var-dumper/tree/v5.3.2"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2021-06-06T09:51:56+00:00"
+        },
+        {
+            "name": "symfony/yaml",
+            "version": "v5.3.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/yaml.git",
+                "reference": "71719ab2409401711d619765aa255f9d352a59b2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/71719ab2409401711d619765aa255f9d352a59b2",
+                "reference": "71719ab2409401711d619765aa255f9d352a59b2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2.5",
+                "symfony/deprecation-contracts": "^2.1",
+                "symfony/polyfill-ctype": "~1.8"
+            },
+            "conflict": {
+                "symfony/console": "<4.4"
+            },
+            "require-dev": {
+                "symfony/console": "^4.4|^5.0"
+            },
+            "suggest": {
+                "symfony/console": "For validating YAML files using the lint command"
+            },
+            "bin": [
+                "Resources/bin/yaml-lint"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Yaml\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Loads and dumps YAML files",
+            "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/yaml/tree/v5.3.2"
             },
             "funding": [
                 {
