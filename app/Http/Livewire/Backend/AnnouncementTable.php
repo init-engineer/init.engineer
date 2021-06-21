@@ -15,20 +15,6 @@ class AnnouncementTable extends DataTableComponent
 {
     /**
      * @var string
-     *
-     * The initial field to be sorting by.
-     */
-    public $sortField = 'message';
-
-    /**
-     * @var string
-     *
-     * The initial direction to sort.
-     */
-    public $sortDirection = 'desc';
-
-    /**
-     * @var string
      */
     public $status;
 
@@ -80,13 +66,13 @@ class AnnouncementTable extends DataTableComponent
         return [
             'type' => Filter::make(__('Area'))
                 ->select([
-                    null => __('Default'),
+                    '' => __('Any'),
                     Announcement::AREA_BACKEND => __('Backend'),
                     Announcement::AREA_FRONTEND => __('Frontend'),
                 ]),
             'enabled' => Filter::make(__('Enabled Status'))
                 ->select([
-                    null => __('Default'),
+                    '' => __('Any'),
                     false => __('Enabled'),
                     true => __('Inenabled'),
                 ]),
