@@ -39,7 +39,7 @@ class PlatformController extends Controller
     }
 
     /**
-     * @return mixed
+     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -58,6 +58,14 @@ class PlatformController extends Controller
         $this->platformService->store($request->validated());
 
         return redirect()->route('admin.social.platform.index')->withFlashSuccess(__('The platform was successfully created.'));
+    }
+
+    /**
+     * @return mixed
+     */
+    public function show()
+    {
+        return redirect()->route('admin.social.platform.index');
     }
 
     /**

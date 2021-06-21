@@ -4,24 +4,15 @@ namespace App\Http\Livewire\Backend;
 
 use App\Domains\Social\Models\Platform;
 use Illuminate\Database\Eloquent\Builder;
-use Rappasoft\LaravelLivewireTables\TableComponent;
-use Rappasoft\LaravelLivewireTables\Traits\HtmlComponents;
+use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
+use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 /**
  * Class SocialPlatformTable.
  */
-class SocialPlatformTable extends TableComponent
+class SocialPlatformTable extends DataTableComponent
 {
-    use HtmlComponents;
-
-    /**
-     * @var string
-     *
-     * The initial field to be sorting by.
-     */
-    public $sortField = 'name';
-
     /**
      * @var string
      */
@@ -54,14 +45,50 @@ class SocialPlatformTable extends TableComponent
     public function query(): Builder
     {
         if ($this->status === 'deleted') {
-            return Platform::onlyTrashed();
+            $query = Platform::onlyTrashed();
+        } else if ($this->status === 'deactivated') {
+            $query = Platform::where('active', false);
+        } else {
+            $query = Platform::where('active', true);
         }
 
-        if ($this->status === 'deactivated') {
-            return Platform::where('active', false);
-        }
+        return $query
+            ->when($this->getFilter('search'), fn ($query, $term) => $query->search($term))
+            ->when($this->getFilter('type'), fn ($query, $type) => $query->where('type', $type))
+            ->when($this->getFilter('active'), fn ($query, $active) => $query->where('active', $active === 'yes'));
+    }
 
-        return Platform::where('active', true);
+    /**
+     * @return array
+     */
+    public function filters(): array
+    {
+        return [
+            'type' => Filter::make('Type')
+                ->select([
+                    '' => 'Any',
+                    Platform::TYPE_LOCAL => 'Local',
+                    Platform::TYPE_DISCORD => 'Discord',
+                    Platform::TYPE_FACEBOOK => 'Facebook',
+                    Platform::TYPE_PLURK => 'Plurk',
+                    Platform::TYPE_TELEGRAM => 'Telegram',
+                    Platform::TYPE_TUMBLR => 'Tumblr',
+                    Platform::TYPE_TWITTER => 'Twitter',
+                ]),
+            'action' => Filter::make('Action')
+                ->select([
+                    '' => 'Any',
+                    Platform::ACTION_INACTION => 'Inaction',
+                    Platform::ACTION_PUBLISH => 'Publish',
+                    Platform::ACTION_NOTIFICATION => 'Notification',
+                ]),
+            'active' => Filter::make('Active')
+                ->select([
+                    '' => 'Any',
+                    'yes' => 'Yes',
+                    'no' => 'No',
+                ]),
+        ];
     }
 
     /**
@@ -71,30 +98,22 @@ class SocialPlatformTable extends TableComponent
     {
         return [
             Column::make(__('Name'), 'name')
-                ->searchable()
                 ->sortable(),
             Column::make(__('Type'), 'type')
-                ->format(function (Platform $model) {
-                    return $this->html(
-                        sprintf(
-                            '<img src="%s" class="img-fluid" style="width: 32px;" alt="%s" />',
-                            asset('img/icon/' . $model->type . '.png'),
-                            ucfirst($model->type),
-                        )
-                    );
-                })
-                ->searchable()
+                ->sortable(),
+            Column::make(__('Action'), 'action')
                 ->sortable(),
             Column::make(__('Active'), 'active')
-                ->format(function (Platform $model) {
-                    return $this->html(view('backend.social.platform.includes.active', ['platform' => $model]));
-                })
-                ->searchable()
                 ->sortable(),
-            Column::make(__('Actions'))
-                ->format(function (Platform $model) {
-                    return view('backend.social.platform.includes.actions', ['platform' => $model]);
-                }),
+            Column::make(__('Actions')),
         ];
+    }
+
+    /**
+     * @return string
+     */
+    public function rowView(): string
+    {
+        return 'backend.social.platform.includes.row';
     }
 }
