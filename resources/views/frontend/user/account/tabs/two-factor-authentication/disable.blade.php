@@ -23,7 +23,7 @@
                                 </div>
                             </div><!--form-group-->
 
-                            <button class="btn btn-sm btn-block btn-danger" type="submit">@lang('Remove Two Factor Authentication')</button>
+                            <button class="btn btn-lg btn-block btn-danger" type="submit">@lang('Remove Two Factor Authentication')</button>
                         </x-forms.delete>
                     </x-slot>
                 </x-frontend.card>
