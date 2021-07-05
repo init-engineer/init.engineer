@@ -1,0 +1,19 @@
+/**
+ * Inputs
+ */
+input {
+    &.input-black {
+        border-style: solid;
+        border-color: white;
+        border-width: 0.1125em;
+        background-color: black;
+
+        &:focus {
+            color: #495057;
+            border-color: #80bdff;
+            background-color: black;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+            outline: 0;
+        }
+    }
+}

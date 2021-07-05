@@ -13,6 +13,33 @@
 @import "~bootstrap/scss/bootstrap";
 
 /**
+ * Base
+ */
+@import 'base/basic';
+@import 'base/border';
+@import 'base/float';
+@import 'base/reset';
+@import 'base/typography';
+
+/**
+ * Components
+ */
+@import 'components/badges';
+@import 'components/buttons';
+@import 'components/inputs';
+@import 'components/labels';
+@import 'components/navigations';
+@import 'components/textareas';
+
+/**
  * Layout
  */
 @import "layout/button";
+@import "layout/main";
+@import "layout/navbar";
+
+/**
+ * Theme
+ */
+@import "theme/light";
+@import "theme/dark";

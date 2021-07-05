@@ -1,0 +1,386 @@
+/**
+ * Buttons
+ */
+a,
+span,
+button {
+    &.btn-bg {
+        color: var(--font-primary-color);
+        background-color: var(--background-primary);
+
+        &:active {
+            color: var(--font-primary-color-dark);
+            background-color: var(--background-primary-dark);
+        }
+
+        &:hover {
+            color: var(--font-primary-color);
+            background-color: var(--background-primary-dark);
+        }
+    }
+
+    &.btn-primary-bg {
+        color: var(--font-primary-color);
+        background-color: var(--color-primary);
+
+        &:active {
+            color: var(--font-primary-color-dark);
+            background-color: var(--color-primary-dark);
+        }
+
+        &:hover {
+            color: var(--font-primary-color);
+            background-color: var(--color-primary-dark);
+        }
+    }
+
+    &.btn-info-bg {
+        color: var(--color-dark);
+        background-color: var(--color-info);
+
+        &:active {
+            color: var(--color-dark-dark);
+            background-color: var(--color-info-dark);
+        }
+
+        &:hover {
+            color: var(--color-dark-dark);
+            background-color: var(--color-info-dark);
+        }
+    }
+
+    &.btn-success-bg {
+        color: var(--color-dark);
+        background-color: var(--color-success);
+
+        &:active {
+            color: var(--color-dark-dark);
+            background-color: var(--color-success-dark);
+        }
+
+        &:hover {
+            color: var(--color-dark-dark);
+            background-color: var(--color-success-dark);
+        }
+    }
+
+    &.btn-danger-bg {
+        color: var(--color-dark);
+        background-color: var(--color-danger);
+
+        &:active {
+            color: var(--color-dark-dark);
+            background-color: var(--color-danger-dark);
+        }
+
+        &:hover {
+            color: var(--color-dark-dark);
+            background-color: var(--color-danger-dark);
+        }
+    }
+
+    &.btn-warning-bg {
+        color: var(--color-dark);
+        background-color: var(--color-warning);
+
+        &:active {
+            color: var(--color-dark-dark);
+            background-color: var(--color-warning-dark);
+        }
+
+        &:hover {
+            color: var(--color-dark-dark);
+            background-color: var(--color-warning-dark);
+        }
+    }
+
+    &.btn-dark-bg {
+        color: var(--color-light);
+        background-color: var(--color-dark);
+
+        &:active {
+            color: var(--color-light-light);
+            background-color: var(--color-dark-dark);
+        }
+
+        &:hover {
+            color: var(--color-light-light);
+            background-color: var(--color-dark-dark);
+        }
+    }
+
+    &.btn-light-bg {
+        color: var(--color-dark);
+        background-color: var(--color-light);
+
+        &:active {
+            color: var(--color-dark-dark);
+            background-color: var(--color-light-dark);
+        }
+
+        &:hover {
+            color: var(--color-dark-dark);
+            background-color: var(--color-light-dark);
+        }
+    }
+
+    &.btn-gray-bg {
+        color: var(--color-dark);
+        background-color: var(--color-gray);
+
+        &:active {
+            color: var(--color-dark-dark);
+            background-color: var(--color-gray-dark);
+        }
+
+        &:hover {
+            color: var(--color-dark-dark);
+            background-color: var(--color-gray-dark);
+        }
+    }
+
+    &.btn-bitbucket {
+        color: white;
+        background-color: #274970;
+
+        &:active {
+            color: darkgrey;
+            background-color: #192f48;
+        }
+    }
+
+    &.btn-facebook {
+        color: white;
+        background-color: #3b5998;
+
+        &:active {
+            color: darkgrey;
+            background-color: #263961;
+        }
+    }
+
+    &.btn-google {
+        color: white;
+        background-color: #d34836;
+
+        &:active {
+            color: darkgrey;
+            background-color: #872e23;
+        }
+    }
+
+    &.btn-github {
+        color: white;
+        background-color: #464646;
+
+        &:active {
+            color: darkgrey;
+            background-color: #2d2d2d;
+        }
+    }
+
+    &.btn-linkedin {
+        color: white;
+        background-color: #0077b5;
+
+        &:active {
+            color: darkgrey;
+            background-color: #004c74;
+        }
+    }
+
+    &.btn-twitter {
+        color: white;
+        background-color: #1dcaff;
+
+        &:active {
+            color: darkgrey;
+            background-color: #1381a3;
+        }
+    }
+
+    &.btn-apple {
+        color: white;
+        background-color: #161612;
+
+        &:active {
+            color: darkgrey;
+            background-color: #131310;
+        }
+    }
+
+    &.btn-plurk {
+        color: white;
+        background-color: #ff4e47;
+
+        &:active {
+            color: darkgrey;
+            background-color: #a3322e;
+        }
+    }
+
+    &.btn-tumblr {
+        color: white;
+        background-color: #34526f;
+
+        &:active {
+            color: darkgrey;
+            background-color: #294158;
+        }
+    }
+
+    &.btn-telegram {
+        color: white;
+        background-color: #0088cc;
+
+        &:active {
+            color: darkgrey;
+            background-color: #006ca3;
+        }
+    }
+
+    &.btn-pink {
+        color: white;
+        background-color: #e83e8c;
+
+        &:active {
+            color: darkgrey;
+            background-color: #94285a;
+        }
+    }
+
+    &.btn-orange {
+        color: white;
+        background-color: #fd7e14;
+
+        &:active {
+            color: darkgrey;
+            background-color: #a2510d;
+        }
+    }
+
+    &.btn-laravel {
+        color: white;
+        background-color: #f4645f;
+
+        &:active {
+            color: darkgrey;
+            background-color: #9c403d;
+        }
+    }
+
+    &.btn-softgreen {
+        color: white;
+        background-color: #39c5bb;
+
+        &:active {
+            color: darkgrey;
+            background-color: #257e77;
+        }
+    }
+
+    &.btn-switch {
+        color: white;
+        background-color: #2f3437;
+
+        &:active {
+            color: darkgrey;
+            background-color: #1e2223;
+        }
+    }
+
+    &.btn-pikachu {
+        color: white;
+        background-color: #ffd547;
+
+        &:active {
+            color: darkgrey;
+            background-color: #a3882e;
+        }
+    }
+
+    &.btn-eevee {
+        color: white;
+        background-color: #e7af56;
+
+        &:active {
+            color: darkgrey;
+            background-color: #937037;
+        }
+    }
+
+    &.btn-ch-new-year-2019-red {
+        color: white;
+        background-color: #a61723;
+
+        &:active {
+            color: darkgrey;
+            background-color: #6a0f17;
+        }
+    }
+
+    &.btn-ch-new-year-2019-yellow {
+        color: white;
+        background-color: #d8b06a;
+
+        &:active {
+            color: darkgrey;
+            background-color: #8a7144;
+        }
+    }
+
+    &.btn-devotion {
+        color: white;
+        background-color: #f11541;
+
+        &:active {
+            color: darkgrey;
+            background-color: #9a0e2a;
+        }
+    }
+
+    &.btn-windows-10-error {
+        color: white;
+        background-color: #007bd0;
+
+        &:active {
+            color: darkgrey;
+            background-color: #004f85;
+        }
+    }
+
+    &.btn-dos {
+        background: #bbb;
+        border-radius: 0em;
+        box-shadow: 10px 10px 0 #333;
+
+        &:active {
+            margin: 10px 0 10px 10px;
+            outline: 0;
+            box-shadow: 0 0 0;
+        }
+
+        &.active {
+            background-image: url("../../../../public/img/frontend/background/animated-rainbow.gif");
+        }
+    }
+
+    &.btn-platform {
+        color: white;
+        background-color: #21897e;
+
+        &:active {
+            color: darkgrey;
+            background-color: #155851;
+        }
+    }
+
+    &.btn-rainbow {
+        color: white;
+        background-image: url("../../../../public/img/frontend/background/animated-rainbow.gif");
+
+        &:active {
+            color: darkgrey;
+        }
+    }
+}

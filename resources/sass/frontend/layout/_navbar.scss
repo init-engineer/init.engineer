@@ -1,0 +1,119 @@
+.icon-bar {
+    width: 22px;
+    height: 2px;
+    background-color: #B6B6B6;
+    display: block;
+    transition: all 0.2s;
+    margin-top: 4px
+}
+
+.navbar {
+    position: fixed;
+    top: 0px;
+    z-index: 11;
+    height: 48px;
+    width: 100%;
+    background-color: var(--background-primary);
+
+    .container {
+        max-width: 100%;
+    }
+
+    a {
+        color: var(--font-secondary-color);
+    }
+
+    .nav-link {
+        padding: 0.3rem;
+    }
+
+    .navbar-brand {
+        padding: 0rem;
+    }
+
+    .img-avatar {
+        height: 1.6em;
+    }
+
+    .dropdown-menu {
+        background-color: var(--background-primary);
+
+        .dropdown-item {
+            color: var(--font-secondary-color);
+
+            &.active {
+                background-color: var(--background-secondary-light);
+            }
+
+            &:hover {
+                background-color: var(--background-secondary-dark);
+            }
+        }
+    }
+}
+
+.navbar-toggler {
+    border: none;
+    background: transparent !important;
+
+    .top-bar {
+        transform: rotate(45deg);
+        transform-origin: 10% 10%;
+    }
+
+    .middle-bar {
+        opacity: 0;
+    }
+
+    .bottom-bar {
+        transform: rotate(-45deg);
+        transform-origin: 10% 90%;
+    }
+
+    &.collapsed {
+        .top-bar {
+            transform: rotate(0);
+        }
+
+        .middle-bar {
+            opacity: 1;
+        }
+
+        .bottom-bar {
+            transform: rotate(0);
+        }
+    }
+}
+
+.navbar-collapse {
+    width: 100%;
+    background-color: var(--background-primary);
+    margin: 0px -18px 0px;
+    padding: 0px 18px 0px;
+}
+
+/**
+ * Change the link color and padding.
+ */
+.navbar-full-bg .navbar-nav .nav-link {
+    padding: .75rem 1rem;
+}
+
+/**
+ * Change the color and background color of active links.
+ */
+.navbar-full-bg .nav-item.active .nav-link,
+.navbar-full-bg .nav-item:hover .nav-link,
+.navbar-full-bg .nav-item .active {
+    padding: 0rem;
+    color: var(--font-primary-color);
+    background-color: var(--background-secondary);
+}
+
+#breadcrumbs {
+    position: fixed;
+    top: 48px;
+    z-index: 1;
+    height: 48px;
+    width: 100%;
+}
