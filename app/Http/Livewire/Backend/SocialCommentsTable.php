@@ -5,39 +5,14 @@ namespace App\Http\Livewire\Backend;
 use App\Domains\Social\Models\Cards;
 use App\Domains\Social\Models\Comments;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Str;
-use Rappasoft\LaravelLivewireTables\TableComponent;
-use Rappasoft\LaravelLivewireTables\Traits\HtmlComponents;
+use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
 /**
  * Class SocialCommentsTable.
  */
-class SocialCommentsTable extends TableComponent
+class SocialCommentsTable extends DataTableComponent
 {
-    use HtmlComponents;
-
-    /**
-     * @var string
-     *
-     * The initial field to be sorting by.
-     */
-    public $sortField = 'id';
-
-    /**
-     * @var string
-     *
-     * The initial direction to sort.
-     */
-    public $sortDirection = 'desc';
-
-    /**
-     * @var integer
-     *
-     * Amount of items to show per page.
-     */
-    public $perPage = 10;
-
     /**
      * @var string
      */
@@ -84,25 +59,22 @@ class SocialCommentsTable extends TableComponent
             if (isset($this->cards)) {
                 $query->where('card_id', $this->cards->id);
             }
-
-            return $query;
-        }
-
-        if ($this->status === 'deactivated') {
+        } else if ($this->status === 'deactivated') {
             $query = Comments::where('active', false);
             if (isset($this->cards)) {
                 $query->where('card_id', $this->cards->id);
             }
-
-            return $query;
+        } else {
+            $query = Comments::where('active', true);
+            if (isset($this->cards)) {
+                $query->where('card_id', $this->cards->id);
+            }
         }
 
-        $query = Comments::where('active', true);
-        if (isset($this->cards)) {
-            $query->where('card_id', $this->cards->id);
-        }
-
-        return $query;
+        return $query
+            ->when($this->getFilter('search'), fn ($query, $term) => $query->search($term))
+            ->when($this->getFilter('active'), fn ($query, $active) => $query->where('active', $active === 'yes'))
+            ->when($this->getFilter('blockade'), fn ($query, $blockade) => $query->where('blockade', $blockade === 'yes'));
     }
 
     /**
@@ -112,62 +84,22 @@ class SocialCommentsTable extends TableComponent
     {
         return [
             Column::make(__('ID'), 'id')
-                ->searchable()
                 ->sortable(),
             Column::make(__('Platform'), 'platform')
-                ->format(function (Comments $model) {
-                    return $this->html(sprintf(
-                        '<div class="d-flex text-muted">
-                            <img src="%s" class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="48" height="48">
-
-                            <div class="pl-2 pt-1 mb-0 w-100">
-                                <div class="d-flex justify-content-between">
-                                    <strong class="text-gray-dark">%s</strong>
-                                </div>
-                                <span class="d-block">%s</span>
-                            </div>
-                        </div>',
-                        asset('img/icon/' . $model->platform->type . '.png'),
-                        $model->platform->name,
-                        ucfirst($model->platform->type),
-                    ));
-                })
-                ->searchable()
                 ->sortable(),
             Column::make(__('Author'), 'user_name')
-                ->format(function (Comments $model) {
-                    return $this->html(sprintf(
-                        '<div class="d-flex text-muted">
-                            <img src="%s" class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="48" height="48">
-
-                            <div class="pl-2 pt-1 mb-0 w-100">
-                                <div class="d-flex justify-content-between">
-                                    <strong class="text-gray-dark">%s</strong>
-                                </div>
-                                <span class="d-block">%s</span>
-                            </div>
-                        </div>',
-                        $model->user_avatar,
-                        $model->user_name,
-                        $model->user_id,
-                    ));
-                })
-                ->searchable()
                 ->sortable(),
             Column::make(__('Content'), 'content')
-                ->format(function (Comments $model) {
-                    return $this->html(sprintf(
-                        '<p style="max-width: 320px;" data-toggle="tooltip" data-placement="bottom" title="%s">%s</p>',
-                        $model->content,
-                        Str::limit($model->content, 72, '...'),
-                    ));
-                })
-                ->searchable()
                 ->sortable(),
-            Column::make(__('Actions'))
-                ->format(function (Comments $model) {
-                    return view('backend.social.comments.includes.actions', ['comments' => $model]);
-                }),
+            Column::make(__('Actions')),
         ];
+    }
+
+    /**
+     * @return string
+     */
+    public function rowView(): string
+    {
+        return 'backend.social.comments.includes.row';
     }
 }

@@ -9,6 +9,20 @@ trait CommentsScope
 {
     /**
      * @param $query
+     * @param $term
+     *
+     * @return mixed
+     */
+    public function scopeSearch($query, $term)
+    {
+        return $query->where(function ($query) use ($term) {
+            $query->where('user_name', 'like', '%' . $term . '%')
+                ->orWhere('content', 'like', '%' . $term . '%');
+        });
+    }
+
+    /**
+     * @param $query
      * @param bool $status
      *
      * @return mixed
