@@ -14,7 +14,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
                 {{-- @if(config('boilerplate.locale.status') && count(config('boilerplate.locale.languages')) > 1)
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown p-1">
                         <x-utils.link
                             :text="__(getLocaleName(app()->getLocale()))"
                             class="nav-link dropdown-toggle"
@@ -28,7 +28,7 @@
                 @endif --}}
 
                 @guest
-                    <li class="nav-item">
+                    <li class="nav-item p-1">
                         <x-utils.link
                             :href="route('frontend.auth.login')"
                             :active="activeClass(Route::is('frontend.auth.login'))"
@@ -37,7 +37,7 @@
                     </li>
 
                     @if (config('boilerplate.access.user.registration'))
-                        <li class="nav-item">
+                        <li class="nav-item p-1">
                             <x-utils.link
                                 :href="route('frontend.auth.register')"
                                 :active="activeClass(Route::is('frontend.auth.register'))"
@@ -46,7 +46,7 @@
                         </li>
                     @endif
                 @else
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown p-1">
                         <x-utils.link
                             href="#"
                             id="navbarDropdown"
@@ -55,15 +55,14 @@
                             data-toggle="dropdown"
                             aria-haspopup="true"
                             aria-expanded="false"
-                            v-pre
-                        >
+                            v-pre>
                             <x-slot name="text">
                                 <img class="rounded-circle" style="max-height: 20px" src="{{ $logged_in_user->avatar }}" />
                                 {{ $logged_in_user->name }} <span class="caret"></span>
                             </x-slot>
                         </x-utils.link>
 
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <div class="dropdown-menu dropdown-menu-right animate__animated animate__slideInDown animate__faster" aria-labelledby="navbarDropdown">
                             @if ($logged_in_user->isAdmin())
                                 <x-utils.link
                                     :href="route('admin.dashboard')"
@@ -76,7 +75,7 @@
                                     :href="route('frontend.user.dashboard')"
                                     :active="activeClass(Route::is('frontend.user.dashboard'))"
                                     :text="__('Dashboard')"
-                                    class="dropdown-item"/>
+                                    class="dropdown-item" />
                             @endif
 
                             <x-utils.link
@@ -88,7 +87,7 @@
                             <x-utils.link
                                 :text="__('Logout')"
                                 class="dropdown-item"
-                                onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 <x-slot name="text">
                                     @lang('Logout')
                                     <x-forms.post :action="route('frontend.auth.logout')" id="logout-form" class="d-none" />
@@ -98,9 +97,7 @@
                     </li>
                 @endguest
 
-                <li>
-                    <theme-switch></theme-switch>
-                </li>
+                <theme-switch></theme-switch>
             </ul>
         </div><!--navbar-collapse-->
     </div><!--container-->

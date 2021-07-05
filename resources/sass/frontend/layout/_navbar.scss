@@ -1,7 +1,7 @@
 .icon-bar {
     width: 22px;
     height: 2px;
-    background-color: #B6B6B6;
+    background-color: var(--font-secondary-color);
     display: block;
     transition: all 0.2s;
     margin-top: 4px
@@ -11,7 +11,7 @@
     position: fixed;
     top: 0px;
     z-index: 11;
-    height: 48px;
+    height: 50px;
     width: 100%;
     background-color: var(--background-primary);
 
@@ -24,7 +24,7 @@
     }
 
     .nav-link {
-        padding: 0.3rem;
+        padding: 0.6rem;
     }
 
     .navbar-brand {
@@ -36,16 +36,22 @@
     }
 
     .dropdown-menu {
+        z-index: -1;
+        padding: .6rem;
         background-color: var(--background-primary);
 
         .dropdown-item {
+            padding: .6rem;
+            font-size: 1rem;
             color: var(--font-secondary-color);
 
             &.active {
+                border-radius: 0.25rem;
                 background-color: var(--background-secondary-light);
             }
 
             &:hover {
+                border-radius: 0.25rem;
                 background-color: var(--background-secondary-dark);
             }
         }
@@ -112,8 +118,23 @@
 
 #breadcrumbs {
     position: fixed;
-    top: 48px;
+    top: 50px;
     z-index: 1;
-    height: 48px;
+    height: 50px;
     width: 100%;
+    background-color: var(--background-secondary-light);
+
+    .breadcrumb {
+        background-color: var(--background-secondary-light);
+
+        .breadcrumb-item {
+            a {
+                color: var(--font-primary-color);
+            }
+
+            &.active {
+                color: var(--font-secondary-color);
+            }
+        }
+    }
 }
