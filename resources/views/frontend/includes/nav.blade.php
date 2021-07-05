@@ -1,17 +1,19 @@
-<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+<nav class="navbar navbar-expand-lg navbar-bg">
     <div class="container">
         <x-utils.link
             :href="route('frontend.index')"
             :text="appName()"
             class="navbar-brand" />
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="@lang('Toggle navigation')">
-            <span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler navbar-toggler-right border-0 collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="@lang('Toggle navigation')">
+            <span class="navbar-toggler-icon icon-bar top-bar"></span>
+            <span class="navbar-toggler-icon icon-bar middle-bar"></span>
+            <span class="navbar-toggler-icon icon-bar bottom-bar"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
-                @if(config('boilerplate.locale.status') && count(config('boilerplate.locale.languages')) > 1)
+                {{-- @if(config('boilerplate.locale.status') && count(config('boilerplate.locale.languages')) > 1)
                     <li class="nav-item dropdown">
                         <x-utils.link
                             :text="__(getLocaleName(app()->getLocale()))"
@@ -23,7 +25,7 @@
 
                         @include('includes.partials.lang')
                     </li>
-                @endif
+                @endif --}}
 
                 @guest
                     <li class="nav-item">
@@ -41,7 +43,6 @@
                                 :active="activeClass(Route::is('frontend.auth.register'))"
                                 :text="__('Register')"
                                 class="nav-link" />
-
                         </li>
                     @endif
                 @else
@@ -96,6 +97,10 @@
                         </div>
                     </li>
                 @endguest
+
+                <li>
+                    <theme-switch></theme-switch>
+                </li>
             </ul>
         </div><!--navbar-collapse-->
     </div><!--container-->
