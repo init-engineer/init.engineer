@@ -45,10 +45,10 @@ label {
 }
 
 /* Made by Jimmy Gillam */
-$checked-color: #34b93d;
-$unchecked-color: #000;
+$checked-color: var(--color-success-dark);
+$unchecked-color: var(--font-primary-color);
 $checkbox-height: 24px;
-$font-color: #efefef;
+$font-color: var(--font-primary-color);
 $duration: 0.4s;
 
 /* Checkmark style starts */

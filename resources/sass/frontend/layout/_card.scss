@@ -1,0 +1,11 @@
+.card {
+    color: var(--font-primary-color);
+
+    .card-header {
+        background-color: var(--background-primary-dark);
+    }
+
+    .card-body {
+        background-color: var(--background-secondary-dark);
+    }
+}
