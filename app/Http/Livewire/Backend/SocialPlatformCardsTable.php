@@ -2,30 +2,26 @@
 
 namespace App\Http\Livewire\Backend;
 
+use App\Domains\Social\Models\Cards;
 use App\Domains\Social\Models\Platform;
 use Illuminate\Database\Eloquent\Builder;
-use Rappasoft\LaravelLivewireTables\TableComponent;
-use Rappasoft\LaravelLivewireTables\Traits\HtmlComponents;
+use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
 /**
  * Class SocialPlatformCardsTable.
  */
-class SocialPlatformCardsTable extends TableComponent
+class SocialPlatformCardsTable extends DataTableComponent
 {
-    use HtmlComponents;
-
-    /**
-     * @var string
-     *
-     * The initial field to be sorting by.
-     */
-    public $sortField = 'name';
-
     /**
      * @var string
      */
     public $status;
+
+    /**
+     * @var Cards
+     */
+    public $cards;
 
     /**
      * @var array
@@ -40,12 +36,17 @@ class SocialPlatformCardsTable extends TableComponent
 
     /**
      * @param string $status
+     * @param Cards $cards
      *
      * @return void
      */
-    public function mount($status = 'active'): void
+    public function mount($status = 'active', $cards = null): void
     {
         $this->status = $status;
+
+        if (isset($cards)) {
+            $this->cards = Cards::find($cards);
+        }
     }
 
     /**
@@ -71,30 +72,19 @@ class SocialPlatformCardsTable extends TableComponent
     {
         return [
             Column::make(__('Name'), 'name')
-                ->searchable()
                 ->sortable(),
             Column::make(__('Type'), 'type')
-                ->format(function (Platform $model) {
-                    return $this->html(
-                        sprintf(
-                            '<img src="%s" class="img-fluid" style="width: 32px;" alt="%s" />',
-                            asset('img/icon/' . $model->type . '.png'),
-                            ucfirst($model->type),
-                        )
-                    );
-                })
-                ->searchable()
                 ->sortable(),
-            Column::make(__('Active'), 'active')
-                ->format(function (Platform $model) {
-                    return $this->html(view('backend.social.platform.includes.active', ['platform' => $model]));
-                })
-                ->searchable()
-                ->sortable(),
-            Column::make(__('Actions'))
-                ->format(function (Platform $model) {
-                    return view('backend.social.platform.includes.actions', ['platform' => $model]);
-                }),
+            Column::make(__('Active'), 'active'),
+            Column::make(__('Actions')),
         ];
+    }
+
+    /**
+     * @return string
+     */
+    public function rowView(): string
+    {
+        return 'backend.social.platform.cards.includes.row';
     }
 }

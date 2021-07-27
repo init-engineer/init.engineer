@@ -62,6 +62,20 @@
 
     <x-backend.card>
         <x-slot name="header">
+            @lang('View Platform')
+        </x-slot>
+
+        <x-slot name="headerActions">
+            <x-utils.link class="card-header-action" :href="route('admin.social.cards.index')" :text="__('Back')" />
+        </x-slot>
+
+        <x-slot name="body">
+            <livewire:backend.social-platform-table cards="{{ $cards->id }}" />
+        </x-slot>
+    </x-backend.card>
+
+    <x-backend.card>
+        <x-slot name="header">
             @lang('View Comments')
         </x-slot>
 
