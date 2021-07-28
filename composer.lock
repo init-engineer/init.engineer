@@ -2100,16 +2100,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v8.51.0",
+            "version": "v8.52.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "208d9c0043b4c192a9bb9b15782cc4ec37f28bb0"
+                "reference": "8fe9877d52e25f8aed36c51734e5a8510be967e6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/208d9c0043b4c192a9bb9b15782cc4ec37f28bb0",
-                "reference": "208d9c0043b4c192a9bb9b15782cc4ec37f28bb0",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/8fe9877d52e25f8aed36c51734e5a8510be967e6",
+                "reference": "8fe9877d52e25f8aed36c51734e5a8510be967e6",
                 "shasum": ""
             },
             "require": {
@@ -2264,7 +2264,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2021-07-20T14:38:36+00:00"
+            "time": "2021-07-27T13:03:29+00:00"
         },
         {
             "name": "laravel/passport",
@@ -3149,23 +3149,23 @@
         },
         {
             "name": "league/oauth2-server",
-            "version": "8.3.1",
+            "version": "8.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/oauth2-server.git",
-                "reference": "97dbc97b3b1bc4e613b70cb5e0e07d4b2d9372cc"
+                "reference": "0809487d33dd8a2c8c8c04e4a599ba4aadba1ae6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/oauth2-server/zipball/97dbc97b3b1bc4e613b70cb5e0e07d4b2d9372cc",
-                "reference": "97dbc97b3b1bc4e613b70cb5e0e07d4b2d9372cc",
+                "url": "https://api.github.com/repos/thephpleague/oauth2-server/zipball/0809487d33dd8a2c8c8c04e4a599ba4aadba1ae6",
+                "reference": "0809487d33dd8a2c8c8c04e4a599ba4aadba1ae6",
                 "shasum": ""
             },
             "require": {
                 "defuse/php-encryption": "^2.2.1",
                 "ext-json": "*",
                 "ext-openssl": "*",
-                "lcobucci/jwt": "^3.4 || ~4.0.0",
+                "lcobucci/jwt": "^3.4 || ^4.0",
                 "league/event": "^2.2",
                 "php": "^7.2 || ^8.0",
                 "psr/http-message": "^1.0.1"
@@ -3224,7 +3224,7 @@
             ],
             "support": {
                 "issues": "https://github.com/thephpleague/oauth2-server/issues",
-                "source": "https://github.com/thephpleague/oauth2-server/tree/8.3.1"
+                "source": "https://github.com/thephpleague/oauth2-server/tree/8.3.2"
             },
             "funding": [
                 {
@@ -3232,7 +3232,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-06-04T08:28:35+00:00"
+            "time": "2021-07-27T08:17:08+00:00"
         },
         {
             "name": "livewire/livewire",
@@ -3476,22 +3476,23 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "2.50.0",
+            "version": "2.51.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "f47f17d17602b2243414a44ad53d9f8b9ada5fdb"
+                "reference": "8619c299d1e0d4b344e1f98ca07a1ce2cfbf1922"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/f47f17d17602b2243414a44ad53d9f8b9ada5fdb",
-                "reference": "f47f17d17602b2243414a44ad53d9f8b9ada5fdb",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/8619c299d1e0d4b344e1f98ca07a1ce2cfbf1922",
+                "reference": "8619c299d1e0d4b344e1f98ca07a1ce2cfbf1922",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "php": "^7.1.8 || ^8.0",
                 "symfony/polyfill-mbstring": "^1.0",
+                "symfony/polyfill-php80": "^1.16",
                 "symfony/translation": "^3.4 || ^4.0 || ^5.0"
             },
             "require-dev": {
@@ -3510,8 +3511,8 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.x-dev",
-                    "dev-3.x": "3.x-dev"
+                    "dev-3.x": "3.x-dev",
+                    "dev-master": "2.x-dev"
                 },
                 "laravel": {
                     "providers": [
@@ -3565,7 +3566,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-06-28T22:38:45+00:00"
+            "time": "2021-07-28T13:16:28+00:00"
         },
         {
             "name": "nette/schema",
@@ -7285,16 +7286,16 @@
         },
         {
             "name": "symfony/psr-http-message-bridge",
-            "version": "v2.1.0",
+            "version": "v2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/psr-http-message-bridge.git",
-                "reference": "81db2d4ae86e9f0049828d9343a72b9523884e5d"
+                "reference": "c9012994c4b4fb23e7c57dd86b763a417a04feba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/psr-http-message-bridge/zipball/81db2d4ae86e9f0049828d9343a72b9523884e5d",
-                "reference": "81db2d4ae86e9f0049828d9343a72b9523884e5d",
+                "url": "https://api.github.com/repos/symfony/psr-http-message-bridge/zipball/c9012994c4b4fb23e7c57dd86b763a417a04feba",
+                "reference": "c9012994c4b4fb23e7c57dd86b763a417a04feba",
                 "shasum": ""
             },
             "require": {
@@ -7304,7 +7305,7 @@
             },
             "require-dev": {
                 "nyholm/psr7": "^1.1",
-                "psr/log": "^1.1",
+                "psr/log": "^1.1 || ^2 || ^3",
                 "symfony/browser-kit": "^4.4 || ^5.0",
                 "symfony/config": "^4.4 || ^5.0",
                 "symfony/event-dispatcher": "^4.4 || ^5.0",
@@ -7353,7 +7354,7 @@
             ],
             "support": {
                 "issues": "https://github.com/symfony/psr-http-message-bridge/issues",
-                "source": "https://github.com/symfony/psr-http-message-bridge/tree/v2.1.0"
+                "source": "https://github.com/symfony/psr-http-message-bridge/tree/v2.1.1"
             },
             "funding": [
                 {
@@ -7369,7 +7370,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-02-17T10:35:25+00:00"
+            "time": "2021-07-27T17:25:39+00:00"
         },
         {
             "name": "symfony/routing",
@@ -10301,16 +10302,16 @@
         },
         {
             "name": "maximebf/debugbar",
-            "version": "v1.16.5",
+            "version": "v1.17.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/maximebf/php-debugbar.git",
-                "reference": "6d51ee9e94cff14412783785e79a4e7ef97b9d62"
+                "reference": "4ef8e359d9fffbfbce26218ee36f196453a4dd7d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/maximebf/php-debugbar/zipball/6d51ee9e94cff14412783785e79a4e7ef97b9d62",
-                "reference": "6d51ee9e94cff14412783785e79a4e7ef97b9d62",
+                "url": "https://api.github.com/repos/maximebf/php-debugbar/zipball/4ef8e359d9fffbfbce26218ee36f196453a4dd7d",
+                "reference": "4ef8e359d9fffbfbce26218ee36f196453a4dd7d",
                 "shasum": ""
             },
             "require": {
@@ -10329,7 +10330,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.16-dev"
+                    "dev-master": "1.17-dev"
                 }
             },
             "autoload": {
@@ -10360,9 +10361,9 @@
             ],
             "support": {
                 "issues": "https://github.com/maximebf/php-debugbar/issues",
-                "source": "https://github.com/maximebf/php-debugbar/tree/v1.16.5"
+                "source": "https://github.com/maximebf/php-debugbar/tree/v1.17.0"
             },
-            "time": "2020-12-07T11:07:24+00:00"
+            "time": "2021-07-27T05:47:57+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -13159,16 +13160,16 @@
         },
         {
             "name": "theseer/tokenizer",
-            "version": "1.2.0",
+            "version": "1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/theseer/tokenizer.git",
-                "reference": "75a63c33a8577608444246075ea0af0d052e452a"
+                "reference": "34a41e998c2183e22995f158c581e7b5e755ab9e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/theseer/tokenizer/zipball/75a63c33a8577608444246075ea0af0d052e452a",
-                "reference": "75a63c33a8577608444246075ea0af0d052e452a",
+                "url": "https://api.github.com/repos/theseer/tokenizer/zipball/34a41e998c2183e22995f158c581e7b5e755ab9e",
+                "reference": "34a41e998c2183e22995f158c581e7b5e755ab9e",
                 "shasum": ""
             },
             "require": {
@@ -13197,7 +13198,7 @@
             "description": "A small library for converting tokenized PHP source code into XML and potentially other formats",
             "support": {
                 "issues": "https://github.com/theseer/tokenizer/issues",
-                "source": "https://github.com/theseer/tokenizer/tree/master"
+                "source": "https://github.com/theseer/tokenizer/tree/1.2.1"
             },
             "funding": [
                 {
@@ -13205,7 +13206,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-07-12T23:59:07+00:00"
+            "time": "2021-07-28T10:34:58+00:00"
         }
     ],
     "aliases": [],
