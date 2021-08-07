@@ -8,7 +8,7 @@
             <div class="col-md-8">
                 <x-frontend.card>
                     <x-slot name="header">
-                        @lang('Your password has expired.')
+                        <h1 class="py-2 my-2 text-center">@lang('Your password has expired.')</h1>
                     </x-slot>
 
                     <x-slot name="body">
@@ -17,7 +17,7 @@
                                 <label for="current_password" class="col-md-4 col-form-label text-md-right">@lang('Current Password')</label>
 
                                 <div class="col-md-6">
-                                    <input type="password" name="current_password" class="form-control" placeholder="{{ __('Current Password') }}" maxlength="100" required autofocus />
+                                    <input type="password" name="current_password" class="form-control form-control-lg input-black" placeholder="{{ __('Current Password') }}" maxlength="100" required autofocus />
                                 </div>
                             </div><!--form-group-->
 
@@ -25,7 +25,7 @@
                                 <label for="password" class="col-md-4 col-form-label text-md-right">@lang('New Password')</label>
 
                                 <div class="col-md-6">
-                                    <input type="password" id="password" name="password" class="form-control" placeholder="{{ __('New Password') }}" maxlength="100" required autocomplete="password" />
+                                    <input type="password" id="password" name="password" class="form-control form-control-lg input-black" placeholder="{{ __('New Password') }}" maxlength="100" required autocomplete="password" />
                                 </div>
                             </div><!--form-group-->
 
@@ -33,7 +33,7 @@
                                 <label for="password_confirmation" class="col-md-4 col-form-label text-md-right">@lang('Password Confirmation')</label>
 
                                 <div class="col-md-6">
-                                    <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" maxlength="100" placeholder="{{ __('Password Confirmation') }}" required autocomplete="new-password" />
+                                    <input type="password" id="password_confirmation" name="password_confirmation" class="form-control form-control-lg input-black" maxlength="100" placeholder="{{ __('Password Confirmation') }}" required autocomplete="new-password" />
                                 </div>
                             </div><!--form-group-->
 

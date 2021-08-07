@@ -8,22 +8,22 @@
             <div class="col-md-8">
                 <x-frontend.card>
                     <x-slot name="header">
-                        @lang('Reset Password')
+                        <h1 class="py-2 my-2 text-center">@lang('Reset Password')</h1>
                     </x-slot>
 
                     <x-slot name="body">
                         <x-forms.post :action="route('frontend.auth.password.email')">
-                            <div class="form-group row">
-                                <label for="email" class="col-md-4 col-form-label text-md-right">@lang('E-mail Address')</label>
+                            <div class="form-group row mb-2">
+                                <label for="email" class="col-md-12 col-form-label text-md-right pb-1">@lang('E-mail Address')</label>
 
-                                <div class="col-md-6">
-                                    <input type="email" name="email" id="email" class="form-control" value="{{ old('email') }}" placeholder="{{ __('E-mail Address') }}" maxlength="255" required autofocus autocomplete="email" />
+                                <div class="col-md-12">
+                                    <input type="email" name="email" id="email" class="form-control form-control-lg input-black" placeholder="{{ __('E-mail Address') }}" value="{{ old('email') }}" maxlength="255" required autofocus autocomplete="email" />
                                 </div>
                             </div><!--form-group-->
 
                             <div class="form-group row mb-0">
-                                <div class="col-md-6 offset-md-4">
-                                    <button class="btn btn-primary" type="submit">@lang('Send Password Reset Link')</button>
+                                <div class="col">
+                                    <button class="btn btn-dos btn-lg btn-block my-4" type="submit">@lang('Send Password Reset Link')</button>
                                 </div>
                             </div><!--form-group-->
                         </x-forms.post>

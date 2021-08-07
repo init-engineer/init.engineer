@@ -3,15 +3,16 @@
  */
 input {
     &.input-black {
+        color: var(--font-primary-color);
         border-style: solid;
-        border-color: white;
+        border-color: var(--font-primary-color);
         border-width: 0.1125em;
-        background-color: black;
+        background-color: var(--background-primary);
 
         &:focus {
-            color: #495057;
-            border-color: #80bdff;
-            background-color: black;
+            color: var(--font-primary-color);
+            border-color: var(--color-primary);
+            background-color: var(--background-primary);
             box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
             outline: 0;
         }

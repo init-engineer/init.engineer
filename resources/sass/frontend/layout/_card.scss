@@ -1,5 +1,12 @@
 .card {
     color: var(--font-primary-color);
+    border: 0px;
+    border-radius: 0rem;
+    background-color: var(--background-secondary-light);
+    box-shadow: 12px 12px  0px rgba(0, 0, 0, 0.25),
+                 0px  0px 12px rgba(0, 0, 0, 0.25);
+    position: relative;
+    overflow: hidden;
 
     .card-header {
         background-color: var(--background-primary-dark);
