@@ -1,0 +1,22 @@
+.table {
+    color: var(--font-primary-color);
+
+    .cell-datetime {
+        div {
+            position: inherit;
+
+            strong {
+                font-weight: 600;
+                font-size: 16px;
+                color: var(--color-primary);
+                display: inherit;
+            }
+
+            span {
+                font-size: 12px;
+                font-weight: 400;
+                color: var(--font-primary-color);
+            }
+        }
+    }
+}

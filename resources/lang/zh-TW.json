@@ -49,8 +49,6 @@
     "Account": "帳號",
     "Login": "登入",
     "Register": "註冊",
-    "Init.Engineer Submit": "純靠北投稿",
-    "Forum": "討論版",
     "Docs": "文件",
     "E-mail Address": "電子郵件地址",
     "Password": "密碼",
@@ -217,6 +215,23 @@
     "To keep connected with us please login with your personal info": "登入系統以享受最佳體驗。",
     "or use your account": "或者使用您的帳號來登入",
     "or use your email for registration": "或者使用您的電子郵件來進行註冊",
+
+    "Livewire": "Livewire",
+        "Search": "搜尋",
+        "Fitters": "篩選",
+        "Showing": "顯示",
+        "results": "筆結果",
+        "No items found. Try narrowing your search.": "沒有找到任何內容，您可以嘗試看看縮小搜尋範圍？",
+
+    "Init.Engineer": "純靠北工程師",
+        "Init.Engineer Submit": "純靠北投稿",
+            "Submit": "投稿",
+            "Create Submit": "文章投稿",
+            "Picture Submit": "圖片投稿",
+            "Review Submit": "群眾審核",
+
+        "Init.Engineer Forum": "純靠北討論版",
+            "Forum": "討論版",
 
     "Enum": "列舉",
         "Social Enum": "社群平台列舉",
