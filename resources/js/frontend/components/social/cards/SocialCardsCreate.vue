@@ -492,21 +492,21 @@ export default {
             font: "KC24M",
             value: "813ca6cbbd95d7e08fa2af59bc12072d",
           },
-          {
-            text: "ZPIX 點陣字型",
-            font: "Zfull",
-            value: "1b23b3cd9223930ac694b7f29f38ff21",
-          },
-          {
-            text: "張海山銳諧體",
-            font: "Harmonic",
-            value: "68068fcf50e7cae709cb8ed0b7b9b0f3",
-          },
-          {
-            text: "蒙納繁圓點陣",
-            font: "MBitmapRoundHK",
-            value: "f762e3a99692b40e5929ab3668606a4a",
-          },
+        //   {
+        //     text: "ZPIX 點陣字型",
+        //     font: "Zfull",
+        //     value: "1b23b3cd9223930ac694b7f29f38ff21",
+        //   },
+        //   {
+        //     text: "張海山銳諧體",
+        //     font: "Harmonic",
+        //     value: "68068fcf50e7cae709cb8ed0b7b9b0f3",
+        //   },
+        //   {
+        //     text: "蒙納繁圓點陣",
+        //     font: "MBitmapRoundHK",
+        //     value: "f762e3a99692b40e5929ab3668606a4a",
+        //   },
           {
             text: "微軟正黑體",
             font: "Microsoft JhengHei",
@@ -532,46 +532,46 @@ export default {
             font: "Taipei Sans TC Beta",
             value: "yc45sgsfbss490dqgs2g23a7z24slhoj",
           },
-          {
-            text: "搖滾樂♪",
-            font: "RocknRoll One-Regular",
-            value: "7yQkdi3Q0lIt0GTZ3GToByiQoQuUGT2c",
-          },
-          {
-            text: "點陣哥特 16",
-            font: "DotGothic16-Regular",
-            value: "bxwe3vU47DyWTEM17sLNQTCHOBbB13xh",
-          },
-          {
-            text: "壁壘 XwX",
-            font: "Rampart One-Regular",
-            value: "DVAgml6ZFScVZ05aZQmo1bzSZDGtfDZV",
-          },
-          {
-            text: "雷鬼 UwU",
-            font: "Reggae One-Regular",
-            value: "hfPg6Tb250eMRlEnew2PHEdqzfCK2bbu",
-          },
-          {
-            text: "戳戳 OwO",
-            font: "Stick-Regular",
-            value: "Fwc7qnSDTtQ5gAwDOHJXU251ZovUEEtN",
-          },
-          {
-            text: "克萊一般般",
-            font: "Klee One Regular",
-            value: "2EEqzp9EHqHTu1jKGhOZ3lspfsbvwOar",
-          },
-          {
-            text: "克萊粗一點",
-            font: "Klee One SemiBold",
-            value: "wWyUkCWL5HW8nhw9wwawx0WbVAyxZjEN",
-          },
-          {
-            text: "火車便當",
-            font: "Train One-Regular",
-            value: "LrDE83PVGCbTlMTShdkpEdna5FrXy1P0",
-          },
+        //   {
+        //     text: "搖滾樂♪",
+        //     font: "RocknRoll One-Regular",
+        //     value: "7yQkdi3Q0lIt0GTZ3GToByiQoQuUGT2c",
+        //   },
+        //   {
+        //     text: "點陣哥特 16",
+        //     font: "DotGothic16-Regular",
+        //     value: "bxwe3vU47DyWTEM17sLNQTCHOBbB13xh",
+        //   },
+        //   {
+        //     text: "壁壘 XwX",
+        //     font: "Rampart One-Regular",
+        //     value: "DVAgml6ZFScVZ05aZQmo1bzSZDGtfDZV",
+        //   },
+        //   {
+        //     text: "雷鬼 UwU",
+        //     font: "Reggae One-Regular",
+        //     value: "hfPg6Tb250eMRlEnew2PHEdqzfCK2bbu",
+        //   },
+        //   {
+        //     text: "戳戳 OwO",
+        //     font: "Stick-Regular",
+        //     value: "Fwc7qnSDTtQ5gAwDOHJXU251ZovUEEtN",
+        //   },
+        //   {
+        //     text: "克萊一般般",
+        //     font: "Klee One Regular",
+        //     value: "2EEqzp9EHqHTu1jKGhOZ3lspfsbvwOar",
+        //   },
+        //   {
+        //     text: "克萊粗一點",
+        //     font: "Klee One SemiBold",
+        //     value: "wWyUkCWL5HW8nhw9wwawx0WbVAyxZjEN",
+        //   },
+        //   {
+        //     text: "火車便當",
+        //     font: "Train One-Regular",
+        //     value: "LrDE83PVGCbTlMTShdkpEdna5FrXy1P0",
+        //   },
         ],
       },
     };
