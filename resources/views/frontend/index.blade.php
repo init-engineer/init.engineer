@@ -35,18 +35,18 @@
 
     <div class="row flex-column-reverse flex-md-row my-2">
         <div class="col-12 col-md-4 col-lg-2 mx-auto my-2">
-            <music-player></music-player>
+            <label class="col-label bg-color-primary color-color-primary">純靠北工程師 Discord</label>
+            <iframe src="https://discord.com/widget?id=508513350964084736&theme=dark" width="100%" height="400" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
 
-            <label class="col-label bg-color-primary color-color-primary">《近日熱門文章》</label>
-            <div class="w-100 mb-2 bg-color-primary">
-                <a href="https://init.engineer/cards/show/5905">
-                    <img class="p-2 w-100" src="https://init.engineer/storage/cards/custom/JMBif6Zd6dZMcRpE826QEKN4a6Q2vThCVrxWO1eElTj6kPOmUDGTFCbcRHm9cxgrQ0X0tCTLbETftQIfmZrVbs1doetASNBI69xA8jQLkGq5o2PQ9inaSbimjBhqXbAN.jpg">
-                </a>
-            </div>
-
-            <bulletin-board></bulletin-board>
         </div>
         <div class="col-12 col-md-8 col-lg-6 mx-auto my-2 px-0">
+            <label class="col-label bg-color-primary color-color-primary">快捷選單</label>
+            <div class="w-100 bg-color-primary mb-3">
+                <div class="github-card" data-github="kantai235" data-theme="default"></div>
+                <div class="github-card" data-github="init-engineer/init.engineer" data-theme="default"></div>
+                <script src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
+            </div>
+
             <label class="col-label bg-color-primary color-color-primary">快捷選單</label>
             <div class="w-100 bg-color-primary">
                 <table class="table table-sm table-hover color-color-primary">
@@ -85,8 +85,6 @@
                 </table>
             </div>
 
-            <label class="col-label bg-color-primary color-color-primary">純靠北工程師 Discord</label>
-            <iframe src="https://discord.com/widget?id=508513350964084736&theme=dark" width="100%" height="400" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
         </div>
 
         <div class="col-12 col-lg-4 mx-auto my-2">
@@ -116,7 +114,15 @@
                 </div>
             </div>
 
-            <financial-status></financial-status>
+            <div class="pb-2">
+                <label class="pt-2 col-label bg-color-primary color-color-primary">好心人斗內一下</label>
+                <div class="w-100 mb-2 p-2 bg-color-primary">
+                    <div class="text-center">
+                        <a class="btn btn-success" href="https://p.ecpay.com.tw/1ADBA06" target="_blank">單筆小額贊助</a>
+                        <a class="btn btn-success" href="https://p.ecpay.com.tw/3D1AF5E" target="_blank">定期定額贊助</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

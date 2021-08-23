@@ -4,7 +4,15 @@
 
 @section('content')
     <div class="container mt-3">
-        <financial-status></financial-status>
+        <div class="pb-2">
+            <label class="pt-2 col-label bg-color-primary color-color-primary">好心人斗內一下</label>
+            <div class="w-100 mb-2 p-2 bg-color-primary">
+                <div class="text-center">
+                    <a class="btn btn-success" href="https://p.ecpay.com.tw/1ADBA06" target="_blank">單筆小額贊助</a>
+                    <a class="btn btn-success" href="https://p.ecpay.com.tw/3D1AF5E" target="_blank">定期定額贊助</a>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="container my-3">
