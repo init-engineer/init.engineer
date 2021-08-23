@@ -62,6 +62,7 @@
         @stack('after-styles')
     </head>
     <body>
+        @include('frontend.includes.github')
         @include('includes.partials.read-only')
 
         <div id="app">
