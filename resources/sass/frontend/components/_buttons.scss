@@ -350,14 +350,21 @@ button {
     }
 
     &.btn-dos {
-        background: #bbb;
-        border-radius: 0em;
-        box-shadow: 10px 10px 0 #333;
+        color: var(--font-primary-color);
+        background-color: var(--background-secondary);
+        border-radius: 0px;
+        box-shadow: 12px 12px  0px rgba(var(--theme-color-reverse-int), var(--theme-color-reverse-int), var(--theme-color-reverse-int), 0.25),
+                     0px  0px 12px rgba(var(--theme-color-reverse-int), var(--theme-color-reverse-int), var(--theme-color-reverse-int), 0.25);
+
+        &:hover {
+           color: var(--font-secondary-color);
+           background-color: var(--background-primary-dark);
+        }
 
         &:active {
-            margin: 10px 0 10px 10px;
+            margin: 10px 0px 10px 10px;
             outline: 0;
-            box-shadow: 0 0 0;
+            box-shadow: 0px 0px 0px;
         }
 
         &.active {

@@ -49,26 +49,6 @@ class CardsService extends BaseService
     }
 
     /**
-     * @param Cards $cards
-     * @param array $data
-     *
-     * @return Cards
-     */
-    public function registerPlatform(Cards $cards, array $data): Cards
-    {
-        $platforms = $this->createPlatform($data, json_decode($cards->platform, true));
-        $cards->platform = json_encode($platforms);
-
-        if ($cards->save()) {
-            // event(new CardsRegisterPlatform($cards, $data));
-
-            return $cards;
-        }
-
-        throw new GeneralException(__('There was a problem updating this cards. Please try again.'));
-    }
-
-    /**
      * @param array $data
      *
      * @return Cards
@@ -84,6 +64,7 @@ class CardsService extends BaseService
                 'model_id' => $data['model_id'],
                 'content' => $data['content'],
                 'config' => $data['config'],
+                'picture' => $data['picture'],
             ]);
         } catch (Exception $e) {
             DB::rollBack();
@@ -141,10 +122,10 @@ class CardsService extends BaseService
 
         try {
             $cards->update([
-                'banned' => true,
-                'banned_by' => $user->id,
-                'banned_remarks' => $remarks ?? null,
-                'banned_at' => Carbon::now(),
+                'blockade' => true,
+                'blockade_by' => $user->id,
+                'blockade_remarks' => $remarks ?? null,
+                'blockade_at' => Carbon::now(),
             ]);
         } catch (Exception $e) {
             DB::rollBack();
@@ -241,9 +222,10 @@ class CardsService extends BaseService
             'model_type' => User::class,
             'model_id' => $data['model_id'],
             'content' => $data['content'],
-            'config' => json_encode($data['config']),
+            'config' => $this->createConfig($data['config']),
+            'picture' => $this->createImage($data['picture']),
             'active' => $data['active'] ?? false,
-            'banned' => $data['banned'] ?? false,
+            'blockade' => $data['blockade'] ?? false,
         ]);
     }
 
@@ -254,32 +236,7 @@ class CardsService extends BaseService
      */
     protected function createConfig(array $data = []): array
     {
-        return [];
-    }
-
-    /**
-     * @param array $data
-     * @param array $origin
-     *
-     * @return array
-     */
-    protected function createPlatform(array $data, array $origin = []): array
-    {
-        $platforms = $origin;
-        array_push($platforms, [
-            'platform' => [
-                'id' => $data['platform']['id'],
-                'name' => $data['platform']['name'],
-                'type' => $data['platform']['type'],
-            ],
-            'post_id' => $data['post_id'],
-            'like' => 0,
-            'share' => 0,
-            'active' => true,
-            'created_at' => $data['created_at'],
-            'updated_at' => Carbon::now(),
-        ]);
-        return $platforms;
+        return $data;
     }
 
     /**

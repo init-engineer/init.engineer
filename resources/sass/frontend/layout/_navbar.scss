@@ -27,6 +27,21 @@
         padding: 0.6rem;
     }
 
+    .dos-link {
+        color: var(--font-primary-color);
+        background-color: var(--background-secondary);
+        padding: 6px;
+        margin-top: 2px;
+        border-radius: 0px;
+        box-shadow: 8px 4px 0px rgba(var(--theme-color-reverse-int), var(--theme-color-reverse-int), var(--theme-color-reverse-int), 0.25);
+
+        &.active {
+            margin: 4px 0px 4px 4px;
+            outline: 0;
+            box-shadow: 4px 4px 0px rgba(var(--theme-color-reverse-int), var(--theme-color-reverse-int), var(--theme-color-reverse-int), 0.5);
+        }
+    }
+
     .navbar-brand {
         padding: 0rem;
     }

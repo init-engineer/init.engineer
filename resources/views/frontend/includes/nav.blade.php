@@ -32,14 +32,14 @@
                         :href="route('frontend.social.cards.index')"
                         :active="activeClass(Route::is('frontend.social.cards.index'))"
                         :text="__('Init.Engineer Submit')"
-                        class="nav-link btn btn-dos py-1 my-1" />
+                        class="nav-link dos-link" />
                 </li>
                 <li class="nav-item p-1">
                     <x-utils.link
                         {{-- :href="route('frontend.forum.index')" --}}
                         {{-- :active="activeClass(Route::is('frontend.forum.index'))" --}}
                         :text="__('Forum')"
-                        class="nav-link" />
+                        class="nav-link dos-link" />
                 </li>
 
                 @guest

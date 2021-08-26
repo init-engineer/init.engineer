@@ -22,17 +22,17 @@
                     {{-- :href="route('frontend.forum.index')" --}}
                     {{-- :active="activeClass(Route::is('frontend.forum.index'))" --}}
                     :text="__('Create Submit')"
-                    class="nav-link btn btn-dos mb-4" />
+                    class="nav-link btn btn-dos py-3 mb-4" />
                 <x-utils.link
                     {{-- :href="route('frontend.forum.index')" --}}
                     {{-- :active="activeClass(Route::is('frontend.forum.index'))" --}}
                     :text="__('Picture Submit')"
-                    class="nav-link btn btn-dos mb-4" />
+                    class="nav-link btn btn-dos py-3 mb-4" />
                 <x-utils.link
                     {{-- :href="route('frontend.forum.index')" --}}
                     {{-- :active="activeClass(Route::is('frontend.forum.index'))" --}}
                     :text="__('Review Submit')"
-                    class="nav-link btn btn-dos mb-4" />
+                    class="nav-link btn btn-dos py-3 mb-4" />
             </div><!--col-md-3-->
         </div><!--row-->
     </div><!--container-->

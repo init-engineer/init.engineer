@@ -21,21 +21,23 @@
 /**
  * Base
  */
-@import 'base/basic';
-@import 'base/border';
-@import 'base/float';
-@import 'base/reset';
-@import 'base/typography';
+@import "base/basic";
+@import "base/border";
+@import "base/float";
+@import "base/reset";
+@import "base/typography";
 
 /**
  * Components
  */
-@import 'components/badges';
-@import 'components/buttons';
-@import 'components/inputs';
-@import 'components/labels';
-@import 'components/navigations';
-@import 'components/textareas';
+@import "components/alert";
+@import "components/badges";
+@import "components/buttons";
+@import "components/inputs";
+@import "components/labels";
+@import "components/navigations";
+@import "components/pagination";
+@import "components/textareas";
 
 /**
  * Layout
@@ -54,5 +56,6 @@
 /**
  * Theme
  */
+@import "theme/global";
 @import "theme/light";
 @import "theme/dark";

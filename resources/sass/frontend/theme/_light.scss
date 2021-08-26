@@ -2,6 +2,9 @@
  * Light Mode
  */
 .theme-light {
+    --theme-color-int: 255;
+    --theme-color-reverse-int: 0;
+
     --background-primary: #ced4da;
     --background-secondary: #f8f9fa;
     --color-primary: #198eff;

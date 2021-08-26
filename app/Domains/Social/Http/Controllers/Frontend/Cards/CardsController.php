@@ -2,6 +2,7 @@
 
 namespace App\Domains\Social\Http\Controllers\Frontend\Cards;
 
+use App\Domains\Social\Models\Cards;
 use App\Http\Controllers\Controller;
 
 /**
@@ -17,9 +18,7 @@ class CardsController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function index()
     {
@@ -27,12 +26,21 @@ class CardsController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function create()
     {
         return view('frontend.social.create');
+    }
+
+    /**
+     * @param Cards $id
+     *
+     * @return \Illuminate\View\View
+     */
+    public function show(Cards $id)
+    {
+        return view('frontend.social.show')
+            ->with('cards', $id);
     }
 }

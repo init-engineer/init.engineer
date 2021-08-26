@@ -37,6 +37,7 @@ class SocialCardsTable extends DataTableComponent
     public function query(): Builder
     {
         return Cards::where('active', true)
+            ->orderBy('id', 'desc')
             ->when($this->getFilter('search'), fn ($query, $term) => $query->search($term));
     }
 

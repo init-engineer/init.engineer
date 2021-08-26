@@ -2,6 +2,9 @@
  * Dark Mode
  */
 .theme-dark {
+    --theme-color-int: 0;
+    --theme-color-reverse-int: 255;
+
     --background-primary: #161612;
     --background-secondary: #2d2d25;
     --color-primary: #44adff;

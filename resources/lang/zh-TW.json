@@ -218,8 +218,12 @@
 
     "Livewire": "Livewire",
         "Search": "搜尋",
+        "Applied Sorting": "排序篩選",
+        "Clear": "清除",
         "Fitters": "篩選",
         "Showing": "顯示",
+        "to": "至",
+        "of": "的",
         "results": "筆結果",
         "No items found. Try narrowing your search.": "沒有找到任何內容，您可以嘗試看看縮小搜尋範圍？",
 

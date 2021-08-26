@@ -21,6 +21,7 @@ Route::group([
         'namespace' => 'Cards',
     ], function () {
         Route::get('/', [CardsController::class, 'index'])->name('index');
+        Route::get('/show/{id}', [CardsController::class, 'show'])->name('show');
 
         Route::group(['middleware' => 'auth'], function () {
             // Authentication
