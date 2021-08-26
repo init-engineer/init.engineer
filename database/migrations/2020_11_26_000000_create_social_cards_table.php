@@ -150,7 +150,8 @@ class CreateSocialCardsTable extends Migration
             $table->bigIncrements('id');
             $table->uuid('uuid')->nullable();
             $table->unsignedBigInteger('card_id')->comment('文章 ID');
-            $table->unsignedBigInteger('platform_id')->comment('平台 ID');
+            $table->unsignedBigInteger('platform_id')->nullable()->comment('平台 ID');
+            $table->unsignedBigInteger('platform_card_id')->nullable()->comment('平台文章 ID');
             $table->string('comment_id')->nullable()->comment('社群平台 ID');
             $table->string('user_name')->nullable()->comment('使用者名稱');
             $table->string('user_id')->nullable()->comment('使用者 ID');
@@ -179,6 +180,11 @@ class CreateSocialCardsTable extends Migration
             $table->foreign('platform_id')
                 ->references('id')
                 ->on('social_platform')
+                ->onDelete('cascade');
+
+            $table->foreign('platform_card_id')
+                ->references('id')
+                ->on('social_platform_cards')
                 ->onDelete('cascade');
         });
     }
