@@ -229,6 +229,7 @@
 
     "Init.Engineer": "純靠北工程師",
         "Init.Engineer Submit": "純靠北投稿",
+            "Submit List": "投稿列表",
             "Submit": "投稿",
             "Create Submit": "文章投稿",
             "Picture Submit": "圖片投稿",
@@ -357,5 +358,7 @@
         "Announcement Exception Message": "公告例外訊息",
             "There was a problem creating this announcement. Please try again.": "建立此公告時發生了問題，請您稍後再嘗試一遍。",
             "There was a problem updating this announcement. Please try again.": "更新此公告時發生了問題，請您稍後再嘗試一遍。",
-            "There was a problem deleting this announcement. Please try again.": "刪除此公告時發生了問題，請您稍後再嘗試一遍。"
+            "There was a problem deleting this announcement. Please try again.": "刪除此公告時發生了問題，請您稍後再嘗試一遍。",
+
+    "Advertising content 1": "如果把錢丟到水裡會咚一聲的話，那麼贊助我們會讓你有機會提早看到「Version 5.0」的誕生！預計 2030 年以前正式發佈。"
 }
