@@ -13,7 +13,8 @@ class CardsController extends Controller
     /**
      * CardsController constructor.
      */
-    public function __construct() {
+    public function __construct()
+    {
         // ...
     }
 
@@ -42,5 +43,29 @@ class CardsController extends Controller
     {
         return view('frontend.social.show')
             ->with('cards', $id);
+    }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function redirect()
+    {
+        return redirect()->route('frontend.social.cards.publish.article');
+    }
+
+    /**
+     * @return \Illuminate\View\View
+     */
+    public function article()
+    {
+        return view('frontend.social.publish.article');
+    }
+
+    /**
+     * @return \Illuminate\View\View
+     */
+    public function picture()
+    {
+        return view('frontend.social.publish.picture');
     }
 }

@@ -30,18 +30,15 @@
 
             <div class="col-md-3 order-md-last order-first">
                 <x-utils.link
-                    {{-- :href="route('frontend.forum.index')" --}}
-                    {{-- :active="activeClass(Route::is('frontend.forum.index'))" --}}
+                    :href="route('frontend.social.cards.publish.article')"
                     :text="__('Create Submit')"
                     class="nav-link btn btn-dos py-3 mb-4" />
                 <x-utils.link
-                    {{-- :href="route('frontend.forum.index')" --}}
-                    {{-- :active="activeClass(Route::is('frontend.forum.index'))" --}}
+                    :href="route('frontend.social.cards.publish.picture')"
                     :text="__('Picture Submit')"
                     class="nav-link btn btn-dos py-3 mb-4" />
                 <x-utils.link
                     {{-- :href="route('frontend.forum.index')" --}}
-                    {{-- :active="activeClass(Route::is('frontend.forum.index'))" --}}
                     :text="__('Review Submit')"
                     class="nav-link btn btn-dos py-3 mb-4" />
             </div><!--col-md-3-->

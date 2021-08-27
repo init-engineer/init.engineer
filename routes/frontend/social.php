@@ -21,11 +21,16 @@ Route::group([
         'namespace' => 'Cards',
     ], function () {
         Route::get('/', [CardsController::class, 'index'])->name('index');
-        Route::get('/show/{id}', [CardsController::class, 'show'])->name('show');
+        Route::get('show/{id}', [CardsController::class, 'show'])->name('show');
+        Route::get('create', [CardsController::class, 'redirect']);
 
-        Route::group(['middleware' => 'auth'], function () {
-            // Authentication
-            Route::get('create', [CardsController::class, 'create'])->name('create');
+        Route::group([
+            'prefix' => 'publish',
+            'as' => 'publish.',
+            'middleware' => 'auth',
+        ], function () {
+            Route::get('article', [CardsController::class, 'article'])->name('article');
+            Route::get('picture', [CardsController::class, 'picture'])->name('picture');
         });
     });
 });
