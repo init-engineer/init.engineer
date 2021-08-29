@@ -16,3 +16,12 @@
         background-color: var(--background-secondary-dark);
     }
 }
+
+.jumbotron {
+    color: var(--font-primary-color);
+    background-color: var(--background-secondary);
+
+    pre {
+        color: var(--font-primary-color);
+    }
+}
