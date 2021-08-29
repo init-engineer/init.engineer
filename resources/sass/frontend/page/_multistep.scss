@@ -21,18 +21,13 @@ button {
 
 .multi-form {
     background-color: var(--background-primary);
-    box-shadow: 12px 12px  0px rgba(0, 0, 0, 0.25),
-                 0px  0px 12px rgba(0, 0, 0, 0.25);
+    box-shadow: 12px 12px 0px rgba(0, 0, 0, 0.25), 0px 0px 12px rgba(0, 0, 0, 0.25);
 }
 
 /* list items styles */
 
 .steps .listItem {
     transition: 0.3s height ease-out;
-    -webkit-transition: 0.3s height ease-out;
-    -moz-transition: 0.3s height ease-out;
-    -ms-transition: 0.3s height ease-out;
-    -o-transition: 0.3s height ease-out;
 
     /* hide closed items */
     overflow: hidden;
@@ -173,10 +168,6 @@ button {
             border: 0;
             border-bottom: 2px solid rgba(0, 0, 0, 0.1);
             transition: 0.25s margin-top ease-out, border-bottom 0.25s ease-out;
-            -webkit-transition: 0.25s margin-top ease-out, border-bottom 0.25s ease-out;
-            -moz-transition: 0.25s margin-top ease-out, border-bottom 0.25s ease-out;
-            -ms-transition: 0.25s margin-top ease-out, border-bottom 0.25s ease-out;
-            -o-transition: 0.25s margin-top ease-out, border-bottom 0.25s ease-out;
             font-size: 1.125rem;
             line-height: 1.5em;
             margin-top: 20px;
@@ -330,6 +321,41 @@ button:disabled {
             transform-origin: bottom left;
             height: 9px;
             width: 3px;
+        }
+    }
+}
+
+.stepBody {
+    label {
+        display: block;
+        cursor: pointer;
+    }
+    input[type="radio"] {
+        display: none;
+        ~ label {
+            opacity: 0.2;
+            transition: all 1s -.3s;
+            .checked {
+                display: none;
+            }
+        }
+        &:checked {
+            & ~ label {
+                opacity: 1;
+                transition: all 1s -.3s;
+                box-shadow: 12px 12px 0px rgba(0, 0, 0, 0.25), 0px 0px 12px rgba(0, 0, 0, 0.25);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .checked {
+                    display: flex;
+                    top: 12px;
+                    right: 12px;
+                    font-size: 3rem;
+                    position: absolute;
+                    color: var(--color-success);
+                }
+            }
         }
     }
 }
