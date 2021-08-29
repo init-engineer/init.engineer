@@ -300,10 +300,6 @@ button:disabled {
         width: 3px;
         background-color: var(--font-primary-color);
         transform: rotate(45deg);
-        -webkit-transform: rotate(45deg);
-        -moz-transform: rotate(45deg);
-        -ms-transform: rotate(45deg);
-        -o-transform: rotate(45deg);
         transform-origin: bottom center;
         margin-bottom: 3px;
 
@@ -314,10 +310,6 @@ button:disabled {
             display: block;
             background-color: var(--font-primary-color);
             transform: rotate(-90deg);
-            -webkit-transform: rotate(-90deg);
-            -moz-transform: rotate(-90deg);
-            -ms-transform: rotate(-90deg);
-            -o-transform: rotate(-90deg);
             transform-origin: bottom left;
             height: 9px;
             width: 3px;
@@ -344,17 +336,20 @@ button:disabled {
                 opacity: 1;
                 transition: all 1s -.3s;
                 box-shadow: 12px 12px 0px rgba(0, 0, 0, 0.25), 0px 0px 12px rgba(0, 0, 0, 0.25);
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                .checked {
-                    display: flex;
-                    top: 12px;
-                    right: 12px;
-                    font-size: 3rem;
-                    position: absolute;
-                    color: var(--color-success);
-                }
+                // display: flex;
+                // justify-content: center;
+                // align-items: center;
+                // .checked {
+                //     display: flex;
+                //     top: 12px;
+                //     right: 12px;
+                //     font-size: 3rem;
+                //     position: absolute;
+                //     color: var(--color-success-dark);
+                //     background-color: var(--color-light-light);
+                //     border-radius: 24px;
+                //     border: 2px;
+                // }
             }
         }
     }

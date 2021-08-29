@@ -50,7 +50,7 @@
                                 <div class="col-6 col-md-4 col-lg-3 p-1" v-for="theme in themes" v-bind:key="theme">
                                     <input type="radio" name="theme" :id="theme" v-model="selector.theme" v-bind:value="theme">
                                     <label :for="theme">
-                                        <i class="checked fa fa-check icon"></i>
+                                        <!-- <i class="checked fa fa-check icon"></i> -->
                                         <img :src="`/img/frontend/article/theme/${theme}.png`" class="img-fluid rounded">
                                     </label>
                                 </div>
@@ -79,7 +79,7 @@
                                 <div class="col-6 col-md-4 col-lg-3 p-1" v-for="font in fonts" v-bind:key="font">
                                     <input type="radio" name="font" :id="font" v-model="selector.font" v-bind:value="font">
                                     <label :for="font">
-                                        <i class="checked fa fa-check icon"></i>
+                                        <!-- <i class="checked fa fa-check icon"></i> -->
                                         <img :src="`/img/frontend/article/font/${font}.png`" class="img-fluid rounded">
                                     </label>
                                 </div>
