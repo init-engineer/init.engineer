@@ -12,7 +12,7 @@
 @endpush
 
 @section('content')
-    <div class="container-fluid py-4">
+    <div class="container-fluid py-4" style="max-width: 100vw;">
         <div class="row justify-content-center">
             <div class="col-md-9 order-md-first order-last">
                 <x-frontend.card>
