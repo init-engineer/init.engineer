@@ -8,12 +8,12 @@
 </x-livewire-tables::bs4.table.cell>
 
 <x-livewire-tables::bs4.table.cell>
-    <gallery-slideshow src="{{ $row->getPicture() }}" width="128" height="72"></gallery-slideshow>
+    <gallery-slideshow src="{{ $row->getPicture() }}" width="128" height="72" style="width: 128px; max-width: 128px;"></gallery-slideshow>
 </x-livewire-tables::bs4.table.cell>
 
 <x-livewire-tables::bs4.table.cell>
     <a href="{{ route('frontend.social.cards.show', ['id' => $row->id]) }}">
-        <p style="max-width: 320px;">{{ Str::limit($row->content, 191, '...') }}</p>
+        <p style="width: 320px; max-width: 320px;">{{ Str::limit($row->content, 191, '...') }}</p>
     </a>
 </x-livewire-tables::bs4.table.cell>
 

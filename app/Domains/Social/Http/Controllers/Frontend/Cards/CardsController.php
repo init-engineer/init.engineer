@@ -11,14 +11,6 @@ use App\Http\Controllers\Controller;
 class CardsController extends Controller
 {
     /**
-     * CardsController constructor.
-     */
-    public function __construct()
-    {
-        // ...
-    }
-
-    /**
      * @return \Illuminate\View\View
      */
     public function index()

@@ -25,9 +25,8 @@ class SocialCardsReviewTable extends DataTableComponent
                 ->sortable(),
             Column::make(__('Content'), 'content')
                 ->sortable(),
+            Column::make(__('Vote'), 'vote'),
             Column::make(__('Created At'), 'created_at')
-                ->sortable(),
-            Column::make(__('Updated At'), 'updated_at')
                 ->sortable(),
         ];
     }
@@ -37,6 +36,10 @@ class SocialCardsReviewTable extends DataTableComponent
      */
     public function query(): Builder
     {
+        return Cards::active(false)
+            ->blockade(false)
+            ->orderBy('id', 'desc')
+            ->when($this->getFilter('search'), fn ($query, $term) => $query->search($term));
         return Cards::where('created_at', '<=', Carbon::now()->addDays(-7)->timestamp)
             ->active(false)
             ->blockade(false)
@@ -49,6 +52,6 @@ class SocialCardsReviewTable extends DataTableComponent
      */
     public function rowView(): string
     {
-        return 'frontend.social.cards.includes.row';
+        return 'frontend.social.cards.includes.review';
     }
 }
