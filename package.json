@@ -33,6 +33,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "animate.css": "^4.1.1"
+        "animate.css": "^4.1.1",
+        "vue-gallery-slideshow": "^1.5.2"
     }
 }
