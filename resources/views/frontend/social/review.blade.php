@@ -1,6 +1,6 @@
 @extends('frontend.layouts.app')
 
-@section('title', __('Init.Engineer Submit'))
+@section('title', __('Review Submit'))
 
 @push('after-styles')
     <style>
@@ -18,12 +18,12 @@
                 <x-frontend.card>
                     <x-slot name="header">
                         <marquee style="height: 32px;">
-                            <p style="font-size: 24px;">@lang('Advertising content 1')</p>
+                            <p style="font-size: 24px;">@lang('Advertising content 2')</p>
                         </marquee>
                     </x-slot>
 
                     <x-slot name="body">
-                        <livewire:frontend.social-cards-table />
+                        <livewire:frontend.social-cards-review-table />
                     </x-slot>
                 </x-frontend.card>
             </div><!--col-md-9-->
@@ -38,8 +38,8 @@
                     :text="__('Picture Submit')"
                     class="nav-link btn btn-dos py-3 mb-4" />
                 <x-utils.link
-                    :href="route('frontend.social.cards.review')"
-                    :text="__('Review Submit')"
+                    :href="route('frontend.social.cards.index')"
+                    :text="__('Init.Engineer Submit')"
                     class="nav-link btn btn-dos py-3 mb-4" />
             </div><!--col-md-3-->
         </div><!--row-->

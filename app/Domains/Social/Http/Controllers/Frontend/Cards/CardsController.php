@@ -29,6 +29,14 @@ class CardsController extends Controller
     /**
      * @return \Illuminate\View\View
      */
+    public function review()
+    {
+        return view('frontend.social.review');
+    }
+
+    /**
+     * @return \Illuminate\View\View
+     */
     public function create()
     {
         return view('frontend.social.create');

@@ -4,9 +4,8 @@
     background-color: var(--font-secondary-color);
     display: block;
     transition: all 0.2s;
-    margin-top: 4px
+    margin-top: 4px;
 }
-
 .navbar {
     position: fixed;
     top: 0px;
@@ -14,57 +13,53 @@
     height: 50px;
     width: 100%;
     background-color: var(--background-primary);
-
     .container {
         max-width: 100%;
     }
-
     a {
         color: var(--font-secondary-color);
     }
-
     .nav-link {
         padding: 0.6rem;
     }
-
     .dos-link {
         color: var(--font-primary-color);
         background-color: var(--background-secondary);
         padding: 6px;
         margin-top: 2px;
         border-radius: 0px;
-        box-shadow: 8px 4px 0px rgba(var(--theme-color-reverse-int), var(--theme-color-reverse-int), var(--theme-color-reverse-int), 0.25);
-
+        box-shadow: 8px 4px 0px
+            rgba(var(--theme-color-reverse-int), var(--theme-color-reverse-int), var(--theme-color-reverse-int), 0.25);
         &.active {
             margin: 4px 0px 4px 4px;
             outline: 0;
-            box-shadow: 4px 4px 0px rgba(var(--theme-color-reverse-int), var(--theme-color-reverse-int), var(--theme-color-reverse-int), 0.5);
+            box-shadow: 4px 4px 0px
+                rgba(
+                    var(--theme-color-reverse-int),
+                    var(--theme-color-reverse-int),
+                    var(--theme-color-reverse-int),
+                    0.5
+                );
         }
     }
-
     .navbar-brand {
         padding: 0rem;
     }
-
     .img-avatar {
         height: 1.6em;
     }
-
     .dropdown-menu {
         z-index: -1;
-        padding: .6rem;
+        padding: 0.6rem;
         background-color: var(--background-primary);
-
         .dropdown-item {
-            padding: .6rem;
+            padding: 0.6rem;
             font-size: 1rem;
             color: var(--font-secondary-color);
-
             &.active {
                 border-radius: 0.25rem;
                 background-color: var(--background-secondary-light);
             }
-
             &:hover {
                 border-radius: 0.25rem;
                 background-color: var(--background-secondary-dark);
@@ -72,40 +67,32 @@
         }
     }
 }
-
 .navbar-toggler {
     border: none;
     background: transparent !important;
-
     .top-bar {
         transform: rotate(45deg);
         transform-origin: 10% 10%;
     }
-
     .middle-bar {
         opacity: 0;
     }
-
     .bottom-bar {
         transform: rotate(-45deg);
         transform-origin: 10% 90%;
     }
-
     &.collapsed {
         .top-bar {
             transform: rotate(0);
         }
-
         .middle-bar {
             opacity: 1;
         }
-
         .bottom-bar {
             transform: rotate(0);
         }
     }
 }
-
 .navbar-collapse {
     width: 100%;
     background-color: var(--background-primary);
@@ -117,7 +104,7 @@
  * Change the link color and padding.
  */
 .navbar-full-bg .navbar-nav .nav-link {
-    padding: .75rem 1rem;
+    padding: 0.75rem 1rem;
 }
 
 /**
@@ -130,25 +117,24 @@
     color: var(--font-primary-color);
     background-color: var(--background-secondary);
 }
-
 #breadcrumbs {
     position: fixed;
     top: 50px;
     z-index: 1;
     height: 50px;
     width: 100%;
-    background-color: var(--background-secondary-light);
-
+    background-color: var(--background-secondary-dark);
     .breadcrumb {
-        background-color: var(--background-secondary-light);
-
+        background-color: var(--background-secondary-dark);
         .breadcrumb-item {
             a {
                 color: var(--font-primary-color);
             }
-
             &.active {
                 color: var(--font-secondary-color);
+            }
+            &::before {
+                color: var(--font-primary-color);
             }
         }
     }

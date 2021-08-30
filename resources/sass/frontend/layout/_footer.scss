@@ -1,0 +1,14 @@
+/**
+ * Footer
+ */
+.footer {
+    color: var(--font-primary-color);
+    background-color: var(--background-primary);
+    a {
+        color: var(--font-primary-color);
+        text-decoration: none;
+    }
+    hr {
+        background-color: var(--font-secondary-color);
+    }
+}

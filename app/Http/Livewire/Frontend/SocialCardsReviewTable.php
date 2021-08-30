@@ -3,14 +3,15 @@
 namespace App\Http\Livewire\Frontend;
 
 use App\Domains\Social\Models\Cards;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
 /**
- * Class SocialCardsTable.
+ * Class SocialCardsReviewTable.
  */
-class SocialCardsTable extends DataTableComponent
+class SocialCardsReviewTable extends DataTableComponent
 {
     /**
      * @return array
@@ -36,7 +37,8 @@ class SocialCardsTable extends DataTableComponent
      */
     public function query(): Builder
     {
-        return Cards::active(true)
+        return Cards::where('created_at', '<=', Carbon::now()->addDays(-7)->timestamp)
+            ->active(false)
             ->blockade(false)
             ->orderBy('id', 'desc')
             ->when($this->getFilter('search'), fn ($query, $term) => $query->search($term));
