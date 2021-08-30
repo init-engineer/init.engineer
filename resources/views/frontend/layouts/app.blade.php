@@ -17,6 +17,7 @@
     @stack('after-styles')
 </head>
 <body>
+    @include('frontend.includes.github')
     @include('includes.partials.read-only')
     @include('includes.partials.logged-in-as')
     @include('includes.partials.announcements')
@@ -28,6 +29,8 @@
         <main>
             @yield('content')
         </main>
+
+        {{-- @include('frontend.includes.footer') --}}
     </div><!--app-->
 
     @stack('before-scripts')
