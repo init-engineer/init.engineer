@@ -20,16 +20,20 @@ use Tabuna\Breadcrumbs\Trail;
 Route::group(['as' => 'auth.'], function () {
     Route::group(['middleware' => 'auth'], function () {
         // Authentication
-        Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+        Route::post('logout', [LoginController::class, 'logout'])
+            ->name('logout');
 
         // Password expired routes
-        Route::get('password/expired', [PasswordExpiredController::class, 'expired'])->name('password.expired');
-        Route::patch('password/expired', [PasswordExpiredController::class, 'update'])->name('password.expired.update');
+        Route::get('password/expired', [PasswordExpiredController::class, 'expired'])
+            ->name('password.expired');
+        Route::patch('password/expired', [PasswordExpiredController::class, 'update'])
+            ->name('password.expired.update');
 
         // These routes can not be hit if the password is expired
         Route::group(['middleware' => 'password.expires'], function () {
             // E-mail Verification
-            Route::get('email/verify', [VerificationController::class, 'show'])->name('verification.notice');
+            Route::get('email/verify', [VerificationController::class, 'show'])
+                ->name('verification.notice');
             Route::get('email/verify/{id}/{hash}', [VerificationController::class, 'verify'])
                 ->name('verification.verify')
                 ->middleware(['signed', 'throttle:6,1']);
@@ -40,10 +44,16 @@ Route::group(['as' => 'auth.'], function () {
             // These routes require the users email to be verified
             Route::group(['middleware' => config('boilerplate.access.middleware.verified')], function () {
                 // Passwords
-                Route::get('password/confirm', [ConfirmPasswordController::class, 'showConfirmForm'])->name('password.confirm');
+                Route::get('password/confirm', [ConfirmPasswordController::class, 'showConfirmForm'])
+                    ->name('password.confirm')
+                    ->breadcrumbs(function (Trail $trail) {
+                        $trail->parent('frontend.index')
+                            ->push(__('Please confirm your password before continuing.'), route('frontend.auth.password.confirm'));
+                    });
                 Route::post('password/confirm', [ConfirmPasswordController::class, 'confirm']);
 
-                Route::patch('password/update', [UpdatePasswordController::class, 'update'])->name('password.change');
+                Route::patch('password/update', [UpdatePasswordController::class, 'update'])
+                    ->name('password.change');
 
                 // Two-factor Authentication
                 Route::group(['prefix' => 'account/2fa', 'as' => 'account.2fa.'], function () {
@@ -64,7 +74,8 @@ Route::group(['as' => 'auth.'], function () {
                                     ->push(__('Two Factor Recovery Codes'), route('frontend.auth.account.2fa.show'));
                             });
 
-                        Route::patch('recovery/generate', [TwoFactorAuthenticationController::class, 'update'])->name('update');
+                        Route::patch('recovery/generate', [TwoFactorAuthenticationController::class, 'update'])
+                            ->name('update');
 
                         Route::get('disable', [DisableTwoFactorAuthenticationController::class, 'show'])
                             ->name('disable')
@@ -73,7 +84,8 @@ Route::group(['as' => 'auth.'], function () {
                                     ->push(__('Disable Two Factor Authentication'), route('frontend.auth.account.2fa.disable'));
                             });
 
-                        Route::delete('/', [DisableTwoFactorAuthenticationController::class, 'destroy'])->name('destroy');
+                        Route::delete('/', [DisableTwoFactorAuthenticationController::class, 'destroy'])
+                            ->name('destroy');
                     });
                 });
             });
@@ -82,21 +94,44 @@ Route::group(['as' => 'auth.'], function () {
 
     Route::group(['middleware' => 'guest'], function () {
         // Authentication
-        Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
+        Route::get('login', [LoginController::class, 'showLoginForm'])
+            ->name('login')
+            ->breadcrumbs(function (Trail $trail) {
+                $trail->parent('frontend.index')
+                    ->push(__('Login'), route('frontend.auth.login'));
+            });
         Route::post('login', [LoginController::class, 'login']);
 
         // Registration
-        Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+        Route::get('register', [RegisterController::class, 'showRegistrationForm'])
+            ->name('register')
+            ->breadcrumbs(function (Trail $trail) {
+                $trail->parent('frontend.index')
+                    ->push(__('Register'), route('frontend.auth.register'));
+            });
         Route::post('register', [RegisterController::class, 'register']);
 
         // Password Reset
-        Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
-        Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
-        Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
-        Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
+        Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])
+            ->name('password.request')
+            ->breadcrumbs(function (Trail $trail) {
+                $trail->parent('frontend.auth.login')
+                    ->push(__('Reset Password'), route('frontend.auth.password.request'));
+            });
+        Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])
+            ->name('password.email');
+        Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])
+            ->name('password.reset')
+            ->breadcrumbs(function (Trail $trail) {
+                $trail->parent('frontend.auth.login')
+                    ->push(__('Reset Password'), route('frontend.auth.password.reset'));
+            });
+        Route::post('password/reset', [ResetPasswordController::class, 'reset'])
+            ->name('password.update');
 
         // Socialite Routes
-        Route::get('login/{provider}', [SocialController::class, 'redirect'])->name('social.login');
+        Route::get('login/{provider}', [SocialController::class, 'redirect'])
+            ->name('social.login');
         Route::get('login/{provider}/callback', [SocialController::class, 'callback']);
     });
 });
