@@ -14,6 +14,7 @@ use Laravel\Passport\Http\Controllers\AuthorizationController;
 Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::get('/team', [HomeController::class, 'team'])->name('team');
 Route::get('/policies', [HomeController::class, 'policies'])->name('policies');
+Route::get('/redirect/{value}', [HomeController::class, 'redirect'])->name('redirect');
 
 /**
  * These frontend controllers require the user to be logged in

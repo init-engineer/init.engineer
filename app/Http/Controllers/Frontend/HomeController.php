@@ -32,4 +32,20 @@ class HomeController extends Controller
     {
         return view('frontend.team');
     }
+
+    /**
+     * @param string $value
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function redirect(string $value)
+    {
+        switch ($value) {
+            case 'discord':
+                return redirect('https://discord.gg/pRuFQPC');
+
+            default:
+                return redirect()->route('frontend.index');
+        }
+    }
 }
