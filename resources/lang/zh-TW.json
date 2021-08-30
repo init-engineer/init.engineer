@@ -93,7 +93,7 @@
     "I have stored these codes in a safe place": "我已將這些編號儲存在安全的地方",
     "Enable Two Factor Authentication": "啟用雙重身分驗證",
     "Step 1: Configure your 2FA app": "步驟1：設定 2FA 應用程式",
-    "To enable 2FA, you\\'ll need a 2FA authenticator app on your phone. Examples include: Google Authenticator, FreeOTP, Authy, andOTP, and Microsoft Authenticator (Just to name a few).": "如果要啟用雙重身分驗證(2FA)，您的手機上需要擁有雙重身分驗證(2FA)的應用程式，例如：Google Authenticator、FreeOTP、Authy、OTP 或 Microsoft Authenticator，在此推薦使用 Google Authenticator 這項應用程式。",
+    "To enable 2FA, youll need a 2FA authenticator app on your phone. Examples include: Google Authenticator, FreeOTP, Authy, andOTP, and Microsoft Authenticator (Just to name a few).": "如果要啟用雙重身分驗證(2FA)，您的手機上需要擁有雙重身分驗證(2FA)的應用程式，例如：Google Authenticator、FreeOTP、Authy、OTP 或 Microsoft Authenticator，在此推薦使用 Google Authenticator 這項應用程式。",
     "Most applications will let you set up by scanning the QR code from within the app. If you prefer, you may type the key below the QR code in manually.": "大多數的應用程式都可以通過在應用程式內掃描 QR-Code 來進行設定，或者手動輸入 QR-Code 下方的資料。",
     "Step 2: Enter a 2FA code": "步驟2：輸入 2FA 編號",
     "Generate a code from your 2FA app and enter it below:": "從您的 2FA 應用程式產生編號，並且在下面輸入：",
@@ -226,13 +226,16 @@
         "of": "的",
         "results": "筆結果",
         "No items found. Try narrowing your search.": "沒有找到任何內容，您可以嘗試看看縮小搜尋範圍？",
+        "No items found. Try to broaden your search.": "沒有找到任何內容，您可以嘗試看看擴大搜尋範圍？",
 
     "Init.Engineer": "純靠北工程師",
         "Init.Engineer Submit": "純靠北投稿",
             "Submit List": "投稿列表",
             "Submit": "投稿",
             "Create Submit": "文章投稿",
+            "Publish article": "文章投稿",
             "Picture Submit": "圖片投稿",
+            "Publish picture": "圖片投稿",
             "Review Submit": "群眾審核",
 
         "Init.Engineer Forum": "純靠北討論版",
@@ -360,5 +363,9 @@
             "There was a problem updating this announcement. Please try again.": "更新此公告時發生了問題，請您稍後再嘗試一遍。",
             "There was a problem deleting this announcement. Please try again.": "刪除此公告時發生了問題，請您稍後再嘗試一遍。",
 
-    "Advertising content 1": "如果把錢丟到水裡會咚一聲的話，那麼贊助我們會讓你有機會提早看到「Version 5.0」的誕生！預計 2030 年以前正式發佈。"
+    "Advertising content 1": "如果把錢丟到水裡會咚一聲的話，那麼贊助我們會讓你有機會提早看到「Version 5.0」的誕生！預計 2030 年以前正式發佈。",
+    "Advertising content 2": "你給我注意聽好，我的料理是炸鳳尾蝦，就是蝦子裹碎核果去炸的，將核果搗碎後裹在蝦肉上，油炸成為金黃色，不但要考慮核果跟蝦肉的比例，高低油溫的調節也需要高度的技術跟經驗的。沒錯，這是毫無瑕疵的完美作品，不，這比完美還要完美，鮮脆可口的核果外衣，經油炸之後，其香味立即倍增，堪稱人間第一美味，搭配特製醬汁來食用，味道更是妙不可言。",
+    "Advertising content 3": "小韓，你為了想贏得資格，而被利益蒙蔽了雙眼，你給他們的分數，很明顯的，是存有私心，並不公正的！沒辦法公正評估別人作品的人怎麼可能當上特級廚師！你還是21小時之後再來吧！",
+    "Advertising content 4": "平淡的創意卻企圖以華麗的表演來掩飾，你應該感到慚愧。貧乏的想像力和技巧的沉迷，都是廚師的致命傷。小單，你所做的料理的確沒有評分的必要，你還是回去磨練個 21 小時再來吧。",
+    "Advertising content 5": "這位先生叫武雄吧，你有沒有想過品嚐美食的人，到底真正在追求什麼呢，那時候我對你們說要再來一盤，並不是因為肚子餓才說的，那是因為你的料理跟小當家的料理，真的很好吃，可是你卻拒絕了我，我實在為你感到非常遺憾，非常可惜，我還是坦白說吧，你的問題不是廚藝，而是你的人格有問題，你還是 21 小時後再來參加吧。"
 }

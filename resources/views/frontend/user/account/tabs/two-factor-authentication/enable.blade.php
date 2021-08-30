@@ -16,7 +16,7 @@
                             <div class="col-xl-4">
                                 <h5><strong>@lang('Step 1: Configure your 2FA app')</strong></h5>
 
-                                <p>@lang('To enable 2FA, you\'ll need a 2FA authenticator app on your phone. Examples include: Google Authenticator, FreeOTP, Authy, andOTP, and Microsoft Authenticator (Just to name a few).')</p>
+                                <p>@lang('To enable 2FA, youll need a 2FA authenticator app on your phone. Examples include: Google Authenticator, FreeOTP, Authy, andOTP, and Microsoft Authenticator (Just to name a few).')</p>
 
                                 <p>@lang('Most applications will let you set up by scanning the QR code from within the app. If you prefer, you may type the key below the QR code in manually.')</p>
                             </div><!--col-->
