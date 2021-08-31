@@ -19,6 +19,9 @@
                 <hr class="my-4">
                 <p class="text-center pt-2">「我不會寫程式。」</p>
                 <p class="text-right">—— Powered by 乾太</p>
+                <hr class="my-4">
+                <p class="text-left"><a href="https://www.facebook.com/kantai.zeng"><i class="fab fa-facebook-square mr-3"></i> Kan-Tai Zeng</a></p>
+                <p class="text-left"><a href="mailto:kantai.developer@gmail.com"><i class="fas fa-envelope mr-3"></i> kantai.developer@gmail.com</a></p>
             </div>
 
             <!-- Grid column -->

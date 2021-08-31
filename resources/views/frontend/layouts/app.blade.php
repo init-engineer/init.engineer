@@ -4,9 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="authorization" content="{{ (Auth::user()) ? Auth::user()->api_token : '' }}">
     <title>{{ appName() }} | @yield('title')</title>
     <meta name="description" content="@yield('meta_description', appName())">
-    <meta name="author" content="@yield('meta_author', 'Anthony Rappa')">
+    <meta name="author" content="@yield('meta_author', 'kantai.developer@gmail.com')">
     @yield('meta')
 
     @stack('before-styles')
@@ -30,7 +31,7 @@
             @yield('content')
         </main>
 
-        {{-- @include('frontend.includes.footer') --}}
+        @include('frontend.includes.footer')
     </div><!--app-->
 
     @stack('before-scripts')
