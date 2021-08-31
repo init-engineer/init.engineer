@@ -20,8 +20,7 @@ class SocialCardsTable extends DataTableComponent
         return [
             Column::make(__('ID'), 'id')
                 ->sortable(),
-            Column::make(__('Picture'), 'picture')
-                ->sortable(),
+            Column::make(__('Picture'), 'picture'),
             Column::make(__('Content'), 'content')
                 ->sortable(),
             Column::make(__('Created At'), 'created_at')
