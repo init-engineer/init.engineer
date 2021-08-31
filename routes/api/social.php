@@ -22,8 +22,6 @@ Route::group([
             Route::group([
                 'middleware' => [
                     'auth',
-                    'password.expires',
-                    config('boilerplate.access.middleware.verified'),
                 ],
             ], function () {
                 Route::get('/voted', [ReviewController::class, 'haveVoted'])->name('voted');
