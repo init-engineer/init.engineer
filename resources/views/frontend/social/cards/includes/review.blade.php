@@ -8,7 +8,12 @@
 </x-livewire-tables::bs4.table.cell>
 
 <x-livewire-tables::bs4.table.cell>
-    <gallery-slideshow src="{{ $row->getPicture() }}" width="128" height="72" style="width: 128px; max-width: 128px;"></gallery-slideshow>
+    <gallery-slideshow
+        style="width: 128px; max-width: 128px;"
+        src="{{ $row->getPicture() }}"
+        :width="128"
+        :height="72">
+    </gallery-slideshow>
 </x-livewire-tables::bs4.table.cell>
 
 <x-livewire-tables::bs4.table.cell>
@@ -18,7 +23,9 @@
 </x-livewire-tables::bs4.table.cell>
 
 <x-livewire-tables::bs4.table.cell>
-    <review-button></review-button>
+    <review-button
+        :cid="{{ $row->id }}">
+    </review-button>
 </x-livewire-tables::bs4.table.cell>
 
 <x-livewire-tables::bs4.table.cell class="cell-datetime">
