@@ -39,11 +39,11 @@ Route::group([
             'middleware' => 'auth',
         ], function () {
             Route::get('/review', [CardsController::class, 'review'])
-            ->name('review')
-            ->breadcrumbs(function (Trail $trail) {
-                $trail->parent('frontend.social.cards.index')
-                    ->push(__('Review Submit'), route('frontend.social.cards.review'));
-            });
+                ->name('review')
+                ->breadcrumbs(function (Trail $trail) {
+                    $trail->parent('frontend.social.cards.index')
+                        ->push(__('Review Submit'), route('frontend.social.cards.review'));
+                });
 
             /*
              * All route names are prefixed with 'frontend.social.cards.publish.'.

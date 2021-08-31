@@ -44,7 +44,9 @@ Route::group([
 
             Route::post('/', [UserController::class, 'store'])->name('store');
 
-            Route::group(['prefix' => '{user}'], function () {
+            Route::group([
+                'prefix' => '{user}',
+            ], function () {
                 Route::get('edit', [UserController::class, 'edit'])
                     ->name('edit')
                     ->breadcrumbs(function (Trail $trail, User $user) {
@@ -56,7 +58,9 @@ Route::group([
                 Route::delete('/', [UserController::class, 'destroy'])->name('destroy');
             });
 
-            Route::group(['prefix' => '{deletedUser}'], function () {
+            Route::group([
+                'prefix' => '{deletedUser}',
+            ], function () {
                 Route::patch('restore', [DeletedUserController::class, 'update'])->name('restore');
                 Route::delete('permanently-delete', [DeletedUserController::class, 'destroy'])->name('permanently-delete');
             });
@@ -81,7 +85,9 @@ Route::group([
                         ->push(__('User Management'), route('admin.auth.user.index'));
                 });
 
-            Route::group(['prefix' => '{user}'], function () {
+            Route::group([
+                'prefix' => '{user}',
+            ], function () {
                 Route::get('/', [UserController::class, 'show'])
                     ->name('show')
                     ->middleware('permission:admin.access.user.list')
