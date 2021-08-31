@@ -18,7 +18,7 @@
                 <x-frontend.card>
                     <x-slot name="header">
                         <marquee style="height: 32px;">
-                            <p style="font-size: 24px;">@lang('Advertising content 2')</p>
+                            <p style="font-size: 24px; max-width: 1200px;">@lang('Advertising content 2')</p>
                         </marquee>
                     </x-slot>
 
