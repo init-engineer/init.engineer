@@ -1,54 +1,99 @@
 <template>
-    <!-- 載入當中 -->
-    <!-- <div class="d-flex justify-content-center">
-        <div class="spinner-border" role="status">
+    <div class="d-flex justify-content-center">
+        <div v-if="states === 'loading'" class="spinner-border" role="states">
             <span class="sr-only">Loading...</span>
         </div>
-    </div> -->
 
-    <!-- 等待投票 -->
-    <!-- <div style="position: relative; width: 130px;">
-        <button type="button" class="btn yes">通過</button>
-        <button type="button" class="btn no">否決</button>
-    </div> -->
+        <div v-else-if="states === 'vote' || states === 'voting'" style="position: relative; width: 130px;">
+            <button type="button"
+                class="btn yes"
+                @click="yesVoting()"
+                :disabled="states === 'voting'">
+                <div v-if="voting !== 'yes'">
+                    通過
+                </div>
+                <div v-else>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </button>
 
-    <!-- axios -->
-    <!-- <div style="position: relative; width: 130px;">
-        <button type="button" class="btn yes" disabled>通過</button>
-        <button type="button" class="btn no" disabled>
-            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-            <span class="sr-only">Loading...</span>
-        </button>
-    </div> -->
+            <button type="button"
+                class="btn no"
+                @click="noVoting()"
+                :disabled="states === 'voting'">
+                <div v-if="voting !== 'no'">
+                    否決
+                </div>
+                <div v-else>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </button>
+        </div>
 
-    <!-- 已投票 -->
-    <div class="progress" style="position: relative; width: 130px; height: 48px;">
-        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success"
-            role="progressbar"
-            style="width: 60%; border-style: solid none solid solid;"
-            aria-valuenow="60"
-            aria-valuemin="0"
-            aria-valuemax="100">60.0%</div>
-        <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
+        <div v-else-if="states === 'complete'">
+            <div class="progress" style="position: relative; width: 130px; height: 48px;">
+                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+                    role="progressbar"
+                    style="width: 60%; border-style: solid none solid solid;"
+                    aria-valuenow="60"
+                    aria-valuemin="0"
+                    aria-valuemax="100">60.0%</div>
+                <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
 
-            role="progressbar"
-            style="width: 40%; border-style: solid solid solid none;"
-            aria-valuenow="40"
-            aria-valuemin="0"
-            aria-valuemax="100">40.0%</div>
+                    role="progressbar"
+                    style="width: 40%; border-style: solid solid solid none;"
+                    aria-valuenow="40"
+                    aria-valuemin="0"
+                    aria-valuemax="100">40.0%</div>
+            </div>
+        </div>
+
+        <div v-else>
+            <h1><span class="badge badge-secondary">?</span></h1>
+        </div>
     </div>
 </template>
 
 <script>
 export default {
     name: "ReviewButton",
+    props: {
+        cid: {
+            type: Number,
+            required: true,
+        },
+    },
     data() {
         return {
-            // ...
+            states: 'loading',
+            voting: null,
         }
     },
     mounted() {
-        // ...
+        let vm = this;
+        axios.get(`/api/social/cards/${this.cid}/voted`)
+            .then(function (response) {
+                if (response.data.haveVoted) {
+                    vm.states = 'complete';
+                } else {
+                    vm.states = 'vote';
+                }
+            })
+            .catch(function (error) {
+                vm.states = 'error';
+            });
+    },
+    methods: {
+        yesVoting() {
+            this.states = 'voting';
+            this.voting = 'yes';
+        },
+        noVoting() {
+            this.states = 'voting';
+            this.voting = 'no';
+        },
     },
 };
 </script>
