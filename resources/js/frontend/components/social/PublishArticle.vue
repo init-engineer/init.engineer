@@ -1,6 +1,5 @@
 <template>
     <div class="multi-step-form" style="max-width: 100vw;">
-        <h1 class="text-center">勁爆投稿系統(Strength Burst Publish System, SBPS) Version 2.0</h1>
         <div class="multi-form py-3 mx-3">
             <div class="inner">
                 <ul class="steps p-0" @click="onClickListener($event)">
@@ -102,36 +101,7 @@
                         </div>
                         <div ref="stepBody" class="col2 stepBody">
                             <div class="stepTitle">
-                                Step 4 - 選擇其他樣式
-                            </div>
-                            <div class="row mt-2">
-                                <div class="col-6 col-md-4 col-lg-3 p-1" v-for="font in fonts" v-bind:key="font">
-                                    <input type="checkbox" name="font" :id="font" v-model="selector.font" v-bind:value="font">
-                                    <label :for="font">
-                                        <!-- <i class="checked fa fa-check icon"></i> -->
-                                        <img :src="`/img/frontend/article/font/${font}.png`" class="img-fluid rounded">
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="content">
-                                <div class="buttons">
-                                    <button class="next">下一步</button>
-                                    <button class="prev">返回</button>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li ref="listItem" class="listItem">
-                        <div class="col1">
-                            <span class="step">
-                                <span>5</span>
-                                <span class="checkmark"></span>
-                            </span>
-                            <span class="line"></span>
-                        </div>
-                        <div ref="stepBody" class="col2 stepBody">
-                            <div class="stepTitle">
-                                Step 5 - 同意版規
+                                Step 4 - 同意版規
                             </div>
                             <div class="jumbotron jumbotron-fluid rounded p-2 mt-2">
                                 <div class="container">
@@ -178,14 +148,14 @@
                     <li ref="listItem" class="listItem">
                         <div class="col1">
                             <span class="step">
-                                <span>6</span>
+                                <span>5</span>
                                 <span class="checkmark"></span>
                             </span>
                             <span class="line"></span>
                         </div>
                         <div ref="stepBody" class="col2 stepBody">
                             <div class="stepTitle">
-                                Step 6 - 最後確認
+                                Step 5 - 最後確認
                             </div>
                             <div class="content">
                                 <div class="inputGroup">
@@ -286,21 +256,27 @@ export default {
                !inputWrapper.nextElementSibling.querySelector("input").value)
                 return;
 
+            if (this.content.length < 30) {
+                return;
+            }
+
             // 否則啟用下一步按鈕
             nextButton.disabled = false;
         },
         onClickListener(e) {
-                    // 如果單擊不在按鈕上，則返回
-        if (!e.target.closest("button")) return;
+            // 如果單擊不在按鈕上，則返回
+            if (!e.target.closest("button")) {
+                return;
+            }
 
-        const btn = e.target;
-        const currentStep = btn.closest(".listItem");
+            const btn = e.target;
+            const currentStep = btn.closest(".listItem");
 
-        btn.classList.contains("next")
-            ? this.changeSteps(currentStep, currentStep.nextElementSibling)
-            : btn.classList.contains("prev")
-                ? this.changeSteps(currentStep, currentStep.previousElementSibling)
-                : this.submitForm(btn);
+            btn.classList.contains("next")
+                ? this.changeSteps(currentStep, currentStep.nextElementSibling)
+                : btn.classList.contains("prev")
+                    ? this.changeSteps(currentStep, currentStep.previousElementSibling)
+                    : this.submitForm(btn);
         },
         changeSteps(currentStep, newStep) {
             // 1. 關閉當前步驟
@@ -315,7 +291,6 @@ export default {
                 .querySelector(".stepBody")
                 .getBoundingClientRect().height;
             newStep.style.height = `${contentHeight}px`;
-            console.log(contentHeight);
             newStep.classList.add("show");
         },
         submitForm(btn) {
