@@ -25,6 +25,7 @@ Route::group([
                 ],
             ], function () {
                 Route::get('/voted', [ReviewController::class, 'haveVoted'])->name('voted');
+                Route::get('/voting/{status}', [ReviewController::class, 'voting'])->name('voting');
             });
         });
     });

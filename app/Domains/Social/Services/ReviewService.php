@@ -29,9 +29,9 @@ class ReviewService extends BaseService
      * @param Cards $cards
      * @param User $user
      *
-     * @return bool
+     * @return array
      */
-    public function haveVoted(Cards $cards, User $user): bool
+    public function haveVoted(Cards $cards, User $user): array
     {
         $review = $this->model
             ->where('model_id', $user->id)
@@ -39,10 +39,45 @@ class ReviewService extends BaseService
             ->first();
 
         if ($review instanceof $this->model) {
-            return true;
+            return [
+                'voted' => true,
+                'selector' => ($review->point > 0) ? true : false,
+            ];
         }
 
-        return false;
+        return [
+            'voted' => false,
+        ];
+    }
+
+    /**
+     * @param Cards $cards
+     *
+     * @return int
+     */
+    public function findYesByVoted(Cards $cards): int
+    {
+        $count = $this->model
+            ->where('card_id', $cards->id)
+            ->where('point', '>', 0)
+            ->count();
+
+        return $count;
+    }
+
+    /**
+     * @param Cards $cards
+     *
+     * @return int
+     */
+    public function findNoByVoted(Cards $cards): int
+    {
+        $count = $this->model
+            ->where('card_id', $cards->id)
+            ->where('point', '<', 0)
+            ->count();
+
+        return $count;
     }
 
     /**
@@ -81,7 +116,6 @@ class ReviewService extends BaseService
 
         try {
             $review = $this->createReview([
-                'name' => $data['name'],
                 'model_id' => $data['model_id'],
                 'card_id' => $data['card_id'],
                 'point' => $data['point'],

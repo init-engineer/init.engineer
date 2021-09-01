@@ -35,8 +35,38 @@ class ReviewController extends Controller
      */
     public function haveVoted(Request $request, Cards $card)
     {
+        $voted = $this->service->haveVoted($card, $request->user());
+        if ($voted['voted']) {
+            $voted['count'] = [
+                'yes' => $this->service->findYesByVoted($card),
+                'no' => $this->service->findNoByVoted($card),
+            ];
+        }
+
+        return response()->json($voted, 200);
+    }
+
+    /**
+     * @param Request $request
+     * @param Cards $card
+     * @param $status
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function voting(Request $request, Cards $card, $status)
+    {
+        $this->service->store([
+            'model_id' => $request->user()->id,
+            'card_id' => $card->id,
+            'point' => ((bool) $status) ? 1 : -1,
+        ]);
+
         return response()->json([
-            'haveVoted' => $this->service->haveVoted($card, $request->user()),
+            'voted' => true,
+            'count' => [
+                'yes' => $this->service->findYesByVoted($card),
+                'no' => $this->service->findNoByVoted($card),
+            ],
         ], 200);
     }
 }
