@@ -38,7 +38,6 @@
                 <h3 class="font-weight-bold mt-5">行動應用程式</h3>
                 <hr class="accent-2 mb-2 mt-0 d-inline-block mx-auto" style="width: 128px;">
                 <p><a href="https://play.google.com/store/apps/details?id=engineer.kaobei" target="_blank"><img class="rounded" style="max-width: 100%; width: 100%;" src="{{ asset('img/frontend/button/get-it-on-google-play.png') }}" alt="Get it on Google Play"></a></p>
-                <p><a href="javascript:void(0);" onclick="Swal.fire('噢哦！', '我們還沒上架到 App Store 當中，但是有 <a href=\'https\:\/\/testflight.apple.com\/join\/8ZSMJ5fZ\' target=\'_blank\'>TestFlight Beta Testing</a> 可以參與測試計畫。', 'warning');"><img class="rounded" style="max-width: 100%; width: 100%;" src="{{ asset('img/frontend/button/download-on-the-app-store.png') }}" alt="Download on the App Store"></a></p>
             </div>
             <!-- Grid column -->
 

@@ -67,23 +67,6 @@
                 </ul>
             </div>
         </div>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2">{{-- horowolf --}}
-            <div class="our-team">
-                <div class="picture">
-                    <img class="img-fluid" src="https://avatars.githubusercontent.com/u/13122358">
-                </div>
-                <div class="team-content">
-                    <h3 class="name">horowolf</h3>
-                    <h4 class="title">開發組</h4>
-                    <span class="badge badge-pill badge-light">iOS</span><br />
-                    <hr class="accent-2 mb-2 mt-0 d-inline-block mx-auto" style="width: 128px; background: var(--font-primary-color);">
-                    <p>我是誰？我在哪？為什麼我鄰居跟我講不一樣的語言？</p>
-                </div>
-                <ul class="social">
-                    <li><a href="https://github.com/horowolf" class="fab fa-github" aria-hidden="true"></a></li>
-                </ul>
-            </div>
-        </div>
         <div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2">{{-- money626 --}}
             <div class="our-team">
                 <div class="picture">
