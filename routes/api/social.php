@@ -1,5 +1,6 @@
 <?php
 
+use App\Domains\Social\Http\Controllers\Api\Cards\CommentsController;
 use App\Domains\Social\Http\Controllers\Api\Cards\ReviewController;
 
 /**
@@ -19,6 +20,7 @@ Route::group([
         'namespace' => 'Cards',
     ], function () {
         Route::group(['prefix' => '{card}'], function () {
+            Route::get('/comments', [CommentsController::class, 'index'])->name('index');
             Route::group([
                 'middleware' => [
                     'auth',

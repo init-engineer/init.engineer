@@ -3,6 +3,7 @@
 namespace App\Domains\Social\Models\Traits\Relationship;
 
 use App\Domains\Auth\Models\User;
+use App\Domains\Social\Models\Comments;
 use App\Domains\Social\Models\PlatformCards;
 
 /**
