@@ -3,7 +3,6 @@
 @section('title', __('Init.Engineer Show - #:nid(:id) :content', ['id' => $cards->id, 'nid' => base_convert($cards->id, 10, 36), 'content' => Str::limit($cards->content, 64, '...')]))
 
 @section('content')
-
     <div class="container py-4">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -30,11 +29,26 @@
                         <pre class="card-text">{{ $cards->content }}</pre>
                     </div>
                     <div class="card-footer">
-                        <img src="https://s.abcnews.com/images/Lifestyle/ht_pudding_the_fox_03_mt_140821_4x3t_992.jpg"
-                            class="rounded mx-auto text-left pr-2 pb-2"
-                            style="height: 64px;" />
-                        <p class="mb-0" style="font-size: 18px; display: inline-block;">留下你的回覆：</p>
-                        <input class="form-control" type="text" placeholder="你在想什麼？">
+                        <div class="content">
+                            <div class="inputGroup">
+                                <img src="https://s.abcnews.com/images/Lifestyle/ht_pudding_the_fox_03_mt_140821_4x3t_992.jpg"
+                                    class="rounded mx-auto text-left pr-2 pb-2"
+                                    style="height: 64px;" />
+                                <p class="mb-0" style="font-size: 18px; display: inline-block;">留下你的回覆：</p>
+                                {{-- <label for="name">跟大家分享你的靠北事吧。</label> --}}
+                                <textarea
+                                    class="form-control cards-editor"
+                                    rows="3"
+                                    minlength="30"
+                                    maxlength="4096"
+                                    placeholder="你在想什麼？"
+                                    required></textarea>
+                            </div>
+                            <div class="buttons text-right my-2">
+                                <button class="next" disabled>Submit</button>
+                            </div>
+                        </div>
+                        <comments-list :cid="{{ $cards->id }}"></comments-list>
                     </div>
                 </div>
             </div>

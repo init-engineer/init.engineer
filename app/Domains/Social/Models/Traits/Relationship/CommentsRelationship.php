@@ -3,6 +3,7 @@
 namespace App\Domains\Social\Models\Traits\Relationship;
 
 use App\Domains\Social\Models\Cards;
+use App\Domains\Social\Models\Comments;
 use App\Domains\Social\Models\Platform;
 
 /**
@@ -38,5 +39,15 @@ trait CommentsRelationship
     public function blockade()
     {
         return $this->hasOne(User::class, 'blockade_by', 'id');
+    }
+
+    /**
+     * Get the comments for the card.
+     *
+     * @return Comments
+     */
+    public function replys()
+    {
+        return $this->hasMany(Comments::class, 'reply', 'comment_id');
     }
 }

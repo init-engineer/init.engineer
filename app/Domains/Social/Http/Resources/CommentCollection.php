@@ -18,11 +18,15 @@ class CommentCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return [
-            'data' => $this->collection,
-            'links' => [
-                'self' => 'link-value',
-            ],
-        ];
+        return $this->collection->map(function ($item) {
+            return [
+                'id' => $item->id,
+                'user_name' => $item->user_name,
+                'user_avatar' => $item->user_avatar,
+                'content' => $item->content,
+                'created_at' => $item->created_at->diffForHumans(),
+                'replys' => CommentResource::collection($item->replys),
+            ];
+        });
     }
 }

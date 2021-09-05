@@ -34,6 +34,6 @@ class CommentsController extends Controller
      */
     public function index(Cards $card)
     {
-        return new CommentCollection($card->comments()->orderBy('id', 'DESC')->paginate());
+        return new CommentCollection($card->comments()->whereNull('reply')->orderBy('id', 'DESC')->paginate());
     }
 }
