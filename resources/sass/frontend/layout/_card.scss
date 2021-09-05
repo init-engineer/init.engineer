@@ -14,6 +14,16 @@
 
     .card-body {
         background-color: var(--background-secondary-dark);
+
+        pre {
+            font-size: 24px;
+            white-space: pre-line;
+            color: var(--font-primary-color);
+        }
+    }
+
+    .card-footer {
+        background-color: var(--background-primary-dark);
     }
 }
 

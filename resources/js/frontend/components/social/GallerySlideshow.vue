@@ -3,7 +3,8 @@
         <img
             v-for="(image, i) in images"
             v-bind:key="i"
-            class="img-fluid rounded"
+            :class="_class"
+            :style="_style"
             :src="image"
             :width="width"
             :height="height"
@@ -30,11 +31,23 @@ export default {
         },
         width: {
             type: Number,
+            required: false,
             default: 100,
         },
         height: {
             type: Number,
+            required: false,
             default: 100,
+        },
+        _class: {
+            type: String,
+            required: false,
+            defalut: 'img-fluid rounded',
+        },
+        _style: {
+            type: String,
+            required: false,
+            defalut: '',
         },
     },
     data() {

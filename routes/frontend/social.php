@@ -1,6 +1,7 @@
 <?php
 
 use App\Domains\Social\Http\Controllers\Frontend\Cards\CardsController;
+use App\Domains\Social\Models\Cards;
 use Tabuna\Breadcrumbs\Trail;
 
 /*
@@ -29,9 +30,9 @@ Route::group([
             });
         Route::get('show/{id}', [CardsController::class, 'show'])
             ->name('show')
-            ->breadcrumbs(function (Trail $trail) {
+            ->breadcrumbs(function (Trail $trail, Cards $id) {
                 $trail->parent('frontend.social.cards.index')
-                    ->push(__('Init.Engineer Show'), route('frontend.social.cards.show'));
+                    ->push(__('Init.Engineer Show - #:nid(:id) :content', ['id' => $id->id, 'nid' => base_convert($id->id, 10, 36), 'content' => Str::limit($id->content, 64, '...')]), route('frontend.social.cards.show', $id));
             });
         Route::get('create', [CardsController::class, 'redirect']);
 

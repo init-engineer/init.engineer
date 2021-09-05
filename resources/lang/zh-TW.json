@@ -242,6 +242,8 @@
         "Init.Engineer Forum": "純靠北討論版",
             "Forum": "討論版",
 
+        "Init.Engineer Show - #:nid(:id) :content": "投稿詳細 - #:nid(:id) :content",
+
     "Enum": "列舉",
         "Social Enum": "社群平台列舉",
             "Draw All": "渲染全部",

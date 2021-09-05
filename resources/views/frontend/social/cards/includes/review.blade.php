@@ -9,10 +9,10 @@
 
 <x-livewire-tables::bs4.table.cell>
     <gallery-slideshow
-        style="width: 128px; max-width: 128px;"
-        src="{{ $row->getPicture() }}"
-        :width="128"
-        :height="72">
+        _class="rounded mx-0 d-block w-100"
+        _style="min-width: 128px;"
+        height="128"
+        src="{{ $row->getPicture() }}">
     </gallery-slideshow>
 </x-livewire-tables::bs4.table.cell>
 
