@@ -61,7 +61,6 @@ class User extends Authenticatable implements MustVerifyEmail, TwoFactorAuthenti
         'to_be_logged_out',
         'provider',
         'provider_id',
-        'api_token',
     ];
 
     /**
@@ -71,7 +70,6 @@ class User extends Authenticatable implements MustVerifyEmail, TwoFactorAuthenti
      */
     protected $hidden = [
         'password',
-        'api_token',
         'remember_token',
     ];
 

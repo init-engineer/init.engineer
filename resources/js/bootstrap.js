@@ -38,12 +38,12 @@ if (csrf_token) {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
-const api_token = document.head.querySelector('meta[name="authorization"]');
-if (api_token) {
-    window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + api_token.content;
-} else {
-    console.error('Authorization token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
-}
+// const api_token = document.head.querySelector('meta[name="authorization"]');
+// if (api_token) {
+//     window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + api_token.content;
+// } else {
+//     console.error('Authorization token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+// }
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
