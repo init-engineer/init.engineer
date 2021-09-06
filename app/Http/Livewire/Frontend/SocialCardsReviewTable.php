@@ -14,6 +14,16 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 class SocialCardsReviewTable extends DataTableComponent
 {
     /**
+     * Livewire Datatable default sort column.
+     */
+    public string $defaultSortColumn = 'created_at';
+
+    /**
+     * Livewire Datatable default sort direction.
+     */
+    public string $defaultSortDirection = 'desc';
+
+    /**
      * @return array
      */
     public function columns(): array
@@ -21,10 +31,10 @@ class SocialCardsReviewTable extends DataTableComponent
         return [
             Column::make(__('ID'), 'id')
                 ->sortable(),
-            Column::make(__('Picture'), 'picture'),
+            Column::make(__('Picture')),
             Column::make(__('Content'), 'content')
                 ->sortable(),
-            Column::make(__('Vote'), 'vote'),
+            Column::make(__('Vote')),
             Column::make(__('Created At'), 'created_at')
                 ->sortable(),
         ];
@@ -38,7 +48,6 @@ class SocialCardsReviewTable extends DataTableComponent
         return Cards::whereDate('created_at', '>=', Carbon::now()->addDays(-14))
             ->active(false)
             ->blockade(false)
-            ->orderBy('created_at', 'desc')
             ->when($this->getFilter('search'), fn ($query, $term) => $query->search($term));
     }
 

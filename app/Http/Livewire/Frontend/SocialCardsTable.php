@@ -13,6 +13,16 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 class SocialCardsTable extends DataTableComponent
 {
     /**
+     * Livewire Datatable default sort column.
+     */
+    public string $defaultSortColumn = 'id';
+
+    /**
+     * Livewire Datatable default sort direction.
+     */
+    public string $defaultSortDirection = 'desc';
+
+    /**
      * @return array
      */
     public function columns(): array
@@ -20,7 +30,7 @@ class SocialCardsTable extends DataTableComponent
         return [
             Column::make(__('ID'), 'id')
                 ->sortable(),
-            Column::make(__('Picture'), 'picture'),
+            Column::make(__('Picture')),
             Column::make(__('Content'), 'content')
                 ->sortable(),
             Column::make(__('Created At'), 'created_at')
@@ -37,7 +47,6 @@ class SocialCardsTable extends DataTableComponent
     {
         return Cards::active(true)
             ->blockade(false)
-            ->orderBy('id', 'desc')
             ->when($this->getFilter('search'), fn ($query, $term) => $query->search($term));
     }
 
