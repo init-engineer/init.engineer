@@ -180,15 +180,14 @@ button {
     }
 
     &:last-of-type .stepBody .content .inputGroup p {
-        font-size: 1.125rem;
-        line-height: 1.6em;
-        color: rgba(0, 0, 0, 0.8);
+        font-size: 1.725rem;
+        line-height: 1.2em;
+        color: var(--font-primary-color);
     }
 
     .stepBody .content .buttons {
         display: flex;
         flex-direction: row;
-        margin: 40px 0;
     }
 
     &:last-of-type .stepBody .content .buttons {
@@ -238,7 +237,7 @@ button:focus {
 }
 
 .success {
-    color: var(--color-success);
+    color: var(--color-success-dark);
 }
 
 .fail {
