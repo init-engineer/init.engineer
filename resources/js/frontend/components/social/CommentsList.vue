@@ -3,7 +3,7 @@
         <div class="media mt-2"
             v-for="(comment, index) in comments"
             v-bind:key="index">
-            <img class="mr-2"
+            <img class="rounded mr-2"
                 style="width: 48px; height: 48px;"
                 :src="comment.user_avatar"
                 :alt="comment.user_name" />
@@ -16,7 +16,7 @@
                 <div class="media mt-2"
                     v-for="(reply, rindex) in comment.replys"
                     v-bind:key="rindex">
-                    <img class="mr-2"
+                    <img class="rounded mr-2"
                         style="width: 48px; height: 48px;"
                         :src="reply.user_avatar"
                         :alt="reply.user_name" />
