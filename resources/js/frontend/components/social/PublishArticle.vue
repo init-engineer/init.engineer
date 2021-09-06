@@ -3,6 +3,7 @@
         <div class="multi-form py-3 mx-3">
             <div class="inner">
                 <ul class="steps p-0" @click="onClickListener($event)">
+                    <!-- Step 1 - 編輯文章內容 Start -->
                     <li ref="listItem" class="listItem show">
                         <div class="col1">
                             <span class="step">
@@ -33,6 +34,9 @@
                             </div>
                         </div>
                     </li>
+                    <!-- Step 1 - 編輯文章內容 End -->
+
+                    <!-- Step 2 - 選擇主題樣式 Start -->
                     <li ref="listItem" class="listItem">
                         <div class="col1">
                             <span class="step">
@@ -49,7 +53,6 @@
                                 <div class="col-6 col-md-4 col-lg-3 p-1" v-for="theme in themes" v-bind:key="theme">
                                     <input type="radio" name="theme" :id="theme" v-model="selector.theme" v-bind:value="theme">
                                     <label :for="theme">
-                                        <!-- <i class="checked fa fa-check icon"></i> -->
                                         <img :src="`/img/frontend/article/theme/${theme}.png`" class="img-fluid rounded">
                                     </label>
                                 </div>
@@ -62,6 +65,9 @@
                             </div>
                         </div>
                     </li>
+                    <!-- Step 2 - 選擇主題樣式 End -->
+
+                    <!-- Step 3 - 選擇字型樣式 Start -->
                     <li ref="listItem" class="listItem">
                         <div class="col1">
                             <span class="step">
@@ -78,8 +84,7 @@
                                 <div class="col-6 col-md-4 col-lg-3 p-1" v-for="font in fonts" v-bind:key="font">
                                     <input type="radio" name="font" :id="font" v-model="selector.font" v-bind:value="font">
                                     <label :for="font">
-                                        <!-- <i class="checked fa fa-check icon"></i> -->
-                                        <img :src="`/img/frontend/article/font/${font}.png`" class="img-fluid rounded">
+                                        <img :src="`/img/frontend/article/font/${font}.png`" class="img-fluid rounded" />
                                     </label>
                                 </div>
                             </div>
@@ -91,6 +96,9 @@
                             </div>
                         </div>
                     </li>
+                    <!-- Step 3 - 選擇字型樣式 End -->
+
+                    <!-- Step 4 - 同意版規 Start -->
                     <li ref="listItem" class="listItem">
                         <div class="col1">
                             <span class="step">
@@ -130,14 +138,12 @@
 2. 是否違反上述規定，由版主主觀認定，請謹慎用詞。
 3. 請學習包容各種意見，如遇惡意批評或攻擊之文章，切勿加入爭執，並且善用檢舉，版主會有適當之處理，否則雙方皆依上述規定處理。</pre>
                                     <hr>
-                                    <div class="pretty p-icon p-smooth">
-                                        <input type="checkbox" id="checkbox">
-                                        <div class="state p-success">
-                                            <i class="icon fas fa-check"></i>
-                                            <label class="text-danger">我看完了，我願意遵守以上的內容守則，所以我按了勾勾以表示我同意。</label>
-                                        </div>
-                                    </div>
                                 </div>
+                                <input class="tgl tgl-flip" id="consent" type="checkbox" v-model="consent"/>
+                                <label style="display: inline-block;" class="tgl-btn mr-2" data-tg-off="杰哥不要！😱" data-tg-on="好ㄛ🥴" for="consent"></label>
+                                <label style="display: inline-block;" :class="[consent ? 'text-success' : 'text-danger']" for="consent">
+                                    {{ consent ? '我看完了，我願意遵守以上的內容守則，所以我按了「好ㄛ🥴」以表示我同意。' : '杰哥，不要啦！杰哥不要！我不想遵守「內容守則」😭' }}
+                                </label>
                                 <div class="buttons">
                                     <button class="next" disabled>下一步</button>
                                     <button class="prev">返回</button>
@@ -145,6 +151,9 @@
                             </div>
                         </div>
                     </li>
+                    <!-- Step 4 - 同意版規 End -->
+
+                    <!-- Step 5 - 最後確認 Start -->
                     <li ref="listItem" class="listItem">
                         <div class="col1">
                             <span class="step">
@@ -175,6 +184,7 @@
                             </div>
                         </div>
                     </li>
+                    <!-- Step 5 - 最後確認 End -->
                 </ul>
             </div>
         </div>
@@ -190,6 +200,7 @@ export default {
             listItems: null,
             inputs: null,
             content: null,
+            consent: false,
             selector: {
                 theme: 'black-green',
                 font: 'auraka',
@@ -243,6 +254,12 @@ export default {
             const nextButton = inputWrapper
                 .closest(".stepBody")
                 .querySelector(".next");
+
+            // 如果是同意內容守則，內容守則被同意了則啟用下一步按鈕
+            if (this.consent) {
+                return (nextButton.disabled = false);
+            }
+
             // 如果沒有 value，則移除焦點，禁用下一步按鈕並 return
             if (!e.target.value) {
                 inputWrapper.closest(".listItem").classList.remove("done");
