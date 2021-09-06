@@ -21,6 +21,7 @@
 /**
  * Base
  */
+@import "base/animate";
 @import "base/basic";
 @import "base/border";
 @import "base/float";
@@ -33,6 +34,7 @@
 @import "components/alert";
 @import "components/badges";
 @import "components/buttons";
+@import "components/checkbox";
 @import "components/inputs";
 @import "components/labels";
 @import "components/navigations";

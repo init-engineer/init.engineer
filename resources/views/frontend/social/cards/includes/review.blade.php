@@ -8,12 +8,11 @@
 </x-livewire-tables::bs4.table.cell>
 
 <x-livewire-tables::bs4.table.cell>
-    <gallery-slideshow
-        _class="rounded mx-0 d-block w-100"
-        _style="min-width: 128px;"
+    <img class="rounded mx-0 d-block w-100 thumb gallery-slideshow"
+        style="min-width: 128px;"
         height="128"
-        src="{{ $row->getPicture() }}">
-    </gallery-slideshow>
+        src="{{ $row->getPicture() }}"
+        alt="{{ Str::limit($row->content, 64, '...') }}">
 </x-livewire-tables::bs4.table.cell>
 
 <x-livewire-tables::bs4.table.cell>

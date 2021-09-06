@@ -117,3 +117,74 @@ $(function () {
     // Enable tooltips everywhere
     $('[data-toggle="tooltip"]').tooltip();
 });
+
+/**
+ * Place gallery-slideshow plugins in here.
+ */
+const newElement = (tag, {
+    styleCallback,
+    src = '',
+    className = '',
+}) => {
+    const element = document.createElement(tag);
+    element.src = src;
+    className = className;
+
+    styleCallback(element.style, element)
+    return element;
+};
+
+document.body.addEventListener('click', function (e) {
+    /** @type {HTMLImageElement} */
+    const originImg = e.target;
+    if (originImg.tagName != 'IMG') {
+        return;
+    }
+
+    if (originImg.classList.contains('previewImg')) {
+        return;
+    }
+
+    const url = originImg.getAttribute('src');
+    if (!url) {
+        return;
+    }
+
+    if (!originImg.classList.contains('gallery-slideshow')) {
+        return;
+    }
+
+    const blackBG = newElement('div', {
+        styleCallback: (style, e) => {
+            e.classList.add('fade-in-image');
+            style.backgroundColor = 'rgba(0, 0, 0, 0.6)';
+            style.zIndex = 100000;
+            style.top = '0';
+            style.left = '0';
+            style.height = '100vh';
+            style.width = '100vw';
+            style.position = 'fixed';
+        },
+    });
+
+    const img = newElement('img', {
+        src: url,
+        className: 'previewImg',
+        styleCallback: (style) => {
+            // style.height = '95%';
+            style.position = 'fixed';
+            style.objectFit = 'cover';
+            style.top = '50%';
+            style.left = '50%';
+            style.transform = 'translate(-50%, -50%)';
+        },
+    });
+
+    blackBG.append(img);
+
+    blackBG.onclick = () => {
+        blackBG.remove();
+    };
+
+    document.body.appendChild(blackBG);
+})

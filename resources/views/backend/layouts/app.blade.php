@@ -10,8 +10,8 @@
     @yield('meta')
 
     @stack('before-styles')
+    @livewireStyles()
     <link href="{{ mix('css/backend.css') }}" rel="stylesheet">
-    <livewire:styles />
     @stack('after-styles')
 </head>
 <body class="c-app">
@@ -38,10 +38,10 @@
     </div><!--c-wrapper-->
 
     @stack('before-scripts')
+    @livewireScripts()
     <script src="{{ mix('js/manifest.js') }}"></script>
     <script src="{{ mix('js/vendor.js') }}"></script>
     <script src="{{ mix('js/backend.js') }}"></script>
-    <livewire:scripts />
     @stack('after-scripts')
 </body>
 </html>
