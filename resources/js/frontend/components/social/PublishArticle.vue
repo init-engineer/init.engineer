@@ -173,8 +173,19 @@
                                     <p>好棒，接下來我們只要「送出投稿」就可以了！</p>
                                 </div>
                                 <div class="buttons pt-2">
-                                    <button class="submit">送出投稿</button>
-                                    <button class="prev">返回</button>
+                                    <button type="button"
+                                        class="submit btn yes"
+                                        @click="submitForm()"
+                                        :disabled="final !== null">
+                                        <div v-if="final === null">
+                                            送出投稿
+                                        </div>
+                                        <div v-else>
+                                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
+                                    </button>
+                                    <button class="prev" v-if="final === null">返回</button>
                                 </div>
                                 <div class="message">
                                     <span class="success">您成功送出投稿了，</span>
@@ -200,6 +211,7 @@ export default {
             inputs: null,
             content: null,
             consent: false,
+            final: null,
             selector: {
                 theme: 'black-green',
                 font: 'auraka',
@@ -317,9 +329,28 @@ export default {
         },
         submitForm(btn) {
             // 提交時顯示成功信息
-            btn.closest(".buttons").nextElementSibling.classList.add("success");
+            // btn.closest(".buttons").nextElementSibling.classList.add("success");
             // 隱藏 back 按鈕
-            btn.nextElementSibling.style.display = "none";
+            // btn.nextElementSibling.style.display = "none";
+            this.final = 'submit';
+
+            let vm = this;
+            let data = {
+                content: vm.content,
+                theme: vm.selector.theme,
+                font: vm.selector.font,
+            };
+            axios.post(`/api/social/cards/publish/article`, data)
+                .then(function (response) {
+                    vm.final = 'success';
+                    // 成功投稿文章
+                    // 需要參與群眾審核的導引
+                })
+                .catch(function (error) {
+                    vm.final = 'error';
+                    // 無法抓取投票資訊
+                    // 需要有個 Error 提示訊息
+                });
         },
     },
 };
