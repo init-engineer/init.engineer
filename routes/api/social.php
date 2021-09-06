@@ -26,6 +26,7 @@ Route::group([
                     'auth',
                 ],
             ], function () {
+                Route::post('/comments', [CommentsController::class, 'store'])->name('store');
                 Route::get('/voted', [ReviewController::class, 'haveVoted'])->name('voted');
                 Route::get('/voting/{status}', [ReviewController::class, 'voting'])->name('voting');
             });

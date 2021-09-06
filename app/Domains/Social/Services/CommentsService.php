@@ -66,10 +66,11 @@ class CommentsService extends BaseService
                 'user_name' => $data['user_name'] ?? '匿名',
                 'user_id' => $data['user_id'] ?? null,
                 'user_avatar' => $data['user_avatar'] ?? null,
-                'content' => $data['content'] ?? null,
+                'content' => $data['comments'] ?? $data['content'] ?? null,
                 'reply' => $data['reply'] ?? null,
             ]);
         } catch (Exception $e) {
+            dd($e);
             DB::rollBack();
 
             throw new GeneralException(__('There was a problem creating this comment. Please try again.'));
