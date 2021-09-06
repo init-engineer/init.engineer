@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="media mt-2"
+        <div class="media"
             v-for="(comment, index) in comments"
             v-bind:key="index">
             <img class="rounded mr-2"
