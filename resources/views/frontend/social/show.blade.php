@@ -44,7 +44,7 @@
                                 </div>
                                 <div class="buttons text-right my-2">
                                     <x-utils.link
-                                        :href="route('frontend.auth.login')"
+                                        :href="route('frontend.auth.login', ['redirect' => route('frontend.social.cards.show', ['id' => $cards->id])])"
                                         :text="__('Login')"
                                         class="btn btn-info btn-lg" />
                                 </div>
