@@ -4,7 +4,7 @@
             <div class="inner">
                 <ul class="steps p-0" @click="onClickListener($event)">
                     <!-- Step 1 - 編輯文章內容 Start -->
-                    <li ref="listItem" class="listItem show">
+                    <li ref="listItem" class="listItem show" id="step1">
                         <div class="col1">
                             <span class="step">
                                 <span>1</span>
@@ -13,6 +13,28 @@
                             <span class="line"></span>
                         </div>
                         <div ref="stepBody" class="col2 stepBody">
+                            <div class="col-md-8 offset-md-2 mb-3" id="flowchart">
+                                <div class="row">
+                                    <ul class="col-12">
+                                        <li class="flow-step">文章投稿</li>
+                                        <li class="flow-arrow"><i class="fas fa-arrow-down"></i></li>
+                                        <li class="flow-step">送出投稿</li>
+                                        <li class="flow-arrow"><i class="fas fa-arrow-down"></i></li>
+                                        <li class="flow-step">進入群眾審核系統</li>
+                                    </ul>
+                                    <ul class="col-6">
+                                        <li class="flow-arrow"><i class="fas fa-arrow-down mr-2"></i>同意數達標</li>
+                                        <li class="flow-step flow-form"><a href="/jp/study/courses/course/?t=1_2" class="btn btn-default">文章發表到各社群平台</a></li>
+                                    </ul>
+                                    <ul class="col-6">
+                                        <li class="flow-arrow"><i class="fas fa-arrow-down mr-2"></i>否決票過多</li>
+                                        <li class="flow-step flow-gray">
+                                            <p class="m-0">暫時擱置</p>
+                                            <p class="m-0">等待管理員審核</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                             <div class="stepTitle">
                                 Step 1 - 編輯文章內容
                             </div>
@@ -37,7 +59,7 @@
                     <!-- Step 1 - 編輯文章內容 End -->
 
                     <!-- Step 2 - 選擇主題樣式 Start -->
-                    <li ref="listItem" class="listItem">
+                    <li ref="listItem" class="listItem" id="step2">
                         <div class="col1">
                             <span class="step">
                                 <span>2</span>
@@ -68,7 +90,7 @@
                     <!-- Step 2 - 選擇主題樣式 End -->
 
                     <!-- Step 3 - 選擇字型樣式 Start -->
-                    <li ref="listItem" class="listItem">
+                    <li ref="listItem" class="listItem" id="step3">
                         <div class="col1">
                             <span class="step">
                                 <span>3</span>
@@ -99,7 +121,7 @@
                     <!-- Step 3 - 選擇字型樣式 End -->
 
                     <!-- Step 4 - 同意版規 Start -->
-                    <li ref="listItem" class="listItem">
+                    <li ref="listItem" class="listItem" id="step4">
                         <div class="col1">
                             <span class="step">
                                 <span>4</span>
@@ -156,7 +178,7 @@
                     <!-- Step 4 - 同意版規 End -->
 
                     <!-- Step 5 - 最後確認 Start -->
-                    <li ref="listItem" class="listItem">
+                    <li ref="listItem" class="listItem" id="step5">
                         <div class="col1">
                             <span class="step">
                                 <span>5</span>
@@ -169,27 +191,33 @@
                                 Step 5 - 最後確認
                             </div>
                             <div class="content">
-                                <div class="inputGroup">
-                                    <p>好棒，接下來我們只要「送出投稿」就可以了！</p>
+                                <article-preview
+                                    :content="content"
+                                    :theme="selector.theme"
+                                    :font="selector.font" />
+                                <div class="pt-2"
+                                    v-if="final === 'success'">
+                                    <h3 class="w-100">好棒，接下來我們只要「送出投稿」就可以了！</h3>
+                                    <div class="buttons">
+                                        <button type="button"
+                                            class="submit btn yes"
+                                            @click="submitForm()"
+                                            :disabled="final !== null">
+                                            <div v-if="final === null">
+                                                送出投稿
+                                            </div>
+                                            <div v-else>
+                                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                        </button>
+                                        <button class="prev" v-if="final === null">返回</button>
+                                    </div>
                                 </div>
-                                <div class="buttons pt-2">
-                                    <button type="button"
-                                        class="submit btn yes"
-                                        @click="submitForm()"
-                                        :disabled="final !== null">
-                                        <div v-if="final === null">
-                                            送出投稿
-                                        </div>
-                                        <div v-else>
-                                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                                            <span class="sr-only">Loading...</span>
-                                        </div>
-                                    </button>
-                                    <button class="prev" v-if="final === null">返回</button>
-                                </div>
-                                <div class="message">
-                                    <span class="success">您成功送出投稿了，</span>
-                                    <span class="fail">啊？好像有些地方不太對勁 ...</span>
+                                <div v-if="final !== 'success'">
+                                    <h3 class="success">您成功送出投稿了！</h3>
+                                    <p>不過文章還沒有被發表出去，需要經過群眾審核，你也可以參與群眾審核，幫自己的文章投票，</p>
+
                                 </div>
                             </div>
                         </div>
@@ -202,14 +230,18 @@
 </template>
 
 <script>
+import ArticlePreview from './ArticlePreview.vue';
 export default {
     name: "PublishArticle",
+    components: {
+        ArticlePreview,
+    },
     data() {
         return {
             stepsWrapper: null,
             listItems: null,
             inputs: null,
-            content: null,
+            content: '',
             consent: false,
             final: null,
             selector: {
@@ -268,13 +300,11 @@ export default {
 
             // 如果是同意內容守則，內容守則被同意了則啟用下一步按鈕
             if (this.consent) {
-                console.log('同意內容守則');
                 return (nextButton.disabled = false);
             }
 
             // 如果沒有 value，則移除焦點，禁用下一步按鈕並 return
             if (!e.target.value) {
-                console.log('沒有 value');
                 inputWrapper.closest(".listItem").classList.remove("done");
                 inputWrapper.classList.remove("js-focus");
                 return (nextButton.disabled = true);
@@ -284,16 +314,14 @@ export default {
             // 如果仍有輸入為空，則禁用下一個按鈕
             if (inputWrapper.nextElementSibling.classList.contains("inputGroup") &&
                !inputWrapper.nextElementSibling.querySelector("input").value) {
-                console.log('輸入為空');
                 return;
             }
 
+            // 如果主要內容輸入長度小於 30 字元
             if (this.content.length < 30) {
-                console.log('content.length < 30');
                 return;
             }
 
-            console.log('啟用下一步按鈕');
             // 否則啟用下一步按鈕
             nextButton.disabled = false;
         },
@@ -326,31 +354,49 @@ export default {
                 .getBoundingClientRect().height;
             newStep.style.height = `${contentHeight}px`;
             newStep.classList.add("show");
+
+            this.scrollTo(newStep.id);
         },
         submitForm(btn) {
-            // 提交時顯示成功信息
-            // btn.closest(".buttons").nextElementSibling.classList.add("success");
-            // 隱藏 back 按鈕
-            // btn.nextElementSibling.style.display = "none";
             this.final = 'submit';
 
-            let vm = this;
+            let self = this;
             let data = {
-                content: vm.content,
-                theme: vm.selector.theme,
-                font: vm.selector.font,
+                content: self.content,
+                theme: self.selector.theme,
+                font: self.selector.font,
             };
             axios.post(`/api/social/cards/publish/article`, data)
                 .then(function (response) {
-                    vm.final = 'success';
+                    self.final = 'success';
                     // 成功投稿文章
                     // 需要參與群眾審核的導引
                 })
                 .catch(function (error) {
-                    vm.final = 'error';
+                    self.final = null;
                     // 無法抓取投票資訊
                     // 需要有個 Error 提示訊息
                 });
+        },
+        scrollTo(id) {
+            /**
+             * @param id 步驟 ID 標籤，用來判斷畫面需要移動到哪個步驟
+             */
+            let alert = document.getElementsByClassName('alert');
+            let alertHeight = 48;
+            for (var i = 0; i < alert.length; i++) {
+                alertHeight = alertHeight + alert[i].getBoundingClientRect().height;
+            }
+            let y = 0;
+            switch (id) {
+                case 'step1': y = 0; break;
+                case 'step2': y = 66; break;
+                case 'step3': y = 132; break;
+                case 'step4': y = 198; break;
+                case 'step5': y = 264; break;
+            }
+
+            window.scrollTo({top: alertHeight + y, behavior: 'smooth'});
         },
     },
 };

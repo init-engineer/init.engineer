@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-bg">
+<nav class="navbar navbar-expand-lg navbar-bg" id="navbar">
     <div class="container">
         <x-utils.link
             :href="route('frontend.index')"
