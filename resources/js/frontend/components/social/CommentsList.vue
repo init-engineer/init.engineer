@@ -64,12 +64,12 @@ export default {
     },
     methods: {
         nextPage() {
-            let vm = this;
+            let self = this;
             axios.get(`/api/social/cards/${this.cid}/comments?page=${this.meta.current_page + 1}`)
                 .then(function (response) {
-                    vm.meta.current_page = response.data.meta.current_page;
-                    vm.meta.last_page = response.data.meta.last_page;
-                    vm.comments = vm.comments.concat(response.data.data);
+                    self.meta.current_page = response.data.meta.current_page;
+                    self.meta.last_page = response.data.meta.last_page;
+                    self.comments = self.comments.concat(response.data.data);
                 })
                 .catch(function (error) {
                     // 需要有個 Error 提示訊息

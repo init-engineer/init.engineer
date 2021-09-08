@@ -78,14 +78,14 @@ export default {
     },
     methods: {
         submit() {
-            let vm = this;
-            let data = { comments: vm.comments };
-            vm.status = 'submit';
+            let self = this;
+            let data = { comments: self.comments };
+            self.status = 'submit';
             axios.post(`/api/social/cards/${this.cid}/comments`, data)
                 .then(function (response) {
-                    vm.comments = '';
-                    vm.status = 'wait';
-                    vm.comment.unshift(response.data.data);
+                    self.comments = '';
+                    self.status = 'wait';
+                    self.comment.unshift(response.data.data);
                 })
                 .catch(function (error) {
                     // 需要有個 Error 提示訊息

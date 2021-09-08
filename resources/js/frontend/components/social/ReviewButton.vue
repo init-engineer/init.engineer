@@ -83,20 +83,20 @@ export default {
         }
     },
     mounted() {
-        let vm = this;
+        let self = this;
         axios.get(`/api/social/cards/${this.cid}/voted`)
             .then(function (response) {
                 if (response.data.voted) {
-                    vm.count.yes = response.data.count.yes;
-                    vm.count.no = response.data.count.no;
-                    vm.voting = (response.data.selector) ? 'yes' : 'no';
-                    vm.states = 'complete';
+                    self.count.yes = response.data.count.yes;
+                    self.count.no = response.data.count.no;
+                    self.voting = (response.data.selector) ? 'yes' : 'no';
+                    self.states = 'complete';
                 } else {
-                    vm.states = 'vote';
+                    self.states = 'vote';
                 }
             })
             .catch(function (error) {
-                vm.states = 'error';
+                self.states = 'error';
                 // 無法抓取投票資訊
                 // 需要有個 Error 提示訊息
             });
@@ -106,15 +106,15 @@ export default {
             this.states = 'voting';
             this.voting = 'yes';
 
-            let vm = this;
+            let self = this;
             axios.get(`/api/social/cards/${this.cid}/voting/1`)
                 .then(function (response) {
-                    vm.count.yes = response.data.count.yes;
-                    vm.count.no = response.data.count.no;
-                    vm.states = 'complete';
+                    self.count.yes = response.data.count.yes;
+                    self.count.no = response.data.count.no;
+                    self.states = 'complete';
                 })
                 .catch(function (error) {
-                    vm.states = 'vote';
+                    self.states = 'vote';
                     // 無法正常投票
                     // 需要有個 Error 提示訊息
                 });
@@ -123,15 +123,15 @@ export default {
             this.states = 'voting';
             this.voting = 'no';
 
-            let vm = this;
+            let self = this;
             axios.get(`/api/social/cards/${this.cid}/voting/0`)
                 .then(function (response) {
-                    vm.count.yes = response.data.count.yes;
-                    vm.count.no = response.data.count.no;
-                    vm.states = 'complete';
+                    self.count.yes = response.data.count.yes;
+                    self.count.no = response.data.count.no;
+                    self.states = 'complete';
                 })
                 .catch(function (error) {
-                    vm.states = 'error';
+                    self.states = 'error';
                     // 無法正常投票
                     // 需要有個 Error 提示訊息
                 });
