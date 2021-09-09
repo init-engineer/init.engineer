@@ -88,7 +88,12 @@ export default {
                     self.comment.unshift(response.data.data);
                 })
                 .catch(function (error) {
-                    // 需要有個 Error 提示訊息
+                    self.status = 'wait';
+                    Swal.fire(
+                        '噢噗！怪怪的？',
+                        '留言時發生了一些錯誤，可以的話，把這項問題拿到<a href="https://github.com/init-engineer/init.engineer"> GitHub repo </a>發個 issue 給我，謝謝你 m(_ _)m',
+                        'error'
+                    );
                 });
         },
     },

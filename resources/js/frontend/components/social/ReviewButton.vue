@@ -97,8 +97,11 @@ export default {
             })
             .catch(function (error) {
                 self.states = 'error';
-                // 無法抓取投票資訊
-                // 需要有個 Error 提示訊息
+                    Swal.fire(
+                        '噢噗！怪怪的？',
+                        '載入投票資訊時發生了一些錯誤，可以的話，把這項問題拿到<a href="https://github.com/init-engineer/init.engineer"> GitHub repo </a>發個 issue 給我，謝謝你 m(_ _)m',
+                        'error'
+                    );
             });
     },
     methods: {
@@ -115,8 +118,11 @@ export default {
                 })
                 .catch(function (error) {
                     self.states = 'vote';
-                    // 無法正常投票
-                    // 需要有個 Error 提示訊息
+                    Swal.fire(
+                        '噢噗！怪怪的？',
+                        '投票時發生了一些錯誤，可以的話，把這項問題拿到<a href="https://github.com/init-engineer/init.engineer"> GitHub repo </a>發個 issue 給我，謝謝你 m(_ _)m',
+                        'error'
+                    );
                 });
         },
         noVoting() {
@@ -131,9 +137,12 @@ export default {
                     self.states = 'complete';
                 })
                 .catch(function (error) {
-                    self.states = 'error';
-                    // 無法正常投票
-                    // 需要有個 Error 提示訊息
+                    self.states = 'vote';
+                    Swal.fire(
+                        '噢噗！怪怪的？',
+                        '投票時發生了一些錯誤，可以的話，把這項問題拿到<a href="https://github.com/init-engineer/init.engineer"> GitHub repo </a>發個 issue 給我，謝謝你 m(_ _)m',
+                        'error'
+                    );
                 });
         },
     },
