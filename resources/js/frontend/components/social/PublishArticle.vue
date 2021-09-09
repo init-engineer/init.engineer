@@ -4,7 +4,7 @@
             <div class="inner">
                 <ul class="steps p-0" @click="onClickListener($event)">
                     <!-- Step 1 - 編輯文章內容 Start -->
-                    <li ref="listItem" class="listItem show" id="step1">
+                    <li ref="listItem1" class="listItem show" id="step1">
                         <div class="col1">
                             <span class="step">
                                 <span>1</span>
@@ -13,28 +13,6 @@
                             <span class="line"></span>
                         </div>
                         <div ref="stepBody" class="col2 stepBody">
-                            <div class="col-md-8 offset-md-2 mb-3" id="flowchart">
-                                <div class="row">
-                                    <ul class="col-12">
-                                        <li class="flow-step">文章投稿</li>
-                                        <li class="flow-arrow"><i class="fas fa-arrow-down"></i></li>
-                                        <li class="flow-step">送出投稿</li>
-                                        <li class="flow-arrow"><i class="fas fa-arrow-down"></i></li>
-                                        <li class="flow-step">進入群眾審核系統</li>
-                                    </ul>
-                                    <ul class="col-6">
-                                        <li class="flow-arrow"><i class="fas fa-arrow-down mr-2"></i>同意數達標</li>
-                                        <li class="flow-step flow-form"><a href="/jp/study/courses/course/?t=1_2" class="btn btn-default">文章發表到各社群平台</a></li>
-                                    </ul>
-                                    <ul class="col-6">
-                                        <li class="flow-arrow"><i class="fas fa-arrow-down mr-2"></i>否決票過多</li>
-                                        <li class="flow-step flow-gray">
-                                            <p class="m-0">暫時擱置</p>
-                                            <p class="m-0">等待管理員審核</p>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
                             <div class="stepTitle">
                                 Step 1 - 編輯文章內容
                             </div>
@@ -59,7 +37,7 @@
                     <!-- Step 1 - 編輯文章內容 End -->
 
                     <!-- Step 2 - 選擇主題樣式 Start -->
-                    <li ref="listItem" class="listItem" id="step2">
+                    <li ref="listItem2" class="listItem" id="step2">
                         <div class="col1">
                             <span class="step">
                                 <span>2</span>
@@ -90,7 +68,7 @@
                     <!-- Step 2 - 選擇主題樣式 End -->
 
                     <!-- Step 3 - 選擇字型樣式 Start -->
-                    <li ref="listItem" class="listItem" id="step3">
+                    <li ref="listItem3" class="listItem" id="step3">
                         <div class="col1">
                             <span class="step">
                                 <span>3</span>
@@ -121,7 +99,7 @@
                     <!-- Step 3 - 選擇字型樣式 End -->
 
                     <!-- Step 4 - 同意版規 Start -->
-                    <li ref="listItem" class="listItem" id="step4">
+                    <li ref="listItem4" class="listItem" id="step4">
                         <div class="col1">
                             <span class="step">
                                 <span>4</span>
@@ -178,7 +156,7 @@
                     <!-- Step 4 - 同意版規 End -->
 
                     <!-- Step 5 - 最後確認 Start -->
-                    <li ref="listItem" class="listItem" id="step5">
+                    <li ref="listItem5" class="listItem" id="step5">
                         <div class="col1">
                             <span class="step">
                                 <span>5</span>
@@ -196,7 +174,7 @@
                                     :theme="selector.theme"
                                     :font="selector.font" />
                                 <div class="pt-2"
-                                    v-if="final === 'success'">
+                                    v-if="final !== 'success'">
                                     <h3 class="w-100">好棒，接下來我們只要「送出投稿」就可以了！</h3>
                                     <div class="buttons">
                                         <button type="button"
@@ -214,15 +192,103 @@
                                         <button class="prev" v-if="final === null">返回</button>
                                     </div>
                                 </div>
-                                <div v-if="final !== 'success'">
+                                <div v-if="final === 'success'">
                                     <h3 class="success">您成功送出投稿了！</h3>
                                     <p>不過文章還沒有被發表出去，需要經過群眾審核，你也可以參與群眾審核，幫自己的文章投票，</p>
-
                                 </div>
                             </div>
                         </div>
                     </li>
                     <!-- Step 5 - 最後確認 End -->
+
+                    <!-- Step 6 - 完成 Start -->
+                    <li ref="listItem6" class="listItem" id="step6">
+                        <div class="col1">
+                            <span class="step">
+                                <span>6</span>
+                                <span class="checkmark"></span>
+                            </span>
+                            <span class="line"></span>
+                        </div>
+                        <div ref="stepBody" class="col2 stepBody">
+                            <div class="stepTitle">
+                                Step 6 - 完成
+                            </div>
+                            <div class="content">
+                                <div class="col-md-8 offset-md-2 mb-3" id="flowchart">
+                                    <div class="row">
+                                        <ul class="col-12">
+                                            <li class="flow-step flow-light">文章投稿</li>
+                                            <li class="flow-arrow">
+                                                <i class="fas fa-arrow-down"></i>
+                                            </li>
+                                            <li class="flow-step flow-light">
+                                                <p class="mb-0">送出投稿</p>
+                                                <h5>
+                                                    <span class="badge badge-pill badge-secondary">您現在在這裡</span>
+                                                </h5>
+                                            </li>
+                                            <li class="flow-arrow">
+                                                <i class="fas fa-arrow-down"></i>
+                                            </li>
+                                            <li class="flow-step flow-light">
+                                                <p class="mb-0">進入群眾審核系統</p>
+                                                <a href="/cards/review" class="p-0">
+                                                    <h5>
+                                                        <span class="badge badge-pill badge-primary">前往投票</span>
+                                                    </h5>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        <ul class="col-4">
+                                            <li class="flow-arrow text-success">
+                                                <i class="fas fa-arrow-down text-success mr-2"></i>
+                                                同意數達標
+                                            </li>
+                                            <li class="flow-step flow-success">
+                                                <p class="m-0">文章發表</p>
+                                                <p class="m-0">各社群平台</p>
+                                            </li>
+                                        </ul>
+                                        <ul class="col-8">
+                                            <li class="flow-arrow text-warning">
+                                                <i class="fas fa-arrow-down text-warning mr-2"></i>
+                                                否決票過多
+                                            </li>
+                                            <li class="flow-step flow-warning">
+                                                <p class="m-0">暫時擱置</p>
+                                                <p class="m-0">等待管理員審核</p>
+                                            </li>
+                                        </ul>
+                                        <ul class="col-2">
+                                            <!-- 空的 -->
+                                        </ul>
+                                        <ul class="col-5">
+                                            <li class="flow-arrow text-success">
+                                                審核通過
+                                                <i class="fas fa-arrow-down text-success ml-2"></i>
+                                            </li>
+                                            <li class="flow-step flow-success">
+                                                <p class="m-0">文章發表</p>
+                                                <p class="m-0">各社群平台</p>
+                                            </li>
+                                        </ul>
+                                        <ul class="col-5">
+                                            <li class="flow-arrow text-danger">
+                                                <i class="fas fa-arrow-down text-danger mr-2"></i>
+                                                審核不通過
+                                            </li>
+                                            <li class="flow-step flow-danger">
+                                                <p class="m-0">投稿失敗</p>
+                                                <p class="m-0">文章石沈大海</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- Step 6 - 完成 End -->
                 </ul>
             </div>
         </div>
@@ -369,13 +435,15 @@ export default {
             axios.post(`/api/social/cards/publish/article`, data)
                 .then(function (response) {
                     self.final = 'success';
-                    // 成功投稿文章
-                    // 需要參與群眾審核的導引
+                    this.changeSteps(this.$refs.listItem5, this.$refs.listItem6);
                 })
                 .catch(function (error) {
                     self.final = null;
-                    // 無法抓取投票資訊
-                    // 需要有個 Error 提示訊息
+                    Swal.fire(
+                        '噢噗！怪怪的？',
+                        '投稿文章時發生了一些錯誤，可以的話，把這項問題拿到<a href="https://github.com/init-engineer/init.engineer"> GitHub repo </a>發個 issue 給我，謝謝你 m(_ _)m',
+                        'error'
+                    );
                 });
         },
         scrollTo(id) {
@@ -394,6 +462,7 @@ export default {
                 case 'step3': y = 132; break;
                 case 'step4': y = 198; break;
                 case 'step5': y = 264; break;
+                case 'step6': y = 330; break;
             }
 
             window.scrollTo({top: alertHeight + y, behavior: 'smooth'});
