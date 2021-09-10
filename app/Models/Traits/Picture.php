@@ -13,33 +13,20 @@ trait Picture
     public function getPicture()
     {
         if (isset($this->picture) && $this->picture !== null) {
-            $picture = json_decode($this->picture, true);
-            if (isset($picture['imgur']) && $picture['imgur'] !== null) {
-                return $picture['imgur'];
+            if (isset($this->picture['imgur']) && $this->picture['imgur'] !== null) {
+                return $this->picture['imgur'];
             }
 
-            if (isset($picture['storage']) && $picture['storage'] !== null) {
-                return asset('storage/' . $picture['storage']);
+            if (isset($this->picture['storage']) && $this->picture['storage'] !== null) {
+                return asset('storage/' . $this->picture['storage']);
             }
 
-            if (isset($picture['local']) && $picture['local'] !== null) {
-                return asset($picture['local']);
+            if (isset($this->picture['local']) && $this->picture['local'] !== null) {
+                return asset($this->picture['local']);
             }
         }
 
         return asset('img/default/960x240.png');
-    }
-
-    /**
-     * @return array
-     */
-    public function getPictureJson()
-    {
-        if ($this->picture !== null) {
-            return json_decode($this->picture, true);
-        }
-
-        return array();
     }
 
     /**
@@ -57,12 +44,12 @@ trait Picture
      */
     public function setPicture(array $data)
     {
-        $picture = json_decode($this->picture, true);
-        $picture['local'] = $data['local'] ?? $picture['local'] ?? null;
-        $picture['storage'] = $data['storage'] ?? $picture['storage'] ?? null;
+        $picture = $this->picture;
+        $picture['local'] = $data['local'] ?? $this->picture['local'] ?? null;
+        $picture['storage'] = $data['storage'] ?? $this->picture['storage'] ?? null;
         $picture['imgur'] = $data['imgur'] ?? $picture['imgur'] ?? null;
 
-        $this->picture = json_encode($picture);
+        $this->picture = $picture;
 
         return $this->save();
     }
@@ -74,11 +61,11 @@ trait Picture
     {
         static::creating(function ($model) {
             if (!$model->{$model->getPictureName()}) {
-                $model->{$model->getPictureName()} = json_encode(array(
+                $model->{$model->getPictureName()} = array(
                     'local' => null,
                     'storage' => null,
                     'imgur' => null,
-                ));
+                );
             }
         });
     }

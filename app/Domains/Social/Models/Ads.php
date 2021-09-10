@@ -89,6 +89,8 @@ class Ads extends Model
      * @var array
      */
     protected $casts = [
+        'config' => 'json',
+        'picture' => 'json',
         'probability' => 'integer',
         'render' => 'boolean',
         'payment' => 'boolean',

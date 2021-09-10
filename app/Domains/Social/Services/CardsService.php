@@ -63,7 +63,7 @@ class CardsService extends BaseService
             $cards = $this->createCards([
                 'model_id' => $data['model_id'],
                 'content' => $data['content'],
-                'config' => $data['config'],
+                'config' => $data['config'] ?? [],
                 'picture' => $data['picture'],
             ]);
         } catch (Exception $e) {
@@ -247,10 +247,9 @@ class CardsService extends BaseService
     protected function createImage(array $data = []): array
     {
         return [
-            'storage' => $data['storage'] ?? 'storage',
-            'path' => $data['path'],
-            'name' => $data['name'],
-            'type' => $data['type'],
+            'local' => $data['local'] ?? null,
+            'storage' => $data['storage'] ?? null,
+            'imgur' => $data['imgur'] ?? null,
         ];
     }
 }

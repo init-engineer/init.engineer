@@ -13,7 +13,7 @@ trait Config
     public function getConfig()
     {
         if ($this->config !== null) {
-            return json_decode($this->config, true);
+            return $this->config;
         }
 
         return array();
@@ -34,9 +34,9 @@ trait Config
      */
     public function setConfig(array $data)
     {
-        $config = json_decode($this->config, true);
+        $config = $this->config;
         $result = array_merge($config, $data);
-        $this->config = json_encode($result);
+        $this->config = $result;
 
         return $this->save();
     }

@@ -62,6 +62,8 @@ class Cards extends Model
      * @var array
      */
     protected $casts = [
+        'config' => 'json',
+        'picture' => 'json',
         'active' => 'boolean',
         'blockade' => 'boolean',
     ];
