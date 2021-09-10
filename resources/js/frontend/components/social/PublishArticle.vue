@@ -430,8 +430,10 @@ export default {
             let self = this;
             let data = {
                 content: self.content,
-                theme: self.selector.theme,
-                font: self.selector.font,
+                config: {
+                    theme: self.selector.theme,
+                    font: self.selector.font,
+                },
             };
             axios.post(`/api/social/cards/publish/article`, data)
                 .then(function (response) {

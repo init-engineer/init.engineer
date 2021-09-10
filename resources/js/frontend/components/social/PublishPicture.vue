@@ -435,12 +435,12 @@ export default {
 
             let self = this;
             let formData = new FormData();
-            formData.append('content', self.content);
-            formData.append('picture', self.picture);
+                formData.append('content', self.content);
+                formData.append('picture', self.picture);
             axios.post(`/api/social/cards/publish/picture`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
-                }
+                },
             }).then(function (response) {
                     self.final = 'success';
                     this.changeSteps(this.$refs.listItem4, this.$refs.listItem5);
