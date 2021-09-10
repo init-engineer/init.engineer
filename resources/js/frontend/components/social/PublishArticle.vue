@@ -418,7 +418,7 @@ export default {
                 ? this.changeSteps(currentStep, currentStep.nextElementSibling)
                 : btn.classList.contains("prev")
                     ? this.changeSteps(currentStep, currentStep.previousElementSibling)
-                    : this.submitForm(btn);
+                    : null;
         },
         /**
          * 當使用者按下投稿的按鈕後，執行圖片投稿的動作
@@ -439,13 +439,21 @@ export default {
                 },
             };
             axios.post(`/api/social/cards/publish/article`, data)
-                .then(function (response) {
-                    // 圖片投稿成功，將目前狀態改為發表成功，並將頁面移動到完成頁面
+                .then((response) => {
+                    // 圖片投稿成功，將目前狀態改為發表成功，將頁面移動到完成頁面
                     self.final = 'success';
-                    this.changeSteps(this.$refs.listItem5, this.$refs.listItem6);
+                    self.changeSteps(self.$refs.listItem5, self.$refs.listItem6);
+
+                    // 取出投稿編號，並顯示訊息給使用者看
+                    let id = response.data.id;
+                    Swal.fire(
+                        '您成功投稿圖片了！',
+                        `您的文章編號為<a href="/cards/show/${id}"> ${id}(#${id.toString(36)}) </a>您的投稿接下來會進入<a href="/cards/review">群眾審核系統</a>當中等待審核，這項系統是所有人都能參與的，您也可以投票給自己投稿的文章，加速文章被發表的速度。`,
+                        'success'
+                    );
                 })
                 // 圖片投稿失敗，將目前裝態改為初始狀態，並顯示 Error 通知
-                .catch(function (error) {
+                .catch((error) => {
                     self.final = null;
                     Swal.fire(
                         '噢噗！怪怪的？',
