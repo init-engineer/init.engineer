@@ -354,12 +354,13 @@ export default {
         this.inputs = this.stepsWrapper.querySelectorAll("input")
 
         // 預設打開 Step 1
-        this.listItems[0].style.height = '630px';
+        // this.listItems[0].style.height = '630px';
+        this.changeSteps(this.$refs.listItem1, this.$refs.listItem1);
     },
     methods: {
-        onKeyupListener(e) {
+        onKeyupListener(event) {
             // 用 keyup 為每個 input 添加焦點
-            const inputWrapper = e.target.closest(".inputGroup");
+            const inputWrapper = event.target.closest(".inputGroup");
             const nextButton = inputWrapper
                 .closest(".stepBody")
                 .querySelector(".next");
@@ -370,7 +371,7 @@ export default {
             }
 
             // 如果沒有 value，則移除焦點，禁用下一步按鈕並 return
-            if (!e.target.value) {
+            if (!event.target.value) {
                 inputWrapper.closest(".listItem").classList.remove("done");
                 inputWrapper.classList.remove("js-focus");
                 return (nextButton.disabled = true);
@@ -391,13 +392,13 @@ export default {
             // 否則啟用下一步按鈕
             nextButton.disabled = false;
         },
-        onClickListener(e) {
+        onClickListener(event) {
             // 如果單擊不在按鈕上，則返回
-            if (!e.target.closest("button")) {
+            if (!event.target.closest("button")) {
                 return;
             }
 
-            const btn = e.target;
+            const btn = event.target;
             const currentStep = btn.closest(".listItem");
 
             btn.classList.contains("next")
@@ -423,7 +424,7 @@ export default {
 
             this.scrollTo(newStep.id);
         },
-        submitForm(btn) {
+        submitForm() {
             this.final = 'submit';
 
             let self = this;

@@ -35,6 +35,13 @@ input {
     }
 }
 
+.image-upload-wrap {
+    border: 4px dashed var(--color-success-dark);
+    border-radius: 24px;
+    position: relative;
+    cursor: pointer;
+}
+
 #picturePicker {
     width: 0;
     height: 0;
@@ -70,14 +77,5 @@ input {
         border-top: 5px solid #2fdec1;
         border-radius: 100%;
         animation: spin 500ms linear infinite;
-    }
-}
-
-@keyframes spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
     }
 }

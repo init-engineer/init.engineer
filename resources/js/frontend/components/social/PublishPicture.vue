@@ -17,23 +17,33 @@
                                 Step 1 - 選擇圖片
                             </div>
                             <div class="content">
-                                <section>
-                                    <div class="preview"
-                                        ref="picturePreview"></div>
-                                    <button
-                                        class="btn btn-success"
-                                        @click="$refs.picturePicker.click()">
-                                        Preview Image
-                                    </button>
+                                <div class="mw-100 my-2 mx-2"
+                                    style="height: 600px; border: 4px dashed var(--color-success); border-radius: 24px; cursor: pointer;"
+                                    v-if="picture !== null"
+                                    @click="$refs.picturePicker.click()">
+                                    <img class="rounded mx-auto d-block h-100"
+                                        ref="previewPicture" />
+                                </div>
+                                <div :class="{ 'image-upload-wrap my-2 mx-2' : picture === null }"
+                                    @click="$refs.picturePicker.click()">
                                     <input type="file"
                                         id="picturePicker"
                                         ref="picturePicker"
+                                        accept="image/*"
                                         @change="pictureUpload($event)" />
-                                    <div class="pictureFilename"
-                                        ref="pictureFilename"></div>
-                                </section>
+                                    <div class="text-center text-success py-5 px-2"
+                                        v-if="picture === null">
+                                        <h3>將圖片拖曳到此處，或點擊上傳</h3>
+                                    </div>
+                                </div>
+                                <p class="text-danger m-0 pb-0">附註一：目前僅支援 <strong>"jpg"、"jpeg"、"png"、"gif"</strong> 圖片格式的上傳。</p>
+                                <p class="text-danger m-0 pt-0 pb-2">附註二：圖片容量大小限制 <strong>10MB</strong> 以下。</p>
+                                <p v-if="picture !== null" v-text="`哈囉！您上傳的圖片是「${picture.name}」，如果沒問題可以前往下一步。`"></p>
                                 <div class="buttons">
-                                    <button class="next" disabled>下一步</button>
+                                    <button class="next"
+                                        :disabled="picture === null">
+                                        下一步
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -65,8 +75,9 @@
                                         required
                                         @keyup="onKeyupListener($event)"></textarea>
                                 </div>
-                                <div class="buttons">
+                                <div class="buttons pt-2">
                                     <button class="next" disabled>下一步</button>
+                                    <button class="prev">返回</button>
                                 </div>
                             </div>
                         </div>
@@ -146,6 +157,17 @@
                             <div class="content">
                                 <div class="pt-2"
                                     v-if="final !== 'success'">
+                                    <div class="row mb-5" style="max-height: 1200px;">
+                                        <div class="col-md-6">
+                                            <img class="rounded mx-auto d-block w-100"
+                                                style="max-height: 600px;"
+                                                :src="pictureSrc" />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h3 v-if="picture !== null">您上傳的圖片是「{{ picture.name }}」</h3>
+                                            <p style="font-size: 24px;">{{ content }}</p>
+                                        </div>
+                                    </div>
                                     <h3 class="w-100">好棒，接下來我們只要「送出投稿」就可以了！</h3>
                                     <div class="buttons">
                                         <button type="button"
@@ -278,6 +300,7 @@ export default {
             consent: false,
             final: null,
             picture: null,
+            pictureSrc: null,
         };
     },
     mounted() {
@@ -286,44 +309,64 @@ export default {
         this.inputs = this.stepsWrapper.querySelectorAll("input")
 
         // 預設打開 Step 1
-        this.listItems[0].style.height = '630px';
+        // this.listItems[0].style.height = '460px';
+        this.changeSteps(this.$refs.listItem1, this.$refs.listItem1);
     },
     methods: {
-        pictureUpload(e)  {
-            targetId = event.currentTarget.id;
+        /**
+         * @return void
+         */
+        pictureUpload(event) {
+            // 判斷是否有抓到檔案
+            if (event.target.files && event.target.files[0]) {
+                let uploaded = event.target.files[0];
 
-            var uploaded = this.value,
-                ext = uploaded.substring(uploaded.lastIndexOf('.') + 1),
-                ext = ext.toLowerCase(),
-                fileName = uploaded.substring(uploaded.lastIndexOf("\\") + 1),
-                accepted = ["jpg", "png", "gif", "jpeg"];
+                // 判斷檔案的格式是否正確
+                let accepted = ["jpg", "jpeg", "png", "gif"];
+                if (!new RegExp(accepted.join("|")).test(uploaded.type)) {
+                    Swal.fire(
+                        '噢噗！您的圖片格式不支援！',
+                        '目前僅支援 <strong>"jpg"、"jpeg"、"png"、"gif"</strong> 圖片格式的上傳，需要麻煩您幫圖片轉成我們支援的格式，再來重新投稿。',
+                        'error'
+                    );
+                    return;
+                }
 
-            // only do if supported image file
-            if (new RegExp(accepted.join("|")).test(ext)) {
-                /*
-                * ::Add in blank img tag and spinner
-                * ::Use FileReader to read the img data
-                * ::Set the image source to the FileReader data
-                */
-                this.$refs.picturePreview.innerHTML = '<div class="loadingLogo"></div>';
-                this.$refs.picturePreview.innerHTML += '<img id="img-preview" />';
+                // 判斷檔案的容量大小是否超標
+                if (uploaded.size >= (10 * 1024 * 1024)) {
+                    Swal.fire(
+                        '噢噗！您的圖片太大了！',
+                        '圖片容量大小限制 <strong>10MB</strong> 以下，建議您壓縮一下圖片，再來重新投稿。',
+                        'error'
+                    );
+                    return;
+                }
 
+                // 圖片格式、容量大小都沒問題，開始準備預覽圖
+                this.picture = uploaded;
                 let reader = new FileReader();
+                let self = this;
                 reader.onload = function () {
-                    let img = document.getElementById('img-preview');
-                    img.src = reader.result;
+                    self.$refs.previewPicture.src = reader.result;
+                    self.pictureSrc = reader.result;
+                    self.changeSteps(self.$refs.listItem1, self.$refs.listItem1);
                 };
-                reader.readAsDataURL(e.target.files[0]);
-                this.$refs.picturePreview.removeChild(document.querySelector('.loadingLogo'));
-                this.$refs.pictureFilename.innerHTML = fileName + "<b> Uploaded!</b>";
-            } else {
-                preview.innerHTML = "";
-                this.$refs.pictureFilename.innerHTML = "Hey! Upload an image file, not a <b>." + ext + "</b> file!";
+                reader.readAsDataURL(self.picture);
+
+                return;
             }
+
+            // 既沒有檔案，也不曉得上傳了什麼，還觸發事件
+            Swal.fire(
+                '蛤？你上傳了什麼？',
+                '我不知道你是誰，我不知道你想要什麼，如果你想找我，那我可以告訴你私訊粉絲專頁就可以找到我，如果你馬上把你剛剛做的事情拿去<a href="https://github.com/init-engineer/init.engineer"> GitHub repo </a>發個 issue 給我，我就當作沒這回事，我不會去找你，也不會追查你，如果你不就此罷手，我會去找你，我會找到你，我會用你的裝置來幫我自己 Debug。',
+                'error'
+            );
+            return;
         },
-        onKeyupListener(e) {
+        onKeyupListener(event) {
             // 用 keyup 為每個 input 添加焦點
-            const inputWrapper = e.target.closest(".inputGroup");
+            const inputWrapper = event.target.closest(".inputGroup");
             const nextButton = inputWrapper
                 .closest(".stepBody")
                 .querySelector(".next");
@@ -334,7 +377,7 @@ export default {
             }
 
             // 如果沒有 value，則移除焦點，禁用下一步按鈕並 return
-            if (!e.target.value) {
+            if (!event.target.value) {
                 inputWrapper.closest(".listItem").classList.remove("done");
                 inputWrapper.classList.remove("js-focus");
                 return (nextButton.disabled = true);
@@ -355,13 +398,13 @@ export default {
             // 否則啟用下一步按鈕
             nextButton.disabled = false;
         },
-        onClickListener(e) {
+        onClickListener(event) {
             // 如果單擊不在按鈕上，則返回
-            if (!e.target.closest("button")) {
+            if (!event.target.closest("button")) {
                 return;
             }
 
-            const btn = e.target;
+            const btn = event.target;
             const currentStep = btn.closest(".listItem");
 
             btn.classList.contains("next")
@@ -387,15 +430,18 @@ export default {
 
             this.scrollTo(newStep.id);
         },
-        submitForm(btn) {
+        submitForm() {
             this.final = 'submit';
 
             let self = this;
-            let data = {
-                content: self.content,
-            };
-            axios.post(`/api/social/cards/publish/picture`, data)
-                .then(function (response) {
+            let formData = new FormData();
+            formData.append('content', self.content);
+            formData.append('picture', self.picture);
+            axios.post(`/api/social/cards/publish/picture`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                }
+            }).then(function (response) {
                     self.final = 'success';
                     this.changeSteps(this.$refs.listItem4, this.$refs.listItem5);
                 })
