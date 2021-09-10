@@ -309,11 +309,14 @@ export default {
         this.inputs = this.stepsWrapper.querySelectorAll("input")
 
         // 預設打開 Step 1
-        // this.listItems[0].style.height = '460px';
         this.changeSteps(this.$refs.listItem1, this.$refs.listItem1);
     },
     methods: {
         /**
+         * 圖片上傳的觸發事件
+         *
+         * @param elements event
+         *
          * @return void
          */
         pictureUpload(event) {
@@ -364,6 +367,13 @@ export default {
             );
             return;
         },
+        /**
+         * 內容更新的觸發事件
+         *
+         * @param elements event
+         *
+         * @return void
+         */
         onKeyupListener(event) {
             // 用 keyup 為每個 input 添加焦點
             const inputWrapper = event.target.closest(".inputGroup");
@@ -398,6 +408,13 @@ export default {
             // 否則啟用下一步按鈕
             nextButton.disabled = false;
         },
+        /**
+         * 按鈕點擊的觸發事件
+         *
+         * @param elements event
+         *
+         * @return void
+         */
         onClickListener(event) {
             // 如果單擊不在按鈕上，則返回
             if (!event.target.closest("button")) {
@@ -413,26 +430,16 @@ export default {
                     ? this.changeSteps(currentStep, currentStep.previousElementSibling)
                     : this.submitForm(btn);
         },
-        changeSteps(currentStep, newStep) {
-            // 1. 關閉當前步驟
-            currentStep.style.height = getComputedStyle(newStep).height; // 獲取（尚未）關閉下一步的高度
-            currentStep.classList.remove("show");
-            // 如果按下繼續按鈕，則添加複選標記
-            if (newStep === currentStep.nextElementSibling)
-                currentStep.classList.add("done");
-
-            // 2. 打開下一步
-            const contentHeight = newStep
-                .querySelector(".stepBody")
-                .getBoundingClientRect().height;
-            newStep.style.height = `${contentHeight}px`;
-            newStep.classList.add("show");
-
-            this.scrollTo(newStep.id);
-        },
+        /**
+         * 當使用者按下投稿的按鈕後，執行圖片投稿的動作
+         *
+         * @return void
+         */
         submitForm() {
+            // 將目前狀態改為發送表單當中
             this.final = 'submit';
 
+            // 彙整資料格式並執行呼叫 API
             let self = this;
             let formData = new FormData();
                 formData.append('content', self.content);
@@ -442,10 +449,12 @@ export default {
                     'Content-Type': 'multipart/form-data',
                 },
             }).then(function (response) {
+                    // 圖片投稿成功，將目前狀態改為發表成功，並將頁面移動到完成頁面
                     self.final = 'success';
                     this.changeSteps(this.$refs.listItem4, this.$refs.listItem5);
                 })
                 .catch(function (error) {
+                    // 圖片投稿失敗，將目前裝態改為初始狀態，並顯示 Error 通知
                     self.final = null;
                     Swal.fire(
                         '噢噗！怪怪的？',
@@ -454,15 +463,49 @@ export default {
                     );
                 });
         },
+        /**
+         * 計算 Step 需要關閉及展開的頁面高度
+         *
+         * @param elements currentStep
+         * @param elements newStep
+         *
+         * @return void
+         */
+        changeSteps(currentStep, newStep) {
+            // 取得尚未關閉的 Step 高度，並將當前 Step 關閉
+            currentStep.style.height = getComputedStyle(newStep).height;
+            currentStep.classList.remove("show");
+
+            // 如果按下繼續按鈕，則添加複選標記
+            if (newStep === currentStep.nextElementSibling)
+                currentStep.classList.add("done");
+
+            // 打開下一步
+            const contentHeight = newStep
+                .querySelector(".stepBody")
+                .getBoundingClientRect().height;
+            newStep.style.height = `${contentHeight}px`;
+            newStep.classList.add("show");
+
+            // 執行畫面移動的動作
+            this.scrollTo(newStep.id);
+        },
+        /**
+         * 將畫面移動到指定的 Step
+         *
+         * @param string id 步驟 ID 標籤，用來判斷畫面需要移動到哪個步驟
+         *
+         * @return void
+         */
         scrollTo(id) {
-            /**
-             * @param id 步驟 ID 標籤，用來判斷畫面需要移動到哪個步驟
-             */
+            // 計算 alert 公告的高度
             let alert = document.getElementsByClassName('alert');
             let alertHeight = 48;
             for (var i = 0; i < alert.length; i++) {
                 alertHeight = alertHeight + alert[i].getBoundingClientRect().height;
             }
+
+            // 根據 Step 來判斷需要疊加的高度
             let y = 0;
             switch (id) {
                 case 'step1': y = 0; break;
@@ -472,6 +515,7 @@ export default {
                 case 'step5': y = 264; break;
             }
 
+            // 執行畫面移動的動作
             window.scrollTo({top: alertHeight + y, behavior: 'smooth'});
         },
     },
