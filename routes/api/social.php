@@ -1,6 +1,7 @@
 <?php
 
 use App\Domains\Social\Http\Controllers\Api\Cards\CommentsController;
+use App\Domains\Social\Http\Controllers\Api\Cards\PublishController;
 use App\Domains\Social\Http\Controllers\Api\Cards\ReviewController;
 
 /**
@@ -19,6 +20,17 @@ Route::group([
         'as' => 'cards.',
         'namespace' => 'Cards',
     ], function () {
+        Route::group([
+            'prefix' => 'publish',
+            'as' => 'publish.',
+            'middleware' => [
+                'auth',
+            ],
+        ], function () {
+            Route::post('/article', [PublishController::class, 'article'])->name('article');
+            Route::post('/picture', [PublishController::class, 'picture'])->name('picture');
+        });
+
         Route::group(['prefix' => '{card}'], function () {
             Route::get('/comments', [CommentsController::class, 'index'])->name('index');
             Route::group([
