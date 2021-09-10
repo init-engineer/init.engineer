@@ -62,14 +62,6 @@
             background-repeat: no-repeat;
             animation: scan 7.5s linear 0s infinite;
         }
-        @keyframes scan {
-            0% {
-                background-position: 0 -100vh;
-           }
-            35%, 100% {
-                background-position: 0 100vh;
-           }
-        }
         .terminal {
             box-sizing: inherit;
             position: absolute;

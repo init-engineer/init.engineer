@@ -52,67 +52,6 @@ $font-color: var(--font-primary-color);
 $duration: 0.4s;
 
 /* Checkmark style starts */
-@-moz-keyframes dothabottomcheck {
-    0% {
-        height: 0;
-    }
-    100% {
-        height: $checkbox-height / 2;
-    }
-}
-
-@-webkit-keyframes dothabottomcheck {
-    0% {
-        height: 0;
-    }
-    100% {
-        height: $checkbox-height / 2;
-    }
-}
-
-@keyframes dothabottomcheck {
-    0% {
-        height: 0;
-    }
-    100% {
-        height: $checkbox-height / 2;
-    }
-}
-
-@keyframes dothatopcheck {
-    0% {
-        height: 0;
-    }
-    50% {
-        height: 0;
-    }
-    100% {
-        height: $checkbox-height * 1.2;
-    }
-}
-@-webkit-keyframes dothatopcheck {
-    0% {
-        height: 0;
-    }
-    50% {
-        height: 0;
-    }
-    100% {
-        height: $checkbox-height * 1.2;
-    }
-}
-@-moz-keyframes dothatopcheck {
-    0% {
-        height: 0;
-    }
-    50% {
-        height: 0;
-    }
-    100% {
-        height: $checkbox-height * 1.2;
-    }
-}
-
 input[type="checkbox"] {
     display: none;
 }
