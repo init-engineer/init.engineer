@@ -116,7 +116,7 @@ class CardsService extends BaseService
      * @return Cards
      * @throws GeneralException
      */
-    public function banned(Cards $cards, User $user, string $remarks): Cards
+    public function blockade(Cards $cards, User $user, string $remarks): Cards
     {
         DB::beginTransaction();
 
@@ -130,10 +130,10 @@ class CardsService extends BaseService
         } catch (Exception $e) {
             DB::rollBack();
 
-            throw new GeneralException(__('There was a problem banning this cards. Please try again.'));
+            throw new GeneralException(__('There was a problem blocking this cards. Please try again.'));
         }
 
-        // event(new CardsBanned($cards, $user, $remarks));
+        // event(new CardsBlockaded($cards, $user, $remarks));
 
         DB::commit();
 
