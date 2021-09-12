@@ -251,9 +251,9 @@ class AdsService extends BaseService
      */
     public function deploy(Ads $ads, Cards $cards)
     {
-        $deploy = json_decode($ads->deploy, true);
+        $deploy = $ads->deploy;
         array_push($deploy, $cards->uuid);
-        $ads->deploy = json_encode($deploy);
+        $ads->deploy = $deploy;
 
         if ($ads->save()) {
             // event(new AdsDeploy($ads, $cards));
