@@ -2,6 +2,8 @@
 
 namespace App\Domains\Social\Services\Image;
 
+use GdImage;
+
 /**
  * Interface ImagesContract.
  */
@@ -58,6 +60,8 @@ abstract class ImagesContract
 
     /**
      * 畫布物件
+     *
+     * @var GdImage
      */
     protected $canvasView;
 

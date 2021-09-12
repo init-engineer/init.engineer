@@ -20,7 +20,6 @@ class CardResource extends JsonResource
         return [
             'id' => $this->id,
             'content' => $this->content,
-            'config' => json_decode($this->config, true),
             'picture' => $this->getPicture(),
             'active' => $this->active,
             'created_at' => $this->created_at->diffForHumans(),

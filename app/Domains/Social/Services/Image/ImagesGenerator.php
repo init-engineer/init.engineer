@@ -417,31 +417,31 @@ class ImagesGenerator extends ImagesContract
         switch ($this->theme) {
                 /** 主題: 慈孤觀音 */
             case 'devotion':
-                $overlayImage = imageCreateFromPng('http://127.0.0.1:8000/' . ('img/frontend/cards/devotion-bg.png'));
+                $overlayImage = imageCreateFromPng(public_path('img/frontend/cards/devotion-bg.png'));
                 imageCopy($this->canvasView, $overlayImage, 360, 64, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
                 return;
 
                 /** 主題: Windows 10 錯誤畫面 */
             case 'windows-10-error':
-                $overlayImage = imageCreateFromPng('http://127.0.0.1:8000/' . ('img/frontend/cards/qrcode.png'));
+                $overlayImage = imageCreateFromPng(public_path('img/frontend/cards/qrcode.png'));
                 $yPoint = ($this->ads['result'] === false) ? imageSY($this->canvasView) - 204 : imageSY($this->canvasView) - 444;
                 imageCopy($this->canvasView, $overlayImage, 24, $yPoint, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
                 return;
 
                 /** 主題: Windows 10 測試人員計畫 錯誤畫面 */
             case 'windows-10-error-testing':
-                $overlayImage = imageCreateFromPng('http://127.0.0.1:8000/' . ('img/frontend/cards/qrcode.png'));
+                $overlayImage = imageCreateFromPng(public_path('img/frontend/cards/qrcode.png'));
                 $yPoint = ($this->ads['result'] === false) ? imageSY($this->canvasView) - 204 : imageSY($this->canvasView) - 444;
                 imageCopy($this->canvasView, $overlayImage, 24, $yPoint, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
                 return;
 
                 /** 主題: 支離滅裂な思考・発言 */
             case 'broken-think':
-                $overlayImage = imageCreateFromPng('http://127.0.0.1:8000/' . ('img/frontend/cards/fragmented_background.png'));
+                $overlayImage = imageCreateFromPng(public_path('img/frontend/cards/fragmented_background.png'));
                 $yPoint = ($this->ads['result'] === false) ? imageSY($this->canvasView) - 560 : imageSY($this->canvasView) - 800;
                 imageCopy($this->canvasView, $overlayImage, 0, $yPoint, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
 
-                $overlayImage = imageCreateFromPng('http://127.0.0.1:8000/' . ('img/frontend/cards/fragmented_people.png'));
+                $overlayImage = imageCreateFromPng(public_path('img/frontend/cards/fragmented_people.png'));
                 $yPoint = ($this->ads['result'] === false) ? imageSY($this->canvasView) - 542 : imageSY($this->canvasView) - 782;
                 imageCopy($this->canvasView, $overlayImage, 36, $yPoint, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
 
@@ -458,18 +458,18 @@ class ImagesGenerator extends ImagesContract
                 $top = (72 - $this->canvasViewHeight * 0.05 > 0) ? 72 - $this->canvasViewHeight * 0.05 : 20;
                 imageCopy($this->canvasView, $newimg, 350, $top, 0, 0, $square_width, $square_height);
 
-                $overlayImage = imageCreateFromPng('http://127.0.0.1:8000/' . ('img/frontend/cards/fragmented_background_arrow.png'));
+                $overlayImage = imageCreateFromPng(public_path('img/frontend/cards/fragmented_background_arrow.png'));
                 $yPoint = ($this->ads['result'] === false) ? imageSY($this->canvasView) - 372 : imageSY($this->canvasView) - 612;
                 imageCopy($this->canvasView, $overlayImage, 315, $yPoint, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
                 return;
 
                 /** 主題: 不獣控制な思考・発言 */
             case 'furry-broken-think':
-                $overlayImage = imageCreateFromPng('http://127.0.0.1:8000/' . ('img/frontend/cards/fragmented_background.png'));
+                $overlayImage = imageCreateFromPng(public_path('img/frontend/cards/fragmented_background.png'));
                 $yPoint = ($this->ads['result'] === false) ? imageSY($this->canvasView) - 560 : imageSY($this->canvasView) - 800;
                 imageCopy($this->canvasView, $overlayImage, 0, $yPoint, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
 
-                $overlayImage = imageCreateFromPng('http://127.0.0.1:8000/' . ('img/frontend/cards/fragmented_wolf.png'));
+                $overlayImage = imageCreateFromPng(public_path('img/frontend/cards/fragmented_wolf.png'));
                 $yPoint = ($this->ads['result'] === false) ? imageSY($this->canvasView) - 502 : imageSY($this->canvasView) - 742;
                 imageCopy($this->canvasView, $overlayImage, 12, $yPoint, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
 
@@ -486,7 +486,7 @@ class ImagesGenerator extends ImagesContract
                 $top = (72 - $this->canvasViewHeight * 0.05 > 0) ? 72 - $this->canvasViewHeight * 0.05 : 20;
                 imageCopy($this->canvasView, $newimg, 350, $top, 0, 0, $square_width, $square_height);
 
-                $overlayImage = imageCreateFromPng('http://127.0.0.1:8000/' . ('img/frontend/cards/fragmented_background_arrow.png'));
+                $overlayImage = imageCreateFromPng(public_path('img/frontend/cards/fragmented_background_arrow.png'));
                 $yPoint = ($this->ads['result'] === false) ? imageSY($this->canvasView) - 372 : imageSY($this->canvasView) - 612;
                 imageCopy($this->canvasView, $overlayImage, 315, $yPoint, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
                 return;
@@ -689,14 +689,15 @@ class ImagesGenerator extends ImagesContract
     private function drawingAds(): void
     {
         /**
-         * 如果廣告類別是需要渲染圖片的話。
+         * 如果廣告類別是需要渲染圖片的話
          */
         if ($this->ads['data']['type'] === Ads::TYPE_ALL ||
             $this->ads['data']['type'] === Ads::TYPE_BANNER) {
             /**
              * 建立透明圖層背景
              */
-            $adsImage = imageCreateFromPng('http://127.0.0.1:8000/' . ($this->ads['data']['picture']['local']));
+            // imageCreateFromPng()
+            $adsImage = imageCreateFromPng(public_path($this->ads['data']['picture']['local']));
             $adsCanvas = imageCreateTrueColor(imageSX($adsImage), imageSY($adsImage));
             $transColour = imageColorAllocateAlpha($adsCanvas, 0, 0, 0, 127);
             imageFill($adsCanvas, 0, 0, $transColour);
@@ -780,6 +781,8 @@ class ImagesGenerator extends ImagesContract
             imageCopy($newCanvas, $adsCanvas, 0, imageSY($this->canvasView) - 240, 0, 0, imageSX($adsCanvas), imageSY($adsCanvas));
             $this->canvasView = $newCanvas;
         }
+
+        return;
     }
 
     /**
