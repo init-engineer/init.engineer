@@ -445,7 +445,7 @@ export default {
                     self.changeSteps(self.$refs.listItem5, self.$refs.listItem6);
 
                     // 取出投稿編號，並顯示訊息給使用者看
-                    let id = response.data.id;
+                    let id = response.data.data.id;
                     Swal.fire(
                         '您成功投稿圖片了！',
                         `您的文章編號為<a href="/cards/show/${id}"> ${id}(#${id.toString(36)}) </a>您的投稿接下來會進入<a href="/cards/review">群眾審核系統</a>當中等待審核，這項系統是所有人都能參與的，您也可以投票給自己投稿的文章，加速文章被發表的速度。`,
