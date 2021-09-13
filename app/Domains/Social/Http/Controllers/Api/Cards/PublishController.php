@@ -2,6 +2,8 @@
 
 namespace App\Domains\Social\Http\Controllers\Api\Cards;
 
+use App\Domains\Social\Events\Cards\ArticleCreated;
+use App\Domains\Social\Events\Cards\PictureCreated;
 use App\Domains\Social\Http\Requests\Api\Publish\PublishArticleRequest;
 use App\Domains\Social\Http\Requests\Api\Publish\PublishPictureRequest;
 use App\Domains\Social\Http\Resources\CardResource;
@@ -40,13 +42,13 @@ class PublishController extends Controller
     public function article(PublishArticleRequest $request)
     {
         /**
-         * 整理圖片投稿資訊
+         * 整理文字投稿資訊
          */
         $data = $request->validated();
         $data['model_id'] = $request->user()->id;
 
         /**
-         * 透過 ImagesGenerator 去產生圖片
+         * 透過 ImagesGenerator 去產生文字圖片
          */
         $container = Container::getInstance();
         $generator = $container->make(ImagesGenerator::class);
@@ -56,7 +58,7 @@ class PublishController extends Controller
             ->build();
 
         /**
-         * 處理投稿資訊的圖片資訊
+         * 處理投稿資訊的文字資訊
          */
         $data['picture'] = array(
             'local' => $picture['picture'],
@@ -75,7 +77,7 @@ class PublishController extends Controller
         );
 
         /**
-         * 將圖片投稿寫入
+         * 將文字投稿寫入
          */
         $card = $this->service->store($data);
 
@@ -83,6 +85,8 @@ class PublishController extends Controller
             $adsService = $container->make(AdsService::class);
             $adsService->deploy(Ads::find($picture['ads']['data']['id']), $card);
         }
+
+        event(new ArticleCreated($card));
 
         return new CardResource($card);
     }
@@ -118,6 +122,8 @@ class PublishController extends Controller
          * 將圖片投稿寫入
          */
         $card = $this->service->store($data);
+
+        event(new PictureCreated($card));
 
         return new CardResource($card);
     }
