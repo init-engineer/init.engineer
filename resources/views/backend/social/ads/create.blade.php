@@ -40,7 +40,7 @@
                     <label for="content" class="col-md-2 col-form-label">@lang('Content')</label>
 
                     <div class="col-md-10">
-                        <textarea class="form-control" name="content" id="content" rows="3" placeholder="{{ __('Content') }}" value="{{ old('content') }}" maxlength="1024" required></textarea>
+                        <textarea class="form-control" name="content" id="content" rows="3" placeholder="{{ __('Content') }}" maxlength="1024" required>{{ old('content') }}</textarea>
                     </div>
                 </div><!--form-group-->
 
