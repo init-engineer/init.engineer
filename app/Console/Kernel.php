@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Domains\Crons\Models\Crons;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -27,6 +28,13 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        /**
+         * 自動化 群眾審核相關功能
+         */
+        $schedule->command('social:review-publish')->everyMinute()->when(function () {
+            return Crons::everySomeMinutes('social:review-publish', 10);
+        });
+
         /**
          * Crons Example:
          */
