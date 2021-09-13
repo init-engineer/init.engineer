@@ -124,5 +124,6 @@ class Platform extends Model
      */
     protected $casts = [
         'active' => 'boolean',
+        'config' => 'json',
     ];
 }
