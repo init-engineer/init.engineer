@@ -75,6 +75,12 @@ class CardsEventListener
             ->get();
 
         /**
+         * 整理需要發送出去的內容
+         */
+        $desc = ($data['type'] === 'article') ? '【文章投稿】' : '【圖片投稿】';
+        $desc = $desc . "\n" . $data['content'];
+
+        /**
          * 根據社群平台逐一通知
          */
         foreach ($platforms as $platform) {
@@ -111,20 +117,16 @@ class CardsEventListener
                         break;
                     }
 
-                    activity('social cards notification')
-                        ->performedOn(Cards::find($data['id']))
-                        ->log($platform->config['webhook']);
                     /**
                      * 開始執行通知
                      */
-                    $desc = ($data['type'] === 'article') ? '【文章投稿】' : '【圖片投稿】';
                     $url = $platform->config['webhook'];
                     $response = Http::post($url, array(
                         'embeds' => array(
                             array(
                                 'title' => '#' . appName() . base_convert($data['id'], 10, 36),
                                 'url' => route('frontend.social.cards.show', $data['id']),
-                                'description' => Str::limit($desc . $data['content'], 128, '...'),
+                                'description' => Str::limit($desc, 128, '...'),
                                 'color' => 15258703,
                                 'image' => array(
                                     'url' => $data['picture'],
@@ -134,7 +136,7 @@ class CardsEventListener
                         ),
                     ));
 
-                    activity('social cards notification')
+                    activity('social cards - discord notification')
                         ->performedOn(Cards::find($data['id']))
                         ->log($response->body());
                     break;
@@ -150,7 +152,25 @@ class CardsEventListener
                  * 發表到 Telegram
                  */
                 case Platform::TYPE_TELEGRAM:
-                    # code...
+                    /**
+                     * 判斷 Access token 與 Chat ID 是否為空
+                     */
+                    if (!isset($platform->config['chat_id']) ||
+                        !isset($platform->config['access_token'])) {
+                        break;
+                    }
+
+                    $token = $platform->config['access_token'];
+                    $url = "https://api.telegram.org/bot$token/sendPhoto";
+                    $response = Http::post($url, array(
+                        'chat_id' => $platform->config['chat_id'],
+                        'photo' => $data['picture'],
+                        'caption' => Str::limit($desc, 128, '...'),
+                    ));
+
+                    activity('social cards - telegram notification')
+                        ->performedOn(Cards::find($data['id']))
+                        ->log($response->body());
                     break;
 
                 /**
