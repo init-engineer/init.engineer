@@ -108,15 +108,14 @@
                             <input x-show="type === '{{ $model::TYPE_FACEBOOK }}' ||
                                            type === '{{ $model::TYPE_TWITTER }}' ||
                                            type === '{{ $model::TYPE_PLURK }}' ||
-                                           type === '{{ $model::TYPE_TUMBLR }}' ||
-                                           type === '{{ $model::TYPE_TELEGRAM }}'"
+                                           type === '{{ $model::TYPE_TUMBLR }}'"
                                 type="text" name="pages_name" id="pages_name" class="form-control mb-2" placeholder="{{ __('Pages Name') }}" />
 
                             <input x-show="type === '{{ $model::TYPE_TELEGRAM }}'"
-                                type="text" name="chat_id" id="chat_id" class="form-control mb-2" placeholder="{{ __('Chat ID') }}" />
+                                type="text" name="chat_id" id="chat_id" class="form-control mb-2" placeholder="{{ __('Unique identifier for the target chat or username of the target channel (in the format @channelusername).') }}" />
 
                             <input x-show="type === '{{ $model::TYPE_DISCORD }}'"
-                                type="text" name="webhook" id="webhook" class="form-control mb-2" placeholder="{{ __('Webhook') }}" />
+                                type="text" name="webhook" id="webhook" class="form-control mb-2" placeholder="{{ __('HTTPS url to send updates to. Use an empty string to remove webhook integration.') }}" />
                         </div>
                     </div><!--form-group-->
                 </div>

@@ -235,7 +235,6 @@ class PlatformService extends BaseService
                 $config = [
                     'chat_id' => $data['chat_id'],
                     'access_token' => $data['access_token'],
-                    'pages_name' => $data['pages_name'],
                 ];
                 break;
 

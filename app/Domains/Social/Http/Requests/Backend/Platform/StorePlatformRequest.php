@@ -99,7 +99,6 @@ class StorePlatformRequest extends FormRequest
                 Platform::TYPE_TWITTER,
                 Platform::TYPE_PLURK,
                 Platform::TYPE_TUMBLR,
-                Platform::TYPE_TELEGRAM,
             ))],
         ];
     }
