@@ -78,7 +78,7 @@ class PlatformController extends Controller
     {
         return view('backend.social.platform.edit')
             ->with('platform', $platform)
-            ->with('config', json_decode($platform->config, true));
+            ->with('config', $platform->config);
     }
 
     /**
