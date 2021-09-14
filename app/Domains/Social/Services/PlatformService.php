@@ -227,7 +227,6 @@ class PlatformService extends BaseService
                     'consumer_app_secret' => $data['consumer_app_secret'],
                     'access_token' => $data['access_token'],
                     'access_token_secret' => $data['access_token_secret'],
-                    'pages_name' => $data['pages_name'],
                 ];
                 break;
 
