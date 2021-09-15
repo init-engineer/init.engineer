@@ -9,6 +9,7 @@ use App\Domains\Social\Models\Platform;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Subscriber\Oauth\Oauth1;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 /**
@@ -105,6 +106,54 @@ class CardsEventListener
                  * 發表到 Plurk
                  */
                 case Platform::TYPE_PLURK:
+                    /**
+                     * 判斷 Blog Name、Consumer Key、Consumer Secret、Token、Token Secret 是否為空
+                     */
+                    if (!isset($platform->config['user_id']) ||
+                        !isset($platform->config['consumer_app_key']) ||
+                        !isset($platform->config['consumer_app_secret']) ||
+                        !isset($platform->config['access_token']) ||
+                        !isset($platform->config['access_token_secret'])) {
+                        break;
+                    }
+
+                    /**
+                     * 透過 Guzzle 的 HandlerStack 來建立堆疊
+                     */
+                    $stack = HandlerStack::create();
+
+                    /**
+                     * 透過 Guzzle 的 OAuth1 來建立請求
+                     */
+                    $middleware = new Oauth1(array(
+                        'consumer_key' => $platform->config['consumer_app_key'],
+                        'consumer_secret' => $platform->config['consumer_app_secret'],
+                        'token' => $platform->config['access_token'],
+                        'token_secret' => $platform->config['access_token_secret'],
+                    ));
+                    $stack->push($middleware);
+
+                    /**
+                     * 開始執行通知
+                     */
+                    $client = Http::withMiddleware($middleware)
+                        ->withOptions(array(
+                            'base_uri' => 'https://www.plurk.com',
+                            'handler' => $stack,
+                            'auth' => 'oauth',
+                        ));
+
+                    // Image not provided, be sure to do a multipart/form-data POST request
+                    $response = $client->asMultipart()->post('/APP/Timeline/uploadPicture', array(
+                        'image' => Storage::get($data['picture']),
+                    ));
+
+                    /**
+                     * 紀錄 response 資訊
+                     */
+                    activity('social cards - tumblr notification')
+                        ->performedOn(Cards::find($data['id']))
+                        ->log($response->body());
                     # code...
                     break;
 
