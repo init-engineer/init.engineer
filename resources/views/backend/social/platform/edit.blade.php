@@ -113,8 +113,7 @@
                                 type="text" name="graph_version" id="graph_version" class="form-control mb-2" placeholder="{{ __('Graph Version') }}" />
 
                             <input x-show="type === '{{ $model::TYPE_FACEBOOK }}' ||
-                                           type === '{{ $model::TYPE_TWITTER }}' ||
-                                           type === '{{ $model::TYPE_PLURK }}'"
+                                           type === '{{ $model::TYPE_TWITTER }}'"
                                 value="{{ isset($config['pages_name']) ? $config['pages_name'] : null }}"
                                 type="text" name="pages_name" id="pages_name" class="form-control mb-2" placeholder="{{ __('Pages Name') }}" />
 

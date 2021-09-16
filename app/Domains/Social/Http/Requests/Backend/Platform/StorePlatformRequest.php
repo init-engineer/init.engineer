@@ -97,7 +97,6 @@ class StorePlatformRequest extends FormRequest
                 'type',
                 Platform::TYPE_FACEBOOK,
                 Platform::TYPE_TWITTER,
-                Platform::TYPE_PLURK,
             ))],
         ];
     }
