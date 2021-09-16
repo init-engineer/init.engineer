@@ -77,8 +77,7 @@
                                 value="{{ isset($config['user_id']) ? $config['user_id'] : null }}"
                                 type="text" name="user_id" id="user_id" class="form-control mb-2" placeholder="{{ __('User ID or Blog Name.') }}" />
 
-                            <input x-show="type === '{{ $model::TYPE_FACEBOOK }}' ||
-                                           type === '{{ $model::TYPE_PLURK }}'"
+                            <input x-show="type === '{{ $model::TYPE_PLURK }}'"
                                 value="{{ isset($config['consumer_app_id']) ? $config['consumer_app_id'] : null }}"
                                 type="text" name="consumer_app_id" id="consumer_app_id" class="form-control mb-2" placeholder="{{ __('Consumer ID for authentication.') }}" />
 
@@ -87,8 +86,7 @@
                                 value="{{ isset($config['consumer_app_key']) ? $config['consumer_app_key'] : null }}"
                                 type="text" name="consumer_app_key" id="consumer_app_key" class="form-control mb-2" placeholder="{{ __('Consumer Key for authentication.') }}" />
 
-                            <input x-show="type === '{{ $model::TYPE_FACEBOOK }}' ||
-                                           type === '{{ $model::TYPE_TWITTER }}' ||
+                            <input x-show="type === '{{ $model::TYPE_TWITTER }}' ||
                                            type === '{{ $model::TYPE_PLURK }}' ||
                                            type === '{{ $model::TYPE_TUMBLR }}'"
                                 value="{{ isset($config['consumer_app_secret']) ? $config['consumer_app_secret'] : null }}"
@@ -108,12 +106,7 @@
                                 value="{{ isset($config['access_token_secret']) ? $config['access_token_secret'] : null }}"
                                 type="text" name="access_token_secret" id="access_token_secret" class="form-control mb-2" placeholder="{{ __('Access Token Secret for authentication.') }}" />
 
-                            <input x-show="type === '{{ $model::TYPE_FACEBOOK }}'"
-                                value="{{ isset($config['graph_version']) ? $config['graph_version'] : null }}"
-                                type="text" name="graph_version" id="graph_version" class="form-control mb-2" placeholder="{{ __('Graph Version') }}" />
-
-                            <input x-show="type === '{{ $model::TYPE_FACEBOOK }}' ||
-                                           type === '{{ $model::TYPE_TWITTER }}'"
+                            <input x-show="type === '{{ $model::TYPE_TWITTER }}'"
                                 value="{{ isset($config['pages_name']) ? $config['pages_name'] : null }}"
                                 type="text" name="pages_name" id="pages_name" class="form-control mb-2" placeholder="{{ __('Pages Name') }}" />
 

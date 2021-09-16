@@ -52,7 +52,6 @@ class StorePlatformRequest extends FormRequest
             ))],
             'consumer_app_id' => ['required_if:' . implode(',', array(
                 'type',
-                Platform::TYPE_FACEBOOK,
                 Platform::TYPE_PLURK,
             ))],
             'consumer_app_key' => ['required_if:' . implode(',', array(
@@ -62,14 +61,9 @@ class StorePlatformRequest extends FormRequest
             ))],
             'consumer_app_secret' => ['required_if:' . implode(',', array(
                 'type',
-                Platform::TYPE_FACEBOOK,
                 Platform::TYPE_TWITTER,
                 Platform::TYPE_PLURK,
                 Platform::TYPE_TUMBLR,
-            ))],
-            'graph_version' => ['required_if:' . implode(',', array(
-                'type',
-                Platform::TYPE_FACEBOOK,
             ))],
             'access_token' => ['required_if:' . implode(',', array(
                 'type',
@@ -95,7 +89,6 @@ class StorePlatformRequest extends FormRequest
             ))],
             'pages_name' => ['required_if:' . implode(',', array(
                 'type',
-                Platform::TYPE_FACEBOOK,
                 Platform::TYPE_TWITTER,
             ))],
         ];

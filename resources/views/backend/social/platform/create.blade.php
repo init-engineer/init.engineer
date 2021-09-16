@@ -76,16 +76,14 @@
                                            type === '{{ $model::TYPE_TUMBLR }}'"
                                 type="text" name="user_id" id="user_id" class="form-control mb-2" placeholder="{{ __('User ID or Blog Name.') }}" />
 
-                            <input x-show="type === '{{ $model::TYPE_FACEBOOK }}' ||
-                                           type === '{{ $model::TYPE_PLURK }}'"
+                            <input x-show="type === '{{ $model::TYPE_PLURK }}'"
                                 type="text" name="consumer_app_id" id="consumer_app_id" class="form-control mb-2" placeholder="{{ __('Consumer ID for authentication.') }}" />
 
                             <input x-show="type === '{{ $model::TYPE_TWITTER }}' ||
                                            type === '{{ $model::TYPE_TUMBLR }}'"
                                 type="text" name="consumer_app_key" id="consumer_app_key" class="form-control mb-2" placeholder="{{ __('Consumer Key for authentication.') }}" />
 
-                            <input x-show="type === '{{ $model::TYPE_FACEBOOK }}' ||
-                                           type === '{{ $model::TYPE_TWITTER }}' ||
+                            <input x-show="type === '{{ $model::TYPE_TWITTER }}' ||
                                            type === '{{ $model::TYPE_PLURK }}' ||
                                            type === '{{ $model::TYPE_TUMBLR }}'"
                                 type="text" name="consumer_app_secret" id="consumer_app_secret" class="form-control mb-2" placeholder="{{ __('Consumer Secret for authentication.') }}" />
@@ -102,11 +100,7 @@
                                            type === '{{ $model::TYPE_TUMBLR }}'"
                                 type="text" name="access_token_secret" id="access_token_secret" class="form-control mb-2" placeholder="{{ __('Access Token Secret for authentication.') }}" />
 
-                            <input x-show="type === '{{ $model::TYPE_FACEBOOK }}'"
-                                type="text" name="graph_version" id="graph_version" class="form-control mb-2" placeholder="{{ __('Graph Version') }}" />
-
-                            <input x-show="type === '{{ $model::TYPE_FACEBOOK }}' ||
-                                           type === '{{ $model::TYPE_TWITTER }}'"
+                            <input x-show="type === '{{ $model::TYPE_TWITTER }}'"
                                 type="text" name="pages_name" id="pages_name" class="form-control mb-2" placeholder="{{ __('Pages Name') }}" />
 
                             <input x-show="type === '{{ $model::TYPE_TELEGRAM }}'"
