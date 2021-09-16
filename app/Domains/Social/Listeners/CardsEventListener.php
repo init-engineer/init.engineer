@@ -99,7 +99,81 @@ class CardsEventListener
                  * 發表到 Twitter
                  */
                 case Platform::TYPE_TWITTER:
-                    # code...
+                    /**
+                     * 判斷 Blog Name、Consumer Key、Consumer Secret、Token、Token Secret 是否為空
+                     */
+                    if (!isset($platform->config['consumer_app_key']) ||
+                        !isset($platform->config['consumer_app_secret']) ||
+                        !isset($platform->config['access_token']) ||
+                        !isset($platform->config['access_token_secret'])) {
+                        break;
+                    }
+
+                    /**
+                     * 透過 Guzzle 的 HandlerStack 來建立堆疊
+                     */
+                    $stack = HandlerStack::create();
+
+                    /**
+                     * 透過 Guzzle 的 OAuth1 來建立請求
+                     */
+                    $middleware = new Oauth1(array(
+                        'consumer_key'    => $platform->config['consumer_app_key'],
+                        'consumer_secret' => $platform->config['consumer_app_secret'],
+                        'token'           => $platform->config['access_token'],
+                        'token_secret'    => $platform->config['access_token_secret'],
+                    ));
+                    $stack->push($middleware);
+
+                    /**
+                     * 開始執行通知
+                     */
+                    $client = Http::withMiddleware($middleware)
+                        ->withOptions(array(
+                            'handler' => $stack,
+                            'auth' => 'oauth',
+                        ));
+
+                    /**
+                     * 先判斷媒體是圖片(jpg、jpeg、png)還是動畫(gif)
+                     */
+                    $tweetType = explode('.', $data['picture']);
+                    $tweetType = array_pop($tweetType);
+                    $tweetType = ($tweetType === 'gif') ? 'tweet_gif' : 'tweet_image';
+
+                    /**
+                     * 先將圖片透過 multipart/form-data 的方式上傳到 Twitter
+                     */
+                    $pictureArray = explode('/', $data['picture']);
+                    $pictureResponse = $client->asMultipart()->post('https://upload.twitter.com/1.1/media/upload.json?media_category=' . $tweetType, array(
+                        array(
+                            'name' => 'media',
+                            'contents' => Storage::get(str_replace('storage', 'public', $data['picture'])),
+                            'filename' => array_pop($pictureArray),
+                        ),
+                    ));
+
+                    /**
+                     * 紀錄 picture response 資訊
+                     */
+                    activity('social cards - twitter notification - picture')
+                        ->performedOn(Cards::find($data['id']))
+                        ->log($pictureResponse->body());
+
+                    /**
+                     * 將圖片拼到推文當中發表出去
+                     */
+                    $tweetResponse = $client->asForm()->post('https://api.twitter.com/1.1/statuses/update.json', array(
+                        'status' => "#" . appName() . base_convert($data['id'], 10, 36) . "\n----------\n" . Str::limit($desc, 64, ' ...'),
+                        'media_ids' => $pictureResponse['media_id_string'],
+                    ));
+
+                    /**
+                     * 紀錄 picture response 資訊
+                     */
+                    activity('social cards - twitter notification - tweet')
+                        ->performedOn(Cards::find($data['id']))
+                        ->log($tweetResponse->body());
                     break;
 
                 /**
@@ -143,7 +217,7 @@ class CardsEventListener
                         ));
 
                     /**
-                     * 先將圖片透過 multipart/form-data 的方式上傳到 Plur
+                     * 先將圖片透過 multipart/form-data 的方式上傳到 Plurk
                      */
                     $pictureArray = explode('/', $data['picture']);
                     $pictureResponse = $client->asMultipart()->post('/APP/Timeline/uploadPicture', array(
