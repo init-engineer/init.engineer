@@ -109,8 +109,7 @@ class CardsEventListener
                     /**
                      * 判斷 Blog Name、Consumer Key、Consumer Secret、Token、Token Secret 是否為空
                      */
-                    if (!isset($platform->config['user_id']) ||
-                        !isset($platform->config['consumer_app_key']) ||
+                    if (!isset($platform->config['consumer_app_key']) ||
                         !isset($platform->config['consumer_app_secret']) ||
                         !isset($platform->config['access_token']) ||
                         !isset($platform->config['access_token_secret'])) {
@@ -126,10 +125,10 @@ class CardsEventListener
                      * 透過 Guzzle 的 OAuth1 來建立請求
                      */
                     $middleware = new Oauth1(array(
-                        'consumer_key' => $platform->config['consumer_app_key'],
+                        'consumer_key'    => $platform->config['consumer_app_key'],
                         'consumer_secret' => $platform->config['consumer_app_secret'],
-                        'token' => $platform->config['access_token'],
-                        'token_secret' => $platform->config['access_token_secret'],
+                        'token'           => $platform->config['access_token'],
+                        'token_secret'    => $platform->config['access_token_secret'],
                     ));
                     $stack->push($middleware);
 
@@ -143,18 +142,40 @@ class CardsEventListener
                             'auth' => 'oauth',
                         ));
 
-                    // Image not provided, be sure to do a multipart/form-data POST request
-                    $response = $client->asMultipart()->post('/APP/Timeline/uploadPicture', array(
-                        'image' => Storage::get($data['picture']),
+                    /**
+                     * 先將圖片透過 multipart/form-data 的方式上傳到 Plur
+                     */
+                    $pictureArray = explode('/', $data['picture']);
+                    $pictureResponse = $client->asMultipart()->post('/APP/Timeline/uploadPicture', array(
+                        array(
+                            'name' => 'image',
+                            'contents' => Storage::get(str_replace('storage', 'public', $data['picture'])),
+                            'filename' => array_pop($pictureArray),
+                        ),
                     ));
 
                     /**
-                     * 紀錄 response 資訊
+                     * 紀錄 picture response 資訊
                      */
-                    activity('social cards - tumblr notification')
+                    activity('social cards - plurk notification - picture')
                         ->performedOn(Cards::find($data['id']))
-                        ->log($response->body());
-                    # code...
+                        ->log($pictureResponse->body());
+
+                    /**
+                     * 將圖片拼到噗文當中發表出去
+                     */
+                    $plurkResponse = $client->post('/APP/Timeline/plurkAdd', array(
+                        'content' => $pictureResponse['full'] . "\n#" . appName() . base_convert($data['id'], 10, 36) . "\n----------\n" . Str::limit($desc, 128, ' ...'),
+                        'qualifier' => 'says',
+                        'lang' => 'tr_ch',
+                    ));
+
+                    /**
+                     * 紀錄 plurk response 資訊
+                     */
+                    activity('social cards - plurk notification - plurk')
+                        ->performedOn(Cards::find($data['id']))
+                        ->log($plurkResponse->body());
                     break;
 
                 /**
@@ -219,10 +240,10 @@ class CardsEventListener
                      * 透過 Guzzle 的 OAuth1 來建立請求
                      */
                     $middleware = new Oauth1(array(
-                        'consumer_key' => $platform->config['consumer_app_key'],
+                        'consumer_key'    => $platform->config['consumer_app_key'],
                         'consumer_secret' => $platform->config['consumer_app_secret'],
-                        'token' => $platform->config['access_token'],
-                        'token_secret' => $platform->config['access_token_secret'],
+                        'token'           => $platform->config['access_token'],
+                        'token_secret'    => $platform->config['access_token_secret'],
                     ));
                     $stack->push($middleware);
 
