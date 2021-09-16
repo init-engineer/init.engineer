@@ -92,7 +92,31 @@ class CardsEventListener
                  * 發表到 Facebook
                  */
                 case Platform::TYPE_FACEBOOK:
-                    # code...
+                    /**
+                     * 判斷 Page ID、Access Token 是否為空
+                     */
+                    if (!isset($platform->config['user_id']) ||
+                        !isset($platform->config['access_token'])) {
+                        break;
+                    }
+
+                    /**
+                     * 開始執行通知
+                     */
+                    $userID = $platform->config['user_id'];
+                    $url = "https://graph.facebook.com/$userID/photos?";
+                    $response = Http::post($url, array(
+                        'url' => $data['picture'],
+                        'access_token' => $platform->config['access_token'],
+                        'message' => $desc,
+                    ));
+
+                    /**
+                     * 紀錄 response 資訊
+                     */
+                    activity('social cards - facebook notification')
+                        ->performedOn(Cards::find($data['id']))
+                        ->log($response->body());
                     break;
 
                 /**
