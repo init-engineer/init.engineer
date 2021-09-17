@@ -90,6 +90,7 @@ class CardsEventListener
             switch ($platform->type) {
                 /**
                  * 發表到 Facebook
+                 * 文章內提及連結會影響觸及率，因此需要留言補充連結宣傳。
                  */
                 case Platform::TYPE_FACEBOOK:
                     /**
@@ -121,6 +122,7 @@ class CardsEventListener
 
                 /**
                  * 發表到 Twitter
+                 * 字數限制 280 字元，因此需要留言補充連結宣傳。
                  */
                 case Platform::TYPE_TWITTER:
                     /**
@@ -202,6 +204,7 @@ class CardsEventListener
 
                 /**
                  * 發表到 Plurk
+                 * 字數限制 360 字元，因此需要留言補充連結宣傳。
                  */
                 case Platform::TYPE_PLURK:
                     /**
@@ -260,10 +263,19 @@ class CardsEventListener
                         ->log($pictureResponse->body());
 
                     /**
+                     * 整理文章通知的內容
+                     */
+                    $content = __(":picture\n#:appName\n----------\n:content", array(
+                        'picture' => $pictureResponse['full'],
+                        'appName' => appName() . base_convert($data['id'], 10, 36),
+                        'content' => Str::limit($desc, 192, ' ...'),
+                    ));
+
+                    /**
                      * 將圖片拼到噗文當中發表出去
                      */
                     $plurkResponse = $client->post('/APP/Timeline/plurkAdd', array(
-                        'content' => $pictureResponse['full'] . "\n#" . appName() . base_convert($data['id'], 10, 36) . "\n----------\n" . Str::limit($desc, 128, ' ...'),
+                        'content' => $content,
                         'qualifier' => 'says',
                         'lang' => 'tr_ch',
                     ));
@@ -278,6 +290,7 @@ class CardsEventListener
 
                 /**
                  * 發表到 Discord
+                 * 字數限制 2,000，所以不需要留言補充連結宣傳，只需要對內文下 Limit 即可。
                  */
                 case Platform::TYPE_DISCORD:
                     /**
@@ -296,7 +309,7 @@ class CardsEventListener
                             array(
                                 'title' => '#' . appName() . base_convert($data['id'], 10, 36),
                                 'url' => route('frontend.social.cards.show', $data['id']),
-                                'description' => Str::limit($desc, 128, '...'),
+                                'description' => Str::limit($desc, 1800, ' ...'),
                                 'color' => 15258703,
                                 'image' => array(
                                     'url' => $data['picture'],
@@ -316,6 +329,7 @@ class CardsEventListener
 
                 /**
                  * 發表到 Tumblr
+                 * 因為沒有字數限制，所以不需要留言補充連結宣傳。
                  */
                 case Platform::TYPE_TUMBLR:
                     /**
@@ -346,6 +360,18 @@ class CardsEventListener
                     $stack->push($middleware);
 
                     /**
+                     * 整理文章通知的內容
+                     */
+                    $caption = __('<div>#:appName</div><br><hr><br><div>:caption</div><br><hr><br><p>:discord</p><p><p>👉 <a href=":discordLink">:discordLink</a></p><br /></p><br><hr><br><p>:show</p><p>:showLink</p>', array(
+                        'appName' => appName() . base_convert($data['id'], 10, 36),
+                        'caption' => nl2br($desc),
+                        'discord' => sprintf('💖 %s 官方 Discord 歡迎在這找到你的同溫層！', appName()),
+                        'discordLink' => 'https://discord.gg/tPhnrs2',
+                        'show' => '💖 全平台留言、文章詳細內容',
+                        'showLink' => route('frontend.social.cards.show', ['id' => $data['id']]),
+                    ));
+
+                    /**
                      * 整理 API Uri
                      */
                     $name = $platform->config['user_id'];
@@ -362,7 +388,7 @@ class CardsEventListener
                         ))->post($url, array(
                             'source' => $data['picture'],
                             'type' => 'photo',
-                            'caption' => Str::limit($desc, 128, '...'),
+                            'caption' => $caption,
                         ));
 
                     /**
@@ -375,6 +401,7 @@ class CardsEventListener
 
                 /**
                  * 發表到 Telegram
+                 * 因為沒有字數限制，所以不需要留言補充連結宣傳。
                  */
                 case Platform::TYPE_TELEGRAM:
                     /**
@@ -386,6 +413,18 @@ class CardsEventListener
                     }
 
                     /**
+                     * 整理文章通知的內容
+                     */
+                    $caption = __("#:appName\n\r----------\n\r:caption\n\r----------\n\r:discord\n\r:discordLink\n\r----------\n\r:show\n\r:showLink", array(
+                        'appName' => appName() . base_convert($data['id'], 10, 36),
+                        'caption' => Str::limit($desc, 512, '...'),
+                        'discord' => sprintf('💖 %s 官方 Discord 歡迎在這找到你的同溫層！', appName()),
+                        'discordLink' => 'https://discord.gg/tPhnrs2',
+                        'show' => '💖 全平台留言、文章詳細內容',
+                        'showLink' => route('frontend.social.cards.show', ['id' => $data['id']]),
+                    ));
+
+                    /**
                      * 開始執行通知
                      */
                     $token = $platform->config['access_token'];
@@ -393,7 +432,7 @@ class CardsEventListener
                     $response = Http::post($url, array(
                         'chat_id' => $platform->config['chat_id'],
                         'photo' => $data['picture'],
-                        'caption' => Str::limit($desc, 128, '...'),
+                        'caption' => $caption,
                     ));
 
                     /**
@@ -408,9 +447,16 @@ class CardsEventListener
                  * 其它並不在支援名單當中的社群
                  */
                 default:
-                    # code...
+                    /**
+                     * 直接把資料寫入 Activity log 以便日後查核
+                     */
+                    activity('social cards - undefined notification')
+                        ->performedOn(Cards::find($data['id']))
+                        ->log(json_encode($data));
                     break;
             }
         }
+
+        return;
     }
 }
