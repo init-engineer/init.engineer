@@ -100,7 +100,17 @@ class CreateSocialCardsTable extends Migration
         Schema::create('social_platform_cards', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->uuid('uuid')->nullable();
-            $table->morphs('platform');
+            $table->enum('platform_type', array(
+                Platform::TYPE_LOCAL,
+                Platform::TYPE_FACEBOOK,
+                Platform::TYPE_TWITTER,
+                Platform::TYPE_PLURK,
+                Platform::TYPE_TUMBLR,
+                Platform::TYPE_DISCORD,
+                Platform::TYPE_TELEGRAM,
+            ))->default(Platform::TYPE_LOCAL)->comment('社群平台分類');
+            $table->unsignedBigInteger('platform_id')->comment('社群平台 ID');
+            $table->string('platform_string_id')->nullable()->comment('社群平台 String ID');
             $table->unsignedBigInteger('card_id')->comment('文章 ID');
             $table->unsignedTinyInteger('active')->default(1)->comment('啟用');
             $table->integer('likes')->default(0)->comment('按讚數量');
@@ -111,9 +121,13 @@ class CreateSocialCardsTable extends Migration
             $table->index([
                 'id',
                 'platform_id',
-                'platform_type',
                 'card_id',
-            ], 'social_platform_cards_id_platform_id_platform_type_card_id_index');
+            ], 'social_platform_cards_id_platform_id_card_id_index');
+
+            $table->foreign('platform_id')
+                ->references('id')
+                ->on('social_platform')
+                ->onDelete('cascade');
 
             $table->foreign('card_id')
                 ->references('id')

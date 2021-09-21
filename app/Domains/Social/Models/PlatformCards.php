@@ -36,6 +36,7 @@ class PlatformCards extends Model
     protected $fillable = [
         'platform_type',
         'platform_id',
+        'platform_string_id',
         'card_id',
         'active',
         'likes',
