@@ -7,6 +7,7 @@ use App\Domains\Social\Events\Cards\PictureCreated;
 use App\Domains\Social\Models\Cards;
 use App\Domains\Social\Models\Platform;
 use App\Domains\Social\Services\Content\ContentFluent;
+use App\Domains\Social\Services\PlatformCardService;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Subscriber\Oauth\Oauth1;
 use Illuminate\Container\Container;
@@ -84,6 +85,7 @@ class CardsEventListener
          */
         $container = Container::getInstance();
         $contentFluent = $container->make(ContentFluent::class);
+        $platformCardService = $container->make(PlatformCardService::class);
 
         /**
          * 根據社群平台逐一通知
@@ -128,6 +130,23 @@ class CardsEventListener
                     activity('social cards - facebook notification')
                         ->performedOn(Cards::find($data['id']))
                         ->log($response->body());
+
+                    /**
+                     * 建立 PlatformCards 紀錄
+                     */
+                    $platformCard = $platformCardService->store(array(
+                        'platform_type' => Platform::TYPE_FACEBOOK,
+                        'platform_id' => $platform->id,
+                        'platform_string_id' => $response->body()['post_id'],
+                        'card_id' => $data['id'],
+                    ));
+
+                    /**
+                     * 紀錄 PlatformCards 紀錄
+                     */
+                    activity('social cards - facebook platform card')
+                        ->performedOn(Platform::find($platformCard->id))
+                        ->log(json_encode($platformCard));
                     break;
 
                 /**
