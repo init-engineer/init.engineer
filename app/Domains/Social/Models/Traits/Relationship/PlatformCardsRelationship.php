@@ -2,6 +2,8 @@
 
 namespace App\Domains\Social\Models\Traits\Relationship;
 
+use App\Domains\Social\Models\Cards;
+use App\Domains\Social\Models\Platform;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
@@ -10,20 +12,22 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 trait PlatformCardsRelationship
 {
     /**
-     * Get all of the owning platform models.
+     * Get the platform associated with the cards.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function platform()
+    public function platform(): HasOne
     {
-        return $this->morphTo();
+        return $this->hasOne(Platform::class, 'id', 'platform_id');
     }
 
     /**
-     * Get the card associated with the review.
+     * Get the card associated with the cards.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function card(): HasOne
     {
-        return $this->hasOne(Card::class, 'id', 'card_id');
+        return $this->hasOne(Cards::class, 'id', 'card_id');
     }
 }

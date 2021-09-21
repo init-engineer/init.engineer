@@ -2,6 +2,7 @@
 
 namespace App\Domains\Social\Models;
 
+use App\Domains\Social\Models\Traits\Relationship\PlatformCardsRelationship;
 use App\Models\Traits\Uuid;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -12,6 +13,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class PlatformCards extends Model
 {
     use SoftDeletes,
+        PlatformCardsRelationship,
         Uuid;
 
     /**
