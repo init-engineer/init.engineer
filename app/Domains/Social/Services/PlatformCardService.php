@@ -61,6 +61,7 @@ class PlatformCardService extends BaseService
             $platformCards = $this->createPlatformCards([
                 'platform_type' => $data['platform_type'],
                 'platform_id' => $data['platform_id'],
+                'platform_string_id' => $data['platform_string_id'],
                 'card_id' => $data['card_id'],
             ]);
         } catch (Exception $e) {
@@ -186,6 +187,7 @@ class PlatformCardService extends BaseService
         return $this->model::create([
             'platform_type' => $data['platform_type'],
             'platform_id' => $data['platform_id'],
+            'platform_string_id' => $data['platform_string_id'],
             'card_id' => $data['card_id'],
             'active' => true,
             'likes' => 0,
