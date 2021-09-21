@@ -6,6 +6,7 @@ use App\Domains\Social\Events\Cards\ArticleCreated;
 use App\Domains\Social\Events\Cards\PictureCreated;
 use App\Domains\Social\Models\Cards;
 use App\Domains\Social\Models\Platform;
+use App\Domains\Social\Models\PlatformCards;
 use App\Domains\Social\Services\Content\ContentFluent;
 use App\Domains\Social\Services\PlatformCardService;
 use GuzzleHttp\HandlerStack;
@@ -143,11 +144,58 @@ class CardsEventListener
                     ));
 
                     /**
-                     * 紀錄 PlatformCards 紀錄
+                     * 紀錄 PlatformCards
                      */
                     activity('social cards - facebook platform card')
-                        ->performedOn(Platform::find($platformCard->id))
+                        ->performedOn(PlatformCards::find($platformCard->id))
                         ->log(json_encode($platformCard));
+
+                    /**
+                     * 建立 Discord 宣傳內容
+                     */
+                    $message = $contentFluent->reset()
+                        ->footer(sprintf('💖 %s 官方 Discord 歡迎在這找到你的同溫層！', appName()))
+                        ->footer('👉 https://discord.gg/tPhnrs2')
+                        ->build();
+
+                    /**
+                     * 對社群文章執行 Discord 宣傳留言
+                     */
+                    $url = sprintf('https://graph.facebook.com/%s/comments', $response->body()['post_id']);
+                    $response = Http::post($url, array(
+                        'access_token' => $platform->config['access_token'],
+                        'message' => $message,
+                    ));
+
+                    /**
+                     * 紀錄 Discord 宣傳留言
+                     */
+                    activity('social cards - facebook platform comments')
+                        ->performedOn(PlatformCards::find($platformCard->id))
+                        ->log($response->body());
+
+                    /**
+                     * 建立文章宣傳內容
+                     */
+                    $message = $contentFluent->reset()
+                        ->footer('💖 全平台留言、文章詳細內容')
+                        ->footer('👉 ' . route('frontend.social.cards.show', ['id' => $data['id']]))
+                        ->build();
+
+                    /**
+                     * 對社群文章執行文章宣傳留言
+                     */
+                    $response = Http::post($url, array(
+                        'access_token' => $platform->config['access_token'],
+                        'message' => $message,
+                    ));
+
+                    /**
+                     * 紀錄文章宣傳留言
+                     */
+                    activity('social cards - facebook platform comments')
+                        ->performedOn(PlatformCards::find($platformCard->id))
+                        ->log($response->body());
                     break;
 
                 /**
