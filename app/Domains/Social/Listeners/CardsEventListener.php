@@ -6,8 +6,10 @@ use App\Domains\Social\Events\Cards\ArticleCreated;
 use App\Domains\Social\Events\Cards\PictureCreated;
 use App\Domains\Social\Models\Cards;
 use App\Domains\Social\Models\Platform;
+use App\Domains\Social\Services\Content\ContentFluent;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Subscriber\Oauth\Oauth1;
+use Illuminate\Container\Container;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -78,10 +80,10 @@ class CardsEventListener
             ->get();
 
         /**
-         * 整理需要發送出去的內容
+         * 建立 Content 內容編排器
          */
-        $desc = ($data['type'] === 'article') ? '【文章投稿】' : '【圖片投稿】';
-        $desc = $desc . "\n" . $data['content'];
+        $container = Container::getInstance();
+        $contentFluent = $container->make(ContentFluent::class);
 
         /**
          * 根據社群平台逐一通知
@@ -102,6 +104,14 @@ class CardsEventListener
                     }
 
                     /**
+                     * 整理文章通知的內容
+                     */
+                    $message = $contentFluent->header($data['id'])
+                        ->hr()
+                        ->body($data['content'])
+                        ->build();
+
+                    /**
                      * 開始執行通知
                      */
                     $userID = $platform->config['user_id'];
@@ -109,7 +119,7 @@ class CardsEventListener
                     $response = Http::post($url, array(
                         'url' => $data['picture'],
                         'access_token' => $platform->config['access_token'],
-                        'message' => $desc,
+                        'message' => $message,
                     ));
 
                     /**
@@ -187,10 +197,18 @@ class CardsEventListener
                         ->log($pictureResponse->body());
 
                     /**
+                     * 整理文章通知的內容
+                     */
+                    $status = $contentFluent->header($data['id'])
+                        ->hr()
+                        ->body(Str::limit($data['content'], 64, ' ...'))
+                        ->build();
+
+                    /**
                      * 將圖片拼到推文當中發表出去
                      */
                     $tweetResponse = $client->asForm()->post('https://api.twitter.com/1.1/statuses/update.json', array(
-                        'status' => "#" . appName() . base_convert($data['id'], 10, 36) . "\n----------\n" . Str::limit($desc, 64, ' ...'),
+                        'status' => $status,
                         'media_ids' => $pictureResponse['media_id_string'],
                     ));
 
@@ -265,11 +283,11 @@ class CardsEventListener
                     /**
                      * 整理文章通知的內容
                      */
-                    $content = __(":picture\n#:appName\n----------\n:content", array(
-                        'picture' => $pictureResponse['full'],
-                        'appName' => appName() . base_convert($data['id'], 10, 36),
-                        'content' => Str::limit($desc, 192, ' ...'),
-                    ));
+                    $content = $contentFluent->image($pictureResponse['full'])
+                        ->header($data['id'])
+                        ->hr()
+                        ->body(Str::limit($data['content'], 192, ' ...'))
+                        ->build();
 
                     /**
                      * 將圖片拼到噗文當中發表出去
@@ -309,7 +327,7 @@ class CardsEventListener
                             array(
                                 'title' => '#' . appName() . base_convert($data['id'], 10, 36),
                                 'url' => route('frontend.social.cards.show', $data['id']),
-                                'description' => Str::limit($desc, 1800, ' ...'),
+                                'description' => Str::limit($data['content'], 1800, ' ...'),
                                 'color' => 15258703,
                                 'image' => array(
                                     'url' => $data['picture'],
@@ -362,14 +380,16 @@ class CardsEventListener
                     /**
                      * 整理文章通知的內容
                      */
-                    $caption = __('<div>#:appName</div><br><hr><br><div>:caption</div><br><hr><br><p>:discord</p><p><p>👉 <a href=":discordLink">:discordLink</a></p><br /></p><br><hr><br><p>:show</p><p>:showLink</p>', array(
-                        'appName' => appName() . base_convert($data['id'], 10, 36),
-                        'caption' => nl2br($desc),
-                        'discord' => sprintf('💖 %s 官方 Discord 歡迎在這找到你的同溫層！', appName()),
-                        'discordLink' => 'https://discord.gg/tPhnrs2',
-                        'show' => '💖 全平台留言、文章詳細內容',
-                        'showLink' => route('frontend.social.cards.show', ['id' => $data['id']]),
-                    ));
+                    $caption = $contentFluent->header($data['id'])
+                        ->hr()
+                        ->body($data['content'])
+                        ->hr()
+                        ->footer(sprintf('💖 %s 官方 Discord 歡迎在這找到你的同溫層！', appName()))
+                        ->footer('👉 https://discord.gg/tPhnrs2')
+                        ->hr()
+                        ->footer('💖 全平台留言、文章詳細內容')
+                        ->footer('👉 ' . route('frontend.social.cards.show', ['id' => $data['id']]))
+                        ->build('html');
 
                     /**
                      * 整理 API Uri
@@ -415,14 +435,16 @@ class CardsEventListener
                     /**
                      * 整理文章通知的內容
                      */
-                    $caption = __("#:appName\n\r----------\n\r:caption\n\r----------\n\r:discord\n\r:discordLink\n\r----------\n\r:show\n\r:showLink", array(
-                        'appName' => appName() . base_convert($data['id'], 10, 36),
-                        'caption' => Str::limit($desc, 512, '...'),
-                        'discord' => sprintf('💖 %s 官方 Discord 歡迎在這找到你的同溫層！', appName()),
-                        'discordLink' => 'https://discord.gg/tPhnrs2',
-                        'show' => '💖 全平台留言、文章詳細內容',
-                        'showLink' => route('frontend.social.cards.show', ['id' => $data['id']]),
-                    ));
+                    $caption = $contentFluent->header($data['id'])
+                        ->hr()
+                        ->body($data['content'])
+                        ->hr()
+                        ->footer(sprintf('💖 %s 官方 Discord 歡迎在這找到你的同溫層！', appName()))
+                        ->footer('👉 https://discord.gg/tPhnrs2')
+                        ->hr()
+                        ->footer('💖 全平台留言、文章詳細內容')
+                        ->footer('👉 ' . route('frontend.social.cards.show', ['id' => $data['id']]))
+                        ->build();
 
                     /**
                      * 開始執行通知

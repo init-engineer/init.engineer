@@ -8,79 +8,88 @@ namespace App\Domains\Social\Services\Content;
 class ContentFluent
 {
     /**
-     * @var int
+     * @var array $content = []
      */
-    protected int $id = 0;
-
-    /**
-     * @var string
-     */
-    protected string $content = 'Undefined';
-
-    /**
-     * @var int
-     */
-    protected int $limit = 0;
-
-    /**
-     * @var array
-     */
-    protected array $footerOption = [];
+    protected array $content = [];
 
     /**
      * @param int $id
      *
-     * @return $this
+     * @return ContentFluent
      */
-    public function header(int $id = 0)
+    public function header(int $id): ContentFluent
     {
-        $this->id = $id;
+        array_push($this->content, '#' . appName() . base_convert($id, 10, 36));
 
         return $this;
     }
 
     /**
-     * @param string $content
-     * @param int    $limit
+     * @param string $body
      *
-     * @return $this
+     * @return ContentFluent
      */
-    public function body(string $content, int $limit = 0)
+    public function body(string $body): ContentFluent
     {
-        $this->content = $content;
-        $this->limit = $limit;
+        array_push($this->content, $body);
 
         return $this;
     }
 
     /**
-     * @param array $option = []
+     * @param string $footer
      *
-     * @return $this
+     * @return ContentFluent
      */
-    public function footer(array $option = [])
+    public function footer(string $footer): ContentFluent
     {
-        $this->footerOption = $option;
+        array_push($this->content, $footer);
 
         return $this;
     }
 
     /**
+     * @param string $src
+     *
+     * @return ContentFluent
+     */
+    public function image(string $src): ContentFluent
+    {
+        array_push($this->content, $src);
+
+        return $this;
+    }
+
+    /**
+     * @return ContentFluent
+     */
+    public function hr(): ContentFluent
+    {
+        array_push($this->content, '----------');
+
+        return $this;
+    }
+
+    /**
+     * @param string $type
+     *
      * @return string
      */
-    public function get(): string
+    public function build(string $type = 'text'): string
     {
-        $response = "#" . appName() . base_convert($this->id, 10, 36) . "\n\r----------\n\r";
+        $result = '';
+        foreach ($this->content as $value) {
+            switch ($type) {
+                case 'text':
+                    $result = $result . $value . "\n";
+                    break;
 
-        if (isset($this->footerOption['review']) && $this->footerOption['review']) $response = $response . "🗳️ [群眾審核] " . route('frontend.social.cards.review') . "\n\r";
-        if (isset($this->footerOption['github']) && $this->footerOption['github']) $response = $response . "👉 [GitHub Repo] https://github.com/init-engineer/init.engineer" . "\n\r";
-        if (isset($this->footerOption['publish']) && $this->footerOption['publish']) $response = $response . "📢 [匿名發文] " . route('frontend.social.cards.create') . "\n\r";
-        if (isset($this->footerOption['show']) && $this->footerOption['show']) $response = $response . "🥙 [全平台留言] " . route('frontend.social.cards.show', ['id' => $this->id]) . "\n\r";
+                case 'html':
+                    $result = $result . '<div>' . nl2br($value) . '</div><br><hr><br>';
+                    break;
+            }
+        }
 
-        $response = $response . "\n\r----------\n\r";
-        $content = ($this->limit != 0 && mb_strlen($this->content, 'utf-8') > $this->limit) ? mb_substr($this->content, 0, $this->limit, 'utf-8') . ' ...' : $this->content;
-        $response = $response . $content;
-
-        return $response;
+        return $result;
     }
 }
