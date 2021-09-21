@@ -108,7 +108,8 @@ class CardsEventListener
                     /**
                      * 整理文章通知的內容
                      */
-                    $message = $contentFluent->header($data['id'])
+                    $message = $contentFluent->reset()
+                        ->header($data['id'])
                         ->hr()
                         ->body($data['content'])
                         ->build();
@@ -218,7 +219,8 @@ class CardsEventListener
                     /**
                      * 整理文章通知的內容
                      */
-                    $status = $contentFluent->header($data['id'])
+                    $status = $contentFluent->reset()
+                        ->header($data['id'])
                         ->hr()
                         ->body(Str::limit($data['content'], 64, ' ...'))
                         ->build();
@@ -302,7 +304,8 @@ class CardsEventListener
                     /**
                      * 整理文章通知的內容
                      */
-                    $content = $contentFluent->image($pictureResponse['full'])
+                    $content = $contentFluent->reset()
+                        ->image($pictureResponse['full'])
                         ->header($data['id'])
                         ->hr()
                         ->body(Str::limit($data['content'], 192, ' ...'))
@@ -399,7 +402,8 @@ class CardsEventListener
                     /**
                      * 整理文章通知的內容
                      */
-                    $caption = $contentFluent->header($data['id'])
+                    $caption = $contentFluent->reset()
+                        ->header($data['id'])
                         ->hr()
                         ->body($data['content'])
                         ->hr()
@@ -454,7 +458,8 @@ class CardsEventListener
                     /**
                      * 整理文章通知的內容
                      */
-                    $caption = $contentFluent->header($data['id'])
+                    $caption = $contentFluent->reset()
+                        ->header($data['id'])
                         ->hr()
                         ->body($data['content'])
                         ->hr()

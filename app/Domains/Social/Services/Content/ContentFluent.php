@@ -13,6 +13,16 @@ class ContentFluent
     protected array $content = [];
 
     /**
+     * @return ContentFluent
+     */
+    public function reset(): ContentFluent
+    {
+        $this->content = [];
+
+        return $this;
+    }
+
+    /**
      * @param int $id
      *
      * @return ContentFluent
