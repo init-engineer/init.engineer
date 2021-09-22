@@ -109,6 +109,11 @@ class ReviewsPublish extends Command
                 $model = $this->service->mark($card, true);
 
                 /**
+                 * 通知投稿者文章通過審核
+                 */
+                $model->sendPublishNotification();
+
+                /**
                  * 根據社群平台逐一發佈
                  */
                 foreach ($platforms as $platform) {

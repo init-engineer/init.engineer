@@ -5,18 +5,21 @@ namespace App\Domains\Social\Models;
 use App\Domains\Social\Models\Traits\Method\CardsMethod;
 use App\Domains\Social\Models\Traits\Relationship\CardsRelationship;
 use App\Domains\Social\Models\Traits\Scope\CardsScope;
+use App\Domains\Social\Notifications\Frontend\PublishNotification;
 use App\Models\Traits\Config;
 use App\Models\Traits\Picture;
 use App\Models\Traits\Uuid;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
 
 /**
  * Class Cards.
  */
 class Cards extends Model
 {
-    use SoftDeletes,
+    use Notifiable,
+        SoftDeletes,
         CardsScope,
         CardsMethod,
         CardsRelationship,
@@ -76,4 +79,27 @@ class Cards extends Model
     protected $dates = [
         'blockade_at',
     ];
+
+    /**
+     * Send the publish notification.
+     *
+     * @return void
+     */
+    public function sendPublishNotification(): void
+    {
+        $this->notify(new PublishNotification($this->model, $this));
+    }
+
+    /**
+     * Route notifications for the mail channel.
+     *
+     * @param  \Illuminate\Notifications\Notification  $notification
+     * @return array|string
+     */
+    public function routeNotificationForMail($notification)
+    {
+        return [
+            $this->model->email => $this->model->name,
+        ];
+    }
 }
