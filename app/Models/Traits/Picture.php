@@ -8,9 +8,9 @@ namespace App\Models\Traits;
 trait Picture
 {
     /**
-     * @return array
+     * @return string
      */
-    public function getPicture()
+    public function getPicture(): string
     {
         if (isset($this->picture) && $this->picture !== null) {
             if (isset($this->picture['imgur']) && $this->picture['imgur'] !== null) {
