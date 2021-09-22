@@ -76,7 +76,7 @@ class PublishNotification extends Notification
             ]))
             ->action(__('來去看看文章'), route('frontend.social.cards.show', ['id' => $this->cards->id]))
             ->line(__('對了，請不要回覆這封電子郵件(no-reply)！這個信箱不會理你，因為我也不會打開來收信，如果你有任何問題，你可以寄信給「:email」給我。', [
-                'email' => 'kanta.developer@gmail.coom',
+                'email' => config('mail.from.address'),
             ]))
             ->line(__('大概是這樣。'));
     }
