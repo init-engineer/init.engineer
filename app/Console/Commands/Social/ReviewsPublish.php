@@ -2,6 +2,12 @@
 
 namespace App\Console\Commands\Social;
 
+use App\Domains\Social\Jobs\Publish\DiscordPublishJob;
+use App\Domains\Social\Jobs\Publish\FacebookPublishJob;
+use App\Domains\Social\Jobs\Publish\PlurkPublishJob;
+use App\Domains\Social\Jobs\Publish\TelegramPublishJob;
+use App\Domains\Social\Jobs\Publish\TumblrPublishJob;
+use App\Domains\Social\Jobs\Publish\TwitterPublishJob;
 use App\Domains\Social\Models\Cards;
 use App\Domains\Social\Models\Platform;
 use App\Domains\Social\Services\CardsService;
@@ -108,52 +114,57 @@ class ReviewsPublish extends Command
                 foreach ($platforms as $platform) {
                     switch ($platform) {
                         /**
-                         * 發表到 Facebook
+                         * 丟給負責發表文章到 Facebook 的 Job
                          */
                         case Platform::TYPE_FACEBOOK:
-                            # code...
+                            FacebookPublishJob::dispatch($model, $platform);
                             break;
 
                         /**
-                         * 發表到 Twitter
+                         * 丟給負責發表文章到 Twitter 的 Job
                          */
                         case Platform::TYPE_TWITTER:
-                            # code...
+                            TwitterPublishJob::dispatch($model, $platform);
                             break;
 
                         /**
-                         * 發表到 Plurk
+                         * 丟給負責發表文章到 Plurk 的 Job
                          */
                         case Platform::TYPE_PLURK:
-                            # code...
+                            PlurkPublishJob::dispatch($model, $platform);
                             break;
 
                         /**
-                         * 發表到 Discord
+                         * 丟給負責發表文章到 Discord 的 Job
                          */
                         case Platform::TYPE_DISCORD:
-                            # code...
+                            DiscordPublishJob::dispatch($model, $platform);
                             break;
 
                         /**
-                         * 發表到 Tumblr
+                         * 丟給負責發表文章到 Tumblr 的 Job
                          */
                         case Platform::TYPE_TUMBLR:
-                            # code...
+                            TumblrPublishJob::dispatch($model, $platform);
                             break;
 
                         /**
-                         * 發表到 Telegram
+                         * 丟給負責發表文章到 Telegram 的 Job
                          */
                         case Platform::TYPE_TELEGRAM:
-                            # code...
+                            TelegramPublishJob::dispatch($model, $platform);
                             break;
 
                         /**
                          * 其它並不在支援名單當中的社群
                          */
                         default:
-                            # code...
+                            /**
+                             * 直接把資料寫入 Activity log 以便日後查核
+                             */
+                            activity('social cards - undefined publish')
+                                ->performedOn($card)
+                                ->log(json_encode($model));
                             break;
                     }
                 }
