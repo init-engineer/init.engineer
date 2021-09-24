@@ -6,7 +6,12 @@
     <div class="container py-4">
         <div class="row justify-content-center">
             <div class="col-md-8">
+                {{-- 社群連結 --}}
+                <card-tag-list :cid="{{ $cards->id }}"></card-tag-list>
+
+                {{-- 文章主體 --}}
                 <div class="card">
+                    {{-- 匿名資訊 --}}
                     <div class="card-header">
                         <div class="media">
                             <img src="/img/frontend/user/nopic_192.gif"
@@ -19,15 +24,21 @@
                             </div>
                         </div>
                     </div>
+
+                    {{-- 圖片預覽 --}}
                     <gallery-slideshow
                         _style="max-height: 360px; border-radius: 0px;"
                         _class="card-img-top"
                         height="360"
                         src="{{ $cards->getPicture() }}">
                     </gallery-slideshow>
+
+                    {{-- 文章內容 --}}
                     <div class="card-body">
                         <pre class="card-text">{{ $cards->content }}</pre>
                     </div>
+
+                    {{-- 文章留言 --}}
                     <div class="card-footer">
                         @guest
                             <div class="content">
