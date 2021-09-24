@@ -2,6 +2,7 @@
  * Badges
  */
 a,
+div,
 span,
 button {
     &.badge-bg {
@@ -92,6 +93,12 @@ button {
     &.badge-telegram {
         color: white;
         background-color: #0088cc;
+    }
+
+
+    &.badge-discord {
+        color: white;
+        background-color: #5866ef;
     }
 
     &.badge-pink {

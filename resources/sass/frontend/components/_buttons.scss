@@ -2,6 +2,7 @@
  * Buttons
  */
 a,
+div,
 span,
 button {
     &.btn-bg {
@@ -236,6 +237,16 @@ button {
         &:active {
             color: darkgrey;
             background-color: #006ca3;
+        }
+    }
+
+    &.btn-discord {
+        color: white;
+        background-color: #5866ef;
+
+        &:active {
+            color: darkgrey;
+            background-color: #9b84ec;
         }
     }
 
