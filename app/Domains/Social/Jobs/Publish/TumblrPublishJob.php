@@ -148,6 +148,11 @@ class TumblrPublishJob implements ShouldQueue
             'platform_type' => Platform::TYPE_TUMBLR,
             'platform_id' => $this->platform->id,
             'platform_string_id' => $response->json()['response']['id_string'],
+            'platform_url' => sprintf(
+                'https://%s.tumblr.com/post/%s',
+                $this->platform->config['pages_name'],
+                $response->json()['response']['id_string'],
+            ),
             'card_id' => $this->cards->id,
         ));
 

@@ -115,6 +115,11 @@ class FacebookPublishJob implements ShouldQueue
             'platform_type' => Platform::TYPE_FACEBOOK,
             'platform_id' => $this->platform->id,
             'platform_string_id' => $response->json()['post_id'],
+            'platform_url' => sprintf(
+                'https://www.facebook.com/%s/photos/%s',
+                $this->platform->config['pages_name'],
+                $response->json()['post_id'],
+            ),
             'card_id' => $this->cards->id,
         ));
 

@@ -118,6 +118,11 @@ class TelegramPublishJob implements ShouldQueue
             'platform_type' => Platform::TYPE_TELEGRAM,
             'platform_id' => $this->platform->id,
             'platform_string_id' => $response->json()['result']['message_id'],
+            'platform_url' => sprintf(
+                'https://t.me/%s/%s',
+                $this->platform->config['pages_name'],
+                $response->json()['result']['message_id'],
+            ),
             'card_id' => $this->cards->id,
         ));
 

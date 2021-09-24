@@ -110,7 +110,8 @@ class CreateSocialCardsTable extends Migration
                 Platform::TYPE_TELEGRAM,
             ))->default(Platform::TYPE_LOCAL)->comment('社群平台分類');
             $table->unsignedBigInteger('platform_id')->comment('社群平台 ID');
-            $table->string('platform_string_id')->nullable()->comment('社群平台 String ID');
+            $table->string('platform_string_id')->nullable()->comment('社群文章 String ID');
+            $table->string('platform_url')->nullable()->comment('社群文章 URL');
             $table->unsignedBigInteger('card_id')->comment('文章 ID');
             $table->unsignedTinyInteger('active')->default(1)->comment('啟用');
             $table->integer('likes')->default(0)->comment('按讚數量');

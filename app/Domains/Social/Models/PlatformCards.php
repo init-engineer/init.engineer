@@ -39,6 +39,7 @@ class PlatformCards extends Model
         'platform_type',
         'platform_id',
         'platform_string_id',
+        'platform_url',
         'card_id',
         'active',
         'likes',

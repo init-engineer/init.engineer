@@ -62,6 +62,7 @@ class PlatformCardService extends BaseService
                 'platform_type' => $data['platform_type'],
                 'platform_id' => $data['platform_id'],
                 'platform_string_id' => $data['platform_string_id'],
+                'platform_url' => $data['platform_url'],
                 'card_id' => $data['card_id'],
             ]);
         } catch (Exception $e) {
@@ -188,6 +189,7 @@ class PlatformCardService extends BaseService
             'platform_type' => $data['platform_type'],
             'platform_id' => $data['platform_id'],
             'platform_string_id' => $data['platform_string_id'],
+            'platform_url' => $data['platform_url'],
             'card_id' => $data['card_id'],
             'active' => true,
             'likes' => 0,

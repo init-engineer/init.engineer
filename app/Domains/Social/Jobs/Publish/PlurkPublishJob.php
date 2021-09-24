@@ -165,6 +165,10 @@ class PlurkPublishJob implements ShouldQueue
             'platform_type' => Platform::TYPE_PLURK,
             'platform_id' => $this->platform->id,
             'platform_string_id' => base_convert($plurkResponse->json()['plurk_id'], 10, 36),
+            'platform_url' => sprintf(
+                'https://www.plurk.com/p/%s',
+                base_convert($plurkResponse->json()['plurk_id'], 10, 36),
+            ),
             'card_id' => $this->cards->id,
         ));
 

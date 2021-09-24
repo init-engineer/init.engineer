@@ -169,6 +169,11 @@ class TwitterPublishJob implements ShouldQueue
             'platform_type' => Platform::TYPE_TWITTER,
             'platform_id' => $this->platform->id,
             'platform_string_id' => $tweetResponse->json()['id_str'],
+            'platform_url' => sprintf(
+                'https://twitter.com/%s/status/%s',
+                $this->platform->config['pages_name'],
+                $tweetResponse->json()['id_str'],
+            ),
             'card_id' => $this->cards->id,
         ));
 

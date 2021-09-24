@@ -112,6 +112,12 @@ class DiscordPublishJob implements ShouldQueue
             'platform_type' => Platform::TYPE_DISCORD,
             'platform_id' => $this->platform->id,
             'platform_string_id' => $response->json()['id'],
+            'platform_url' => sprintf(
+                'https://discord.com/channels/%s/%s/%s',
+                $this->platform->config['discord_id'],
+                $this->platform->config['channel_id'],
+                $response->json()['id'],
+            ),
             'card_id' => $this->cards->id,
         ));
 
