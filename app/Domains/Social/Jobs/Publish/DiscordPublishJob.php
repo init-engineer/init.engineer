@@ -109,7 +109,7 @@ class DiscordPublishJob implements ShouldQueue
          * 建立 PlatformCards 紀錄
          */
         $platformCard = $platformCardService->store(array(
-            'platform_type' => Platform::TYPE_TWITTER,
+            'platform_type' => Platform::TYPE_DISCORD,
             'platform_id' => $this->platform->id,
             'platform_string_id' => $response->json()['id'],
             'card_id' => $this->cards->id,

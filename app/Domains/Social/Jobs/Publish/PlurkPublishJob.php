@@ -162,9 +162,9 @@ class PlurkPublishJob implements ShouldQueue
          * 建立 PlatformCards 紀錄
          */
         $platformCard = $platformCardService->store(array(
-            'platform_type' => Platform::TYPE_TWITTER,
+            'platform_type' => Platform::TYPE_PLURK,
             'platform_id' => $this->platform->id,
-            'platform_string_id' => $plurkResponse->json()['plurk_id'],
+            'platform_string_id' => base_convert($plurkResponse->json()['plurk_id'], 10, 36),
             'card_id' => $this->cards->id,
         ));
 
