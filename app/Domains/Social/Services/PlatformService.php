@@ -238,7 +238,8 @@ class PlatformService extends BaseService
 
             case Platform::TYPE_DISCORD:
                 $config = [
-                    'pages_name' => $data['pages_name'],
+                    'discord_id' => $data['discord_id'],
+                    'channel_id' => $data['channel_id'],
                     'webhook' => $data['webhook'],
                 ];
                 break;

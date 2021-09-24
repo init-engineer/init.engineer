@@ -94,6 +94,13 @@ class UpdatePlatformRequest extends FormRequest
                 Platform::TYPE_PLURK,
                 Platform::TYPE_TUMBLR,
                 Platform::TYPE_TELEGRAM,
+            ))],
+            'discord_id' => ['required_if:' . implode(',', array(
+                'type',
+                Platform::TYPE_DISCORD,
+            ))],
+            'channel_id' => ['required_if:' . implode(',', array(
+                'type',
                 Platform::TYPE_DISCORD,
             ))],
         ];

@@ -76,8 +76,7 @@
                                            type === '{{ $model::TYPE_TWITTER }}' ||
                                            type === '{{ $model::TYPE_PLURK }}' ||
                                            type === '{{ $model::TYPE_TUMBLR }}' ||
-                                           type === '{{ $model::TYPE_TELEGRAM }}' ||
-                                           type === '{{ $model::TYPE_DISCORD }}'"
+                                           type === '{{ $model::TYPE_TELEGRAM }}'"
                                 value="{{ isset($config['pages_name']) ? $config['pages_name'] : null }}"
                                 type="text" name="pages_name" id="pages_name" class="form-control mb-2" placeholder="{{ __('Pages Name') }}" />
 
@@ -118,6 +117,14 @@
                             <input x-show="type === '{{ $model::TYPE_TELEGRAM }}'"
                                 value="{{ isset($config['chat_id']) ? $config['chat_id'] : null }}"
                                 type="text" name="chat_id" id="chat_id" class="form-control mb-2" placeholder="{{ __('Unique identifier for the target chat or username of the target channel (in the format @channelusername).') }}" />
+
+                            <input x-show="type === '{{ $model::TYPE_DISCORD }}'"
+                                value="{{ isset($config['discord_id']) ? $config['discord_id'] : null }}"
+                                type="text" name="discord_id" id="discord_id" class="form-control mb-2" placeholder="{{ __('Discord ID') }}" />
+
+                            <input x-show="type === '{{ $model::TYPE_DISCORD }}'"
+                                value="{{ isset($config['channel_id']) ? $config['channel_id'] : null }}"
+                                type="text" name="channel_id" id="channel_id" class="form-control mb-2" placeholder="{{ __('Channel ID') }}" />
 
                             <input x-show="type === '{{ $model::TYPE_DISCORD }}'"
                                 value="{{ isset($config['webhook']) ? $config['webhook'] : null }}"
