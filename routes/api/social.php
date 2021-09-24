@@ -1,6 +1,7 @@
 <?php
 
 use App\Domains\Social\Http\Controllers\Api\Cards\CommentsController;
+use App\Domains\Social\Http\Controllers\Api\Cards\LinksController;
 use App\Domains\Social\Http\Controllers\Api\Cards\PublishController;
 use App\Domains\Social\Http\Controllers\Api\Cards\ReviewController;
 
@@ -32,7 +33,8 @@ Route::group([
         });
 
         Route::group(['prefix' => '{card}'], function () {
-            Route::get('/comments', [CommentsController::class, 'index'])->name('index');
+            Route::get('/links', [LinksController::class, 'index'])->name('links');
+            Route::get('/comments', [CommentsController::class, 'index'])->name('comments');
             Route::group([
                 'middleware' => [
                     'auth',
@@ -43,16 +45,5 @@ Route::group([
                 Route::get('/voting/{status}', [ReviewController::class, 'voting'])->name('voting');
             });
         });
-    });
-
-    /**
-     * All route names are prefixed with 'api.social.reviews'.
-     */
-    Route::group([
-        'prefix' => 'reviews',
-        'as' => 'reviews.',
-        'namespace' => 'Reviews',
-    ], function () {
-        // ...
     });
 });
