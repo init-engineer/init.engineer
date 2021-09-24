@@ -191,6 +191,7 @@ class PlatformService extends BaseService
         switch ($data['type']) {
             case Platform::TYPE_FACEBOOK:
                 $config = [
+                    'pages_name' => $data['pages_name'],
                     'user_id' => $data['user_id'],
                     'access_token' => $data['access_token'],
                 ];
@@ -198,6 +199,7 @@ class PlatformService extends BaseService
 
             case Platform::TYPE_TWITTER:
                 $config = [
+                    'pages_name' => $data['pages_name'],
                     'consumer_app_key' => $data['consumer_app_key'],
                     'consumer_app_secret' => $data['consumer_app_secret'],
                     'access_token' => $data['access_token'],
@@ -207,6 +209,7 @@ class PlatformService extends BaseService
 
             case Platform::TYPE_PLURK:
                 $config = [
+                    'pages_name' => $data['pages_name'],
                     'consumer_app_id' => $data['consumer_app_id'],
                     'consumer_app_secret' => $data['consumer_app_secret'],
                     'access_token' => $data['access_token'],
@@ -216,6 +219,7 @@ class PlatformService extends BaseService
 
             case Platform::TYPE_TUMBLR:
                 $config = [
+                    'pages_name' => $data['pages_name'],
                     'user_id' => $data['user_id'],
                     'consumer_app_key' => $data['consumer_app_key'],
                     'consumer_app_secret' => $data['consumer_app_secret'],
@@ -226,6 +230,7 @@ class PlatformService extends BaseService
 
             case Platform::TYPE_TELEGRAM:
                 $config = [
+                    'pages_name' => $data['pages_name'],
                     'chat_id' => $data['chat_id'],
                     'access_token' => $data['access_token'],
                 ];
@@ -233,6 +238,7 @@ class PlatformService extends BaseService
 
             case Platform::TYPE_DISCORD:
                 $config = [
+                    'pages_name' => $data['pages_name'],
                     'webhook' => $data['webhook'],
                 ];
                 break;

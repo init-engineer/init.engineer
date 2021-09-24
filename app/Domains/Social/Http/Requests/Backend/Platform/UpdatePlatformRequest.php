@@ -89,7 +89,12 @@ class UpdatePlatformRequest extends FormRequest
             ))],
             'pages_name' => ['required_if:' . implode(',', array(
                 'type',
+                Platform::TYPE_FACEBOOK,
                 Platform::TYPE_TWITTER,
+                Platform::TYPE_PLURK,
+                Platform::TYPE_TUMBLR,
+                Platform::TYPE_TELEGRAM,
+                Platform::TYPE_DISCORD,
             ))],
         ];
     }
