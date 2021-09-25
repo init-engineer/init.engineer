@@ -25,8 +25,8 @@
                 {{-- 工作 --}}
                 <li class="nav-item p-1">
                     <x-utils.link
-                        {{-- :href="route('frontend.jobs.index')" --}}
-                        {{-- :active="activeClass(Route::is('frontend.jobs.index'))" --}}
+                        :href="route('frontend.jobs.index')"
+                        :active="activeClass(Route::is('frontend.jobs.index'))"
                         :text="__('Init.Engineer Jobs')"
                         class="nav-link" />
                 </li>
