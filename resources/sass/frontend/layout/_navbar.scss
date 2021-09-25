@@ -21,6 +21,11 @@
     }
     .nav-link {
         padding: 0.6rem;
+
+        &.active {
+            border-radius: 8px;
+            background-color: var(--background-secondary);
+        }
     }
     .dos-link {
         color: var(--font-primary-color);
