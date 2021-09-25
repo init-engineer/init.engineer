@@ -57,6 +57,6 @@ trait CardsRelationship
      */
     public function blockade()
     {
-        return $this->hasOne(User::class, 'blockade_by', 'id');
+        return $this->hasOne(User::class, 'id', 'blockade_by');
     }
 }
