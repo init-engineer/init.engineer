@@ -229,7 +229,7 @@
         "No items found. Try to broaden your search.": "沒有找到任何內容，您可以嘗試看看擴大搜尋範圍？",
 
     "Init.Engineer": "純靠北工程師",
-        "Init.Engineer Submit": "純靠北投稿",
+        "Init.Engineer Submit": "文章投稿",
             "Submit List": "投稿列表",
             "Submit": "投稿",
             "Create Submit": "文章投稿",
@@ -241,6 +241,14 @@
 
         "Init.Engineer Forum": "純靠北討論版",
             "Forum": "討論版",
+
+        "Init.Engineer Jobs": "找工作",
+
+        "Init.Engineer Case": "找接案",
+
+        "Init.Engineer Events": "找活動",
+
+        "Init.Engineer Conference": "找研討會",
 
         "Init.Engineer Show - #:nid(:id) :content": "投稿詳細 - #:nid(:id) :content",
 

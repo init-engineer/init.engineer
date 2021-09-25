@@ -12,6 +12,54 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            {{-- 在左邊的功能 --}}
+            <ul class="navbar-nav mr-auto">
+                {{-- 文章投稿列表 --}}
+                <li class="nav-item p-1">
+                    <x-utils.link
+                        :href="route('frontend.social.cards.index')"
+                        :active="activeClass(Route::is('frontend.social.cards.index'))"
+                        :text="__('Init.Engineer Submit')"
+                        class="nav-link" />
+                </li>
+                {{-- 工作 --}}
+                <li class="nav-item p-1">
+                    <x-utils.link
+                        {{-- :href="route('frontend.jobs.index')" --}}
+                        {{-- :active="activeClass(Route::is('frontend.jobs.index'))" --}}
+                        :text="__('Init.Engineer Jobs')"
+                        class="nav-link" />
+                </li>
+
+                {{-- 接案 --}}
+                <li class="nav-item p-1">
+                    <x-utils.link
+                        {{-- :href="route('frontend.case.index')" --}}
+                        {{-- :active="activeClass(Route::is('frontend.case.index'))" --}}
+                        :text="__('Init.Engineer Case')"
+                        class="nav-link" />
+                </li>
+
+                {{-- 活動 --}}
+                <li class="nav-item p-1">
+                    <x-utils.link
+                        {{-- :href="route('frontend.events.index')" --}}
+                        {{-- :active="activeClass(Route::is('frontend.events.index'))" --}}
+                        :text="__('Init.Engineer Events')"
+                        class="nav-link" />
+                </li>
+
+                {{-- 研討會 --}}
+                <li class="nav-item p-1">
+                    <x-utils.link
+                        {{-- :href="route('frontend.conference.index')" --}}
+                        {{-- :active="activeClass(Route::is('frontend.conference.index'))" --}}
+                        :text="__('Init.Engineer Conference')"
+                        class="nav-link" />
+                </li>
+            </ul>
+
+            {{-- 在右邊的功能 --}}
             <ul class="navbar-nav ml-auto">
                 {{-- @if(config('boilerplate.locale.status') && count(config('boilerplate.locale.languages')) > 1)
                     <li class="nav-item dropdown p-1">
@@ -26,21 +74,6 @@
                         @include('includes.partials.lang')
                     </li>
                 @endif --}}
-
-                <li class="nav-item p-1">
-                    <x-utils.link
-                        :href="route('frontend.social.cards.index')"
-                        :active="activeClass(Route::is('frontend.social.cards.index'))"
-                        :text="__('Init.Engineer Submit')"
-                        class="nav-link" />
-                </li>
-                <li class="nav-item p-1">
-                    <x-utils.link
-                        {{-- :href="route('frontend.forum.index')" --}}
-                        {{-- :active="activeClass(Route::is('frontend.forum.index'))" --}}
-                        :text="__('Forum')"
-                        class="nav-link" />
-                </li>
 
                 @guest
                     <li class="nav-item p-1">
