@@ -250,6 +250,10 @@
 
         "Init.Engineer Conference": "找研討會",
 
+        "Init.Engineer Tools": "小工具",
+            "Fortunes": "線上求籤服務",
+            "Kohlrabi": "大頭菜計算機",
+
         "Init.Engineer Show - #:nid(:id) :content": "投稿詳細 - #:nid(:id) :content",
 
     "Enum": "列舉",

@@ -22,6 +22,7 @@
                         :text="__('Init.Engineer Submit')"
                         class="nav-link" />
                 </li>
+
                 {{-- 工作 --}}
                 <li class="nav-item p-1">
                     <x-utils.link
@@ -56,6 +57,26 @@
                         {{-- :active="activeClass(Route::is('frontend.conference.index'))" --}}
                         :text="__('Init.Engineer Conference')"
                         class="nav-link" />
+                </li>
+
+                {{-- 小工具 --}}
+                <li class="nav-item dropdown p-1">
+                    <x-utils.link
+                        :text="__('Init.Engineer Tools')"
+                        class="nav-link dropdown-toggle"
+                        id="navbarDropdownTools"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false" />
+
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownTools">
+                        <x-utils.link class="dropdown-item pt-1 pb-1"
+                            :href="route('frontend.tools.fortunes')"
+                            :text="__('Fortunes')" />
+                        <x-utils.link class="dropdown-item pt-1 pb-1"
+                            :href="route('frontend.tools.kohlrabi')"
+                            :text="__('Kohlrabi')" />
+                    </div>
                 </li>
             </ul>
 

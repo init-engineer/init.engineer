@@ -1,6 +1,20 @@
-// Fonts
+/**
+ * FontAwesome 5
+ */
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 @import '~@fortawesome/fontawesome-free/scss/regular';
 @import '~@fortawesome/fontawesome-free/scss/solid';
 @import '~@fortawesome/fontawesome-free/scss/brands';
+
+/**
+ * CSShake
+ * https://elrumordelaluz.github.io/csshake/
+ */
+@import "~csshake";
+
+/**
+ * Animate.css
+ * https://animate.style/
+ */
+@import "~animate.css/animate.min.css";
