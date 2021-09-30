@@ -19,10 +19,27 @@
 </x-livewire-tables::bs4.table.cell>
 
 <x-livewire-tables::bs4.table.cell>
-    {{-- 文章內容 --}}
     <a href="{{ route('frontend.social.cards.show', ['id' => $row->id]) }}">
+        {{-- 如果被封鎖了，那麼顯示封鎖原因 --}}
+        @if($row->isBlockade())
+            <div class="alert alert-danger position-static rounded pb-0" role="alert">
+                <p><strong>{{ $row->blockade_remarks }}</strong></p>
+            </div>
+        @endif
+
+        {{-- 文章內容 --}}
         <p style="width: 320px; max-width: 320px;">{{ Str::limit($row->content, 191, '...') }}</p>
     </a>
+</x-livewire-tables::bs4.table.cell>
+
+<x-livewire-tables::bs4.table.cell>
+    {{-- 啟用狀態 --}}
+    @include('frontend.social.cards.includes.active', ['card' => $row])
+</x-livewire-tables::bs4.table.cell>
+
+<x-livewire-tables::bs4.table.cell>
+    {{-- 封鎖狀態 --}}
+    @include('frontend.social.cards.includes.blockade', ['card' => $row])
 </x-livewire-tables::bs4.table.cell>
 
 <x-livewire-tables::bs4.table.cell class="cell-datetime">
