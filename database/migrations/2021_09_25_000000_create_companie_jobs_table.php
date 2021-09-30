@@ -25,9 +25,9 @@ class CreateCompanieJobsTable extends Migration
             $table->uuid('uuid')->nullable();
             $table->morphs('model');
             $table->string('name')->comment('名稱');
-            $table->string('description')->comment('簡介');
-            $table->longText('content')->comment('詳細介紹');
-            $table->integer('scale')->comment('人數');
+            $table->string('description')->default('我們沒有任何自我介紹 :)')->comment('簡介');
+            $table->longText('content')->default('我們沒有任何自我介紹 :)')->comment('詳細介紹');
+            $table->integer('scale')->default(1)->comment('人數');
             $table->json('picture')->default(json_encode(array(
                 'local' => null,
                 'storage' => null,
@@ -134,7 +134,10 @@ class CreateCompanieJobsTable extends Migration
                     'max' => null,
                 ),
             )))->comment('薪資範圍');
-            $table->unsignedTinyInteger('active')->default(0)->comment('啟用狀態');
+            $table->unsignedTinyInteger('publish')->default(0)->comment('職缺發佈');
+            $table->timestamp('publish_at')->nullable()->comment('在什麼時候發佈的');
+            $table->unsignedTinyInteger('closure')->default(0)->comment('職缺關閉');
+            $table->timestamp('closure_at')->nullable()->comment('在什麼時候關閉的');
             $table->boolean('blockade')->default(0)->comment('封鎖狀態');
             $table->unsignedBigInteger('blockade_by')->nullable()->comment('被誰封鎖');
             $table->string('blockade_remarks')->nullable()->comment('封鎖原因');

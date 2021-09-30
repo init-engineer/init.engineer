@@ -2,6 +2,7 @@
 
 namespace App\Domains\Companie\Models;
 
+use App\Domains\Companie\Models\Traits\Method\CompanieJobsMethod;
 use App\Domains\Companie\Models\Traits\Relationship\CompanieJobsRelationship;
 use App\Models\Traits\Picture;
 use App\Models\Traits\Uuid;
@@ -14,6 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class CompanieJobs extends Model
 {
     use SoftDeletes,
+        CompanieJobsMethod,
         CompanieJobsRelationship,
         Picture,
         Uuid;
@@ -73,7 +75,10 @@ class CompanieJobs extends Model
         'type',
         'content',
         'pay',
-        'active',
+        'publish',
+        'publish_at',
+        'closure',
+        'closure_at',
         'blockade',
         'blockade_by',
         'blockade_remarks',
@@ -88,7 +93,8 @@ class CompanieJobs extends Model
     protected $casts = [
         'content' => 'json',
         'pay' => 'json',
-        'active' => 'boolean',
+        'publish' => 'boolean',
+        'closure' => 'boolean',
         'blockade' => 'boolean',
     ];
 
@@ -98,6 +104,8 @@ class CompanieJobs extends Model
      * @var array
      */
     protected $dates = [
+        'publish_at',
+        'closure_at',
         'blockade_at',
     ];
 }
