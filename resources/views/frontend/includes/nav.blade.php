@@ -26,10 +26,15 @@
                 {{-- 工作 --}}
                 <li class="nav-item p-1">
                     <x-utils.link
-                        :href="route('frontend.jobs.index')"
-                        :active="activeClass(Route::is('frontend.jobs.index'))"
+                        {{-- :href="route('frontend.jobs.index')" --}}
+                        {{-- :active="activeClass(Route::is('frontend.jobs.index'))" --}}
                         :text="__('Init.Engineer Jobs')"
-                        class="nav-link" />
+                        class="nav-link"
+                        style="opacity: 0.2;"
+                        data-container="body"
+                        data-toggle="popover"
+                        data-placement="bottom"
+                        :data-content="__('To be continued.')" />
                 </li>
 
                 {{-- 接案 --}}
@@ -38,7 +43,12 @@
                         {{-- :href="route('frontend.case.index')" --}}
                         {{-- :active="activeClass(Route::is('frontend.case.index'))" --}}
                         :text="__('Init.Engineer Case')"
-                        class="nav-link" />
+                        class="nav-link"
+                        style="opacity: 0.2;"
+                        data-container="body"
+                        data-toggle="popover"
+                        data-placement="bottom"
+                        :data-content="__('To be continued.')" />
                 </li>
 
                 {{-- 活動 --}}
@@ -47,7 +57,12 @@
                         {{-- :href="route('frontend.events.index')" --}}
                         {{-- :active="activeClass(Route::is('frontend.events.index'))" --}}
                         :text="__('Init.Engineer Events')"
-                        class="nav-link" />
+                        class="nav-link"
+                        style="opacity: 0.2;"
+                        data-container="body"
+                        data-toggle="popover"
+                        data-placement="bottom"
+                        :data-content="__('To be continued.')"  />
                 </li>
 
                 {{-- 研討會 --}}
@@ -56,12 +71,18 @@
                         {{-- :href="route('frontend.conference.index')" --}}
                         {{-- :active="activeClass(Route::is('frontend.conference.index'))" --}}
                         :text="__('Init.Engineer Conference')"
-                        class="nav-link" />
+                        class="nav-link"
+                        style="opacity: 0.2;"
+                        data-container="body"
+                        data-toggle="popover"
+                        data-placement="bottom"
+                        :data-content="__('To be continued.')"  />
                 </li>
 
                 {{-- 小工具 --}}
                 <li class="nav-item dropdown p-1">
                     <x-utils.link
+                        :active="activeClass(Route::is('frontend.tools.fortunes') || Route::is('frontend.tools.kohlrabi'))"
                         :text="__('Init.Engineer Tools')"
                         class="nav-link dropdown-toggle"
                         id="navbarDropdownTools"
@@ -72,9 +93,11 @@
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownTools">
                         <x-utils.link class="dropdown-item pt-1 pb-1"
                             :href="route('frontend.tools.fortunes')"
+                            :active="activeClass(Route::is('frontend.tools.fortunes'))"
                             :text="__('Fortunes')" />
                         <x-utils.link class="dropdown-item pt-1 pb-1"
                             :href="route('frontend.tools.kohlrabi')"
+                            :active="activeClass(Route::is('frontend.tools.kohlrabi'))"
                             :text="__('Kohlrabi')" />
                     </div>
                 </li>
@@ -97,6 +120,7 @@
                 @endif --}}
 
                 @guest
+                    {{-- 登入 --}}
                     <li class="nav-item p-1">
                         <x-utils.link
                             :href="route('frontend.auth.login')"
@@ -105,6 +129,7 @@
                             class="nav-link" />
                     </li>
 
+                    {{-- 註冊 --}}
                     @if (config('boilerplate.access.user.registration'))
                         <li class="nav-item p-1">
                             <x-utils.link
@@ -115,6 +140,7 @@
                         </li>
                     @endif
                 @else
+                    {{-- 個人資料 --}}
                     <li class="nav-item dropdown p-1">
                         <x-utils.link
                             href="#"
@@ -125,6 +151,8 @@
                             aria-haspopup="true"
                             aria-expanded="false"
                             v-pre>
+
+                            {{-- 大頭貼 --}}
                             <x-slot name="text">
                                 <img class="rounded-circle" style="max-height: 20px" src="{{ $logged_in_user->avatar }}" />
                                 {{ $logged_in_user->name }} <span class="caret"></span>
@@ -133,26 +161,28 @@
 
                         <div class="dropdown-menu dropdown-menu-right animate__animated animate__slideInDown animate__faster" aria-labelledby="navbarDropdown">
                             @if ($logged_in_user->isAdmin())
+                                {{-- 管理後台 --}}
                                 <x-utils.link
                                     :href="route('admin.dashboard')"
                                     :text="__('Administration')"
                                     class="dropdown-item" />
                             @endif
 
-                            @if ($logged_in_user->isUser())
-                                <x-utils.link
-                                    :href="route('frontend.user.dashboard')"
-                                    :active="activeClass(Route::is('frontend.user.dashboard'))"
-                                    :text="__('Dashboard')"
-                                    class="dropdown-item" />
-                            @endif
+                            {{-- 儀表板 --}}
+                            <x-utils.link
+                                :href="route('frontend.user.dashboard')"
+                                :active="activeClass(Route::is('frontend.user.dashboard'))"
+                                :text="__('Dashboard')"
+                                class="dropdown-item" />
 
+                            {{-- 我的帳號 --}}
                             <x-utils.link
                                 :href="route('frontend.user.account')"
                                 :active="activeClass(Route::is('frontend.user.account'))"
                                 :text="__('My Account')"
                                 class="dropdown-item" />
 
+                            {{-- 登出 --}}
                             <x-utils.link
                                 :text="__('Logout')"
                                 class="dropdown-item"
@@ -166,6 +196,7 @@
                     </li>
                 @endguest
 
+                {{-- 主題切換 --}}
                 <theme-switch></theme-switch>
             </ul>
         </div><!--navbar-collapse-->
