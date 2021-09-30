@@ -379,7 +379,9 @@ button {
         }
 
         &.active {
-            background-image: url("../../../../public/img/frontend/background/animated-rainbow.gif");
+            color: var(--color-light) !important;
+            background-color: var(--color-dark) !important;
+            // background-image: url("../../../../public/img/frontend/background/animated-rainbow.gif");
         }
     }
 
