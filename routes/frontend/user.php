@@ -19,7 +19,6 @@ Route::group([
     ],
 ], function () {
     Route::get('dashboard', [DashboardController::class, 'index'])
-        ->middleware('is_user')
         ->name('dashboard')
         ->breadcrumbs(function (Trail $trail) {
             $trail->parent('frontend.index')
