@@ -27,9 +27,15 @@
 
 <x-livewire-tables::bs4.table.cell>
     {{-- 投票 Vue 元件 --}}
+    @if ($logged_in_user->isAdmin())
+    <admin-review-button
+        :cid="{{ $row->id }}">
+    </admin-review-button>
+    @else
     <review-button
         :cid="{{ $row->id }}">
     </review-button>
+    @endif
 </x-livewire-tables::bs4.table.cell>
 
 <x-livewire-tables::bs4.table.cell class="cell-datetime">

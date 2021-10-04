@@ -36,7 +36,7 @@ class ReviewController extends Controller
     public function haveVoted(Request $request, Cards $card)
     {
         $voted = $this->service->haveVoted($card, $request->user());
-        if ($voted['voted']) {
+        if ($voted['voted'] || $request->user()->isAdmin()) {
             $voted['count'] = [
                 'yes' => $this->service->findYesByVoted($card),
                 'no' => $this->service->findNoByVoted($card),
