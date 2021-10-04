@@ -1,9 +1,11 @@
 <template>
     <div class="d-flex justify-content-center">
+        <!-- 載入狀態 -->
         <div v-if="states === 'loading'" class="spinner-border" role="states">
             <span class="sr-only">Loading...</span>
         </div>
 
+        <!-- 等待投票狀態、投票當中狀態 -->
         <div v-else-if="states === 'vote' || states === 'voting'" style="position: relative; width: 130px;">
             <button type="button"
                 class="btn yes"
@@ -32,6 +34,7 @@
             </button>
         </div>
 
+        <!-- 已投票狀態 -->
         <div v-else-if="states === 'complete'">
             <div class="clearfix">
                 <p class="float-left mb-0" style="color: rgb(26, 188, 156);" v-show="voting === 'yes'">您投了同意票</p>
@@ -57,6 +60,7 @@
             </div>
         </div>
 
+        <!-- 不明不白的例外狀況 -->
         <div v-else>
             <h1><span class="badge badge-secondary">?</span></h1>
         </div>
@@ -67,6 +71,9 @@
 export default {
     name: "ReviewButton",
     props: {
+        /**
+         * 文章編號
+         */
         cid: {
             type: Number,
             required: true,
@@ -74,8 +81,19 @@ export default {
     },
     data() {
         return {
+            /**
+             * 判斷狀態的暫存資訊
+             */
             states: 'loading',
+
+            /**
+             * 使用者投票的選項
+             */
             voting: null,
+
+            /**
+             * 文章的投票資訊
+             */
             count: {
                 yes: 0,
                 no: 0,
@@ -83,19 +101,31 @@ export default {
         }
     },
     mounted() {
+        /**
+         * 抓取該篇貼文的通過、否決資訊
+         */
         let self = this;
         axios.get(`/api/social/cards/${this.cid}/voted`)
             .then(function (response) {
                 if (response.data.voted) {
+                    /**
+                     * 如果已經投票了，會獲得文章的總體資訊、投票結果
+                     */
                     self.count.yes = response.data.count.yes;
                     self.count.no = response.data.count.no;
                     self.voting = (response.data.selector) ? 'yes' : 'no';
                     self.states = 'complete';
                 } else {
+                    /**
+                     * 如果尚未投票，只會收到一個 false 的結果
+                     */
                     self.states = 'vote';
                 }
             })
             .catch(function (error) {
+                /**
+                 * 處理不明的例外錯誤
+                 */
                 self.states = 'error';
                     Swal.fire(
                         '噢噗！怪怪的？',
@@ -105,6 +135,11 @@ export default {
             });
     },
     methods: {
+        /**
+         * 投票事件，通過
+         *
+         * @return void
+         */
         yesVoting() {
             this.states = 'voting';
             this.voting = 'yes';
@@ -117,6 +152,9 @@ export default {
                     self.states = 'complete';
                 })
                 .catch(function (error) {
+                    /**
+                     * 處理不明的例外錯誤
+                     */
                     self.states = 'vote';
                     Swal.fire(
                         '噢噗！怪怪的？',
@@ -125,6 +163,11 @@ export default {
                     );
                 });
         },
+        /**
+         * 投票事件，否決
+         *
+         * @return void
+         */
         noVoting() {
             this.states = 'voting';
             this.voting = 'no';
@@ -137,6 +180,9 @@ export default {
                     self.states = 'complete';
                 })
                 .catch(function (error) {
+                    /**
+                     * 處理不明的例外錯誤
+                     */
                     self.states = 'vote';
                     Swal.fire(
                         '噢噗！怪怪的？',
