@@ -6,8 +6,10 @@ use App\Domains\Social\Events\Cards\ArticleCreated;
 use App\Domains\Social\Events\Cards\PictureCreated;
 use App\Domains\Social\Http\Requests\Api\Publish\PublishArticleRequest;
 use App\Domains\Social\Http\Requests\Api\Publish\PublishPictureRequest;
+use App\Domains\Social\Http\Requests\Api\Publish\PublishPlatformRequest;
 use App\Domains\Social\Http\Resources\CardResource;
 use App\Domains\Social\Models\Ads;
+use App\Domains\Social\Models\Cards;
 use App\Domains\Social\Services\AdsService;
 use App\Domains\Social\Services\CardsService;
 use App\Domains\Social\Services\Image\ImagesGenerator;
@@ -35,6 +37,8 @@ class PublishController extends Controller
     }
 
     /**
+     * 文字投稿
+     *
      * @param PublishArticleRequest $request
      *
      * @return \Illuminate\Http\JsonResponse
@@ -92,6 +96,8 @@ class PublishController extends Controller
     }
 
     /**
+     * 圖片投稿
+     *
      * @param PublishPictureRequest $request
      *
      * @return \Illuminate\Http\JsonResponse
@@ -126,5 +132,18 @@ class PublishController extends Controller
         event(new PictureCreated($card));
 
         return new CardResource($card);
+    }
+
+    /**
+     * 指定文章發佈到社群平台
+     *
+     * @param PublishPlatformRequest $request
+     * @param Cards $card
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function publish(PublishPlatformRequest $request, Cards $card)
+    {
+
     }
 }

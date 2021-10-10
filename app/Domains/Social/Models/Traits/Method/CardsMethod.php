@@ -18,6 +18,14 @@ trait CardsMethod
     /**
      * @return bool
      */
+    public function isInactive(): bool
+    {
+        return !$this->active;
+    }
+
+    /**
+     * @return bool
+     */
     public function isPublish(): bool
     {
         return !$this->blockade;

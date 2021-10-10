@@ -6,7 +6,7 @@
     <div class="container py-4">
         <div class="row justify-content-center">
             {{-- 如果文章被封鎖了，那貼出封鎖資訊 --}}
-            @if(!$cards->isActive())
+            @if($cards->isBlockade())
                 <div class="col-md-12 mb-2">
                     <div class="alert alert-danger position-static rounded" role="alert">
                         <h4 class="alert-heading">這篇文章已經封鎖！</h4>
@@ -21,6 +21,17 @@
                         </ul>
                     </div>
                 </div>
+            @elseif ($cards->isInactive())
+            <div class="col-md-12 mb-2">
+                <div class="alert alert-warning position-static rounded" role="alert">
+                    <h4 class="alert-heading">這篇文章尚未通過群眾審核。</h4>
+                    <hr>
+                    <p class="mb-1">尚未通過群眾審核的文章，僅只會開啟以下功能：</p>
+                    <ul class="mb-0">
+                        <li>文章留言功能。</li>
+                    </ul>
+                </div>
+            </div>
             @endif
 
             <div class="col-md-8">
@@ -63,7 +74,7 @@
                         <pre class="card-text">{{ $cards->content }}</pre>
                     </div>
 
-                    @if($cards->isActive())
+                    @if($cards->isPublish())
                         {{-- 文章留言 --}}
                         <div class="card-footer">
                             @guest
