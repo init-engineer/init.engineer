@@ -17,7 +17,7 @@
                 <hr class="accent-2 mb-2 mt-0 d-inline-block mx-auto" style="width: 128px;">
                 <p>台灣最大工程師交友網站，你可以不會寫程式，但你不能不知道純靠北工程師，有工程師的讚、大心、加油、哈、哇、嗚及怒到豹斃，這裡絕對有你的感動被留下，我要你天天來發文。</p>
                 <hr class="my-4">
-                <p class="text-center pt-2">「我不會寫程式。」</p>
+                <p class="text-center pt-2">「我可能會寫程式，也可能不會寫程式。」</p>
                 <p class="text-right">—— Powered by 乾太</p>
                 <h3 class="font-weight-bold">Our Team</h3>
                 <hr class="accent-2 mb-2 mt-0 d-inline-block mx-auto" style="width: 128px;">
