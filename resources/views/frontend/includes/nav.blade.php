@@ -18,7 +18,7 @@
                 <li class="nav-item p-1">
                     <x-utils.link
                         :href="route('frontend.social.cards.index')"
-                        :active="activeClass(Route::is('frontend.social.cards.index'))"
+                        :active="activeClass(Route::is('frontend.social.cards.*'))"
                         :text="__('Init.Engineer Submit')"
                         class="nav-link" />
                 </li>
@@ -26,15 +26,10 @@
                 {{-- 工作 --}}
                 <li class="nav-item p-1">
                     <x-utils.link
-                        {{-- :href="route('frontend.jobs.index')" --}}
-                        {{-- :active="activeClass(Route::is('frontend.jobs.index'))" --}}
+                        :href="route('frontend.jobs.index')"
+                        :active="activeClass(Route::is('frontend.jobs.*') || Route::is('frontend.companie.*'))"
                         :text="__('Init.Engineer Jobs')"
-                        class="nav-link"
-                        style="opacity: 0.2;"
-                        data-container="body"
-                        data-toggle="popover"
-                        data-placement="bottom"
-                        :data-content="__('To be continued.')" />
+                        class="nav-link" />
                 </li>
 
                 {{-- 接案 --}}
