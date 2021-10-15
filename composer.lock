@@ -5253,16 +5253,16 @@
         },
         {
             "name": "rappasoft/laravel-livewire-tables",
-            "version": "v1.17.0",
+            "version": "v1.19.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rappasoft/laravel-livewire-tables.git",
-                "reference": "d3efe711d1b6fc8a33a43188873b9483b50fbab8"
+                "reference": "682840cc5fdf2a16753934f3c9f8c2a4327eeaf7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rappasoft/laravel-livewire-tables/zipball/d3efe711d1b6fc8a33a43188873b9483b50fbab8",
-                "reference": "d3efe711d1b6fc8a33a43188873b9483b50fbab8",
+                "url": "https://api.github.com/repos/rappasoft/laravel-livewire-tables/zipball/682840cc5fdf2a16753934f3c9f8c2a4327eeaf7",
+                "reference": "682840cc5fdf2a16753934f3c9f8c2a4327eeaf7",
                 "shasum": ""
             },
             "require": {
@@ -5313,7 +5313,7 @@
             ],
             "support": {
                 "issues": "https://github.com/rappasoft/laravel-livewire-tables/issues",
-                "source": "https://github.com/rappasoft/laravel-livewire-tables/tree/v1.17.0"
+                "source": "https://github.com/rappasoft/laravel-livewire-tables/tree/v1.19.1"
             },
             "funding": [
                 {
@@ -5321,7 +5321,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-10-13T01:25:40+00:00"
+            "time": "2021-10-15T02:06:44+00:00"
         },
         {
             "name": "rappasoft/lockout",
