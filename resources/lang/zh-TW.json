@@ -251,6 +251,10 @@
 
         "Init.Engineer Jobs": "找工作",
 
+        "Init.Engineer Companie": "公司管理",
+            "Companie Create": "建立公司資訊",
+            "Companie Update": "更新公司資訊",
+
         "Init.Engineer Case": "找接案",
 
         "Init.Engineer Events": "找活動",
