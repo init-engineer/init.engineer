@@ -1,7 +1,7 @@
 /**
  * Inputs
  */
-input {
+input, textarea, select {
     &.input-black {
         color: var(--font-primary-color);
         border-style: solid;
