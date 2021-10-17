@@ -26,20 +26,39 @@
                 {{-- 工作 --}}
                 <li class="nav-item p-1">
                     <x-utils.link
-                        :href="route('frontend.jobs.index')"
-                        :active="activeClass(Route::is('frontend.jobs.*') || Route::is('frontend.companie.*'))"
+                        {{-- :href="route('frontend.jobs.index')"
+                        :active="activeClass(Route::is('frontend.jobs.*') || Route::is('frontend.companie.*'))" --}}
                         :text="__('Init.Engineer Jobs')"
-                        class="nav-link" />
+                        class="nav-link"
+                        style="opacity: 0.6;"
+                        data-container="body"
+                        data-toggle="popover"
+                        data-placement="bottom"
+                        :data-content="__('To be continued.')" />
                 </li>
 
                 {{-- 接案 --}}
                 <li class="nav-item p-1">
                     <x-utils.link
                         {{-- :href="route('frontend.case.index')" --}}
-                        {{-- :active="activeClass(Route::is('frontend.case.index'))" --}}
+                        {{-- :active="activeClass(Route::is('frontend.case.*'))" --}}
                         :text="__('Init.Engineer Case')"
                         class="nav-link"
-                        style="opacity: 0.2;"
+                        style="opacity: 0.6;"
+                        data-container="body"
+                        data-toggle="popover"
+                        data-placement="bottom"
+                        :data-content="__('To be continued.')" />
+                </li>
+
+                {{-- 社群 --}}
+                <li class="nav-item p-1">
+                    <x-utils.link
+                        {{-- :href="route('frontend.group.index')" --}}
+                        {{-- :active="activeClass(Route::is('frontend.group.*'))" --}}
+                        :text="__('Init.Engineer Group')"
+                        class="nav-link"
+                        style="opacity: 0.6;"
                         data-container="body"
                         data-toggle="popover"
                         data-placement="bottom"
@@ -50,10 +69,10 @@
                 <li class="nav-item p-1">
                     <x-utils.link
                         {{-- :href="route('frontend.events.index')" --}}
-                        {{-- :active="activeClass(Route::is('frontend.events.index'))" --}}
+                        {{-- :active="activeClass(Route::is('frontend.events.*'))" --}}
                         :text="__('Init.Engineer Events')"
                         class="nav-link"
-                        style="opacity: 0.2;"
+                        style="opacity: 0.6;"
                         data-container="body"
                         data-toggle="popover"
                         data-placement="bottom"
@@ -64,10 +83,10 @@
                 <li class="nav-item p-1">
                     <x-utils.link
                         {{-- :href="route('frontend.conference.index')" --}}
-                        {{-- :active="activeClass(Route::is('frontend.conference.index'))" --}}
+                        {{-- :active="activeClass(Route::is('frontend.conference.*'))" --}}
                         :text="__('Init.Engineer Conference')"
                         class="nav-link"
-                        style="opacity: 0.2;"
+                        style="opacity: 0.6;"
                         data-container="body"
                         data-toggle="popover"
                         data-placement="bottom"
