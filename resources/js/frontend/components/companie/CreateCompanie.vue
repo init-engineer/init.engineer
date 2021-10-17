@@ -4,8 +4,12 @@
         <div class="form-group row">
             <label for="companie_logo" class="col-sm-2 col-form-label text-md-right">公司標誌 Logo</label>
             <div class="col-sm-10">
-                <input type="file" class="form-control" id="companie_logo">
-                <p class="text-danger mb-0">* 圖檔請提供解析度 512 x 512 的圖片檔案。</p>
+                <input type="file"
+                    class="form-control"
+                    id="companie_logo"
+                    accept="image/jpeg, image/jpg, image/png"
+                    @change="changeLogo($event)">
+                <p class="text-danger mb-0">* 圖檔請提供解析度 512 x 512 的圖片檔案，並且容量在 2MB 以下。</p>
             </div>
         </div><!--form-group-->
 
@@ -165,6 +169,7 @@
                 <textarea type="text"
                     class="form-control"
                     rows="4"
+                    maxlength="2000"
                     v-model="content.value"
                     :id="content.key"
                     :placeholder="content.key + '的內容 ...'"></textarea>
@@ -179,6 +184,7 @@
                     @click="createContent()">
                     新增其他區塊
                 </button>
+                <p class="text-danger mb-0">*「介紹區塊」最多可以新增 10 個介紹區塊，每個區塊內容最多 2,000 個字元。</p>
             </div>
         </div><!--form-group-->
 
@@ -193,8 +199,53 @@
         <div class="form-group row">
             <label for="companie_banner" class="col-sm-2 col-form-label text-md-right">橫幅</label>
             <div class="col-sm-10">
-                <input type="file" class="form-control" id="companie_banner">
-                <p class="text-danger mb-0">* 圖檔請提供解析度 1280 x 720 的圖片檔案。</p>
+                <input type="file"
+                    class="form-control"
+                    id="companie_banner"
+                    accept="image/jpeg, image/jpg, image/png"
+                    @change="changeBanner($event)">
+                <p class="text-danger mb-0">* 圖檔請提供解析度 1280 x 720 的圖片檔案，並且容量在 2MB 以下。</p>
+            </div>
+        </div><!--form-group-->
+
+        <!-- 相關圖片 -->
+        <div class="form-group row">
+            <label for="companie_picture" class="col-sm-2 col-form-label text-md-right">相關圖片</label>
+            <div class="col-sm-10">
+                <div class="input-group mb-3"
+                    v-for="(picture, index) in pictures"
+                    v-bind:key="index">
+                    <input type="file"
+                        class="form-control"
+                        id="companie_picture"
+                        name="companie_picture[]"
+                        accept="image/jpeg, image/jpg, image/png"
+                        @change="changePicture($event)">
+                    <div class="input-group-append">
+                        <button type="button"
+                            class="btn btn-outline-danger"
+                            @click="destroyPicture(index)">
+                            刪除區塊
+                        </button>
+                    </div>
+                </div>
+
+                <p class="p-2"
+                    v-show="pictures.length === 0">
+                    公司沒有任何相關圖片，建議點擊「新增其他相關圖片」來新增圖片。
+                </p>
+            </div>
+        </div><!--form-group-->
+
+        <!-- 新增其他相關圖片 -->
+        <div class="form-group row">
+            <div class="col-sm-8 offset-sm-2">
+                <button type="button"
+                    class="btn btn-lg btn-primary"
+                    @click="createPicture()">
+                    新增其他相關圖片
+                </button>
+                <p class="text-danger mb-0">*「相關圖片」最多可以上傳 10 張圖片，每張容量上限為 2MB。</p>
             </div>
         </div><!--form-group-->
     </div>
@@ -253,6 +304,136 @@ export default {
          */
         destroyContent(index) {
             this.contents.splice(index, 1);
+        },
+        /**
+         * 新增其他相關圖片。
+         *
+         * @return void
+         */
+        createPicture() {
+            this.pictures.push(null);
+        },
+        /**
+         * 刪除其他相關圖片。
+         *
+         * @param int index
+         *
+         * @return void
+         */
+        destroyPicture(index) {
+            this.pictures.splice(index, 1);
+        },
+        /**
+         * LOGO 上傳的觸發事件
+         *
+         * @param elements event
+         *
+         * @return void
+         */
+        changeLogo(event) {
+            if (event.target.files && event.target.files[0]) {
+                let uploaded = event.target.files[0];
+                if (this.checkImage(uploaded, {
+                    height: 512,
+                    width: 512,
+                })) {
+                    return;
+                }
+            }
+        },
+        /**
+         * 橫幅上傳的觸發事件
+         *
+         * @param elements event
+         *
+         * @return void
+         */
+        changeBanner(event) {
+            if (event.target.files && event.target.files[0]) {
+                let uploaded = event.target.files[0];
+                if (this.checkImage(uploaded, {
+                    height: 1280,
+                    width: 720,
+                })) {
+                    return;
+                }
+            }
+        },
+        /**
+         * 相關圖片上傳的觸發事件
+         *
+         * @param elements event
+         *
+         * @return void
+         */
+        changePicture(event) {
+            if (event.target.files && event.target.files[0]) {
+                let uploaded = event.target.files[0];
+                if (this.checkImage(uploaded)) {
+                    return;
+                }
+            }
+        },
+        /**
+         * 判斷圖片是否符合規格。
+         *
+         * @param Image file
+         * @param Object limit
+         *
+         * @return Image
+         */
+        checkImage(file, limit = {
+            height: null,
+            width: null,
+        }) {
+            // 判斷檔案的格式是否正確
+            let accepted = ["jpg", "jpeg", "png"];
+            if (!new RegExp(accepted.join("|")).test(file.type)) {
+                Swal.fire(
+                    '噢噗！您的圖片格式不支援！',
+                    '目前僅支援 <strong>"jpg"、"jpeg"、"png"</strong> 圖片格式的上傳，需要麻煩您幫圖片轉成我們支援的格式，再來重新上傳。',
+                    'error'
+                );
+                return false;
+            }
+
+            // 判斷檔案的容量大小是否超標
+            if (file.size >= (2 * 1024 * 1024)) {
+                Swal.fire(
+                    '噢噗！您的圖片太大了！',
+                    '圖片容量大小限制 <strong>2MB</strong> 以下，建議您壓縮一下圖片，再來重新上傳。',
+                    'error'
+                );
+                return false;
+            }
+
+            // 判斷檔案的長度與高度是否符合規範
+            if (limit.height !== null && limit.width !== null) {
+                let reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = evt => {
+                    let img = new Image();
+                    img.onload = () => {
+                        if (limit.height !== this.height || limit.width !== this.width) {
+                            Swal.fire(
+                                '噢噗！您的圖片尺寸不正確哦！',
+                                `圖片尺寸必須為 <strong>Height ${limit.height} × Width ${limit.width}</strong>，建議您重新檢查一下圖片，再來重新上傳。`,
+                                'error'
+                            );
+                            return false;
+                        }
+                    }
+                }
+            }
+
+            // 圖片格式、容量大小都沒問題，把圖片回傳
+            return file;
+        },
+        /**
+         * 新增公司。
+         */
+        createCompanie() {
+
         },
     },
 };
