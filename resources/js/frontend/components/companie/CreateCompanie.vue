@@ -7,6 +7,7 @@
                 <input type="file"
                     class="form-control"
                     id="companie_logo"
+                    ref="companie_logo"
                     accept="image/jpeg, image/jpg, image/png"
                     @change="changeLogo($event)">
                 <p class="text-danger mb-0">* 圖檔請提供解析度 512 x 512 的圖片檔案，並且容量在 2MB 以下。</p>
@@ -202,6 +203,7 @@
                 <input type="file"
                     class="form-control"
                     id="companie_banner"
+                    ref="companie_banner"
                     accept="image/jpeg, image/jpg, image/png"
                     @change="changeBanner($event)">
                 <p class="text-danger mb-0">* 圖檔請提供解析度 1280 x 720 的圖片檔案，並且容量在 2MB 以下。</p>
@@ -217,8 +219,9 @@
                     v-bind:key="index">
                     <input type="file"
                         class="form-control"
-                        id="companie_picture"
                         name="companie_picture[]"
+                        :id="`companie_picture_${index}`"
+                        :ref="`companie_picture_${index}`"
                         accept="image/jpeg, image/jpg, image/png"
                         @change="changePicture($event)">
                     <div class="input-group-append">
@@ -311,7 +314,7 @@ export default {
          * @return void
          */
         createPicture() {
-            this.pictures.push(null);
+            this.pictures.push(this.pictures.length + 1);
         },
         /**
          * 刪除其他相關圖片。
@@ -333,13 +336,15 @@ export default {
         changeLogo(event) {
             if (event.target.files && event.target.files[0]) {
                 let uploaded = event.target.files[0];
-                if (this.checkImage(uploaded, {
+                if (this.checkImage(event.target, uploaded, {
                     height: 512,
                     width: 512,
                 })) {
                     return;
                 }
             }
+
+            this.$refs.companie_logo.value = null;
         },
         /**
          * 橫幅上傳的觸發事件
@@ -351,13 +356,15 @@ export default {
         changeBanner(event) {
             if (event.target.files && event.target.files[0]) {
                 let uploaded = event.target.files[0];
-                if (this.checkImage(uploaded, {
+                if (this.checkImage(event.target, uploaded, {
                     height: 1280,
                     width: 720,
                 })) {
                     return;
                 }
             }
+
+            this.$refs.companie_banner.value = null;
         },
         /**
          * 相關圖片上傳的觸發事件
@@ -369,7 +376,7 @@ export default {
         changePicture(event) {
             if (event.target.files && event.target.files[0]) {
                 let uploaded = event.target.files[0];
-                if (this.checkImage(uploaded)) {
+                if (this.checkImage(event.target, uploaded)) {
                     return;
                 }
             }
@@ -382,7 +389,7 @@ export default {
          *
          * @return Image
          */
-        checkImage(file, limit = {
+        checkImage(target, file, limit = {
             height: null,
             width: null,
         }) {
@@ -414,15 +421,18 @@ export default {
                 reader.onload = evt => {
                     let img = new Image();
                     img.onload = () => {
-                        if (limit.height !== this.height || limit.width !== this.width) {
+                        if (limit.height !== img.height || limit.width !== img.width) {
                             Swal.fire(
                                 '噢噗！您的圖片尺寸不正確哦！',
-                                `圖片尺寸必須為 <strong>Height ${limit.height} × Width ${limit.width}</strong>，建議您重新檢查一下圖片，再來重新上傳。`,
+                                `圖片尺寸必須為<p><strong>高度(Height) ${limit.height} × 寬度(Width) ${limit.width}</strong></p>您所上傳的圖片為<p><strong>高度(Height) ${img.height} × 寬度(Width) ${img.width}</strong></p>建議您重新檢查一下圖片，再來重新上傳。`,
                                 'error'
                             );
+                            target.value = null;
+
                             return false;
                         }
                     }
+                    img.src = evt.target.result;
                 }
             }
 
