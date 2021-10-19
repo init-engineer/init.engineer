@@ -138,6 +138,20 @@
 
         <hr>
 
+        <!-- 公司簡介 -->
+        <div class="form-group row">
+            <label for="companie_description" class="col-sm-2 col-form-label text-md-right">公司簡介</label>
+            <div class="col-sm-10">
+                <textarea type="text"
+                    id="companie_description"
+                    class="form-control"
+                    rows="4"
+                    maxlength="2000"
+                    v-model="description"
+                    placeholder="公司簡介的內容 ..."></textarea>
+            </div>
+        </div><!--form-group-->
+
         <!-- 內容介紹 -->
         <div class="form-group row">
             <label class="col-sm-2 col-form-label text-md-right">內容介紹</label>
@@ -223,7 +237,7 @@
                         :id="`companie_picture_${index}`"
                         :ref="`companie_picture_${index}`"
                         accept="image/jpeg, image/jpg, image/png"
-                        @change="changePicture($event)">
+                        @change="changePicture($event, index)">
                     <div class="input-group-append">
                         <button type="button"
                             class="btn btn-outline-danger"
@@ -251,6 +265,25 @@
                 <p class="text-danger mb-0">*「相關圖片」最多可以上傳 10 張圖片，每張容量上限為 2MB。</p>
             </div>
         </div><!--form-group-->
+
+        <hr>
+
+        <!-- 新增 -->
+        <div class="form-group row">
+            <div class="col-sm-4 offset-sm-4">
+                <button type="button"
+                    class="btn btn-lg btn-block btn-info mt-2"
+                    @click="createCompanie()">
+                    <div v-if="status === null">
+                        新增公司
+                    </div>
+                    <div v-else>
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </button>
+            </div>
+        </div><!--form-group-->
     </div>
 </template>
 
@@ -270,6 +303,7 @@ export default {
             capital: null,
             email: null,
             phone: null,
+            description: null,
             contents: [
                 {
                     key: '公司介紹',
@@ -284,6 +318,7 @@ export default {
                     value: null,
                 },
             ],
+            status: null,
         }
     },
     methods: {
@@ -314,7 +349,7 @@ export default {
          * @return void
          */
         createPicture() {
-            this.pictures.push(this.pictures.length + 1);
+            this.pictures.push(null);
         },
         /**
          * 刪除其他相關圖片。
@@ -340,6 +375,8 @@ export default {
                     height: 512,
                     width: 512,
                 })) {
+                    this.logo = uploaded;
+
                     return;
                 }
             }
@@ -357,9 +394,11 @@ export default {
             if (event.target.files && event.target.files[0]) {
                 let uploaded = event.target.files[0];
                 if (this.checkImage(event.target, uploaded, {
-                    height: 1280,
-                    width: 720,
+                    height: 720,
+                    width: 1280,
                 })) {
+                    this.banner = uploaded;
+
                     return;
                 }
             }
@@ -370,13 +409,16 @@ export default {
          * 相關圖片上傳的觸發事件
          *
          * @param elements event
+         * @param int index
          *
          * @return void
          */
-        changePicture(event) {
+        changePicture(event, index) {
             if (event.target.files && event.target.files[0]) {
                 let uploaded = event.target.files[0];
                 if (this.checkImage(event.target, uploaded)) {
+                    this.pictures[index] = uploaded;
+
                     return;
                 }
             }
@@ -443,7 +485,156 @@ export default {
          * 新增公司。
          */
         createCompanie() {
+            /**
+             * 公司名稱防呆
+             */
+            if (this.name === null || this.name === '') {
+                Swal.fire(
+                    '噢噗，公司名稱不能為空！',
+                    '「公司名稱」必須提供<p><strong>例如：ＯＯ股份有限公司</strong></p>',
+                    'error'
+                );
 
+                return;
+            }
+
+            /**
+             * 公司區域防呆
+             */
+            if (this.area === null || this.area === '') {
+                Swal.fire(
+                    '噢噗，您必須選擇公司區域！',
+                    '您必須提供「公司區域」的所在區域。',
+                    'error'
+                );
+
+                return;
+            }
+
+            /**
+             * 公司地址防呆
+             */
+            if (this.address === null || this.address === '') {
+                Swal.fire(
+                    '噢噗，公司地址不能為空！',
+                    '「公司地址」必須提供<p><strong>例如：臺北市信義區信義路五段 7 號</strong></p>',
+                    'error'
+                );
+
+                return;
+            }
+
+            /**
+             * 公司信箱防呆
+             */
+            if (this.email === null || this.email === '') {
+                Swal.fire(
+                    '噢噗，公司信箱不能為空！',
+                    '「公司信箱」必須提供<p><strong>例如：hr@example.com</strong></p>',
+                    'error'
+                );
+
+                return;
+            }
+
+            this.status = 'create';
+
+            /**
+             * 處理必填的 FormData
+             */
+            let data = new FormData();
+            data.append('name', this.name);
+            data.append('area', this.area);
+            data.append('address', this.address);
+            data.append('email', this.email);
+
+            /**
+             * 處理選填的 FormData
+             */
+            if (this.scale !== null) {
+                data.append('scale', this.scale);
+            }
+
+            if (this.tax !== null) {
+                data.append('tax', this.tax);
+            }
+
+            if (this.capital !== null) {
+                data.append('capital', this.capital);
+            }
+
+            if (this.phone !== null) {
+                data.append('phone', this.phone);
+            }
+
+            if (this.description !== null) {
+                data.append('description', this.description);
+            }
+
+            if (this.contents !== null) {
+                data.append('contents', this.contents);
+            }
+
+            /**
+             * 處理 LOGO File 圖片
+             */
+            if (this.logo !== null) {
+                data.append('logo', this.logo);
+            }
+
+            /**
+             * 處理 Banner File 圖片
+             */
+            if (this.banner !== null) {
+                data.append('banner', this.banner);
+            }
+
+            /**
+             * 處理 Pictures File 圖片
+             */
+            if (this.pictures.length !== 0) {
+                let i = 0;
+                this.pictures.forEach(element => {
+                    if (element !== null) {
+                        data.append('pictures[' + i +']', element);
+                        i = i + 1;
+                    }
+                });
+            }
+
+            /**
+             * 開始建立 Companie 公司資訊
+             */
+            let self = this;
+            axios({
+                method: 'post',
+                url: '/api/companies',
+                data: data,
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            })
+                .then(function (response) {
+                    self.status = null;
+                    Swal.fire({
+                        title: '完成了！',
+                        text: '公司資訊新增完畢，我們建議可以前往新增相關連結、公司成員。',
+                        icon: 'success',
+                    }).then((result) => {
+
+                    });
+                })
+                .catch(function (error) {
+                    /**
+                     * 處理不明的例外錯誤
+                     */
+                    self.status = null;
+                    Swal.fire(
+                        '噢噗！怪怪的？',
+                        '新增公司時發生了一些錯誤，可以的話，把這項問題拿到<a href="https://github.com/init-engineer/init.engineer"> GitHub repo </a>發個 issue 給我，謝謝你 m(_ _)m',
+                        'error'
+                    );
+                });
         },
     },
 };
