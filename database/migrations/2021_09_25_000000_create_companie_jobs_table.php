@@ -35,24 +35,24 @@ class CreateCompanieJobsTable extends Migration
                 'storage' => null,
                 'imgur' => null,
             )))->comment('公司 Logo 圖片資訊 - 單張');
-            $table->json('picture')->default(json_encode(array(array(
+            $table->json('pictures')->default(json_encode(array(array(
                 'local' => null,
                 'storage' => null,
                 'imgur' => null,
             ))))->comment('公司相關圖片資訊 - 多張');
             $table->enum('area', array(
-                "臺北市", "新北市", "桃園市", "臺中市", "臺南市",
-                "高雄市", "基隆市", "新竹市", "嘉義市", "新竹縣",
-                "苗栗縣", "彰化縣", "南投縣", "雲林縣", "嘉義縣",
-                "屏東縣", "宜蘭縣", "花蓮縣", "臺東縣", "澎湖縣",
-                "金門縣", "連江縣", "海外",
+                '臺北市', '新北市', '桃園市', '臺中市', '臺南市',
+                '高雄市', '基隆市', '新竹市', '嘉義市', '新竹縣',
+                '苗栗縣', '彰化縣', '南投縣', '雲林縣', '嘉義縣',
+                '屏東縣', '宜蘭縣', '花蓮縣', '臺東縣', '澎湖縣',
+                '金門縣', '連江縣', '海外',
             ))->comment('區域');
             $table->string('address')->comment('地址');
             $table->integer('scale')->nullable()->comment('人數');
             $table->string('tax')->nullable()->comment('統一編號');
             $table->integer('capital')->nullable()->comment('資本額');
             $table->string('email')->comment('信箱');
-            $table->string('photo')->nullable()->comment('電話');
+            $table->string('phone')->nullable()->comment('電話');
             $table->string('description')->default('我們沒有任何簡介 :)')->comment('簡介');
             $table->json('content')->default(json_encode(array(
                 '公司介紹' => '我們沒有任何公司介紹 :)',

@@ -63,15 +63,24 @@ class CompanieService extends BaseService
             $companie = $this->createCompanie([
                 'model_id' => $data['model_id'],
                 'name' => $data['name'],
-                'description' => $data['description'],
-                'content' => $data['content'],
-                'scale' => $data['scale'],
-                'picture' => $data['picture'],
-                'active' => false,
+                'logo' => $data['logo'] ?? null,
+                'banner' => $data['banner'] ?? null,
+                'pictures' => $data['pictures'] ?? array(),
+                'area' => $data['area'] ?? null,
+                'address' => $data['address'],
+                'scale' => $data['scale'] ?? null,
+                'tax' => $data['tax'] ?? null,
+                'capital' => $data['capital'] ?? null,
+                'email' => $data['email'],
+                'phone' => $data['phone'] ?? null,
+                'description' => $data['description'] ?? null,
+                'content' => $data['content'] ?? array(),
+                'active' => true,
             ]);
         } catch (Exception $e) {
             DB::rollBack();
 
+            dd($e->getMessage());
             throw new GeneralException(__('There was a problem creating this companie. Please try again.'));
         }
 
@@ -95,11 +104,21 @@ class CompanieService extends BaseService
 
         try {
             $companie->update([
+                'model_id' => $data['model_id'],
                 'name' => $data['name'],
+                'logo' => $data['logo'],
+                'banner' => $data['banner'],
+                'pictures' => $data['pictures'],
+                'area' => $data['area'],
+                'address' => $data['address'],
+                'scale' => $data['scale'],
+                'tax' => $data['tax'],
+                'capital' => $data['capital'],
+                'email' => $data['email'],
+                'phone' => $data['phone'],
                 'description' => $data['description'],
                 'content' => $data['content'],
-                'scale' => $data['scale'],
-                'picture' => $data['picture'],
+                'active' => true,
             ]);
         } catch (Exception $e) {
             DB::rollBack();
@@ -228,11 +247,19 @@ class CompanieService extends BaseService
             'model_type' => User::class,
             'model_id' => $data['model_id'],
             'name' => $data['name'],
-            'description' => $data['description'],
-            'content' => $data['content'],
-            'scale' => $data['scale'] ?? 1,
-            'picture' => $this->createImage($data['picture']),
-            'active' => $data['active'] ?? false,
+            'logo' => $this->createLogo($data['logo'] ?? array()),
+            'banner' => $this->createBanner($data['banner'] ?? array()),
+            'pictures' => $this->createPictures($data['pictures'] ?? array()),
+            'area' => $data['area'],
+            'address' => $data['address'],
+            'scale' => $data['scale'] ?? null,
+            'tax' => $data['tax'] ?? null,
+            'capital' => $data['capital'] ?? null,
+            'email' => $data['email'],
+            'phone' => $data['phone'] ?? null,
+            'description' => $data['description'] ?? '我們沒有任何簡介 :)',
+            'content' => $data['content'] ?? array(),
+            'active' => $data['active'] ?? true,
             'blockade' => $data['blockade'] ?? false,
         ]);
     }
@@ -242,12 +269,45 @@ class CompanieService extends BaseService
      *
      * @return array
      */
-    protected function createImage(array $data = []): array
+    protected function createLogo(array $data = []): array
     {
         return array(
             'local' => $data['local'] ?? null,
             'storage' => $data['storage'] ?? null,
             'imgur' => $data['imgur'] ?? null,
         );
+    }
+
+    /**
+     * @param array $data
+     *
+     * @return array
+     */
+    protected function createBanner(array $data = []): array
+    {
+        return array(
+            'local' => $data['local'] ?? null,
+            'storage' => $data['storage'] ?? null,
+            'imgur' => $data['imgur'] ?? null,
+        );
+    }
+
+    /**
+     * @param array $data
+     *
+     * @return array
+     */
+    protected function createPictures(array $data = []): array
+    {
+        $result = array();
+        foreach ($data as $picture) {
+            array_push($result, array(
+                'local' => $picture['local'] ?? null,
+                'storage' => $picture['storage'] ?? null,
+                'imgur' => $picture['imgur'] ?? null,
+            ));
+        }
+
+        return $result;
     }
 }

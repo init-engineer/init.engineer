@@ -2,8 +2,8 @@
 
 namespace App\Domains\Companie\Models;
 
+use App\Domains\Companie\Models\Traits\Method\CompaniesMethod;
 use App\Domains\Companie\Models\Traits\Relationship\CompaniesRelationship;
-use App\Models\Traits\Picture;
 use App\Models\Traits\Uuid;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -14,8 +14,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Companies extends Model
 {
     use SoftDeletes,
+        CompaniesMethod,
         CompaniesRelationship,
-        Picture,
         Uuid;
 
     /**
@@ -41,10 +41,18 @@ class Companies extends Model
         'model_type',
         'model_id',
         'name',
+        'logo',
+        'banner',
+        'pictures',
+        'area',
+        'address',
+        'scale',
+        'tax',
+        'capital',
+        'email',
+        'phone',
         'description',
         'content',
-        'scale',
-        'picture',
         'active',
         'blockade',
         'blockade_by',
@@ -58,8 +66,11 @@ class Companies extends Model
      * @var array
      */
     protected $casts = [
+        'logo' => 'json',
+        'banner' => 'json',
+        'pictures' => 'json',
         'scale' => 'integer',
-        'picture' => 'json',
+        'content' => 'json',
         'active' => 'boolean',
         'blockade' => 'boolean',
     ];
