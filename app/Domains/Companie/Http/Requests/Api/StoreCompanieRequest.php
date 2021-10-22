@@ -46,7 +46,7 @@ class StoreCompanieRequest extends FormRequest
             'email' => ['required', 'email'],
             'phone' => ['nullable', 'string'],
             'description' => ['nullable', 'string', 'max:2000'],
-            'content' => ['sometimes', 'array'],
+            'contents' => ['nullable', 'array'],
         ];
     }
 }
