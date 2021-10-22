@@ -74,7 +74,7 @@ class CompanieService extends BaseService
                 'email' => $data['email'],
                 'phone' => $data['phone'] ?? null,
                 'description' => $data['description'] ?? null,
-                'content' => $data['content'] ?? array(),
+                'content' => $data['contents'] ?? array(),
                 'active' => true,
             ]);
         } catch (Exception $e) {
