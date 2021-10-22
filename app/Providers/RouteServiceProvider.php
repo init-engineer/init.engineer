@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Domains\Auth\Models\User;
+use App\Domains\Companie\Models\CompanieJobs;
+use App\Domains\Companie\Models\Companies;
 use App\Domains\Social\Models\Ads;
 use App\Domains\Social\Models\Platform;
 use Illuminate\Cache\RateLimiting\Limit;
@@ -72,6 +74,16 @@ class RouteServiceProvider extends ServiceProvider
         // To be able to restore a platform, since the default binding is a find and would result in a 404
         Route::bind('deletedPlatform', function ($id) {
             return Platform::onlyTrashed()->find($id);
+        });
+
+        // To be able to restore a companie, since the default binding is a find and would result in a 404
+        Route::bind('companie', function ($uuid) {
+            return Companies::uuid($uuid)->first();
+        });
+
+        // To be able to restore a job, since the default binding is a find and would result in a 404
+        Route::bind('job', function ($uuid) {
+            return CompanieJobs::uuid($uuid)->first();
         });
     }
 
