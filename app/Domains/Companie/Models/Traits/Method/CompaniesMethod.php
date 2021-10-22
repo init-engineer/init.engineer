@@ -59,16 +59,16 @@ trait CompaniesMethod
      */
     protected function getFile($file)
     {
-        if (isset($this->file['imgur']) && $this->file['imgur'] !== null) {
-            return $this->file['imgur'];
+        if (isset($file['imgur']) && $file['imgur'] !== null) {
+            return $file['imgur'];
         }
 
-        if (isset($this->file['storage']) && $this->file['storage'] !== null) {
-            return asset('storage/' . $this->file['storage']);
+        if (isset($file['storage']) && $file['storage'] !== null) {
+            return asset('storage/' . $file['storage']);
         }
 
-        if (isset($this->file['local']) && $this->file['local'] !== null) {
-            return asset($this->file['local']);
+        if (isset($file['local']) && $file['local'] !== null) {
+            return asset($file['local']);
         }
 
         return false;
