@@ -572,7 +572,9 @@ export default {
             }
 
             if (this.contents !== null) {
-                data.append('contents', this.contents);
+                this.contents.forEach(element => {
+                    data.append('contents[' + element.key + ']', element.value);
+                });
             }
 
             /**
@@ -596,7 +598,7 @@ export default {
                 let i = 0;
                 this.pictures.forEach(element => {
                     if (element !== null) {
-                        data.append('pictures[' + i +']', element);
+                        data.append('pictures[' + i + ']', element);
                         i = i + 1;
                     }
                 });
@@ -616,13 +618,7 @@ export default {
             })
                 .then(function (response) {
                     self.status = null;
-                    Swal.fire({
-                        title: '完成了！',
-                        text: '公司資訊新增完畢，我們建議可以前往新增相關連結、公司成員。',
-                        icon: 'success',
-                    }).then((result) => {
-
-                    });
+                    document.location.href = `/companie/${response.data.data.uuid}`;
                 })
                 .catch(function (error) {
                     /**

@@ -44,19 +44,14 @@ class CompanieSelfTable extends DataTableComponent
     public function columns(): array
     {
         return [
-            Column::make(__('ID'), 'id')
+            Column::make(__('Logo')),
+            Column::make(__('Name'), 'name')
                 ->sortable(),
-            Column::make(__('Picture')),
-            Column::make(__('Content'), 'content')
+            Column::make(__('Area'), 'area')
                 ->sortable(),
-            Column::make(__('Active Status'), 'active')
+            Column::make(__('Description'), 'description')
                 ->sortable(),
-            Column::make(__('Blockade Status'), 'blockade')
-                ->sortable(),
-            Column::make(__('Created At'), 'created_at')
-                ->sortable(),
-            Column::make(__('Updated At'), 'updated_at')
-                ->sortable(),
+            Column::make(__('Actions')),
         ];
     }
 
