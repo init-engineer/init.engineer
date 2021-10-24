@@ -35,7 +35,7 @@
         <hr class="accent-2 mb-2 mt-0 d-inline-block mx-auto" style="width: 60%;">
 
         <!-- Copyright -->
-        <p class="mt-4">{!! __('Copyright © :year :appName. All rights reserved. Powered by :appName.', ['year' => date('Y'), 'appName' => appName()]) !!}</p>
+        <p class="mt-4">{!! __('strings.frontend.general.all_rights_reserved', ['year' => date('Y'), 'app_name' => app_name()]) !!}</p>
     </div>
     <!-- Copyright -->
 
