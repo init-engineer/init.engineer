@@ -7,7 +7,7 @@
         {{-- 頂端公司名稱、相關連結 --}}
         <div class="row pb-2">
             <div class="col-12 col-md-8 media">
-                <img src="{{ $companie->getLogo() }}" class="mr-3 rounded" alt="Logo" style="width: 48px; height: 48px;">
+                <img src="{{ ($companie->getLogo() !== null) ? $companie->getLogo() : '/img/default/512x512.png' }}" class="mr-3 rounded" alt="Logo" style="width: 48px; height: 48px;">
                 <div class="media-body">
                     <h1 class="m-0">{{ $companie->name }}</h1>
                 </div>
@@ -21,7 +21,7 @@
         {{-- 橫幅、簡介、相關資訊 --}}
         <div class="row">
             <div class="col-12 col-md-8 media my-2">
-                <img src="{{ $companie->getBanner() }}" class="w-100 rounded multi-form" alt="Banner">
+                <img src="{{ ($companie->getBanner() !== null) ? $companie->getBanner() : '/img/default/1280x720.png' }}" class="w-100 rounded multi-form" alt="Banner">
             </div>
 
             <div class="col-12 col-md-4 my-2">
