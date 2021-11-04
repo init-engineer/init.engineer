@@ -58,6 +58,15 @@ class ReviewsPublish extends Command
     public function handle()
     {
         /**
+         * 當天 22:00 ~ 隔日 08:00
+         * 深夜、凌晨不審文章
+         */
+        $hour = Carbon::now('Asia/Taipei')->hour;
+        if ($hour >= 22 || $hour <= 8) {
+            return 0;
+        }
+
+        /**
          * 抓出 14 天以內，尚未發表、尚未被刪除的文章
          */
         $cards = Cards::whereDate('created_at', '>=', Carbon::now()->addDays(-14))
