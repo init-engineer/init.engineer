@@ -253,7 +253,8 @@
 
         "Init.Engineer Companie": "公司管理",
             "Companie Create": "建立公司資訊",
-            "Companie Update": "更新公司資訊",
+            "Companie Update - :name": "更新公司資訊 - :name",
+            "Companie Viewer - :name": "查看公司資訊 - :name",
 
         "Init.Engineer Case": "找接案",
 
