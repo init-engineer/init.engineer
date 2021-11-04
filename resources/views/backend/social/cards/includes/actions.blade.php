@@ -39,6 +39,24 @@
 
             <div class="dropdown-menu" aria-labelledby="moreMenuLink">
                 <x-utils.form-button
+                    :action="route('admin.social.cards.platform', [$cards])"
+                    method="patch"
+                    name="confirm-item"
+                    button-class="dropdown-item"
+                >
+                    @lang('Platform Publish')
+                </x-utils.form-button>
+
+                <x-utils.form-button
+                    :action="route('admin.social.cards.notification', [$cards])"
+                    method="patch"
+                    name="confirm-item"
+                    button-class="dropdown-item"
+                >
+                    @lang('Platform Notification')
+                </x-utils.form-button>
+
+                <x-utils.form-button
                     :action="route('admin.social.cards.mark', [$cards, 0])"
                     method="patch"
                     name="confirm-item"

@@ -14,6 +14,16 @@ use Rappasoft\LaravelLivewireTables\Views\Filter;
 class SocialCardsTable extends DataTableComponent
 {
     /**
+     * Livewire Datatable default sort column.
+     */
+    public string $defaultSortColumn = 'id';
+
+    /**
+     * Livewire Datatable default sort direction.
+     */
+    public string $defaultSortDirection = 'desc';
+
+    /**
      * @var string
      */
     public $status;
@@ -61,27 +71,6 @@ class SocialCardsTable extends DataTableComponent
     /**
      * @return array
      */
-    public function filters(): array
-    {
-        return [
-            'active' => Filter::make(__('Active Status'))
-                ->select([
-                    '' => 'Any',
-                    'yes' => 'Yes',
-                    'no' => 'No',
-                ]),
-            'blockade' => Filter::make(__('Blockade Status'))
-                ->select([
-                    '' => 'Any',
-                    'yes' => 'Yes',
-                    'no' => 'No',
-                ]),
-        ];
-    }
-
-    /**
-     * @return array
-     */
     public function columns(): array
     {
         return [
@@ -94,10 +83,7 @@ class SocialCardsTable extends DataTableComponent
                 ->sortable(),
             Column::make(__('Content'), 'content')
                 ->sortable(),
-            Column::make(__('Active Status'), 'active')
-                ->sortable(),
-            Column::make(__('Blockade Status'), 'blockade')
-                ->sortable(),
+            Column::make(__('Platform'), 'platform'),
             Column::make(__('Created At'), 'created_at')
                 ->sortable(),
             Column::make(__('Actions')),

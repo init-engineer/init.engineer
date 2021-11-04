@@ -51,6 +51,8 @@ Route::group([
                             ->push(__('Edit'), route('admin.social.cards.edit', $cards));
                     });
 
+                Route::patch('/platform', [CardsController::class, 'platform'])->name('platform');
+                Route::patch('/notification', [CardsController::class, 'notification'])->name('notification');
                 Route::patch('/', [CardsController::class, 'update'])->name('update');
                 Route::delete('/', [CardsController::class, 'destroy'])->name('destroy');
             });

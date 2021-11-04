@@ -6,7 +6,14 @@ use App\Domains\Social\Http\Requests\Backend\Cards\DeleteCardsRequest;
 use App\Domains\Social\Http\Requests\Backend\Cards\EditCardsRequest;
 use App\Domains\Social\Http\Requests\Backend\Cards\StoreCardsRequest;
 use App\Domains\Social\Http\Requests\Backend\Cards\UpdateCardsRequest;
+use App\Domains\Social\Jobs\Publish\DiscordPublishJob;
+use App\Domains\Social\Jobs\Publish\FacebookPublishJob;
+use App\Domains\Social\Jobs\Publish\PlurkPublishJob;
+use App\Domains\Social\Jobs\Publish\TelegramPublishJob;
+use App\Domains\Social\Jobs\Publish\TumblrPublishJob;
+use App\Domains\Social\Jobs\Publish\TwitterPublishJob;
 use App\Domains\Social\Models\Cards;
+use App\Domains\Social\Models\Platform;
 use App\Domains\Social\Services\CardsService;
 use App\Http\Controllers\Controller;
 
@@ -81,6 +88,168 @@ class CardsController extends Controller
     {
         return view('backend.social.cards.edit')
             ->with('cards', $cards);
+    }
+
+    /**
+     * @param Cards $cards
+     *
+     * @return mixed
+     * @throws \Throwable
+     */
+    public function platform(Cards $cards)
+    {
+        /**
+         * 先把需要發表的社群平台抓出來
+         */
+        $platforms = Platform::where('action', Platform::ACTION_PUBLISH)
+            ->active()
+            ->get();
+
+        /**
+         * 判斷每個社群平台是否已經發表，如果還沒有發表的就新增 Job 排程
+         */
+        foreach ($platforms as $platform) {
+            if ($cards->platformCards->where('active', 1)->where('platform_id', $platform->id)->count() === 0) {
+                switch ($platform) {
+                    /**
+                     * 丟給負責發表文章到 Facebook 的 Job
+                     */
+                    case Platform::TYPE_FACEBOOK:
+                        FacebookPublishJob::dispatch($cards, $platform);
+                        break;
+
+                    /**
+                     * 丟給負責發表文章到 Twitter 的 Job
+                     */
+                    case Platform::TYPE_TWITTER:
+                        TwitterPublishJob::dispatch($cards, $platform);
+                        break;
+
+                    /**
+                     * 丟給負責發表文章到 Plurk 的 Job
+                     */
+                    case Platform::TYPE_PLURK:
+                        PlurkPublishJob::dispatch($cards, $platform);
+                        break;
+
+                    /**
+                     * 丟給負責發表文章到 Discord 的 Job
+                     */
+                    case Platform::TYPE_DISCORD:
+                        DiscordPublishJob::dispatch($cards, $platform);
+                        break;
+
+                    /**
+                     * 丟給負責發表文章到 Tumblr 的 Job
+                     */
+                    case Platform::TYPE_TUMBLR:
+                        TumblrPublishJob::dispatch($cards, $platform);
+                        break;
+
+                    /**
+                     * 丟給負責發表文章到 Telegram 的 Job
+                     */
+                    case Platform::TYPE_TELEGRAM:
+                        TelegramPublishJob::dispatch($cards, $platform);
+                        break;
+
+                    /**
+                     * 其它並不在支援名單當中的社群
+                     */
+                    default:
+                        /**
+                         * 直接把資料寫入 Activity log 以便日後查核
+                         */
+                        activity('social cards - undefined publish')
+                            ->performedOn($cards)
+                            ->log(json_encode($cards));
+                        break;
+                }
+            }
+        }
+
+        return redirect()->route('admin.social.cards.index')->withFlashSuccess(__('The cards was successfully updated.'));
+    }
+
+    /**
+     * @param Cards $cards
+     *
+     * @return mixed
+     * @throws \Throwable
+     */
+    public function notification(Cards $cards)
+    {
+        /**
+         * 先把需要通知的社群平台抓出來
+         */
+        $platforms = Platform::where('action', Platform::ACTION_NOTIFICATION)
+            ->active()
+            ->get();
+
+        /**
+         * 判斷每個社群平台是否已經通知，如果還沒有通知的就新增 Job 排程
+         */
+        foreach ($platforms as $platform) {
+            if ($cards->platformCards->where('active', 1)->where('platform_id', $platform->id)->count() === 0) {
+                switch ($platform) {
+                    /**
+                     * 丟給負責發表文章到 Facebook 的 Job
+                     */
+                    case Platform::TYPE_FACEBOOK:
+                        FacebookPublishJob::dispatch($cards, $platform);
+                        break;
+
+                    /**
+                     * 丟給負責發表文章到 Twitter 的 Job
+                     */
+                    case Platform::TYPE_TWITTER:
+                        TwitterPublishJob::dispatch($cards, $platform);
+                        break;
+
+                    /**
+                     * 丟給負責發表文章到 Plurk 的 Job
+                     */
+                    case Platform::TYPE_PLURK:
+                        PlurkPublishJob::dispatch($cards, $platform);
+                        break;
+
+                    /**
+                     * 丟給負責發表文章到 Discord 的 Job
+                     */
+                    case Platform::TYPE_DISCORD:
+                        DiscordPublishJob::dispatch($cards, $platform);
+                        break;
+
+                    /**
+                     * 丟給負責發表文章到 Tumblr 的 Job
+                     */
+                    case Platform::TYPE_TUMBLR:
+                        TumblrPublishJob::dispatch($cards, $platform);
+                        break;
+
+                    /**
+                     * 丟給負責發表文章到 Telegram 的 Job
+                     */
+                    case Platform::TYPE_TELEGRAM:
+                        TelegramPublishJob::dispatch($cards, $platform);
+                        break;
+
+                    /**
+                     * 其它並不在支援名單當中的社群
+                     */
+                    default:
+                        /**
+                         * 直接把資料寫入 Activity log 以便日後查核
+                         */
+                        activity('social cards - undefined publish')
+                            ->performedOn($cards)
+                            ->log(json_encode($cards));
+                        break;
+                }
+            }
+        }
+
+        return redirect()->route('admin.social.cards.index')->withFlashSuccess(__('The cards was successfully updated.'));
     }
 
     /**

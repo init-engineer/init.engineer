@@ -27,11 +27,7 @@
 </x-livewire-tables::bs4.table.cell>
 
 <x-livewire-tables::bs4.table.cell>
-    @include('backend.social.cards.includes.active', ['cards' => $row])
-</x-livewire-tables::bs4.table.cell>
-
-<x-livewire-tables::bs4.table.cell>
-    @include('backend.social.cards.includes.blockade', ['cards' => $row])
+    @include('backend.social.cards.includes.platform', ['cards' => $row])
 </x-livewire-tables::bs4.table.cell>
 
 <x-livewire-tables::bs4.table.cell>
