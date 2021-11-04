@@ -88,21 +88,21 @@ class ReviewsPublish extends Command
             /**
              * 規則表
              * 投票人數 同意配重 否決配重
-             * 20      >= 90%,  < 10%
-             * 30      >= 80%,  < 15%
-             * 50      >= 70%,  < 20%
-             * 100     >= 60%,  < 30%
+             * 20      >= 100%, < 0%
+             * 30      >= 95%,  < 0%
+             * 50      >= 90%,  < 5%
+             * 100     >= 80%,  < 10%
              */
             $yes = $card->reviews()->where('point', '>=', 1)->count();
             $no  = $card->reviews()->where('point', '<=', -1)->count();
             $count = $yes + $no;
-            if ($count >= 100 && $yes / $count >= 0.60 && $no / $count < 0.30) {
+            if ($count >= 100 && $yes / $count >= 0.80 && $no / $count < 0.10) {
                 $result = true;
-            } else if ($count >= 50 && $yes / $count >= 0.70 && $no / $count < 0.20) {
+            } else if ($count >= 50 && $yes / $count >= 0.90 && $no / $count < 0.05) {
                 $result = true;
-            } else if ($count >= 30 && $yes / $count >= 0.80 && $no / $count < 0.15) {
+            } else if ($count >= 30 && $yes / $count >= 0.95 && $no / $count < 0.00) {
                 $result = true;
-            } else if ($count >= 20 && $yes / $count >= 0.90 && $no / $count < 0.10) {
+            } else if ($count >= 20 && $yes / $count >= 1.00 && $no / $count < 0.00) {
                 $result = true;
             } else {
                 $result = false;
