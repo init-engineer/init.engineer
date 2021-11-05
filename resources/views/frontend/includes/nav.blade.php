@@ -26,10 +26,15 @@
                 {{-- 工作 --}}
                 <li class="nav-item p-1">
                     <x-utils.link
-                        :href="route('frontend.jobs.index')"
-                        :active="activeClass(Route::is('frontend.jobs.*') || Route::is('frontend.companie.*'))"
+                        {{-- :href="route('frontend.jobs.index')" --}}
+                        {{-- :active="activeClass(Route::is('frontend.jobs.*') || Route::is('frontend.companie.*'))" --}}
                         :text="__('Init.Engineer Jobs')"
-                        class="nav-link" />
+                        class="nav-link"
+                        style="opacity: 0.6;"
+                        data-container="body"
+                        data-toggle="popover"
+                        data-placement="bottom"
+                        :data-content="__('To be continued.')" />
                 </li>
 
                 {{-- 接案 --}}
