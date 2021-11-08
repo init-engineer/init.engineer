@@ -122,32 +122,5 @@
                 @endforeach
             </div>
         </div>
-
-        {{-- 員工 --}}
-        <div class="row">
-            <div class="col-12">
-                @if($companie->members()->count() !== 0)
-                    {{-- ... --}}
-                @endif
-            </div>
-        </div>
-
-        {{-- 相關職缺 --}}
-        <div class="row">
-            <div class="col-12">
-                <div class="card my-4">
-                    <div class="card-header">
-                        <h1 class="my-2" style="font-size: 32px;">公司職缺</h1>
-                    </div>
-                    <div class="card-body">
-                        @if($companie->jobs()->count() !== 0)
-                            {{-- ... --}}
-                        @else
-                            <p>公司目前沒有任何工作。</p>
-                        @endif
-                    </div>
-                </div>
-            </div>
-        </div>
     </div><!--container-->
 @endsection

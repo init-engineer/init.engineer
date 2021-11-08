@@ -90,7 +90,7 @@
         <div class="row">
             <div class="col-12">
                 @if($companie->members()->count() !== 0)
-                    {{-- ... --}}
+                    {{-- ... --}}
                 @endif
             </div>
         </div>
