@@ -77,13 +77,21 @@ class RouteServiceProvider extends ServiceProvider
         });
 
         // To be able to restore a companie, since the default binding is a find and would result in a 404
-        Route::bind('companie', function ($uuid) {
-            return Companies::uuid($uuid)->first();
+        Route::bind('companie', function ($companie) {
+            if (is_a($companie, Companies::class)) {
+                return Companies::uuid($companie->uuid)->first();
+            } else {
+                return Companies::uuid($companie)->first();
+            }
         });
 
         // To be able to restore a job, since the default binding is a find and would result in a 404
-        Route::bind('job', function ($uuid) {
-            return CompanieJobs::uuid($uuid)->first();
+        Route::bind('job', function ($job) {
+            if (is_a($job, CompanieJobs::class)) {
+                return CompanieJobs::uuid($job->uuid)->first();
+            } else {
+                return CompanieJobs::uuid($job)->first();
+            }
         });
     }
 
