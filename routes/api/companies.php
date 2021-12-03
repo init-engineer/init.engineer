@@ -14,4 +14,11 @@ Route::group([
     ],
 ], function () {
     Route::post('/', [CompaniesController::class, 'store'])->name('store');
+
+    Route::group([
+        'prefix' => '{companie}',
+    ], function () {
+        Route::patch('/', [CompaniesController::class, 'store'])->name('store');
+        Route::post('/', [CompanieJobsController::class, 'store'])->name('store');
+    });
 });
