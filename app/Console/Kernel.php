@@ -17,7 +17,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        \App\Console\Commands\Social\ReviewsPublish::class,
+        \App\Console\Commands\Social\PlatformCommentsUpdate::class,
     ];
 
     /**
@@ -33,6 +34,13 @@ class Kernel extends ConsoleKernel
          */
         $schedule->command('social:review-publish')->everyMinute()->when(function () {
             return Crons::everySomeMinutes('social:review-publish', 10);
+        });
+
+        /**
+         * 自動化 更新各社群平台的留言
+         */
+        $schedule->command('social:platform-comments-update')->everyMinute()->when(function () {
+            return Crons::everySomeMinutes('social:platform-comments-update', 1);
         });
 
         /**
