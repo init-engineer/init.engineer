@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Frontend;
+namespace Tests\Feature\Backend\Announcement;
 
 use App\Domains\Announcement\Models\Announcement;
 use Illuminate\Foundation\Testing\RefreshDatabase;
