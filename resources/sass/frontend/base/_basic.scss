@@ -12,56 +12,56 @@ body {
  * AURAKA 點陣宋字型
  */
 @font-face {
-    font-family: 'Auraka';
-    src: url('/fonts/Auraka.ttf');
+    font-family: "Auraka";
+    src: url("/fonts/Auraka.ttf");
 }
 
 /**
  * 國喬點陣字型
  */
 @font-face {
-    font-family: 'KC24M';
-    src: url('/fonts/kc24m.ttf');
+    font-family: "KC24M";
+    src: url("/fonts/kc24m.ttf");
 }
 
 /**
  * 新細明體
  */
 @font-face {
-    font-family: 'Mingliu';
-    src: url('/fonts/PMingLiU-02.ttf');
+    font-family: "Mingliu";
+    src: url("/fonts/PMingLiU-02.ttf");
 }
 
 /**
  * 標楷體
  */
 @font-face {
-    font-family: 'Kaiu';
-    src: url('/fonts/kaiu.ttf');
+    font-family: "Kaiu";
+    src: url("/fonts/kaiu.ttf");
 }
 
 /**
  * 微軟正黑體
  */
 @font-face {
-    font-family: 'Microsoft JhengHei';
-    src: url('/fonts/microsoft_jheng_hei.ttf');
+    font-family: "Microsoft JhengHei";
+    src: url("/fonts/microsoft_jheng_hei.ttf");
 }
 
 /**
  * 極粗明朝體
  */
 @font-face {
-    font-family: 'MatissePro EB';
-    src: url('/fonts/FOT-MatissePro-EB.otf');
+    font-family: "MatissePro EB";
+    src: url("/fonts/FOT-MatissePro-EB.otf");
 }
 
 /**
  * 台北黑體
  */
 @font-face {
-    font-family: 'Taipei Sans TC Beta';
-    src: url('/fonts/TaipeiSansTCBeta-Bold.ttf');
+    font-family: "Taipei Sans TC Beta";
+    src: url("/fonts/TaipeiSansTCBeta-Bold.ttf");
 }
 
 /**
@@ -69,9 +69,7 @@ body {
  * 只支援英文、數字
  */
 @font-face {
-    font-family: 'DOS';
-    src: url('/fonts/Fixedsys500c.eot')  format("eot"),
-         url('/fonts/Fixedsys500c.woff') format('woff'),
-         url('/fonts/Fixedsys500c.ttf')  format('truetype'),
-         url('/fonts/Fixedsys500c.svg')  format('svg');
+    font-family: "DOS";
+    src: url("/fonts/Fixedsys500c.eot") format("eot"), url("/fonts/Fixedsys500c.woff") format("woff"),
+        url("/fonts/Fixedsys500c.ttf") format("truetype"), url("/fonts/Fixedsys500c.svg") format("svg");
 }

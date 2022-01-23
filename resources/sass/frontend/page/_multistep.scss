@@ -325,7 +325,7 @@ button:disabled {
         display: none;
         ~ label {
             opacity: 0.2;
-            transition: all 1s -.3s;
+            transition: all 1s -0.3s;
             .checked {
                 display: none;
             }
@@ -333,7 +333,7 @@ button:disabled {
         &:checked {
             & ~ label {
                 opacity: 1;
-                transition: all 1s -.3s;
+                transition: all 1s -0.3s;
                 box-shadow: 12px 12px 0px rgba(0, 0, 0, 0.25), 0px 0px 12px rgba(0, 0, 0, 0.25);
                 // display: flex;
                 // justify-content: center;

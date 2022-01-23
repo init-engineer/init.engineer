@@ -1,7 +1,6 @@
 #container {
     background-color: var(--background-secondary-light);
-    box-shadow: 12px 12px  0px rgba(0, 0, 0, 0.25),
-                 0px  0px 12px rgba(0, 0, 0, 0.25);
+    box-shadow: 12px 12px 0px rgba(0, 0, 0, 0.25), 0px 0px 12px rgba(0, 0, 0, 0.25);
     position: relative;
     overflow: hidden;
     width: 768px;
@@ -81,7 +80,7 @@
     z-index: 100;
 }
 
-.container.right-panel-active .overlay-container{
+.container.right-panel-active .overlay-container {
     transform: translateX(-100%);
 }
 
@@ -96,7 +95,7 @@
 
 .overlay::before {
     content: "";
-    background: url('/img/frontend/background/computer-room-handling-banner.jpg');
+    background: url("/img/frontend/background/computer-room-handling-banner.jpg");
     background-size: cover;
     position: absolute;
     top: 0px;

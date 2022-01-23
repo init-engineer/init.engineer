@@ -364,12 +364,24 @@ button {
         color: var(--font-primary-color);
         background-color: var(--background-secondary);
         border-radius: 0px;
-        box-shadow: 12px 12px  0px rgba(var(--theme-color-reverse-int), var(--theme-color-reverse-int), var(--theme-color-reverse-int), 0.25),
-                     0px  0px 12px rgba(var(--theme-color-reverse-int), var(--theme-color-reverse-int), var(--theme-color-reverse-int), 0.25);
+        box-shadow: 12px 12px 0px
+                rgba(
+                    var(--theme-color-reverse-int),
+                    var(--theme-color-reverse-int),
+                    var(--theme-color-reverse-int),
+                    0.25
+                ),
+            0px 0px 12px
+                rgba(
+                    var(--theme-color-reverse-int),
+                    var(--theme-color-reverse-int),
+                    var(--theme-color-reverse-int),
+                    0.25
+                );
 
         &:hover {
-           color: var(--font-secondary-color);
-           background-color: var(--background-primary-dark);
+            color: var(--font-secondary-color);
+            background-color: var(--background-primary-dark);
         }
 
         &:active {

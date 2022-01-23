@@ -3,8 +3,7 @@
     border: 0px;
     border-radius: 0.25rem;
     background-color: var(--background-secondary-light);
-    box-shadow: 12px 12px  0px rgba(0, 0, 0, 0.25),
-                 0px  0px 12px rgba(0, 0, 0, 0.25);
+    box-shadow: 12px 12px 0px rgba(0, 0, 0, 0.25), 0px 0px 12px rgba(0, 0, 0, 0.25);
     position: relative;
     overflow: hidden;
 
@@ -40,11 +39,11 @@
  * 文章旁邊的社群連結
  */
 
-.tag-wrapper{
+.tag-wrapper {
     position: relative;
 }
 
-.card-tag{
+.card-tag {
     position: absolute;
     width: 96px;
     top: 280px;
