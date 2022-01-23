@@ -8,6 +8,8 @@ use Illuminate\Database\Seeder;
 
 /**
  * Class DatabaseSeeder.
+ *
+ * @extends Seeder
  */
 class DatabaseSeeder extends Seeder
 {

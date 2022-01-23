@@ -12,6 +12,8 @@ use Illuminate\Database\Seeder;
 
 /**
  * Class SocialTableSeeder.
+ *
+ * @extends Seeder
  */
 class SocialTableSeeder extends Seeder
 {

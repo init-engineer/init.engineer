@@ -13,10 +13,13 @@ use Spatie\Permission\PermissionRegistrar;
 
 /**
  * Class AuthTableSeeder.
+ *
+ * @extends Seeder
  */
 class AuthSeeder extends Seeder
 {
-    use DisableForeignKeys, TruncateTable;
+    use DisableForeignKeys,
+        TruncateTable;
 
     /**
      * Run the database seeds.

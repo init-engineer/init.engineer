@@ -9,6 +9,8 @@ use Illuminate\Database\Seeder;
 
 /**
  * Class SocialAdsTableSeeder.
+ *
+ * @extends Seeder
  */
 class SocialAdsTableSeeder extends Seeder
 {

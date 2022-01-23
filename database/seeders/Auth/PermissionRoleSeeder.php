@@ -10,6 +10,8 @@ use Illuminate\Database\Seeder;
 
 /**
  * Class PermissionRoleTableSeeder.
+ *
+ * @extends Seeder
  */
 class PermissionRoleSeeder extends Seeder
 {
@@ -78,11 +80,14 @@ class PermissionRoleSeeder extends Seeder
             'name' => 'Announcement Management',
         ]);
 
-        // Non Grouped Permissions
-        //
+        /**
+         * Non Grouped Permissions
+         */
 
-        // Grouped permissions
-        // Users category
+        /**
+         * Grouped permissions
+         * Users category
+         */
         $users = Permission::create([
             'type' => User::TYPE_ADMIN,
             'name' => 'admin.access.user',
@@ -308,8 +313,9 @@ class PermissionRoleSeeder extends Seeder
             ]),
         ]);
 
-        // Assign Permissions to other Roles
-        //
+        /**
+         * Assign Permissions to other Roles
+         */
 
         $this->enableForeignKeys();
     }

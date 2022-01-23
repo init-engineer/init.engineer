@@ -11,6 +11,8 @@ use Illuminate\Support\Str;
 
 /**
  * Class SocialCommentsTableSeeder.
+ *
+ * @extends Seeder
  */
 class SocialCommentsTableSeeder extends Seeder
 {

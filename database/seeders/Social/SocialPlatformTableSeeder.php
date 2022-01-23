@@ -8,6 +8,8 @@ use Illuminate\Database\Seeder;
 
 /**
  * Class SocialPlatformTableSeeder.
+ *
+ * @extends Seeder
  */
 class SocialPlatformTableSeeder extends Seeder
 {

@@ -8,6 +8,8 @@ use Illuminate\Database\Seeder;
 
 /**
  * Class UserRoleTableSeeder.
+ *
+ * @extends Seeder
  */
 class UserRoleSeeder extends Seeder
 {
