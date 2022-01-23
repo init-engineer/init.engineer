@@ -14,6 +14,7 @@ return [
     */
 
     'accepted' => '必須接受 :attribute。',
+    'accepted_if' => '當 :other 是 :value 時，必須接受 :attribute。',
     'active_url' => ':attribute 並非一個有效的網址。',
     'after' => ':attribute 必須要晚於 :date。',
     'after_or_equal' => ':attribute 必須要等於 :date 或更晚',
@@ -31,6 +32,7 @@ return [
     ],
     'boolean' => ':attribute 必須為布林值(Boolean)。',
     'confirmed' => ':attribute 確認欄位輸入不一致。',
+    'current_password' => '密碼並不正確。',
     'date' => ':attribute 並非一個有效的日期。',
     'date_equals' => ':attribute 必須是 :date 的日期。',
     'date_format' => ':attribute 不符合 :format 的格式。',
@@ -107,6 +109,10 @@ return [
     'required_with_all' => '當 :values 出現時 :attribute 不能為空。',
     'required_without' => '當 :values 留空時 :attribute field 不能留空。',
     'required_without_all' => '當 :values 都不出現時 :attribute 不能留空。',
+    'prohibited' => ':attribute 字段被禁止。',
+    'prohibited_if' => '當 :other 為 :value 時，禁止使用 :attribute 字段。',
+    'prohibited_unless' => ':attribute 字段是禁止的，除非 :other 包含在 :values 當中。',
+    'prohibits' => ':attribute 字段禁止 :other 出現。',
     'same' => ':attribute 與 :other 必須相同。',
     'size' => [
         'numeric' => ':attribute 的大小必須是 :size。',
