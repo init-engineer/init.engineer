@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Schema;
 
 /**
  * Class CreateAnnouncementsTable.
+ *
+ * @extends Migration
  */
 class CreateAnnouncementsTable extends Migration
 {

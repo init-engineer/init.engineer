@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Schema;
 
 /**
  * Class CreatePasswordHistoriesTable.
+ *
+ * @extends Migration
  */
 class CreatePasswordHistoriesTable extends Migration
 {

@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Schema;
 
 /**
  * Class CreateOauthAuthCodesTable.
+ *
+ * @extends Migration
  */
 class CreateOauthAuthCodesTable extends Migration
 {

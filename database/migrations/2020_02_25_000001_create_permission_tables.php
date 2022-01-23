@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Schema;
 
 /**
  * Class CreatePermissionTables.
+ *
+ * @extends Migration
  */
 class CreatePermissionTables extends Migration
 {
@@ -22,7 +24,10 @@ class CreatePermissionTables extends Migration
 
         Schema::create($tableNames['permissions'], function (Blueprint $table) use ($tableNames) {
             $table->bigIncrements('id');
-            $table->enum('type', [User::TYPE_ADMIN, User::TYPE_USER]);
+            $table->enum('type', array(
+                User::TYPE_ADMIN,
+                User::TYPE_USER,
+            ));
             $table->string('guard_name');
             $table->string('name');
             $table->string('description')->nullable();
@@ -38,7 +43,10 @@ class CreatePermissionTables extends Migration
 
         Schema::create($tableNames['roles'], function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->enum('type', [User::TYPE_ADMIN, User::TYPE_USER]);
+            $table->enum('type', array(
+                User::TYPE_ADMIN,
+                User::TYPE_USER,
+            ));
             $table->string('name');
             $table->string('guard_name');
             $table->timestamps();

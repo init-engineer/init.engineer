@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Schema;
 
 /**
  * Class CreateSocialCardsTable.
+ *
+ * @extends Migration
  */
 class CreateSocialCardsTable extends Migration
 {

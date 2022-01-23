@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Schema;
 
 /**
  * Class CreateCronsTable.
+ *
+ * @extends Migration
  */
 class CreateCronsTable extends Migration
 {

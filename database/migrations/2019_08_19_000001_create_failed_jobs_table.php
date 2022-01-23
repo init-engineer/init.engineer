@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Schema;
 
 /**
  * Class CreateFailedJobsTable.
+ *
+ * @extends Migration
  */
 class CreateFailedJobsTable extends Migration
 {

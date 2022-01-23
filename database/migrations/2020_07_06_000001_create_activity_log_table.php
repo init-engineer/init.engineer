@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Schema;
 
 /**
  * Class CreateActivityLogTable.
+ *
+ * @extends Migration
  */
 class CreateActivityLogTable extends Migration
 {

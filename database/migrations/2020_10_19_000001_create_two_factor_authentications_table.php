@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Schema;
 
 /**
  * Class CreateTwoFactorAuthenticationsTable.
+ *
+ * @extends Migration
  */
 class CreateTwoFactorAuthenticationsTable extends Migration
 {

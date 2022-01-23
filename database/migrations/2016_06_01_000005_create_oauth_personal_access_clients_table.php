@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Schema;
 
 /**
  * Class CreateOauthPersonalAccessClientsTable.
+ *
+ * @extends Migration
  */
 class CreateOauthPersonalAccessClientsTable extends Migration
 {

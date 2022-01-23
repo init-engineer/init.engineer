@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Schema;
 
 /**
  * Class CreatePasswordResetsTable.
+ *
+ * @extends Migration
  */
 class CreatePasswordResetsTable extends Migration
 {

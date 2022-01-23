@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Schema;
 
 /**
  * Class CreateOauthRefreshTokensTable.
+ *
+ * @extends Migration
  */
 class CreateOauthRefreshTokensTable extends Migration
 {

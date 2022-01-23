@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Schema;
 
 /**
  * Class CreateCacheTable.
+ *
+ * @extends Migration
  */
 class CreateCacheTable extends Migration
 {
