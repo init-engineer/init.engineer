@@ -3,7 +3,7 @@
 namespace App\Domains\Auth\Models\Traits\Relationship;
 
 /**
- * Class PermissionRelationship.
+ * Trait PermissionRelationship.
  */
 trait PermissionRelationship
 {

@@ -5,7 +5,7 @@ namespace App\Domains\Auth\Models\Traits\Scope;
 use App\Domains\Auth\Models\User;
 
 /**
- * Class UserScope.
+ * Trait UserScope.
  */
 trait UserScope
 {

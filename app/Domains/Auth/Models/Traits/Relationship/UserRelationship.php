@@ -5,7 +5,7 @@ namespace App\Domains\Auth\Models\Traits\Relationship;
 use App\Domains\Auth\Models\PasswordHistory;
 
 /**
- * Class UserRelationship.
+ * Trait UserRelationship.
  */
 trait UserRelationship
 {

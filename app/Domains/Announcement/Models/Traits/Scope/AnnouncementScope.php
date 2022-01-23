@@ -3,7 +3,7 @@
 namespace App\Domains\Announcement\Models\Traits\Scope;
 
 /**
- * Class AnnouncementScope.
+ * Trait AnnouncementScope.
  */
 trait AnnouncementScope
 {

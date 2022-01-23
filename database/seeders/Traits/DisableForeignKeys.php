@@ -5,7 +5,7 @@ namespace Database\Seeders\Traits;
 use Illuminate\Support\Facades\DB;
 
 /**
- * Class DisablesForeignKeys.
+ * Trait DisablesForeignKeys.
  */
 trait DisableForeignKeys
 {

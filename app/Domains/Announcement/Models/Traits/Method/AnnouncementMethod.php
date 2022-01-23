@@ -3,7 +3,7 @@
 namespace App\Domains\Announcement\Models\Traits\Method;
 
 /**
- * Class AnnouncementMethod.
+ * Trait AnnouncementMethod.
  */
 trait AnnouncementMethod
 {

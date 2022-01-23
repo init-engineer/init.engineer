@@ -3,7 +3,7 @@
 namespace App\Domains\Auth\Models\Traits\Scope;
 
 /**
- * Class RoleScope.
+ * Trait RoleScope.
  */
 trait RoleScope
 {
