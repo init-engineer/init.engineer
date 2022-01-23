@@ -10,6 +10,8 @@ use Tests\TestCase;
 
 /**
  * Class ResetPasswordTest.
+ *
+ * @extends TestCase
  */
 class ResetPasswordTest extends TestCase
 {

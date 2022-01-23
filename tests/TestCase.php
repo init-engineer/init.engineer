@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Artisan;
 
 /**
  * Class TestCase.
+ *
+ * @extends BaseTestCase
  */
 abstract class TestCase extends BaseTestCase
 {

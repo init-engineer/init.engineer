@@ -7,6 +7,8 @@ use Tests\TestCase;
 
 /**
  * Class PasswordExpirationTest.
+ *
+ * @extends TestCase
  */
 class PasswordExpirationTest extends TestCase
 {

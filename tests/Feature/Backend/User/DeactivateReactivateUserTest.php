@@ -10,6 +10,8 @@ use Tests\TestCase;
 
 /**
  * Class DeactivateReactivateUserTest.
+ *
+ * @extends TestCase
  */
 class DeactivateReactivateUserTest extends TestCase
 {

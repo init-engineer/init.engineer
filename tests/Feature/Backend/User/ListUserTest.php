@@ -8,6 +8,8 @@ use Tests\TestCase;
 
 /**
  * Class ListUserTest.
+ *
+ * @extends TestCase
  */
 class ListUserTest extends TestCase
 {

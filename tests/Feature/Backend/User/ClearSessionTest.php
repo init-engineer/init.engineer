@@ -8,6 +8,8 @@ use Tests\TestCase;
 
 /**
  * Class ClearSessionTest.
+ *
+ * @extends TestCase
  */
 class ClearSessionTest extends TestCase
 {

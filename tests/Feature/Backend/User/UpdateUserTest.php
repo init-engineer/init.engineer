@@ -11,6 +11,8 @@ use Tests\TestCase;
 
 /**
  * Class UpdateUserTest.
+ *
+ * @extends TestCase
  */
 class UpdateUserTest extends TestCase
 {

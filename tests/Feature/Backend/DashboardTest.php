@@ -8,6 +8,8 @@ use Tests\TestCase;
 
 /**
  * Class DashboardTest.
+ *
+ * @extends TestCase
  */
 class DashboardTest extends TestCase
 {

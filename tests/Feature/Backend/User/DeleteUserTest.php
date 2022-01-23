@@ -11,6 +11,8 @@ use Tests\TestCase;
 
 /**
  * Class DeleteUserTest.
+ *
+ * @extends TestCase
  */
 class DeleteUserTest extends TestCase
 {

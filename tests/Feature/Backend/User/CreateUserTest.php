@@ -13,6 +13,8 @@ use Tests\TestCase;
 
 /**
  * Class CreateUserTest.
+ *
+ * @extends TestCase
  */
 class CreateUserTest extends TestCase
 {

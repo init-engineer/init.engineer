@@ -11,6 +11,8 @@ use Tests\TestCase;
 
 /**
  * Class DeleteRoleTest.
+ *
+ * @extends TestCase
  */
 class DeleteRoleTest extends TestCase
 {

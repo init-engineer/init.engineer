@@ -8,6 +8,8 @@ use Tests\TestCase;
 
 /**
  * Class ChangePasswordTest.
+ *
+ * @extends TestCase
  */
 class ChangePasswordTest extends TestCase
 {

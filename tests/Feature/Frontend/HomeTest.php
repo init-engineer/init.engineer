@@ -6,6 +6,8 @@ use Tests\TestCase;
 
 /**
  * Class HomeTest.
+ *
+ * @extends TestCase
  */
 class HomeTest extends TestCase
 {

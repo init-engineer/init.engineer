@@ -10,6 +10,8 @@ use Tests\TestCase;
 
 /**
  * Class LoginTest.
+ *
+ * @extends TestCase
  */
 class LoginTest extends TestCase
 {

@@ -9,6 +9,8 @@ use Tests\TestCase;
 
 /**
  * Class VerificationTest.
+ *
+ * @extends TestCase
  */
 class VerificationTest extends TestCase
 {

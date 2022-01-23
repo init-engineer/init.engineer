@@ -7,6 +7,8 @@ use Tests\TestCase;
 
 /**
  * Class ToBeLoggedOutTest.
+ *
+ * @extends TestCase
  */
 class ToBeLoggedOutTest extends TestCase
 {

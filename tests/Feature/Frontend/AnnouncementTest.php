@@ -7,6 +7,8 @@ use Tests\TestCase;
 
 /**
  * Class AnnouncementTest.
+ *
+ * @extends TestCase
  */
 class AnnouncementTest extends TestCase
 {

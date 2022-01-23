@@ -9,6 +9,8 @@ use Tests\TestCase;
 
 /**
  * Class ChangeUserPasswordTest.
+ *
+ * @extends TestCase
  */
 class ChangeUserPasswordTest extends TestCase
 {
