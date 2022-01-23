@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * Class AnnouncementFactory.
+ *
+ * @extends Factory
  */
 class AnnouncementFactory extends Factory
 {
@@ -22,114 +24,126 @@ class AnnouncementFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    public function definition(): array
     {
-        return [
-            'area' => $this->faker->randomElement(['frontend', 'backend']),
-            'type' => $this->faker->randomElement(['info', 'danger', 'warning', 'success']),
+        return array(
+            'area' => $this->faker->randomElement(array(
+                Announcement::AREA_FRONTEND,
+                Announcement::AREA_BACKEND,
+            )),
+            'type' => $this->faker->randomElement(array(
+                Announcement::TYPE_PRIMARY,
+                Announcement::TYPE_SECONDARY,
+                Announcement::TYPE_SUCCESS,
+                Announcement::TYPE_DANGER,
+                Announcement::TYPE_WARNING,
+                Announcement::TYPE_INFO,
+                Announcement::TYPE_LIGHT,
+                Announcement::TYPE_DARK,
+            )),
             'message' => $this->faker->text,
             'enabled' => $this->faker->boolean,
             'starts_at' => $this->faker->dateTime(),
             'ends_at' => $this->faker->dateTime(),
-        ];
+        );
     }
 
     /**
      * @return AnnouncementFactory
      */
-    public function enabled()
+    public function enabled(): AnnouncementFactory
     {
         return $this->state(function (array $attributes) {
-            return [
+            return array(
                 'enabled' => true,
-            ];
+            );
         });
     }
 
     /**
      * @return AnnouncementFactory
      */
-    public function disabled()
+    public function disabled(): AnnouncementFactory
     {
         return $this->state(function (array $attributes) {
-            return [
+            return array(
                 'enabled' => false,
-            ];
+            );
         });
     }
 
     /**
      * @return AnnouncementFactory
      */
-    public function frontend()
+    public function frontend(): AnnouncementFactory
     {
         return $this->state(function (array $attributes) {
-            return [
-                'area' => 'frontend',
-            ];
+            return array(
+                'area' => Announcement::AREA_FRONTEND,
+            );
         });
     }
 
     /**
      * @return AnnouncementFactory
      */
-    public function backend()
+    public function backend(): AnnouncementFactory
     {
         return $this->state(function (array $attributes) {
-            return [
-                'area' => 'backend',
-            ];
+            return array(
+                'area' => Announcement::AREA_BACKEND,
+            );
         });
     }
 
     /**
      * @return AnnouncementFactory
      */
-    public function global()
+    public function global(): AnnouncementFactory
     {
         return $this->state(function (array $attributes) {
-            return [
+            return array(
                 'area' => null,
-            ];
+            );
         });
     }
 
     /**
      * @return AnnouncementFactory
      */
-    public function noDates()
+    public function noDates(): AnnouncementFactory
     {
         return $this->state(function (array $attributes) {
-            return [
+            return array(
                 'starts_at' => null,
                 'ends_at' => null,
-            ];
+            );
         });
     }
 
     /**
      * @return AnnouncementFactory
      */
-    public function insideDateRange()
+    public function insideDateRange(): AnnouncementFactory
     {
         return $this->state(function (array $attributes) {
-            return [
+            return array(
                 'starts_at' => now()->subWeek(),
                 'ends_at' => now()->addWeek(),
-            ];
+            );
         });
     }
 
     /**
      * @return AnnouncementFactory
      */
-    public function outsideDateRange()
+    public function outsideDateRange(): AnnouncementFactory
     {
         return $this->state(function (array $attributes) {
-            return [
+            return array(
                 'starts_at' => now()->subWeeks(2),
                 'ends_at' => now()->subWeek(),
-            ];
+            );
         });
     }
 }

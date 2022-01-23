@@ -8,6 +8,8 @@ use Illuminate\Support\Str;
 
 /**
  * Class UserFactory.
+ *
+ * @extends Factory
  */
 class UserFactory extends Factory
 {
@@ -23,10 +25,13 @@ class UserFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    public function definition(): array
     {
-        return [
-            'type' => $this->faker->randomElement([User::TYPE_ADMIN, User::TYPE_USER]),
+        return array(
+            'type' => $this->faker->randomElement(array(
+                User::TYPE_ADMIN,
+                User::TYPE_USER,
+            )),
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
@@ -34,102 +39,102 @@ class UserFactory extends Factory
             'password_changed_at' => null,
             'remember_token' => Str::random(10),
             'active' => true,
-        ];
+        );
     }
 
     /**
      * @return UserFactory
      */
-    public function admin()
+    public function admin(): UserFactory
     {
         return $this->state(function (array $attributes) {
-            return [
+            return array(
                 'type' => User::TYPE_ADMIN,
-            ];
+            );
         });
     }
 
     /**
      * @return UserFactory
      */
-    public function user()
+    public function user(): UserFactory
     {
         return $this->state(function (array $attributes) {
-            return [
+            return array(
                 'type' => User::TYPE_USER,
-            ];
+            );
         });
     }
 
     /**
      * @return UserFactory
      */
-    public function active()
+    public function active(): UserFactory
     {
         return $this->state(function (array $attributes) {
-            return [
+            return array(
                 'active' => true,
-            ];
+            );
         });
     }
 
     /**
      * @return UserFactory
      */
-    public function inactive()
+    public function inactive(): UserFactory
     {
         return $this->state(function (array $attributes) {
-            return [
+            return array(
                 'active' => false,
-            ];
+            );
         });
     }
 
     /**
      * @return UserFactory
      */
-    public function confirmed()
+    public function confirmed(): UserFactory
     {
         return $this->state(function (array $attributes) {
-            return [
+            return array(
                 'email_verified_at' => now(),
-            ];
+            );
         });
     }
 
     /**
      * @return UserFactory
      */
-    public function unconfirmed()
+    public function unconfirmed(): UserFactory
     {
         return $this->state(function (array $attributes) {
-            return [
+            return array(
                 'email_verified_at' => null,
-            ];
+            );
         });
     }
 
     /**
      * @return UserFactory
      */
-    public function passwordExpired()
+    public function passwordExpired(): UserFactory
     {
         return $this->state(function (array $attributes) {
-            return [
+            return array(
                 'password_changed_at' => now()->subYears(5),
-            ];
+            );
         });
     }
 
     /**
      * @return UserFactory
      */
-    public function deleted()
+    public function deleted(): UserFactory
     {
         return $this->state(function (array $attributes) {
-            return [
+            return array(
                 'deleted_at' => now(),
-            ];
+            );
         });
     }
 }

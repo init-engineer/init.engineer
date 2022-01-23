@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * Class RoleFactory.
+ *
+ * @extends Factory
  */
 class RoleFactory extends Factory
 {
@@ -23,11 +25,14 @@ class RoleFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    public function definition(): array
     {
-        return [
-            'type' => $this->faker->randomElement([User::TYPE_ADMIN, User::TYPE_USER]),
+        return array(
+            'type' => $this->faker->randomElement(array(
+                User::TYPE_ADMIN,
+                User::TYPE_USER,
+            )),
             'name' => $this->faker->word,
-        ];
+        );
     }
 }
