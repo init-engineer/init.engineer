@@ -8,6 +8,8 @@ use App\Domains\Social\Http\Controllers\Api\Cards\ReviewController;
 
 /**
  * All route names are prefixed with 'api.social'.
+ *
+ * 主要文章功能
  */
 Route::group([
     'prefix' => 'social',
@@ -16,6 +18,8 @@ Route::group([
 ], function () {
     /**
      * All route names are prefixed with 'api.social.cards'.
+     *
+     * 投稿相關的功能
      */
     Route::group([
         'prefix' => 'cards',
@@ -104,6 +108,8 @@ Route::group([
 
     /**
      * All route names are prefixed with 'api.social.comments'.
+     *
+     * 文章留言相關的功能
      */
     Route::group([
         'prefix' => 'comments',

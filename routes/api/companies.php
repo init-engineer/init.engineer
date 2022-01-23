@@ -4,6 +4,8 @@ use App\Domains\Companie\Http\Controllers\Api\CompaniesController;
 
 /**
  * All route names are prefixed with 'api.companies'.
+ *
+ * 公司相關功能
  */
 Route::group([
     'prefix' => 'companies',

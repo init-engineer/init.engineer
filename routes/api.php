@@ -16,7 +16,7 @@
  * Namespaces indicate folder structure
  */
 Route::group(['namespace' => 'Api', 'as' => 'api.'], function () {
-    includeRouteFiles(__DIR__.'/api/');
+    includeRouteFiles(__DIR__ . '/api/');
 });
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

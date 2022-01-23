@@ -8,6 +8,7 @@ use Tabuna\Breadcrumbs\Trail;
 
 /**
  * All route names are prefixed with 'admin.announcement'.
+ *
  * 公告管理
  */
 Route::group([
@@ -16,7 +17,7 @@ Route::group([
     'middleware' => config('boilerplate.access.middleware.confirm'),
 ], function () {
     Route::group([
-        'middleware' => 'role:'.config('boilerplate.access.role.announcement_admin'),
+        'middleware' => 'role:' . config('boilerplate.access.role.announcement_admin'),
     ], function () {
         Route::get('deleted', [DeletedAnnouncementController::class, 'index'])
             ->name('deleted')
@@ -48,7 +49,11 @@ Route::group([
     });
 
     Route::group([
-        'middleware' => 'permission:admin.announcement.list|admin.announcement.deactivate|admin.announcement.reactivate',
+        'middleware' => 'permission:' . implode('|', array(
+            'admin.announcement.list',
+            'admin.announcement.deactivate',
+            'admin.announcement.reactivate',
+        )),
     ], function () {
         Route::get('deactivated', [DeactivatedAnnouncementController::class, 'index'])
             ->name('deactivated')
@@ -60,7 +65,10 @@ Route::group([
 
         Route::get('/', [AnnouncementController::class, 'index'])
             ->name('index')
-            ->middleware('permission:admin.announcement.list|admin.announcement.deactivate')
+            ->middleware('permission:' . implode('|', array(
+                'admin.announcement.list',
+                'admin.announcement.deactivate',
+            )))
             ->breadcrumbs(function (Trail $trail) {
                 $trail->parent('admin.dashboard')
                     ->push(__('Announcement Management'), route('admin.announcement.index'));
@@ -70,7 +78,10 @@ Route::group([
             Route::patch('mark/{status}', [DeactivatedAnnouncementController::class, 'update'])
                 ->name('mark')
                 ->where(['status' => '[0,1]'])
-                ->middleware('permission:admin.announcement.deactivate|admin.announcement.reactivate');
+                ->middleware('permission:' . implode('|', array(
+                    'admin.announcement.deactivate',
+                    'admin.announcement.reactivate',
+                )));
         });
     });
 });
