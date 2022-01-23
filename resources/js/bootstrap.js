@@ -8,16 +8,16 @@ window.Swal = require('sweetalert2');
  */
 
 try {
-    window.Popper = require('popper.js').default;
-    window.$ = window.jQuery = require('jquery');
+  window.Popper = require('popper.js').default;
+  window.$ = window.jQuery = require('jquery');
 
-    require('bootstrap');
+  require('bootstrap');
 
-    $(function () {
-        $('[data-toggle="popover"]').popover()
-    });
+  $(function () {
+    $('[data-toggle="popover"]').popover()
+  });
 } catch (e) {
-    // ...
+  // ...
 }
 
 /**
@@ -37,16 +37,16 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 const csrf_token = document.head.querySelector('meta[name="csrf-token"]');
 if (csrf_token) {
-    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = csrf_token.content;
+  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = csrf_token.content;
 } else {
-    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+  console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
 // const api_token = document.head.querySelector('meta[name="authorization"]');
 // if (api_token) {
-//     window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + api_token.content;
+//   window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + api_token.content;
 // } else {
-//     console.error('Authorization token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+//   console.error('Authorization token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 // }
 
 /**
@@ -60,8 +60,8 @@ if (csrf_token) {
 // window.Pusher = require('pusher-js');
 
 // window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: process.env.MIX_PUSHER_APP_KEY,
-//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-//     encrypted: true
+//   broadcaster: 'pusher',
+//   key: process.env.MIX_PUSHER_APP_KEY,
+//   cluster: process.env.MIX_PUSHER_APP_CLUSTER,
+//   encrypted: true
 // });

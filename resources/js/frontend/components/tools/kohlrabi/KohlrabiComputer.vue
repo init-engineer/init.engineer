@@ -1,13 +1,15 @@
 <template>
   <div>
-    <marquee class="my-2" style="max-height: 4rem;">
+    <marquee class="my-2" style="max-height: 4rem">
       <h2 class="color-color-primary m-0">{{ 標題 }}</h2>
     </marquee>
 
     <div class="checkout-container my-2">
       <form class="form cf">
         <section class="plan cf text-center my-2">
-          <h2 class="color-color-primary" style="font-size: 3rem;">第一次購買</h2>
+          <h2 class="color-color-primary" style="font-size: 3rem">
+            第一次購買
+          </h2>
           <h2 class="color-color-primary">
             這是您第一次在島上跟曹賣購買大頭菜嗎？
           </h2>
@@ -29,7 +31,9 @@
           /><label class="col first-col" for="first-time-radio-yes">是的</label>
         </section>
         <section class="plan cf text-center my-2">
-          <h2 class="color-color-primary" style="font-size: 3rem;">上一期的模式</h2>
+          <h2 class="color-color-primary" style="font-size: 3rem">
+            上一期的模式
+          </h2>
           <h2 class="color-color-primary">上週您的大頭菜價格走勢如何呢？</h2>
           <h3 class="color-color-primary">（這會影響您的判斷模式）</h3>
           <input

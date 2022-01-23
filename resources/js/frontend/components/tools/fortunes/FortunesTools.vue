@@ -35,7 +35,10 @@
         />
       </div>
       <div v-if="籤號 !== null">
-        <button class="btn btn-dos btn-lg btn-block my-2 px-2 mb-4" @click="reset">
+        <button
+          class="btn btn-dos btn-lg btn-block my-2 px-2 mb-4"
+          @click="reset"
+        >
           重新抽籤
         </button>
         <FortunesCards :index="籤號"></FortunesCards>
