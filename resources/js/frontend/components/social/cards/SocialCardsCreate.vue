@@ -492,24 +492,9 @@ export default {
             font: "KC24M",
             value: "813ca6cbbd95d7e08fa2af59bc12072d",
           },
-        //   {
-        //     text: "ZPIX 點陣字型",
-        //     font: "Zfull",
-        //     value: "1b23b3cd9223930ac694b7f29f38ff21",
-        //   },
-        //   {
-        //     text: "張海山銳諧體",
-        //     font: "Harmonic",
-        //     value: "68068fcf50e7cae709cb8ed0b7b9b0f3",
-        //   },
-        //   {
-        //     text: "蒙納繁圓點陣",
-        //     font: "MBitmapRoundHK",
-        //     value: "f762e3a99692b40e5929ab3668606a4a",
-        //   },
           {
             text: "微軟正黑體",
-            font: "Microsoft JhengHei",
+            font: "MicrosoftJhengHei",
             value: "13f5333afe00f8c7e8da7e0b13ec2c94",
           },
           {
@@ -524,54 +509,19 @@ export default {
           },
           {
             text: "極粗明朝體",
-            font: "MatissePro EB",
+            font: "MatisseProEB",
             value: "ozke4ri3gkpy7e9c312u5l0w5vr9jdqq",
           },
           {
             text: "台北黑體",
-            font: "Taipei Sans TC Beta",
+            font: "TaipeiSansTCBeta",
             value: "yc45sgsfbss490dqgs2g23a7z24slhoj",
           },
-        //   {
-        //     text: "搖滾樂♪",
-        //     font: "RocknRoll One-Regular",
-        //     value: "7yQkdi3Q0lIt0GTZ3GToByiQoQuUGT2c",
-        //   },
-        //   {
-        //     text: "點陣哥特 16",
-        //     font: "DotGothic16-Regular",
-        //     value: "bxwe3vU47DyWTEM17sLNQTCHOBbB13xh",
-        //   },
-        //   {
-        //     text: "壁壘 XwX",
-        //     font: "Rampart One-Regular",
-        //     value: "DVAgml6ZFScVZ05aZQmo1bzSZDGtfDZV",
-        //   },
-        //   {
-        //     text: "雷鬼 UwU",
-        //     font: "Reggae One-Regular",
-        //     value: "hfPg6Tb250eMRlEnew2PHEdqzfCK2bbu",
-        //   },
-        //   {
-        //     text: "戳戳 OwO",
-        //     font: "Stick-Regular",
-        //     value: "Fwc7qnSDTtQ5gAwDOHJXU251ZovUEEtN",
-        //   },
-        //   {
-        //     text: "克萊一般般",
-        //     font: "Klee One Regular",
-        //     value: "2EEqzp9EHqHTu1jKGhOZ3lspfsbvwOar",
-        //   },
-        //   {
-        //     text: "克萊粗一點",
-        //     font: "Klee One SemiBold",
-        //     value: "wWyUkCWL5HW8nhw9wwawx0WbVAyxZjEN",
-        //   },
-        //   {
-        //     text: "火車便當",
-        //     font: "Train One-Regular",
-        //     value: "LrDE83PVGCbTlMTShdkpEdna5FrXy1P0",
-        //   },
+          {
+            text: "俐方體 11 號",
+            font: "Cubic11",
+            value: "9KXa6I2NT70FPIqTMivZiVsmfcrUWKq3",
+          },
         ],
       },
     };
@@ -894,7 +844,7 @@ export default {
     drawingLogo() {
       switch (this.theme.selector) {
         case "32d2a897602ef652ed8e15d66128aa74":
-          this.canvas.ctx.font = "36px " + this.canvas.font;
+          this.canvas.ctx.font = "24pt " + this.canvas.font;
           this.canvas.ctx.fillStyle = this.canvas.color;
           this.canvas.ctx.fillText(
             "若要深入了解，您稍候可以線上搜尋此:",
@@ -914,7 +864,7 @@ export default {
           return;
 
         case "tumx453xqZLjf5kaFFBzNj4gqVXKWqXz":
-          this.canvas.ctx.font = "36px " + this.canvas.font;
+          this.canvas.ctx.font = "24pt " + this.canvas.font;
           this.canvas.ctx.fillStyle = this.canvas.color;
           this.canvas.ctx.fillText(
             "若要深入了解，您稍候可以線上搜尋此:",
@@ -934,11 +884,11 @@ export default {
           return;
 
         case "05326525f82b9a036e1bcb53a392ff7c":
-          this.canvas.ctx.font = "72px " + this.canvas.font;
+          this.canvas.ctx.font = "48pt " + this.canvas.font;
           this.canvas.ctx.fillStyle = this.canvas.color;
           this.canvas.ctx.fillText("支離滅裂な", 360, this.canvas.height - 160);
           this.canvas.ctx.fillText("思考・発言", 360, this.canvas.height - 80);
-          this.canvas.ctx.font = "36px " + this.canvas.font;
+          this.canvas.ctx.font = "24pt " + this.canvas.font;
           this.canvas.ctx.fillStyle = this.canvas.color;
           this.canvas.ctx.fillText(
             "純靠北工程師",
@@ -948,11 +898,11 @@ export default {
           return;
 
         case "W6FTE8fL66w2u5Xo5s3OxdqmAMpzptvK":
-          this.canvas.ctx.font = "72px " + this.canvas.font;
+          this.canvas.ctx.font = "48pt " + this.canvas.font;
           this.canvas.ctx.fillStyle = this.canvas.color;
           this.canvas.ctx.fillText("不獣控制な", 360, this.canvas.height - 160);
           this.canvas.ctx.fillText("思考・発言", 360, this.canvas.height - 80);
-          this.canvas.ctx.font = "36px " + this.canvas.font;
+          this.canvas.ctx.font = "24pt " + this.canvas.font;
           this.canvas.ctx.fillStyle = this.canvas.color;
           this.canvas.ctx.fillText(
             "純靠北工程師",
@@ -962,7 +912,7 @@ export default {
           return;
 
         default:
-          this.canvas.ctx.font = "36px " + this.canvas.font;
+          this.canvas.ctx.font = "24pt " + this.canvas.font;
           this.canvas.ctx.fillStyle = this.canvas.color;
           this.canvas.ctx.fillText(
             "純靠北工程師",
@@ -975,19 +925,19 @@ export default {
     drawingUrl() {
       switch (this.theme.selector) {
         case "32d2a897602ef652ed8e15d66128aa74":
-          this.canvas.ctx.font = "192px " + this.canvas.font;
+          this.canvas.ctx.font = "128pt " + this.canvas.font;
           this.canvas.ctx.fillStyle = this.canvas.color;
           this.canvas.ctx.fillText(":(", 48, 192);
           return;
 
         case "tumx453xqZLjf5kaFFBzNj4gqVXKWqXz":
-          this.canvas.ctx.font = "192px " + this.canvas.font;
+          this.canvas.ctx.font = "128pt " + this.canvas.font;
           this.canvas.ctx.fillStyle = this.canvas.color;
           this.canvas.ctx.fillText(":(", 48, 192);
           return;
 
         default:
-          this.canvas.ctx.font = "36px " + this.canvas.font;
+          this.canvas.ctx.font = "24pt " + this.canvas.font;
           this.canvas.ctx.fillStyle = this.canvas.color;
           this.canvas.ctx.fillText(
             "發文傳送門 https://init.engineer",
@@ -1029,7 +979,7 @@ export default {
               break;
           }
 
-          this.canvas.ctx.font = "63px " + this.canvas.font;
+          this.canvas.ctx.font = "44pt " + this.canvas.font;
           this.canvas.ctx.fillStyle = this.canvas.color;
           this.canvas.ctx.fillText(content_value, x_point, y_point);
         }.bind(this)
