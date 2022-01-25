@@ -1,9 +1,9 @@
 /**
  * Buttons
  */
-
- a, span, button {
-
+a,
+span,
+button {
     &.badge-bg {
         color: var(--font-primary-color);
         background-color: var(--background-primary);
@@ -56,12 +56,12 @@
 
     &.badge-facebook {
         color: white;
-        background-color: #3B5998;
+        background-color: #3b5998;
     }
 
     &.badge-google {
         color: white;
-        background-color: #D34836;
+        background-color: #d34836;
     }
 
     &.badge-github {
@@ -71,17 +71,17 @@
 
     &.badge-linkedin {
         color: white;
-        background-color: #0077B5;
+        background-color: #0077b5;
     }
 
     &.badge-twitter {
         color: white;
-        background-color: #1DCAFF;
+        background-color: #1dcaff;
     }
 
     &.badge-plurk {
         color: white;
-        background-color: #FF4E47;
+        background-color: #ff4e47;
     }
 
     &.badge-tumblr {
@@ -96,57 +96,57 @@
 
     &.badge-pink {
         color: white;
-        background-color: #E83E8C;
+        background-color: #e83e8c;
     }
 
     &.badge-orange {
         color: white;
-        background-color: #FD7E14;
+        background-color: #fd7e14;
     }
 
     &.badge-laravel {
         color: white;
-        background-color: #F4645F;
+        background-color: #f4645f;
     }
 
     &.badge-softgreen {
         color: white;
-        background-color: #39C5BB;
+        background-color: #39c5bb;
     }
 
     &.badge-switch {
         color: white;
-        background-color: #2F3437;
+        background-color: #2f3437;
     }
 
     &.badge-pikachu {
         color: white;
-        background-color: #FFD547;
+        background-color: #ffd547;
     }
 
     &.badge-eevee {
         color: white;
-        background-color: #E7AF56;
+        background-color: #e7af56;
     }
 
     &.badge-ch-new-year-2019-red {
         color: white;
-        background-color: #A61723;
+        background-color: #a61723;
     }
 
     &.badge-ch-new-year-2019-yellow {
         color: white;
-        background-color: #D8B06A;
+        background-color: #d8b06a;
     }
 
     &.badge-devotion {
         color: white;
-        background-color: #F11541;
+        background-color: #f11541;
     }
 
     &.badge-windows-10-error {
         color: white;
-        background-color: #007BD0;
+        background-color: #007bd0;
     }
 
     &.badge-dos {
@@ -157,12 +157,11 @@
 
     &.badge-platform {
         color: white;
-        background-color: #21897E;
+        background-color: #21897e;
     }
 
     &.badge-rainbow {
         color: white;
-        background-image: url('../../../../public/img/frontend/background/animated-rainbow.gif');
+        background-image: url("../../../../public/img/frontend/background/animated-rainbow.gif");
     }
-
- }
+}

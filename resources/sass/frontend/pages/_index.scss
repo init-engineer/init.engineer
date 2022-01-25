@@ -1,7 +1,6 @@
 /**
  * Index specific styles
  */
-
 .main-timeline {
     overflow: hidden;
     position: relative;
@@ -261,7 +260,7 @@
     color: #ed687c;
 }
 
-@media only screen and (max-width:990px) {
+@media only screen and (max-width: 990px) {
     .main-timeline .timeline {
         width: 100%;
     }

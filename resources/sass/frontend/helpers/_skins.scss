@@ -10,178 +10,439 @@
 /**
  * Backgrounds
  */
-.bg-navy {    background-color: $navy; }
-.bg-blue {    background-color: $blue; }
-.bg-aqua {    background-color: $aqua; }
-.bg-teal {    background-color: $teal; }
-.bg-olive {   background-color: $olive; }
-.bg-green {   background-color: $green; }
-.bg-lime {    background-color: $lime; }
-.bg-yellow {  background-color: $yellow; }
-.bg-orange {  background-color: $orange; }
-.bg-red {     background-color: $red; }
-.bg-fuchsia { background-color: $fuchsia; }
-.bg-purple {  background-color: $purple; }
-.bg-maroon {  background-color: $maroon; }
-.bg-white {   background-color: $white; }
-.bg-gray {    background-color: $gray; }
-.bg-silver {  background-color: $silver; }
-.bg-black {   background-color: $black; }
-
-.bg-bitbucket {                 background-color: #274970 !important; }
-.bg-facebook {                  background-color: #3B5998 !important; }
-.bg-google {                    background-color: #D34836 !important; }
-.bg-github {                    background-color: #464646 !important; }
-.bg-linkedin {                  background-color: #0077B5 !important; }
-.bg-twitter {                   background-color: #1DCAFF !important; }
-.bg-plurk {                     background-color: #FF4E47 !important; }
-.bg-tumblr {                    background-color: #34526F !important; }
-.bg-telegram {                  background-color: #0088CC !important; }
-.bg-pink {                      background-color: #E83E8C !important; }
-.bg-orange {                    background-color: #FD7E14 !important; }
-.bg-laravel {                   background-color: #F4645F !important; }
-.bg-softgreen {                 background-color: #39C5BB !important; }
-.bg-switch {                    background-color: #2F3437 !important; }
-.bg-pikachu {                   background-color: #FFD547 !important; }
-.bg-eevee {                     background-color: #E7AF56 !important; }
-.bg-ch-new-year-2019-red {      background-color: #A61723 !important; }
-.bg-ch-new-year-2019-yellow {   background-color: #D8B06A !important; }
-.bg-devotion {                  background-color: #F11541 !important; }
-.bg-windows-10-error {          background-color: #007BD0 !important; }
-.bg-windows-10-testing-error {  background-color: #107C10 !important; }
-.bg-pink-secondary {            background-color: #F8C0C8 !important; }
-
-.bg-color-primary {             background-color: var(--background-primary)     !important; }
-.bg-color-secondary {           background-color: var(--background-secondary)   !important; }
-.bg-primary {                   background-color: var(--color-primary)          !important; }
-.bg-info {                      background-color: var(--color-info)             !important; }
-.bg-success {                   background-color: var(--color-success)          !important; }
-.bg-danger {                    background-color: var(--color-danger)           !important; }
-.bg-warning {                   background-color: var(--color-warning)          !important; }
-.bg-dark {                      background-color: var(--color-dark)             !important; }
-.bg-light {                     background-color: var(--color-light)            !important; }
-.bg-gray {                      background-color: var(--color-gray)             !important; }
+.bg-navy {
+    background-color: $navy;
+}
+.bg-blue {
+    background-color: $blue;
+}
+.bg-aqua {
+    background-color: $aqua;
+}
+.bg-teal {
+    background-color: $teal;
+}
+.bg-olive {
+    background-color: $olive;
+}
+.bg-green {
+    background-color: $green;
+}
+.bg-lime {
+    background-color: $lime;
+}
+.bg-yellow {
+    background-color: $yellow;
+}
+.bg-orange {
+    background-color: $orange;
+}
+.bg-red {
+    background-color: $red;
+}
+.bg-fuchsia {
+    background-color: $fuchsia;
+}
+.bg-purple {
+    background-color: $purple;
+}
+.bg-maroon {
+    background-color: $maroon;
+}
+.bg-white {
+    background-color: $white;
+}
+.bg-gray {
+    background-color: $gray;
+}
+.bg-silver {
+    background-color: $silver;
+}
+.bg-black {
+    background-color: $black;
+}
+.bg-bitbucket {
+    background-color: #274970 !important;
+}
+.bg-facebook {
+    background-color: #3b5998 !important;
+}
+.bg-google {
+    background-color: #d34836 !important;
+}
+.bg-github {
+    background-color: #464646 !important;
+}
+.bg-linkedin {
+    background-color: #0077b5 !important;
+}
+.bg-twitter {
+    background-color: #1dcaff !important;
+}
+.bg-plurk {
+    background-color: #ff4e47 !important;
+}
+.bg-tumblr {
+    background-color: #34526f !important;
+}
+.bg-telegram {
+    background-color: #0088cc !important;
+}
+.bg-pink {
+    background-color: #e83e8c !important;
+}
+.bg-orange {
+    background-color: #fd7e14 !important;
+}
+.bg-laravel {
+    background-color: #f4645f !important;
+}
+.bg-softgreen {
+    background-color: #39c5bb !important;
+}
+.bg-switch {
+    background-color: #2f3437 !important;
+}
+.bg-pikachu {
+    background-color: #ffd547 !important;
+}
+.bg-eevee {
+    background-color: #e7af56 !important;
+}
+.bg-ch-new-year-2019-red {
+    background-color: #a61723 !important;
+}
+.bg-ch-new-year-2019-yellow {
+    background-color: #d8b06a !important;
+}
+.bg-devotion {
+    background-color: #f11541 !important;
+}
+.bg-windows-10-error {
+    background-color: #007bd0 !important;
+}
+.bg-windows-10-testing-error {
+    background-color: #107c10 !important;
+}
+.bg-pink-secondary {
+    background-color: #f8c0c8 !important;
+}
+.bg-color-primary {
+    background-color: var(--background-primary) !important;
+}
+.bg-color-secondary {
+    background-color: var(--background-secondary) !important;
+}
+.bg-primary {
+    background-color: var(--color-primary) !important;
+}
+.bg-info {
+    background-color: var(--color-info) !important;
+}
+.bg-success {
+    background-color: var(--color-success) !important;
+}
+.bg-danger {
+    background-color: var(--color-danger) !important;
+}
+.bg-warning {
+    background-color: var(--color-warning) !important;
+}
+.bg-dark {
+    background-color: var(--color-dark) !important;
+}
+.bg-light {
+    background-color: var(--color-light) !important;
+}
+.bg-gray {
+    background-color: var(--color-gray) !important;
+}
 
 /**
  * Backgrounds Images
  */
-.bg-img-star { background-image: url('../../../../public/img/frontend/background/background-star.gif'); }
-.bg-img-rock { background-image: url('../../../../public/img/frontend/background/background-rock.jpg'); }
+.bg-img-star {
+    background-image: url("../../../../public/img/frontend/background/background-star.gif");
+}
+.bg-img-rock {
+    background-image: url("../../../../public/img/frontend/background/background-rock.jpg");
+}
 
 /**
  * Colors
  */
-.navy {       color: $navy; }
-.blue {       color: $blue; }
-.aqua {       color: $aqua; }
-.teal {       color: $teal; }
-.olive {      color: $olive; }
-.green {      color: $green; }
-.lime {       color: $lime; }
-.yellow {     color: $yellow; }
-.orange {     color: $orange; }
-.red {        color: $red; }
-.fuchsia {    color: $fuchsia; }
-.purple {     color: $purple; }
-.maroon {     color: $maroon; }
-.white {      color: $white; }
-.silver {     color: $silver; }
-.gray {       color: $gray; }
-.black {      color: $black; }
-
-.color-switch {                     color: #2F3437 !important; }
-.color-pikachu {                    color: #FFD547 !important; }
-.color-eevee {                      color: #E7AF56 !important; }
-.color-ch-new-year-2019-red {       color: #A61723 !important; }
-.color-ch-new-year-2019-yellow {    color: #D8B06A !important; }
-.color-pink {                       color: #FF5376 !important; }
-
-.color-color-primary {              color: var(--font-primary-color)     !important; }
-.color-color-secondary {            color: var(--font-secondary-color)   !important; }
-.color-primary {                    color: var(--color-primary)          !important; }
-.color-info {                       color: var(--color-info)             !important; }
-.color-success {                    color: var(--color-success)          !important; }
-.color-danger {                     color: var(--color-danger)           !important; }
-.color-warning {                    color: var(--color-warning)          !important; }
-.color-dark {                       color: var(--color-dark)             !important; }
-.color-light {                      color: var(--color-light)            !important; }
-.color-gray {                       color: var(--color-gray)             !important; }
+.navy {
+    color: $navy;
+}
+.blue {
+    color: $blue;
+}
+.aqua {
+    color: $aqua;
+}
+.teal {
+    color: $teal;
+}
+.olive {
+    color: $olive;
+}
+.green {
+    color: $green;
+}
+.lime {
+    color: $lime;
+}
+.yellow {
+    color: $yellow;
+}
+.orange {
+    color: $orange;
+}
+.red {
+    color: $red;
+}
+.fuchsia {
+    color: $fuchsia;
+}
+.purple {
+    color: $purple;
+}
+.maroon {
+    color: $maroon;
+}
+.white {
+    color: $white;
+}
+.silver {
+    color: $silver;
+}
+.gray {
+    color: $gray;
+}
+.black {
+    color: $black;
+}
+.color-switch {
+    color: #2f3437 !important;
+}
+.color-pikachu {
+    color: #ffd547 !important;
+}
+.color-eevee {
+    color: #e7af56 !important;
+}
+.color-ch-new-year-2019-red {
+    color: #a61723 !important;
+}
+.color-ch-new-year-2019-yellow {
+    color: #d8b06a !important;
+}
+.color-pink {
+    color: #ff5376 !important;
+}
+.color-color-primary {
+    color: var(--font-primary-color) !important;
+}
+.color-color-secondary {
+    color: var(--font-secondary-color) !important;
+}
+.color-primary {
+    color: var(--color-primary) !important;
+}
+.color-info {
+    color: var(--color-info) !important;
+}
+.color-success {
+    color: var(--color-success) !important;
+}
+.color-danger {
+    color: var(--color-danger) !important;
+}
+.color-warning {
+    color: var(--color-warning) !important;
+}
+.color-dark {
+    color: var(--color-dark) !important;
+}
+.color-light {
+    color: var(--color-light) !important;
+}
+.color-gray {
+    color: var(--color-gray) !important;
+}
 
 /**
  * Border colors
  * Use with another border utility that sets border-width and style
  * i.e .border { border-width: 1px; border-style: solid; }
  */
-.border--navy {    border-color: $navy; }
-.border--blue {    border-color: $blue; }
-.border--aqua {    border-color: $aqua; }
-.border--teal {    border-color: $teal; }
-.border--olive {   border-color: $olive; }
-.border--green {   border-color: $green; }
-.border--lime {    border-color: $lime; }
-.border--yellow {  border-color: $yellow; }
-.border--orange {  border-color: $orange; }
-.border--red {     border-color: $red; }
-.border--fuchsia { border-color: $fuchsia; }
-.border--purple {  border-color: $purple; }
-.border--maroon {  border-color: $maroon; }
-.border--white {   border-color: $white; }
-.border--gray {    border-color: $gray; }
-.border--silver {  border-color: $silver; }
-.border--black {   border-color: $black; }
+.border--navy {
+    border-color: $navy;
+}
+.border--blue {
+    border-color: $blue;
+}
+.border--aqua {
+    border-color: $aqua;
+}
+.border--teal {
+    border-color: $teal;
+}
+.border--olive {
+    border-color: $olive;
+}
+.border--green {
+    border-color: $green;
+}
+.border--lime {
+    border-color: $lime;
+}
+.border--yellow {
+    border-color: $yellow;
+}
+.border--orange {
+    border-color: $orange;
+}
+.border--red {
+    border-color: $red;
+}
+.border--fuchsia {
+    border-color: $fuchsia;
+}
+.border--purple {
+    border-color: $purple;
+}
+.border--maroon {
+    border-color: $maroon;
+}
+.border--white {
+    border-color: $white;
+}
+.border--gray {
+    border-color: $gray;
+}
+.border--silver {
+    border-color: $silver;
+}
+.border--black {
+    border-color: $black;
+}
 
 /**
  * Fills for SVG
  */
-.fill-navy {    fill: $navy; }
-.fill-blue {    fill: $blue; }
-.fill-aqua {    fill: $aqua; }
-.fill-teal {    fill: $teal; }
-.fill-olive {   fill: $olive; }
-.fill-green {   fill: $green; }
-.fill-lime {    fill: $lime; }
-.fill-yellow {  fill: $yellow; }
-.fill-orange {  fill: $orange; }
-.fill-red {     fill: $red; }
-.fill-fuchsia { fill: $fuchsia; }
-.fill-purple {  fill: $purple; }
-.fill-maroon {  fill: $maroon; }
-.fill-white {   fill: $white; }
-.fill-gray {    fill: $gray; }
-.fill-silver {  fill: $silver; }
-.fill-black {   fill: $black; }
+.fill-navy {
+    fill: $navy;
+}
+.fill-blue {
+    fill: $blue;
+}
+.fill-aqua {
+    fill: $aqua;
+}
+.fill-teal {
+    fill: $teal;
+}
+.fill-olive {
+    fill: $olive;
+}
+.fill-green {
+    fill: $green;
+}
+.fill-lime {
+    fill: $lime;
+}
+.fill-yellow {
+    fill: $yellow;
+}
+.fill-orange {
+    fill: $orange;
+}
+.fill-red {
+    fill: $red;
+}
+.fill-fuchsia {
+    fill: $fuchsia;
+}
+.fill-purple {
+    fill: $purple;
+}
+.fill-maroon {
+    fill: $maroon;
+}
+.fill-white {
+    fill: $white;
+}
+.fill-gray {
+    fill: $gray;
+}
+.fill-silver {
+    fill: $silver;
+}
+.fill-black {
+    fill: $black;
+}
 
 /**
  * Strokes for SVG
  */
-.stroke-navy {    stroke: $navy; }
-.stroke-blue {    stroke: $blue; }
-.stroke-aqua {    stroke: $aqua; }
-.stroke-teal {    stroke: $teal; }
-.stroke-olive {   stroke: $olive; }
-.stroke-green {   stroke: $green; }
-.stroke-lime {    stroke: $lime; }
-.stroke-yellow {  stroke: $yellow; }
-.stroke-orange {  stroke: $orange; }
-.stroke-red {     stroke: $red; }
-.stroke-fuchsia { stroke: $fuchsia; }
-.stroke-purple {  stroke: $purple; }
-.stroke-maroon {  stroke: $maroon; }
-.stroke-white {   stroke: $white; }
-.stroke-gray {    stroke: $gray; }
-.stroke-silver {  stroke: $silver; }
-.stroke-black {   stroke: $black; }
+.stroke-navy {
+    stroke: $navy;
+}
+.stroke-blue {
+    stroke: $blue;
+}
+.stroke-aqua {
+    stroke: $aqua;
+}
+.stroke-teal {
+    stroke: $teal;
+}
+.stroke-olive {
+    stroke: $olive;
+}
+.stroke-green {
+    stroke: $green;
+}
+.stroke-lime {
+    stroke: $lime;
+}
+.stroke-yellow {
+    stroke: $yellow;
+}
+.stroke-orange {
+    stroke: $orange;
+}
+.stroke-red {
+    stroke: $red;
+}
+.stroke-fuchsia {
+    stroke: $fuchsia;
+}
+.stroke-purple {
+    stroke: $purple;
+}
+.stroke-maroon {
+    stroke: $maroon;
+}
+.stroke-white {
+    stroke: $white;
+}
+.stroke-gray {
+    stroke: $gray;
+}
+.stroke-silver {
+    stroke: $silver;
+}
+.stroke-black {
+    stroke: $black;
+}
 
 /**
  * Text Stroke
  */
 .text-black-stroke {
     -webkit-text-stroke: 1px black;
-    color: #00FF00;
-    text-shadow:
-        3px 3px 0 black,
-        -1px -1px 0 black,
-        1px -1px 0 black,
-        -1px 1px 0 black,
-        1px 1px 0 black;
+    color: #00ff00;
+    text-shadow: 3px 3px 0 black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
 }

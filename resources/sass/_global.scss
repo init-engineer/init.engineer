@@ -12,12 +12,13 @@
 
 @import "~csshake";
 @import "~animate.css/animate.min.css";
-@import '~pretty-checkbox/src/pretty-checkbox.scss';
+@import "~pretty-checkbox/src/pretty-checkbox.scss";
 
 /**
  * Header Styles
  */
-.read-only, .logged-in-as {
-  margin: 0 !important;
-  border-radius: 0 !important;
+.read-only,
+.logged-in-as {
+    margin: 0 !important;
+    border-radius: 0 !important;
 }

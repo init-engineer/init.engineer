@@ -1,9 +1,9 @@
 /**
  * Buttons
  */
-
-a, span, button {
-
+a,
+span,
+button {
     &.btn-bg {
         color: var(--font-primary-color);
         background-color: var(--background-primary);
@@ -145,13 +145,13 @@ a, span, button {
 
         &:active {
             color: darkgrey;
-            background-color: #192F48;
+            background-color: #192f48;
         }
     }
 
     &.btn-facebook {
         color: white;
-        background-color: #3B5998;
+        background-color: #3b5998;
 
         &:active {
             color: darkgrey;
@@ -161,11 +161,11 @@ a, span, button {
 
     &.btn-google {
         color: white;
-        background-color: #D34836;
+        background-color: #d34836;
 
         &:active {
             color: darkgrey;
-            background-color: #872E23;
+            background-color: #872e23;
         }
     }
 
@@ -175,27 +175,27 @@ a, span, button {
 
         &:active {
             color: darkgrey;
-            background-color: #2D2D2D;
+            background-color: #2d2d2d;
         }
     }
 
     &.btn-linkedin {
         color: white;
-        background-color: #0077B5;
+        background-color: #0077b5;
 
         &:active {
             color: darkgrey;
-            background-color: #004C74;
+            background-color: #004c74;
         }
     }
 
     &.btn-twitter {
         color: white;
-        background-color: #1DCAFF;
+        background-color: #1dcaff;
 
         &:active {
             color: darkgrey;
-            background-color: #1381A3;
+            background-color: #1381a3;
         }
     }
 
@@ -211,11 +211,11 @@ a, span, button {
 
     &.btn-plurk {
         color: white;
-        background-color: #FF4E47;
+        background-color: #ff4e47;
 
         &:active {
             color: darkgrey;
-            background-color: #A3322E;
+            background-color: #a3322e;
         }
     }
 
@@ -241,67 +241,67 @@ a, span, button {
 
     &.btn-pink {
         color: white;
-        background-color: #E83E8C;
+        background-color: #e83e8c;
 
         &:active {
             color: darkgrey;
-            background-color: #94285A;
+            background-color: #94285a;
         }
     }
 
     &.btn-orange {
         color: white;
-        background-color: #FD7E14;
+        background-color: #fd7e14;
 
         &:active {
             color: darkgrey;
-            background-color: #A2510D;
+            background-color: #a2510d;
         }
     }
 
     &.btn-laravel {
         color: white;
-        background-color: #F4645F;
+        background-color: #f4645f;
 
         &:active {
             color: darkgrey;
-            background-color: #9C403D;
+            background-color: #9c403d;
         }
     }
 
     &.btn-softgreen {
         color: white;
-        background-color: #39C5BB;
+        background-color: #39c5bb;
 
         &:active {
             color: darkgrey;
-            background-color: #257E77;
+            background-color: #257e77;
         }
     }
 
     &.btn-switch {
         color: white;
-        background-color: #2F3437;
+        background-color: #2f3437;
 
         &:active {
             color: darkgrey;
-            background-color: #1E2223;
+            background-color: #1e2223;
         }
     }
 
     &.btn-pikachu {
         color: white;
-        background-color: #FFD547;
+        background-color: #ffd547;
 
         &:active {
             color: darkgrey;
-            background-color: #A3882E;
+            background-color: #a3882e;
         }
     }
 
     &.btn-eevee {
         color: white;
-        background-color: #E7AF56;
+        background-color: #e7af56;
 
         &:active {
             color: darkgrey;
@@ -311,41 +311,41 @@ a, span, button {
 
     &.btn-ch-new-year-2019-red {
         color: white;
-        background-color: #A61723;
+        background-color: #a61723;
 
         &:active {
             color: darkgrey;
-            background-color: #6A0F17;
+            background-color: #6a0f17;
         }
     }
 
     &.btn-ch-new-year-2019-yellow {
         color: white;
-        background-color: #D8B06A;
+        background-color: #d8b06a;
 
         &:active {
             color: darkgrey;
-            background-color: #8A7144;
+            background-color: #8a7144;
         }
     }
 
     &.btn-devotion {
         color: white;
-        background-color: #F11541;
+        background-color: #f11541;
 
         &:active {
             color: darkgrey;
-            background-color: #9A0E2A;
+            background-color: #9a0e2a;
         }
     }
 
     &.btn-windows-10-error {
         color: white;
-        background-color: #007BD0;
+        background-color: #007bd0;
 
         &:active {
             color: darkgrey;
-            background-color: #004F85;
+            background-color: #004f85;
         }
     }
 
@@ -361,13 +361,13 @@ a, span, button {
         }
 
         &.active {
-            background-image: url('../../../../public/img/frontend/background/animated-rainbow.gif');
+            background-image: url("../../../../public/img/frontend/background/animated-rainbow.gif");
         }
     }
 
     &.btn-platform {
         color: white;
-        background-color: #21897E;
+        background-color: #21897e;
 
         &:active {
             color: darkgrey;
@@ -377,7 +377,7 @@ a, span, button {
 
     &.btn-rainbow {
         color: white;
-        background-image: url('../../../../public/img/frontend/background/animated-rainbow.gif');
+        background-image: url("../../../../public/img/frontend/background/animated-rainbow.gif");
 
         &:active {
             color: darkgrey;

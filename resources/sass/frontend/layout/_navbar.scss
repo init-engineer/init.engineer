@@ -1,10 +1,13 @@
+/**
+ * Navbar
+ */
 .icon-bar {
     width: 22px;
     height: 2px;
-    background-color: #B6B6B6;
+    background-color: #b6b6b6;
     display: block;
     transition: all 0.2s;
-    margin-top: 4px
+    margin-top: 4px;
 }
 
 .navbar {
@@ -76,7 +79,7 @@
 
 /* change the link color and padding  */
 .navbar-full-bg .navbar-nav .nav-link {
-    padding: .75rem 1rem;
+    padding: 0.75rem 1rem;
 }
 
 /* change the color and background color of active links */
