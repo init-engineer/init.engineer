@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use App\Models\Social\Cards;
 use App\Services\BaseService;
 use App\Repositories\Frontend\Social\AdsRepository;
+use GdImage;
 
 /**
  * Class ImagesService.
@@ -16,7 +17,7 @@ class ImagesService extends BaseService implements ImagesContract
     /**
      * 圖片物件。
      *
-     * @var resource
+     * @var resource|GdImage
      */
     protected $canvas;
 
@@ -814,9 +815,14 @@ class ImagesService extends BaseService implements ImagesContract
                 $this->canvasFont = public_path('fonts/TrainOne-Regular.ttf');
                 break;
 
+                /** 俐方體 11 號 */
+            case '9KXa6I2NT70FPIqTMivZiVsmfcrUWKq3':
+                $this->canvasFont = public_path('fonts/Cubic_11_1.000_R.ttf');
+                break;
+
                 /** 預設: AURAKA 點陣宋字型 */
             default:
-                $this->canvasFont = public_path('fonts/Auraka.ttf');
+                $this->canvasFont = public_path('fonts/Cubic_11_1.000_R.ttf');
                 break;
         }
     }
