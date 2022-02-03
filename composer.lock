@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "558751e8e1d5b26ea470f4e9cac8678b",
+    "content-hash": "6bac617e78714598fa2d0454d6695f41",
     "packages": [
         {
             "name": "2bj/phanybar",
@@ -192,6 +192,70 @@
                 "source": "https://github.com/ARCANEDEV/Support/tree/8.1.0"
             },
             "time": "2020-11-27T17:09:38+00:00"
+        },
+        {
+            "name": "area17/blast",
+            "version": "1.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/area17/blast.git",
+                "reference": "02423d1ea798a88bba34d836df3eb9da9e0cae73"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/area17/blast/zipball/02423d1ea798a88bba34d836df3eb9da9e0cae73",
+                "reference": "02423d1ea798a88bba34d836df3eb9da9e0cae73",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "illuminate/filesystem": "^7.0|^8.0",
+                "illuminate/support": "^7.0|^8.0",
+                "illuminate/view": "^7.0|^8.0",
+                "php": "^7.3|^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^6.21"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "A17\\Blast\\BlastServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "A17\\Blast\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Tim Brook",
+                    "email": "tim@area17.com"
+                }
+            ],
+            "description": "Storybook for Laravel Blade",
+            "homepage": "https://area17.com",
+            "keywords": [
+                "A17",
+                "blade",
+                "components",
+                "design-systems",
+                "laravel",
+                "storybook",
+                "ui"
+            ],
+            "support": {
+                "issues": "https://github.com/area17/blast/issues/",
+                "source": "https://github.com/area17/blast/tree/1.5"
+            },
+            "time": "2022-01-05T13:55:37+00:00"
         },
         {
             "name": "asm89/stack-cors",
@@ -13593,5 +13657,5 @@
         "php": "^7.4|^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.2.0"
 }
