@@ -1,4 +1,4 @@
-<section class="flex justify-between w-screen gap-5 text-gray-200 navbar">
+<section class="flex justify-between w-screen gap-5 text-gray-200 font-dos navbar">
     <div class="navbar-title">純靠北工程師</div>
     <div class="flex gap-1 navbar-elements align-items-center">
         <x-navbar.item active>首頁</x-navbar.item>
