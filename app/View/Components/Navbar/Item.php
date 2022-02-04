@@ -14,13 +14,21 @@ class Item extends Component
     public $active;
 
     /**
+     * The link of this item.
+     *
+     * @var string
+     */
+    public $href;
+
+    /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct(bool $active = false)
+    public function __construct(bool $active = false, string $href = '#')
     {
         $this->active = $active;
+        $this->href = $href;
     }
 
     /**
