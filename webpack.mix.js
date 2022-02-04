@@ -21,6 +21,7 @@ mix.setPublicPath("public")
     .postCss("resources/css/tailwind.css", "public/css", [
         require("tailwindcss")
     ])
+    .css("resources/css/font.css", "public/css")
     .extract([
         "alpinejs",
         "jquery",

@@ -94,7 +94,8 @@ return [
 
     'assets' => [
         'css' => [
-            '/css/tailwind.css'
+            '/css/tailwind.css',
+            '/css/font.css'
         ],
         'js' => [],
     ],
