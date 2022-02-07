@@ -2,7 +2,7 @@
 
 use App\Domains\Announcement\Http\Controllers\Backend\AnnouncementController;
 use App\Domains\Announcement\Http\Controllers\Backend\DeactivatedAnnouncementController;
-use App\Domains\Announcement\Http\Controllers\Backend\DeletedAnnouncementController;
+// use App\Domains\Announcement\Http\Controllers\Backend\DeletedAnnouncementController;
 use App\Domains\Announcement\Models\Announcement;
 use Tabuna\Breadcrumbs\Trail;
 
@@ -19,12 +19,12 @@ Route::group([
     Route::group([
         'middleware' => 'role:' . config('boilerplate.access.role.announcement_admin'),
     ], function () {
-        Route::get('deleted', [DeletedAnnouncementController::class, 'index'])
-            ->name('deleted')
-            ->breadcrumbs(function (Trail $trail) {
-                $trail->parent('admin.announcement.index')
-                    ->push(__('Deleted Announcements'), route('admin.announcement.deleted'));
-            });
+        // Route::get('deleted', [DeletedAnnouncementController::class, 'index'])
+        //     ->name('deleted')
+        //     ->breadcrumbs(function (Trail $trail) {
+        //         $trail->parent('admin.announcement.index')
+        //             ->push(__('Deleted Announcements'), route('admin.announcement.deleted'));
+        //     });
 
         Route::get('create', [AnnouncementController::class, 'create'])
             ->name('create')

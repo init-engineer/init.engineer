@@ -78,9 +78,9 @@ Route::group([
                                 ->push(__('Edit'), route('frontend.companie.jobs.edit', $companie, $job));
                         });
 
-                    Route::patch('mark/{status}', [DeactivatedJobController::class, 'update'])
-                        ->name('mark')
-                        ->where(['status' => '[0,1]']);
+                    // Route::patch('mark/{status}', [DeactivatedJobController::class, 'update'])
+                    //     ->name('mark')
+                    //     ->where(['status' => '[0,1]']);
 
                     Route::delete('/', [JobsController::class, 'destroy'])->name('destroy');
                 });
