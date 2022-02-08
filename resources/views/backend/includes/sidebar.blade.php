@@ -185,7 +185,7 @@
                         </li>
                     @endif
 
-                    @if (
+                    {{-- @if (
                         $logged_in_user->hasAllAccess() ||
                         (
                             $logged_in_user->can('admin.social.comments') ||
@@ -201,9 +201,9 @@
                                 :text="__('Comments Management')"
                                 :active="activeClass(Route::is('admin.social.comments.*'), 'c-active')" />
                         </li>
-                    @endif
+                    @endif --}}
 
-                    @if (
+                    {{-- @if (
                         $logged_in_user->hasAllAccess() ||
                         (
                             $logged_in_user->can('admin.social.reviews') ||
@@ -219,7 +219,7 @@
                                 :text="__('Reviews Management')"
                                 :active="activeClass(Route::is('admin.social.reviews.*'), 'c-active')" />
                         </li>
-                    @endif
+                    @endif --}}
                 </ul>
             </li>
         @endif
