@@ -28,11 +28,11 @@ class SocialAdsTableSeeder extends Seeder
                 'model_type' => User::class,
                 'model_id' => 1,
                 'name' => '橫幅廣告測試，已付款、已啟用',
-                'picture' => json_encode(array(
+                'picture' => array(
                     'local' => 'img/default/banner-ads.png',
                     'storage' => null,
                     'imgur' => null,
-                )),
+                ),
                 'probability' => 1000,
                 'payment' => true,
                 'active' => true,
@@ -44,11 +44,11 @@ class SocialAdsTableSeeder extends Seeder
                 'model_type' => User::class,
                 'model_id' => 1,
                 'name' => '橫幅廣告測試，未付款、已啟用',
-                'picture' => json_encode(array(
+                'picture' => array(
                     'local' => 'img/default/banner-ads.png',
                     'storage' => null,
                     'imgur' => null,
-                )),
+                ),
                 'probability' => 1000,
                 'payment' => false,
                 'active' => true,
@@ -60,11 +60,11 @@ class SocialAdsTableSeeder extends Seeder
                 'model_type' => User::class,
                 'model_id' => 1,
                 'name' => '橫幅廣告測試，未付款、未啟用',
-                'picture' => json_encode(array(
+                'picture' => array(
                     'local' => 'img/default/banner-ads.png',
                     'storage' => null,
                     'imgur' => null,
-                )),
+                ),
                 'probability' => 1000,
                 'payment' => false,
                 'active' => false,

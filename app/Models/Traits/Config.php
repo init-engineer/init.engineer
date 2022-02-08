@@ -48,7 +48,7 @@ trait Config
     {
         static::creating(function ($model) {
             if (!$model->{$model->getConfigName()}) {
-                $model->{$model->getConfigName()} = '{}';
+                $model->{$model->getConfigName()} = array();
             }
         });
     }
