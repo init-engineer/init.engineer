@@ -26,8 +26,7 @@
 
     <x-navbar.navbar />
 
-    <div class="flex justify-center" id="app"
-        style="background: url('/images/home-background.png'); background-size: contain;">
+    <div class="flex justify-center" id="app">
         <main class="max-w-screen-lg">
             @yield('content')
         </main>
