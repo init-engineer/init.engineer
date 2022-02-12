@@ -1,0 +1,1 @@
+<x-home.slogan />

@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ htmlLang() }}" @langrtl dir="rtl" @endlangrtl class="theme-dark">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,32 +13,33 @@
     @stack('before-styles')
     @livewireStyles()
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    <link href="{{ mix('css/frontend.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/font.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/tailwind.css') }}" rel="stylesheet">
     @stack('after-styles')
 </head>
-<body>
-    @include('frontend.includes.github')
-    @include('includes.partials.read-only')
+
+<body class="bg-neutral-900">
+    {{-- @include('frontend.includes.github') --}}
+    {{-- @include('includes.partials.read-only')
     @include('includes.partials.logged-in-as')
-    @include('includes.partials.announcements')
+    @include('includes.partials.announcements') --}}
 
-    <div id="app">
-        @include('frontend.includes.nav')
-        @include('includes.partials.messages')
+    <x-navbar.navbar />
 
-        <main>
+    <div class="flex justify-center" id="app"
+        style="background: url('/images/home-background.png'); background-size: contain;">
+        <main class="max-w-screen-lg">
             @yield('content')
         </main>
-
-        @include('frontend.includes.footer')
-    </div><!--app-->
+    </div>
+    <!--app-->
 
     @stack('before-scripts')
     @livewireScripts()
-    <script src="{{ mix('js/manifest.js') }}"></script>
-    <script src="{{ mix('js/vendor.js') }}"></script>
-    <script src="{{ mix('js/frontend.js') }}"></script>
+    {{-- <script src="{{ mix('js/manifest.js') }}"></script> --}}
+    {{-- <script src="{{ mix('js/vendor.js') }}"></script> --}}
+    {{-- <script src="{{ mix('js/frontend.js') }}"></script> --}}
     @stack('after-scripts')
 </body>
+
 </html>
