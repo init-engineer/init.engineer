@@ -98,9 +98,76 @@ class FacebookCommentsJob implements ShouldQueue
             Cache::put($key, $accessToken, $expiresAt);
         }
 
+        $comments = $this->getComments(
+            $this->platform->config['graph_version'],
+            $this->platform->config['user_id'],
+            $this->cards->platform_string_id,
+            $accessToken,
+        );
+
+
+
         // $url = sprintf(
         //     '/%s?fields=comments{id,message,created_time,comments{id,message,from,created_time}}',
         //     $mediaCards->social_card_id
         // );
+    }
+
+    /**
+     * @param string $graphVersion
+     * @param string $userId
+     * @param string $postId
+     * @param string $accessToken
+     * @param string $after = null
+     * @param array $beforeComments = array()
+     *
+     * @return array
+     */
+    private function getComments(string $graphVersion, string $userId, string $postId, string $accessToken, string $after = null, array $beforeComments = array()): array
+    {
+        /**
+         * 整理 $url 呼叫的 API URL
+         */
+        $url = sprintf(
+            'https://graph.facebook.com/%s/%s_%s/comments?access_token=%s&limit=25&fields=%s',
+            $graphVersion,
+            $userId,
+            $postId,
+            $accessToken,
+            'created_time,message,id,from{id,name},comments{created_time,message,id,from{id,name}}',
+        );
+
+        if ($after !== null) {
+            $url = sprintf(
+                '%s&after=%s',
+                $url,
+                $after,
+            );
+        }
+
+        /**
+         * 獲得 Comments 資訊
+         */
+        $response = Http::get($url);
+        $responseBody = $response->json();
+
+        /**
+         * 整理 Comments 並判斷是否繼續遞迴去獲取接續的 Comments
+         */
+        $afterComments = $responseBody['data'];
+        $afterComments = array_merge($afterComments, $beforeComments);
+
+        if (isset($responseBody['paging']['next'])) {
+            return $this->getComments(
+                $graphVersion,
+                $userId,
+                $postId,
+                $accessToken,
+                $responseBody['paging']['cursors']['after'],
+                $afterComments,
+            );
+        }
+
+        return $afterComments;
     }
 }
