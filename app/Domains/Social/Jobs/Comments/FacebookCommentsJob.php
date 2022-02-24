@@ -140,6 +140,7 @@ class FacebookCommentsJob implements ShouldQueue
                     'platform_card_id' => $this->platformCards->id,
                     'comment_id' => $comment['id'],
                     'content' => $comment['message'] ?? null,
+                    'created_time' => $comment['created_time'],
                 ));
             }
 
@@ -170,6 +171,7 @@ class FacebookCommentsJob implements ShouldQueue
                             'comment_id' => $reply['id'],
                             'content' => $reply['message'] ?? null,
                             'reply' => $comment['id'],
+                            'created_time' => $reply['created_time'],
                         ));
                     }
                 }
