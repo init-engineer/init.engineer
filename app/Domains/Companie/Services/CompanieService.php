@@ -80,7 +80,6 @@ class CompanieService extends BaseService
         } catch (Exception $e) {
             DB::rollBack();
 
-            dd($e->getMessage());
             throw new GeneralException(__('There was a problem creating this companie. Please try again.'));
         }
 

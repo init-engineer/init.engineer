@@ -70,7 +70,6 @@ class CommentsService extends BaseService
                 'reply' => $data['reply'] ?? null,
             ]);
         } catch (Exception $e) {
-            dd($e);
             DB::rollBack();
 
             throw new GeneralException(__('There was a problem creating this comment. Please try again.'));
@@ -146,9 +145,9 @@ class CommentsService extends BaseService
             'platform_id' => $data['platform_id'] ?? null,
             'platform_card_id' => $data['platform_card_id'] ?? null,
             'comment_id' => $data['comment_id'] ?? null,
-            'user_name' => $data['user_name'] ?? '匿名',
+            'user_name' => $data['user_name'] ?? null,
             'user_id' => $data['user_id'] ?? null,
-            'user_avatar' => $data['user_avatar'] ?? null,
+            'user_avatar' => $data['user_avatar'] ?? '/img/frontend/user/nopic_192.gif',
             'content' => $data['content'] ?? null,
             'reply' => $data['reply'] ?? null,
         ]);
