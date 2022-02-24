@@ -24,6 +24,24 @@ class CommentsService extends BaseService
     }
 
     /**
+     * @param string $id
+     *
+     * @return
+     */
+    public function findCommentById(string $id): Comments
+    {
+        $comment = $this->model
+            ->where('comment_id', $id)
+            ->first();
+
+        if ($comment instanceof $this->model) {
+            return $comment;
+        }
+
+        return false;
+    }
+
+    /**
      * @param array $data
      *
      * @return mixed
