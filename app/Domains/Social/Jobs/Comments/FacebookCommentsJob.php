@@ -4,9 +4,10 @@ namespace App\Domains\Social\Jobs\Comments;
 
 use App\Domains\Social\Models\Platform;
 use App\Domains\Social\Models\PlatformCards;
+use App\Domains\Social\Services\CommentsService;
 use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
+use Illuminate\Container\Container;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -25,27 +26,27 @@ class FacebookCommentsJob implements ShouldQueue
         SerializesModels;
 
     /**
-     * @var PlatformCards
-     */
-    protected $cards;
-
-    /**
      * @var Platform
      */
     protected $platform;
 
     /**
+     * @var PlatformCards
+     */
+    protected $platformCards;
+
+    /**
      * Create a new job instance.
      *
-     * @param PlatformCards $cards
      * @param Platform $platform
+     * @param PlatformCards $platformCards
      *
      * @return void
      */
-    public function __construct(PlatformCards $cards, Platform $platform)
+    public function __construct(Platform $platform, PlatformCards $platformCards)
     {
-        $this->cards = $cards;
         $this->platform = $platform;
+        $this->platformCards = $platformCards;
     }
 
     /**
@@ -64,7 +65,7 @@ class FacebookCommentsJob implements ShouldQueue
              * Config 有問題，無法處理
              */
             activity('social cards - comments error')
-                ->performedOn($this->cards)
+                ->performedOn($this->platformCards)
                 ->log(json_encode($this->platform));
 
             return;
@@ -98,19 +99,82 @@ class FacebookCommentsJob implements ShouldQueue
             Cache::put($key, $accessToken, $expiresAt);
         }
 
+        /**
+         * 換得整個 Comments 的資訊列
+         */
         $comments = $this->getComments(
             $this->platform->config['graph_version'],
             $this->platform->config['user_id'],
-            $this->cards->platform_string_id,
+            $this->platformCards->platform_string_id,
             $accessToken,
         );
 
+        /**
+         * 建構 CommentsService 物件
+         */
+        $container = Container::getInstance();
+        $commentService = $container->make(CommentsService::class);
 
+        /**
+         * 根據 Comments 的資訊列來逐一檢查是否新增或更新的資料
+         */
+        foreach ($comments as $comment) {
+            /**
+             * 判斷 Comment 是否已經存在
+             */
+            if ($commentModel = $commentService->findCommentById($comment['id'])) {
+                /**
+                 * Comment 已經存在，檢查 message 是否有更新過，如果有更新過，就同步更新資料庫內的資料。
+                 */
+                if ($commentModel->content != $comment['message']) {
+                    $commentModel->content = $comment['message'];
+                    $commentModel->save();
+                }
+            } else {
+                /**
+                 * Comment 並不存在，直接寫入一筆新的資料。
+                 */
+                $commentService->store(array(
+                    'card_id' => $this->platformCards->card_id,
+                    'platform_id' => $this->platform->id,
+                    'platform_card_id' => $this->platformCards->id,
+                    'comment_id' => $comment['id'],
+                    'content' => $comment['message'] ?? null,
+                ));
+            }
 
-        // $url = sprintf(
-        //     '/%s?fields=comments{id,message,created_time,comments{id,message,from,created_time}}',
-        //     $mediaCards->social_card_id
-        // );
+            /**
+             * 判斷 Comment 是否有被 Reply
+             */
+            if (isset($comment['comments'])) {
+                foreach ($comment['comments']['data'] as $reply) {
+                    /**
+                     * 判斷 Reply 是否已經存在
+                     */
+                    if ($replyModel = $commentService->findCommentById($reply['id'])) {
+                        /**
+                         * Reply 已經存在，檢查 message 是否有更新過，如果有更新過，就同步更新資料庫內的資料。
+                         */
+                        if ($replyModel->content != $reply['message']) {
+                            $replyModel->content = $reply['message'];
+                            $replyModel->save();
+                        }
+                    } else {
+                        /**
+                         * Reply 並不存在，直接寫入一筆新的資料。
+                         */
+                        $commentService->store(array(
+                            'card_id' => $this->platformCards->card_id,
+                            'platform_id' => $this->platform->id,
+                            'platform_card_id' => $this->platformCards->id,
+                            'comment_id' => $reply['id'],
+                            'content' => $reply['message'] ?? null,
+                            'reply' => $comment['id'],
+                        ));
+                    }
+                }
+            }
+        }
     }
 
     /**
