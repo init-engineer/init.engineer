@@ -8,7 +8,6 @@ use App\Domains\Social\Services\Content\ContentFluent;
 use App\Domains\Social\Services\PlatformCardService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Container\Container;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
