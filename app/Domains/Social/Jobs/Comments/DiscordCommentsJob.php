@@ -22,27 +22,27 @@ class DiscordCommentsJob implements ShouldQueue
         SerializesModels;
 
     /**
-     * @var PlatformCards
-     */
-    protected $cards;
-
-    /**
      * @var Platform
      */
     protected $platform;
 
     /**
+     * @var PlatformCards
+     */
+    protected $platformCards;
+
+    /**
      * Create a new job instance.
      *
-     * @param PlatformCards $cards
      * @param Platform $platform
+     * @param PlatformCards $platformCards
      *
      * @return void
      */
-    public function __construct(PlatformCards $cards, Platform $platform)
+    public function __construct(Platform $platform, PlatformCards $platformCards)
     {
-        $this->cards = $cards;
         $this->platform = $platform;
+        $this->platformCards = $platformCards;
     }
 
     /**
