@@ -50,14 +50,11 @@ class UpdatePlatformRequest extends FormRequest
                 Platform::TYPE_FACEBOOK,
                 Platform::TYPE_TUMBLR,
             ))],
-            'consumer_app_id' => ['required_if:' . implode(',', array(
-                'type',
-                Platform::TYPE_PLURK,
-            ))],
             'consumer_app_key' => ['required_if:' . implode(',', array(
                 'type',
                 Platform::TYPE_TWITTER,
                 Platform::TYPE_TUMBLR,
+                Platform::TYPE_PLURK,
             ))],
             'consumer_app_secret' => ['required_if:' . implode(',', array(
                 'type',

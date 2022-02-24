@@ -210,7 +210,7 @@ class PlatformService extends BaseService
             case Platform::TYPE_PLURK:
                 $config = [
                     'pages_name' => $data['pages_name'],
-                    'consumer_app_id' => $data['consumer_app_id'],
+                    'consumer_app_key' => $data['consumer_app_key'],
                     'consumer_app_secret' => $data['consumer_app_secret'],
                     'access_token' => $data['access_token'],
                     'access_token_secret' => $data['access_token_secret'],

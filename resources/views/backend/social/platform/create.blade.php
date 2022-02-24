@@ -83,11 +83,9 @@
                                            type === '{{ $model::TYPE_TUMBLR }}'"
                                 type="text" name="user_id" id="user_id" class="form-control mb-2" placeholder="{{ __('User ID or Blog Name.') }}" />
 
-                            <input x-show="type === '{{ $model::TYPE_PLURK }}'"
-                                type="text" name="consumer_app_id" id="consumer_app_id" class="form-control mb-2" placeholder="{{ __('Consumer ID for authentication.') }}" />
-
                             <input x-show="type === '{{ $model::TYPE_TWITTER }}' ||
-                                           type === '{{ $model::TYPE_TUMBLR }}'"
+                                           type === '{{ $model::TYPE_TUMBLR }}' ||
+                                           type === '{{ $model::TYPE_PLURK }}'"
                                 type="text" name="consumer_app_key" id="consumer_app_key" class="form-control mb-2" placeholder="{{ __('Consumer Key for authentication.') }}" />
 
                             <input x-show="type === '{{ $model::TYPE_TWITTER }}' ||
