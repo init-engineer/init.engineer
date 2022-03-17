@@ -32,5 +32,49 @@ files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(
  */
 
 const app = new Vue({
-  el: '#app',
+    el: '#app',
+});
+
+/**
+ * Typed.js at:
+ * https://github.com/mattboldt/typed.js/
+ */
+import Typed from 'typed.js';
+window.Typed = Typed;
+
+new Typed('#typed', {
+    /**
+     * @property {array} strings strings to be typed
+     * @property {string} stringsElement ID of element containing string children
+     */
+    strings: [
+        'init-engineer-cli -help',
+        'init-engineer-cli create post',
+        'init-engineer-cli login',
+        'init-engineer-cli register',
+        'init-engineer-cli ban -u byStarTW',
+    ],
+    stringsElement: null,
+
+    /**
+     * @property {number} typeSpeed type speed in milliseconds
+     */
+    typeSpeed: 60,
+
+    /**
+     * @property {number} backSpeed backspacing speed in milliseconds
+     */
+    backSpeed: 40,
+
+    /**
+     * @property {boolean} smartBackspace only backspace what doesn't match the previous string
+     */
+    smartBackspace: true,
+
+    /**
+     * @property {boolean} loop loop strings
+     * @property {number} loopCount amount of loops
+     */
+    loop: true,
+    loopCount: Infinity,
 });

@@ -8,22 +8,24 @@
 </div>
 
 <style>
-.github-corner{
-    position: absolute;
-    left: 0;
-    top: 100px;
-    width: 120px;
-    height: 120px;
-    overflow: hidden;
-    z-index: 1;
-}
-.github-corner a{
-    position: absolute;
-    right: 0;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    transform: translate(-50%, -50%) rotate(-45deg);
-    color: var(--font-primary-color);
-}
+    .github-corner {
+        position: absolute;
+        left: 0;
+        top: 100px;
+        width: 120px;
+        height: 120px;
+        overflow: hidden;
+        z-index: 1;
+    }
+
+    .github-corner a {
+        position: absolute;
+        right: 0;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        transform: translate(-50%, -50%) rotate(-45deg);
+        color: var(--font-primary-color);
+    }
+
 </style>
