@@ -16,6 +16,8 @@ use Illuminate\Console\Command;
 
 /**
  * Class ReviewsPublish.
+ *
+ * @extends Command
  */
 class ReviewsPublish extends Command
 {

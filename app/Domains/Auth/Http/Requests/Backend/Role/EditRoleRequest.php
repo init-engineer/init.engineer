@@ -7,6 +7,8 @@ use Illuminate\Foundation\Http\FormRequest;
 
 /**
  * Class EditRoleRequest.
+ *
+ * @extends FormRequest
  */
 class EditRoleRequest extends FormRequest
 {
@@ -15,9 +17,9 @@ class EditRoleRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
-        return ! $this->role->isAdmin();
+        return !$this->role->isAdmin();
     }
 
     /**
@@ -25,7 +27,7 @@ class EditRoleRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             //
@@ -39,7 +41,7 @@ class EditRoleRequest extends FormRequest
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    protected function failedAuthorization()
+    protected function failedAuthorization(): void
     {
         throw new AuthorizationException(__('You can not edit the Administrator role.'));
     }

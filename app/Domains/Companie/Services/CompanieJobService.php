@@ -250,16 +250,16 @@ class CompanieJobService extends BaseService
      */
     protected function createPay(array $data = []): array
     {
-        return array(
+        return [
             // 支薪方式
             'type' => $data['type'],
             // 薪資範圍
-            'amount' => array(
+            'amount' => [
                 // 薪水最低
                 'min' => $data['amount']['min'],
                 // 薪水最高
                 'max' => $data['amount']['max'],
-            ),
-        );
+            ],
+        ];
     }
 }

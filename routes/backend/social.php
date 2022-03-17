@@ -71,18 +71,18 @@ Route::group([
         });
 
         Route::group([
-            'middleware' => 'permission:' . implode('|', array(
+            'middleware' => 'permission:' . implode('|', [
                 'admin.social.ads.list',
                 'admin.social.ads.deactivate',
                 'admin.social.ads.reactivate',
                 'admin.social.ads.impersonate',
-            )),
+            ]),
         ], function () {
             Route::get('deactivated', [DeactivatedAdsController::class, 'index'])
                 ->name('deactivated')
-                ->middleware('permission:' . implode('|', array(
+                ->middleware('permission:' . implode('|', [
                     'admin.social.ads.reactivate',
-                )))
+                ]))
                 ->breadcrumbs(function (Trail $trail) {
                     $trail->parent('admin.social.ads.index')
                         ->push(__('Deactivated Ads'), route('admin.social.ads.deactivated'));
@@ -90,11 +90,11 @@ Route::group([
 
             Route::get('/', [AdsController::class, 'index'])
                 ->name('index')
-                ->middleware('permission:' . implode('|', array(
+                ->middleware('permission:' . implode('|', [
                     'admin.social.ads.list',
                     'admin.social.ads.deactivate',
                     'admin.social.ads.impersonate',
-                )))
+                ]))
                 ->breadcrumbs(function (Trail $trail) {
                     $trail->parent('admin.dashboard')
                         ->push(__('Ads Management'), route('admin.social.ads.index'));
@@ -103,9 +103,9 @@ Route::group([
             Route::group(['prefix' => '{ads}'], function () {
                 Route::get('/', [AdsController::class, 'show'])
                     ->name('show')
-                    ->middleware('permission:' . implode('|', array(
+                    ->middleware('permission:' . implode('|', [
                         'admin.social.ads.list',
-                    )))
+                    ]))
                     ->breadcrumbs(function (Trail $trail, Ads $ads) {
                         $trail->parent('admin.social.ads.index')
                             ->push($ads->name, route('admin.social.ads.show', $ads));
@@ -114,10 +114,10 @@ Route::group([
                 Route::patch('mark/{status}', [DeactivatedAdsController::class, 'update'])
                     ->name('mark')
                     ->where(['status' => '[0,1]'])
-                    ->middleware('permission:' . implode('|', array(
+                    ->middleware('permission:' . implode('|', [
                         'admin.social.ads.deactivate',
                         'admin.social.ads.reactivate',
-                    )));
+                    ]));
             });
         });
     });
@@ -171,18 +171,18 @@ Route::group([
         });
 
         Route::group([
-            'middleware' => 'permission:' . implode('|', array(
+            'middleware' => 'permission:' . implode('|', [
                 'admin.social.cards.list',
                 'admin.social.cards.deactivate',
                 'admin.social.cards.reactivate',
                 'admin.social.cards.impersonate',
-            )),
+            ]),
         ], function () {
             Route::get('deactivated', [DeactivatedCardsController::class, 'index'])
                 ->name('deactivated')
-                ->middleware('permission:' . implode('|', array(
+                ->middleware('permission:' . implode('|', [
                     'admin.social.cards.reactivate',
-                )))
+                ]))
                 ->breadcrumbs(function (Trail $trail) {
                     $trail->parent('admin.social.cards.index')
                         ->push(__('Deactivated Cards'), route('admin.social.cards.deactivated'));
@@ -190,11 +190,11 @@ Route::group([
 
             Route::get('/', [CardsController::class, 'index'])
                 ->name('index')
-                ->middleware('permission:' . implode('|', array(
+                ->middleware('permission:' . implode('|', [
                     'admin.social.cards.list',
                     'admin.social.cards.deactivate',
                     'admin.social.cards.impersonate',
-                )))
+                ]))
                 ->breadcrumbs(function (Trail $trail) {
                     $trail->parent('admin.dashboard')
                         ->push(__('Cards Management'), route('admin.social.cards.index'));
@@ -203,9 +203,9 @@ Route::group([
             Route::group(['prefix' => '{cards}'], function () {
                 Route::get('/', [CardsController::class, 'show'])
                     ->name('show')
-                    ->middleware('permission:' . implode('|', array(
+                    ->middleware('permission:' . implode('|', [
                         'admin.social.cards.list',
-                    )))
+                    ]))
                     ->breadcrumbs(function (Trail $trail, Cards $cards) {
                         $trail->parent('admin.social.cards.index')
                             ->push(Str::limit($cards->content, 24, '...'), route('admin.social.cards.show', $cards));
@@ -214,10 +214,10 @@ Route::group([
                 Route::patch('mark/{status}', [DeactivatedCardsController::class, 'update'])
                     ->name('mark')
                     ->where(['status' => '[0,1]'])
-                    ->middleware('permission:' . implode('|', array(
+                    ->middleware('permission:' . implode('|', [
                         'admin.social.cards.deactivate',
                         'admin.social.cards.reactivate',
-                    )));
+                    ]));
             });
         });
     });
@@ -269,18 +269,18 @@ Route::group([
     //     });
 
     //     Route::group([
-    //         'middleware' => 'permission:' . implode('|', array(
+    //         'middleware' => 'permission:' . implode('|', [
     //             'admin.social.comments.list',
     //             'admin.social.comments.deactivate',
     //             'admin.social.comments.reactivate',
     //             'admin.social.comments.impersonate',
-    //         )),
+    //         ]),
     //     ], function () {
     //         Route::get('deactivated', [DeactivatedCommentsController::class, 'index'])
     //             ->name('deactivated')
-    //             ->middleware('permission:' . implode('|', array(
+    //             ->middleware('permission:' . implode('|', [
     //                 'admin.social.comments.reactivate',
-    //             )))
+    //             ]))
     //             ->breadcrumbs(function (Trail $trail) {
     //                 $trail->parent('admin.social.comments.index')
     //                     ->push(__('Deactivated Comments'), route('admin.social.comments.deactivated'));
@@ -288,7 +288,7 @@ Route::group([
 
     //         Route::get('/', [CommentsController::class, 'index'])
     //             ->name('index')
-    //             ->middleware('permission:' . implode('|', array(
+    //             ->middleware('permission:' . implode('|', [
     //                 'admin.social.comments.list',
     //                 'admin.social.comments.deactivate',
     //                 'admin.social.comments.impersonate',
@@ -301,9 +301,9 @@ Route::group([
     //         Route::group(['prefix' => '{comments}'], function () {
     //             Route::get('/', [CommentsController::class, 'show'])
     //                 ->name('show')
-    //                 ->middleware('permission:' . implode('|', array(
+    //                 ->middleware('permission:' . implode('|', [
     //                     'admin.social.comments.list',
-    //                 )))
+    //                 ]))
     //                 ->breadcrumbs(function (Trail $trail, Comments $comments) {
     //                     $trail->parent('admin.social.comments.index')
     //                         ->push($comments->comment_id, route('admin.social.comments.show', $comments));
@@ -312,10 +312,10 @@ Route::group([
     //             Route::patch('mark/{status}', [DeactivatedCommentsController::class, 'update'])
     //                 ->name('mark')
     //                 ->where(['status' => '[0,1]'])
-    //                 ->middleware('permission:' . implode('|', array(
+    //                 ->middleware('permission:' . implode('|', [
     //                     'admin.social.comments.deactivate',
     //                     'admin.social.comments.reactivate',
-    //                 )));
+    //                 ]));
     //         });
     //     });
     // });
@@ -367,18 +367,18 @@ Route::group([
         });
 
         Route::group([
-            'middleware' => 'permission:' . implode('|', array(
+            'middleware' => 'permission:' . implode('|', [
                 'admin.social.platform.list',
                 'admin.social.platform.deactivate',
                 'admin.social.platform.reactivate',
                 'admin.social.platform.impersonate',
-            )),
+            ]),
         ], function () {
             Route::get('deactivated', [DeactivatedPlatformController::class, 'index'])
                 ->name('deactivated')
-                ->middleware('permission:' . implode('|', array(
+                ->middleware('permission:' . implode('|', [
                     'admin.social.platform.reactivate',
-                )))
+                ]))
                 ->breadcrumbs(function (Trail $trail) {
                     $trail->parent('admin.social.platform.index')
                         ->push(__('Deactivated Platform'), route('admin.social.platform.deactivated'));
@@ -386,11 +386,11 @@ Route::group([
 
             Route::get('/', [PlatformController::class, 'index'])
                 ->name('index')
-                ->middleware('permission:' . implode('|', array(
+                ->middleware('permission:' . implode('|', [
                     'admin.social.platform.list',
                     'admin.social.platform.deactivate',
                     'admin.social.platform.impersonate',
-                )))
+                ]))
                 ->breadcrumbs(function (Trail $trail) {
                     $trail->parent('admin.dashboard')
                         ->push(__('Platform Management'), route('admin.social.platform.index'));
@@ -399,9 +399,9 @@ Route::group([
             Route::group(['prefix' => '{platform}'], function () {
                 Route::get('/', [PlatformController::class, 'show'])
                     ->name('show')
-                    ->middleware('permission:' . implode('|', array(
+                    ->middleware('permission:' . implode('|', [
                         'admin.social.platform.list',
-                    )))
+                    ]))
                     ->breadcrumbs(function (Trail $trail, Platform $platform) {
                         $trail->parent('admin.social.platform.index')
                             ->push($platform->name, route('admin.social.platform.show', $platform));
@@ -410,10 +410,10 @@ Route::group([
                 Route::patch('mark/{status}', [DeactivatedPlatformController::class, 'update'])
                     ->name('mark')
                     ->where(['status' => '[0,1]'])
-                    ->middleware('permission:' . implode('|', array(
+                    ->middleware('permission:' . implode('|', [
                         'admin.social.platform.deactivate',
                         'admin.social.platform.reactivate',
-                    )));
+                    ]));
             });
         });
     });
@@ -465,18 +465,18 @@ Route::group([
     //     });
 
     //     Route::group([
-    //         'middleware' => 'permission:' . implode('|', array(
+    //         'middleware' => 'permission:' . implode('|', [
     //             'admin.social.reviews.list',
     //             'admin.social.reviews.deactivate',
     //             'admin.social.reviews.reactivate',
     //             'admin.social.reviews.impersonate',
-    //         )),
+    //         ]),
     //     ], function () {
     //         Route::get('deactivated', [DeactivatedReviewsController::class, 'index'])
     //             ->name('deactivated')
-    //             ->middleware('permission:' . implode('|', array(
+    //             ->middleware('permission:' . implode('|', [
     //                 'admin.social.reviews.reactivate',
-    //             )))
+    //             ]))
     //             ->breadcrumbs(function (Trail $trail) {
     //                 $trail->parent('admin.social.reviews.index')
     //                     ->push(__('Deactivated Reviews'), route('admin.social.reviews.deactivated'));
@@ -484,11 +484,11 @@ Route::group([
 
     //         Route::get('/', [ReviewsController::class, 'index'])
     //             ->name('index')
-    //             ->middleware('permission:' . implode('|', array(
+    //             ->middleware('permission:' . implode('|', [
     //                 'admin.social.reviews.list',
     //                 'admin.social.reviews.deactivate',
     //                 'admin.social.reviews.impersonate',
-    //             )))
+    //             ]))
     //             ->breadcrumbs(function (Trail $trail) {
     //                 $trail->parent('admin.dashboard')
     //                     ->push(__('Reviews Management'), route('admin.social.reviews.index'));
@@ -497,9 +497,9 @@ Route::group([
     //         Route::group(['prefix' => '{reviews}'], function () {
     //             Route::get('/', [ReviewsController::class, 'show'])
     //                 ->name('show')
-    //                 ->middleware('permission:' . implode('|', array(
+    //                 ->middleware('permission:' . implode('|', [
     //                     'admin.social.reviews.list',
-    //                 )))
+    //                 ]))
     //                 ->breadcrumbs(function (Trail $trail, Reviews $reviews) {
     //                     $trail->parent('admin.social.reviews.index')
     //                         ->push($reviews->id, route('admin.social.reviews.show', $reviews));
@@ -508,10 +508,10 @@ Route::group([
     //             Route::patch('mark/{status}', [DeactivatedReviewsController::class, 'update'])
     //                 ->name('mark')
     //                 ->where(['status' => '[0,1]'])
-    //                 ->middleware('permission:' . implode('|', array(
+    //                 ->middleware('permission:' . implode('|', [
     //                     'admin.social.reviews.deactivate',
     //                     'admin.social.reviews.reactivate',
-    //                 )));
+    //                 ]));
     //         });
     //     });
     // });

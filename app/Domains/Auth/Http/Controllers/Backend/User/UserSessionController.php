@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 
 /**
  * Class UserSessionController.
+ *
+ * @extends Controller
  */
 class UserSessionController extends Controller
 {
@@ -21,6 +23,8 @@ class UserSessionController extends Controller
     {
         $user->update(['to_be_logged_out' => true]);
 
-        return redirect()->back()->withFlashSuccess(__('The user\'s session was successfully cleared.'));
+        return redirect()
+            ->back()
+            ->withFlashSuccess(__('The user\'s session was successfully cleared.'));
     }
 }

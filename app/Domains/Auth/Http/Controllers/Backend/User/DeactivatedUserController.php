@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 
 /**
  * Class DeactivatedUserController.
+ *
+ * @extends Controller
  */
 class DeactivatedUserController extends Controller
 {
@@ -20,7 +22,7 @@ class DeactivatedUserController extends Controller
     /**
      * DeactivatedUserController constructor.
      *
-     * @param  UserService  $userService
+     * @param UserService $userService
      */
     public function __construct(UserService $userService)
     {

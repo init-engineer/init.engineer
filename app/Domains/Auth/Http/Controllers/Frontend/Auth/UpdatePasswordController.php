@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 
 /**
  * Class UpdatePasswordController.
+ *
+ * @extends Controller
  */
 class UpdatePasswordController extends Controller
 {
@@ -36,6 +38,8 @@ class UpdatePasswordController extends Controller
     {
         $this->userService->updatePassword($request->user(), $request->validated());
 
-        return redirect()->route('frontend.user.account', ['#password'])->withFlashSuccess(__('Password successfully updated.'));
+        return redirect()
+            ->route('frontend.user.account', ['#password'])
+            ->withFlashSuccess(__('Password successfully updated.'));
     }
 }

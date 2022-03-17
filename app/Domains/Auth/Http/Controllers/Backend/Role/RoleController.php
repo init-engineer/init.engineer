@@ -13,6 +13,8 @@ use App\Http\Controllers\Controller;
 
 /**
  * Class RoleController.
+ *
+ * @extends Controller
  */
 class RoleController extends Controller
 {
@@ -29,8 +31,8 @@ class RoleController extends Controller
     /**
      * RoleController constructor.
      *
-     * @param  RoleService  $roleService
-     * @param  PermissionService  $permissionService
+     * @param RoleService $roleService
+     * @param PermissionService $permissionService
      */
     public function __construct(RoleService $roleService, PermissionService $permissionService)
     {
@@ -57,7 +59,7 @@ class RoleController extends Controller
     }
 
     /**
-     * @param  StoreRoleRequest  $request
+     * @param StoreRoleRequest $request
      *
      * @return mixed
      * @throws \App\Exceptions\GeneralException
@@ -67,12 +69,14 @@ class RoleController extends Controller
     {
         $this->roleService->store($request->validated());
 
-        return redirect()->route('admin.auth.role.index')->withFlashSuccess(__('The role was successfully created.'));
+        return redirect()
+            ->route('admin.auth.role.index')
+            ->withFlashSuccess(__('The role was successfully created.'));
     }
 
     /**
-     * @param  EditRoleRequest  $request
-     * @param  Role  $role
+     * @param EditRoleRequest $request
+     * @param Role $role
      *
      * @return mixed
      */
@@ -86,8 +90,8 @@ class RoleController extends Controller
     }
 
     /**
-     * @param  UpdateRoleRequest  $request
-     * @param  Role  $role
+     * @param UpdateRoleRequest $request
+     * @param Role $role
      *
      * @return mixed
      * @throws \App\Exceptions\GeneralException
@@ -97,12 +101,14 @@ class RoleController extends Controller
     {
         $this->roleService->update($role, $request->validated());
 
-        return redirect()->route('admin.auth.role.index')->withFlashSuccess(__('The role was successfully updated.'));
+        return redirect()
+            ->route('admin.auth.role.index')
+            ->withFlashSuccess(__('The role was successfully updated.'));
     }
 
     /**
-     * @param  DeleteRoleRequest  $request
-     * @param  Role  $role
+     * @param DeleteRoleRequest $request
+     * @param Role $role
      *
      * @return mixed
      * @throws \Exception
@@ -111,6 +117,8 @@ class RoleController extends Controller
     {
         $this->roleService->destroy($role);
 
-        return redirect()->route('admin.auth.role.index')->withFlashSuccess(__('The role was successfully deleted.'));
+        return redirect()
+            ->route('admin.auth.role.index')
+            ->withFlashSuccess(__('The role was successfully deleted.'));
     }
 }

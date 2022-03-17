@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 
 /**
  * Class DisableTwoFactorAuthenticationController.
+ *
+ * @extends Controller
  */
 class DisableTwoFactorAuthenticationController extends Controller
 {
@@ -27,6 +29,8 @@ class DisableTwoFactorAuthenticationController extends Controller
     {
         $request->user()->disableTwoFactorAuth();
 
-        return redirect()->route('frontend.user.account', ['#two-factor-authentication'])->withFlashSuccess(__('Two Factor Authentication Successfully Disabled'));
+        return redirect()
+            ->route('frontend.user.account', ['#two-factor-authentication'])
+            ->withFlashSuccess(__('Two Factor Authentication Successfully Disabled'));
     }
 }

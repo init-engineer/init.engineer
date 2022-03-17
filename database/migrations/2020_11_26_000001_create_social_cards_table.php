@@ -25,12 +25,12 @@ class CreateSocialCardsTable extends Migration
             $table->bigIncrements('id');
             $table->uuid('uuid')->nullable();
             $table->string('name')->comment('社群平台名稱');
-            $table->enum('action', array(
+            $table->enum('action', [
                 Platform::ACTION_INACTION,
                 Platform::ACTION_NOTIFICATION,
                 Platform::ACTION_PUBLISH,
-            ))->default(Platform::ACTION_PUBLISH)->comment('社群平台行為');
-            $table->enum('type', array(
+            ])->default(Platform::ACTION_PUBLISH)->comment('社群平台行為');
+            $table->enum('type', [
                 Platform::TYPE_LOCAL,
                 Platform::TYPE_FACEBOOK,
                 Platform::TYPE_TWITTER,
@@ -38,9 +38,9 @@ class CreateSocialCardsTable extends Migration
                 Platform::TYPE_TUMBLR,
                 Platform::TYPE_DISCORD,
                 Platform::TYPE_TELEGRAM,
-            ))->default(Platform::TYPE_LOCAL)->comment('社群平台分類');
+            ])->default(Platform::TYPE_LOCAL)->comment('社群平台分類');
             $table->unsignedTinyInteger('active')->default(0)->comment('啟用');
-            $table->json('config')->default(json_encode(array()))->comment('設定');
+            $table->json('config')->comment('設定');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -50,19 +50,19 @@ class CreateSocialCardsTable extends Migration
             $table->bigIncrements('id');
             $table->uuid('uuid')->nullable();
             $table->morphs('model');
-            $table->enum('type', array(
+            $table->enum('type', [
                 Ads::TYPE_ALL,
                 Ads::TYPE_BANNER,
                 Ads::TYPE_CONTENT,
-            ))->default(Ads::TYPE_BANNER)->comment('廣告分類');
+            ])->default(Ads::TYPE_BANNER)->comment('廣告分類');
             $table->string('name')->nullable()->comment('廣告名稱');
             $table->longText('content')->nullable()->comment('廣告內容');
-            $table->json('picture')->default(json_encode(array(
+            $table->json('picture')->default([
                 'local' => null,
                 'storage' => null,
                 'imgur' => null,
-            )))->comment('圖片資訊');
-            $table->json('deploy')->default(json_encode(array()))->comment('部署文章');
+            ])->comment('圖片資訊');
+            $table->json('deploy')->default([])->comment('部署文章');
             $table->integer('probability')->default(0)->comment('部署機率');
             $table->unsignedTinyInteger('render')->default(0)->comment('彩色渲染');
             $table->unsignedTinyInteger('payment')->default(0)->comment('付款狀態');
@@ -85,12 +85,12 @@ class CreateSocialCardsTable extends Migration
             $table->uuid('uuid')->nullable();
             $table->morphs('model');
             $table->longText('content')->comment('內文');
-            $table->json('config')->default(json_encode(array()))->comment('文章設定');
-            $table->json('picture')->default(json_encode(array(
+            $table->json('config')->default([])->comment('文章設定');
+            $table->json('picture')->default([
                 'local' => null,
                 'storage' => null,
                 'imgur' => null,
-            )))->comment('圖片資訊');
+            ])->comment('圖片資訊');
             $table->unsignedTinyInteger('active')->default(1)->comment('啟用');
             $table->boolean('blockade')->default(0)->comment('封鎖狀態');
             $table->unsignedBigInteger('blockade_by')->nullable()->comment('被誰封鎖');
@@ -110,7 +110,7 @@ class CreateSocialCardsTable extends Migration
         Schema::create('social_platform_cards', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->uuid('uuid')->nullable();
-            $table->enum('platform_type', array(
+            $table->enum('platform_type', [
                 Platform::TYPE_LOCAL,
                 Platform::TYPE_FACEBOOK,
                 Platform::TYPE_TWITTER,
@@ -118,7 +118,7 @@ class CreateSocialCardsTable extends Migration
                 Platform::TYPE_TUMBLR,
                 Platform::TYPE_DISCORD,
                 Platform::TYPE_TELEGRAM,
-            ))->default(Platform::TYPE_LOCAL)->comment('社群平台分類');
+            ])->default(Platform::TYPE_LOCAL)->comment('社群平台分類');
             $table->unsignedBigInteger('platform_id')->comment('社群平台 ID');
             $table->string('platform_string_id')->nullable()->comment('社群文章 String ID');
             $table->string('platform_url')->nullable()->comment('社群文章 URL');
@@ -153,7 +153,7 @@ class CreateSocialCardsTable extends Migration
             $table->morphs('model');
             $table->unsignedBigInteger('card_id')->comment('文章 ID');
             $table->integer('point')->default(0)->comment('票數權重');
-            $table->json('config')->default(json_encode(array()))->comment('設定');
+            $table->json('config')->default([])->comment('設定');
             $table->timestamps();
             $table->softDeletes();
 

@@ -46,11 +46,11 @@ class CompaniesController extends Controller
         if($request->has('logo')) {
             $path = $request->file('logo')->store('public/companie/logo');
             $path = str_replace('public', 'storage', $path);
-            $data['logo'] = array(
+            $data['logo'] = [
                 'local' => $path,
                 'storage' => null,
                 'imgur' => null,
-            );
+            ];
         }
 
         /**
@@ -59,11 +59,11 @@ class CompaniesController extends Controller
         if($request->has('banner')) {
             $path = $request->file('banner')->store('public/companie/banner');
             $path = str_replace('public', 'storage', $path);
-            $data['banner'] = array(
+            $data['banner'] = [
                 'local' => $path,
                 'storage' => null,
                 'imgur' => null,
-            );
+            ];
         }
 
         /**
@@ -74,11 +74,11 @@ class CompaniesController extends Controller
             foreach ($request->file('pictures') as $picture) {
                 $path = $picture->store('public/companie/pictures');
                 $path = str_replace('public', 'storage', $path);
-                array_push($pictures, array(
+                array_push($pictures, [
                     'local' => $path,
                     'storage' => null,
                     'imgur' => null,
-                ));
+                ]);
             }
             $data['pictures'] = $pictures;
         }

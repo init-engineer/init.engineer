@@ -65,7 +65,7 @@ class CompanieService extends BaseService
                 'name' => $data['name'],
                 'logo' => $data['logo'] ?? null,
                 'banner' => $data['banner'] ?? null,
-                'pictures' => $data['pictures'] ?? array(),
+                'pictures' => $data['pictures'] ?? [],
                 'area' => $data['area'] ?? null,
                 'address' => $data['address'],
                 'scale' => $data['scale'] ?? null,
@@ -74,7 +74,7 @@ class CompanieService extends BaseService
                 'email' => $data['email'],
                 'phone' => $data['phone'] ?? null,
                 'description' => $data['description'] ?? null,
-                'content' => $data['contents'] ?? array(),
+                'content' => $data['contents'] ?? [],
                 'active' => true,
             ]);
         } catch (Exception $e) {
@@ -246,9 +246,9 @@ class CompanieService extends BaseService
             'model_type' => User::class,
             'model_id' => $data['model_id'],
             'name' => $data['name'],
-            'logo' => $this->createLogo($data['logo'] ?? array()),
-            'banner' => $this->createBanner($data['banner'] ?? array()),
-            'pictures' => $this->createPictures($data['pictures'] ?? array()),
+            'logo' => $this->createLogo($data['logo'] ?? []),
+            'banner' => $this->createBanner($data['banner'] ?? []),
+            'pictures' => $this->createPictures($data['pictures'] ?? []),
             'area' => $data['area'],
             'address' => $data['address'],
             'scale' => $data['scale'] ?? null,
@@ -257,7 +257,7 @@ class CompanieService extends BaseService
             'email' => $data['email'],
             'phone' => $data['phone'] ?? null,
             'description' => $data['description'] ?? '我們沒有任何簡介 :)',
-            'content' => $data['content'] ?? array(),
+            'content' => $data['content'] ?? [],
             'active' => $data['active'] ?? true,
             'blockade' => $data['blockade'] ?? false,
         ]);
@@ -270,11 +270,11 @@ class CompanieService extends BaseService
      */
     protected function createLogo(array $data = []): array
     {
-        return array(
+        return [
             'local' => $data['local'] ?? null,
             'storage' => $data['storage'] ?? null,
             'imgur' => $data['imgur'] ?? null,
-        );
+        ];
     }
 
     /**
@@ -284,11 +284,11 @@ class CompanieService extends BaseService
      */
     protected function createBanner(array $data = []): array
     {
-        return array(
+        return [
             'local' => $data['local'] ?? null,
             'storage' => $data['storage'] ?? null,
             'imgur' => $data['imgur'] ?? null,
-        );
+        ];
     }
 
     /**
@@ -298,13 +298,13 @@ class CompanieService extends BaseService
      */
     protected function createPictures(array $data = []): array
     {
-        $result = array();
+        $result = [];
         foreach ($data as $picture) {
-            array_push($result, array(
+            array_push($result, [
                 'local' => $picture['local'] ?? null,
                 'storage' => $picture['storage'] ?? null,
                 'imgur' => $picture['imgur'] ?? null,
-            ));
+            ]);
         }
 
         return $result;

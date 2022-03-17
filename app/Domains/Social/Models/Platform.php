@@ -124,6 +124,15 @@ class Platform extends Model
      */
     protected $casts = [
         'active' => 'boolean',
-        'config' => 'json',
+        'config' => 'array',
+    ];
+
+    /**
+     * The model's default values for attributes.
+     *
+     * @var array
+     */
+    protected $attributes = [
+        'config' => '{}',
     ];
 }

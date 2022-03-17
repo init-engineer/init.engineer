@@ -26,7 +26,8 @@ class ToBeLoggedOut
             session()->flush();
             auth()->logout();
 
-            return redirect()->route('frontend.auth.login');
+            return redirect()
+                ->route('frontend.auth.login');
         }
 
         return $next($request);

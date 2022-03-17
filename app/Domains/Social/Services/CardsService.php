@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\DB;
 
 /**
  * Class CardsService.
+ *
+ * @extends BaseService
  */
 class CardsService extends BaseService
 {
@@ -236,12 +238,12 @@ class CardsService extends BaseService
      */
     protected function createConfig(array $data = []): array
     {
-        return array(
+        return [
             'type' => $data['type'],
             'theme' => $data['theme'] ?? null,
             'font' => $data['font'] ?? null,
             'ads' => $data['ads'] ?? null,
-        );
+        ];
     }
 
     /**
@@ -251,10 +253,10 @@ class CardsService extends BaseService
      */
     protected function createImage(array $data = []): array
     {
-        return array(
+        return [
             'local' => $data['local'] ?? null,
             'storage' => $data['storage'] ?? null,
             'imgur' => $data['imgur'] ?? null,
-        );
+        ];
     }
 }

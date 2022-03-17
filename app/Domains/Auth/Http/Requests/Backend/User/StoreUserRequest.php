@@ -9,6 +9,8 @@ use LangleyFoxall\LaravelNISTPasswordRules\PasswordRules;
 
 /**
  * Class StoreUserRequest.
+ *
+ * @extends FormRequest
  */
 class StoreUserRequest extends FormRequest
 {
@@ -17,7 +19,7 @@ class StoreUserRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -27,10 +29,13 @@ class StoreUserRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            'type' => ['required', Rule::in([User::TYPE_ADMIN, User::TYPE_USER])],
+            'type' => ['required', Rule::in([
+                User::TYPE_ADMIN,
+                User::TYPE_USER,
+            ])],
             'name' => ['required', 'max:100'],
             'email' => ['required', 'max:255', 'email', Rule::unique('users')],
             'password' => ['max:100', PasswordRules::register($this->email)],
@@ -47,7 +52,7 @@ class StoreUserRequest extends FormRequest
     /**
      * @return array
      */
-    public function messages()
+    public function messages(): array
     {
         return [
             'roles.*.exists' => __('One or more roles were not found or are not allowed to be associated with this user type.'),

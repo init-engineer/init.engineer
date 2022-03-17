@@ -28,8 +28,14 @@ class CreateActivityLogTable extends Migration
             $table->timestamps();
 
             $table->index('log_name');
-            $table->index(['subject_id', 'subject_type'], 'subject');
-            $table->index(['causer_id', 'causer_type'], 'causer');
+            $table->index(array(
+                'subject_id',
+                'subject_type',
+            ), 'subject');
+            $table->index(array(
+                'causer_id',
+                'causer_type',
+            ), 'causer');
         });
     }
 

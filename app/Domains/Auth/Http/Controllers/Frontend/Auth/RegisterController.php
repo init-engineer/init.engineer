@@ -12,6 +12,8 @@ use LangleyFoxall\LaravelNISTPasswordRules\PasswordRules;
 
 /**
  * Class RegisterController.
+ *
+ * @extends Controller
  */
 class RegisterController extends Controller
 {

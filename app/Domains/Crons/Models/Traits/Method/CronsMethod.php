@@ -26,13 +26,13 @@ trait CronsMethod
         }
 
         Crons::updateOrCreate(
-            array(
+            [
                 'command'  => $command,
-            ),
-            array(
+            ],
+            [
                 'next_run' => Carbon::now()->addMinutes($minutes)->timestamp,
                 'last_run' => Carbon::now()->timestamp,
-            )
+            ]
         );
 
         return true;
@@ -58,13 +58,13 @@ trait CronsMethod
         $_next_timestamp = Carbon::parse($_now_string)->timestamp;
 
         Crons::updateOrCreate(
-            array(
+            [
                 'command'  => $command,
-            ),
-            array(
+            ],
+            [
                 'next_run' => $_next_timestamp,
                 'last_run' => Carbon::now()->timestamp,
-            )
+            ]
         );
 
         return true;
@@ -125,13 +125,13 @@ trait CronsMethod
         $_next_timestamp = Carbon::parse($_now_string)->timestamp;
 
         Crons::updateOrCreate(
-            array(
+            [
                 'command'  => $command,
-            ),
-            array(
+            ],
+            [
                 'next_run' => $_next_timestamp,
                 'last_run' => Carbon::now()->timestamp,
-            )
+            ]
         );
 
         return true;

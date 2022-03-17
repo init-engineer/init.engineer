@@ -8,6 +8,8 @@ use Illuminate\Support\Str;
 
 /**
  * Class ImagesGenerator.
+ *
+ * @extends ImagesContract
  */
 class ImagesGenerator extends ImagesContract
 {
@@ -269,12 +271,14 @@ class ImagesGenerator extends ImagesContract
         /**
          * 判斷最重要的內容、主題、字型是否已經賦予
          */
-        if (!isset($this->content) ||
+        if (
+            !isset($this->content) ||
             !isset($this->theme) ||
-            !isset($this->font)) {
-            return array(
+            !isset($this->font)
+        ) {
+            return [
                 'result' => false,
-            );
+            ];
         }
 
         /**
@@ -330,11 +334,11 @@ class ImagesGenerator extends ImagesContract
         /**
          * 整理結果資訊
          */
-        return array(
+        return [
             'result' => true,
             'picture' => "storage/cards/images/$pictureName.jpeg",
             'ads' => $this->ads,
-        );
+        ];
     }
 
     /**
@@ -358,20 +362,20 @@ class ImagesGenerator extends ImagesContract
          * 如果是選擇特殊樣式，會有其它裝飾元素，必須再額外給予更多的寬度(width)、高度(height)
          */
         switch ($this->theme) {
-            // 主題: Windows 10 錯誤畫面
+                // 主題: Windows 10 錯誤畫面
             case 'windows-10-error':
                 $this->canvasViewHeight += 360;
                 break;
-            // 主題: Windows 10 測試人員計畫 錯誤畫面
+                // 主題: Windows 10 測試人員計畫 錯誤畫面
             case 'windows-10-error-testing':
                 $this->canvasViewHeight += 360;
                 break;
-            // 主題: 支離滅裂な思考・発言
+                // 主題: 支離滅裂な思考・発言
             case 'broken-think':
                 $this->canvasViewHeight += 140;
                 $this->canvasViewWidth += 349;
                 break;
-            // 主題: 不獣控制な思考・発言
+                // 主題: 不獣控制な思考・発言
             case 'furry-broken-think':
                 $this->canvasViewHeight += 140;
                 $this->canvasViewWidth += 349;
@@ -691,8 +695,10 @@ class ImagesGenerator extends ImagesContract
         /**
          * 如果廣告類別是需要渲染圖片的話
          */
-        if ($this->ads['data']['type'] === Ads::TYPE_ALL ||
-            $this->ads['data']['type'] === Ads::TYPE_BANNER) {
+        if (
+            $this->ads['data']['type'] === Ads::TYPE_ALL ||
+            $this->ads['data']['type'] === Ads::TYPE_BANNER
+        ) {
             /**
              * 建立透明圖層背景
              */
@@ -711,31 +717,35 @@ class ImagesGenerator extends ImagesContract
                  * 取得背景 RGB Hex 資訊。
                  */
                 $backgroundRGB = $this->getColorInfo($this->themeBackgroundColor);
-                $backgroundRGB = array(
+                $backgroundRGB = [
                     255 - $backgroundRGB['red'],
                     255 - $backgroundRGB['green'],
                     255 - $backgroundRGB['blue'],
-                );
+                ];
 
                 /**
                  * 取得文字 RGB Hex 資訊。
                  */
                 $textRGB = $this->getColorInfo($this->themeTextColor);
-                $textRGB = array(
+                $textRGB = [
                     $textRGB['red'],
                     $textRGB['green'],
                     $textRGB['blue'],
-                );
+                ];
 
                 /**
                  * 如果背景顏色是黑色
                  */
-                if ($backgroundRGB[0] == 255 &&
+                if (
+                    $backgroundRGB[0] == 255 &&
                     $backgroundRGB[1] == 255 &&
-                    $backgroundRGB[2] == 255) {
-                    if ($textRGB[0] == 248 &&
+                    $backgroundRGB[2] == 255
+                ) {
+                    if (
+                        $textRGB[0] == 248 &&
                         $textRGB[1] == 249 &&
-                        $textRGB[2] == 250) {
+                        $textRGB[2] == 250
+                    ) {
                         /**
                          * 如果背景顏色是黑色
                          * 且字體顏色是白色，那就甚麼事情都不做
@@ -750,9 +760,11 @@ class ImagesGenerator extends ImagesContract
                         imageFilter($adsCanvas, IMG_FILTER_NEGATE);
                     }
                 } else {
-                    if ($textRGB[0] == 248 &&
+                    if (
+                        $textRGB[0] == 248 &&
                         $textRGB[1] == 249 &&
-                        $textRGB[2] == 250) {
+                        $textRGB[2] == 250
+                    ) {
                         /**
                          * 如果背景顏色不是黑色
                          * 但文字顏色是白色，那麼只要渲染背景顏色就好

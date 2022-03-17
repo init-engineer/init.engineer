@@ -8,6 +8,8 @@ use Illuminate\Validation\Rule;
 
 /**
  * Class UpdateAnnouncementRequest.
+ *
+ * @extends FormRequest
  */
 class UpdateAnnouncementRequest extends FormRequest
 {
@@ -16,7 +18,7 @@ class UpdateAnnouncementRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -26,7 +28,7 @@ class UpdateAnnouncementRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'type' => ['required', Rule::in([

@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 
 /**
  * Class DeletedUserController.
+ *
+ * @extends Controller
  */
 class DeletedUserController extends Controller
 {
@@ -19,7 +21,7 @@ class DeletedUserController extends Controller
     /**
      * DeletedUserController constructor.
      *
-     * @param  UserService  $userService
+     * @param UserService $userService
      */
     public function __construct(UserService $userService)
     {
@@ -44,11 +46,13 @@ class DeletedUserController extends Controller
     {
         $this->userService->restore($deletedUser);
 
-        return redirect()->route('admin.auth.user.index')->withFlashSuccess(__('The user was successfully restored.'));
+        return redirect()
+            ->route('admin.auth.user.index')
+            ->withFlashSuccess(__('The user was successfully restored.'));
     }
 
     /**
-     * @param  User  $deletedUser
+     * @param User $deletedUser
      *
      * @return mixed
      * @throws \App\Exceptions\GeneralException
@@ -59,6 +63,8 @@ class DeletedUserController extends Controller
 
         $this->userService->destroy($deletedUser);
 
-        return redirect()->route('admin.auth.user.deleted')->withFlashSuccess(__('The user was permanently deleted.'));
+        return redirect()
+            ->route('admin.auth.user.deleted')
+            ->withFlashSuccess(__('The user was permanently deleted.'));
     }
 }

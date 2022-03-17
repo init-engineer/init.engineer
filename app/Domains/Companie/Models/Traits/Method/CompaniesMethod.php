@@ -41,7 +41,7 @@ trait CompaniesMethod
     public function getPictures()
     {
         if (isset($this->pictures) && $this->pictures !== null) {
-            $data = array();
+            $data = [];
             foreach ($this->pictures as $picture) {
                 if ($result = $this->getFile($picture)) {
                     array_push($data, $result);

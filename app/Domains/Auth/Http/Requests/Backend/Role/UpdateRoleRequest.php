@@ -9,6 +9,8 @@ use Illuminate\Validation\Rule;
 
 /**
  * Class UpdateRoleRequest.
+ *
+ * @extends FormRequest
  */
 class UpdateRoleRequest extends FormRequest
 {
@@ -17,9 +19,9 @@ class UpdateRoleRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
-        return ! $this->role->isAdmin();
+        return !$this->role->isAdmin();
     }
 
     /**
@@ -27,10 +29,13 @@ class UpdateRoleRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            'type' => ['required', Rule::in([User::TYPE_ADMIN, User::TYPE_USER])],
+            'type' => ['required', Rule::in([
+                User::TYPE_ADMIN,
+                User::TYPE_USER,
+            ])],
             'name' => ['required', 'max:100', Rule::unique('roles')->ignore($this->role)],
             'permissions' => ['sometimes', 'array'],
             'permissions.*' => [Rule::exists('permissions', 'id')->where('type', $this->type)],
@@ -40,7 +45,7 @@ class UpdateRoleRequest extends FormRequest
     /**
      * @return array
      */
-    public function messages()
+    public function messages(): array
     {
         return [
             'permissions.*.exists' => __('One or more permissions were not found or are not allowed to be associated with this role type.'),
@@ -54,7 +59,7 @@ class UpdateRoleRequest extends FormRequest
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    protected function failedAuthorization()
+    protected function failedAuthorization(): void
     {
         throw new AuthorizationException(__('You can not edit the Administrator role.'));
     }

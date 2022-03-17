@@ -32,7 +32,7 @@ trait Picture
     /**
      * @return string
      */
-    public function getPictureName()
+    public function getPictureName(): string
     {
         return property_exists($this, 'pictureName') ? $this->pictureName : 'picture';
     }
@@ -42,7 +42,7 @@ trait Picture
      *
      * @return bool
      */
-    public function setPicture(array $data)
+    public function setPicture(array $data): bool
     {
         $picture = $this->picture;
         $picture['local'] = $data['local'] ?? $this->picture['local'] ?? null;
@@ -56,16 +56,18 @@ trait Picture
 
     /**
      * Use Laravel bootable traits.
+     *
+     * @return void
      */
-    protected static function bootPicture()
+    protected static function bootPicture(): void
     {
         static::creating(function ($model) {
             if (!$model->{$model->getPictureName()}) {
-                $model->{$model->getPictureName()} = array(
+                $model->{$model->getPictureName()} = [
                     'local' => null,
                     'storage' => null,
                     'imgur' => null,
-                );
+                ];
             }
         });
     }

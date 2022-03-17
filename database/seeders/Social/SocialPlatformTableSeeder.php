@@ -36,14 +36,14 @@ class SocialPlatformTableSeeder extends Seeder
             'action' => Platform::ACTION_PUBLISH,
             'type' => Platform::TYPE_FACEBOOK,
             'active' => false,
-            'config' => array(
+            'config' => [
                 'user_id' => null,
                 'consumer_app_id' => null,
                 'consumer_app_secret' => null,
                 'access_token' => null,
                 'graph_version' => null,
                 'pages_name' => null,
-            ),
+            ],
         ]);
 
         Platform::create([
@@ -51,14 +51,14 @@ class SocialPlatformTableSeeder extends Seeder
             'action' => Platform::ACTION_PUBLISH,
             'type' => Platform::TYPE_FACEBOOK,
             'active' => false,
-            'config' => array(
+            'config' => [
                 'user_id' => null,
                 'consumer_app_id' => null,
                 'consumer_app_secret' => null,
                 'access_token' => null,
                 'graph_version' => null,
                 'pages_name' => null,
-            ),
+            ],
         ]);
 
         Platform::create([
@@ -66,13 +66,13 @@ class SocialPlatformTableSeeder extends Seeder
             'action' => Platform::ACTION_PUBLISH,
             'type' => Platform::TYPE_TWITTER,
             'active' => false,
-            'config' => array(
+            'config' => [
                 'consumer_app_key' => null,
                 'consumer_app_secret' => null,
                 'access_token' => null,
                 'access_token_secret' => null,
                 'pages_name' => null,
-            ),
+            ],
         ]);
 
         Platform::create([
@@ -80,13 +80,13 @@ class SocialPlatformTableSeeder extends Seeder
             'action' => Platform::ACTION_PUBLISH,
             'type' => Platform::TYPE_TWITTER,
             'active' => false,
-            'config' => array(
+            'config' => [
                 'consumer_app_key' => null,
                 'consumer_app_secret' => null,
                 'access_token' => null,
                 'access_token_secret' => null,
                 'pages_name' => null,
-            ),
+            ],
         ]);
 
         Platform::create([
@@ -94,13 +94,13 @@ class SocialPlatformTableSeeder extends Seeder
             'action' => Platform::ACTION_PUBLISH,
             'type' => Platform::TYPE_PLURK,
             'active' => false,
-            'config' => array(
+            'config' => [
                 'consumer_app_id' => null,
                 'consumer_app_secret' => null,
                 'access_token' => null,
                 'access_token_secret' => null,
                 'pages_name' => null,
-            ),
+            ],
         ]);
 
         Platform::create([
@@ -108,14 +108,14 @@ class SocialPlatformTableSeeder extends Seeder
             'action' => Platform::ACTION_PUBLISH,
             'type' => Platform::TYPE_TUMBLR,
             'active' => false,
-            'config' => array(
+            'config' => [
                 'user_id' => null,
                 'consumer_app_key' => null,
                 'consumer_app_secret' => null,
                 'access_token' => null,
                 'access_token_secret' => null,
                 'pages_name' => null,
-            ),
+            ],
         ]);
 
         Platform::create([
@@ -123,11 +123,11 @@ class SocialPlatformTableSeeder extends Seeder
             'action' => Platform::ACTION_PUBLISH,
             'type' => Platform::TYPE_TELEGRAM,
             'active' => false,
-            'config' => array(
+            'config' => [
                 'chat_id' => null,
                 'access_token' => null,
                 'pages_name' => null,
-            ),
+            ],
         ]);
 
         Platform::create([
@@ -135,9 +135,9 @@ class SocialPlatformTableSeeder extends Seeder
             'action' => Platform::ACTION_NOTIFICATION,
             'type' => Platform::TYPE_DISCORD,
             'active' => false,
-            'config' => array(
+            'config' => [
                 'webhook' => null,
-            ),
+            ],
         ]);
 
         Platform::create([
@@ -145,9 +145,9 @@ class SocialPlatformTableSeeder extends Seeder
             'action' => Platform::ACTION_PUBLISH,
             'type' => Platform::TYPE_DISCORD,
             'active' => false,
-            'config' => array(
+            'config' => [
                 'webhook' => null,
-            ),
+            ],
         ]);
 
         $this->enableForeignKeys();

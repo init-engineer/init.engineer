@@ -20,6 +20,8 @@ use Illuminate\Support\Str;
 
 /**
  * Class TwitterPublishJob.
+ *
+ * @implements ShouldQueue
  */
 class TwitterPublishJob implements ShouldQueue
 {
@@ -65,10 +67,12 @@ class TwitterPublishJob implements ShouldQueue
         /**
          * 判斷 Blog Name、Consumer Key、Consumer Secret、Token、Token Secret 是否為空
          */
-        if (!isset($this->platform->config['consumer_app_key']) ||
+        if (
+            !isset($this->platform->config['consumer_app_key']) ||
             !isset($this->platform->config['consumer_app_secret']) ||
             !isset($this->platform->config['access_token']) ||
-            !isset($this->platform->config['access_token_secret'])) {
+            !isset($this->platform->config['access_token_secret'])
+        ) {
             /**
              * Config 有問題，無法處理
              */
@@ -94,22 +98,22 @@ class TwitterPublishJob implements ShouldQueue
         /**
          * 透過 Guzzle 的 OAuth1 來建立請求
          */
-        $middleware = new Oauth1(array(
+        $middleware = new Oauth1([
             'consumer_key'    => $this->platform->config['consumer_app_key'],
             'consumer_secret' => $this->platform->config['consumer_app_secret'],
             'token'           => $this->platform->config['access_token'],
             'token_secret'    => $this->platform->config['access_token_secret'],
-        ));
+        ]);
         $stack->push($middleware);
 
         /**
          * 開始執行通知
          */
         $client = Http::withMiddleware($middleware)
-            ->withOptions(array(
+            ->withOptions([
                 'handler' => $stack,
                 'auth' => 'oauth',
-            ));
+            ]);
 
         /**
          * 先判斷媒體是圖片(jpg、jpeg、png)還是動畫(gif)
@@ -122,13 +126,13 @@ class TwitterPublishJob implements ShouldQueue
          * 先將圖片透過 multipart/form-data 的方式上傳到 Twitter
          */
         $pictureArray = explode('/', $this->cards->getPicture(),);
-        $pictureResponse = $client->asMultipart()->post('https://upload.twitter.com/1.1/media/upload.json?media_category=' . $tweetType, array(
-            array(
+        $pictureResponse = $client->asMultipart()->post('https://upload.twitter.com/1.1/media/upload.json?media_category=' . $tweetType, [
+            [
                 'name' => 'media',
                 'contents' => Storage::get(str_replace('storage', 'public', $this->cards->getPicture())),
                 'filename' => array_pop($pictureArray),
-            ),
-        ));
+            ],
+        ]);
 
         /**
          * 紀錄 picture response 資訊
@@ -149,10 +153,10 @@ class TwitterPublishJob implements ShouldQueue
         /**
          * 將圖片拼到推文當中發表出去
          */
-        $tweetResponse = $client->asForm()->post('https://api.twitter.com/1.1/statuses/update.json', array(
+        $tweetResponse = $client->asForm()->post('https://api.twitter.com/1.1/statuses/update.json', [
             'status' => $status,
             'media_ids' => $pictureResponse['media_id_string'],
-        ));
+        ]);
 
         /**
          * 紀錄 picture response 資訊
@@ -164,7 +168,7 @@ class TwitterPublishJob implements ShouldQueue
         /**
          * 建立 PlatformCards 紀錄
          */
-        $platformCard = $platformCardService->store(array(
+        $platformCard = $platformCardService->store([
             'platform_type' => Platform::TYPE_TWITTER,
             'platform_id' => $this->platform->id,
             'platform_string_id' => $tweetResponse->json()['id_str'],
@@ -174,7 +178,7 @@ class TwitterPublishJob implements ShouldQueue
                 $tweetResponse->json()['id_str'],
             ),
             'card_id' => $this->cards->id,
-        ));
+        ]);
 
         /**
          * 紀錄 PlatformCards
@@ -194,10 +198,10 @@ class TwitterPublishJob implements ShouldQueue
         /**
          * 對社群文章執行 Discord 宣傳留言
          */
-        $discordResponse = $client->asForm()->post('https://api.twitter.com/1.1/statuses/update.json', array(
+        $discordResponse = $client->asForm()->post('https://api.twitter.com/1.1/statuses/update.json', [
             'status' => $status,
             'in_reply_to_status_id' => $tweetResponse->json()['id_str'],
-        ));
+        ]);
 
         /**
          * 紀錄 Discord 宣傳留言
@@ -217,10 +221,10 @@ class TwitterPublishJob implements ShouldQueue
         /**
          * 對社群文章執行文章宣傳留言
          */
-        $showResponse = $client->asForm()->post('https://api.twitter.com/1.1/statuses/update.json', array(
+        $showResponse = $client->asForm()->post('https://api.twitter.com/1.1/statuses/update.json', [
             'status' => $status,
             'in_reply_to_status_id' => $tweetResponse->json()['id_str'],
-        ));
+        ]);
 
         /**
          * 紀錄文章宣傳留言

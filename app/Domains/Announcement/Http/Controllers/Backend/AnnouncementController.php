@@ -12,6 +12,8 @@ use App\Http\Controllers\Controller;
 
 /**
  * Class AnnouncementController.
+ *
+ * @extends Controller
  */
 class AnnouncementController extends Controller
 {
@@ -57,7 +59,9 @@ class AnnouncementController extends Controller
     {
         $this->service->store($request->validated());
 
-        return redirect()->route('admin.announcement.index')->withFlashSuccess(__('The announcement was successfully created.'));
+        return redirect()
+            ->route('admin.announcement.index')
+            ->withFlashSuccess(__('The announcement was successfully created.'));
     }
 
     /**
@@ -83,7 +87,9 @@ class AnnouncementController extends Controller
     {
         $this->service->update($announcement, $request->validated());
 
-        return redirect()->route('admin.announcement.index')->withFlashSuccess(__('The announcement was successfully updated.'));
+        return redirect()
+            ->route('admin.announcement.index')
+            ->withFlashSuccess(__('The announcement was successfully updated.'));
     }
 
     /**
@@ -97,6 +103,8 @@ class AnnouncementController extends Controller
     {
         $this->service->delete($announcement);
 
-        return redirect()->route('admin.announcement.index')->withFlashSuccess(__('The announcement was successfully deleted.'));
+        return redirect()
+            ->route('admin.announcement.index')
+            ->withFlashSuccess(__('The announcement was successfully deleted.'));
     }
 }

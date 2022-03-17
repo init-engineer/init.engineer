@@ -26,12 +26,12 @@ class AnnouncementFactory extends Factory
      */
     public function definition(): array
     {
-        return array(
-            'area' => $this->faker->randomElement(array(
+        return [
+            'area' => $this->faker->randomElement([
                 Announcement::AREA_FRONTEND,
                 Announcement::AREA_BACKEND,
-            )),
-            'type' => $this->faker->randomElement(array(
+            ]),
+            'type' => $this->faker->randomElement([
                 Announcement::TYPE_PRIMARY,
                 Announcement::TYPE_SECONDARY,
                 Announcement::TYPE_SUCCESS,
@@ -40,12 +40,12 @@ class AnnouncementFactory extends Factory
                 Announcement::TYPE_INFO,
                 Announcement::TYPE_LIGHT,
                 Announcement::TYPE_DARK,
-            )),
+            ]),
             'message' => $this->faker->text,
             'enabled' => $this->faker->boolean,
             'starts_at' => $this->faker->dateTime(),
             'ends_at' => $this->faker->dateTime(),
-        );
+        ];
     }
 
     /**
@@ -54,9 +54,9 @@ class AnnouncementFactory extends Factory
     public function enabled(): AnnouncementFactory
     {
         return $this->state(function (array $attributes) {
-            return array(
+            return [
                 'enabled' => true,
-            );
+            ];
         });
     }
 
@@ -66,9 +66,9 @@ class AnnouncementFactory extends Factory
     public function disabled(): AnnouncementFactory
     {
         return $this->state(function (array $attributes) {
-            return array(
+            return [
                 'enabled' => false,
-            );
+            ];
         });
     }
 
@@ -78,9 +78,9 @@ class AnnouncementFactory extends Factory
     public function frontend(): AnnouncementFactory
     {
         return $this->state(function (array $attributes) {
-            return array(
+            return [
                 'area' => Announcement::AREA_FRONTEND,
-            );
+            ];
         });
     }
 
@@ -90,9 +90,9 @@ class AnnouncementFactory extends Factory
     public function backend(): AnnouncementFactory
     {
         return $this->state(function (array $attributes) {
-            return array(
+            return [
                 'area' => Announcement::AREA_BACKEND,
-            );
+            ];
         });
     }
 
@@ -102,9 +102,9 @@ class AnnouncementFactory extends Factory
     public function global(): AnnouncementFactory
     {
         return $this->state(function (array $attributes) {
-            return array(
+            return [
                 'area' => null,
-            );
+            ];
         });
     }
 
@@ -114,10 +114,10 @@ class AnnouncementFactory extends Factory
     public function noDates(): AnnouncementFactory
     {
         return $this->state(function (array $attributes) {
-            return array(
+            return [
                 'starts_at' => null,
                 'ends_at' => null,
-            );
+            ];
         });
     }
 
@@ -127,10 +127,10 @@ class AnnouncementFactory extends Factory
     public function insideDateRange(): AnnouncementFactory
     {
         return $this->state(function (array $attributes) {
-            return array(
+            return [
                 'starts_at' => now()->subWeek(),
                 'ends_at' => now()->addWeek(),
-            );
+            ];
         });
     }
 
@@ -140,10 +140,10 @@ class AnnouncementFactory extends Factory
     public function outsideDateRange(): AnnouncementFactory
     {
         return $this->state(function (array $attributes) {
-            return array(
+            return [
                 'starts_at' => now()->subWeeks(2),
                 'ends_at' => now()->subWeek(),
-            );
+            ];
         });
     }
 }

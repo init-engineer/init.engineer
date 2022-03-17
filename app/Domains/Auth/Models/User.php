@@ -39,7 +39,14 @@ class User extends Authenticatable implements MustVerifyEmail, TwoFactorAuthenti
         UserRelationship,
         UserScope;
 
+    /**
+     * @var string
+     */
     public const TYPE_ADMIN = 'admin';
+
+    /**
+     * @var string
+     */
     public const TYPE_USER = 'user';
 
     /**

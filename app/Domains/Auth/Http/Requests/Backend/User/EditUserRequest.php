@@ -7,6 +7,8 @@ use Illuminate\Foundation\Http\FormRequest;
 
 /**
  * Class EditUserRequest.
+ *
+ * @extends FormRequest
  */
 class EditUserRequest extends FormRequest
 {
@@ -15,9 +17,9 @@ class EditUserRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
-        return ! ($this->user->isMasterAdmin() && ! $this->user()->isMasterAdmin());
+        return !($this->user->isMasterAdmin() && !$this->user()->isMasterAdmin());
     }
 
     /**
@@ -25,7 +27,7 @@ class EditUserRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             //
@@ -39,7 +41,7 @@ class EditUserRequest extends FormRequest
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    protected function failedAuthorization()
+    protected function failedAuthorization(): void
     {
         throw new AuthorizationException(__('Only the administrator can update this user.'));
     }

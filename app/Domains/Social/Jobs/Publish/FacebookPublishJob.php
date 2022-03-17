@@ -126,11 +126,11 @@ class FacebookPublishJob implements ShouldQueue
             "https://graph.facebook.com/%s/photos?",
             $userId,
         );
-        $response = Http::post($url, array(
+        $response = Http::post($url, [
             'url' => $this->cards->getPicture(),
             'access_token' => $accessToken,
             'message' => $message,
-        ));
+        ]);
 
         /**
          * 紀錄 response 資訊
@@ -142,7 +142,7 @@ class FacebookPublishJob implements ShouldQueue
         /**
          * 建立 PlatformCards 紀錄
          */
-        $platformCard = $platformCardService->store(array(
+        $platformCard = $platformCardService->store([
             'platform_type' => Platform::TYPE_FACEBOOK,
             'platform_id' => $this->platform->id,
             'platform_string_id' => $response->json()['post_id'],
@@ -152,7 +152,7 @@ class FacebookPublishJob implements ShouldQueue
                 $response->json()['post_id'],
             ),
             'card_id' => $this->cards->id,
-        ));
+        ]);
 
         /**
          * 紀錄 PlatformCards
@@ -173,10 +173,10 @@ class FacebookPublishJob implements ShouldQueue
          * 對社群文章執行 Discord 宣傳留言
          */
         $url = sprintf('https://graph.facebook.com/%s/comments', $response->body()['post_id']);
-        $response = Http::post($url, array(
+        $response = Http::post($url, [
             'access_token' => $this->platform->config['access_token'],
             'message' => $message,
-        ));
+        ]);
 
         /**
          * 紀錄 Discord 宣傳留言
@@ -196,10 +196,10 @@ class FacebookPublishJob implements ShouldQueue
         /**
          * 對社群文章執行文章宣傳留言
          */
-        $response = Http::post($url, array(
+        $response = Http::post($url, [
             'access_token' => $this->platform->config['access_token'],
             'message' => $message,
-        ));
+        ]);
 
         /**
          * 紀錄文章宣傳留言

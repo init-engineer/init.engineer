@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 
 /**
  * Class VerificationController.
+ *
+ * @extends Controller
  */
 class VerificationController extends Controller
 {

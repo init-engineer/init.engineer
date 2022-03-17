@@ -52,9 +52,9 @@
 @lang(
     "如果您在點擊「:actionText」按鈕時遇到問題，\n".
     "請將下面的 URL 複製並貼上到您的瀏覽器中：",
-    array(
+    [
         'actionText' => $actionText,
-    ),
+    ],
 )
 <span class="break-all">[{{ $displayableActionUrl }}]({{ $actionUrl }})</span>
 @endslot

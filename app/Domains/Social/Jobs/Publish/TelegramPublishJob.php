@@ -58,8 +58,10 @@ class TelegramPublishJob implements ShouldQueue
         /**
          * 判斷 Access token 與 Chat ID 是否為空
          */
-        if (!isset($this->platform->config['chat_id']) ||
-            !isset($this->platform->config['access_token'])) {
+        if (
+            !isset($this->platform->config['chat_id']) ||
+            !isset($this->platform->config['access_token'])
+        ) {
             /**
              * Config 有問題，無法處理
              */
@@ -97,11 +99,11 @@ class TelegramPublishJob implements ShouldQueue
          */
         $token = $this->platform->config['access_token'];
         $url = "https://api.telegram.org/bot$token/sendPhoto";
-        $response = Http::post($url, array(
+        $response = Http::post($url, [
             'chat_id' => $this->platform->config['chat_id'],
             'photo' => $this->cards->getPicture(),
             'caption' => $caption,
-        ));
+        ]);
 
         /**
          * 紀錄 response 資訊
@@ -113,7 +115,7 @@ class TelegramPublishJob implements ShouldQueue
         /**
          * 建立 PlatformCards 紀錄
          */
-        $platformCard = $platformCardService->store(array(
+        $platformCard = $platformCardService->store([
             'platform_type' => Platform::TYPE_TELEGRAM,
             'platform_id' => $this->platform->id,
             'platform_string_id' => $response->json()['result']['message_id'],
@@ -123,7 +125,7 @@ class TelegramPublishJob implements ShouldQueue
                 $response->json()['result']['message_id'],
             ),
             'card_id' => $this->cards->id,
-        ));
+        ]);
 
         /**
          * 紀錄 PlatformCards

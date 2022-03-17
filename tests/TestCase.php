@@ -17,8 +17,12 @@ use Illuminate\Support\Facades\Artisan;
  */
 abstract class TestCase extends BaseTestCase
 {
-    use CreatesApplication, RefreshDatabase;
+    use CreatesApplication,
+        RefreshDatabase;
 
+    /**
+     * @return void
+     */
     public function setUp(): void
     {
         parent::setUp();
@@ -29,19 +33,28 @@ abstract class TestCase extends BaseTestCase
         $this->withoutMiddleware(TwoFactorAuthenticationStatus::class);
     }
 
-    protected function getAdminRole()
+    /**
+     * @return Role
+     */
+    protected function getAdminRole(): Role
     {
         return Role::find(1);
     }
 
-    protected function getMasterAdmin()
+    /**
+     * @return User
+     */
+    protected function getMasterAdmin(): User
     {
         return User::find(1);
     }
 
+    /**
+     * @param bool $admin = false
+     */
     protected function loginAsAdmin($admin = false)
     {
-        if (! $admin) {
+        if (!$admin) {
             $admin = $this->getMasterAdmin();
         }
 
@@ -50,6 +63,9 @@ abstract class TestCase extends BaseTestCase
         return $admin;
     }
 
+    /**
+     * ...
+     */
     protected function logout()
     {
         return auth()->logout();

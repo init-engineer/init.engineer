@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 
 /**
  * Class DeactivatedAnnouncementController.
+ *
+ * @extends Controller
  */
 class DeactivatedAnnouncementController extends Controller
 {

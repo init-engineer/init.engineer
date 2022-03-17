@@ -6,6 +6,8 @@ use Illuminate\Foundation\Http\FormRequest;
 
 /**
  * Class DisableTwoFactorAuthenticationRequest.
+ *
+ * @extends FormRequest
  */
 class DisableTwoFactorAuthenticationRequest extends FormRequest
 {
@@ -14,7 +16,7 @@ class DisableTwoFactorAuthenticationRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -24,7 +26,7 @@ class DisableTwoFactorAuthenticationRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'code' => ['required', 'max:10', 'totp_code'],

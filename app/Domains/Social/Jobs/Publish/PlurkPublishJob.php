@@ -20,6 +20,8 @@ use Illuminate\Support\Str;
 
 /**
  * Class PlurkPublishJob.
+ *
+ * @implements ShouldQueue
  */
 class PlurkPublishJob implements ShouldQueue
 {
@@ -65,10 +67,12 @@ class PlurkPublishJob implements ShouldQueue
         /**
          * 判斷 Blog Name、Consumer Key、Consumer Secret、Token、Token Secret 是否為空
          */
-        if (!isset($this->platform->config['consumer_app_key']) ||
+        if (
+            !isset($this->platform->config['consumer_app_key']) ||
             !isset($this->platform->config['consumer_app_secret']) ||
             !isset($this->platform->config['access_token']) ||
-            !isset($this->platform->config['access_token_secret'])) {
+            !isset($this->platform->config['access_token_secret'])
+        ) {
             /**
              * Config 有問題，無法處理
              */
@@ -94,35 +98,35 @@ class PlurkPublishJob implements ShouldQueue
         /**
          * 透過 Guzzle 的 OAuth1 來建立請求
          */
-        $middleware = new Oauth1(array(
+        $middleware = new Oauth1([
             'consumer_key'    => $this->platform->config['consumer_app_key'],
             'consumer_secret' => $this->platform->config['consumer_app_secret'],
             'token'           => $this->platform->config['access_token'],
             'token_secret'    => $this->platform->config['access_token_secret'],
-        ));
+        ]);
         $stack->push($middleware);
 
         /**
          * 開始執行通知
          */
         $client = Http::withMiddleware($middleware)
-            ->withOptions(array(
+            ->withOptions([
                 'base_uri' => 'https://www.plurk.com',
                 'handler' => $stack,
                 'auth' => 'oauth',
-            ));
+            ]);
 
         /**
          * 先將圖片透過 multipart/form-data 的方式上傳到 Plurk
          */
         $pictureArray = explode('/', $this->cards->getPicture());
-        $pictureResponse = $client->asMultipart()->post('/APP/Timeline/uploadPicture', array(
-            array(
+        $pictureResponse = $client->asMultipart()->post('/APP/Timeline/uploadPicture', [
+            [
                 'name' => 'image',
                 'contents' => Storage::get(str_replace('storage', 'public', $this->cards->getPicture())),
                 'filename' => array_pop($pictureArray),
-            ),
-        ));
+            ],
+        ]);
 
         /**
          * 紀錄 picture response 資訊
@@ -144,11 +148,11 @@ class PlurkPublishJob implements ShouldQueue
         /**
          * 將圖片拼到噗文當中發表出去
          */
-        $plurkResponse = $client->post('/APP/Timeline/plurkAdd', array(
+        $plurkResponse = $client->post('/APP/Timeline/plurkAdd', [
             'content' => $content,
             'qualifier' => 'says',
             'lang' => 'tr_ch',
-        ));
+        ]);
 
         /**
          * 紀錄 plurk response 資訊
@@ -160,7 +164,7 @@ class PlurkPublishJob implements ShouldQueue
         /**
          * 建立 PlatformCards 紀錄
          */
-        $platformCard = $platformCardService->store(array(
+        $platformCard = $platformCardService->store([
             'platform_type' => Platform::TYPE_PLURK,
             'platform_id' => $this->platform->id,
             'platform_string_id' => base_convert($plurkResponse->json()['plurk_id'], 10, 36),
@@ -169,7 +173,7 @@ class PlurkPublishJob implements ShouldQueue
                 base_convert($plurkResponse->json()['plurk_id'], 10, 36),
             ),
             'card_id' => $this->cards->id,
-        ));
+        ]);
 
         /**
          * 紀錄 PlatformCards
@@ -189,12 +193,12 @@ class PlurkPublishJob implements ShouldQueue
         /**
          * 對社群文章執行 Discord 宣傳留言
          */
-        $discordResponse = $client->post('/APP/Responses/responseAdd', array(
+        $discordResponse = $client->post('/APP/Responses/responseAdd', [
             'plurk_id' => $plurkResponse->json()['plurk_id'],
             'content' => $content,
             'qualifier' => 'says',
             'lang' => 'tr_ch',
-        ));
+        ]);
 
         /**
          * 紀錄 Discord 宣傳留言
@@ -214,12 +218,12 @@ class PlurkPublishJob implements ShouldQueue
         /**
          * 對社群文章執行文章宣傳留言
          */
-        $showResponse = $client->post('/APP/Responses/responseAdd', array(
+        $showResponse = $client->post('/APP/Responses/responseAdd', [
             'plurk_id' => $plurkResponse->json()['plurk_id'],
             'content' => $content,
             'qualifier' => 'says',
             'lang' => 'tr_ch',
-        ));
+        ]);
 
         /**
          * 紀錄文章宣傳留言

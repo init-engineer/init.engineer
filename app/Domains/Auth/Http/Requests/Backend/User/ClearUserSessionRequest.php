@@ -7,6 +7,8 @@ use Illuminate\Foundation\Http\FormRequest;
 
 /**
  * Class ClearUserSessionRequest.
+ *
+ * @extends FormRequest
  */
 class ClearUserSessionRequest extends FormRequest
 {
@@ -15,7 +17,7 @@ class ClearUserSessionRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return $this->user->id !== $this->user()->id;
     }
@@ -25,7 +27,7 @@ class ClearUserSessionRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             //
@@ -39,7 +41,7 @@ class ClearUserSessionRequest extends FormRequest
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    protected function failedAuthorization()
+    protected function failedAuthorization(): void
     {
         throw new AuthorizationException(__('You can not clear your own session.'));
     }

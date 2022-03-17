@@ -59,8 +59,10 @@ class FacebookCommentsJob implements ShouldQueue
         /**
          * 判斷 Page ID、Access Token 是否為空
          */
-        if (!isset($this->platform->config['user_id']) ||
-            !isset($this->platform->config['access_token'])) {
+        if (
+            !isset($this->platform->config['user_id']) ||
+            !isset($this->platform->config['access_token'])
+        ) {
             /**
              * Config 有問題，無法處理
              */
@@ -185,11 +187,11 @@ class FacebookCommentsJob implements ShouldQueue
      * @param string $postId
      * @param string $accessToken
      * @param string $after = null
-     * @param array $beforeComments = array()
+     * @param array $beforeComments = []
      *
      * @return array
      */
-    private function getComments(string $graphVersion, string $userId, string $postId, string $accessToken, string $after = null, array $beforeComments = array()): array
+    private function getComments(string $graphVersion, string $userId, string $postId, string $accessToken, string $after = null, array $beforeComments = []): array
     {
         /**
          * 整理 $url 呼叫的 API URL

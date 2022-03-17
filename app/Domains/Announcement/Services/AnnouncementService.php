@@ -10,13 +10,15 @@ use Illuminate\Support\Facades\DB;
 
 /**
  * Class AnnouncementService.
+ *
+ * @extends BaseService
  */
 class AnnouncementService extends BaseService
 {
     /**
      * AnnouncementService constructor.
      *
-     * @param  Announcement  $announcement
+     * @param Announcement $announcement
      */
     public function __construct(Announcement $announcement)
     {
@@ -98,7 +100,7 @@ class AnnouncementService extends BaseService
      * @param Announcement $announcement
      * @param array $data
      *
-     * @return User
+     * @return Announcement
      * @throws \Throwable
      */
     public function update(Announcement $announcement, array $data = []): Announcement
@@ -177,8 +179,8 @@ class AnnouncementService extends BaseService
             'type' => $data['type'] ?? Announcement::TYPE_PRIMARY,
             'area' => ($data['area'] !== 'all') ? $data['area'] : null,
             'message' => $data['message'] ?? null,
-            'starts_at' => isset($data['starts_at'])? $data['starts_at'] : null,
-            'ends_at' => isset($data['ends_at'])? $data['ends_at'] : null,
+            'starts_at' => isset($data['starts_at']) ? $data['starts_at'] : null,
+            'ends_at' => isset($data['ends_at']) ? $data['ends_at'] : null,
             'enabled' => $data['enabled'] ?? false,
         ]);
     }

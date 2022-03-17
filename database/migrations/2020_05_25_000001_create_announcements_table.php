@@ -21,11 +21,11 @@ class CreateAnnouncementsTable extends Migration
     {
         Schema::create('announcements', function (Blueprint $table) {
             $table->id();
-            $table->enum('area', array(
+            $table->enum('area', [
                 Announcement::AREA_FRONTEND,
                 Announcement::AREA_BACKEND,
-            ))->nullable();
-            $table->enum('type', array(
+            ])->nullable();
+            $table->enum('type', [
                 Announcement::TYPE_PRIMARY,
                 Announcement::TYPE_SECONDARY,
                 Announcement::TYPE_SUCCESS,
@@ -34,7 +34,7 @@ class CreateAnnouncementsTable extends Migration
                 Announcement::TYPE_INFO,
                 Announcement::TYPE_LIGHT,
                 Announcement::TYPE_DARK,
-            ))->default('info');
+            ])->default('info');
             $table->text('message');
             $table->boolean('enabled')->default(true);
             $table->timestamp('starts_at')->nullable();

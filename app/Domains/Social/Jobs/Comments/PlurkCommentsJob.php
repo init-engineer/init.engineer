@@ -108,10 +108,10 @@ class PlurkCommentsJob implements ShouldQueue
         /**
          * 換得整個 Comments 的資訊列
          */
-        $plurkResponse = $client->get('/APP/Responses/get', array(
+        $plurkResponse = $client->get('/APP/Responses/get', [
             'plurk_id' => base_convert($this->platformCards->platform_string_id, 36, 10),
             'count' => 'all',
-        ));
+        ]);
 
         /**
          * 根據 Comments 的資訊列來逐一檢查是否新增或更新的資料
@@ -121,9 +121,9 @@ class PlurkCommentsJob implements ShouldQueue
              * 判斷 Comment 是否已經存在
              */
             $platform_string_id = sprintf('%s_%s', $response['plurk_id'], $response['id']);
-            $profile = $client->get('/APP/Profile/getPublicProfile', array(
+            $profile = $client->get('/APP/Profile/getPublicProfile', [
                 'user_id' => $response['user_id'],
-            ));
+            ]);
             if ($commentModel = $commentService->findCommentById($platform_string_id)) {
                 /**
                  * 判斷內容是否需要更新。

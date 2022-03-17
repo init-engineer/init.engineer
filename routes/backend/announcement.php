@@ -49,11 +49,11 @@ Route::group([
     });
 
     Route::group([
-        'middleware' => 'permission:' . implode('|', array(
+        'middleware' => 'permission:' . implode('|', [
             'admin.announcement.list',
             'admin.announcement.deactivate',
             'admin.announcement.reactivate',
-        )),
+        ]),
     ], function () {
         Route::get('deactivated', [DeactivatedAnnouncementController::class, 'index'])
             ->name('deactivated')
@@ -65,10 +65,10 @@ Route::group([
 
         Route::get('/', [AnnouncementController::class, 'index'])
             ->name('index')
-            ->middleware('permission:' . implode('|', array(
+            ->middleware('permission:' . implode('|', [
                 'admin.announcement.list',
                 'admin.announcement.deactivate',
-            )))
+            ]))
             ->breadcrumbs(function (Trail $trail) {
                 $trail->parent('admin.dashboard')
                     ->push(__('Announcement Management'), route('admin.announcement.index'));
@@ -78,10 +78,10 @@ Route::group([
             Route::patch('mark/{status}', [DeactivatedAnnouncementController::class, 'update'])
                 ->name('mark')
                 ->where(['status' => '[0,1]'])
-                ->middleware('permission:' . implode('|', array(
+                ->middleware('permission:' . implode('|', [
                     'admin.announcement.deactivate',
                     'admin.announcement.reactivate',
-                )));
+                ]));
         });
     });
 });

@@ -27,11 +27,11 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
-        return array(
-            'type' => $this->faker->randomElement(array(
+        return [
+            'type' => $this->faker->randomElement([
                 User::TYPE_ADMIN,
                 User::TYPE_USER,
-            )),
+            ]),
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
@@ -39,7 +39,7 @@ class UserFactory extends Factory
             'password_changed_at' => null,
             'remember_token' => Str::random(10),
             'active' => true,
-        );
+        ];
     }
 
     /**
@@ -48,9 +48,9 @@ class UserFactory extends Factory
     public function admin(): UserFactory
     {
         return $this->state(function (array $attributes) {
-            return array(
+            return [
                 'type' => User::TYPE_ADMIN,
-            );
+            ];
         });
     }
 
@@ -60,9 +60,9 @@ class UserFactory extends Factory
     public function user(): UserFactory
     {
         return $this->state(function (array $attributes) {
-            return array(
+            return [
                 'type' => User::TYPE_USER,
-            );
+            ];
         });
     }
 
@@ -72,9 +72,9 @@ class UserFactory extends Factory
     public function active(): UserFactory
     {
         return $this->state(function (array $attributes) {
-            return array(
+            return [
                 'active' => true,
-            );
+            ];
         });
     }
 
@@ -84,9 +84,9 @@ class UserFactory extends Factory
     public function inactive(): UserFactory
     {
         return $this->state(function (array $attributes) {
-            return array(
+            return [
                 'active' => false,
-            );
+            ];
         });
     }
 
@@ -96,9 +96,9 @@ class UserFactory extends Factory
     public function confirmed(): UserFactory
     {
         return $this->state(function (array $attributes) {
-            return array(
+            return [
                 'email_verified_at' => now(),
-            );
+            ];
         });
     }
 
@@ -108,9 +108,9 @@ class UserFactory extends Factory
     public function unconfirmed(): UserFactory
     {
         return $this->state(function (array $attributes) {
-            return array(
+            return [
                 'email_verified_at' => null,
-            );
+            ];
         });
     }
 
@@ -120,9 +120,9 @@ class UserFactory extends Factory
     public function passwordExpired(): UserFactory
     {
         return $this->state(function (array $attributes) {
-            return array(
+            return [
                 'password_changed_at' => now()->subYears(5),
-            );
+            ];
         });
     }
 
@@ -132,9 +132,9 @@ class UserFactory extends Factory
     public function deleted(): UserFactory
     {
         return $this->state(function (array $attributes) {
-            return array(
+            return [
                 'deleted_at' => now(),
-            );
+            ];
         });
     }
 }

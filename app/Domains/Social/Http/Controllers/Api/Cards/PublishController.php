@@ -64,21 +64,21 @@ class PublishController extends Controller
         /**
          * 處理投稿資訊的文字資訊
          */
-        $data['picture'] = array(
+        $data['picture'] = [
             'local' => $picture['picture'],
             'storage' => null,
             'imgur' => null,
-        );
+        ];
 
         /**
          * 處理投稿資訊的設定資訊
          */
-        $data['config'] = array(
+        $data['config'] = [
             'type' => 'article',
             'theme' => $data['config']['theme'],
             'font' => $data['config']['font'],
             'ads' => $picture['ads'],
-        );
+        ];
 
         /**
          * 將文字投稿寫入
@@ -115,14 +115,14 @@ class PublishController extends Controller
          */
         $data = $request->validated();
         $data['model_id'] = $request->user()->id;
-        $data['picture'] = array(
+        $data['picture'] = [
             'local' => $path,
             'storage' => null,
             'imgur' => null,
-        );
-        $data['config'] = array(
+        ];
+        $data['config'] = [
             'type' => 'picture',
-        );
+        ];
 
         /**
          * 將圖片投稿寫入

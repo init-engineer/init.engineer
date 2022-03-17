@@ -27,12 +27,12 @@ class RoleFactory extends Factory
      */
     public function definition(): array
     {
-        return array(
-            'type' => $this->faker->randomElement(array(
+        return [
+            'type' => $this->faker->randomElement([
                 User::TYPE_ADMIN,
                 User::TYPE_USER,
-            )),
+            ]),
             'name' => $this->faker->word,
-        );
+        ];
     }
 }

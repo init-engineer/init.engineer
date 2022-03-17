@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\ConfirmsPasswords;
 
 /**
  * Class ConfirmPasswordController.
+ *
+ * @extends Controller
  */
 class ConfirmPasswordController extends Controller
 {

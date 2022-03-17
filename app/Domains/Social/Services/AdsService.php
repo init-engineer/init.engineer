@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Storage;
 
 /**
  * Class AdsService.
+ *
+ * @extends BaseService
  */
 class AdsService extends BaseService
 {
@@ -69,38 +71,36 @@ class AdsService extends BaseService
         /**
          * 如果目前沒有廣告，就結束抽選
          */
-        if (count($ads) === 0)
-        {
-            return array(
+        if (count($ads) === 0) {
+            return [
                 // 是否被置入廣告
                 'result' => false,
-            );
+            ];
         }
 
         /**
          * 定義 result 回傳資料，以及 incidence 機率暫存器
          */
-        $result = array(
+        $result = [
             // 是否被置入廣告
             'result' => false,
             // 抽選到的機率，區間為 0 ~ 10000
             'lottery' => rand(0, 10000),
             // 這次抽選時，所採納的廣告
-            'ads' => array(),
+            'ads' => [],
             // 如果有抽中廣告的話
             'data' => null,
-        );
+        ];
         $incidence = 0;
 
         /**
          * 逐一計算與抽選廣告
          */
-        foreach ($ads as $ad)
-        {
+        foreach ($ads as $ad) {
             /**
              * 將廣告資訊新增至 result['ads'] 當中
              */
-            array_push($result['ads'], array(
+            array_push($result['ads'], [
                 'id' => $ad->id,
                 'type' => $ad->type,
                 'name' => $ad->name,
@@ -110,7 +110,7 @@ class AdsService extends BaseService
                 'render' => $ad->render,
                 'starts_at' => $ad->starts_at->timestamp,
                 'ends_at' => $ad->ends_at->timestamp,
-            ));
+            ]);
 
             /**
              * 計算廣告部屬機率區間
@@ -123,10 +123,9 @@ class AdsService extends BaseService
             /**
              * 判斷抽選到的機率是否有著落在廣告部屬機率當中
              */
-            if ($result['lottery'] >= $min && $result['lottery'] <= $max)
-            {
+            if ($result['lottery'] >= $min && $result['lottery'] <= $max) {
                 $result['result'] = true;
-                $result['data'] = array(
+                $result['data'] = [
                     'id' => $ad->id,
                     'type' => $ad->type,
                     'name' => $ad->name,
@@ -136,7 +135,7 @@ class AdsService extends BaseService
                     'render' => $ad->render,
                     'starts_at' => $ad->starts_at->timestamp,
                     'ends_at' => $ad->ends_at->timestamp,
-                );
+                ];
             }
 
             /**
@@ -177,9 +176,9 @@ class AdsService extends BaseService
             ]);
 
             if (isset($data['ads_banner'])) {
-                $ads->setPicture(array(
+                $ads->setPicture([
                     'storage' => $data['ads_banner']->store('/ads/banner', 'public'),
-                ));
+                ]);
             }
         } catch (Exception $e) {
             DB::rollBack();
@@ -225,9 +224,9 @@ class AdsService extends BaseService
                     Storage::disk('public')->delete($url);
                 }
 
-                $ads->setPicture(array(
+                $ads->setPicture([
                     'storage' => $data['ads_banner']->store('/ads/banner', 'public'),
-                ));
+                ]);
             }
         } catch (Exception $e) {
             DB::rollBack();

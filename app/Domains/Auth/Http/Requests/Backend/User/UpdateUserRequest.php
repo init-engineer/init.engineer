@@ -9,6 +9,8 @@ use Illuminate\Validation\Rule;
 
 /**
  * Class UpdateUserRequest.
+ *
+ * @extends FormRequest
  */
 class UpdateUserRequest extends FormRequest
 {
@@ -17,9 +19,9 @@ class UpdateUserRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
-        return ! ($this->user->isMasterAdmin() && ! $this->user()->isMasterAdmin());
+        return !($this->user->isMasterAdmin() && !$this->user()->isMasterAdmin());
     }
 
     /**
@@ -27,12 +29,15 @@ class UpdateUserRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'type' => [Rule::requiredIf(function () {
-                return ! $this->user->isMasterAdmin();
-            }), Rule::in([User::TYPE_ADMIN, User::TYPE_USER])],
+                return !$this->user->isMasterAdmin();
+            }), Rule::in([
+                User::TYPE_ADMIN,
+                User::TYPE_USER,
+            ])],
             'name' => ['required', 'max:100'],
             'email' => ['required', 'max:255', 'email', Rule::unique('users')->ignore($this->user->id)],
             'roles' => ['sometimes', 'array'],
@@ -45,7 +50,7 @@ class UpdateUserRequest extends FormRequest
     /**
      * @return array
      */
-    public function messages()
+    public function messages(): array
     {
         return [
             'roles.*.exists' => __('One or more roles were not found or are not allowed to be associated with this user type.'),
@@ -60,7 +65,7 @@ class UpdateUserRequest extends FormRequest
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    protected function failedAuthorization()
+    protected function failedAuthorization(): void
     {
         throw new AuthorizationException(__('Only the administrator can update this user.'));
     }

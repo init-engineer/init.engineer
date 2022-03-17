@@ -28,20 +28,20 @@ class SocialCardsTableSeeder extends Seeder
                 'model_type' => User::class,
                 'model_id' => 1,
                 'content' => "這是一篇測試文章，已通過群眾審核，並且沒有橫幅廣告資訊。",
-                'config' => array(
+                'config' => [
                     'probability' => 2000,
-                    'item' => array(
-                        array(
+                    'item' => [
+                        [
                             'id' => 1,
                             'probability' => 1000,
-                        ),
-                    ),
-                ),
-                'picture' => array(
+                        ],
+                    ],
+                ],
+                'picture' => [
                     'local' => "img/default/800x600.png",
                     'storage' => null,
                     'imgur' => null,
-                ),
+                ],
                 'active' => true,
                 'blockade' => false,
                 'blockade_by' => null,
@@ -53,20 +53,20 @@ class SocialCardsTableSeeder extends Seeder
                 'model_type' => User::class,
                 'model_id' => 1,
                 'content' => "這是一篇測試文章，已通過群眾審核，並且包含橫幅廣告資訊。",
-                'config' => array(
+                'config' => [
                     'probability' => 500,
-                    'item' => array(
-                        array(
+                    'item' => [
+                        [
                             'id' => 1,
                             'probability' => 1000,
-                        ),
-                    ),
-                ),
-                'picture' => array(
+                        ],
+                    ],
+                ],
+                'picture' => [
                     'local' => "img/default/800x600.png",
                     'storage' => null,
                     'imgur' => null,
-                ),
+                ],
                 'active' => true,
                 'blockade' => false,
                 'blockade_by' => null,
@@ -87,20 +87,20 @@ class SocialCardsTableSeeder extends Seeder
                     "這是一篇測試文章，已通過群眾審核，不僅包含橫幅廣告資訊，文章內容還相當得長，這是其中的第八行。\n\r" .
                     "這是一篇測試文章，已通過群眾審核，不僅包含橫幅廣告資訊，文章內容還相當得長，這是其中的第九行。\n\r" .
                     "這是一篇測試文章，已通過群眾審核，不僅包含橫幅廣告資訊，文章內容還相當得長，這是其中的第十行。",
-                'config' => array(
+                'config' => [
                     'probability' => 500,
-                    'item' => array(
-                        array(
+                    'item' => [
+                        [
                             'id' => 1,
                             'probability' => 1000,
-                        ),
-                    ),
-                ),
-                'picture' => array(
+                        ],
+                    ],
+                ],
+                'picture' => [
                     'local' => "img/default/800x600.png",
                     'storage' => null,
                     'imgur' => null,
-                ),
+                ],
                 'active' => true,
                 'blockade' => false,
                 'blockade_by' => null,
@@ -112,20 +112,20 @@ class SocialCardsTableSeeder extends Seeder
                 'model_type' => User::class,
                 'model_id' => 1,
                 'content' => "這是一篇測試文章，尚未通過群眾審核，並且沒有橫幅廣告資訊。",
-                'config' => array(
+                'config' => [
                     'probability' => 2000,
-                    'item' => array(
-                        array(
+                    'item' => [
+                        [
                             'id' => 1,
                             'probability' => 1000,
-                        ),
-                    ),
-                ),
-                'picture' => array(
+                        ],
+                    ],
+                ],
+                'picture' => [
                     'local' => "img/default/800x600.png",
                     'storage' => null,
                     'imgur' => null,
-                ),
+                ],
                 'active' => false,
                 'blockade' => false,
                 'blockade_by' => null,
@@ -137,20 +137,20 @@ class SocialCardsTableSeeder extends Seeder
                 'model_type' => User::class,
                 'model_id' => 1,
                 'content' => "這是一篇測試文章，尚未通過群眾審核，但是包含橫幅廣告資訊。",
-                'config' => array(
+                'config' => [
                     'probability' => 500,
-                    'item' => array(
-                        array(
+                    'item' => [
+                        [
                             'id' => 1,
                             'probability' => 1000,
-                        ),
-                    ),
-                ),
-                'picture' => array(
+                        ],
+                    ],
+                ],
+                'picture' => [
                     'local' => "img/default/800x600.png",
                     'storage' => null,
                     'imgur' => null,
-                ),
+                ],
                 'active' => false,
                 'blockade' => false,
                 'blockade_by' => null,
@@ -162,20 +162,20 @@ class SocialCardsTableSeeder extends Seeder
                 'model_type' => User::class,
                 'model_id' => 1,
                 'content' => "這是一篇測試文章，已被發表出去，並且文章遭到封鎖。",
-                'config' => array(
+                'config' => [
                     'probability' => 2000,
-                    'item' => array(
-                        array(
+                    'item' => [
+                        [
                             'id' => 1,
                             'probability' => 1000,
-                        ),
-                    ),
-                ),
-                'picture' => array(
+                        ],
+                    ],
+                ],
+                'picture' => [
                     'local' => "img/default/800x600.png",
                     'storage' => null,
                     'imgur' => null,
-                ),
+                ],
                 'active' => true,
                 'blockade' => true,
                 'blockade_by' => 1,

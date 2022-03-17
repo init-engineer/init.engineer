@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Cache;
 
 /**
  * Class PlatformCommentsUpdate.
+ *
+ * @extends Command
  */
 class PlatformCommentsUpdate extends Command
 {

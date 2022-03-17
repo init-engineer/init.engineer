@@ -11,6 +11,8 @@ use LangleyFoxall\LaravelNISTPasswordRules\PasswordRules;
 
 /**
  * Class ResetPasswordController.
+ *
+ * @extends Controller
  */
 class ResetPasswordController extends Controller
 {

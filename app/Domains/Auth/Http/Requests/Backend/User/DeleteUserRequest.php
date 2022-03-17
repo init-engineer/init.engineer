@@ -7,6 +7,8 @@ use Illuminate\Foundation\Http\FormRequest;
 
 /**
  * Class DeleteUserRequest.
+ *
+ * @extends FormRequest
  */
 class DeleteUserRequest extends FormRequest
 {
@@ -15,7 +17,7 @@ class DeleteUserRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return ! $this->user->isMasterAdmin();
     }
@@ -25,7 +27,7 @@ class DeleteUserRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             //
@@ -39,7 +41,7 @@ class DeleteUserRequest extends FormRequest
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    protected function failedAuthorization()
+    protected function failedAuthorization(): void
     {
         throw new AuthorizationException(__('You can not delete the master administrator.'));
     }
