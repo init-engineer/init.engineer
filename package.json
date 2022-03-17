@@ -37,6 +37,7 @@
         "animate.css": "^4.1.1",
         "chart.js": "^2.9.4",
         "csshake": "^1.5.3",
+        "typed.js": "^2.0.12",
         "vue-chartjs": "^3.5.1",
         "vue-gallery-slideshow": "^1.5.2"
     }
