@@ -34,6 +34,15 @@ class ReviewsPublish extends Command
     protected $description = '檢查群眾審核，並且將通過門檻的文章發表到社群平台。';
 
     /**
+     * 勿擾模式
+     * 當天 22:00 ~ 隔日 08:00
+     * 深夜、凌晨不進行審核文章
+     *
+     * @var bool
+     */
+    protected $doNotDisturbMode = true;
+
+    /**
      * @var CardsService
      */
     protected $service;
@@ -58,12 +67,26 @@ class ReviewsPublish extends Command
     public function handle()
     {
         /**
-         * 當天 22:00 ~ 隔日 08:00
-         * 深夜、凌晨不審文章
+         * 紀錄執行時的時間戳記
          */
-        $hour = Carbon::now('Asia/Taipei')->hour;
-        if ($hour >= 22 || $hour <= 8) {
-            return 0;
+        $startCarbonTime = Carbon::now('Asia/Taipei');
+        $startCarbonString = $startCarbonTime->format('H:m:s');
+
+        echo "========================================\n\r";
+        echo "[$startCarbonString] 開始進行檢查群眾審核，並且將通過門檻的文章發表到社群平台。\n\r";
+        echo "========================================\n\r";
+
+        /**
+         * 當天 22:00 ~ 隔日 08:00
+         * 深夜、凌晨不進行審核文章
+         */
+        if ($this->doNotDisturbMode) {
+            $hour = Carbon::now('Asia/Taipei')->hour;
+            if ($hour >= 22 || $hour <= 8) {
+                // echo something ...
+
+                return 0;
+            }
         }
 
         /**
@@ -134,44 +157,44 @@ class ReviewsPublish extends Command
                             FacebookPublishJob::dispatch($model, $platform);
                             break;
 
-                        /**
-                         * 丟給負責發表文章到 Twitter 的 Job
-                         */
+                            /**
+                             * 丟給負責發表文章到 Twitter 的 Job
+                             */
                         case Platform::TYPE_TWITTER:
                             TwitterPublishJob::dispatch($model, $platform);
                             break;
 
-                        /**
-                         * 丟給負責發表文章到 Plurk 的 Job
-                         */
+                            /**
+                             * 丟給負責發表文章到 Plurk 的 Job
+                             */
                         case Platform::TYPE_PLURK:
                             PlurkPublishJob::dispatch($model, $platform);
                             break;
 
-                        /**
-                         * 丟給負責發表文章到 Discord 的 Job
-                         */
+                            /**
+                             * 丟給負責發表文章到 Discord 的 Job
+                             */
                         case Platform::TYPE_DISCORD:
                             DiscordPublishJob::dispatch($model, $platform);
                             break;
 
-                        /**
-                         * 丟給負責發表文章到 Tumblr 的 Job
-                         */
+                            /**
+                             * 丟給負責發表文章到 Tumblr 的 Job
+                             */
                         case Platform::TYPE_TUMBLR:
                             TumblrPublishJob::dispatch($model, $platform);
                             break;
 
-                        /**
-                         * 丟給負責發表文章到 Telegram 的 Job
-                         */
+                            /**
+                             * 丟給負責發表文章到 Telegram 的 Job
+                             */
                         case Platform::TYPE_TELEGRAM:
                             TelegramPublishJob::dispatch($model, $platform);
                             break;
 
-                        /**
-                         * 其它並不在支援名單當中的社群
-                         */
+                            /**
+                             * 其它並不在支援名單當中的社群
+                             */
                         default:
                             /**
                              * 直接把資料寫入 Activity log 以便日後查核
@@ -184,6 +207,33 @@ class ReviewsPublish extends Command
                 }
             }
         }
+
+        /**
+         * 紀錄結束時的時間戳記
+         */
+        $endCarbonTime = Carbon::now('Asia/Taipei');
+        $endCarbonString = $startCarbonTime->format('H:m:s');
+
+        /**
+         * 計算整個 Command 執行時間
+         */
+        $diffCarbonTimeSeconds = $startCarbonTime->diffInSeconds($endCarbonTime);
+        $diffHours = (int) ($diffCarbonTimeSeconds / 3600);
+        $diffMinutes = (int) (($diffCarbonTimeSeconds - ($diffHours * 3600)) / 60);
+        $diffSeconds = $diffCarbonTimeSeconds - ($diffHours * 3600) - ($diffMinutes * 60);
+
+        /**
+         * 輸出報表
+         */
+        echo "========================================\n\r";
+        echo "[$endCarbonString] 完成群眾審核，並且將通過門檻的文章發表到社群平台。\n\r";
+        echo sprintf(
+            "總共耗時 %s:%s:%s\n\r",
+            str_pad($diffHours, 2, '0', STR_PAD_LEFT),
+            str_pad($diffMinutes, 2, '0', STR_PAD_LEFT),
+            str_pad($diffSeconds, 2, '0', STR_PAD_LEFT),
+        );
+        echo "========================================\n\r";
 
         return Command::SUCCESS;
     }
