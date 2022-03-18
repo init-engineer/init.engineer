@@ -1,4 +1,4 @@
-<div class="github-corner">
+<div class="github-corner position-fixed">
     <a href="https://github.com/init-engineer/init.engineer" title="Fork me on GitHub">
         <svg viewbox="0 0 100 100" fill="currentColor">
             <title>Fork me on GitHub</title>
