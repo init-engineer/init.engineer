@@ -55,4 +55,27 @@ class CompanieMembers extends Model
     protected $casts = [
         'picture' => 'json',
     ];
+
+    /**
+     * The model's default values for attributes.
+     *
+     * // 圖片位址資訊
+     * picture => {
+     *      // Local 位址
+     *      "local": null,
+     *      // 雲端位址
+     *      "storage": null,
+     *      // Imgur 網址
+     *      "imgur": null,
+     * }
+     *
+     * @var array
+     */
+    protected $attributes = [
+        'picture' => '{
+            "local": null,
+            "storage": null,
+            "imgur": null
+        }',
+    ];
 }

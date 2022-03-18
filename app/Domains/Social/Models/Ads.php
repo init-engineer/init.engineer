@@ -89,12 +89,36 @@ class Ads extends Model
      * @var array
      */
     protected $casts = [
-        'picture' => 'array',
-        'deploy' => 'array',
+        'picture' => 'json',
+        'deploy' => 'json',
         'probability' => 'integer',
         'render' => 'boolean',
         'payment' => 'boolean',
         'active' => 'boolean',
+    ];
+
+    /**
+     * The model's default values for attributes.
+     *
+     * // 圖片位址資訊
+     * picture => {
+     *      // Local 位址
+     *      "local": null,
+     *      // 雲端位址
+     *      "storage": null,
+     *      // Imgur 網址
+     *      "imgur": null,
+     * }
+     *
+     * @var array
+     */
+    protected $attributes = [
+        'picture' => '{
+            "local": null,
+            "storage": null,
+            "imgur": null
+        }',
+        'deploy' => '{}',
     ];
 
     /**

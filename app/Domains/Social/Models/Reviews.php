@@ -54,5 +54,15 @@ class Reviews extends Model
      */
     protected $casts = [
         'point' => 'integer',
+        'config' => 'json',
+    ];
+
+    /**
+     * The model's default values for attributes.
+     *
+     * @var array
+     */
+    protected $attributes = [
+        'config' => '{}',
     ];
 }

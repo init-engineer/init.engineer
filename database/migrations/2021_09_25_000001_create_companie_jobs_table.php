@@ -27,33 +27,9 @@ class CreateCompanieJobsTable extends Migration
             $table->uuid('uuid')->nullable();
             $table->morphs('model');
             $table->string('name')->comment('名稱');
-            $table->json('logo')->default([
-                'local' => null,
-                'storage' => null,
-                'imgur' => null,
-            ])->comment('公司 Logo 圖片資訊 - 單張');
-            $table->json('banner')->default([
-                'local' => null,
-                'storage' => null,
-                'imgur' => null,
-            ])->comment('公司 Logo 圖片資訊 - 單張');
-            $table->json('pictures')->default([
-                [
-                    'local' => null,
-                    'storage' => null,
-                    'imgur' => null,
-                ],
-                [
-                    'local' => null,
-                    'storage' => null,
-                    'imgur' => null,
-                ],
-                [
-                    'local' => null,
-                    'storage' => null,
-                    'imgur' => null,
-                ],
-            ])->comment('公司相關圖片資訊 - 多張');
+            $table->json('logo')->comment('公司 Logo 圖片資訊 - 單張');
+            $table->json('banner')->comment('公司 Logo 圖片資訊 - 單張');
+            $table->json('pictures')->comment('公司相關圖片資訊 - 多張');
             $table->enum('area', [
                 '臺北市', '新北市', '桃園市', '臺中市', '臺南市',
                 '高雄市', '基隆市', '新竹市', '嘉義市', '新竹縣',
@@ -68,11 +44,7 @@ class CreateCompanieJobsTable extends Migration
             $table->string('email')->comment('信箱');
             $table->string('phone')->nullable()->comment('電話');
             $table->string('description')->default('我們沒有任何簡介 :)')->comment('簡介');
-            $table->json('content')->default([
-                '公司介紹' => '我們沒有任何公司介紹 :)',
-                '經營理念' => '我們沒有任何經營理念 :)',
-                '福利制度' => '我們沒有任何福利制度 :)',
-            ])->comment('詳細介紹');
+            $table->json('content')->comment('詳細介紹');
             $table->unsignedTinyInteger('active')->default(0)->comment('啟用狀態');
             $table->boolean('blockade')->default(0)->comment('封鎖狀態');
             $table->unsignedBigInteger('blockade_by')->nullable()->comment('被誰封鎖');
@@ -90,11 +62,7 @@ class CreateCompanieJobsTable extends Migration
             $table->uuid('uuid')->nullable();
             $table->morphs('model');
             $table->unsignedBigInteger('companie_id')->comment('公司 ID');
-            $table->json('picture')->default([
-                'local' => null,
-                'storage' => null,
-                'imgur' => null,
-            ])->comment('成員大頭貼圖片資訊');
+            $table->json('picture')->comment('成員大頭貼圖片資訊');
             $table->string('name')->comment('名稱');
             $table->string('office')->comment('職稱');
             $table->longText('about')->default('Undefined.')->comment('關於我');
@@ -155,25 +123,8 @@ class CreateCompanieJobsTable extends Migration
                 CompanieJobs::JOB_DISPATCHED,
                 CompanieJobs::JOB_INTERNSHIP,
             ])->default(CompanieJobs::JOB_FULL_TIME)->comment('職缺類型');
-            $table->json('content')->default([
-                // 工作範疇
-                'scope' => null,
-                // 工作需求
-                'require' => null,
-                // 遠端工作
-                'remote' => null,
-            ])->comment('內容資訊');
-            $table->json('pay')->default([
-                // 支薪方式
-                'type' => null,
-                // 薪資範圍
-                'amount' => [
-                    // 薪水最低
-                    'min' => null,
-                    // 薪水最高
-                    'max' => null,
-                ],
-            ])->comment('薪資範圍');
+            $table->json('content')->comment('內容資訊');
+            $table->json('pay')->comment('薪資範圍');
             $table->unsignedTinyInteger('publish')->default(0)->comment('職缺發佈');
             $table->timestamp('publish_at')->nullable()->comment('在什麼時候發佈的');
             $table->unsignedTinyInteger('closure')->default(0)->comment('職缺關閉');

@@ -65,10 +65,34 @@ class Cards extends Model
      * @var array
      */
     protected $casts = [
-        'config' => 'array',
-        'picture' => 'array',
+        'config' => 'json',
+        'picture' => 'json',
         'active' => 'boolean',
         'blockade' => 'boolean',
+    ];
+
+    /**
+     * The model's default values for attributes.
+     *
+     * // 圖片位址資訊
+     * picture => {
+     *      // Local 位址
+     *      "local": null,
+     *      // 雲端位址
+     *      "storage": null,
+     *      // Imgur 網址
+     *      "imgur": null,
+     * }
+     *
+     * @var array
+     */
+    protected $attributes = [
+        'config' => '{}',
+        'picture' => '{
+            "local": null,
+            "storage": null,
+            "imgur": null
+        }',
     ];
 
     /**

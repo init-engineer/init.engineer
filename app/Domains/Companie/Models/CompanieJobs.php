@@ -99,6 +99,48 @@ class CompanieJobs extends Model
     ];
 
     /**
+     * The model's default values for attributes.
+     *
+     * // 內容資訊
+     * content => {
+     *      // 工作範疇
+     *      'scope' => null,
+     *      // 工作需求
+     *      'require' => null,
+     *      // 遠端工作
+     *      'remote' => null,
+     * },
+     * // 薪資範圍
+     * pay => {
+     *      // 支薪方式
+     *      'type' => null,
+     *      // 薪資範圍
+     *      'amount' => [
+     *          // 薪水最低
+     *          'min' => null,
+     *          // 薪水最高
+     *          'max' => null,
+     *      ],
+     * },
+     *
+     * @var array
+     */
+    protected $attributes = [
+        'content' => '{
+            "scope": null,
+            "require": null,
+            "remote": null
+        }',
+        'pay' => '{
+            "type": null,
+            "amount": {
+                "min": null,
+                "max": null
+            }
+        }',
+    ];
+
+    /**
      * The attributes that should be mutated to dates.
      *
      * @var array

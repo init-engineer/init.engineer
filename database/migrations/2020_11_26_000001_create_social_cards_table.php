@@ -57,12 +57,8 @@ class CreateSocialCardsTable extends Migration
             ])->default(Ads::TYPE_BANNER)->comment('廣告分類');
             $table->string('name')->nullable()->comment('廣告名稱');
             $table->longText('content')->nullable()->comment('廣告內容');
-            $table->json('picture')->default([
-                'local' => null,
-                'storage' => null,
-                'imgur' => null,
-            ])->comment('圖片資訊');
-            $table->json('deploy')->default([])->comment('部署文章');
+            $table->json('picture')->comment('圖片資訊');
+            $table->json('deploy')->comment('部署文章');
             $table->integer('probability')->default(0)->comment('部署機率');
             $table->unsignedTinyInteger('render')->default(0)->comment('彩色渲染');
             $table->unsignedTinyInteger('payment')->default(0)->comment('付款狀態');
@@ -85,12 +81,8 @@ class CreateSocialCardsTable extends Migration
             $table->uuid('uuid')->nullable();
             $table->morphs('model');
             $table->longText('content')->comment('內文');
-            $table->json('config')->default([])->comment('文章設定');
-            $table->json('picture')->default([
-                'local' => null,
-                'storage' => null,
-                'imgur' => null,
-            ])->comment('圖片資訊');
+            $table->json('config')->comment('文章設定');
+            $table->json('picture')->comment('圖片資訊');
             $table->unsignedTinyInteger('active')->default(1)->comment('啟用');
             $table->boolean('blockade')->default(0)->comment('封鎖狀態');
             $table->unsignedBigInteger('blockade_by')->nullable()->comment('被誰封鎖');
@@ -153,7 +145,7 @@ class CreateSocialCardsTable extends Migration
             $table->morphs('model');
             $table->unsignedBigInteger('card_id')->comment('文章 ID');
             $table->integer('point')->default(0)->comment('票數權重');
-            $table->json('config')->default([])->comment('設定');
+            $table->json('config')->comment('設定');
             $table->timestamps();
             $table->softDeletes();
 
