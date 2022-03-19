@@ -1,7 +1,7 @@
 {{-- @if (Breadcrumbs::has() && !Route::is('frontend.index')) --}}
 @if (Breadcrumbs::has())
-    <nav class="position-fixed w-100" style="top: 54px;" aria-label="breadcrumb">
-        <ol class="breadcrumb">
+    <nav id="breadcrumbs" class="position-fixed w-100" aria-label="breadcrumb">
+        <ol class="breadcrumb rounded-0 py-2 px-5">
             @foreach (Breadcrumbs::current() as $crumb)
                 @if ($crumb->url() && !$loop->last)
                     <li class="breadcrumb-item">

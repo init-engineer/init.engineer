@@ -12,9 +12,9 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         {{-- 在左邊的功能 --}}
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav mr-auto p-auto">
             {{-- 文章投稿列表 --}}
-            <li class="nav-item p-1">
+            <li class="nav-item">
                 <x-utils.link
                     :href="route('frontend.social.cards.index')"
                     :active="activeClass(Route::is('frontend.social.cards.*'))"
@@ -23,7 +23,7 @@
             </li>
 
             {{-- 工作 --}}
-            <li class="nav-item p-1">
+            <li class="nav-item">
                 <x-utils.link
                     {{-- :href="route('frontend.jobs.index')" --}}
                     {{-- :active="activeClass(Route::is('frontend.jobs.*') || Route::is('frontend.companie.*'))" --}}
@@ -37,7 +37,7 @@
             </li>
 
             {{-- 接案 --}}
-            <li class="nav-item p-1">
+            <li class="nav-item">
                 <x-utils.link
                     {{-- :href="route('frontend.case.index')" --}}
                     {{-- :active="activeClass(Route::is('frontend.case.*'))" --}}
@@ -51,7 +51,7 @@
             </li>
 
             {{-- 社群 --}}
-            <li class="nav-item p-1">
+            <li class="nav-item">
                 <x-utils.link
                     {{-- :href="route('frontend.group.index')" --}}
                     {{-- :active="activeClass(Route::is('frontend.group.*'))" --}}
@@ -65,7 +65,7 @@
             </li>
 
             {{-- 活動 --}}
-            <li class="nav-item p-1">
+            <li class="nav-item">
                 <x-utils.link
                     {{-- :href="route('frontend.events.index')" --}}
                     {{-- :active="activeClass(Route::is('frontend.events.*'))" --}}
@@ -79,7 +79,7 @@
             </li>
 
             {{-- 研討會 --}}
-            <li class="nav-item p-1">
+            <li class="nav-item">
                 <x-utils.link
                     {{-- :href="route('frontend.conference.index')" --}}
                     {{-- :active="activeClass(Route::is('frontend.conference.*'))" --}}
@@ -93,7 +93,7 @@
             </li>
 
             {{-- 小工具 --}}
-            <li class="nav-item dropdown p-1">
+            <li class="nav-item dropdown">
                 <x-utils.link
                     :active="activeClass(Route::is('frontend.tools.fortunes') || Route::is('frontend.tools.kohlrabi'))"
                     :text="__('Init.Engineer Tools')"
@@ -117,9 +117,9 @@
         </ul>
 
         {{-- 在右邊的功能 --}}
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav ml-auto p-auto">
             {{-- @if(config('boilerplate.locale.status') && count(config('boilerplate.locale.languages')) > 1)
-                <li class="nav-item dropdown p-1">
+                <li class="nav-item dropdown">
                     <x-utils.link
                         :text="__(getLocaleName(app()->getLocale()))"
                         class="nav-link dropdown-toggle"
@@ -134,7 +134,7 @@
 
             @guest
                 {{-- 登入 --}}
-                <li class="nav-item p-1">
+                <li class="nav-item">
                     <x-utils.link
                         :href="route('frontend.auth.login')"
                         :active="activeClass(Route::is('frontend.auth.login'))"
@@ -144,7 +144,7 @@
 
                 {{-- 註冊 --}}
                 @if (config('boilerplate.access.user.registration'))
-                    <li class="nav-item p-1">
+                    <li class="nav-item">
                         <x-utils.link
                             :href="route('frontend.auth.register')"
                             :active="activeClass(Route::is('frontend.auth.register'))"
@@ -154,7 +154,7 @@
                 @endif
             @else
                 {{-- 個人資料 --}}
-                <li class="nav-item dropdown p-1">
+                <li class="nav-item dropdown">
                     <x-utils.link
                         href="#"
                         id="navbarDropdown"
