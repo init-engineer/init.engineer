@@ -11,7 +11,7 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-header">
-                大頭菜計算機，計算你的大頭菜
+                <h1 class="text-center w-100 my-2"><span>大頭菜計算機，計算你的大頭菜</span></h1>
             </div>
             <img class="card-img-top" src="{{ asset('img/frontend/banner/turnips-computer.png') }}" alt="Card image cap">
             <div class="card-body">

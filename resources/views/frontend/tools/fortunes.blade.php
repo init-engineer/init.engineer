@@ -10,7 +10,7 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-header">
-                自助、免費、抽籤算命
+                <h1 class="text-center w-100 my-2"><span>自助、免費、抽籤算命</span></h1>
             </div>
             <div class="card-body">
                 <fortunes-switch></fortunes-switch>

@@ -16,6 +16,10 @@
         text-align: center;
     }
 
+    a {
+        color: var(--color-primary);
+    }
+
     form {
         background-color: var(--background-secondary-light);
         display: flex;
