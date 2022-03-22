@@ -10,13 +10,13 @@
     const now = new Date();
     let title = '想來靠北些什麼？';
     if (now.getHours() >= 0 && now.getHours() < 6) {
-        title = '凌晨安安\n' + title;
+        title = '凌晨安安，' + title;
     } else if (now.getHours() >= 6 && now.getHours() < 12) {
-        title = '早上安安\n' + title;
+        title = '早上安安，' + title;
     } else if (now.getHours() >= 12 && now.getHours() < 18) {
-        title = '下午安安\n' + title;
+        title = '下午安安，' + title;
     } else {
-        title = '晚上安安\n' + title;
+        title = '晚上安安，' + title;
     }
 
     new Typed('#title', {
@@ -96,15 +96,45 @@
 <div class="container-fluid py-4" style="max-width: 100vw;">
     <div class="row justify-content-center">
         <div class="col-md-9 order-md-first order-last">
-            {{-- ... --}}
+            @foreach($cards as $card)
+                <div class="card mb-4 mb-md-4 mr-md-3">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <a href="{{ route('frontend.social.cards.show', ['id' => $card->id]) }}">
+                                <img src="{{ $card->getPicture() }}" class="img-fluid rounded-start" alt="#{{ appName() . base_convert($card->id, 10, 36) }}">
+                            </a>
+                        </div>
+                        <!--col-md-4-->
+
+                        <div class="col-md-8">
+                            <div class="card-body h-100">
+                                <a class="text-decoration-none" href="{{ route('frontend.social.cards.show', ['id' => $card->id]) }}">
+                                    <h5 class="card-title">#{{ appName() . base_convert($card->id, 10, 36) }}</h5>
+                                    <p class="card-text">{{ $card->getContent(200) }}</p>
+                                    <p class="card-text"><small class="text-muted">@displayDate($card->created_at) ({{ $card->created_at->diffForHumans() }})</small></p>
+                                </a>
+                            </div>
+                        </div>
+                        <!--col-md-8-->
+                    </div>
+                    <!--row-->
+                </div>
+                <!--card-->
+            @endforeach
+
+            <div class="w-100 text-center">
+                <p class="pt-2 my-0">我沒有想寫懶加載的意思，所以給一個文章列表的連結，你們自己去看吧😎👍</p>
+                <a class="btn btn-bg btn-lg h1 py-2 px-5 my-2" href="{{ route('frontend.social.cards.index') }}">查看更多</a>
+            </div>
+            <!--more-->
         </div><!--col-md-9-->
 
-        <div class="col-md-3 order-md-last order-first text-center">
-            <h2 class="my-5 mx-auto" id="title"></h2>
+        <div class="col-md-3 order-md-last order-first text-center mb-5">
+            <h2 class="my-2 mx-auto" id="title"></h2>
             <div class="form-group">
-                <textarea class="form-control form-control-lg" id="subtitle" rows="6" disabled></textarea>
+                <textarea class="form-control form-control-lg" id="subtitle" rows="9" disabled></textarea>
             </div>
-            <a class="btn btn-success btn-lg h1 py-2 px-5 my-5" href="{{ route('frontend.social.cards.index') }}">前往投稿</a>
+            <a class="btn btn-bg btn-lg h1 py-2 px-5 my-2" href="{{ route('frontend.social.cards.publish.article') }}">前往投稿</a>
         </div><!--col-md-3-->
     </div>
     <!--row-->

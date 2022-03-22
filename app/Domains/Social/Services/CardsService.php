@@ -8,6 +8,7 @@ use App\Exceptions\GeneralException;
 use App\Services\BaseService;
 use Carbon\Carbon;
 use Exception;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
 
 /**
@@ -48,6 +49,22 @@ class CardsService extends BaseService
         DB::commit();
 
         return $cards;
+    }
+
+    /**
+     * @param int    $paged
+     * @param string $orderBy
+     * @param string $sort
+     *
+     * @return mixed
+     */
+    public function getActivePaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
+    {
+        return $this->model
+            ->active()
+            ->publish()
+            ->orderBy($orderBy, $sort)
+            ->paginate($paged);
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Domains\Social\Models;
 
+use App\Domains\Social\Models\Traits\Attribute\CardsAttribute;
 use App\Domains\Social\Models\Traits\Method\CardsMethod;
 use App\Domains\Social\Models\Traits\Relationship\CardsRelationship;
 use App\Domains\Social\Models\Traits\Scope\CardsScope;
@@ -20,9 +21,10 @@ class Cards extends Model
 {
     use Notifiable,
         SoftDeletes,
-        CardsScope,
+        CardsAttribute,
         CardsMethod,
         CardsRelationship,
+        CardsScope,
         Config,
         Picture,
         Uuid;
