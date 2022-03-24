@@ -1,6 +1,8 @@
 @extends('frontend.layouts.app')
 
 @section('title', __('Dashboard'))
+@section('meta_title', __('Dashboard'))
+@section('meta_description', __('Dashboard'))
 
 @push('after-styles')
     <style>

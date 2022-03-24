@@ -1,6 +1,8 @@
 @extends('frontend.layouts.app')
 
 @section('title', __('Init.Engineer Companie'))
+@section('meta_title', __('Init.Engineer Companie'))
+@section('meta_description', __('Init.Engineer Companie'))
 
 @push('after-styles')
     <style>

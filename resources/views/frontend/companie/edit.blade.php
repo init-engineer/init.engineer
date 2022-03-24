@@ -1,6 +1,8 @@
 @extends('frontend.layouts.app')
 
 @section('title', __('Companie Update - :name', ['name' => $companie->name]))
+@section('meta_title', __('Companie Update - :name', ['name' => $companie->name]))
+@section('meta_description', __('Companie Update - :name', ['name' => $companie->name]))
 
 @section('content')
     <div class="container">

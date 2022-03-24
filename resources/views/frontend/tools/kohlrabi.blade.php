@@ -1,11 +1,9 @@
 @extends('frontend.layouts.app')
 
-@section('title', '動物森友會 - 大頭菜計算機')
-@section('meta_keyword', appName() . ' | 動物森友會 - 大頭菜計算機')
-@section('meta_description', appName() . ' | 動物森友會 - 大頭菜計算機，計算你的大頭菜')
-@section('meta_og_title', appName() . ' | 動物森友會 - 大頭菜計算機')
-@section('meta_og_image', asset('img/frontend/banner/turnips-computer.png'))
-@section('meta_og_description', appName() . ' | 動物森友會 - 大頭菜計算機，計算你的大頭菜')
+@section('title', '動物森友會 - 大頭菜計算機，計算你的大頭菜')
+@section('meta_title', '大頭菜計算機')
+@section('meta_description', '動物森友會 - 大頭菜計算機，計算你的大頭菜')
+@section('meta_imagess', asset('img/frontend/banner/turnips-computer.png'))
 
 @section('content')
     <div class="container-fluid">

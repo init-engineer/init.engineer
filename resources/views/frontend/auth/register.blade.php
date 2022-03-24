@@ -1,6 +1,8 @@
 @extends('frontend.layouts.app')
 
 @section('title', __('Register'))
+@section('meta_title',  __('Register'))
+@section('meta_description',  __('Register'))
 
 @push('after-scripts')
     <script>

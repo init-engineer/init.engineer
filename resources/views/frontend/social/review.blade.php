@@ -1,6 +1,8 @@
 @extends('frontend.layouts.app')
 
 @section('title', __('Review Submit'))
+@section('meta_title', __('Review Submit'))
+@section('meta_description', __('Review Submit'))
 
 @push('after-styles')
     <style>

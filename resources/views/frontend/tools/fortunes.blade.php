@@ -1,10 +1,8 @@
 @extends('frontend.layouts.app')
 
 @section('title', '線上求籤服務')
-@section('meta_keyword', appName() . ' | 線上求籤服務，問天、問地、問自己，不如問問純靠北工程師《線上求籤服務》，想幫朋友求籤嗎？先承認你就是你朋友。')
-@section('meta_description', appName() . ' | 問天、問地、問自己，不如問問純靠北工程師《線上求籤服務》，想幫朋友求籤嗎？先承認你就是你朋友。')
-@section('meta_og_title', appName() . ' | 線上求籤服務')
-@section('meta_og_description', appName() . ' | 問天、問地、問自己，不如問問純靠北工程師《線上求籤服務》，想幫朋友求籤嗎？先承認你就是你朋友。')
+@section('meta_title', '純靠北工程師《線上求籤服務》')
+@section('meta_description', '線上求籤服務，問天、問地、問自己，不如問問純靠北工程師《線上求籤服務》，想幫朋友求籤嗎？先承認你就是你朋友。')
 
 @section('content')
     <div class="container-fluid">

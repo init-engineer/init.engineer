@@ -1,6 +1,8 @@
 @extends('frontend.layouts.app')
 
 @section('title', __('Terms & Conditions'))
+@section('meta_title', __('Terms & Conditions'))
+@section('meta_description', __('Terms & Conditions'))
 
 @section('content')
 <div class="container py-4">
