@@ -69,7 +69,7 @@
 
     <meta property="fb:app_id" content="137466300263351">
     <meta property="fb:admins" content="100015671404819">
-    <meta property="fb:pages" content="1309707529076258,147820162545640,104799081246129,108880158181897">
+    <meta property="fb:pages" content="1309707529076258">
 
     <meta name="msapplication-TileColor" content="#293134">
 

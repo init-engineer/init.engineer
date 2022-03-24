@@ -1,8 +1,8 @@
 @extends('frontend.layouts.app')
 
 @section('title', __('My Account'))
-@section('meta_title', __('My Account'))
-@section('meta_description', __('My Account'))
+@section('meta_title', appName() . ' | ' . __('My Account'))
+@section('meta_description', appName() . ' | ' . __('My Account'))
 
 @push('after-styles')
     <style>

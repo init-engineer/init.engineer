@@ -1,8 +1,8 @@
 @extends('frontend.layouts.app')
 
 @section('title', __('Reset Password'))
-@section('meta_title',  __('Reset Password'))
-@section('meta_description',  __('Reset Password'))
+@section('meta_title', appName() . ' | ' . __('Reset Password'))
+@section('meta_description', appName() . ' | ' . __('Reset Password'))
 
 @section('content')
     <div class="container py-4">

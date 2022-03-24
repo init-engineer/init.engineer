@@ -1,8 +1,8 @@
 @extends('frontend.layouts.app')
 
 @section('title', __('Your password has expired.'))
-@section('meta_title',  __('Your password has expired.'))
-@section('meta_description',  __('Your password has expired.'))
+@section('meta_title', appName() . ' | ' . __('Your password has expired.'))
+@section('meta_description', appName() . ' | ' . __('Your password has expired.'))
 
 @section('content')
     <div class="container py-4">

@@ -1,8 +1,8 @@
 @extends('frontend.layouts.app')
 
 @section('title', __('Login'))
-@section('meta_title',  __('Login'))
-@section('meta_description',  __('Login'))
+@section('meta_title', appName() . ' | ' . __('Login'))
+@section('meta_description', appName() . ' | ' . __('Login'))
 
 @push('after-scripts')
     <script>

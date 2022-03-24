@@ -1,8 +1,8 @@
 @extends('frontend.layouts.app')
 
 @section('title', __('Please confirm your password before continuing.'))
-@section('meta_title',  __('Please confirm your password before continuing.'))
-@section('meta_description',  __('Please confirm your password before continuing.'))
+@section('meta_title', appName() . ' | ' . __('Please confirm your password before continuing.'))
+@section('meta_description', appName() . ' | ' . __('Please confirm your password before continuing.'))
 
 @section('content')
     <div class="container py-4">

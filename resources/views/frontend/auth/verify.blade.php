@@ -1,8 +1,8 @@
 @extends('frontend.layouts.app')
 
 @section('title', __('Verify Your E-mail Address'))
-@section('meta_title',  __('Verify Your E-mail Address'))
-@section('meta_description',  __('Verify Your E-mail Address'))
+@section('meta_title', appName() . ' | ' . __('Verify Your E-mail Address'))
+@section('meta_description', appName() . ' | ' . __('Verify Your E-mail Address'))
 
 @section('content')
     <div class="container py-4">

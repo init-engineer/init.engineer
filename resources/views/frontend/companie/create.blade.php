@@ -1,8 +1,8 @@
 @extends('frontend.layouts.app')
 
 @section('title', __('Companie Create'))
-@section('meta_title', __('Companie Create'))
-@section('meta_description', __('Companie Create'))
+@section('meta_title', appName() . ' | ' . __('Companie Create'))
+@section('meta_description', appName() . ' | ' . __('Companie Create'))
 
 @push('after-styles')
     <style>
