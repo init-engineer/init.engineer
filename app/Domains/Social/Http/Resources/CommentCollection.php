@@ -2,6 +2,7 @@
 
 namespace App\Domains\Social\Http\Resources;
 
+use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 /**
@@ -19,12 +20,14 @@ class CommentCollection extends ResourceCollection
     public function toArray($request)
     {
         return $this->collection->map(function ($item) {
+            $created_at = new Carbon($item->created_at);
+
             return [
                 'id' => $item->id,
                 'user_name' => $item->user_name,
                 'user_avatar' => $item->user_avatar,
                 'content' => $item->content,
-                'created_at' => $item->created_at->diffForHumans(),
+                'created_at' => $created_at->diffForHumans(),
                 'replys' => CommentResource::collection($item->replys),
             ];
         });
