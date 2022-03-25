@@ -6,6 +6,8 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as Middleware;
 
 /**
  * Class VerifyCsrfToken.
+ *
+ * @extends Middleware
  */
 class VerifyCsrfToken extends Middleware
 {

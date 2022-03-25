@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 /**
  * Class TrustProxies.
+ *
+ * @extends Middleware
  */
 class TrustProxies extends Middleware
 {

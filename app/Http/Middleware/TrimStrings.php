@@ -6,6 +6,8 @@ use Illuminate\Foundation\Http\Middleware\TrimStrings as Middleware;
 
 /**
  * Class TrimStrings.
+ *
+ * @extends Middleware
  */
 class TrimStrings extends Middleware
 {
