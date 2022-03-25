@@ -47,7 +47,8 @@ class Kernel extends HttpKernel
         'api' => [
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             'web',
-            \App\Http\Middleware\Authenticate::class,
+            // \App\Http\Middleware\Authenticate::class,
+            \App\Http\Middleware\AccessControl::class,
             // 'throttle:api',
             // \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
@@ -77,6 +78,7 @@ class Kernel extends HttpKernel
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
+        'cors' => \App\Http\Middleware\AccessControl::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'is_admin' => \App\Domains\Auth\Http\Middleware\AdminCheck::class,
         'is_super_admin' => \App\Domains\Auth\Http\Middleware\SuperAdminCheck::class,
@@ -101,6 +103,7 @@ class Kernel extends HttpKernel
     protected $middlewarePriority = [
         \Illuminate\Session\Middleware\StartSession::class,
         \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+        \App\Http\Middleware\AccessControl::class,
         \App\Http\Middleware\Authenticate::class,
         \Illuminate\Routing\Middleware\ThrottleRequests::class,
         \Illuminate\Session\Middleware\AuthenticateSession::class,
