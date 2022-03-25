@@ -57,11 +57,21 @@ body {
 }
 
 /**
- * 台北黑體
+ * 台北黑體 at:
+ * https://sites.google.com/view/jtfoundry
  */
 @font-face {
     font-family: "Taipei Sans TC Beta";
     src: url("/fonts/TaipeiSansTCBeta-Bold.ttf");
+}
+
+/**
+ * 俐方體 11 號 at:
+ * https://github.com/ACh-K/Cubic-11
+ */
+@font-face {
+    font-family: "Cubic 11";
+    src: url("/fonts/Cubic_11_1.010_R.ttf");
 }
 
 /**

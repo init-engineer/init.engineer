@@ -182,6 +182,10 @@ export default {
           name: "台北黑體",
           font: "Taipei Sans TC Beta",
         },
+        "cubic-11": {
+          name: "俐方體 11 號",
+          font: "Cubic 11",
+        },
       },
     };
   },

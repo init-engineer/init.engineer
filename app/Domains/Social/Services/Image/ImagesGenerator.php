@@ -252,6 +252,11 @@ class ImagesGenerator extends ImagesContract
                 $this->fontPath = public_path('fonts/TaipeiSansTCBeta-Bold.ttf');
                 break;
 
+                /** 俐方體 11 號 */
+            case 'cubic-11':
+                $this->fontPath = public_path('fonts/Cubic_11_1.010_R.ttf');
+                break;
+
                 /** 預設: AURAKA 點陣宋字型 */
             default:
                 $this->fontPath = public_path('fonts/Auraka.ttf');

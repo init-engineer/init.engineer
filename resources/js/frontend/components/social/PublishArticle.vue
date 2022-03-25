@@ -411,6 +411,7 @@ export default {
         "kaiu",
         "fot-matissepro-eb",
         "taipei-sans-tc-beta-bold",
+        "cubic-11",
       ],
     };
   },

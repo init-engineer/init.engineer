@@ -60,6 +60,7 @@ class PublishArticleRequest extends FormRequest
                 'kaiu',
                 'fot-matissepro-eb',
                 'taipei-sans-tc-beta-bold',
+                'cubic-11',
             ])],
         ];
     }
