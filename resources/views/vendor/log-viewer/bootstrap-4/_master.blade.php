@@ -133,7 +133,7 @@
 
         .stack-content {
             color: #AE0E0E;
-            font-family: consolas, Menlo, Courier, monospace;
+            font-family: 'Consolas', 'Menlo', 'Courier', 'monospace';
             white-space: pre-line;
             font-size: .8rem;
         }

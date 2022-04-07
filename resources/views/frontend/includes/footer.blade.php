@@ -1,5 +1,5 @@
 <footer class="footer mt-5">
-    <div class="footer-copyright py-1" style="font-family: Consolas;">
+    <div class="footer-copyright py-1" style="font-family: 'Consolas';">
         <p class="m-0">&nbsp;root@kantai235 ~> footer -al</p>
     </div>
     <!--footer-copyright-->
@@ -33,7 +33,7 @@
     </div>
     <!--footer-copyright-->
 
-    <div class="footer-copyright py-1" style="font-family: Consolas;">
+    <div class="footer-copyright py-1" style="font-family: 'Consolas';">
         <p class="m-0">&nbsp;root@kantai235 ~> <span id="typed"></span></p>
     </div>
     <!--footer-copyright-->
