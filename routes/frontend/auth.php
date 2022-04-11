@@ -141,7 +141,7 @@ Route::group([
             ->name('password.reset')
             ->breadcrumbs(function (Trail $trail) {
                 $trail->parent('frontend.auth.login')
-                    ->push(__('Reset Password'), route('frontend.auth.password.reset'));
+                    ->push(__('Reset Password'));
             });
         Route::post('password/reset', [ResetPasswordController::class, 'reset'])
             ->name('password.update');
