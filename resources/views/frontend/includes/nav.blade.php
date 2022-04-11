@@ -12,7 +12,7 @@
 
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
         <ul class="navbar-nav">
-            <li><a class="nav-link">{{ date('m月d日') }}(週{{ ['日', '一', '二', '三', '四', '五', '六'][date('w')] }}) 回暖了些</a></li>
+            <li><a class="nav-link">{{ date('m月d日') }}(週{{ ['日', '一', '二', '三', '四', '五', '六'][date('w')] }})</a></li>
             @guest
                 <li class="nav-item"><a href="{{ route('frontend.auth.login') }}" class="nav-link {{ active_class(Route::is('frontend.auth.login')) }}">@lang('navs.frontend.login')</a></li>
                 <li class="nav-item"><a href="{{ route('frontend.auth.register') }}" class="nav-link {{ active_class(Route::is('frontend.auth.register')) }}">@lang('navs.frontend.register')</a></li>
@@ -26,6 +26,7 @@
 
                     <div class="dropdown-menu animated fadeInDown faster rounded-0 mb-2" aria-labelledby="navbarDropdownMenuUser">
                         @can('view backend')
+                            <a href="{{ route('frontend.monitor.opcache.index') }}" class="dropdown-item py-2">OPCache</a>
                             <a href="{{ route('admin.dashboard') }}" class="dropdown-item py-2">@lang('navs.frontend.user.administration')</a>
                         @endcan
                         <a href="{{ route('frontend.user.dashboard') }}" class="dropdown-item py-2">@lang('navs.frontend.dashboard')</a>

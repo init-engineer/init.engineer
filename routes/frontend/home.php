@@ -5,6 +5,7 @@ use App\Http\Controllers\Frontend\User\ProfileController;
 use App\Http\Controllers\Frontend\User\DashboardController;
 use App\Http\Controllers\Frontend\OAuth\CallbackController;
 use App\Http\Controllers\Frontend\OAuth\AuthorizeController;
+use App\Http\Controllers\MonitorController;
 use Laravel\Passport\Http\Controllers\AuthorizationController;
 
 /**
@@ -39,6 +40,7 @@ Route::group([
     'prefix' => 'testing',
     'as' => 'testing.',
     'namespace' => 'Testing',
+    'middleware' => ['admin'],
 ], function () {
     /**
      * All route names are prefixed with 'frontend.testing.oauth'
@@ -60,7 +62,20 @@ Route::group([
     'prefix' => 'oauth',
     'as' => 'oauth.',
     'namespace' => 'OAuth',
-    'middleware' => ['web', 'auth.apple'],
+    'middleware' => ['admin', 'web', 'auth.apple'],
 ], function () {
     Route::get('apple/authorize', [AuthorizationController::class, 'authorize']);
+});
+
+
+/**
+ * All route names are prefixed with 'frontend.monitor'
+ */
+Route::group([
+    'prefix' => 'monitor',
+    'as' => 'monitor.',
+    'namespace' => 'Monitor',
+    'middleware' => ['admin'],
+], function () {
+    Route::get('opcache', [MonitorController::class, 'index'])->name('opcache.index');
 });
