@@ -13,14 +13,7 @@
                 <search-engine></search-engine>
             </div>
             <div class="w-100">
-                <p>
-                    熱門話題:
-                    <a class="color-danger" style="text-decoration: underline;" href="https://github.com/init-engineer/init.engineer" target="_blank">純靠北工程師</a>
-                    <a class="color-color-primary" style="text-decoration: underline;" href="https://www.youtube.com/watch?v=_6TtTRrno3E&list=PL12UaAf_xzfq1Qw3hO43WvcgAo_Sju6Ix" target="_blank">天竺鼠車車</a>
-                    <a class="color-danger" style="text-decoration: underline;" href="https://www.youtube.com/watch?v=rU4k1jRAO3I" target="_blank">HowHow 素材</a>
-                    <a class="color-primary" style="text-decoration: underline;" href="https://www.youtube.com/watch?v=072tU1tamd0" target="_blank">統神端火鍋</a>
-                    <a class="color-primary" style="text-decoration: underline;" href="https://news.pts.org.tw/article/514964" target="_blank">全民買鳳梨</a>
-                </p>
+                <p>告訴你一個神秘的地方 ♪ 一個孩子們的快樂天堂 ♪</p>
             </div>
         </div>
         <div class="col-12 col-md-12 col-lg-2 mx-auto" style="display: flex; flex-direction: column; justify-content: center;">
@@ -40,51 +33,19 @@
 
         </div>
         <div class="col-12 col-md-8 col-lg-6 mx-auto my-2 px-0">
-            <label class="col-label bg-color-primary color-color-primary">快捷選單</label>
+            <div style="border-width:3px; border-style:dashed; padding:5px; min-height: 480px;" class="d-flex align-items-center">
+                <div class="w-100">
+                    <h1 class="text-center">我還沒想到這裡要放甚麼 :-)<h1>
+                    <br />
+                    <h3 class="text-center">過了好幾天了，我還是想不到這裏要放甚麼 :-(<h3>
+                </div>
+            </div>
+            {{-- <label class="col-label bg-color-primary color-color-primary">快捷選單</label>
             <div class="w-100 bg-color-primary mb-3">
                 <div class="github-card" data-github="kantai235" data-theme="default"></div>
                 <div class="github-card" data-github="init-engineer/init.engineer" data-theme="default"></div>
                 <script src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
-            </div>
-
-            <label class="col-label bg-color-primary color-color-primary">快捷選單</label>
-            <div class="w-100 bg-color-primary">
-                <table class="table table-sm table-hover color-color-primary">
-                    <tbody>
-                        <tr><th scope="row" style="border-top: 0px; border-bottom: 1px solid var(--font-primary-color);">
-                            ["平台功能":[
-                            "<a class="color-warning" href="{{ route('frontend.animal.index') }}">大頭菜計算機</a>",&nbsp;
-                            "<a class="color-warning" href="{{ route('frontend.social.cards.create') }}">發表文章</a>",&nbsp;
-                            "<a class="color-warning" href="{{ route('frontend.social.cards.review') }}">群眾審核</a>",&nbsp;
-                            "<a class="color-warning" href="{{ route('frontend.social.cards.index') }}">文章列表</a>"]]
-                        </th></tr>
-                        <tr><th scope="row" style="border-top: 0px;">
-                            ["研討會":[
-                            "<a href="https://mopcon.org" target="_blank"><img src="https://t.kfs.io/upload_images/102093/Image_from_iOS_original.jpg" alt=""> MOPCON</a>",&nbsp;
-                            "<a href="https://sitcon.org" target="_blank"><img src="https://sitcon.org/2016/image/stone.png" alt="sitcon"> SITCON</a>",&nbsp;
-                            "<a href="https://hitcon.org" target="_blank"><img src="https://ctf.hitcon.org/img/og_img.png" alt="hitcon"> HITCON</a>",&nbsp;
-                            "<a href="https://coscup.org" target="_blank"><img src="https://coscup.org/2019/avatar.jpg" alt="coscup"> COSCUP</a>"]]
-                        </th></tr>
-                        <tr><th scope="row" style="border-top: 0px;">
-                            ["臉書社團":[
-                            "<a href="https://www.facebook.com/groups/1182255762153380" target="_blank">程式語言讀書會</a>",&nbsp;
-                            "<a href="https://www.facebook.com/groups/kaobei.engineer" target="_blank">純靠北工程師 同溫層</a>",&nbsp;
-                            "<a href="https://www.facebook.com/groups/616369245163622" target="_blank">Backend 台灣</a>"]]
-                        </th></tr>
-                        <tr><th scope="row" style="border-top: 0px;">
-                            ["瀏覽器":[
-                            "<a href="https://www.mozilla.org/zh-TW/firefox/new" target="_blank"><img src="https://www.flaticon.com/svg/static/icons/svg/183/183320.svg" alt="firefox"> Firefox</a>",&nbsp;
-                            "<a href="https://www.google.com/intl/zh-TW/chrome" target="_blank"><img src="https://www.flaticon.com/svg/static/icons/svg/183/183316.svg" alt="chrome"> Chrome</a>",&nbsp;
-                            "<a href="https://www.opera.com/zh-cn" target="_blank"><img src="https://www.flaticon.com/svg/static/icons/svg/732/732233.svg" alt="opera"> Opera</a>",&nbsp;
-                            "<a href="https://brave.com/zh" target="_blank"><img src="https://brave.com/wp-content/uploads/2019/03/brave-logo.png" alt="brave"> Brave</a>"]]
-                        </th></tr>
-                        <tr><th scope="row" style="border-top: 0px;">
-                            ["undefined": null]
-                        </th></tr>
-                    </tbody>
-                </table>
-            </div>
-
+            </div> --}}
         </div>
 
         <div class="col-12 col-lg-4 mx-auto my-2">
