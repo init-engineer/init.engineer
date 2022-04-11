@@ -29,8 +29,6 @@
                                         <i class="fa fa-key"></i>
                                         {{ $secret }}
                                     </p>
-
-                                    <p><i class="fa fa-key"> {{ $secret }}</i></p>
                                 </div>
                             </div><!--col-->
                         </div><!--row-->
