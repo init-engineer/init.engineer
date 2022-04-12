@@ -5,6 +5,7 @@ namespace App\Domains\Social\Services;
 use App\Domains\Social\Models\Comments;
 use App\Exceptions\GeneralException;
 use App\Services\BaseService;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Facades\DB;
 
@@ -26,9 +27,9 @@ class CommentsService extends BaseService
     /**
      * @param string $id
      *
-     * @return
+     * @return mixed
      */
-    public function findCommentById(string $id): Comments
+    public function findCommentById(string $id)
     {
         $comment = $this->model
             ->where('comment_id', $id)
@@ -86,6 +87,8 @@ class CommentsService extends BaseService
                 'user_avatar' => $data['user_avatar'] ?? null,
                 'content' => $data['comments'] ?? $data['content'] ?? null,
                 'reply' => $data['reply'] ?? null,
+                'created_at' => $data['created_at'] ?? null,
+                'updated_at' => $data['updated_at'] ?? null,
             ]);
         } catch (Exception $e) {
             DB::rollBack();
@@ -168,6 +171,8 @@ class CommentsService extends BaseService
             'user_avatar' => $data['user_avatar'] ?? '/img/frontend/user/nopic_192.gif',
             'content' => $data['content'] ?? null,
             'reply' => $data['reply'] ?? null,
+            'created_at' => $data['created_at'] ?? Carbon::now(),
+            'updated_at' => $data['updated_at'] ?? Carbon::now(),
         ]);
     }
 }

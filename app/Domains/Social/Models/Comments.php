@@ -54,6 +54,9 @@ class Comments extends Model
         'blockade_by',
         'blockade_remarks',
         'blockade_at',
+        'created_at',
+        'updated_at',
+        'deleted_at',
     ];
 
     /**
@@ -73,5 +76,8 @@ class Comments extends Model
      */
     protected $dates = [
         'blockade_at',
+        'created_at',
+        'updated_at',
+        'deleted_at',
     ];
 }

@@ -142,7 +142,7 @@ class FacebookCommentsJob implements ShouldQueue
                     'platform_card_id' => $this->platformCards->id,
                     'comment_id' => $comment['id'],
                     'content' => $comment['message'] ?? null,
-                    'created_time' => $comment['created_time'],
+                    'created_at' => $comment['created_time'],
                 ));
             }
 
@@ -173,7 +173,7 @@ class FacebookCommentsJob implements ShouldQueue
                             'comment_id' => $reply['id'],
                             'content' => $reply['message'] ?? null,
                             'reply' => $comment['id'],
-                            'created_time' => $reply['created_time'],
+                            'created_at' => $reply['created_time'],
                         ));
                     }
                 }
@@ -222,20 +222,24 @@ class FacebookCommentsJob implements ShouldQueue
         /**
          * 整理 Comments 並判斷是否繼續遞迴去獲取接續的 Comments
          */
-        $afterComments = $responseBody['data'];
-        $afterComments = array_merge($afterComments, $beforeComments);
+        if (isset($responseBody['data'])) {
+            $afterComments = $responseBody['data'];
+            $afterComments = array_merge($afterComments, $beforeComments);
 
-        if (isset($responseBody['paging']['next'])) {
-            return $this->getComments(
-                $graphVersion,
-                $userId,
-                $postId,
-                $accessToken,
-                $responseBody['paging']['cursors']['after'],
-                $afterComments,
-            );
+            if (isset($responseBody['paging']['next'])) {
+                return $this->getComments(
+                    $graphVersion,
+                    $userId,
+                    $postId,
+                    $accessToken,
+                    $responseBody['paging']['cursors']['after'],
+                    $afterComments,
+                );
+            }
+
+            return $afterComments;
         }
 
-        return $afterComments;
+        return $beforeComments;
     }
 }
