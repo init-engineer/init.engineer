@@ -97,6 +97,20 @@ class TelegramPublishJob implements ShouldQueue
             ->build();
 
         /**
+         * 判斷文章是否已經發表出去
+         */
+        if ($platformCard = $platformCardService->findPlatformCardById($this->platform->id, $this->cards->id)) {
+            /**
+             * 在這個 Telegram 已經將文章發表出去，並且記錄起來了
+             */
+            activity('social cards - telegram post published')
+                ->performedOn($this->cards)
+                ->log(json_encode($platformCard));
+
+            return;
+        }
+
+        /**
          * 開始執行通知
          */
         $token = $this->platform->config['access_token'];

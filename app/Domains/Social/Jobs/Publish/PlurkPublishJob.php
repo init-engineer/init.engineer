@@ -119,6 +119,20 @@ class PlurkPublishJob implements ShouldQueue
             ]);
 
         /**
+         * 判斷文章是否已經發表出去
+         */
+        if ($platformCard = $platformCardService->findPlatformCardById($this->platform->id, $this->cards->id)) {
+            /**
+             * 在這個 Plurk 已經將文章發表出去，並且記錄起來了
+             */
+            activity('social cards - plurk post published')
+                ->performedOn($this->cards)
+                ->log(json_encode($platformCard));
+
+            return;
+        }
+
+        /**
          * 先將圖片透過 multipart/form-data 的方式上傳到 Plurk
          */
         $pictureArray = explode('/', $this->cards->getPicture());

@@ -24,6 +24,26 @@ class PlatformCardService extends BaseService
     }
 
     /**
+     * @param int $platform_id
+     * @param int $card_id
+     *
+     * @return mixed
+     */
+    public function findPlatformCardById(int $platform_id, int $card_id)
+    {
+        $platformCard = $this->model
+            ->where('platform_id', $platform_id)
+            ->where('card_id', $card_id)
+            ->first();
+
+        if ($platformCard instanceof $this->model) {
+            return $platformCard;
+        }
+
+        return false;
+    }
+
+    /**
      * @param array $data
      *
      * @return mixed

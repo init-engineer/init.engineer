@@ -118,6 +118,20 @@ class TwitterPublishJob implements ShouldQueue
             ]);
 
         /**
+         * 判斷文章是否已經發表出去
+         */
+        if ($platformCard = $platformCardService->findPlatformCardById($this->platform->id, $this->cards->id)) {
+            /**
+             * 在這個 Twitter 已經將文章發表出去，並且記錄起來了
+             */
+            activity('social cards - twitter post published')
+                ->performedOn($this->cards)
+                ->log(json_encode($platformCard));
+
+            return;
+        }
+
+        /**
          * 先判斷媒體是圖片(jpg、jpeg、png)還是動畫(gif)
          */
         $tweetType = explode('.', $this->cards->getPicture());
