@@ -89,27 +89,27 @@ class PlatformCommentsUpdate extends Command
                         break;
 
                     case Platform::TYPE_FACEBOOK:
-                        FacebookCommentsJob::dispatch($platformCard->platform, $platformCard);
+                        dispatch(new FacebookCommentsJob($platformCard->platform, $platformCard));
                         break;
 
                     case Platform::TYPE_TWITTER:
-                        TwitterCommentsJob::dispatch($platformCard->platform, $platformCard);
+                        dispatch(new TwitterCommentsJob($platformCard->platform, $platformCard));
                         break;
 
                     case Platform::TYPE_PLURK:
-                        PlurkCommentsJob::dispatch($platformCard->platform, $platformCard);
+                        dispatch(new PlurkCommentsJob($platformCard->platform, $platformCard));
                         break;
 
                     case Platform::TYPE_TUMBLR:
-                        TumblrCommentsJob::dispatch($platformCard->platform, $platformCard);
+                        dispatch(new TumblrCommentsJob($platformCard->platform, $platformCard));
                         break;
 
                     case Platform::TYPE_DISCORD:
-                        DiscordCommentsJob::dispatch($platformCard->platform, $platformCard);
+                        dispatch(new DiscordCommentsJob($platformCard->platform, $platformCard));
                         break;
 
                     case Platform::TYPE_TELEGRAM:
-                        TelegramCommentsJob::dispatch($platformCard->platform, $platformCard);
+                        dispatch(new TelegramCommentsJob($platformCard->platform, $platformCard));
                         break;
                 }
             }

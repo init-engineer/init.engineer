@@ -156,42 +156,42 @@ class ReviewsPublish extends Command
                          * 丟給負責發表文章到 Facebook 的 Job
                          */
                         case Platform::TYPE_FACEBOOK:
-                            FacebookPublishJob::dispatch($model, $platform);
+                            dispatch(new FacebookPublishJob($model, $platform));
                             break;
 
                             /**
                              * 丟給負責發表文章到 Twitter 的 Job
                              */
                         case Platform::TYPE_TWITTER:
-                            TwitterPublishJob::dispatch($model, $platform);
+                            dispatch(new TwitterPublishJob($model, $platform));
                             break;
 
                             /**
                              * 丟給負責發表文章到 Plurk 的 Job
                              */
                         case Platform::TYPE_PLURK:
-                            PlurkPublishJob::dispatch($model, $platform);
+                            dispatch(new PlurkPublishJob($model, $platform));
                             break;
 
                             /**
                              * 丟給負責發表文章到 Discord 的 Job
                              */
                         case Platform::TYPE_DISCORD:
-                            DiscordPublishJob::dispatch($model, $platform);
+                            dispatch(new DiscordPublishJob($model, $platform));
                             break;
 
                             /**
                              * 丟給負責發表文章到 Tumblr 的 Job
                              */
                         case Platform::TYPE_TUMBLR:
-                            TumblrPublishJob::dispatch($model, $platform);
+                            dispatch(new TumblrPublishJob($model, $platform));
                             break;
 
                             /**
                              * 丟給負責發表文章到 Telegram 的 Job
                              */
                         case Platform::TYPE_TELEGRAM:
-                            TelegramPublishJob::dispatch($model, $platform);
+                            dispatch(new TelegramPublishJob($model, $platform));
                             break;
 
                             /**
