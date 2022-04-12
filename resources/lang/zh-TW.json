@@ -4,6 +4,7 @@
     "Two-factor Authentication must be :status to view this page.": "要查看此頁面，雙重身份驗證(2FA)必須為 :status。",
     "One or more permissions were not found or are not allowed to be associated with this role type.": "找不到一個或多個權限，或者不允許將一個或多個權限與此角色類型相關聯。",
     "Your account has been deactivated.": "您的帳號已被停用。",
+    "Your account is not bind to any community account.": "您的帳號沒有綁定社群帳號。",
     "Password successfully updated.": "密碼已成功更新。",
     "Two Factor Authentication Successfully Disabled": "成功禁用雙重身份驗證",
     "You must accept the Terms & Conditions.": "您必須接受條款和條件。",
