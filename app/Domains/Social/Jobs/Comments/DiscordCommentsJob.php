@@ -9,6 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use romanzipp\QueueMonitor\Traits\IsMonitored;
 
 /**
  * Class DiscordCommentsJob.
@@ -18,7 +19,8 @@ class DiscordCommentsJob implements ShouldQueue
     use Dispatchable,
         InteractsWithQueue,
         Queueable,
-        SerializesModels;
+        SerializesModels,
+        IsMonitored;
 
     /**
      * @var Platform

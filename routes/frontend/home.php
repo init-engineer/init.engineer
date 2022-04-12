@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\TermsController;
+use romanzipp\QueueMonitor\Controllers\DeleteMonitorController;
+use romanzipp\QueueMonitor\Controllers\PurgeMonitorsController;
+use romanzipp\QueueMonitor\Controllers\ShowQueueMonitorController;
 use Tabuna\Breadcrumbs\Trail;
 
 /*
@@ -31,4 +34,8 @@ Route::group([
     'middleware' => ['admin'],
 ], function () {
     Route::get('opcache', [HomeController::class, 'opcache'])->name('opcache.index');
+
+    Route::prefix('jobs')->group(function () {
+        Route::queueMonitor();
+    });
 });

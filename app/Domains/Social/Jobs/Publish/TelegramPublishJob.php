@@ -13,6 +13,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Http;
+use romanzipp\QueueMonitor\Traits\IsMonitored;
 
 /**
  * Class TelegramPublishJob.
@@ -22,7 +23,8 @@ class TelegramPublishJob implements ShouldQueue
     use Dispatchable,
         InteractsWithQueue,
         Queueable,
-        SerializesModels;
+        SerializesModels,
+        IsMonitored;
 
     /**
      * @var Cards
