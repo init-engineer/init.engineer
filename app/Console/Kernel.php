@@ -35,8 +35,8 @@ class Kernel extends ConsoleKernel
         /**
          * 自動化 群眾審核相關功能
          */
-        $schedule->command('social:review-publish')->everyMinute()->when(function () {
-            return Crons::everySomeMinutes('social:review-publish', 10);
+        $schedule->command('social:reviews-publish')->everyMinute()->when(function () {
+            return Crons::everySomeMinutes('social:reviews-publish', 10);
         });
 
         /**
