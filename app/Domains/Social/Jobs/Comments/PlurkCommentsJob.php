@@ -116,6 +116,17 @@ class PlurkCommentsJob implements ShouldQueue
         /**
          * 根據 Comments 的資訊列來逐一檢查是否新增或更新的資料
          */
+        if ($plurkResponse->status() !== 200) {
+            /**
+             * Plurk Not Found.
+             *
+             * 找不到此則噗浪訊息。
+             * 有可能原作者已經刪除此訊息或回應了。
+             */
+
+            return;
+        }
+
         foreach ($plurkResponse->json()['responses'] as $response) {
             /**
              * 判斷 Comment 是否已經存在
