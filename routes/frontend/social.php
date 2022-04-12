@@ -32,7 +32,7 @@ Route::group([
             ->name('show')
             ->breadcrumbs(function (Trail $trail, Cards $id) {
                 $trail->parent('frontend.social.cards.index')
-                    ->push(__('Init.Engineer Show - #:nid(:id) :content', ['id' => $id->id, 'nid' => base_convert($id->id, 10, 36), 'content' => Str::limit($id->content, 64, '...')]), route('frontend.social.cards.show', $id));
+                    ->push(__('#:name:nid', ['nid' => base_convert($id->id, 10, 36), 'name' => appName()]), route('frontend.social.cards.show', $id));
             });
         Route::get('create', [CardsController::class, 'redirect']);
 

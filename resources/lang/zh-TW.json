@@ -249,6 +249,7 @@
             "Fortunes": "線上求籤服務",
             "Kohlrabi": "大頭菜計算機",
 
+        "Init.Engineer Show - #:name:nid(:id)": "投稿詳細 - #:name:nid(:id)",
         "Init.Engineer Show - #:nid(:id) :content": "投稿詳細 - #:nid(:id) :content",
 
     "Enum": "列舉",
