@@ -5,7 +5,9 @@ namespace App\Domains\Auth\Http\Controllers\Frontend\Auth;
 use App\Domains\Auth\Events\User\UserLoggedIn;
 use App\Domains\Auth\Services\UserService;
 use App\Http\Controllers\Controller;
+use Exception;
 use Laravel\Socialite\Facades\Socialite;
+use Redirect;
 
 /**
  * Class SocialController.
@@ -33,7 +35,13 @@ class SocialController extends Controller
      */
     public function callback($provider, UserService $userService)
     {
-        $user = $userService->registerProvider(Socialite::driver($provider)->user(), $provider);
+        try {
+            $user = $userService->registerProvider(Socialite::driver($provider)->user(), $provider);
+        } catch (Exception $e) {
+            return redirect()
+                ->route('frontend.auth.login')
+                ->withFlashDanger(__('Your account is not bind to any community account.'));
+        }
 
         if (! $user->isActive()) {
             auth()->logout();
