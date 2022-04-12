@@ -179,6 +179,11 @@
                                 :href="route('admin.dashboard')"
                                 :text="__('Administration')"
                                 class="dropdown-item" />
+                            {{-- OPCache --}}
+                            <x-utils.link
+                                :href="route('frontend.monitor.opcache.index')"
+                                :text="__('OPCache')"
+                                class="dropdown-item" />
                         @endif
 
                         {{-- 儀表板 --}}

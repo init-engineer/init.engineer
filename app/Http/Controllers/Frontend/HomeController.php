@@ -33,4 +33,12 @@ class HomeController extends Controller
         return view('frontend.index')
             ->with('cards', $cards);
     }
+
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function opcache()
+    {
+        return view('frontend.opcache');
+    }
 }

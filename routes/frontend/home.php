@@ -20,3 +20,15 @@ Route::get('terms', [TermsController::class, 'index'])
         $trail->parent('frontend.index')
             ->push(__('Terms & Conditions'), route('frontend.pages.terms'));
     });
+
+/**
+ * All route names are prefixed with 'frontend.monitor'
+ */
+Route::group([
+    'prefix' => 'monitor',
+    'as' => 'monitor.',
+    'namespace' => 'Monitor',
+    'middleware' => ['admin'],
+], function () {
+    Route::get('opcache', [HomeController::class, 'opcache'])->name('opcache.index');
+});
