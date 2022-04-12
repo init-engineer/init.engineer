@@ -27,6 +27,7 @@
         "livewire/livewire": "^2.5",
         "rappasoft/laravel-livewire-tables": "^1.0",
         "rappasoft/lockout": "^3.0",
+        "romanzipp/laravel-queue-monitor": "^2.3",
         "spatie/laravel-activitylog": "^3.14",
         "spatie/laravel-permission": "^3.11",
         "tabuna/breadcrumbs": "^2.2"
