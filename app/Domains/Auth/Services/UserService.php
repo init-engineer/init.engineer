@@ -77,7 +77,8 @@ class UserService extends BaseService
      */
     public function registerProvider($info, $provider): User
     {
-        $user = $this->model::where('provider_id', $info->id)->first();
+        $user = $this->model::where('provider_id', $info->id)
+            ->orWhere('email', $info->email)->first();
 
         if (!$user) {
             DB::beginTransaction();
@@ -95,6 +96,24 @@ class UserService extends BaseService
 
                 throw new GeneralException(__('There was a problem connecting to :provider', ['provider' => $provider]));
             }
+
+            DB::commit();
+        } else {
+            DB::beginTransaction();
+
+            try {
+                $user->update([
+                    'name' => $info->name,
+                    'provider' => $provider,
+                    'provider_id' => $info->id,
+                ]);
+            } catch (Exception $e) {
+                DB::rollBack();
+
+                throw new GeneralException(__('There was a problem updating this user. Please try again.'));
+            }
+
+            event(new UserUpdated($user));
 
             DB::commit();
         }

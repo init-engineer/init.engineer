@@ -7,6 +7,7 @@ use App\Domains\Auth\Services\UserService;
 use App\Http\Controllers\Controller;
 use Exception;
 use Laravel\Socialite\Facades\Socialite;
+use Laravel\Socialite\Two\InvalidStateException;
 use Redirect;
 
 /**
@@ -37,10 +38,14 @@ class SocialController extends Controller
     {
         try {
             $user = $userService->registerProvider(Socialite::driver($provider)->user(), $provider);
-        } catch (Exception $e) {
-            return redirect()
-                ->route('frontend.auth.login')
-                ->withFlashDanger(__('Your account is not bind to any community account.'));
+        } catch (InvalidStateException $exception) {
+            session()->increment($provider . '_socialite_attempt_count');
+
+            if (session($provider . '_socialite_attempt_count') > 2) {
+                return redirect('/');
+            }
+
+            return redirect(route('frontend.auth.social.login', $provider));
         }
 
         if (! $user->isActive()) {
