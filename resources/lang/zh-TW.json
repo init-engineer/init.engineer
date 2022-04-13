@@ -310,6 +310,7 @@
         "Account Exception Message": "帳號例外訊息",
             "There was a problem creating your account.": "建立您的帳號時發生了問題。",
             "There was a problem connecting to :provider": "連接到 :provider 時發生了問題",
+            "Your account is not connected to :provider. Please login to your account by E-mail instead.": "您的帳號並沒有與 :provider 建立連接，請改使用 E-mail 的方式來登入帳號。",
 
 
     "Advertising content 1": "如果把錢丟到水裡會咚一聲的話，那麼贊助我們會讓你有機會提早看到「Version 5.0」的誕生！預計 2030 年以前正式發佈。",

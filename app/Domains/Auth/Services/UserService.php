@@ -98,24 +98,13 @@ class UserService extends BaseService
             }
 
             DB::commit();
-        } else {
-            DB::beginTransaction();
+        }
 
-            try {
-                $user->update([
-                    'name' => $info->name,
-                    'provider' => $provider,
-                    'provider_id' => $info->id,
-                ]);
-            } catch (Exception $e) {
-                DB::rollBack();
-
-                throw new GeneralException(__('There was a problem updating this user. Please try again.'));
-            }
-
-            event(new UserUpdated($user));
-
-            DB::commit();
+        /**
+         * 如果帳號的 Provider 以及 Provider ID 核對不上，那麼這組帳號並沒有與該 Provider 事先建立連結過。
+         */
+        if ($user->provider != $provider || $user->provider_id != $info->id) {
+            throw new GeneralException(__('Your account is not connected to :provider. Please login to your account by E-mail instead.', ['provider' => $provider]));
         }
 
         return $user;

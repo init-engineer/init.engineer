@@ -5,10 +5,8 @@ namespace App\Domains\Auth\Http\Controllers\Frontend\Auth;
 use App\Domains\Auth\Events\User\UserLoggedIn;
 use App\Domains\Auth\Services\UserService;
 use App\Http\Controllers\Controller;
-use Exception;
 use Laravel\Socialite\Facades\Socialite;
 use Laravel\Socialite\Two\InvalidStateException;
-use Redirect;
 
 /**
  * Class SocialController.
