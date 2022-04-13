@@ -2,6 +2,8 @@
 
 namespace App\Domains\Social\Jobs\Comments;
 
+use App\Domains\Social\Models\Platform;
+use App\Domains\Social\Models\PlatformCards;
 use App\Domains\Social\Services\CommentsService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Container\Container;
@@ -22,6 +24,16 @@ class FacebookCommentJob implements ShouldQueue
         Queueable,
         SerializesModels,
         IsMonitored;
+
+    /**
+     * @var Platform
+     */
+    protected $platform;
+
+    /**
+     * @var PlatformCards
+     */
+    protected $platformCards;
 
     /**
      * @var string
@@ -51,6 +63,8 @@ class FacebookCommentJob implements ShouldQueue
     /**
      * Create a new job instance.
      *
+     * @param Platform $platform
+     * @param PlatformCards $platformCards
      * @param string $graphVersion
      * @param string $userId
      * @param string $postId
@@ -59,8 +73,10 @@ class FacebookCommentJob implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(string $graphVersion, string $userId, string $postId, string $accessToken, string $after = null)
+    public function __construct(Platform $platform, PlatformCards $platformCards, string $graphVersion, string $userId, string $postId, string $accessToken, string $after = null)
     {
+        $this->platform = $platform;
+        $this->platformCards = $platformCards;
         $this->graphVersion = $graphVersion;
         $this->userId = $userId;
         $this->postId = $postId;
@@ -116,7 +132,7 @@ class FacebookCommentJob implements ShouldQueue
              */
             if (isset($responseBody['paging']['next'])) {
                 $cursorsAfter = isset($responseBody['paging']['cursors']) ? $responseBody['paging']['cursors']['after'] : null;
-                dispatch(new FacebookCommentJob($this->graphVersion, $this->userId, $this->postId, $this->accessToken, $cursorsAfter));
+                dispatch(new FacebookCommentJob($this->platform, $this->platformCards, $this->graphVersion, $this->userId, $this->postId, $this->accessToken, $cursorsAfter));
             }
 
             /**
