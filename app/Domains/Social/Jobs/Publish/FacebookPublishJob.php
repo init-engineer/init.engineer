@@ -168,12 +168,6 @@ class FacebookPublishJob implements ShouldQueue
                 $this->platform->config['pages_name'],
                 $platform_string_id,
             ),
-            // 'platform_string_id' => $response->json()['post_id'],
-            // 'platform_url' => sprintf(
-            //     'https://www.facebook.com/%s/photos/%s',
-            //     $this->platform->config['pages_name'],
-            //     $response->json()['post_id'],
-            // ),
             'card_id' => $this->cards->id,
         ]);
 
@@ -197,7 +191,7 @@ class FacebookPublishJob implements ShouldQueue
          */
         $url = sprintf('https://graph.facebook.com/%s/comments', $response->body()['post_id']);
         $response = Http::post($url, [
-            'access_token' => $this->platform->config['access_token'],
+            'access_token' => $accessToken,
             'message' => $message,
         ]);
 
@@ -220,7 +214,7 @@ class FacebookPublishJob implements ShouldQueue
          * 對社群文章執行文章宣傳留言
          */
         $response = Http::post($url, [
-            'access_token' => $this->platform->config['access_token'],
+            'access_token' => $accessToken,
             'message' => $message,
         ]);
 
