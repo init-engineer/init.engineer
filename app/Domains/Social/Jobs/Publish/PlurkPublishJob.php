@@ -2,6 +2,7 @@
 
 namespace App\Domains\Social\Jobs\Publish;
 
+use App\Domains\Social\Jobs\Push\PlurkPushCommentJob;
 use App\Domains\Social\Models\Cards;
 use App\Domains\Social\Models\Platform;
 use App\Domains\Social\Services\Content\ContentFluent;
@@ -209,19 +210,7 @@ class PlurkPublishJob implements ShouldQueue
         /**
          * 對社群文章執行 Discord 宣傳留言
          */
-        $discordResponse = $client->post('/APP/Responses/responseAdd', [
-            'plurk_id' => $plurkResponse->json()['plurk_id'],
-            'content' => $content,
-            'qualifier' => 'says',
-            'lang' => 'tr_ch',
-        ]);
-
-        /**
-         * 紀錄 Discord 宣傳留言
-         */
-        activity('social cards - plurk platform comments')
-            ->performedOn($platformCard)
-            ->log($discordResponse->body());
+        dispatch(new PlurkPushCommentJob($this->platform, $platformCard, $content));
 
         /**
          * 建立文章宣傳內容
@@ -234,19 +223,7 @@ class PlurkPublishJob implements ShouldQueue
         /**
          * 對社群文章執行文章宣傳留言
          */
-        $showResponse = $client->post('/APP/Responses/responseAdd', [
-            'plurk_id' => $plurkResponse->json()['plurk_id'],
-            'content' => $content,
-            'qualifier' => 'says',
-            'lang' => 'tr_ch',
-        ]);
-
-        /**
-         * 紀錄文章宣傳留言
-         */
-        activity('social cards - plurk platform comments')
-            ->performedOn($platformCard)
-            ->log($showResponse->body());
+        dispatch(new PlurkPushCommentJob($this->platform, $platformCard, $content));
 
         return;
     }

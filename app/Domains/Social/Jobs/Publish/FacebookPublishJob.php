@@ -2,6 +2,7 @@
 
 namespace App\Domains\Social\Jobs\Publish;
 
+use App\Domains\Social\Jobs\Push\FacebookPushCommentJob;
 use App\Domains\Social\Models\Cards;
 use App\Domains\Social\Models\Platform;
 use App\Domains\Social\Services\Content\ContentFluent;
@@ -189,18 +190,7 @@ class FacebookPublishJob implements ShouldQueue
         /**
          * 對社群文章執行 Discord 宣傳留言
          */
-        $url = sprintf('https://graph.facebook.com/%s/comments', $response->body()['post_id']);
-        $response = Http::post($url, [
-            'access_token' => $accessToken,
-            'message' => $message,
-        ]);
-
-        /**
-         * 紀錄 Discord 宣傳留言
-         */
-        activity('social cards - facebook platform comments')
-            ->performedOn($platformCard)
-            ->log($response->body());
+        dispatch(new FacebookPushCommentJob($this->platform, $platformCard, $message));
 
         /**
          * 建立文章宣傳內容
@@ -213,17 +203,7 @@ class FacebookPublishJob implements ShouldQueue
         /**
          * 對社群文章執行文章宣傳留言
          */
-        $response = Http::post($url, [
-            'access_token' => $accessToken,
-            'message' => $message,
-        ]);
-
-        /**
-         * 紀錄文章宣傳留言
-         */
-        activity('social cards - facebook platform comments')
-            ->performedOn($platformCard)
-            ->log($response->body());
+        dispatch(new FacebookPushCommentJob($this->platform, $platformCard, $message));
 
         return;
     }

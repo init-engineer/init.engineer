@@ -2,6 +2,7 @@
 
 namespace App\Domains\Social\Jobs\Publish;
 
+use App\Domains\Social\Jobs\Push\TwitterPushCommentJob;
 use App\Domains\Social\Models\Cards;
 use App\Domains\Social\Models\Platform;
 use App\Domains\Social\Services\Content\ContentFluent;
@@ -214,17 +215,7 @@ class TwitterPublishJob implements ShouldQueue
         /**
          * 對社群文章執行 Discord 宣傳留言
          */
-        $discordResponse = $client->asForm()->post('https://api.twitter.com/1.1/statuses/update.json', [
-            'status' => $status,
-            'in_reply_to_status_id' => $tweetResponse->json()['id_str'],
-        ]);
-
-        /**
-         * 紀錄 Discord 宣傳留言
-         */
-        activity('social cards - twitter platform comments')
-            ->performedOn($platformCard)
-            ->log($discordResponse->body());
+        dispatch(new TwitterPushCommentJob($this->platform, $platformCard, $status));
 
         /**
          * 建立文章宣傳內容
@@ -237,17 +228,7 @@ class TwitterPublishJob implements ShouldQueue
         /**
          * 對社群文章執行文章宣傳留言
          */
-        $showResponse = $client->asForm()->post('https://api.twitter.com/1.1/statuses/update.json', [
-            'status' => $status,
-            'in_reply_to_status_id' => $tweetResponse->json()['id_str'],
-        ]);
-
-        /**
-         * 紀錄文章宣傳留言
-         */
-        activity('social cards - twitter platform comments')
-            ->performedOn($platformCard)
-            ->log($showResponse->body());
+        dispatch(new TwitterPushCommentJob($this->platform, $platformCard, $status));
 
         return;
     }
