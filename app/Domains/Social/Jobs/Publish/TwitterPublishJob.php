@@ -145,7 +145,7 @@ class TwitterPublishJob implements ShouldQueue
         $pictureResponse = $client->asMultipart()->post('https://upload.twitter.com/1.1/media/upload.json?media_category=' . $tweetType, [
             [
                 'name' => 'media',
-                'contents' => Storage::get(str_replace('storage', 'public', $this->cards->getPicture())),
+                'contents' => Storage::get(str_replace(appUrl() . '/storage', 'public', $this->cards->getPicture())),
                 'filename' => array_pop($pictureArray),
             ],
         ]);

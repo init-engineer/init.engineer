@@ -139,7 +139,7 @@ class PlurkPublishJob implements ShouldQueue
         $pictureResponse = $client->asMultipart()->post('/APP/Timeline/uploadPicture', [
             [
                 'name' => 'image',
-                'contents' => Storage::get(str_replace('storage', 'public', $this->cards->getPicture())),
+                'contents' => Storage::get(str_replace(appUrl() . '/storage', 'public', $this->cards->getPicture())),
                 'filename' => array_pop($pictureArray),
             ],
         ]);
