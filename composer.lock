@@ -11471,12 +11471,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "370b357e26aeed8d2b450026954eda969b2db0dc"
+                "reference": "dad1e44d86f958c5be9c5f355c9554ce22f1b1a7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/370b357e26aeed8d2b450026954eda969b2db0dc",
-                "reference": "370b357e26aeed8d2b450026954eda969b2db0dc",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/dad1e44d86f958c5be9c5f355c9554ce22f1b1a7",
+                "reference": "dad1e44d86f958c5be9c5f355c9554ce22f1b1a7",
                 "shasum": ""
             },
             "conflict": {
@@ -11719,7 +11719,7 @@
                 "phpoffice/phpspreadsheet": "<1.16",
                 "phpseclib/phpseclib": "<2.0.31|>=3,<3.0.7",
                 "phpservermon/phpservermon": "<=3.5.2",
-                "phpunit/phpunit": "<4.8.28|>=5,<5.6.3",
+                "phpunit/phpunit": ">=4.8.19,<4.8.28|>=5,<5.6.3",
                 "phpwhois/phpwhois": "<=4.2.5",
                 "phpxmlrpc/extras": "<0.6.1",
                 "pimcore/data-hub": "<1.2.4",
@@ -11944,7 +11944,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-04-13T14:08:56+00:00"
+            "time": "2022-04-14T16:08:49+00:00"
         },
         {
             "name": "sebastian/cli-parser",
