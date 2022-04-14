@@ -112,22 +112,25 @@ class ReviewsPublish extends Command
         foreach ($cards as $card) {
             /**
              * 規則表
-             * 投票人數 同意配重 否決配重
-             * 20      >= 100%, < 0%
-             * 30      >= 95%,  < 0%
-             * 50      >= 90%,  < 5%
-             * 100     >= 80%,  < 10%
+             * 投票人數 同意配重
+             * 10      >= 100%
+             * 20      >= 95%
+             * 30      >= 90%
+             * 40      >= 85%
+             * 50      >= 80%
              */
             $yes = $card->reviews()->where('point', '>=', 1)->count();
             $no  = $card->reviews()->where('point', '<=', -1)->count();
             $count = $yes + $no;
-            if ($count >= 100 && $yes / $count >= 0.80 && $no / $count < 0.10) {
+            if ($count >= 50 && ($yes / $count) >= 0.80) {
                 $result = true;
-            } else if ($count >= 50 && $yes / $count >= 0.90 && $no / $count < 0.05) {
+            } else if ($count >= 40 && ($yes / $count) >= 0.85) {
                 $result = true;
-            } else if ($count >= 30 && $yes / $count >= 0.95 && $no / $count < 0.00) {
+            } else if ($count >= 30 && ($yes / $count) >= 0.90) {
                 $result = true;
-            } else if ($count >= 20 && $yes / $count >= 1.00 && $no / $count < 0.00) {
+            } else if ($count >= 20 && ($yes / $count) >= 0.95) {
+                $result = true;
+            } else if ($count >= 10 && ($yes / $count) >= 1.00) {
                 $result = true;
             } else {
                 $result = false;
