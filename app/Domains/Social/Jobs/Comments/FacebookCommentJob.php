@@ -73,7 +73,7 @@ class FacebookCommentJob implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(Platform $platform, PlatformCards $platformCards, string $graphVersion, string $userId, string $postId, string $accessToken, string $after = null)
+    public function __construct($platform, $platformCards, string $graphVersion, string $userId, string $postId, string $accessToken, string $after = null)
     {
         $this->platform = $platform;
         $this->platformCards = $platformCards;
