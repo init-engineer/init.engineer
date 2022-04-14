@@ -4,7 +4,6 @@ about: 建立報告以幫助我們改進
 title: ''
 labels: feature
 assignees: Kantai235
-
 ---
 
 **描述錯誤**

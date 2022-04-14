@@ -2,12 +2,18 @@
 
 namespace Tests\Feature\Backend\Role;
 
-use App\Events\Backend\Auth\Role\RoleDeleted;
-use App\Models\Auth\Role;
+use App\Domains\Auth\Events\Role\RoleDeleted;
+use App\Domains\Auth\Models\Role;
+use App\Domains\Auth\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Event;
 use Tests\TestCase;
 
+/**
+ * Class DeleteRoleTest.
+ *
+ * @extends TestCase
+ */
 class DeleteRoleTest extends TestCase
 {
     use RefreshDatabase;
@@ -15,7 +21,10 @@ class DeleteRoleTest extends TestCase
     /** @test */
     public function a_role_can_be_deleted()
     {
-        $role = factory(Role::class)->create();
+        Event::fake();
+
+        $role = Role::factory()->create();
+
         $this->loginAsAdmin();
 
         $this->assertDatabaseHas(config('permission.table_names.roles'), ['id' => $role->id]);
@@ -23,6 +32,22 @@ class DeleteRoleTest extends TestCase
         $this->delete("/admin/auth/role/{$role->id}");
 
         $this->assertDatabaseMissing(config('permission.table_names.roles'), ['id' => $role->id]);
+
+        Event::assertDispatched(RoleDeleted::class);
+    }
+
+    /** @test */
+    public function the_admin_role_can_not_be_deleted()
+    {
+        $this->loginAsAdmin();
+
+        $role = Role::whereName(config('boilerplate.access.role.admin'))->first();
+
+        $response = $this->delete('/admin/auth/role/'.$role->id);
+
+        $response->assertSessionHas(['flash_danger' => __('You can not delete the Administrator role.')]);
+
+        $this->assertDatabaseHas(config('permission.table_names.roles'), ['id' => $role->id]);
     }
 
     /** @test */
@@ -30,21 +55,28 @@ class DeleteRoleTest extends TestCase
     {
         $this->loginAsAdmin();
 
-        $role = Role::whereName(config('access.users.admin_role'))->first();
-        $response = $this->delete('/admin/auth/role/' . $role->id);
+        $role = Role::factory()->create();
+        $user = User::factory()->create();
+        $user->assignRole($role);
 
-        $response->assertSessionHas(['flash_danger' => __('exceptions.backend.access.roles.cant_delete_admin')]);
+        $response = $this->delete('/admin/auth/role/'.$role->id);
+
+        $response->assertSessionHas(['flash_danger' => __('You can not delete a role with associated users.')]);
+
+        $this->assertDatabaseHas(config('permission.table_names.roles'), ['id' => $role->id]);
     }
 
     /** @test */
-    public function an_event_gets_dispatched()
+    public function only_admin_can_delete_roles()
     {
-        $role = factory(Role::class)->create();
-        Event::fake();
-        $this->loginAsAdmin();
+        $this->actingAs(User::factory()->admin()->create());
 
-        $this->delete("/admin/auth/role/{$role->id}");
+        $role = Role::factory()->create();
 
-        Event::assertDispatched(RoleDeleted::class);
+        $response = $this->delete('/admin/auth/role/'.$role->id);
+
+        $response->assertSessionHas('flash_danger', __('You do not have access to do that.'));
+
+        $this->assertDatabaseHas(config('permission.table_names.roles'), ['id' => $role->id]);
     }
 }

@@ -1,63 +1,71 @@
-@if ($card->trashed())
-    <div class="btn-group" role="group" aria-label="@lang('labels.backend.social.cards.card_actions')">
-        <a href="{{ route('admin.social.cards.restore', $card) }}" name="confirm_item" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="@lang('buttons.backend.social.cards.restore_card')">
-            <i class="fas fa-sync"></i>
-        </a>
+@if ($cards->trashed())
+    <x-utils.form-button
+        :action="route('admin.social.cards.restore', $cards)"
+        method="patch"
+        button-class="btn btn-info btn-sm"
+        icon="fas fa-sync-alt"
+        name="confirm-item"
+    >
+        @lang('Restore')
+    </x-utils.form-button>
 
-        <a href="{{ route('admin.social.cards.delete-permanently', $card) }}" name="confirm_item" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="@lang('buttons.backend.social.cards.delete_permanently')">
-            <i class="fas fa-trash"></i>
-        </a>
-    </div>
-@elseif($card->isBanned())
-    <div class="btn-group" role="group" aria-label="@lang('labels.backend.social.cards.card_actions')">
-        <a href="{{ route('admin.social.cards.show', $card) }}" data-toggle="tooltip" data-placement="top" title="@lang('buttons.general.crud.view')" class="btn btn-info">
-            <i class="fas fa-eye"></i>
-        </a>
-
-        <div class="btn-group btn-group-sm" role="group">
-            <button id="cardActions" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                @lang('labels.general.more')
-            </button>
-            <div class="dropdown-menu" aria-labelledby="cardActions">
-                <a href="{{ route('admin.social.cards.destroy', $card) }}"
-                    data-method="delete"
-                    data-trans-button-cancel="@lang('buttons.general.cancel')"
-                    data-trans-button-confirm="@lang('buttons.general.crud.delete')"
-                    data-trans-title="@lang('strings.backend.general.are_you_sure')"
-                    class="dropdown-item py-2">@lang('buttons.general.crud.soft_delete')</a>
-            </div>
-        </div>
-    </div>
+    <x-utils.delete-button
+        :href="route('admin.social.cards.permanently-delete', $cards)"
+        :text="__('Permanently Delete')" />
 @else
-    <div class="btn-group" role="group" aria-label="@lang('labels.backend.social.cards.card_actions')">
-        <a href="{{ route('admin.social.cards.show', $card) }}" data-toggle="tooltip" data-placement="top" title="@lang('buttons.general.crud.view')" class="btn btn-info">
-            <i class="fas fa-eye"></i>
-        </a>
+    <x-utils.view-button :href="route('admin.social.cards.show', $cards)" />
+    <x-utils.edit-button :href="route('admin.social.cards.edit', $cards)" />
 
-        <div class="btn-group btn-group-sm" role="group">
-            <button id="cardActions" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                @lang('labels.general.more')
-            </button>
-            <div class="dropdown-menu" aria-labelledby="cardActions">
-                <a href="{{ route('admin.social.cards.banned', $card) }}"
-                    data-method="delete"
-                    data-trans-button-cancel="@lang('buttons.general.cancel')"
-                    data-trans-button-confirm="@lang('buttons.general.crud.delete')"
-                    data-trans-title="@lang('strings.backend.general.are_you_sure')"
-                    class="dropdown-item py-2">@lang('buttons.general.crud.banned')</a>
-                <a href="{{ route('admin.social.cards.publish', $card) }}"
-                    data-method="post"
-                    data-trans-button-cancel="@lang('buttons.general.cancel')"
-                    data-trans-button-confirm="@lang('buttons.general.crud.delete')"
-                    data-trans-title="@lang('strings.backend.general.are_you_sure')"
-                    class="dropdown-item py-2">@lang('buttons.general.crud.publish')</a>
-                <a href="{{ route('admin.social.cards.notify', $card) }}"
-                    data-method="post"
-                    data-trans-button-cancel="@lang('buttons.general.cancel')"
-                    data-trans-button-confirm="@lang('buttons.general.crud.delete')"
-                    data-trans-title="@lang('strings.backend.general.are_you_sure')"
-                    class="dropdown-item py-2">@lang('buttons.general.crud.notify')</a>
+    @if (! $cards->isActive())
+        <x-utils.form-button
+            :action="route('admin.social.cards.mark', [$cards, 1])"
+            method="patch"
+            button-class="btn btn-primary btn-sm"
+            icon="fas fa-sync-alt"
+            name="confirm-item"
+            permission="admin.social.cards.reactivate"
+        >
+            @lang('Reactivate')
+        </x-utils.form-button>
+    @endif
+
+    <x-utils.delete-button :href="route('admin.social.cards.destroy', $cards)" />
+
+    @if ($cards->isActive())
+        <div class="dropdown d-inline-block">
+            <a class="btn btn-sm btn-secondary dropdown-toggle" id="moreMenuLink" href="#" role="button" data-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false">
+                @lang('More')
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="moreMenuLink">
+                <x-utils.form-button
+                    :action="route('admin.social.cards.platform', [$cards])"
+                    method="patch"
+                    name="confirm-item"
+                    button-class="dropdown-item"
+                >
+                    @lang('Platform Publish')
+                </x-utils.form-button>
+
+                <x-utils.form-button
+                    :action="route('admin.social.cards.notification', [$cards])"
+                    method="patch"
+                    name="confirm-item"
+                    button-class="dropdown-item"
+                >
+                    @lang('Platform Notification')
+                </x-utils.form-button>
+
+                <x-utils.form-button
+                    :action="route('admin.social.cards.mark', [$cards, 0])"
+                    method="patch"
+                    name="confirm-item"
+                    button-class="dropdown-item"
+                    permission="admin.social.cards.deactivate"
+                >
+                    @lang('Deactivate')
+                </x-utils.form-button>
             </div>
         </div>
-    </div>
+    @endif
 @endif

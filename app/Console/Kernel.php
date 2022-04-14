@@ -2,11 +2,14 @@
 
 namespace App\Console;
 
+use App\Domains\Crons\Models\Crons;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 /**
  * Class Kernel.
+ *
+ * @extends ConsoleKernel
  */
 class Kernel extends ConsoleKernel
 {
@@ -16,67 +19,65 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        \App\Console\Commands\Backup\Database::class,
+        \App\Console\Commands\Social\ReviewsPublish::class,
+        \App\Console\Commands\Social\PlatformCommentsUpdate::class,
     ];
 
     /**
      * Define the application's command schedule.
      *
      * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
+     *
+     * @return void
      */
-    protected function schedule(Schedule $schedule)
+    protected function schedule(Schedule $schedule): void
     {
         /**
-         * 自動化 資料庫備份
+         * 每隔 1 分鐘
+         * 根據 cache index 去循序更新各社群平台的留言
          */
-        $schedule->command('backup:database')->daily()->at('23:00');
-
+        $schedule->command('social:platform-comments-update')->everyMinute()->when(function () {
+            return Crons::everySomeMinutes('social:platform-comments-update', 1);
+        });
 
         /**
-         * 自動化 對社群平台爬蟲更新 Likes、分享數。
+         * 每隔 10 分鐘
+         * 檢查群眾審核相關功能，判斷是否有需要發表的文章
          */
-        // $schedule->command('social:media-cards-update all')->daily();
-        $schedule->command('social:media-cards-update 24')->hourly();
-        $schedule->command('social:media-cards-update 6')->everyTenMinutes();
-        $schedule->command('social:media-cards-update 2')->everyFiveMinutes();
-        // $schedule->command('social:media-cards-update 1')->everyMinute();
-
+        $schedule->command('social:reviews-publish')->everyMinute()->when(function () {
+            return Crons::everySomeMinutes('social:reviews-publish', 10);
+        });
 
         /**
-         * 自動化 對社群平台爬蟲更新留言
+         * 每隔 1 小時
+         * 重新排程 failed_job 過往失敗的任務。
          */
-        // $schedule->command('social:comments-update all')->daily();
-        $schedule->command('social:comments-update 24')->hourly();
-        $schedule->command('social:comments-update 6')->everyTenMinutes();
-        $schedule->command('social:comments-update 2')->everyFiveMinutes();
-        // $schedule->command('social:comments-update 1')->everyMinute();
-
+        $schedule->command('queue:retry all')->everyMinute()->when(function () {
+            return Crons::everySomeMinutes('queue:retry all', 60);
+        });
 
         /**
-         * 自動化 群眾審核相關功能
+         * Crons Example:
          */
-        $schedule->command('social:review-publish')->everyThirtyMinutes();
-        $schedule->command('social:review-top')->everyThirtyMinutes();
-
-
-        /**
-         * 自動化 每小時檢查是否有使用者可以賦予身份
-         */
-        $schedule->command('roles:review-user-role')->hourly();
-
-
-        /**
-         * 自動化 偵測 IP Address 是否有變更
-         */
-        $schedule->command('report:ip-address')->everyMinute();
+        // $schedule->command('command')->everyMinute()->when(function () {
+        //     return Crons::everySomeMinutes('command', 10);
+        // });
+        // $schedule->command('command')->everyMinute()->when(function () {
+        //     return Crons::dailyAt('command', 'time');
+        // });
+        // $schedule->command('command')->everyMinute()->when(function () {
+        //     return Crons::weeklyAt('command', 'days', 'time');
+        // });
     }
 
     /**
      * Register the commands for the application.
+     *
+     * @return void
      */
-    protected function commands()
+    protected function commands(): void
     {
-        $this->load(__DIR__ . '/Commands');
+        $this->load(__DIR__.'/Commands');
 
         require base_path('routes/console.php');
     }

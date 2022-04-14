@@ -1,0 +1,27 @@
+.table {
+    color: var(--font-primary-color);
+
+    a {
+        color: var(--font-primary-color);
+        text-decoration: none;
+    }
+
+    .cell-datetime {
+        div {
+            position: inherit;
+
+            strong {
+                font-weight: 600;
+                font-size: 16px;
+                color: var(--font-secondary-color);
+                display: inherit;
+            }
+
+            span {
+                font-size: 12px;
+                font-weight: 400;
+                color: var(--font-primary-color);
+            }
+        }
+    }
+}

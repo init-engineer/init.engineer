@@ -142,56 +142,5 @@ return [
     |
     */
 
-    'attributes' => [
-        'backend' => [
-            'access' => [
-                'permissions' => [
-                    'associated_roles' => 'Tilknyttede Roller',
-                    'dependencies' => 'Avengigheter',
-                    'display_name' => 'Visningsnavn',
-                    'group' => 'Gruppe',
-                    'group_sort' => 'Gruppesortering',
-
-                    'groups' => [
-                        'name' => 'Gruppenavn',
-                    ],
-
-                    'name' => 'Navn',
-                    'system' => 'System?',
-                ],
-
-                'roles' => [
-                    'associated_permissions' => 'Tilknyttede Rettigheter',
-                    'name' => 'Navn',
-                    'sort' => 'Sortér',
-                ],
-
-                'users' => [
-                    'active' => 'Aktiv',
-                    'associated_roles' => 'Tilknyttede Roller',
-                    'confirmed' => 'Bekreftet',
-                    'email' => 'E-mailadresse',
-                    'first_name' => 'Brukernavn',
-                    'last_name' => 'Etternavn',
-                    'other_permissions' => 'Andre Rettigheter',
-                    'password' => 'Passord',
-                    'password_confirmation' => 'Bekreft passord',
-                    'send_confirmation_email' => 'Send bekrefelsesmail',
-                ],
-            ],
-        ],
-
-        'frontend' => [
-            'email' => 'E-mailadresse',
-            'first_name' => 'Brukernavn',
-            'last_name' => 'Etternavn',
-            'password' => 'Passord',
-            'password_confirmation' => 'Bekreft passord',
-            'phone' => 'Phone',
-            'message' => 'Message',
-            'old_password' => 'Gammelt passord',
-            'new_password' => 'Nytt passord',
-            'new_password_confirmation' => 'Bekreft nytt passord',
-        ],
-    ],
+    'attributes' => [],
 ];

@@ -1,13 +1,13 @@
 <?php
 
-if (! function_exists('include_route_files')) {
+if (! function_exists('includeFilesInFolder')) {
     /**
      * Loops through a folder and requires all PHP files
      * Searches sub-directories as well.
      *
      * @param $folder
      */
-    function include_route_files($folder)
+    function includeFilesInFolder($folder)
     {
         try {
             $rdi = new RecursiveDirectoryIterator($folder);
@@ -23,5 +23,16 @@ if (! function_exists('include_route_files')) {
         } catch (Exception $e) {
             echo $e->getMessage();
         }
+    }
+}
+
+if (! function_exists('includeRouteFiles')) {
+
+    /**
+     * @param $folder
+     */
+    function includeRouteFiles($folder)
+    {
+        includeFilesInFolder($folder);
     }
 }

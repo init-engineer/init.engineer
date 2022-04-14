@@ -6,17 +6,36 @@ use Illuminate\Support\Facades\Schema;
 
 /**
  * Class CreateOauthAccessTokensTable.
+ *
+ * @extends Migration
  */
 class CreateOauthAccessTokensTable extends Migration
 {
+    /**
+     * The database schema.
+     *
+     * @var \Illuminate\Database\Schema\Builder
+     */
+    protected $schema;
+
+    /**
+     * Create a new migration instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->schema = Schema::connection($this->getConnection());
+    }
+
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('oauth_access_tokens', function (Blueprint $table) {
+        $this->schema->create('oauth_access_tokens', function (Blueprint $table) {
             $table->string('id', 100)->primary();
             $table->unsignedBigInteger('user_id')->nullable()->index();
             $table->unsignedBigInteger('client_id');
@@ -33,8 +52,18 @@ class CreateOauthAccessTokensTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
-        Schema::dropIfExists('oauth_access_tokens');
+        $this->schema->dropIfExists('oauth_access_tokens');
+    }
+
+    /**
+     * Get the migration connection name.
+     *
+     * @return string|null
+     */
+    public function getConnection()
+    {
+        return config('passport.storage.database.connection');
     }
 }

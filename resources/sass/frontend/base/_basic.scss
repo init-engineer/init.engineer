@@ -25,14 +25,6 @@ body {
 }
 
 /**
- * 微軟正黑體
- */
-@font-face {
-    font-family: "MicrosoftJhengHei";
-    src: url("/fonts/microsoft_jheng_hei.ttf");
-}
-
-/**
  * 新細明體
  */
 @font-face {
@@ -49,27 +41,37 @@ body {
 }
 
 /**
+ * 微軟正黑體
+ */
+@font-face {
+    font-family: "Microsoft JhengHei";
+    src: url("/fonts/microsoft_jheng_hei.ttf");
+}
+
+/**
  * 極粗明朝體
  */
 @font-face {
-    font-family: "MatisseProEB";
+    font-family: "MatissePro EB";
     src: url("/fonts/FOT-MatissePro-EB.otf");
 }
 
 /**
- * 台北黑體
+ * 台北黑體 at:
+ * https://sites.google.com/view/jtfoundry
  */
 @font-face {
-    font-family: "TaipeiSansTCBeta";
+    font-family: "Taipei Sans TC Beta";
     src: url("/fonts/TaipeiSansTCBeta-Bold.ttf");
 }
 
 /**
- * 俐方體 11 號
+ * 俐方體 11 號 at:
+ * https://github.com/ACh-K/Cubic-11
  */
 @font-face {
-    font-family: "Cubic11";
-    src: url("/fonts/Cubic_11_1.000_R.ttf");
+    font-family: "Cubic 11";
+    src: url("/fonts/Cubic_11_1.010_R.ttf");
 }
 
 /**

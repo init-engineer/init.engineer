@@ -2,9 +2,8 @@
 
 namespace App\Http\Requests\Frontend\User;
 
-use Illuminate\Validation\Rule;
-use App\Helpers\Auth\SocialiteHelper;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 /**
  * Class UpdateProfileRequest.
@@ -29,11 +28,10 @@ class UpdateProfileRequest extends FormRequest
     public function rules()
     {
         return [
-            'first_name' => ['required'],
-            'last_name' => ['required'],
-            'email' => ['sometimes', 'required', 'string', 'email', 'regex:/@gmail\.com|@yahoo\.com|@icloud\.com|@me\.com|@*\.edu\.|@hotmail\.com|@outlook\.com|@example\.com/'],
-            'avatar_type' => ['required', Rule::in(array_merge(['gravatar', 'storage'], (new SocialiteHelper)->getAcceptedProviders()))],
-            'avatar_location' => ['sometimes', 'image'],
+            'name' => ['required', 'max:100'],
+            'email' => [Rule::requiredIf(function () {
+                return config('boilerplate.access.user.change_email');
+            }), 'max:255', 'email', Rule::unique('users')->ignore($this->user()->id)],
         ];
     }
 }

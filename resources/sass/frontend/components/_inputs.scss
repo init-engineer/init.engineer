@@ -1,0 +1,87 @@
+/**
+ * Inputs
+ */
+input,
+textarea,
+select {
+    &.input-black {
+        color: var(--font-primary-color);
+        border-style: solid;
+        border-color: var(--font-primary-color);
+        border-width: 0.1125em;
+        background-color: var(--background-primary);
+
+        &:focus {
+            color: var(--font-primary-color);
+            border-color: var(--color-primary);
+            background-color: var(--background-primary);
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+            outline: 0;
+        }
+    }
+
+    &.form-control {
+        color: var(--font-primary-color);
+        border-style: solid;
+        border-color: var(--font-primary-color);
+        border-width: 0.1125em;
+        background-color: var(--background-primary);
+
+        &:focus {
+            color: var(--font-primary-color);
+            border-color: var(--color-primary);
+            background-color: var(--background-primary);
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+            outline: 0;
+        }
+
+        &:disabled {
+            background-color: var(--background-primary);
+        }
+    }
+}
+
+.image-upload-wrap {
+    border: 4px dashed var(--color-success-dark);
+    border-radius: 24px;
+    position: relative;
+    cursor: pointer;
+}
+
+#picturePicker {
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+}
+
+.picturePreview {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    background: #f2f2f2;
+    border-radius: 100%;
+    margin: 0 auto 25px auto;
+    overflow: hidden;
+    border: 8px solid #e0e0e0;
+
+    img {
+        width: 250px;
+        height: 250px;
+        object-fit: contain;
+    }
+
+    .loadingLogo {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -35px;
+        margin-top: -35px;
+        width: 70px;
+        height: 70px;
+        border: 5px solid #69cd9b;
+        border-top: 5px solid #2fdec1;
+        border-radius: 100%;
+        animation: spin 500ms linear infinite;
+    }
+}

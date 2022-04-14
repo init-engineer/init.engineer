@@ -1,0 +1,142 @@
+label {
+    display: flex;
+    cursor: pointer;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 0.375em;
+    /* Accessible outline */
+    /* Remove comment to use */
+    &:focus-within {
+        outline: 0.125em solid #00005c;
+    }
+    input {
+        position: absolute;
+        left: -9999px;
+        &:checked + span {
+            background-color: mix(#ffffff, #00005c, 84%);
+            &:before {
+                box-shadow: inset 0 0 0 0.4375em #00005c;
+            }
+        }
+    }
+    span {
+        display: flex;
+        align-items: center;
+        padding: 0.375em 0.75em 0.375em 0.375em;
+        border-radius: 99em; // or something higher...
+        transition: 0.25s ease;
+        &:hover {
+            background-color: mix(#ffffff, #00005c, 84%);
+        }
+        &:before {
+            display: flex;
+            flex-shrink: 0;
+            content: "";
+            background-color: #ffffff;
+            width: 1.5em;
+            height: 1.5em;
+            border-radius: 50%;
+            margin-right: 0.375em;
+            transition: 0.25s ease;
+            box-shadow: inset 0 0 0 0.125em #00005c;
+        }
+    }
+}
+
+/* Made by Jimmy Gillam */
+$checked-color: var(--color-success-dark);
+$unchecked-color: var(--font-primary-color);
+$checkbox-height: 24px;
+$font-color: var(--font-primary-color);
+$duration: 0.4s;
+
+/* Checkmark style starts */
+input[type="checkbox"] {
+    display: none;
+}
+
+.check-box {
+    height: $checkbox-height;
+    width: $checkbox-height;
+    background-color: transparent;
+    border: $checkbox-height * 0.1 solid $unchecked-color;
+    border-radius: 5px;
+    position: relative;
+    display: inline-block;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -moz-transition: border-color ease $duration / 2;
+    -o-transition: border-color ease $duration / 2;
+    -webkit-transition: border-color ease $duration / 2;
+    transition: border-color ease $duration / 2;
+    cursor: pointer;
+
+    &::before,
+    &::after {
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        position: absolute;
+        height: 0;
+        width: $checkbox-height * 0.2;
+        background-color: $checked-color;
+        display: inline-block;
+        -moz-transform-origin: left top;
+        -ms-transform-origin: left top;
+        -o-transform-origin: left top;
+        -webkit-transform-origin: left top;
+        transform-origin: left top;
+        border-radius: 5px;
+        content: " ";
+        -webkit-transition: opacity ease 0.5;
+        -moz-transition: opacity ease 0.5;
+        transition: opacity ease 0.5;
+    }
+
+    &::before {
+        top: $checkbox-height * 0.72;
+        left: $checkbox-height * 0.41;
+        -moz-transform: rotate(-135deg);
+        -ms-transform: rotate(-135deg);
+        -o-transform: rotate(-135deg);
+        -webkit-transform: rotate(-135deg);
+        transform: rotate(-135deg);
+    }
+
+    &::after {
+        top: $checkbox-height * 0.37;
+        left: $checkbox-height * 0.05;
+        -moz-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+        -o-transform: rotate(-45deg);
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+    }
+}
+
+.check-box-content {
+    display: inline-block;
+}
+
+input[type="checkbox"]:checked + .check-box,
+.check-box.checked {
+    border-color: $checked-color;
+
+    &::after {
+        height: $checkbox-height * 0.5;
+        -moz-animation: dothabottomcheck $duration / 2 ease 0s forwards;
+        -o-animation: dothabottomcheck $duration / 2 ease 0s forwards;
+        -webkit-animation: dothabottomcheck $duration / 2 ease 0s forwards;
+        animation: dothabottomcheck $duration / 2 ease 0s forwards;
+    }
+
+    &::before {
+        height: $checkbox-height * 1.2;
+        -moz-animation: dothatopcheck $duration ease 0s forwards;
+        -o-animation: dothatopcheck $duration ease 0s forwards;
+        -webkit-animation: dothatopcheck $duration ease 0s forwards;
+        animation: dothatopcheck $duration ease 0s forwards;
+    }
+}

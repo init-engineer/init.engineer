@@ -4,17 +4,13 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-import '../bootstrap';
-import '../plugins';
-import 'css-doodle';
+require('../bootstrap');
+require('../plugins');
+
 import Vue from 'vue';
-import Vuelidate from 'vuelidate';
-import VueTippy, { TippyComponent } from 'vue-tippy';
+import 'livewire-vue';
 
 window.Vue = Vue;
-Vue.use(Vuelidate);
-Vue.use(VueTippy);
-Vue.component('tippy', TippyComponent);
 
 /**
  * The following block of code may be used to automatically register your
@@ -24,8 +20,10 @@ Vue.component('tippy', TippyComponent);
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
-const files = require.context('./', true, /\.vue$/i);
-files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
+const files = require.context('./', true, /\.vue$/i)
+files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+
+// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -37,4 +35,46 @@ const app = new Vue({
     el: '#app',
 });
 
-console.log("%c⠄⠄⠄⠄⠄⠄⠄⠈⠉⠁⠈⠉⠉⠙⠿⣿⣿⣿⣿⣿ 這\n\r⠄⠄⠄⠄⠄⠄⠄⠄⣀⣀⣀⠄⠄⠄⠄⠄⠹⣿⣿⣿ 什\n\r⠄⠄⠄⠄⠄⢐⣲⣿⣿⣯⠭⠉⠙⠲⣄⡀⠄⠈⢿⣿ 麼\n\r⠐⠄⠄⠰⠒⠚⢩⣉⠼⡟⠙⠛⠿⡟⣤⡳⡀⠄⠄⢻ 到\n\r⠄⠄⢀⣀⣀⣢⣶⣿⣦⣭⣤⣭⣵⣶⣿⣿⣏⠄⠄⣿ 底\n\r⠄⣼⣿⣿⣿⡉⣿⣀⣽⣸⣿⣿⣿⣿⣿⣿⣿⡆⣀⣿ 什\n\r⢠⣿⣿⣿⠿⠟⠛⠻⢿⠿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣼ 麼\n\r⠄⣿⣿⣿⡆⠄⠄⠄⠄⠳⡈⣿⣿⣿⣿⣿⣿⣿⣿⣿ 輸\n\r⠄⢹⣿⣿⡇⠄⠄⠄⠄⢀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿ 出\n\r⠄⠄⢿⣿⣷⣨⣽⣭⢁⣡⣿⣿⠟⣩⣿⣿⣿⠿⠿⠟ 哦\n\r⠄⠄⠈⡍⠻⣿⣿⣿⣿⠟⠋⢁⣼⠿⠋⠉⠄⠄⠄⠄ 齁\n\r⠄⠄⠄⠈⠴⢬⣙⣛⡥⠴⠂⠄⠄⠄⠄⠄⠄⠄⠄⠄ 齁\n\r⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄ 齁\n\r", "color:orange; background:blue; font-size: 12pt");
+/**
+ * Typed.js at:
+ * https://github.com/mattboldt/typed.js/
+ */
+import Typed from 'typed.js';
+window.Typed = Typed;
+
+new Typed('#typed', {
+    /**
+     * @property {array} strings strings to be typed
+     * @property {string} stringsElement ID of element containing string children
+     */
+    strings: [
+        'init-engineer-cli -help',
+        'init-engineer-cli create post',
+        'init-engineer-cli login',
+        'init-engineer-cli register',
+        'init-engineer-cli ban -u byStarTW',
+    ],
+    stringsElement: null,
+
+    /**
+     * @property {number} typeSpeed type speed in milliseconds
+     */
+    typeSpeed: 60,
+
+    /**
+     * @property {number} backSpeed backspacing speed in milliseconds
+     */
+    backSpeed: 40,
+
+    /**
+     * @property {boolean} smartBackspace only backspace what doesn't match the previous string
+     */
+    smartBackspace: true,
+
+    /**
+     * @property {boolean} loop loop strings
+     * @property {number} loopCount amount of loops
+     */
+    loop: true,
+    loopCount: Infinity,
+});

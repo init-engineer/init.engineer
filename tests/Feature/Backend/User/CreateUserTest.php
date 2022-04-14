@@ -2,15 +2,20 @@
 
 namespace Tests\Feature\Backend\User;
 
-use App\Events\Backend\Auth\User\UserCreated;
-use App\Models\Auth\User;
-use App\Notifications\Frontend\Auth\UserNeedsConfirmation;
-use Illuminate\Database\Eloquent\Model;
+use App\Domains\Auth\Events\User\UserCreated;
+use App\Domains\Auth\Models\Role;
+use App\Domains\Auth\Models\User;
+use App\Domains\Auth\Notifications\Frontend\VerifyEmail;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
 
+/**
+ * Class CreateUserTest.
+ *
+ * @extends TestCase
+ */
 class CreateUserTest extends TestCase
 {
     use RefreshDatabase;
@@ -22,36 +27,28 @@ class CreateUserTest extends TestCase
 
         $response = $this->get('/admin/auth/user/create');
 
-        $response->assertStatus(200);
+        $response->assertOk();
     }
 
     /** @test */
-    public function create_user_has_required_fields()
+    public function create_user_requires_validation()
     {
         $this->loginAsAdmin();
 
-        $response = $this->post('/admin/auth/user', []);
+        $response = $this->post('/admin/auth/user');
 
-        $response->assertSessionHasErrors(['first_name', 'last_name', 'email', 'password', 'roles']);
+        $response->assertSessionHasErrors(['type', 'name', 'email', 'password']);
     }
 
     /** @test */
     public function user_email_needs_to_be_unique()
     {
         $this->loginAsAdmin();
-        factory(User::class)->create(['email' => 'john@example.com']);
+
+        User::factory()->create(['email' => 'john@example.com']);
 
         $response = $this->post('/admin/auth/user', [
-            'first_name' => 'John',
-            'last_name' => 'Doe',
             'email' => 'john@example.com',
-            'password' => 'password',
-            'password_confirmation' => 'password',
-            'active' => '1',
-            'confirmed' => '0',
-            'timezone' => 'UTC',
-            'confirmation_email' => '1',
-            'roles' => [1 => 'executive', 2 => 'user'],
         ]);
 
         $response->assertSessionHasErrors('email');
@@ -60,63 +57,76 @@ class CreateUserTest extends TestCase
     /** @test */
     public function admin_can_create_new_user()
     {
-        $this->loginAsAdmin();
-        // Hacky workaround for this issue (https://github.com/laravel/framework/issues/18066)
-        // Make sure our events are fired
-        $initialDispatcher = Event::getFacadeRoot();
         Event::fake();
-        Model::setEventDispatcher($initialDispatcher);
+
+        $this->loginAsAdmin();
 
         $response = $this->post('/admin/auth/user', [
-            'first_name' => 'John',
-            'last_name' => 'Doe',
+            'type' => User::TYPE_ADMIN,
+            'name' => 'John Doe',
             'email' => 'john@example.com',
             'password' => 'OC4Nzu270N!QBVi%U%qX',
             'password_confirmation' => 'OC4Nzu270N!QBVi%U%qX',
             'active' => '1',
-            'confirmed' => '1',
-            'timezone' => 'UTC',
-            'confirmation_email' => '1',
-            'roles' => [1 => 'administrator'],
+            'roles' => [
+                Role::whereName(config('boilerplate.access.role.admin'))->first()->id,
+            ],
         ]);
 
         $this->assertDatabaseHas(
             'users',
             [
-                'first_name' => 'John',
-                'last_name' => 'Doe',
+                'type' => User::TYPE_ADMIN,
+                'name' => 'John Doe',
                 'email' => 'john@example.com',
                 'active' => true,
-                'confirmed' => true,
             ]
         );
 
-        $response->assertSessionHas(['flash_success' => __('alerts.backend.users.created')]);
+        $this->assertDatabaseHas('model_has_roles', [
+            'role_id' => Role::whereName(config('boilerplate.access.role.admin'))->first()->id,
+            'model_type' => User::class,
+            'model_id' => User::whereEmail('john@example.com')->first()->id,
+        ]);
+
+        $response->assertSessionHas(['flash_success' => __('The user was successfully created.')]);
+
         Event::assertDispatched(UserCreated::class);
     }
 
     /** @test */
     public function when_an_unconfirmed_user_is_created_a_notification_will_be_sent()
     {
-        $this->loginAsAdmin();
         Notification::fake();
 
+        $this->loginAsAdmin();
+
         $response = $this->post('/admin/auth/user', [
-            'first_name' => 'John',
-            'last_name' => 'Doe',
+            'type' => User::TYPE_ADMIN,
+            'name' => 'John Doe',
             'email' => 'john@example.com',
             'password' => 'OC4Nzu270N!QBVi%U%qX',
             'password_confirmation' => 'OC4Nzu270N!QBVi%U%qX',
-            'active' => '1',
-            'confirmed' => '0',
-            'timezone' => 'UTC',
-            'confirmation_email' => '1',
-            'roles' => [1 => 'administrator'],
+            'send_confirmation_email' => '1',
+            'roles' => [
+                Role::whereName(config('boilerplate.access.role.admin'))->first()->id,
+            ],
         ]);
 
-        $response->assertSessionHas(['flash_success' => __('alerts.backend.users.created')]);
+        $response->assertSessionHas(['flash_success' => __('The user was successfully created.')]);
 
         $user = User::where('email', 'john@example.com')->first();
-        Notification::assertSentTo($user, UserNeedsConfirmation::class);
+
+        Notification::assertSentTo($user, VerifyEmail::class);
+    }
+
+    /** @test */
+    public function only_admin_can_create_users()
+    {
+        $this->actingAs(User::factory()->admin()->create());
+
+        $response = $this->get('/admin/auth/user/create');
+
+        $response->assertSessionHas('flash_danger', __('You do not have access to do that.'));
     }
 }

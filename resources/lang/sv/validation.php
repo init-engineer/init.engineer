@@ -141,54 +141,5 @@ return [
     |
     */
 
-    'attributes' => [
-        'backend' => [
-            'access' => [
-                'permissions' => [
-                    'associated_roles' => 'Sammankopplade roller',
-                    'dependencies' => 'Krävda tillstånd',
-                    'display_name' => 'Namn som visas',
-                    'group' => 'Tillståndsgrupp',
-                    'group_sort' => 'Ordning för tillståndsgrupp',
-
-                    'groups' => [
-                        'name' => 'Namn för tillståndsgrupp',
-                    ],
-
-                    'name' => 'Namn',
-                    'system' => 'System-status?',
-                ],
-
-                'roles' => [
-                    'associated_permissions' => 'Sammankopplade tillstånd',
-                    'name' => 'Namn',
-                    'sort' => 'Ordning',
-                ],
-
-                'users' => [
-                    'active' => 'Aktiv',
-                    'associated_roles' => 'Sammankopplade roller',
-                    'confirmed' => 'Bekräftad',
-                    'email' => 'E-postadress',
-                    'name' => 'Namn',
-                    'other_permissions' => 'Övriga tillstånd',
-                    'password' => 'Lösenord',
-                    'password_confirmation' => 'Bekräfta lösenord',
-                    'send_confirmation_email' => 'Skicka bekräftelsemail',
-                ],
-            ],
-        ],
-
-        'frontend' => [
-            'email' => 'E-postadress',
-            'name' => 'Namn',
-            'password' => 'Lösenord',
-            'password_confirmation' => 'Bekräfta lösenord',
-            'phone' => 'Phone',
-            'message' => 'Message',
-            'old_password' => 'Gammalt lösenord',
-            'new_password' => 'Nytt lösenord',
-            'new_password_confirmation' => 'Bekräfta nytt lösenord',
-        ],
-    ],
+    'attributes' => [],
 ];

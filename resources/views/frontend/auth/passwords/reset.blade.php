@@ -1,83 +1,55 @@
 @extends('frontend.layouts.app')
 
-@section('title', app_name() . ' | ' . __('labels.frontend.passwords.reset_password_box_title'))
+@section('title', __('Reset Password'))
+@section('meta_title',  __('Reset Password'))
+@section('meta_description', appName() . ' | ' . __('Reset Password'))
 
 @section('content')
-    <div class="container my-5">
-        <div class="row justify-content-center align-items-center">
-            <div class="col col-sm-6 align-self-center">
-                <label class="col-label">reset-password.blade.php</label>
-                <div class="card text-white bg-img-rock rounded-0 border border-w-6">
-                    <div class="card-header display-1">
-                        <strong>
-                            @lang('labels.frontend.passwords.reset_password_box_title')
-                        </strong>
-                    </div><!--card-header-->
+    <div class="container py-4">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <x-frontend.card>
+                    <x-slot name="header">
+                        <h1 class="py-2 my-2 text-center">@lang('Reset Password')</h1>
+                    </x-slot>
 
-                    <div class="card-body">
+                    <x-slot name="body">
+                        <x-forms.post :action="route('frontend.auth.password.update')">
+                            <input type="hidden" name="token" value="{{ $token }}" />
 
-                        @if(session('status'))
-                            <div class="alert alert-success">
-                                {{ session('status') }}
-                            </div>
-                        @endif
+                            <div class="form-group row mb-2">
+                                <label for="email" class="col-md-12 col-form-label text-md-right pb-1">@lang('E-mail Address')</label>
 
-                        {{ html()->form('POST', route('frontend.auth.password.reset'))->class('form-horizontal')->open() }}
-                            {{ html()->hidden('token', $token) }}
+                                <div class="col-md-12">
+                                    <input type="email" name="email" id="email" class="form-control form-control-lg input-black disabled" placeholder="{{ __('E-mail Address') }}" value="{{ $email ?? old('email') }}" maxlength="255" />
+                                </div>
+                            </div><!--form-group-->
 
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-group">
-                                        {{ html()->label(__('validation.attributes.frontend.email'))->for('email') }}
+                            <div class="form-group row mb-2">
+                                <label for="password" class="col-md-12 col-form-label text-md-right pb-1">@lang('Password')</label>
 
-                                        {{ html()->email('email')
-                                            ->class('form-control form-control-lg text-white input-black')
-                                            ->placeholder(__('validation.attributes.frontend.email'))
-                                            ->attribute('maxlength', 191)
-                                            ->required() }}
-                                    </div><!--form-group-->
-                                </div><!--col-->
-                            </div><!--row-->
+                                <div class="col-md-12">
+                                    <input type="password" name="password" id="password" class="form-control form-control-lg input-black" placeholder="{{ __('Password') }}" maxlength="100" required autofocus autocomplete="email" />
+                                </div>
+                            </div><!--form-group-->
 
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-group">
-                                        {{ html()->label(__('validation.attributes.frontend.password'))->for('password') }}
+                            <div class="form-group row mb-2">
+                                <label for="password" class="col-md-12 col-form-label text-md-right pb-1">@lang('Password Confirmation')</label>
 
-                                        {{ html()->password('password')
-                                            ->class('form-control form-control-lg text-white input-black')
-                                            ->placeholder(__('validation.attributes.frontend.password'))
-                                            ->required() }}
-                                    </div><!--form-group-->
-                                </div><!--col-->
-                            </div><!--row-->
+                                <div class="col-md-12">
+                                    <input type="password" id="password_confirmation" name="password_confirmation" class="form-control form-control-lg input-black" placeholder="{{ __('Password Confirmation') }}" maxlength="100" required autocomplete="new-password" />
+                                </div>
+                            </div><!--form-group-->
 
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-group">
-                                        {{ html()->label(__('validation.attributes.frontend.password_confirmation'))->for('password_confirmation') }}
-
-                                        {{ html()->password('password_confirmation')
-                                            ->class('form-control form-control-lg text-white input-black')
-                                            ->placeholder(__('validation.attributes.frontend.password_confirmation'))
-                                            ->required() }}
-                                    </div><!--form-group-->
-                                </div><!--col-->
-                            </div><!--row-->
-
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-group mb-0 clearfix">
-                                        {{ form_submit(__('labels.frontend.passwords.reset_password_button'), 'btn btn-dos btn-lg btn-block my-4') }}
-                                    </div><!--form-group-->
-                                </div><!--col-->
-                            </div><!--row-->
-                        {{ html()->form()->close() }}
-                    </div><!-- card-body -->
-                </div><!-- card -->
-            </div><!-- col-6 -->
-        </div><!-- row -->
+                            <div class="form-group row mb-0">
+                                <div class="col-md-6 offset-md-4">
+                                    <button class="btn btn-primary" type="submit">@lang('Reset Password')</button>
+                                </div>
+                            </div><!--form-group-->
+                        </x-forms.post>
+                    </x-slot>
+                </x-frontend.card>
+            </div><!--col-md-8-->
+        </div><!--row-->
     </div><!--container-->
-
-    <img class="nyan mb-5" style="margin-left: -25vw; width: 80vw; height: auto;" src="https://ziad-saab.github.io/nyan/nyan.gif">
 @endsection

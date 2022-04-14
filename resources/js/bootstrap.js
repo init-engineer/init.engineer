@@ -1,13 +1,5 @@
-/**
- * This bootstrap file is used for both frontend and backend
- */
-
-import _ from 'lodash';
-import axios from 'axios';
-import Swal from 'sweetalert2';
-import $ from 'jquery';
-import 'popper.js'; // Required for BS4
-import 'bootstrap';
+window._ = require('lodash');
+window.Swal = require('sweetalert2');
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -15,9 +7,18 @@ import 'bootstrap';
  * code may be modified to fit the specific needs of your application.
  */
 
-window.$ = window.jQuery = $;
-window.Swal = Swal;
-window._ = _; // Lodash
+try {
+  window.Popper = require('popper.js').default;
+  window.$ = window.jQuery = require('jquery');
+
+  require('bootstrap');
+
+  $(function () {
+    $('[data-toggle="popover"]').popover()
+  });
+} catch (e) {
+  // ...
+}
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -41,12 +42,12 @@ if (csrf_token) {
   console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
-const api_token = document.head.querySelector('meta[name="authorization"]');
-if (api_token) {
-  window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + api_token.content;
-} else {
-  console.error('Authorization token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
-}
+// const api_token = document.head.querySelector('meta[name="authorization"]');
+// if (api_token) {
+//   window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + api_token.content;
+// } else {
+//   console.error('Authorization token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+// }
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

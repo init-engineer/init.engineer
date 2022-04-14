@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Frontend\User;
 
+use App\Domains\Auth\Services\UserService;
 use App\Http\Controllers\Controller;
-use App\Repositories\Frontend\Auth\UserRepository;
 use App\Http\Requests\Frontend\User\UpdateProfileRequest;
 
 /**
@@ -12,41 +12,19 @@ use App\Http\Requests\Frontend\User\UpdateProfileRequest;
 class ProfileController extends Controller
 {
     /**
-     * @var UserRepository
-     */
-    protected $userRepository;
-
-    /**
-     * ProfileController constructor.
+     * @param  UpdateProfileRequest  $request
+     * @param  UserService  $userService
      *
-     * @param UserRepository $userRepository
-     */
-    public function __construct(UserRepository $userRepository)
-    {
-        $this->userRepository = $userRepository;
-    }
-
-    /**
-     * @param UpdateProfileRequest $request
-     *
-     * @throws \App\Exceptions\GeneralException
      * @return mixed
      */
-    public function update(UpdateProfileRequest $request)
+    public function update(UpdateProfileRequest $request, UserService $userService)
     {
-        $output = $this->userRepository->update(
-            $request->user()->id,
-            $request->only('first_name', 'last_name', 'email', 'avatar_type', 'avatar_location'),
-            $request->has('avatar_location') ? $request->file('avatar_location') : false
-        );
+        $userService->updateProfile($request->user(), $request->validated());
 
-        // E-mail address was updated, user has to reconfirm
-        if (is_array($output) && $output['email_changed']) {
-            auth()->logout();
-
-            return redirect()->route('frontend.auth.login')->withFlashInfo(__('strings.frontend.user.email_changed_notice'));
+        if (session()->has('resent')) {
+            return redirect()->route('frontend.auth.verification.notice')->withFlashInfo(__('You must confirm your new e-mail address before you can go any further.'));
         }
 
-        return redirect()->route('frontend.user.dashboard')->withFlashSuccess(__('strings.frontend.user.profile_updated'));
+        return redirect()->route('frontend.user.account', ['#information'])->withFlashSuccess(__('Profile successfully updated.'));
     }
 }

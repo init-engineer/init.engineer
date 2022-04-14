@@ -142,54 +142,5 @@ return [
     |
     */
 
-    'attributes' => [
-        'backend' => [
-            'access' => [
-                'permissions' => [
-                    'associated_roles' => 'Tilknyttede Roller',
-                    'dependencies' => 'Afhængigheder',
-                    'display_name' => 'Visningsnavn',
-                    'group' => 'Gruppe',
-                    'group_sort' => 'Gruppesortering',
-
-                    'groups' => [
-                        'name' => 'Gruppenavn',
-                    ],
-
-                    'name' => 'Navn',
-                    'system' => 'System?',
-                ],
-
-                'roles' => [
-                    'associated_permissions' => 'Tilknyttede Rettigheder',
-                    'name' => 'Navn',
-                    'sort' => 'Sortér',
-                ],
-
-                'users' => [
-                    'active' => 'Aktiv',
-                    'associated_roles' => 'Tilknyttede Roller',
-                    'confirmed' => 'Bekræftet',
-                    'email' => 'E-mailadresse',
-                    'name' => 'Navn',
-                    'other_permissions' => 'Andre Rettigheder',
-                    'password' => 'Adgangskode',
-                    'password_confirmation' => 'Bekræft adgangskode',
-                    'send_confirmation_email' => 'Send bekræfelsesmail',
-                ],
-            ],
-        ],
-
-        'frontend' => [
-            'email' => 'E-mailadresse',
-            'name' => 'Navn',
-            'password' => 'Adgangskode',
-            'password_confirmation' => 'Bekræft adgangskode',
-            'phone' => 'Phone',
-            'message' => 'Message',
-            'old_password' => 'Gammel adgangskode',
-            'new_password' => 'Ny adgangskode',
-            'new_password_confirmation' => 'Bekræft ny adgangskode',
-        ],
-    ],
+    'attributes' => [],
 ];

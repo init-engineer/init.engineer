@@ -1,92 +1,45 @@
 {
-    "name": "@init-engineer/init.engineer",
-    "author": "init-engineer kantai.developer@gmail.com",
     "private": true,
-    "license": "MIT",
     "scripts": {
-        "dev": "cross-var $npm_execpath run development",
-        "development": "cross-env NODE_ENV=development webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "watch": "cross-var $npm_execpath run development -- --watch",
-        "watch-poll": "cross-var $npm_execpath run watch -- --watch-poll",
-        "hot": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "prod": "cross-var $npm_execpath run production",
-        "production": "cross-env NODE_ENV=production webpack --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "test": "cross-env NODE_ENV=test jest",
-        "tdd": "cross-var $npm_execpath run test -- --watch --notify"
+        "dev": "npm run development",
+        "development": "mix",
+        "watch": "mix watch",
+        "watch-poll": "mix watch -- --watch-options-poll=1000",
+        "hot": "mix watch --hot",
+        "prod": "npm run production",
+        "production": "mix --production"
     },
     "devDependencies": {
-        "@coreui/coreui": "^2.1.16",
-        "@fortawesome/fontawesome-free": "^5.15.4",
-        "@vue/test-utils": "^1.3.0",
-        "axios": "^0.21.4",
-        "babel-core": "^7.0.0-bridge.0",
-        "babel-jest": "^26.6.3",
+        "@coreui/coreui": "^3.0.0",
+        "@coreui/icons": "^1.0.1",
+        "@fortawesome/fontawesome-free": "^5.12.1",
+        "@popperjs/core": "^2.11.5",
+        "alpinejs": "^2.3.5",
+        "axios": "^0.21.2",
         "bootstrap": "^4.6.1",
-        "cross-env": "^7.0.3",
-        "cross-var": "^1.1.0",
-        "eslint": "^6.8.0",
-        "eslint-config-standard": "^14.1.1",
-        "eslint-plugin-import": "^2.26.0",
-        "eslint-plugin-node": "^10.0.0",
-        "eslint-plugin-promise": "^4.2.1",
-        "eslint-plugin-standard": "^4.1.0",
-        "eslint-plugin-vue": "^7.20.0",
-        "jest": "^26.6.3",
+        "cross-env": "^7.0",
         "jquery": "^3.5.1",
-        "laravel-mix": "^5.0.9",
-        "lodash": "^4.17.20",
-        "pace": "github:HubSpot/pace#v1.0.2",
+        "laravel-mix": "^6.0.43",
+        "livewire-vue": "^0.3.1",
+        "lodash": "^4.17.19",
         "perfect-scrollbar": "^1.5.5",
         "popper.js": "^1.16.1",
+        "postcss": "^8.4.8",
         "resolve-url-loader": "^3.1.4",
         "sass": "^1.50.0",
         "sass-loader": "^8.0.0",
-        "sweetalert2": "^9.3.5",
-        "vue": "^2.6.14",
-        "vue-jest": "^3.0.7",
-        "vue-template-compiler": "^2.6.14"
-    },
-    "browserslist": {
-        "development": "last 1 version",
-        "production": ">2%, Firefox ESR"
-    },
-    "jest": {
-        "testURL": "http://localhost",
-        "roots": [
-            "<rootDir>/tests/Javascript/"
-        ],
-        "moduleNameMapper": {
-            "^@/(.*)$": "<rootDir>/resources/js/$1"
-        },
-        "moduleFileExtensions": [
-            "js",
-            "vue"
-        ],
-        "transform": {
-            "^.+\\.js$": "babel-jest",
-            ".*\\.(vue)$": "vue-jest"
-        }
-    },
-    "engines": {
-        "node": ">=6.0.0"
+        "sweetalert2": "^9.8.2",
+        "vue": "^2.5.17",
+        "vue-loader": "^15.9.8",
+        "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "@inotom/vue-go-top": "^1.3.0",
-        "acorn-jsx": "^5.3.2",
-        "animate.css": "^3.7.2",
+        "animate.css": "^4.1.1",
         "chart.js": "^2.9.4",
-        "css-doodle": "^0.7.7",
         "csshake": "^1.5.3",
-        "fontfaceobserver": "^2.1.0",
-        "jshint": "^2.13.4",
-        "pretty-checkbox": "^3.0.3",
+        "npm": "^8.6.0",
+        "typed.js": "^2.0.12",
         "vue-chartjs": "^3.5.1",
-        "vue-content-loading": "^1.6.0",
-        "vue-gallery": "^2.0.1",
-        "vue-infinite-loading": "^2.4.5",
-        "vue-marquee-text-component": "^1.2.0",
-        "vue-picture-input": "^2.1.6",
-        "vue-tippy": "^4.13.0",
-        "vuelidate": "^0.7.7"
+        "vue-gallery-slideshow": "^1.5.2"
     }
 }

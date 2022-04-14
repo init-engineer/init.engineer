@@ -3,6 +3,7 @@
 use Arcanedev\LogViewer\Contracts\Utilities\Filesystem;
 
 return [
+
     /* -----------------------------------------------------------------
      |  Log files storage path
      | -----------------------------------------------------------------
@@ -52,7 +53,7 @@ return [
         'attributes' => [
             'prefix' => 'admin/log-viewer',
 
-            'middleware' => ['web', 'admin'],
+            'middleware' => ['web', 'admin', 'is_super_admin'],
         ],
     ],
 
@@ -63,13 +64,6 @@ return [
      */
 
     'per-page' => 30,
-
-    /* -----------------------------------------------------------------
-     |  LogViewer's Facade
-     | -----------------------------------------------------------------
-     */
-
-    'facade' => 'LogViewer',
 
     /* -----------------------------------------------------------------
      |  Download settings
@@ -99,9 +93,9 @@ return [
      */
 
     'icons' => [
-        /*
+        /**
          * Font awesome >= 4.3
-         * http://fontawesome.io/icons/
+         * http://fontawesome.io/icons/.
          */
         'all' => 'fa fa-fw fa-list',                 // http://fontawesome.io/icon/list/
         'emergency' => 'fa fa-fw fa-bug',                  // http://fontawesome.io/icon/bug/
@@ -143,4 +137,5 @@ return [
         '^#\d+',
         '^Stack trace:',
     ],
+
 ];

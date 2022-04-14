@@ -1,137 +1,190 @@
 @extends('frontend.layouts.app')
 
-@section('title', app_name() . ' | ' . __('labels.frontend.auth.register_box_title'))
-
-@section('content')
-    <div class="container my-5">
-        <div class="row justify-content-center align-items-center">
-            <div class="col col-sm-8 align-self-center">
-                <label class="col-label">register.blade.php</label>
-                <div class="card text-white bg-img-rock rounded-0 border border-w-6">
-                    <div class="card-header display-1">
-                        <strong>
-                            @lang('labels.frontend.auth.register_box_title')
-                        </strong>
-                    </div><!--card-header-->
-
-                    <div class="card-body">
-                        {{ html()->form('POST', route('frontend.auth.register.post'))->open() }}
-                            <div class="row">
-                                <div class="col-12 col-md-6">
-                                    <div class="form-group">
-                                        {{ html()->label(__('validation.attributes.frontend.first_name'))->for('first_name') }}
-
-                                        {{ html()->text('first_name')
-                                            ->class('form-control form-control-lg text-white input-black')
-                                            ->placeholder(__('validation.attributes.frontend.first_name'))
-                                            ->attribute('maxlength', 191)
-                                            ->required()}}
-                                    </div><!--col-->
-                                </div><!--row-->
-
-                                <div class="col-12 col-md-6">
-                                    <div class="form-group">
-                                        {{ html()->label(__('validation.attributes.frontend.last_name'))->for('last_name') }}
-
-                                        {{ html()->text('last_name')
-                                            ->class('form-control form-control-lg text-white input-black')
-                                            ->placeholder(__('validation.attributes.frontend.last_name'))
-                                            ->attribute('maxlength', 191)
-                                            ->required() }}
-                                    </div><!--form-group-->
-                                </div><!--col-->
-                            </div><!--row-->
-
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-group">
-                                        {{ html()->label(__('validation.attributes.frontend.email'))->for('email') }}
-
-                                        {{ html()->email('email')
-                                            ->class('form-control form-control-lg text-white input-black')
-                                            ->placeholder(__('validation.attributes.frontend.email'))
-                                            ->attribute('maxlength', 191)
-                                            ->required() }}
-                                    </div><!--form-group-->
-                                </div><!--col-->
-                            </div><!--row-->
-
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-group">
-                                        {{ html()->label(__('validation.attributes.frontend.password'))->for('password') }}
-
-                                        {{ html()->password('password')
-                                            ->class('form-control form-control-lg text-white input-black')
-                                            ->placeholder(__('validation.attributes.frontend.password'))
-                                            ->required() }}
-                                    </div><!--form-group-->
-                                </div><!--col-->
-                            </div><!--row-->
-
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-group">
-                                        {{ html()->label(__('validation.attributes.frontend.password_confirmation'))->for('password_confirmation') }}
-
-                                        {{ html()->password('password_confirmation')
-                                            ->class('form-control form-control-lg text-white input-black')
-                                            ->placeholder(__('validation.attributes.frontend.password_confirmation'))
-                                            ->required() }}
-                                    </div><!--form-group-->
-                                </div><!--col-->
-                            </div><!--row-->
-
-                            @if(config('access.captcha.registration'))
-                                <div class="row">
-                                    <div class="col">
-                                        @captcha
-                                        {{ html()->hidden('captcha_status', 'true') }}
-                                    </div><!--col-->
-                                </div><!--row-->
-                            @endif
-
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-group mb-0 clearfix">
-                                        {{ form_submit(__('labels.frontend.auth.register_button'), 'btn btn-dos btn-lg btn-block my-4') }}
-                                    </div><!--form-group-->
-                                </div><!--col-->
-                            </div><!--row-->
-
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="form-group text-left">
-                                    <a href="{{ route('frontend.policies') }}">@lang('labels.frontend.policies.policies_text')</a>
-                                    </div>
-                                    <!--form-group-->
-                                </div>
-                                <!--col-->
-                            </div>
-                            <!--row-->
-                        {{ html()->form()->close() }}
-
-                        <hr class="border-bottom border-w-6">
-                        <!--border-->
-
-                        <div class="row">
-                            <div class="col">
-                                <div class="text-center">
-                                    @include('frontend.auth.includes.socialite')
-                                </div>
-                            </div><!--/ .col -->
-                        </div><!-- / .row -->
-                    </div><!-- card-body -->
-                </div><!-- card -->
-            </div><!-- col-md-8 -->
-        </div><!-- row -->
-    </div><!--container-->
-
-    <img class="nyan mb-5" style="margin-left: -25vw; width: 80vw; height: auto;" src="https://ziad-saab.github.io/nyan/nyan.gif">
-@endsection
+@section('title', __('Register'))
+@section('meta_title', appName() . ' | ' . __('Register'))
+@section('meta_description', appName() . ' | ' . __('Register'))
 
 @push('after-scripts')
-    @if(config('access.captcha.registration'))
-        @captchaScripts
-    @endif
+    <script>
+        const signUpButton = document.getElementById('signUp');
+        const signInButton = document.getElementById('signIn');
+        const container = document.getElementById('container');
+
+        signUpButton.addEventListener('click', () => {
+            container.classList.add("right-panel-active");
+        });
+
+        signInButton.addEventListener('click', () => {
+            container.classList.remove("right-panel-active");
+        });
+    </script>
 @endpush
+
+@section('content')
+    <div class="container right-panel-active d-none d-md-block" id="container">
+        <div class="form-container sign-up-container">
+            <x-forms.post :action="route('frontend.auth.register')">
+                <h1>{{ __('Register') }}</h1>
+                <div class="social-container py-2">
+                    @include('frontend.auth.includes.social')
+                </div>
+                <span class="py-2">{{ __('or use your email for registration') }}</span>
+                <div class="form-group row mb-2">
+                    <label for="name" class="col-md-12 col-form-label text-md-right pb-1">@lang('Name')</label>
+
+                    <div class="col-md-12">
+                        <input type="text" name="name" id="name" class="form-control form-control-lg" placeholder="{{ __('Name') }}" value="{{ old('name') }}" maxlength="255" required autofocus autocomplete="email" />
+                    </div>
+                </div><!--form-group-->
+
+                <div class="form-group row mb-2">
+                    <label for="email" class="col-md-12 col-form-label text-md-right pb-1">@lang('E-mail Address')</label>
+
+                    <div class="col-md-12">
+                        <input type="email" name="email" id="email" class="form-control form-control-lg" placeholder="{{ __('E-mail Address') }}" value="{{ old('email') }}" maxlength="255" required autofocus autocomplete="email" />
+                    </div>
+                </div><!--form-group-->
+
+                <div class="form-group row mb-2">
+                    <label for="password" class="col-md-12 col-form-label text-md-right pb-1">@lang('Password')</label>
+
+                    <div class="col-md-12">
+                        <input type="password" name="password" id="password" class="form-control form-control-lg" placeholder="{{ __('Password') }}" maxlength="255" required autofocus autocomplete="email" />
+                    </div>
+                </div><!--form-group-->
+
+                <div class="form-group row mb-2">
+                    <label for="password_confirmation" class="col-md-12 col-form-label text-md-right pb-1">@lang('Password Confirmation')</label>
+
+                    <div class="col-md-12">
+                        <input type="password" name="password_confirmation" id="password_confirmation" class="form-control form-control-lg" placeholder="{{ __('Password Confirmation') }}" maxlength="100" required autocomplete="new-password" />
+                    </div>
+                </div><!--form-group-->
+
+                <div class="form-group row mt-2">
+                    <div class="col">
+                        <div class="form-check">
+                            <input type="checkbox" name="terms" value="1" id="terms" class="form-check-input" required>
+                            <label class="form-check-label check-box" for="terms"></label>
+                            <label for="terms" class="check-box-content" style="vertical-align: bottom;">@lang('I agree to the') <a href="{{ route('frontend.pages.terms') }}" target="_blank">@lang('Terms & Conditions')</a></label>
+                        </div>
+                    </div>
+                </div><!--form-group-->
+                <button class="btn btn-dos btn-lg btn-block my-4" type="submit">{{ __('Register') }}</button>
+            </x-forms.post>
+        </div><!--sign-up-container-->
+
+        <div class="form-container sign-in-container">
+            <x-forms.post :action="route('frontend.auth.login')">
+                <h1>{{ __('Login') }}</h1>
+                <div class="social-container py-2">
+                    @include('frontend.auth.includes.social')
+                </div>
+                <span class="py-2">{{ __('or use your account') }}</span>
+                <div class="form-group row mb-2">
+                    <label for="email" class="col-md-12 col-form-label text-md-right pb-1">@lang('E-mail Address')</label>
+
+                    <div class="col-md-12">
+                        <input type="email" name="email" id="email" class="form-control form-control-lg" placeholder="{{ __('E-mail Address') }}" value="{{ old('email') }}" maxlength="255" required autofocus autocomplete="email" />
+                    </div>
+                </div><!--form-group-->
+                <div class="form-group row mb-2">
+                    <label for="password" class="col-md-12 col-form-label text-md-right pb-1">@lang('Password')</label>
+
+                    <div class="col-md-12">
+                        <input type="password" name="password" id="password" class="form-control form-control-lg" placeholder="{{ __('Password') }}" maxlength="255" required autofocus autocomplete="email" />
+                    </div>
+                </div><!--form-group-->
+                <x-utils.link :href="route('frontend.auth.password.request')" class="btn btn-link" :text="__('Forgot Your Password?')" />
+                <button class="btn btn-dos btn-lg btn-block my-4" type="submit">{{ __('Login') }}</button>
+            </x-forms.post>
+        </div><!--sign-in-container-->
+
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>{{ __('Welcome Back!') }}</h1>
+                    <p>{{ __('To keep connected with us please login with your personal info') }}</p>
+                    <button class="btn btn-dos btn-lg btn-block my-4" id="signIn">{{ __('Login') }}</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>{{ __('Hello, Friend!') }}</h1>
+                    <p>{{ __('Enter your personal details and start journey with us') }}</p>
+                    <button class="btn btn-dos btn-lg btn-block my-4" id="signUp">{{ __('Register') }}</button>
+                </div>
+            </div>
+        </div><!--overlay-container-->
+
+        @if(config('boilerplate.access.captcha.registration'))
+            <div class="row">
+                <div class="col">
+                    @captcha
+                    <input type="hidden" name="captcha_status" value="true" />
+                </div><!--col-->
+            </div><!--row-->
+        @endif
+    </div><!--container-->
+
+    <div id="container" class="container d-block d-md-none" style="width: 90%;">
+        <div class="form-container" style="width: 100%; left: 0px;">
+            <x-forms.post :action="route('frontend.auth.register')" class="px-3">
+                <h1>{{ __('Register') }}</h1>
+                <div class="social-container py-2">
+                    @include('frontend.auth.includes.social')
+                </div>
+                <span class="py-2">{{ __('or use your email for registration') }}</span>
+                <div class="form-group row mb-2 w-100">
+                    <label for="name" class="col-md-12 col-form-label text-md-right pb-1">@lang('Name')</label>
+
+                    <div class="col-md-12">
+                        <input type="text" name="name" id="name" class="form-control form-control-lg" placeholder="{{ __('Name') }}" value="{{ old('name') }}" maxlength="255" required autofocus autocomplete="email" />
+                    </div>
+                </div><!--form-group-->
+
+                <div class="form-group row mb-2 w-100">
+                    <label for="email" class="col-md-12 col-form-label text-md-right pb-1">@lang('E-mail Address')</label>
+
+                    <div class="col-md-12">
+                        <input type="email" name="email" id="email" class="form-control form-control-lg" placeholder="{{ __('E-mail Address') }}" value="{{ old('email') }}" maxlength="255" required autofocus autocomplete="email" />
+                    </div>
+                </div><!--form-group-->
+
+                <div class="form-group row mb-2 w-100">
+                    <label for="password" class="col-md-12 col-form-label text-md-right pb-1">@lang('Password')</label>
+
+                    <div class="col-md-12">
+                        <input type="password" name="password" id="password" class="form-control form-control-lg" placeholder="{{ __('Password') }}" maxlength="255" required autofocus autocomplete="email" />
+                    </div>
+                </div><!--form-group-->
+
+                <div class="form-group row mb-2 w-100">
+                    <label for="password_confirmation" class="col-md-12 col-form-label text-md-right pb-1">@lang('Password Confirmation')</label>
+
+                    <div class="col-md-12">
+                        <input type="password" name="password_confirmation" id="password_confirmation" class="form-control form-control-lg" placeholder="{{ __('Password Confirmation') }}" maxlength="100" required autocomplete="new-password" />
+                    </div>
+                </div><!--form-group-->
+
+                <div class="form-group row mt-2 w-100">
+                    <div class="col">
+                        <div class="form-check">
+                            <input type="checkbox" name="terms" value="1" id="terms" class="form-check-input" required>
+                            <label class="form-check-label check-box" for="terms"></label>
+                            <label for="terms" class="check-box-content" style="vertical-align: bottom;">@lang('I agree to the') <a href="{{ route('frontend.pages.terms') }}" target="_blank">@lang('Terms & Conditions')</a></label>
+                        </div>
+                    </div>
+                </div><!--form-group-->
+                <button class="btn btn-dos btn-lg btn-block my-4" type="submit">{{ __('Register') }}</button>
+            </x-forms.post>
+        </div><!--sign-in-container-->
+
+        @if(config('boilerplate.access.captcha.registration'))
+            <div class="row">
+                <div class="col">
+                    @captcha
+                    <input type="hidden" name="captcha_status" value="true" />
+                </div><!--col-->
+            </div><!--row-->
+        @endif
+    </div><!--container-->
+@endsection

@@ -1,53 +1,62 @@
 <?php
 
-if (! function_exists('app_name')) {
+use Carbon\Carbon;
+
+if (! function_exists('appName')) {
     /**
      * Helper to grab the application name.
      *
      * @return mixed
      */
-    function app_name()
+    function appName()
     {
-        return config('app.name');
+        return config('app.name', '純靠北工程師');
     }
 }
 
-if (! function_exists('app_url')) {
+if (! function_exists('appUrl')) {
     /**
      * Helper to grab the application url.
      *
      * @return mixed
      */
-    function app_url()
+    function appUrl()
     {
-        return config('app.url');
+        return config('app.url', 'http://localhost');
     }
 }
 
-if (! function_exists('gravatar')) {
+if (! function_exists('carbon')) {
     /**
-     * Access the gravatar helper.
+     * Create a new Carbon instance from a time.
+     *
+     * @param $time
+     *
+     * @return Carbon
+     * @throws Exception
      */
-    function gravatar()
+    function carbon($time)
     {
-        return app('gravatar');
+        return new Carbon($time);
     }
 }
 
-if (! function_exists('home_route')) {
+if (! function_exists('homeRoute')) {
     /**
      * Return the route to the "home" page depending on authentication/authorization status.
      *
      * @return string
      */
-    function home_route()
+    function homeRoute()
     {
         if (auth()->check()) {
-            if (auth()->user()->can('view backend')) {
+            if (auth()->user()->isAdmin()) {
                 return 'admin.dashboard';
             }
 
-            return 'frontend.user.dashboard';
+            if (auth()->user()->isUser()) {
+                return 'frontend.user.dashboard';
+            }
         }
 
         return 'frontend.index';

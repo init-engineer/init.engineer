@@ -13,11 +13,5 @@ return [
     */
 
     'failed' => 'Bu kimlik bilgileri kayıtlarımızla eşleşmiyor.',
-    'general_error' => 'Bunu yapmak için erişiminiz yok.',
-    'password_used' => 'You can not set a password that you have previously used.',
-    'socialite' => [
-        'unacceptable' => ':provider kabul edilen bir oturum açma türü değil.',
-    ],
     'throttle' => 'Çok fazla giriş denemesi. Lütfen :seconds saniye sonra yeniden deneyin.',
-    'unknown' => 'Bilinmeyen bir hata oluştu',
 ];

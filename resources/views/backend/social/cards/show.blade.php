@@ -1,40 +1,90 @@
 @extends('backend.layouts.app')
 
-@section('title', __('labels.backend.social.cards.management') . ' | ' . __('labels.backend.social.cards.view'))
-
-@section('breadcrumb-links')
-@include('backend.social.cards.includes.breadcrumb-links')
-@endsection
+@section('title', __('View Cards'))
 
 @section('content')
-<div class="card">
-    <div class="card-body">
-        <div class="row">
-            <div class="col-sm-5">
-                <h4 class="card-title mb-0">
-                    @lang('labels.backend.social.cards.management')
-                    <small class="text-muted">@lang('labels.backend.social.cards.view')</small>
-                </h4>
-            </div><!--col-->
-        </div><!--row-->
+    <x-backend.card>
+        <x-slot name="header">
+            @lang('View Cards')
+        </x-slot>
 
-        <div class="row mt-4">
-            @include('backend.social.cards.show.tabs.overview')
-        </div><!--row-->
-    </div><!--card-body-->
+        <x-slot name="headerActions">
+            <x-utils.link class="card-header-action" :href="route('admin.social.cards.index')" :text="__('Back')" />
+        </x-slot>
 
-    <div class="card-footer">
-        <div class="row">
-            <div class="col">
-                <small class="float-right text-muted">
-                    <strong>@lang('labels.backend.access.users.tabs.content.overview.created_at'):</strong> {{ timezone()->convertToLocal($card->created_at) }} ({{ $card->created_at->diffForHumans() }}),
-                    <strong>@lang('labels.backend.access.users.tabs.content.overview.last_updated'):</strong> {{ timezone()->convertToLocal($card->updated_at) }} ({{ $card->updated_at->diffForHumans() }})
-                    @if($card->trashed())
-                        <strong>@lang('labels.backend.access.users.tabs.content.overview.deleted_at'):</strong> {{ timezone()->convertToLocal($card->deleted_at) }} ({{ $card->deleted_at->diffForHumans() }})
-                    @endif
-                </small>
-            </div><!--col-->
-        </div><!--row-->
-    </div><!--card-footer-->
-</div><!--card-->
+        <x-slot name="body">
+            <div class="row">
+                <div class="col-3">
+                    <div class="text-center">
+                        <img src="{{ $cards->model->avatar }}" class="img-circle img-thumbnail" style="height: 128px; width: 128px; object-fit: cover;" alt="avatar">
+                        <h1>{{ $cards->model->name }}</h1>
+                        <h6>{{ $cards->model->email }}</h6>
+                    </div>
+                </div><!-- col-3 -->
+
+                <div class="col-9">
+                    <table class="table table-hover">
+                        <tr>
+                            <th>@lang('Cards Banner')</th>
+                            <td><img src="{{ $cards->getPicture() }}" class="img-fluid rounded" style="max-width: 100%;" alt="{{ old('content') ?? $cards->content }}" /></td>
+                        </tr>
+
+                        <tr>
+                            <th>@lang('Content')</th>
+                            <td><p>{{ $cards->content }}</p></td>
+                        </tr>
+
+                        <tr>
+                            <th>@lang('Ads Config')</th>
+                            <td></td>
+                        </tr>
+
+                        <tr>
+                            <th>@lang('')</th>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div><!-- col-9 -->
+            </div><!-- row -->
+        </x-slot>
+
+        <x-slot name="footer">
+            <small class="float-right text-muted">
+                <strong>@lang('Cards Created'):</strong> @displayDate($cards->created_at) ({{ $cards->created_at->diffForHumans() }}),
+                <strong>@lang('Last Updated'):</strong> @displayDate($cards->updated_at) ({{ $cards->updated_at->diffForHumans() }})
+
+                @if($cards->trashed())
+                    <strong>@lang('Cards Deleted'):</strong> @displayDate($cards->deleted_at) ({{ $cards->deleted_at->diffForHumans() }})
+                @endif
+            </small>
+        </x-slot>
+    </x-backend.card>
+
+    <x-backend.card>
+        <x-slot name="header">
+            @lang('View Platform')
+        </x-slot>
+
+        <x-slot name="headerActions">
+            <x-utils.link class="card-header-action" :href="route('admin.social.cards.index')" :text="__('Back')" />
+        </x-slot>
+
+        <x-slot name="body">
+            <livewire:backend.social-platform-table cards="{{ $cards->id }}" />
+        </x-slot>
+    </x-backend.card>
+
+    <x-backend.card>
+        <x-slot name="header">
+            @lang('View Comments')
+        </x-slot>
+
+        <x-slot name="headerActions">
+            <x-utils.link class="card-header-action" :href="route('admin.social.cards.index')" :text="__('Back')" />
+        </x-slot>
+
+        <x-slot name="body">
+            <livewire:backend.social-comments-table cards="{{ $cards->id }}" />
+        </x-slot>
+    </x-backend.card>
 @endsection

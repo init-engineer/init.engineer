@@ -1,0 +1,46 @@
+/**
+ * Dark Mode
+ */
+.theme-dark {
+    --theme-color-int: 0;
+    --theme-color-reverse-int: 255;
+
+    --background-primary: #161612;
+    --background-secondary: #2d2d25;
+    --color-primary: #44adff;
+    --color-info: #4dd0e1;
+    --color-success: #74ffe0;
+    --color-danger: #fc8976;
+    --color-warning: #f1c40f;
+    --color-dark: #2c3e50;
+    --color-light: #bdc3c7;
+    --color-gray: #95a5a6;
+    --font-primary-color: #edf5fc;
+    --font-secondary-color: #e0e1dd;
+
+    --background-primary-dark: #0f0f0c;
+    --background-secondary-dark: #1f1f19;
+    --color-primary-dark: #2f79b2;
+    --color-info-dark: #35919d;
+    --color-success-dark: #51b29c;
+    --color-danger-dark: #b05f52;
+    --color-warning-dark: #a8890a;
+    --color-dark-dark: #1e2b38;
+    --color-light-dark: #84888b;
+    --color-gray-dark: #687374;
+    --font-primary-color-dark: #a5abb0;
+    --font-secondary-color-dark: #9c9d9a;
+
+    --background-primary-light: #5b5b59;
+    --background-secondary-light: #6c6c66;
+    --color-primary-light: #7cc5ff;
+    --color-info-light: #82deea;
+    --color-success-light: #9dffe9;
+    --color-danger-light: #fcac9f;
+    --color-warning-light: #f5d557;
+    --color-dark-light: #6b7784;
+    --color-light-light: #d0d5d7;
+    --color-gray-light: #b4c0c0;
+    --font-primary-color-light: #f2f8fc;
+    --font-secondary-color-light: #e9eae7;
+}

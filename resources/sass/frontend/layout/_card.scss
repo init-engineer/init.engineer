@@ -1,0 +1,68 @@
+.card {
+    color: var(--font-primary-color);
+    border: 0px;
+    border-radius: 0.25rem;
+    background-color: var(--background-secondary-light);
+    box-shadow: 12px 12px 0px rgba(0, 0, 0, 0.25), 0px 0px 12px rgba(0, 0, 0, 0.25);
+    position: relative;
+    overflow: hidden;
+
+    .card-header {
+        background-color: var(--background-primary-dark);
+    }
+
+    .card-body {
+        background-color: var(--background-secondary-dark);
+
+        pre {
+            font-size: 24px;
+            white-space: pre-line;
+            color: var(--font-primary-color);
+        }
+    }
+
+    .card-footer {
+        background-color: var(--background-primary-dark);
+    }
+
+    a {
+        color: var(--font-primary-color);
+    }
+}
+
+.jumbotron {
+    color: var(--font-primary-color);
+    background-color: var(--background-secondary);
+
+    pre {
+        color: var(--font-primary-color);
+    }
+}
+
+/**
+ * 文章旁邊的社群連結
+ */
+
+.tag-wrapper {
+    position: relative;
+}
+
+.card-tag {
+    position: absolute;
+    width: 96px;
+    top: 280px;
+    right: -20px;
+    padding: 4px 8px 4px 8px;
+    border-radius: 4px 0px 4px 4px;
+    z-index: 1;
+}
+
+.card-tag-shadow {
+    display: block;
+    width: 50px;
+    height: 45px;
+    position: absolute;
+    top: 260px;
+    right: -11px;
+    transform: rotate(36deg);
+}

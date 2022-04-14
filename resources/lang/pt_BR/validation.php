@@ -111,53 +111,5 @@ return [
       |
       |--------------------------------------------------------------------------
      */
-    'attributes' => [
-        'backend' => [
-            'access' => [
-                'permissions' => [
-                    'associated_roles' => 'Papéis Associados',
-                    'dependencies' => 'Dependências',
-                    'display_name' => 'Nome de Apresentação',
-                    'group' => 'Grupo',
-                    'group_sort' => 'Ordenar Grupo',
-                    'groups' => [
-                        'name' => 'Nome do Grupo',
-                    ],
-                    'name' => 'Nome',
-                    'system' => 'Sistema?',
-                ],
-                'roles' => [
-                    'associated_permissions' => 'Permissões Associadas',
-                    'name' => 'Nome',
-                    'sort' => 'Ordenar',
-                ],
-                'users' => [
-                    'active' => 'Ativo',
-                    'associated_roles' => 'Papéis Associados',
-                    'confirmed' => 'Confirmado',
-                    'email' => 'Endereço de e-mail',
-                    'name' => 'Nome',
-                    'first_name' => 'Primeiro Nome',
-                    'last_name' => 'Sobrenome',
-                    'other_permissions' => 'Outras Permissões',
-                    'password' => 'Senha',
-                    'password_confirmation' => 'Confirme sua senha',
-                    'send_confirmation_email' => 'Enviar E-mail de Confirmação',
-                ],
-            ],
-        ],
-        'frontend' => [
-            'email' => 'Endereço de e-mail',
-            'first_name' => 'Primeiro Nome',
-            'last_name' => 'Sobrenome',
-            'name' => 'Nome',
-            'password' => 'Senha',
-            'password_confirmation' => 'Confirme sua senha',
-            'phone' => 'Telefone',
-            'message' => 'Mensagem',
-            'old_password' => 'Senha antiga',
-            'new_password' => 'Nova Senha',
-            'new_password_confirmation' => 'Confirme sua nova senha',
-        ],
-    ],
+    'attributes' => [],
 ];

@@ -1,71 +1,57 @@
-@if($errors->any())
-    <div class="alert alert-danger animated bounceInDown mt-5" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
+@if(isset($errors) && $errors->any())
+<x-utils.alert type="danger" class="rounded m-2">
+    <i class="fas fa-exclamation-triangle"></i>
+    @foreach($errors->all() as $error)
+    {{ $error }}<br />
+    @endforeach
+</x-utils.alert>
+@endif
 
-        @foreach($errors->all() as $error)
-            {!! $error !!}<br/>
-        @endforeach
-    </div>
-@elseif(session()->get('flash_success'))
-    <div class="alert alert-success animated bounceInDown mt-5" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
+@if(session()->get('flash_success'))
+<x-utils.alert type="success" class="rounded m-2">
+    <i class="fas fa-check-circle"></i>
+    {{ session()->get('flash_success') }}
+</x-utils.alert>
+@endif
 
-        @if(is_array(json_decode(session()->get('flash_success'), true)))
-            {!! implode('', session()->get('flash_success')->all(':message<br/>')) !!}
-        @else
-            {!! session()->get('flash_success') !!}
-        @endif
-    </div>
-@elseif(session()->get('flash_warning'))
-    <div class="alert alert-warning animated bounceInDown mt-5" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
+@if(session()->get('flash_warning'))
+<x-utils.alert type="warning" class="rounded m-2">
+    <i class="fas fa-exclamation-circle"></i>
+    {{ session()->get('flash_warning') }}
+</x-utils.alert>
+@endif
 
-        @if(is_array(json_decode(session()->get('flash_warning'), true)))
-            {!! implode('', session()->get('flash_warning')->all(':message<br/>')) !!}
-        @else
-            {!! session()->get('flash_warning') !!}
-        @endif
-    </div>
-@elseif(session()->get('flash_info'))
-    <div class="alert alert-info animated bounceInDown mt-5" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
+@if(session()->get('flash_info') || session()->get('flash_message'))
+<x-utils.alert type="info" class="rounded m-2">
+    <i class="fas fa-info-circle"></i>
+    {{ session()->get('flash_info') }}
+</x-utils.alert>
+@endif
 
-        @if(is_array(json_decode(session()->get('flash_info'), true)))
-            {!! implode('', session()->get('flash_info')->all(':message<br/>')) !!}
-        @else
-            {!! session()->get('flash_info') !!}
-        @endif
-    </div>
-@elseif(session()->get('flash_danger'))
-    <div class="alert alert-danger animated bounceInDown mt-5" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
+@if(session()->get('flash_danger'))
+<x-utils.alert type="danger" class="rounded m-2">
+    <i class="fas fa-exclamation-triangle"></i>
+    {{ session()->get('flash_danger') }}
+</x-utils.alert>
+@endif
 
-        @if(is_array(json_decode(session()->get('flash_danger'), true)))
-            {!! implode('', session()->get('flash_danger')->all(':message<br/>')) !!}
-        @else
-            {!! session()->get('flash_danger') !!}
-        @endif
-    </div>
-@elseif(session()->get('flash_message'))
-    <div class="alert alert-info animated bounceInDown mt-5" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
+@if(session()->get('status'))
+<x-utils.alert type="success" class="rounded m-2">
+    <i class="fas fa-check-circle"></i>
+    {{ session()->get('status') }}
+</x-utils.alert>
+@endif
 
-        @if(is_array(json_decode(session()->get('flash_message'), true)))
-            {!! implode('', session()->get('flash_message')->all(':message<br/>')) !!}
-        @else
-            {!! session()->get('flash_message') !!}
-        @endif
-    </div>
+@if(session()->get('resent'))
+<x-utils.alert type="success" class="rounded m-2">
+    <i class="fas fa-check-circle"></i>
+    @lang('A fresh verification link has been sent to your email address.')
+</x-utils.alert>
+@endif
+
+@if(session()->get('verified'))
+<x-utils.alert type="success" class="rounded m-2">
+    <i class="fas fa-check-circle"></i>
+    @lang('Thank you for verifying your e-mail address.')
+</x-utils.alert>
 @endif

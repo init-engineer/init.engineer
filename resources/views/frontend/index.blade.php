@@ -1,112 +1,145 @@
 @extends('frontend.layouts.app')
 
-@section('title', app_name() . ' | ' . __('navs.general.home'))
+@section('title', __('Home'))
+@section('meta_title', appName() . ' | ' . __('Home'))
+@section('meta_description', appName() . ' | ' . __('Home'))
+
+@push('after-scripts')
+<script>
+    /**
+     * 讓右邊的 Title 也能有一點關心使用者的感覺
+     */
+    const now = new Date();
+    let title = '想來靠北些什麼？';
+    if (now.getHours() >= 0 && now.getHours() < 6) {
+        title = '凌晨安安，' + title;
+    } else if (now.getHours() >= 6 && now.getHours() < 12) {
+        title = '早上安安，' + title;
+    } else if (now.getHours() >= 12 && now.getHours() < 18) {
+        title = '下午安安，' + title;
+    } else {
+        title = '晚上安安，' + title;
+    }
+
+    new Typed('#title', {
+        /**
+         * @property {string} stringsElement ID of element containing string children
+         */
+         strings: [title],
+
+        /**
+         * @property {number} typeSpeed type speed in milliseconds
+         */
+        typeSpeed: 120,
+
+        /**
+         * @property {boolean} showCursor show cursor
+         * @property {string} cursorChar character for cursor
+         * @property {boolean} autoInsertCss insert CSS for cursor and fadeOut into HTML <head>
+         */
+        showCursor: false,
+        cursorChar: '|',
+        autoInsertCss: true,
+    });
+
+    /**
+     * JavaScript 載入後先等 3 秒跑 Title，再去跑 Subtitle 的內容。
+     * 透過 Typed.js 讓 #subtitle 能夠自動 Typeing 內容。
+     */
+     setTimeout(function(){
+        new Typed('#subtitle', {
+            /**
+             * @property {array} strings strings to be typed
+             */
+            strings: [
+                '『大象呢，你的大象呢』\n『把你的大象找出來』\n『算了先看我的大象』\n『我們一起看喔』\n...',
+                '一個測試工程師走進一家酒吧，要了一杯啤酒\n一個測試工程師走進一家酒吧，要了一杯咖啡\n一個測試工程師走進一家酒吧，要了 999999999 杯啤酒\n一個測試工程師走進一家酒吧，要了 0 杯啤酒\n一個測試工程師走進一家酒吧，要了 -1 杯啤酒，\n...',
+                '這案子已經完成了 90%，\n接下來就交給你收尾了。',
+                'PHP 睡太久了\nPHP 這二、三十年來\nPHP 沒有好好稱霸開發者生態\n偉大的 PHP 這個巨人\n要清醒囉！',
+                '大佬：「我大佬」\n學霸：「我學霸」\n神仙：「我神仙」\n天才：「我天才」\n裝弱的電神：「我弱」\n大佬、電神、學霸、神仙、天才：「我弱」\n...'
+            ],
+
+            /**
+             * @property {number} typeSpeed type speed in milliseconds
+             */
+            typeSpeed: 120,
+
+            /**
+             * @property {number} backSpeed backspacing speed in milliseconds
+             */
+            backSpeed: 80,
+
+            /**
+             * @property {boolean} smartBackspace only backspace what doesn't match the previous string
+             */
+            smartBackspace: true,
+
+            /**
+             * @property {boolean} loop loop strings
+             * @property {number} loopCount amount of loops
+             */
+            loop: true,
+            loopCount: Infinity,
+
+            /**
+             * @property {boolean} showCursor show cursor
+             * @property {string} cursorChar character for cursor
+             * @property {boolean} autoInsertCss insert CSS for cursor and fadeOut into HTML <head>
+             */
+            showCursor: false,
+            cursorChar: '|',
+            autoInsertCss: true,
+        });
+    }, 3000);
+</script>
+@endpush
 
 @section('content')
-<div class="container-fluid">
-    <div class="row my-2">
-        <div class="col-12 col-md-4 col-lg-3 mx-auto" style="display: flex; flex-direction: column; justify-content: center;">
-            <img class="w-100" src="{{ asset('img/frontend/logo.png') }}" alt="LOGO">
-        </div>
-        <div class="col-12 col-md-8 col-lg-7 mx-auto px-0" style="display: flex; flex-direction: column; justify-content: center;">
-            <div class="w-100">
-                <search-engine></search-engine>
-            </div>
-            <div class="w-100">
-                <p>告訴你一個神秘的地方 ♪ 一個孩子們的快樂天堂 ♪</p>
-            </div>
-        </div>
-        <div class="col-12 col-md-12 col-lg-2 mx-auto" style="display: flex; flex-direction: column; justify-content: center;">
-            <div class="w-100 bg-color-primary card">
-                <div class="card-body p-2">
-                    <p class="card-text">不習慣新介面嗎？如果需要，您可以透過我們的時光機，切換成經典版純靠北工程師。</p>
-                    <button class="btn btn-block btn-primary-bg" onclick="Swal.fire('噢哦！', '版主並沒有寫「切換回經典版 純靠北工程師」的功能。', 'warning');">我想回去舊版頁面</button>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="container-fluid py-4" style="max-width: 100vw;">
+    <div class="row justify-content-center">
+        <div class="col-md-9 order-md-first order-last">
+            @foreach($cards as $card)
+                <div class="card mb-4 mb-md-4 mr-md-3">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <a href="{{ route('frontend.social.cards.show', ['id' => $card->id]) }}">
+                                <img src="{{ $card->getPicture() }}" class="img-fluid rounded-start" alt="#{{ appName() . base_convert($card->id, 10, 36) }}">
+                            </a>
+                        </div>
+                        <!--col-md-4-->
 
-    <div class="row flex-column-reverse flex-md-row my-2">
-        <div class="col-12 col-md-4 col-lg-2 mx-auto my-2">
-            <label class="col-label bg-color-primary color-color-primary">純靠北工程師 Discord</label>
-            <iframe src="https://discord.com/widget?id=508513350964084736&theme=dark" width="100%" height="400" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
-
-        </div>
-        <div class="col-12 col-md-8 col-lg-6 mx-auto my-2 px-0">
-            <div style="border-width:3px; border-style:dashed; padding:5px; min-height: 480px;" class="d-flex align-items-center">
-                <div class="w-100">
-                    <h1 class="text-center">我還沒想到這裡要放甚麼 :-)<h1>
-                    <br />
-                    <h3 class="text-center">過了好幾天了，我還是想不到這裏要放甚麼 :-(<h3>
-                </div>
-            </div>
-            {{-- <label class="col-label bg-color-primary color-color-primary">快捷選單</label>
-            <div class="w-100 bg-color-primary mb-3">
-                <div class="github-card" data-github="kantai235" data-theme="default"></div>
-                <div class="github-card" data-github="init-engineer/init.engineer" data-theme="default"></div>
-                <script src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
-            </div> --}}
-        </div>
-
-        <div class="col-12 col-lg-4 mx-auto my-2">
-            @guest
-                <login-tools></login-tools>
-            @else
-                <login-tools :login="true" avatar="{{ $logged_in_user->picture }}" username="{{ $logged_in_user->name }}" email="{{ $logged_in_user->email }}"></login-tools>
-            @endguest
-
-            <label class="mt-2 col-label bg-color-primary color-color-primary">我的工具</label>
-            <div class="row mb-2 m-0 p-2 bg-color-primary text-center">
-                <div class="col-12 mt-0 mb-1 pr-1 pl-0">
-                    <a class="my-2" href="{{ route('frontend.social.cards.create') }}"><img class="w-100" src="{{ asset('/img/frontend/button/tools-button-post-publish.png') }}" alt="發表文章"></a>
-                </div>
-                <div class="col-6 mt-0 mb-1 pr-1 pl-0">
-                    <a class="my-2" href="{{ route('frontend.fortunes.index') }}"><img class="w-100" src="{{ asset('/img/frontend/button/tools-button-fortunes.png') }}" alt="線上抽籤系統"></a>
-                </div>
-
-                <div class="col-6 mt-0 mb-1 pr-1 pl-0">
-                    <a class="my-2" href="{{ route('frontend.social.cards.review') }}"><img class="w-100" src="{{ asset('/img/frontend/button/tools-button-post-review.png') }}" alt="群眾審核"></a>
-                </div>
-                <div class="col-6 mt-0 mb-1 pr-1 pl-0">
-                    <a class="my-2" href="{{ route('frontend.animal.index') }}"><img class="w-100" src="{{ asset('/img/frontend/button/tools-button-turnips-computer.png') }}" alt="大頭菜計算機"></a>
-                </div>
-                <div class="col-6 mt-0 mb-1 pr-1 pl-0">
-                    <a class="my-2" href="{{ route('frontend.social.cards.index') }}"><img class="w-100" src="{{ asset('/img/frontend/button/tools-button-post-list.png') }}" alt="文章列表"></a>
-                </div>
-            </div>
-
-            <div class="pb-2">
-                <label class="pt-2 col-label bg-color-primary color-color-primary">好心人斗內一下</label>
-                <div class="w-100 mb-2 p-2 bg-color-primary">
-                    <div class="text-center">
-                        <a class="btn btn-success" href="https://p.ecpay.com.tw/1ADBA06" target="_blank">單筆小額贊助</a>
-                        <a class="btn btn-success" href="https://p.ecpay.com.tw/3D1AF5E" target="_blank">定期定額贊助</a>
+                        <div class="col-md-8">
+                            <div class="card-body h-100">
+                                <a class="text-decoration-none" href="{{ route('frontend.social.cards.show', ['id' => $card->id]) }}">
+                                    <h5 class="card-title">#{{ appName() . base_convert($card->id, 10, 36) }}</h5>
+                                    <p class="card-text">{{ $card->getContent(200) }}</p>
+                                    <p class="card-text"><small class="text-muted">@displayDate($card->created_at) ({{ $card->created_at->diffForHumans() }})</small></p>
+                                </a>
+                            </div>
+                        </div>
+                        <!--col-md-8-->
                     </div>
+                    <!--row-->
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
+                <!--card-->
+            @endforeach
 
-@push('before-styles')
-<style>
-tr {
-    color: var(--color-gray) !important;
-}
-tr:hover {
-    color: var(--font-secondary-color) !important;
-}
-tr a {
-    color: var(--font-primary-color) !important;
-}
-tr a:hover {
-    color: var(--color-info) !important;
-}
-tr img {
-    max-width: 24px;
-    max-height: 24px;
-    border-radius: 4px;
-}
-</style>
-@endpush
+            <div class="w-100 text-center">
+                <p class="pt-2 my-0">我沒有想寫懶加載的意思，所以給一個文章列表的連結，你們自己去看吧😎👍</p>
+                <a class="btn btn-bg btn-lg h1 py-2 px-5 my-2" href="{{ route('frontend.social.cards.index') }}">查看更多</a>
+            </div>
+            <!--more-->
+        </div><!--col-md-9-->
+
+        <div class="col-md-3 order-md-last order-first text-center mb-5">
+            <h2 class="my-2 mx-auto" id="title"></h2>
+            <div class="form-group">
+                <textarea class="form-control form-control-lg" id="subtitle" rows="9" disabled></textarea>
+            </div>
+            <a class="btn btn-bg btn-lg h1 py-2 px-5 my-2" href="{{ route('frontend.social.cards.publish.article') }}">前往投稿</a>
+        </div><!--col-md-3-->
+    </div>
+    <!--row-->
+</div>
+<!--container-->
+@endsection

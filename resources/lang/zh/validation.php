@@ -25,7 +25,7 @@ return [
     'between' => [
         'numeric' => ':attribute 必须介于 :min - :max 之间。',
         'file' => ':attribute 必须介于 :min - :max kb 之间。',
-        'string' => ':attribute 必须介于 :min - :max 个字元之间。',
+        'string' => ':attribute 必须介于 :min - :max 个字符之间。',
         'array' => ':attribute 必须只有 :min - :max 个单元。',
     ],
     'boolean' => ':attribute 必须为布尔值。',
@@ -78,7 +78,7 @@ return [
     'max' => [
         'numeric' => ':attribute 不能大于 :max。',
         'file' => ':attribute 不能大于 :max kb。',
-        'string' => ':attribute 不能大于 :max 个字元。',
+        'string' => ':attribute 不能大于 :max 个字符。',
         'array' => ':attribute 最多只有 :max 个单元。',
     ],
     'mimes' => ':attribute 必须是一个 :values 类型的文件。',
@@ -86,7 +86,7 @@ return [
     'min' => [
         'numeric' => ':attribute 必须大于等于 :min。',
         'file' => ':attribute 大小不能小于 :min kb。',
-        'string' => ':attribute 至少为 :min 个字元。',
+        'string' => ':attribute 至少为 :min 个字符。',
         'array' => ':attribute 至少有 :min 个单元。',
     ],
     'not_in' => '已选的属性 :attribute 非法。',
@@ -105,11 +105,11 @@ return [
     'size' => [
         'numeric' => ':attribute 大小必须为 :size。',
         'file' => ':attribute 大小必须为 :size kb。',
-        'string' => ':attribute 必须是 :size 个字元。',
+        'string' => ':attribute 必须是 :size 个字符。',
         'array' => ':attribute 必须为 :size 个单元。',
     ],
     'starts_with' => 'The :attribute must start with one of the following: :values',
-    'string' => ':attribute 必须是一个字元串。',
+    'string' => ':attribute 必须是一个字符串。',
     'timezone' => ':attribute 必须是一个合法的时区值。',
     'unique' => ':attribute 已经存在。',
     'uploaded' => ':attribute 上传失败。',
@@ -129,7 +129,7 @@ return [
 
     'custom' => [
         'attribute-name' => [
-            'rule-name' => '定制訊息',
+            'rule-name' => '定制信息',
         ],
     ],
 
@@ -144,54 +144,5 @@ return [
     |
     */
 
-    'attributes' => [
-        'backend' => [
-            'access' => [
-                'permissions' => [
-                    'associated_roles' => '关联的角色',
-                    'dependencies' => '依赖关系',
-                    'display_name' => '显示名称',
-                    'group' => '群组',
-                    'group_sort' => '组排序',
-
-                    'groups' => [
-                        'name' => '组名称',
-                    ],
-
-                    'name' => '名称',
-                    'system' => '系统?',
-                ],
-
-                'roles' => [
-                    'associated_permissions' => '关联的权限',
-                    'name' => '名称',
-                    'sort' => '排序',
-                ],
-
-                'users' => [
-                    'active' => '啟用',
-                    'associated_roles' => '关联的角色',
-                    'confirmed' => '已确认',
-                    'email' => '电子邮件地址',
-                    'name' => '名称',
-                    'other_permissions' => '其他权限',
-                    'password' => '密码',
-                    'password_confirmation' => '确认密码',
-                    'send_confirmation_email' => '发送确认电子邮件',
-                ],
-            ],
-        ],
-
-        'frontend' => [
-            'email' => '电子邮件',
-            'name' => '用户名',
-            'password' => '密码',
-            'password_confirmation' => '确认密码',
-            'phone' => '电话',
-            'message' => '消息',
-            'old_password' => '旧密码',
-            'new_password' => '新密码',
-            'new_password_confirmation' => '确认新密码',
-        ],
-    ],
+    'attributes' => [],
 ];

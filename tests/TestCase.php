@@ -2,66 +2,72 @@
 
 namespace Tests;
 
-use App\Models\Auth\Role;
-use App\Models\Auth\User;
+use App\Domains\Auth\Http\Middleware\TwoFactorAuthenticationStatus;
+use App\Domains\Auth\Models\Role;
+use App\Domains\Auth\Models\User;
+use Illuminate\Auth\Middleware\RequirePassword;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
-use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Facades\Artisan;
 
 /**
  * Class TestCase.
+ *
+ * @extends BaseTestCase
  */
 abstract class TestCase extends BaseTestCase
 {
-    use CreatesApplication;
+    use CreatesApplication,
+        RefreshDatabase;
 
     /**
-     * Create the admin role or return it if it already exists.
-     *
-     * @return mixed
+     * @return void
      */
-    protected function getAdminRole()
+    public function setUp(): void
     {
-        if ($role = Role::whereName(config('access.users.admin_role'))->first()) {
-            return $role;
-        }
+        parent::setUp();
 
-        $adminRole = factory(Role::class)->create(['name' => config('access.users.admin_role')]);
-        $adminRole->givePermissionTo(factory(Permission::class)->create(['name' => 'view backend']));
+        Artisan::call('db:seed');
 
-        return $adminRole;
+        $this->withoutMiddleware(RequirePassword::class);
+        $this->withoutMiddleware(TwoFactorAuthenticationStatus::class);
     }
 
     /**
-     * Create an administrator.
-     *
-     * @param array $attributes
-     *
-     * @return mixed
+     * @return Role
      */
-    protected function createAdmin(array $attributes = [])
+    protected function getAdminRole(): Role
     {
-        $adminRole = $this->getAdminRole();
-        $admin = factory(User::class)->create($attributes);
-        $admin->assignRole($adminRole);
-
-        return $admin;
+        return Role::find(1);
     }
 
     /**
-     * Login the given administrator or create the first if none supplied.
-     *
-     * @param bool $admin
-     *
-     * @return bool|mixed
+     * @return User
+     */
+    protected function getMasterAdmin(): User
+    {
+        return User::find(1);
+    }
+
+    /**
+     * @param bool $admin = false
      */
     protected function loginAsAdmin($admin = false)
     {
-        if (! $admin) {
-            $admin = $this->createAdmin();
+        if (!$admin) {
+            $admin = $this->getMasterAdmin();
         }
 
         $this->actingAs($admin);
 
         return $admin;
+    }
+
+    /**
+     * ...
+     */
+    protected function logout()
+    {
+        return auth()->logout();
     }
 }

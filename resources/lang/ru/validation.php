@@ -143,58 +143,5 @@ return [
     | поля "email" в сообщениях будет выводиться "электронный адрес".
     */
 
-    'attributes' => [
-        'backend' => [
-            'access' => [
-                'permissions' => [
-                    'associated_roles' => 'Связь с ролями',
-                    'dependencies' => 'Зависимости',
-                    'display_name' => 'Отображаемое имя',
-                    'group' => 'Группа',
-                    'group_sort' => 'Сортировать по Группам',
-                    'groups' => [
-                        'name' => 'Название Группы',
-                    ],
-                    'name' => 'Название',
-                    'first_name' => 'Имя',
-                    'last_name' => 'Фамилия',
-                    'system' => 'Системный?',
-                ],
-                'roles' => [
-                    'associated_permissions' => 'Разрешения',
-                    'name' => 'Название',
-                    'sort' => 'Позиция',
-                ],
-                'users' => [
-                    'active' => 'Активный',
-                    'associated_roles' => 'Роли',
-                    'confirmed' => 'Подтверждён',
-                    'email' => 'E-mail',
-                    'name' => 'Логин',
-                    'last_name' => 'Фамилия',
-                    'first_name' => 'Имя',
-                    'other_permissions' => 'Прочие разрешения',
-                    'password' => 'Новый пароль',
-                    'password_confirmation' => 'Проверка пароля',
-                    'send_confirmation_email' => 'Отправить подтверждение на E-mail',
-                    'timezone' => 'Часовой пояс',
-                ],
-            ],
-        ],
-        'frontend' => [
-            'avatar' => 'Аватар',
-            'email' => 'E-mail',
-            'first_name' => 'Имя',
-            'last_name' => 'Фамилия',
-            'name' => 'Имя',
-            'password' => 'Пароль',
-            'password_confirmation' => 'Подтверждение пароля',
-            'phone' => 'Телефон',
-            'message' => 'Сообщение',
-            'new_password' => 'Новый пароль',
-            'new_password_confirmation' => 'Подтверждение нового пароля',
-            'old_password' => 'Старый пароль',
-            'timezone' => 'Часовой пояс',
-        ],
-    ],
+    'attributes' => [],
 ];

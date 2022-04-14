@@ -1,0 +1,173 @@
+/**
+ * Badges
+ */
+a,
+div,
+span,
+button {
+    &.badge-bg {
+        color: var(--font-primary-color);
+        background-color: var(--background-primary);
+    }
+
+    &.badge-primary-bg {
+        color: var(--font-primary-color);
+        background-color: var(--color-primary);
+    }
+
+    &.badge-info-bg {
+        color: var(--color-dark);
+        background-color: var(--color-info);
+    }
+
+    &.badge-success-bg {
+        color: var(--color-dark);
+        background-color: var(--color-success);
+    }
+
+    &.badge-danger-bg {
+        color: var(--color-dark);
+        background-color: var(--color-danger);
+    }
+
+    &.badge-warning-bg {
+        color: var(--color-dark);
+        background-color: var(--color-warning);
+    }
+
+    &.badge-dark-bg {
+        color: var(--color-light);
+        background-color: var(--color-dark);
+    }
+
+    &.badge-light-bg {
+        color: var(--color-dark);
+        background-color: var(--color-light);
+    }
+
+    &.badge-gray-bg {
+        color: var(--color-dark);
+        background-color: var(--color-gray);
+    }
+
+    &.badge-bitbucket {
+        color: white;
+        background-color: #274970;
+    }
+
+    &.badge-facebook {
+        color: white;
+        background-color: #3b5998;
+    }
+
+    &.badge-google {
+        color: white;
+        background-color: #d34836;
+    }
+
+    &.badge-github {
+        color: white;
+        background-color: #464646;
+    }
+
+    &.badge-linkedin {
+        color: white;
+        background-color: #0077b5;
+    }
+
+    &.badge-twitter {
+        color: white;
+        background-color: #1dcaff;
+    }
+
+    &.badge-plurk {
+        color: white;
+        background-color: #ff4e47;
+    }
+
+    &.badge-tumblr {
+        color: white;
+        background-color: #34526f;
+    }
+
+    &.badge-telegram {
+        color: white;
+        background-color: #0088cc;
+    }
+
+    &.badge-discord {
+        color: white;
+        background-color: #5866ef;
+    }
+
+    &.badge-pink {
+        color: white;
+        background-color: #e83e8c;
+    }
+
+    &.badge-orange {
+        color: white;
+        background-color: #fd7e14;
+    }
+
+    &.badge-laravel {
+        color: white;
+        background-color: #f4645f;
+    }
+
+    &.badge-softgreen {
+        color: white;
+        background-color: #39c5bb;
+    }
+
+    &.badge-switch {
+        color: white;
+        background-color: #2f3437;
+    }
+
+    &.badge-pikachu {
+        color: white;
+        background-color: #ffd547;
+    }
+
+    &.badge-eevee {
+        color: white;
+        background-color: #e7af56;
+    }
+
+    &.badge-ch-new-year-2019-red {
+        color: white;
+        background-color: #a61723;
+    }
+
+    &.badge-ch-new-year-2019-yellow {
+        color: white;
+        background-color: #d8b06a;
+    }
+
+    &.badge-devotion {
+        color: white;
+        background-color: #f11541;
+    }
+
+    &.badge-windows-10-error {
+        color: white;
+        background-color: #007bd0;
+    }
+
+    &.badge-dos {
+        background: #bbb;
+        border-radius: 0em;
+        box-shadow: 10px 10px 0 #333;
+    }
+
+    &.badge-platform {
+        color: white;
+        background-color: #21897e;
+    }
+
+    &.badge-rainbow {
+        color: white;
+        background-image: url("../../../../public/img/frontend/background/animated-rainbow.gif");
+    }
+}

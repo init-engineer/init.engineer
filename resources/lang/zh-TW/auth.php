@@ -1,6 +1,7 @@
 <?php
 
 return [
+
     /*
     |--------------------------------------------------------------------------
     | Authentication Language Lines
@@ -12,12 +13,8 @@ return [
     |
     */
 
-    'failed' => '帳號或者密碼不正確，請重新輸入。',
-    'general_error' => '您沒有操作權限。',
-    'password_used' => '您無法設置以前使用過的密碼。',
-    'socialite' => [
-        'unacceptable' => ':provider 的登入方式失敗。',
-    ],
-    'throttle' => '登入失敗次數過多。請在 :seconds 秒後重試。',
-    'unknown' => '出現未知錯誤',
+    'failed' => '您所輸入的帳號不存在或密碼有誤，請重新輸入。',
+    'password' => '您所輸入的密碼不正確，請重新輸入。',
+    'throttle' => '登入失敗次數過多，請您在 :seconds 秒後再重新嘗試。',
+
 ];

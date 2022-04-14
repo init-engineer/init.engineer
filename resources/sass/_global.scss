@@ -1,24 +1,20 @@
 /**
- * Plugins
- */
-
-/**
  * FontAwesome 5
  */
+@import url("https://fonts.googleapis.com/css?family=Nunito");
 @import "~@fortawesome/fontawesome-free/scss/fontawesome";
-@import "~@fortawesome/fontawesome-free/scss/brands";
 @import "~@fortawesome/fontawesome-free/scss/regular";
 @import "~@fortawesome/fontawesome-free/scss/solid";
-
-@import "~csshake";
-@import "~animate.css/animate.min.css";
-@import "~pretty-checkbox/src/pretty-checkbox.scss";
+@import "~@fortawesome/fontawesome-free/scss/brands";
 
 /**
- * Header Styles
+ * CSShake
+ * https://elrumordelaluz.github.io/csshake/
  */
-.read-only,
-.logged-in-as {
-    margin: 0 !important;
-    border-radius: 0 !important;
-}
+@import "~csshake";
+
+/**
+ * Animate.css
+ * https://animate.style/
+ */
+@import "~animate.css/animate.min.css";

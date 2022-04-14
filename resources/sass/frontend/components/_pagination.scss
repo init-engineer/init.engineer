@@ -1,0 +1,27 @@
+.pagination {
+    .page-link {
+        color: var(--color-gray);
+        border-style: solid;
+        border-color: var(--font-primary-color);
+        border-width: 0.1125em;
+        background-color: var(--background-secondary);
+
+        &:hover {
+            color: var(--font-primary-color);
+        }
+    }
+
+    .active {
+        .page-link {
+            border-color: var(--font-primary-color);
+            background-color: var(--color-gray);
+        }
+    }
+
+    .disabled {
+        .page-link {
+            border-color: var(--font-primary-color);
+            background-color: var(--background-secondary);
+        }
+    }
+}

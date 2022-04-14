@@ -1,23 +1,27 @@
 @import "../global";
+@import "global";
 
 /**
- * Fonts
- */
-@import url("https://fonts.googleapis.com/css?family=Nunito");
-
-/**
- * Bootstrap Overrides
+ * 全域變數 Variables
  */
 @import "variables";
 
-/**
- * Bootstrap
+/*
+ * Bootstrap at:
+ * https://getbootstrap.com
  */
 @import "~bootstrap/scss/bootstrap";
+
+/*
+ * Aminate.css
+ * https://animate.style
+ */
+@import "~animate.css/animate.min.css";
 
 /**
  * Base
  */
+@import "base/animate";
 @import "base/basic";
 @import "base/border";
 @import "base/float";
@@ -27,45 +31,36 @@
 /**
  * Components
  */
-@import "components/badge";
+@import "components/alert";
+@import "components/badges";
 @import "components/buttons";
-@import "components/carousel";
-@import "components/cover";
-@import "components/dropdown";
-@import "components/input";
+@import "components/checkbox";
+@import "components/flowchart";
+@import "components/inputs";
 @import "components/labels";
-@import "components/navigation";
+@import "components/navigations";
+@import "components/pagination";
 @import "components/textareas";
-
-/**
- * Helpers
- */
-@import "helpers/functions";
-@import "helpers/helpers";
-@import "helpers/mixins";
-@import "helpers/variables";
-@import "helpers/skins";
 
 /**
  * Layout
  */
+@import "layout/button";
+@import "layout/card";
 @import "layout/footer";
-@import "layout/forms";
-@import "layout/grid";
-@import "layout/header";
+@import "layout/main";
 @import "layout/navbar";
-@import "layout/sidebar";
 
 /**
- * Pages
+ * Page
  */
-@import "pages/contact";
-@import "pages/dashboard";
-@import "pages/home";
-@import "pages/index";
-@import "pages/social";
+@import "page/login";
+@import "page/livewire";
+@import "page/multistep";
 
 /**
- * Themes
+ * Theme
  */
-@import "themes/theme";
+@import "theme/global";
+@import "theme/light";
+@import "theme/dark";

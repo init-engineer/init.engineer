@@ -2,6 +2,7 @@
  * Buttons
  */
 a,
+div,
 span,
 button {
     &.btn-bg {
@@ -239,6 +240,16 @@ button {
         }
     }
 
+    &.btn-discord {
+        color: white;
+        background-color: #5866ef;
+
+        &:active {
+            color: darkgrey;
+            background-color: #9b84ec;
+        }
+    }
+
     &.btn-pink {
         color: white;
         background-color: #e83e8c;
@@ -350,18 +361,39 @@ button {
     }
 
     &.btn-dos {
-        background: #bbb;
-        border-radius: 0em;
-        box-shadow: 10px 10px 0 #333;
+        color: var(--font-primary-color);
+        background-color: var(--background-secondary);
+        border-radius: 0px;
+        box-shadow: 12px 12px 0px
+                rgba(
+                    var(--theme-color-reverse-int),
+                    var(--theme-color-reverse-int),
+                    var(--theme-color-reverse-int),
+                    0.25
+                ),
+            0px 0px 12px
+                rgba(
+                    var(--theme-color-reverse-int),
+                    var(--theme-color-reverse-int),
+                    var(--theme-color-reverse-int),
+                    0.25
+                );
+
+        &:hover {
+            color: var(--font-secondary-color);
+            background-color: var(--background-primary-dark);
+        }
 
         &:active {
-            margin: 10px 0 10px 10px;
+            margin: 10px 0px 10px 10px;
             outline: 0;
-            box-shadow: 0 0 0;
+            box-shadow: 0px 0px 0px;
         }
 
         &.active {
-            background-image: url("../../../../public/img/frontend/background/animated-rainbow.gif");
+            color: var(--color-light) !important;
+            background-color: var(--color-dark) !important;
+            // background-image: url("../../../../public/img/frontend/background/animated-rainbow.gif");
         }
     }
 

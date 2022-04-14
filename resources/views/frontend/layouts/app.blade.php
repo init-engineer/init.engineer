@@ -1,96 +1,125 @@
-<!DOCTYPE html>
-@langrtl
-    <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="rtl" class="theme-dark">
-@else
-    <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="theme-dark">
-@endlangrtl
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-        <meta name="authorization" content="{{ (Auth::user()) ? Auth::user()->api_token : '' }}">
-        <title>@yield('title', app_name())</title>
-        <meta name="description" content="@yield('meta_description', __('meta.og.description'))">
-        <meta name="keyword" content="@yield('meta_keyword', __('meta.og.keyword'))">
-        <meta name="author" content="@yield('meta_author', app_name())">
-        <meta name="google-site-verification" content="@yield('meta_google_site_verification', __('meta.google.site_verification'))" />
+<!doctype html>
+<html lang="{{ htmlLang() }}" @langrtl dir="rtl" @endlangrtl class="theme-dark">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <!-- Social: Twitter -->
-        <meta name="twitter:card" content="@yield('meta_og_title', __('meta.twitter.card'))">
-        <meta name="twitter:site" content="@yield('meta_og_title', __('meta.twitter.site'))">
-        <meta name="twitter:title" content="@yield('meta_og_title', __('meta.og.title'))">
-        <meta name="twitter:description" content="@yield('meta_og_description', __('meta.og.description'))">
-        <meta property="twitter:image:src" content="@yield('meta_og_image', __('meta.og.image'))">
+    <title>{{ appName() }} | @yield('title')</title>
 
-        <!-- Social: Facebook / Open Graph -->
-        <meta property="og:url" content="@yield('meta_og_url', URL::full())" />
-        <meta property="og:title" content="@yield('meta_og_title', __('meta.og.title'))" />
-        <meta property="og:image" content="@yield('meta_og_image', __('meta.og.image'))" />
-        <meta property="og:description" content="@yield('meta_og_description', __('meta.og.description'))" />
-        <meta property="og:site_name" content="@yield('title', app_name())">
-        <meta property="og:type" content="@yield('meta_og_type', __('meta.og.type'))" />
-        <meta property="fb:app_id" content="@yield('meta_og_app_id', __('meta.facebook.app_id'))" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="content-type" content="text/html, charset=utf-8">
+    <meta name="description" content="@yield('meta_description', appName())">
+    <meta name="author" content="@yield('meta_author', 'kantai.developer@gmail.com')">
 
-        <!-- Social: Google+ / Schema.org  -->
-        <meta itemprop="name" content="@yield('meta_og_title', __('meta.og.title'))"/>
-        <meta itemprop="description" content="@yield('meta_og_description', __('meta.og.description'))">
-        <meta itemprop="image" content="@yield('meta_og_image', __('meta.og.image'))"/>
+    <meta name="application-name" content="{{ appName() }}">
+    <meta property="al:android:app_name" content="純靠北工程師">
+    <meta property="al:android:package" content="engineer.kaobei">
 
-        <!-- Favicon -->
-        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="canonical" href="{{ url()->current() }}">
+    <meta name="url" itemprop="url" content="{{ url()->current() }}">
+    <link rel="alternate" href="{{ url()->current() }}" hreflang="x-default">
 
-        <!-- Apple Touch Icons -->
-        {{-- <link rel="apple-touch-icon" href="/assets/img/icons/.png" />
-        <link rel="apple-touch-icon" sizes="57x57" href="/assets/img/icons/apple-touch-icon-57x57.png" />
-        <link rel="apple-touch-icon" sizes="72x72" href="/assets/img/icons/apple-touch-icon-72x72.png" />
-        <link rel="apple-touch-icon" sizes="114x114" href="/assets/img/icons/apple-touch-icon-114x114.png" />
-        <link rel="apple-touch-icon" sizes="144x144" href="/assets/img/icons/apple-touch-icon-144x144.png" />
-        <link rel="apple-touch-icon" sizes="60x60" href="/assets/img/icons/apple-touch-icon-60x60.png" />
-        <link rel="apple-touch-icon" sizes="120x120" href="/assets/img/icons/apple-touch-icon-120x120.png" />
-        <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/icons/apple-touch-icon-76x76.png" />
-        <link rel="apple-touch-icon" sizes="152x152" href="/assets/img/icons/apple-touch-icon-152x152.png" /> --}}
+    <link rel="fluid-icon" href="{{ asset('/img/frontend/background/hold-a-sign-logo.jpg') }}" title="{{ appName() }}">
+    <link rel="shortcut icon" href="{{ asset('/img/frontend/background/hold-a-sign-logo.jpg') }}" title="{{ appName() }}">
+    <meta name="image" itemprop="image" content="@yield('meta_image', asset('/img/frontend/background/cute-banner.jpg'))">
 
-        @yield('meta')
+    <link rel="icon" type="image/png" sizes="48x48" href="/img/fluid/48.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/img/fluid/96.png">
+    <link rel="icon" type="image/png" sizes="144x144" href="/img/fluid/144.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/img/fluid/192.png">
 
-        {{-- See https://laravel.com/docs/5.5/blade#stacks for usage --}}
-        @stack('before-styles')
+    <link rel="apple-touch-icon" type="image/png" sizes="57x57" href="/img/fluid/57.png">
+    <link rel="apple-touch-icon" type="image/png" sizes="72x72" href="/img/fluid/72.png">
+    <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="/img/fluid/76.png">
+    <link rel="apple-touch-icon" type="image/png" sizes="114x114" href="/img/fluid/114.png">
+    <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="/img/fluid/120.png">
+    <link rel="apple-touch-icon" type="image/png" sizes="144x144" href="/img/fluid/144.png">
+    <link rel="apple-touch-icon" type="image/png" sizes="152x152" href="/img/fluid/152.png">
+    <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="/img/fluid/180.png">
 
-        <!-- Check if the language is set to RTL, so apply the RTL layouts -->
-        <!-- Otherwise apply the normal LTR layouts -->
-        {{ style(mix('css/frontend.css')) }}
+    <meta property="article:tag" content="Init Engineer">
+    <meta property="article:tag" content="純靠北工程師">
+    <meta property="article:tag" content="科技業">
+    <meta property="article:tag" content="軟體">
+    <meta property="article:tag" content="硬體">
+    <meta property="article:tag" content="韌體">
 
-        @stack('after-styles')
-    </head>
-    <body>
-        @include('frontend.includes.github')
-        @include('includes.partials.read-only')
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:publisher" content="https://www.facebook.com/init.kobeengineer">
+    <meta property="og:title" content="@yield('meta_title', appName())">
+    <meta property="og:description" content="@yield('meta_description', appName())">
+    <meta property="og:image" content="@yield('meta_image', asset('/img/frontend/background/cute-banner.jpg'))">
+    <meta property="og:image:alt" content="@yield('meta_description', appName())">
+    <meta property="og:image:secure_url" content="@yield('meta_image', asset('/img/frontend/background/cute-banner.jpg'))">
+    <meta property="og:type" content="@yield('meta_type', 'website')">
+    <meta property="og:site_name" content="{{ appName() }}">
+    <meta property="og:author" content="https://www.facebook.com/init.kobeengineer">
+    <meta property="og:locale" content="zh_TW">
 
-        <div id="app">
-            @include('includes.partials.logged-in-as')
-            @include('frontend.includes.nav')
+    <meta name="twitter:site" content="@kaobei_engineer">
+    <meta name="twitter:title" content="@yield('meta_title', appName())">
+    <meta name="twitter:description" content="@yield('meta_description', appName())">
+    <meta name="twitter:image" content="@yield('meta_image', asset('/img/frontend/background/cute-banner.jpg'))">
+    <meta name="twitter:image:src" content="@yield('meta_image', asset('/img/frontend/background/cute-banner.jpg'))">
+    <meta name="twitter:card" content="summary_large_image">
 
-            <ad-block-warning></ad-block-warning>
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-            <div class="container">
-                @include('includes.partials.messages')
-            </div><!-- container -->
+    <meta property="fb:app_id" content="137466300263351">
+    <meta property="fb:admins" content="100015671404819">
+    <meta property="fb:pages" content="1309707529076258">
 
+    <meta name="msapplication-TileColor" content="#293134">
+
+    <meta name="google-site-verification" content="CB-mlSwYjbeWfQShnfoB47hjVGtmaRQMoKMJCaz8x9s">
+    <meta name="facebook-domain-verification" content="1bp1nl4wvjbrhh2xcko06r131zb98a">
+
+    <meta name="application-name" content="{{ appName() }}">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#293134">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="supported-color-schemes" content="dark light">
+
+    @yield('meta')
+
+    @stack('before-styles')
+    @livewireStyles()
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+    <link href="{{ mix('css/frontend.css') }}" rel="stylesheet">
+    @stack('after-styles')
+</head>
+<body>
+    @include('frontend.includes.github')
+    @include('includes.partials.read-only')
+    @include('includes.partials.logged-in-as')
+    @include('includes.partials.announcements')
+
+    <div id="app">
+        @include('frontend.includes.nav')
+        @if (config('boilerplate.frontend_breadcrumbs'))
+            @include('frontend.includes.partials.breadcrumbs')
+        @endif
+        @include('includes.partials.messages')
+
+        <main>
             @yield('content')
+        </main>
+        <!--main-->
 
-            @include('frontend.includes.footer')
-        </div><!-- #app -->
+        @include('frontend.includes.footer')
+    </div>
+    <!--app-->
 
-        <!-- Scripts -->
-        @stack('before-scripts')
-        {!! script(mix('js/manifest.js')) !!}
-        {!! script(mix('js/vendor.js')) !!}
-        {!! script(mix('js/frontend.js')) !!}
-        <!-- Google AdSense -->
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <script> (adsbygoogle = window.adsbygoogle || []).push({}); </script>
-        @stack('after-scripts')
-
-        @include('includes.partials.fb-customerchat')
-        @include('includes.partials.ga')
-    </body>
+    @stack('before-scripts')
+    @livewireScripts()
+    <script src="{{ mix('js/manifest.js') }}"></script>
+    <script src="{{ mix('js/vendor.js') }}"></script>
+    <script src="{{ mix('js/frontend.js') }}"></script>
+    @stack('after-scripts')
+</body>
 </html>

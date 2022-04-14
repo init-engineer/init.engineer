@@ -1,5 +1,20 @@
-/**
- * Variable overrides
- */
-$cyan: #17a2b8;
-$info: $cyan;
+// Body
+$body-bg: #f8fafc;
+
+// Typography
+$font-family-sans-serif: "Roboto", "Helvetica Neue", "Helvetica", "Arial", "PingFang TC", "黑體-繁", "Heiti TC",
+    "蘋果儷中黑", "Apple LiGothic Medium", "微軟正黑體", "Microsoft JhengHei", "sans-serif";
+$font-size-base: 0.9rem;
+$line-height-base: 1.6;
+
+// Colors
+$blue: #3490dc;
+$indigo: #6574cd;
+$purple: #9561e2;
+$pink: #f66d9b;
+$red: #e3342f;
+$orange: #f6993f;
+$yellow: #ffed4a;
+$green: #38c172;
+$teal: #4dc0b5;
+$cyan: #6cb2eb;

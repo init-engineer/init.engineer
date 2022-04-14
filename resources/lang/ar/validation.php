@@ -142,54 +142,5 @@ return [
     |
     */
 
-    'attributes' => [
-        'backend' => [
-            'access' => [
-                'permissions' => [
-                    'associated_roles' => 'الأدوار المرفقة',
-                    'dependencies' => 'المتعلقات',
-                    'display_name' => 'إسم العرض',
-                    'group' => 'المجموعة',
-                    'group_sort' => 'ترتيب المجموعة',
-
-                    'groups' => [
-                        'name' => 'إسم المجموعة',
-                    ],
-
-                    'name' => 'الإسم',
-                    'system' => 'نظام؟',
-                ],
-
-                'roles' => [
-                    'associated_permissions' => 'الصلاحيات المرفقة',
-                    'name' => 'الإسم',
-                    'sort' => 'الترتيب',
-                ],
-
-                'users' => [
-                    'active' => 'مفعل',
-                    'associated_roles' => 'الأدوار المرفقة',
-                    'confirmed' => 'مؤكد',
-                    'email' => 'عنوان البريد الإلكتروني',
-                    'name' => 'الإسم',
-                    'other_permissions' => 'الصلاحيات الأخرى',
-                    'password' => 'كلمة المرور',
-                    'password_confirmation' => 'تأكيد كلمة المرور',
-                    'send_confirmation_email' => 'إرسال رسالة التفعيل',
-                ],
-            ],
-        ],
-
-        'frontend' => [
-            'email' => 'عنوان البريد الإلكتروني',
-            'name' => 'الإسم',
-            'password' => 'كلمة المرور',
-            'password_confirmation' => 'تأكيد كلمة المرور',
-            'phone' => 'Phone',
-            'message' => 'Message',
-            'old_password' => 'كلمة المرور القديمة',
-            'new_password' => 'كلمة المرور الجديدة',
-            'new_password_confirmation' => 'تأكيد كلمة المرور الجديدة',
-        ],
-    ],
+    'attributes' => [],
 ];

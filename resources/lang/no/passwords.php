@@ -12,9 +12,9 @@ return [
     |
     */
 
-    'password' => 'Passordet skal være mindst seks tegn og må matche hverandre.',
     'reset' => 'Dit passord er blitt tilbakestilt!',
     'sent' => 'Vi har sendt deg et link til å tilbakestille passordet!',
+    'throttled' => 'Please wait before retrying.',
     'token' => 'Denne linken til å tilbakestille passordet er ugyldig.',
     'user' => 'Vi kan ikke finne en bruker med denne adressen.',
 ];

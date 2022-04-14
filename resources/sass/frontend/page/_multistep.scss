@@ -1,0 +1,355 @@
+.container {
+    h1 {
+        margin: 50px 0;
+        width: fit-content;
+    }
+
+    .multi-form {
+        width: 500px;
+        height: auto;
+    }
+}
+
+button {
+    opacity: 1;
+    cursor: pointer;
+}
+
+/* ------------------------
+        FORM STYLES
+--------------------------- */
+
+.multi-form {
+    background-color: var(--background-primary);
+    box-shadow: 12px 12px 0px rgba(0, 0, 0, 0.25), 0px 0px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* list items styles */
+
+.steps .listItem {
+    transition: 0.3s height ease-out;
+
+    /* hide closed items */
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+
+    /* this property should be animated using js */
+    height: 66px;
+
+    /*height step + 10px margin + 20px visible line */
+}
+
+.listItem {
+    + .listItem {
+        margin-top: 10px;
+    }
+
+    .col1 {
+        width: 60px;
+
+        /* temporary fixed width, should be changed later */
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .step {
+            color: var(--font-primary-color);
+            background-color: var(--color-success-dark);
+            height: 36px;
+            width: 36px;
+            border-radius: 50%;
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1em;
+
+            /* add some space between step and line */
+            margin-bottom: 10px;
+        }
+    }
+}
+
+/* - step styles */
+
+.col1 .step span {
+    /* show step number by default */
+    display: block;
+    color: var(--font-primary-color);
+}
+
+.listItem {
+    .col1 .line {
+        /* make line stretch to bottom of list item */
+        flex-grow: 1;
+        width: 2px;
+        background-color: rgba(
+            var(--theme-color-reverse-int),
+            var(--theme-color-reverse-int),
+            var(--theme-color-reverse-int),
+            0.15
+        );
+    }
+
+    &:last-of-type .col1 .line {
+        /* hide line on last list item */
+        width: 0px;
+    }
+
+    .col2 {
+        /* make col2 take up left over width in list item container */
+        flex: 1;
+
+        /* (col1's width - line width) / 2  */
+        margin-right: 29px;
+    }
+
+    .stepBody {
+        display: flex;
+        flex-direction: column;
+
+        .stepTitle {
+            /* height of tile should equal step icon height */
+            height: 36px;
+            display: flex;
+            align-items: center;
+            font-size: 1.25rem;
+            margin-bottom: 25px;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+
+            /* hide step content by default */
+            visibility: hidden;
+        }
+    }
+}
+
+/* - body styles */
+
+.show.listItem .stepBody .content {
+    visibility: visible;
+}
+
+/* - 1. input styles */
+
+.listItem {
+    .stepBody .content .inputGroup {
+        display: flex;
+        flex-direction: column;
+
+        &:focus-within label {
+            /* move label up on input focus */
+            transform: translateY(-24px);
+            /* make label also change color on focus */
+            color: var(--color-success-dark);
+        }
+
+        label {
+            left: 12px;
+            bottom: -32px;
+            font-size: 1.875rem;
+            font-weight: 500;
+            color: var(--color-gray);
+            transform: translateY(30px);
+            transition: 0.25s color ease-out, 0.25s transform ease-out;
+        }
+
+        + .inputGroup {
+            margin-top: 20px;
+        }
+
+        input {
+            border: 0;
+            border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+            transition: 0.25s margin-top ease-out, border-bottom 0.25s ease-out;
+            font-size: 1.125rem;
+            line-height: 1.5em;
+            margin-top: 20px;
+
+            &:focus {
+                outline: 0;
+                border-bottom: 2px solid var(--color-success);
+            }
+        }
+    }
+
+    &:last-of-type .stepBody .content .inputGroup p {
+        font-size: 1.725rem;
+        line-height: 1.2em;
+        color: var(--font-primary-color);
+    }
+
+    .stepBody .content .buttons {
+        display: flex;
+        flex-direction: row;
+    }
+
+    &:last-of-type .stepBody .content .buttons {
+        margin-bottom: 10px;
+    }
+}
+
+/* add space to each consecutive input label */
+
+/* - 2. buttons */
+
+button:focus {
+    outline: 0;
+}
+
+.buttons {
+    .next,
+    .submit {
+        border: 0;
+        background-color: var(--color-success-dark);
+        color: var(--color-light-light);
+        border-radius: 5px;
+        font-size: 1rem;
+        line-height: 1em;
+        padding: 14px 24px;
+        text-transform: uppercase;
+        font-weight: 500;
+    }
+
+    .prev {
+        border: 0;
+        text-transform: uppercase;
+        font-size: 1rem;
+        font-weight: 500;
+        padding: 14px 24px;
+        color: var(--font-primary-color);
+        background-color: var(--background-primary);
+    }
+}
+
+.message {
+    padding: 5px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    position: relative;
+    height: 24px;
+}
+
+.success {
+    color: var(--color-success-dark);
+}
+
+.fail {
+    color: var(--color-danger);
+}
+
+.message {
+    .success,
+    .fail {
+        opacity: 0;
+        visibility: hidden;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    &.success .success,
+    &.fail .fail {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+/* ------------------------
+        JS STYLES
+--------------------------- */
+
+.listItem .content .js-focus.inputGroup {
+    label {
+        transform: translateY(-24px);
+        color: var(--color-success);
+    }
+
+    input {
+        outline: 0;
+        border-bottom: 2px solid var(--color-primary);
+    }
+}
+
+/* disabled button styles */
+
+button:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* hide span with number upon completion and show checkmark */
+
+.done .col1 .step {
+    span:first-of-type {
+        display: none;
+    }
+
+    .checkmark {
+        content: "";
+        position: relative;
+        right: 2px;
+        height: 17px;
+        width: 3px;
+        background-color: var(--font-primary-color);
+        transform: rotate(45deg);
+        transform-origin: bottom center;
+        margin-bottom: 3px;
+
+        &::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            display: block;
+            background-color: var(--font-primary-color);
+            transform: rotate(-90deg);
+            transform-origin: bottom left;
+            height: 9px;
+            width: 3px;
+        }
+    }
+}
+
+.stepBody {
+    label {
+        display: block;
+        cursor: pointer;
+    }
+    input[type="radio"] {
+        display: none;
+        ~ label {
+            opacity: 0.2;
+            transition: all 1s -0.3s;
+            .checked {
+                display: none;
+            }
+        }
+        &:checked {
+            & ~ label {
+                opacity: 1;
+                transition: all 1s -0.3s;
+                box-shadow: 12px 12px 0px rgba(0, 0, 0, 0.25), 0px 0px 12px rgba(0, 0, 0, 0.25);
+                // display: flex;
+                // justify-content: center;
+                // align-items: center;
+                // .checked {
+                //     display: flex;
+                //     top: 12px;
+                //     right: 12px;
+                //     font-size: 3rem;
+                //     position: absolute;
+                //     color: var(--color-success-dark);
+                //     background-color: var(--color-light-light);
+                //     border-radius: 24px;
+                //     border: 2px;
+                // }
+            }
+        }
+    }
+}

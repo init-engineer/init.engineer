@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -18,5 +16,9 @@ use Illuminate\Http\Request;
  * Namespaces indicate folder structure
  */
 Route::group(['namespace' => 'Api', 'as' => 'api.'], function () {
-    include_route_files(__DIR__.'/api/');
+    includeRouteFiles(__DIR__ . '/api/');
 });
+
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//    return $request->user();
+// });

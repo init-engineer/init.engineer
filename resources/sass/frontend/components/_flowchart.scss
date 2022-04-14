@@ -1,0 +1,67 @@
+#flowchart ul {
+    margin: 0;
+}
+#flowchart ul > li {
+    list-style: none;
+    font-weight: 600;
+}
+#flowchart .flow-step {
+    text-align: center;
+    padding: 12px;
+    background: var(--color-success-light);
+    font-size: 1rem;
+    color: var(--color-dark);
+}
+#flowchart .flow-step.flow-form {
+    padding: 0;
+}
+#flowchart .flow-step a {
+    text-align: center;
+    display: block;
+    padding: 12px;
+    font-weight: 700;
+}
+#flowchart .flow-arrow {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    font-size: 1.2rem;
+    color: var(--color-light);
+}
+#flowchart .flow-arrow i {
+    font-size: 1.6rem;
+    color: var(--color-light);
+}
+#flowchart .flow-jump {
+    display: block;
+}
+#flowchart .flow-jump:before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "|\A|\A|\A|\A|\A|\A|\A|";
+    white-space: pre;
+    color: #ccc;
+    font-size: 1.8rem;
+    line-height: 0.8em;
+    display: block;
+}
+#flowchart .flow-light {
+    background: var(--color-light);
+}
+#flowchart .flow-gray {
+    background: var(--color-gray);
+}
+#flowchart .flow-dark {
+    background: var(--color-dark);
+}
+#flowchart .flow-success {
+    background: var(--color-success);
+}
+#flowchart .flow-danger {
+    background: var(--color-danger);
+}
+#flowchart .flow-warning {
+    background: var(--color-warning);
+}

@@ -1,92 +1,148 @@
-/**
- * Navbar
- */
 .icon-bar {
     width: 22px;
     height: 2px;
-    background-color: #b6b6b6;
+    background-color: var(--font-secondary-color);
     display: block;
     transition: all 0.2s;
     margin-top: 4px;
 }
-
 .navbar {
-    min-height: 0rem !important;
-    padding: 0rem 1rem;
+    position: fixed;
+    top: 0px;
+    z-index: 11;
+    height: 60px;
+    width: 100%;
     background-color: var(--background-primary);
-
+    .container {
+        max-width: 100%;
+    }
     a {
         color: var(--font-secondary-color);
     }
-
     .nav-link {
-        padding: 0.3rem;
-    }
+        padding: 0.6rem;
 
+        &.active {
+            border-radius: 8px;
+            background-color: var(--background-secondary);
+        }
+    }
+    .dos-link {
+        color: var(--font-primary-color);
+        background-color: var(--background-secondary);
+        padding: 6px;
+        margin-top: 2px;
+        border-radius: 0px;
+        box-shadow: 8px 4px 0px
+            rgba(var(--theme-color-reverse-int), var(--theme-color-reverse-int), var(--theme-color-reverse-int), 0.25);
+        &.active {
+            margin: 4px 0px 4px 4px;
+            outline: 0;
+            box-shadow: 4px 4px 0px
+                rgba(
+                    var(--theme-color-reverse-int),
+                    var(--theme-color-reverse-int),
+                    var(--theme-color-reverse-int),
+                    0.5
+                );
+        }
+    }
     .navbar-brand {
         padding: 0rem;
     }
-
     .img-avatar {
         height: 1.6em;
     }
-
     .dropdown-menu {
-        background-color: #666666;
-
+        z-index: -1;
+        padding: 0.6rem;
+        background-color: var(--background-primary);
         .dropdown-item {
-            color: white;
-
+            padding: 0.6rem;
+            font-size: 1rem;
+            color: var(--font-secondary-color);
+            &.active {
+                border-radius: 0.25rem;
+                background-color: var(--background-secondary-light);
+            }
             &:hover {
-                background-color: #454545;
+                border-radius: 0.25rem;
+                background-color: var(--background-secondary-dark);
             }
         }
     }
 }
-
 .navbar-toggler {
     border: none;
     background: transparent !important;
-
     .top-bar {
         transform: rotate(45deg);
         transform-origin: 10% 10%;
     }
-
     .middle-bar {
         opacity: 0;
     }
-
     .bottom-bar {
         transform: rotate(-45deg);
         transform-origin: 10% 90%;
     }
-
     &.collapsed {
         .top-bar {
             transform: rotate(0);
         }
-
         .middle-bar {
             opacity: 1;
         }
-
         .bottom-bar {
             transform: rotate(0);
         }
     }
 }
+.navbar-collapse {
+    width: 100%;
+    // height: 100%;
+    background-color: var(--background-primary);
+    margin: 0px -18px 0px;
+    padding: 0px 18px 0px;
+}
 
-/* change the link color and padding  */
+/**
+ * Change the link color and padding.
+ */
 .navbar-full-bg .navbar-nav .nav-link {
     padding: 0.75rem 1rem;
 }
 
-/* change the color and background color of active links */
+/**
+ * Change the color and background color of active links.
+ */
 .navbar-full-bg .nav-item.active .nav-link,
 .navbar-full-bg .nav-item:hover .nav-link,
 .navbar-full-bg .nav-item .active {
     padding: 0rem;
     color: var(--font-primary-color);
     background-color: var(--background-secondary);
+}
+#breadcrumbs {
+    position: fixed;
+    top: 60px;
+    z-index: 10;
+    height: 48px;
+    width: 100%;
+    background-color: var(--background-secondary-dark);
+    .breadcrumb {
+        height: 48px;
+        background-color: var(--background-secondary-dark);
+        .breadcrumb-item {
+            a {
+                color: var(--font-primary-color);
+            }
+            &.active {
+                color: var(--font-secondary-color);
+            }
+            &::before {
+                color: var(--font-primary-color);
+            }
+        }
+    }
 }

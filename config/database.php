@@ -43,12 +43,6 @@ return [
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ],
 
-        'sqlite_testing' => [
-            'driver' => 'sqlite',
-            'database' => ':memory:',
-            'prefix' => '',
-        ],
-
         'mysql' => [
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),
@@ -69,12 +63,12 @@ return [
             ]) : [],
         ],
 
-        'mysql_old' => [
+        'mysql_origin' => [
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),
             'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE_OLD', 'forge'),
+            'database' => 'init.engineer',
             'username' => env('DB_USERNAME', 'forge'),
             'password' => env('DB_PASSWORD', ''),
             'unix_socket' => env('DB_SOCKET', ''),
@@ -100,7 +94,7 @@ return [
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,
-            'schema' => 'public',
+            'schema' => [env('DB_SCHEMA', 'public'), 'public'],
             'sslmode' => 'prefer',
         ],
 
