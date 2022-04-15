@@ -123,10 +123,17 @@ class ReviewsPublish extends Command
         }
 
         /**
-         *
+         * 如果過去 60 分鐘內，有文章被審核通過的話，那就不進行審核文章的動作。
          */
         if ($this->delayMode) {
+            $card = Cards::where('active', 1)->orderBy('updated_at', 'DESC')->first();
+            $now = Carbon::now()->subMinutes($this->delayMinutes);
 
+            if ($now->timestamp <= $card->updated_at->timestamp) {
+                // echo something ...
+
+                return 0;
+            }
         }
 
         /**

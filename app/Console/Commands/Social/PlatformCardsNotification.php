@@ -10,6 +10,7 @@ use App\Domains\Social\Jobs\Publish\TumblrPublishJob;
 use App\Domains\Social\Jobs\Publish\TwitterPublishJob;
 use App\Domains\Social\Models\Cards;
 use App\Domains\Social\Models\Platform;
+use App\Domains\Social\Models\PlatformCards;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 
@@ -56,6 +57,22 @@ class PlatformCardsNotification extends Command
      * @var int
      */
     protected $doNotDisturbEnd = 9;
+
+    /**
+     * 延遲模式
+     * 社群文章如果在 $delayMinutes 分鐘內，已經有通過文章的話，
+     * 那就先暫時休息避免短時間通過大量文章，造成洪流攻擊社群平台而遭處置。
+     *
+     * @var bool
+     */
+    protected $delayMode = true;
+
+    /**
+     * 延遲分鐘數
+     *
+     * @var int
+     */
+    protected $delayMinutes = 60;
 
     /**
      * Execute the console command.
@@ -124,6 +141,21 @@ class PlatformCardsNotification extends Command
                  */
                 foreach ($platformDiff as $platformID) {
                     $platform = Platform::find($platformID);
+
+                    /**
+                     * 如果過去 60 分鐘內，有文章被通知到 $platform 社群平台的話，那就不進行排程
+                     */
+                    if ($this->delayMode) {
+                        $platformCard = PlatformCards::where('platform_id', $platform->id)->orderBy('updated_at', 'DESC')->first();
+                        $now = Carbon::now()->subMinutes($this->delayMinutes);
+
+                        if ($now->timestamp <= $platformCard->updated_at->timestamp) {
+                            // echo something ...
+
+                            continue;
+                        }
+                    }
+
                     switch ($platform->type) {
                         /**
                          * 丟給負責發表文章到 Facebook 的 Job
