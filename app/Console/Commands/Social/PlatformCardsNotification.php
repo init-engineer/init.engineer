@@ -36,12 +36,26 @@ class PlatformCardsNotification extends Command
 
     /**
      * 勿擾模式
-     * 當天 22:00 ~ 隔日 08:00
+     * 當天 21:00 ~ 隔日 09:00
      * 深夜、凌晨不進行社群平台發布
      *
      * @var bool
      */
     protected $doNotDisturbMode = true;
+
+    /**
+     * 勿擾模式 開始時間
+     *
+     * @var int
+     */
+    protected $doNotDisturbStart = 21;
+
+    /**
+     * 勿擾模式 結束時間
+     *
+     * @var int
+     */
+    protected $doNotDisturbEnd = 9;
 
     /**
      * Execute the console command.
@@ -61,12 +75,13 @@ class PlatformCardsNotification extends Command
         echo "========================================\n\r";
 
         /**
-         * 當天 22:00 ~ 隔日 08:00
+         * 當天 21:00 ~ 隔日 09:00
          * 深夜、凌晨不進行社群平台發布
          */
         if ($this->doNotDisturbMode) {
             $hour = Carbon::now('Asia/Taipei')->hour;
-            if ($hour >= 22 || $hour <= 8) {
+            if ($hour >= $this->doNotDisturbStart ||
+                $hour <= $this->doNotDisturbEnd) {
                 // echo something ...
 
                 return 0;
