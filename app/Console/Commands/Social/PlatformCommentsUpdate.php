@@ -40,7 +40,7 @@ class PlatformCommentsUpdate extends Command
      *
      * @var int
      */
-    protected $rowSize = 1;
+    protected $rowSize = 2;
 
     /**
      * @var Platform
