@@ -154,7 +154,7 @@ class ReviewsPublish extends Command
                  * 根據社群平台逐一發佈
                  */
                 foreach ($platforms as $platform) {
-                    switch ($platform) {
+                    switch ($platform->type) {
                         /**
                          * 丟給負責發表文章到 Facebook 的 Job
                          */

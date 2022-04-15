@@ -84,42 +84,42 @@ class CardsEventListener
                  * 丟給負責發表文章到 Facebook 的 Job
                  */
                 case Platform::TYPE_FACEBOOK:
-                    FacebookPublishJob::dispatch($card, $platform);
+                    dispatch(new FacebookPublishJob($card, $platform));
                     break;
 
                 /**
                  * 丟給負責發表文章到 Twitter 的 Job
                  */
                 case Platform::TYPE_TWITTER:
-                    TwitterPublishJob::dispatch($card, $platform);
+                    dispatch(new TwitterPublishJob($card, $platform));
                     break;
 
                 /**
                  * 丟給負責發表文章到 Plurk 的 Job
                  */
                 case Platform::TYPE_PLURK:
-                    PlurkPublishJob::dispatch($card, $platform);
+                    dispatch(new PlurkPublishJob($card, $platform));
                     break;
 
                 /**
                  * 丟給負責發表文章到 Discord 的 Job
                  */
                 case Platform::TYPE_DISCORD:
-                    DiscordPublishJob::dispatch($card, $platform);
+                    dispatch(new DiscordPublishJob($card, $platform));
                     break;
 
                 /**
                  * 丟給負責發表文章到 Tumblr 的 Job
                  */
                 case Platform::TYPE_TUMBLR:
-                    TumblrPublishJob::dispatch($card, $platform);
+                    dispatch(new TumblrPublishJob($card, $platform));
                     break;
 
                 /**
                  * 丟給負責發表文章到 Telegram 的 Job
                  */
                 case Platform::TYPE_TELEGRAM:
-                    TelegramPublishJob::dispatch($card, $platform);
+                    dispatch(new TelegramPublishJob($card, $platform));
                     break;
 
                 /**

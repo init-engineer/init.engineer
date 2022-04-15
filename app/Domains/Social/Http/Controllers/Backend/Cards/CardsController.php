@@ -110,47 +110,47 @@ class CardsController extends Controller
          */
         foreach ($platforms as $platform) {
             if ($cards->platformCards->where('active', 1)->where('platform_id', $platform->id)->count() === 0) {
-                switch ($platform) {
+                switch ($platform->type) {
                     /**
                      * 丟給負責發表文章到 Facebook 的 Job
                      */
                     case Platform::TYPE_FACEBOOK:
-                        FacebookPublishJob::dispatch($cards, $platform);
+                        dispatch(new FacebookPublishJob($cards, $platform));
                         break;
 
                     /**
                      * 丟給負責發表文章到 Twitter 的 Job
                      */
                     case Platform::TYPE_TWITTER:
-                        TwitterPublishJob::dispatch($cards, $platform);
+                        dispatch(new TwitterPublishJob($cards, $platform));
                         break;
 
                     /**
                      * 丟給負責發表文章到 Plurk 的 Job
                      */
                     case Platform::TYPE_PLURK:
-                        PlurkPublishJob::dispatch($cards, $platform);
+                        dispatch(new PlurkPublishJob($cards, $platform));
                         break;
 
                     /**
                      * 丟給負責發表文章到 Discord 的 Job
                      */
                     case Platform::TYPE_DISCORD:
-                        DiscordPublishJob::dispatch($cards, $platform);
+                        dispatch(new DiscordPublishJob($cards, $platform));
                         break;
 
                     /**
                      * 丟給負責發表文章到 Tumblr 的 Job
                      */
                     case Platform::TYPE_TUMBLR:
-                        TumblrPublishJob::dispatch($cards, $platform);
+                        dispatch(new TumblrPublishJob($cards, $platform));
                         break;
 
                     /**
                      * 丟給負責發表文章到 Telegram 的 Job
                      */
                     case Platform::TYPE_TELEGRAM:
-                        TelegramPublishJob::dispatch($cards, $platform);
+                        dispatch(new TelegramPublishJob($cards, $platform));
                         break;
 
                     /**
@@ -191,47 +191,47 @@ class CardsController extends Controller
          */
         foreach ($platforms as $platform) {
             if ($cards->platformCards->where('active', 1)->where('platform_id', $platform->id)->count() === 0) {
-                switch ($platform) {
+                switch ($platform->type) {
                     /**
                      * 丟給負責發表文章到 Facebook 的 Job
                      */
                     case Platform::TYPE_FACEBOOK:
-                        FacebookPublishJob::dispatch($cards, $platform);
+                        dispatch(new FacebookPublishJob($cards, $platform));
                         break;
 
                     /**
                      * 丟給負責發表文章到 Twitter 的 Job
                      */
                     case Platform::TYPE_TWITTER:
-                        TwitterPublishJob::dispatch($cards, $platform);
+                        dispatch(new TwitterPublishJob($cards, $platform));
                         break;
 
                     /**
                      * 丟給負責發表文章到 Plurk 的 Job
                      */
                     case Platform::TYPE_PLURK:
-                        PlurkPublishJob::dispatch($cards, $platform);
+                        dispatch(new PlurkPublishJob($cards, $platform));
                         break;
 
                     /**
                      * 丟給負責發表文章到 Discord 的 Job
                      */
                     case Platform::TYPE_DISCORD:
-                        DiscordPublishJob::dispatch($cards, $platform);
+                        dispatch(new DiscordPublishJob($cards, $platform));
                         break;
 
                     /**
                      * 丟給負責發表文章到 Tumblr 的 Job
                      */
                     case Platform::TYPE_TUMBLR:
-                        TumblrPublishJob::dispatch($cards, $platform);
+                        dispatch(new TumblrPublishJob($cards, $platform));
                         break;
 
                     /**
                      * 丟給負責發表文章到 Telegram 的 Job
                      */
                     case Platform::TYPE_TELEGRAM:
-                        TelegramPublishJob::dispatch($cards, $platform);
+                        dispatch(new TelegramPublishJob($cards, $platform));
                         break;
 
                     /**
