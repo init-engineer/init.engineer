@@ -59,6 +59,22 @@ class ReviewsPublish extends Command
     protected $doNotDisturbEnd = 9;
 
     /**
+     * 延遲模式
+     * 社群文章如果在 $delayMinutes 分鐘內，已經有通過文章的話，
+     * 那就先暫時休息避免短時間通過大量文章，造成洪流攻擊社群平台而遭處置。
+     *
+     * @var bool
+     */
+    protected $delayMode = true;
+
+    /**
+     * 延遲分鐘數
+     *
+     * @var int
+     */
+    protected $delayMinutes = 60;
+
+    /**
      * @var CardsService
      */
     protected $service;
@@ -107,9 +123,16 @@ class ReviewsPublish extends Command
         }
 
         /**
+         *
+         */
+        if ($this->delayMode) {
+
+        }
+
+        /**
          * 抓出 14 天以內，尚未發表、尚未被刪除的文章
          */
-        $cards = Cards::whereDate('created_at', '>=', Carbon::now()->addDays(-14))
+        $cards = Cards::whereDate('created_at', '>=', Carbon::now()->subDays(14))
             ->active(false)
             ->blockade(false)
             ->get();

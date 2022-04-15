@@ -45,7 +45,7 @@ class SocialCardsReviewTable extends DataTableComponent
      */
     public function query(): Builder
     {
-        return Cards::whereDate('created_at', '>=', Carbon::now()->addDays(-14))
+        return Cards::whereDate('created_at', '>=', Carbon::now()->subDays(14))
             ->active(false)
             ->blockade(false)
             ->when($this->getFilter('search'), fn ($query, $term) => $query->search($term));

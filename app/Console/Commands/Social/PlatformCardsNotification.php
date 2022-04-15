@@ -91,7 +91,7 @@ class PlatformCardsNotification extends Command
         /**
          * 抓出 1 天以內，尚未被刪除的文章
          */
-        $cards = Cards::whereDate('created_at', '>=', Carbon::now()->addDays(-1))
+        $cards = Cards::whereDate('created_at', '>=', Carbon::now()->subDays(1))
             ->blockade(false)
             ->get();
 
