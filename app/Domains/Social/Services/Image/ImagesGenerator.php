@@ -63,133 +63,133 @@ class ImagesGenerator extends ImagesContract
          * 根據主題賦予文字顏色、背景顏色
          */
         switch ($this->theme) {
-                /** 黑底綠字 */
+            /** 黑底綠字 */
             case 'black-green':
                 $this->themeTextColor = imageColorAllocate($this->canvasView, 0, 255, 59);
                 $this->themeBackgroundColor = imageColorAllocate($this->canvasView, 0, 0, 0);
                 break;
 
-                /** 黑底黃字 */
+            /** 黑底黃字 */
             case 'black-yellow':
                 $this->themeTextColor = imageColorAllocate($this->canvasView, 235, 212, 67);
                 $this->themeBackgroundColor = imageColorAllocate($this->canvasView, 0, 0, 0);
                 break;
 
-                /** 黑底白字 */
+            /** 黑底白字 */
             case 'black-white':
                 $this->themeTextColor = imageColorAllocate($this->canvasView, 248, 249, 250);
                 $this->themeBackgroundColor = imageColorAllocate($this->canvasView, 0, 0, 0);
                 break;
 
-                /** 黑底紅字 */
+            /** 黑底紅字 */
             case 'black-red':
                 $this->themeTextColor = imageColorAllocate($this->canvasView, 220, 53, 69);
                 $this->themeBackgroundColor = imageColorAllocate($this->canvasView, 0, 0, 0);
                 break;
 
-                /** 甜甜香草巧克力熊貓 */
+            /** 甜甜香草巧克力熊貓 */
             case 'sweet-panda':
                 $this->themeTextColor = imageColorAllocate($this->canvasView, 248, 249, 250);
                 $this->themeBackgroundColor = imageColorAllocate($this->canvasView, 232, 62, 140);
                 break;
 
-                /** 藍白屏 */
+            /** 藍白屏 */
             case 'blue-white':
                 $this->themeTextColor = imageColorAllocate($this->canvasView, 248, 249, 250);
                 $this->themeBackgroundColor = imageColorAllocate($this->canvasView, 0, 123, 255);
                 break;
 
-                /** PostgreSQL */
+            /** PostgreSQL */
             case 'white-blue':
                 $this->themeTextColor = imageColorAllocate($this->canvasView, 0, 123, 255);
                 $this->themeBackgroundColor = imageColorAllocate($this->canvasView, 248, 249, 250);
                 break;
 
-                /** Laravel */
+            /** Laravel */
             case 'laravel':
                 $this->themeTextColor = imageColorAllocate($this->canvasView, 248, 249, 250);
                 $this->themeBackgroundColor = imageColorAllocate($this->canvasView, 244, 100, 95);
                 break;
 
-                /** 軟體綠 */
+            /** 軟體綠 */
             case 'soft-green':
                 $this->themeTextColor = imageColorAllocate($this->canvasView, 52, 58, 64);
                 $this->themeBackgroundColor = imageColorAllocate($this->canvasView, 57, 197, 187);
                 break;
 
-                /** 皮卡丘 */
+            /** 皮卡丘 */
             case 'grey-pikachu':
                 $this->themeTextColor = imageColorAllocate($this->canvasView, 255, 213, 71);
                 $this->themeBackgroundColor = imageColorAllocate($this->canvasView, 47, 52, 55);
                 break;
 
-                /** 伊布 */
+            /** 伊布 */
             case 'grey-eevee':
                 $this->themeTextColor = imageColorAllocate($this->canvasView, 231, 175, 86);
                 $this->themeBackgroundColor = imageColorAllocate($this->canvasView, 47, 52, 55);
                 break;
 
-                /** 反向 皮卡丘 */
+            /** 反向 皮卡丘 */
             case 'pikachu-grey':
                 $this->themeTextColor = imageColorAllocate($this->canvasView, 47, 52, 55);
                 $this->themeBackgroundColor = imageColorAllocate($this->canvasView, 255, 213, 71);
                 break;
 
-                /** 反向 伊布 */
+            /** 反向 伊布 */
             case 'eevee-grey':
                 $this->themeTextColor = imageColorAllocate($this->canvasView, 47, 52, 55);
                 $this->themeBackgroundColor = imageColorAllocate($this->canvasView, 231, 175, 86);
                 break;
 
-                /** 新年限定主題 */
+            /** 新年限定主題 */
             case 'chinese-new-year':
                 $this->themeTextColor = imageColorAllocate($this->canvasView, 216, 176, 106);
                 $this->themeBackgroundColor = imageColorAllocate($this->canvasView, 166, 23, 35);
                 break;
 
-                /** 反向 新年限定主題 */
+            /** 反向 新年限定主題 */
             case 'reverse-chinese-new-year':
                 $this->themeTextColor = imageColorAllocate($this->canvasView, 166, 23, 35);
                 $this->themeBackgroundColor = imageColorAllocate($this->canvasView, 216, 176, 106);
                 break;
 
-                /** 恭迎慈孤觀音 渡世靈顯四方 */
+            /** 恭迎慈孤觀音 渡世靈顯四方 */
             case 'devotion':
                 $this->themeTextColor = imageColorAllocate($this->canvasView, 0, 0, 0);
                 $this->themeBackgroundColor = imageColorAllocate($this->canvasView, 241, 21, 65);
                 break;
 
-                /** Windows 最棒的畫面 */
+            /** Windows 最棒的畫面 */
             case 'windows-10-error':
                 $this->themeTextColor = imageColorAllocate($this->canvasView, 248, 249, 250);
                 $this->themeBackgroundColor = imageColorAllocate($this->canvasView, 0, 123, 208);
                 break;
 
-                /** Windows 最棒的畫面 測試人員組件 */
+            /** Windows 最棒的畫面 測試人員組件 */
             case 'windows-10-error-testing':
                 $this->themeTextColor = imageColorAllocate($this->canvasView, 248, 249, 250);
                 $this->themeBackgroundColor = imageColorAllocate($this->canvasView, 16, 124, 16);
                 break;
 
-                /** 粉紅色 */
+            /** 粉紅色 */
             case 'pink':
                 $this->themeTextColor = imageColorAllocate($this->canvasView, 255, 83, 118);
                 $this->themeBackgroundColor = imageColorAllocate($this->canvasView, 248, 192, 200);
                 break;
 
-                /** 支離滅裂な思考・発言 */
+            /** 支離滅裂な思考・発言 */
             case 'broken-think':
                 $this->themeTextColor = imageColorAllocate($this->canvasView, 0, 0, 0);
                 $this->themeBackgroundColor = imageColorAllocate($this->canvasView, 248, 249, 250);
                 break;
 
-                /** 不獣控制な思考・発言 */
+            /** 不獣控制な思考・発言 */
             case 'furry-broken-think':
                 $this->themeTextColor = imageColorAllocate($this->canvasView, 0, 0, 0);
                 $this->themeBackgroundColor = imageColorAllocate($this->canvasView, 248, 249, 250);
                 break;
 
-                /** 預設 黑底綠字 */
+            /** 預設 黑底綠字 */
             default:
                 $this->themeTextColor = imageColorAllocate($this->canvasView, 0, 255, 59);
                 $this->themeBackgroundColor = imageColorAllocate($this->canvasView, 0, 0, 0);
@@ -217,47 +217,47 @@ class ImagesGenerator extends ImagesContract
          * 根據字型載入指定的字型檔
          */
         switch ($this->font) {
-                /** AURAKA 點陣宋字型 */
+            /** AURAKA 點陣宋字型 */
             case 'auraka':
                 $this->fontPath = public_path('fonts/Auraka.ttf');
                 break;
 
-                /** 國喬點陣字型 */
+            /** 國喬點陣字型 */
             case 'kc24m':
                 $this->fontPath = public_path('fonts/kc24m.ttf');
                 break;
 
-                /** 微軟正黑體 */
+            /** 微軟正黑體 */
             case 'microsoft-jheng-hei':
                 $this->fontPath = public_path('fonts/microsoft_jheng_hei.ttf');
                 break;
 
-                /** 新細明體 */
+            /** 新細明體 */
             case 'mingliu':
                 $this->fontPath = public_path('fonts/PMingLiU-02.ttf');
                 break;
 
-                /** 標楷體 */
+            /** 標楷體 */
             case 'kaiu':
                 $this->fontPath = public_path('fonts/kaiu.ttf');
                 break;
 
-                /** 極粗明朝體 */
+            /** 極粗明朝體 */
             case 'fot-matissepro-eb':
                 $this->fontPath = public_path('fonts/FOT-MatissePro-EB.otf');
                 break;
 
-                /** 台北黑體 */
+            /** 台北黑體 */
             case 'taipei-sans-tc-beta-bold':
                 $this->fontPath = public_path('fonts/TaipeiSansTCBeta-Bold.ttf');
                 break;
 
-                /** 俐方體 11 號 */
+            /** 俐方體 11 號 */
             case 'cubic-11':
                 $this->fontPath = public_path('fonts/Cubic_11_1.010_R.ttf');
                 break;
 
-                /** 預設: AURAKA 點陣宋字型 */
+            /** 預設: AURAKA 點陣宋字型 */
             default:
                 $this->fontPath = public_path('fonts/Auraka.ttf');
                 break;
@@ -317,18 +317,30 @@ class ImagesGenerator extends ImagesContract
         $pictureType  = isset($data['pictureType']) ? $data['pictureType'] : 'jpeg';
         $storagePath = storage_path(sprintf('app/public/%s/%s.%s', $picturePath, $pictureName, $pictureType));
         switch ($pictureType) {
+            /**
+             * 輸出成 GIF 檔案
+             */
             case 'gif':
                 imageGIF($this->canvasView, $storagePath);
                 break;
 
+            /**
+             * 輸出成 PNG 檔案
+             */
             case 'png':
                 imagePNG($this->canvasView, $storagePath);
                 break;
 
+            /**
+             * 輸出成 JPEG 檔案
+             */
             case 'jpeg':
                 imageJPEG($this->canvasView, $storagePath);
                 break;
 
+            /**
+             * 預設輸出成 JPEG 檔案
+             */
             default:
                 imageJPEG($this->canvasView, $storagePath);
                 break;
@@ -424,27 +436,27 @@ class ImagesGenerator extends ImagesContract
     private function drawingThemeImages(): void
     {
         switch ($this->theme) {
-                /** 主題: 慈孤觀音 */
+            /** 主題: 慈孤觀音 */
             case 'devotion':
                 $overlayImage = imageCreateFromPng(public_path('img/frontend/cards/devotion-bg.png'));
                 imageCopy($this->canvasView, $overlayImage, 360, 64, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
                 return;
 
-                /** 主題: Windows 10 錯誤畫面 */
+            /** 主題: Windows 10 錯誤畫面 */
             case 'windows-10-error':
                 $overlayImage = imageCreateFromPng(public_path('img/frontend/cards/qrcode.png'));
                 $yPoint = ($this->ads['result'] === false) ? imageSY($this->canvasView) - 204 : imageSY($this->canvasView) - 444;
                 imageCopy($this->canvasView, $overlayImage, 24, $yPoint, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
                 return;
 
-                /** 主題: Windows 10 測試人員計畫 錯誤畫面 */
+            /** 主題: Windows 10 測試人員計畫 錯誤畫面 */
             case 'windows-10-error-testing':
                 $overlayImage = imageCreateFromPng(public_path('img/frontend/cards/qrcode.png'));
                 $yPoint = ($this->ads['result'] === false) ? imageSY($this->canvasView) - 204 : imageSY($this->canvasView) - 444;
                 imageCopy($this->canvasView, $overlayImage, 24, $yPoint, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
                 return;
 
-                /** 主題: 支離滅裂な思考・発言 */
+            /** 主題: 支離滅裂な思考・発言 */
             case 'broken-think':
                 $overlayImage = imageCreateFromPng(public_path('img/frontend/cards/fragmented_background.png'));
                 $yPoint = ($this->ads['result'] === false) ? imageSY($this->canvasView) - 560 : imageSY($this->canvasView) - 800;
@@ -472,7 +484,7 @@ class ImagesGenerator extends ImagesContract
                 imageCopy($this->canvasView, $overlayImage, 315, $yPoint, 0, 0, imageSX($overlayImage), imageSY($overlayImage));
                 return;
 
-                /** 主題: 不獣控制な思考・発言 */
+            /** 主題: 不獣控制な思考・発言 */
             case 'furry-broken-think':
                 $overlayImage = imageCreateFromPng(public_path('img/frontend/cards/fragmented_background.png'));
                 $yPoint = ($this->ads['result'] === false) ? imageSY($this->canvasView) - 560 : imageSY($this->canvasView) - 800;
@@ -510,21 +522,21 @@ class ImagesGenerator extends ImagesContract
     private function drawingLogo(): void
     {
         switch ($this->theme) {
-                /** 主題: Windows 10 錯誤畫面 */
+            /** 主題: Windows 10 錯誤畫面 */
             case 'windows-10-error':
                 imageTTFtext($this->canvasView, 26, $this->canvasAngle, 228, ($this->ads['result']) ? $this->canvasViewHeight - 400 : $this->canvasViewHeight - 160, $this->themeTextColor, $this->fontPath, '若要深入了解，您稍候可以線上搜尋此:');
                 imageTTFtext($this->canvasView, 26, $this->canvasAngle, 228, ($this->ads['result']) ? $this->canvasViewHeight - 360 : $this->canvasViewHeight - 120, $this->themeTextColor, $this->fontPath, sprintf('%s 0xINIT_ENGINEER', appName()));
                 imageTTFtext($this->canvasView, 26, $this->canvasAngle, 228, ($this->ads['result']) ? $this->canvasViewHeight - 280 : $this->canvasViewHeight -  40, $this->themeTextColor, $this->fontPath, sprintf('請訪問 %s', appUrl()));
                 return;
 
-                /** 主題: Windows 10 測試人員計畫 錯誤畫面 */
+            /** 主題: Windows 10 測試人員計畫 錯誤畫面 */
             case 'windows-10-error-testing':
                 imageTTFtext($this->canvasView, 26, $this->canvasAngle, 228, ($this->ads['result']) ? $this->canvasViewHeight - 400 : $this->canvasViewHeight - 160, $this->themeTextColor, $this->fontPath, '若要深入了解，您稍候可以線上搜尋此:');
                 imageTTFtext($this->canvasView, 26, $this->canvasAngle, 228, ($this->ads['result']) ? $this->canvasViewHeight - 360 : $this->canvasViewHeight - 120, $this->themeTextColor, $this->fontPath, sprintf('%s 0xINIT_ENGINEER', appName()));
                 imageTTFtext($this->canvasView, 26, $this->canvasAngle, 228, ($this->ads['result']) ? $this->canvasViewHeight - 280 : $this->canvasViewHeight -  40, $this->themeTextColor, $this->fontPath, sprintf('請訪問 %s', appUrl()));
                 return;
 
-                /** 主題: 支離滅裂な思考・発言 */
+            /** 主題: 支離滅裂な思考・発言 */
             case 'broken-think':
                 $fontSize   = $this->fontSize / 2;
                 $fontWidth  = imageFontWidth($fontSize) * strlen(appName());
@@ -554,7 +566,7 @@ class ImagesGenerator extends ImagesContract
                 imageTTFtext($this->canvasView, $fontSize, $this->canvasAngle, $xPoint, $yPoint, $this->themeTextColor, $this->fontPath, $content);
                 return;
 
-                /** 主題: 不獣控制な思考・発言 */
+            /** 主題: 不獣控制な思考・発言 */
             case 'furry-broken-think':
                 $fontSize   = $this->fontSize / 2;
                 $fontWidth  = imageFontWidth($fontSize) * strlen(appName());
@@ -584,7 +596,7 @@ class ImagesGenerator extends ImagesContract
                 imageTTFtext($this->canvasView, $fontSize, $this->canvasAngle, $xPoint, $yPoint, $this->themeTextColor, $this->fontPath, $content);
                 return;
 
-                /** 預設在右下角貼上應用程式名稱 */
+            /** 預設在右下角貼上應用程式名稱 */
             default:
                 $fontSize   = $this->fontSize / 2;
                 $fontWidth  = imageFontWidth($fontSize) * strlen(appName());
@@ -606,17 +618,17 @@ class ImagesGenerator extends ImagesContract
     private function drawingUrl(): void
     {
         switch ($this->theme) {
-                /** 主題: Windows 10 錯誤畫面 */
+            /** 主題: Windows 10 錯誤畫面 */
             case 'windows-10-error':
                 imageTTFtext($this->canvasView, 160, $this->canvasAngle, 48, 192, $this->themeTextColor, $this->fontPath, ':(');
                 return;
 
-                /** 主題: Windows 10 測試人員計畫 錯誤畫面 */
+            /** 主題: Windows 10 測試人員計畫 錯誤畫面 */
             case 'windows-10-error-testing':
                 imageTTFtext($this->canvasView, 160, $this->canvasAngle, 48, 192, $this->themeTextColor, $this->fontPath, ':(');
                 return;
 
-                /** 預設在左下角貼上發文傳送門 */
+            /** 預設在左下角貼上發文傳送門 */
             default:
                 $fontSize   = $this->fontSize / 2;
                 $fontWidth  = imageFontWidth($fontSize) * strlen(sprintf('發文傳送門 %s', appUrl()));
@@ -660,23 +672,23 @@ class ImagesGenerator extends ImagesContract
              * 特殊主題的錨點(x, y)需要移動
              */
             switch ($this->theme) {
-                    /** 主題: Windows 10 錯誤畫面 */
+                /** 主題: Windows 10 錯誤畫面 */
                 case 'windows-10-error':
                     $yPoint += 240;
                     break;
 
-                    /** 主題: Windows 10 測試人員計畫 錯誤畫面 */
+                /** 主題: Windows 10 測試人員計畫 錯誤畫面 */
                 case 'windows-10-error-testing':
                     $yPoint += 240;
                     break;
 
-                    /** 主題: 支離滅裂な思考・発言 */
+                /** 主題: 支離滅裂な思考・発言 */
                 case 'broken-think':
                     $xPoint += 349;
                     $yPoint += 24;
                     break;
 
-                    /** 主題: 不獣控制な思考・発言 */
+                /** 主題: 不獣控制な思考・発言 */
                 case 'furry-broken-think':
                     $xPoint += 349;
                     $yPoint += 24;
@@ -707,7 +719,6 @@ class ImagesGenerator extends ImagesContract
             /**
              * 建立透明圖層背景
              */
-            // imageCreateFromPng()
             $adsImage = imageCreateFromPng(public_path($this->ads['data']['picture']['local']));
             $adsCanvas = imageCreateTrueColor(imageSX($adsImage), imageSY($adsImage));
             $transColour = imageColorAllocateAlpha($adsCanvas, 0, 0, 0, 127);
