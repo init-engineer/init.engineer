@@ -37,8 +37,11 @@ class ReviewsPublish extends Command
 
     /**
      * 勿擾模式
-     * 當天 21:00 ~ 隔日 09:00
-     * 深夜、凌晨不進行審核文章
+     * 當天 {start}:00 ~ 隔日 {end}:00
+     * start = doNotDisturbStart
+     * end   = doNotDisturbEnd
+     *
+     * 深夜、凌晨盡量不進行社群平台發布
      *
      * @var bool
      */
@@ -72,7 +75,7 @@ class ReviewsPublish extends Command
      *
      * @var int
      */
-    protected $delayMinutes = 60;
+    protected $delayMinutes = 120;
 
     /**
      * @var CardsService
@@ -109,8 +112,11 @@ class ReviewsPublish extends Command
         echo "========================================\n\r";
 
         /**
-         * 當天 21:00 ~ 隔日 09:00
-         * 深夜、凌晨不進行社群平台發布
+         * 當天 {start}:00 ~ 隔日 {end}:00
+         * start = doNotDisturbStart
+         * end   = doNotDisturbEnd
+         *
+         * 深夜、凌晨盡量不進行社群平台發布
          */
         if ($this->doNotDisturbMode) {
             $hour = Carbon::now('Asia/Taipei')->hour;
@@ -118,12 +124,12 @@ class ReviewsPublish extends Command
                 $hour <= $this->doNotDisturbEnd) {
                 // echo something ...
 
-                return 0;
+                return Command::INVALID;
             }
         }
 
         /**
-         * 如果過去 60 分鐘內，有文章被審核通過的話，那就不進行審核文章的動作。
+         * 如果過去 $this->delayMinutes 分鐘內，有文章被審核通過的話，那就不進行審核文章的動作。
          */
         if ($this->delayMode) {
             $card = Cards::where('active', 1)->orderBy('updated_at', 'DESC')->first();
@@ -132,7 +138,7 @@ class ReviewsPublish extends Command
             if ($now->timestamp <= $card->updated_at->timestamp) {
                 // echo something ...
 
-                return 0;
+                return Command::INVALID;
             }
         }
 
