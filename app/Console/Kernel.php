@@ -19,8 +19,9 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        \App\Console\Commands\Social\ReviewsPublish::class,
+        \App\Console\Commands\Social\PlatformCardsPublish::class,
         \App\Console\Commands\Social\PlatformCommentsUpdate::class,
+        \App\Console\Commands\Social\ReviewsPublish::class,
     ];
 
     /**
@@ -46,6 +47,22 @@ class Kernel extends ConsoleKernel
          */
         $schedule->command('social:reviews-publish')->everyMinute()->when(function () {
             return Crons::everySomeMinutes('social:reviews-publish', 10);
+        });
+
+        /**
+         * 每隔 1 小時
+         * 重新檢查新發表的文章是否有尚未執行到的通知
+         */
+        $schedule->command('social:platform-card-notification')->everyMinute()->when(function () {
+            return Crons::everySomeMinutes('social:platform-card-notification', 60);
+        });
+
+        /**
+         * 每隔 1 小時
+         * 重新檢查群眾審核相關功能，是否有遺漏尚未發表到社群平台的文章
+         */
+        $schedule->command('social:platform-card-publish')->everyMinute()->when(function () {
+            return Crons::everySomeMinutes('social:platform-card-publish', 60);
         });
 
         /**
