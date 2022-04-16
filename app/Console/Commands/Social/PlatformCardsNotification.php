@@ -127,6 +127,11 @@ class PlatformCardsNotification extends Command
             ->all();
 
         /**
+         * 建立一個需要被跳過的社群平台列表
+         */
+        $skipPlatforms = [];
+
+        /**
          * 逐一檢查文章是否有被通知到社群平台
          */
         foreach ($cards as $card) {
@@ -149,16 +154,37 @@ class PlatformCardsNotification extends Command
                     $platform = Platform::find($platformID);
 
                     /**
-                     * 如果過去 $this->delayMinutes 分鐘內，有文章被通知到 $platform 社群平台的話，那就不進行排程
+                     * 延遲模式
+                     * 社群文章如果在 $delayMinutes 分鐘內，已經有通過文章的話，
+                     * 那就先暫時休息避免短時間通過大量文章，造成洪流攻擊社群平台而遭處置。
                      */
                     if ($this->delayMode) {
                         $platformCard = PlatformCards::where('platform_id', $platform->id)->orderBy('updated_at', 'DESC')->first();
                         $now = Carbon::now()->subMinutes($this->delayMinutes);
 
+                        /**
+                         * 判斷該 $platform 社群平台有沒有在本次排程當中被標註跳過
+                         */
+                        if (in_array($platform->id, $skipPlatforms)) {
+                            // echo something ...
+
+                            continue;
+                        }
+
+                        /**
+                         * 判斷該社群平台有沒有在過去 $this->delayMinutes 分鐘內
+                         * 有文章被發表到 $platform 社群平台
+                         */
                         if ($now->timestamp <= $platformCard->updated_at->timestamp) {
                             // echo something ...
 
                             continue;
+                        } else {
+                            /**
+                             * $platform 社群平台接下來會被追加排程任務了
+                             * 因此接下來的任務排程判斷都需要被跳過
+                             */
+                            array_push($skipPlatforms, $platform->id);
                         }
                     }
 
