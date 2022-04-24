@@ -13,20 +13,47 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         {{-- 在左邊的功能 --}}
         <ul class="navbar-nav mr-auto p-auto">
-            {{-- 文章投稿列表 --}}
+            {{-- 文章列表 --}}
             <li class="nav-item">
                 <x-utils.link
                     :href="route('frontend.social.cards.index')"
-                    :active="activeClass(Route::is('frontend.social.cards.*'))"
-                    :text="__('Init.Engineer Submit')"
+                    :active="activeClass(Route::is('frontend.social.cards.index'))"
+                    :text="__('Posts List')"
+                    class="nav-link" />
+            </li>
+
+            {{-- 文章投稿 --}}
+            <li class="nav-item">
+                <x-utils.link
+                    :href="route('frontend.social.cards.publish.article')"
+                    :active="activeClass(Route::is('frontend.social.cards.publish.article'))"
+                    :text="__('Create Submit')"
+                    class="nav-link" />
+            </li>
+
+            {{-- 圖片投稿 --}}
+            <li class="nav-item">
+                <x-utils.link
+                    :href="route('frontend.social.cards.publish.picture')"
+                    :active="activeClass(Route::is('frontend.social.cards.publish.picture'))"
+                    :text="__('Picture Submit')"
+                    class="nav-link" />
+            </li>
+
+            {{-- 群眾審核 --}}
+            <li class="nav-item">
+                <x-utils.link
+                    :href="route('frontend.social.cards.review')"
+                    :active="activeClass(Route::is('frontend.social.cards.review'))"
+                    :text="__('Review Submit')"
                     class="nav-link" />
             </li>
 
             {{-- 工作 --}}
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <x-utils.link
-                    {{-- :href="route('frontend.jobs.index')" --}}
-                    {{-- :active="activeClass(Route::is('frontend.jobs.*') || Route::is('frontend.companie.*'))" --}}
+                    :href="route('frontend.jobs.index')"
+                    :active="activeClass(Route::is('frontend.jobs.*') || Route::is('frontend.companie.*'))"
                     :text="__('Init.Engineer Jobs')"
                     class="nav-link"
                     style="opacity: 0.6;"
@@ -34,13 +61,13 @@
                     data-toggle="popover"
                     data-placement="bottom"
                     :data-content="__('To be continued.')" />
-            </li>
+            </li> --}}
 
             {{-- 接案 --}}
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <x-utils.link
-                    {{-- :href="route('frontend.case.index')" --}}
-                    {{-- :active="activeClass(Route::is('frontend.case.*'))" --}}
+                    :href="route('frontend.case.index')"
+                    :active="activeClass(Route::is('frontend.case.*'))"
                     :text="__('Init.Engineer Case')"
                     class="nav-link"
                     style="opacity: 0.6;"
@@ -48,13 +75,13 @@
                     data-toggle="popover"
                     data-placement="bottom"
                     :data-content="__('To be continued.')" />
-            </li>
+            </li> --}}
 
             {{-- 社群 --}}
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <x-utils.link
-                    {{-- :href="route('frontend.group.index')" --}}
-                    {{-- :active="activeClass(Route::is('frontend.group.*'))" --}}
+                    :href="route('frontend.group.index')"
+                    :active="activeClass(Route::is('frontend.group.*'))"
                     :text="__('Init.Engineer Group')"
                     class="nav-link"
                     style="opacity: 0.6;"
@@ -62,13 +89,13 @@
                     data-toggle="popover"
                     data-placement="bottom"
                     :data-content="__('To be continued.')" />
-            </li>
+            </li> --}}
 
             {{-- 活動 --}}
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <x-utils.link
-                    {{-- :href="route('frontend.events.index')" --}}
-                    {{-- :active="activeClass(Route::is('frontend.events.*'))" --}}
+                    :href="route('frontend.events.index')"
+                    :active="activeClass(Route::is('frontend.events.*'))"
                     :text="__('Init.Engineer Events')"
                     class="nav-link"
                     style="opacity: 0.6;"
@@ -76,13 +103,13 @@
                     data-toggle="popover"
                     data-placement="bottom"
                     :data-content="__('To be continued.')"  />
-            </li>
+            </li> --}}
 
             {{-- 研討會 --}}
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <x-utils.link
-                    {{-- :href="route('frontend.conference.index')" --}}
-                    {{-- :active="activeClass(Route::is('frontend.conference.*'))" --}}
+                    :href="route('frontend.conference.index')"
+                    :active="activeClass(Route::is('frontend.conference.*'))"
                     :text="__('Init.Engineer Conference')"
                     class="nav-link"
                     style="opacity: 0.6;"
@@ -90,7 +117,7 @@
                     data-toggle="popover"
                     data-placement="bottom"
                     :data-content="__('To be continued.')"  />
-            </li>
+            </li> --}}
 
             {{-- 小工具 --}}
             <li class="nav-item dropdown">
