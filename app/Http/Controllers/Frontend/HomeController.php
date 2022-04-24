@@ -28,10 +28,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $cards = $this->cardsService->getActivePaginated(5, 'id');
+        $newCards = $this->cardsService->getPaginated(5, 'id');
+        $safeCards = $this->cardsService->getActivePaginated(5, 'id');
 
         return view('frontend.index')
-            ->with('cards', $cards);
+            ->with('newCards', $newCards)
+            ->with('safeCards', $safeCards);
     }
 
     /**

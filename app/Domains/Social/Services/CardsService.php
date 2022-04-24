@@ -58,7 +58,24 @@ class CardsService extends BaseService
      *
      * @return mixed
      */
-    public function getActivePaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
+    public function getPaginated($paged = 25, $orderBy = 'updated_at', $sort = 'desc') : LengthAwarePaginator
+    {
+        return $this->model
+            ->active(false)
+            ->blockade(false)
+            ->orderBy($orderBy, $sort)
+            ->paginate($paged);
+    }
+
+
+    /**
+     * @param int    $paged
+     * @param string $orderBy
+     * @param string $sort
+     *
+     * @return mixed
+     */
+    public function getActivePaginated($paged = 25, $orderBy = 'updated_at', $sort = 'desc') : LengthAwarePaginator
     {
         return $this->model
             ->active()

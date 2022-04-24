@@ -6,6 +6,8 @@
 .border-right,
 .border-bottom,
 .border-left {
+    border-color: var(--color-gray) !important;
+
     &.border-w-1 {
         border-width: 1px !important;
     }
