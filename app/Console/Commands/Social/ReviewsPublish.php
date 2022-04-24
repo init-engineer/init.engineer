@@ -261,6 +261,8 @@ class ReviewsPublish extends Command
                             break;
                     }
                 }
+
+                return Command::SUCCESS;
             }
         }
 

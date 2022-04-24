@@ -103,8 +103,10 @@ class PlatformCardsNotification extends Command
          */
         if ($this->doNotDisturbMode) {
             $hour = Carbon::now('Asia/Taipei')->hour;
-            if ($hour >= $this->doNotDisturbStart ||
-                $hour <= $this->doNotDisturbEnd) {
+            if (
+                $hour >= $this->doNotDisturbStart ||
+                $hour <= $this->doNotDisturbEnd
+            ) {
                 // echo something ...
 
                 return Command::INVALID;
@@ -129,7 +131,13 @@ class PlatformCardsNotification extends Command
         /**
          * 建立一個需要被跳過的社群平台列表
          */
-        $skipPlatforms = [];
+        $date = Carbon::now()->subMinutes($this->delayMinutes);
+        $skipPlatforms = PlatformCards::select('platform_id')
+            ->whereIn('platform_id', $platforms)
+            ->where('created_at', '>=', $date)
+            ->groupBy('platform_id')
+            ->pluck('platform_id')
+            ->all();
 
         /**
          * 逐一檢查文章是否有被通知到社群平台
