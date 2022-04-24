@@ -3,7 +3,7 @@
 @section('title', __('Init.Engineer Show - #:nid(:id) :content', ['id' => $cards->id, 'nid' => base_convert($cards->id, 10, 36), 'content' => Str::limit($cards->content, 64, '...')]))
 @section('meta_title', Str::limit($cards->content, 12, '...'))
 @section('meta_description', Str::limit($cards->content, 64, '...'))
-@section('meta_imagess', $cards->getPicture())
+@section('meta_image', $cards->getPicture())
 @section('meta_type', 'article')
 
 @section('content')
