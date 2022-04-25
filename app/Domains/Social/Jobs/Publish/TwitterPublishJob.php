@@ -208,7 +208,7 @@ class TwitterPublishJob implements ShouldQueue
          * 建立 Discord 宣傳內容
          */
         $status = $contentFluent->reset()
-            ->footer(sprintf('💖 #%s 官方 Discord 歡迎在這找到你的同溫層！', appName() . base_convert($this->cards->id, 10, 36)))
+            ->footer(sprintf('💖 %s Discord', appName() . Str::random(8)))
             ->footer('👉 https://discord.gg/tPhnrs2')
             ->build();
 
@@ -221,7 +221,7 @@ class TwitterPublishJob implements ShouldQueue
          * 建立文章宣傳內容
          */
         $status = $contentFluent->reset()
-            ->footer(sprintf('💖 #%s 全平台留言、文章詳細內容', appName() . base_convert($this->cards->id, 10, 36)))
+            ->footer(sprintf('💖 %s 全平台', appName() . Str::random(8)))
             ->footer('👉 ' . route('frontend.social.cards.show', ['id' => $this->cards->id]))
             ->build();
 
