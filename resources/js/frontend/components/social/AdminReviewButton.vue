@@ -10,12 +10,12 @@
       v-else-if="
         states === 'vote' || states === 'voting' || states === 'complete'
       "
-      style="position: relative; width: 130px"
+      style="position: relative;"
     >
       <!-- 投票通過按鈕 -->
       <button
         type="button"
-        class="btn yes mb-2"
+        class="btn yes mb-2 mx-0"
         @click="yesVoting()"
         :disabled="states === 'voting'"
         v-if="states === 'vote' || states === 'voting'"
@@ -34,7 +34,7 @@
       <!-- 投票否決按鈕 -->
       <button
         type="button"
-        class="btn no mb-2"
+        class="btn no mb-2 mx-0"
         @click="noVoting()"
         :disabled="states === 'voting'"
         v-if="states === 'vote' || states === 'voting'"
@@ -71,7 +71,7 @@
       <!-- 投票結果 -->
       <div
         class="progress"
-        style="position: relative; width: 130px; height: 24px"
+        style="position: relative; height: 24px;"
       >
         <div
           class="progress-bar progress-bar-striped progress-bar-animated"

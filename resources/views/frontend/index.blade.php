@@ -128,10 +128,10 @@
                     <div class="media-body pt-2">
                         <a class="text-decoration-none" style="color: var(--font-primary-color) !important;" href="{{ route('frontend.social.cards.show', ['id' => $card->id]) }}">
                             <div style="display: flow-root">
-                                <h5 class="float-left mt-0">#{{ appName() . base_convert($card->id, 10, 36) }}</h5>
-                                <p class="float-right mt-0">@displayDate($card->updated_at, 'Y/m/d h:s:i') ({{ $card->updated_at->diffForHumans() }})</p>
+                                <h4 class="float-left my-0">#{{ appName() . base_convert($card->id, 10, 36) }}</h4>
+                                <p class="float-right my-0">@displayDate($card->updated_at, 'Y/m/d h:s:i') ({{ $card->updated_at->diffForHumans() }})</p>
                             </div>
-                            <p>{{ $card->getContent(200) }}</p>
+                            <p class="mb-0">{{ $card->getContent(200) }}</p>
                         </a>
                     </div>
                 </div>
@@ -154,10 +154,10 @@
                         <div class="media-body pt-2">
                             <a class="text-decoration-none" style="color: var(--font-primary-color) !important;" href="{{ route('frontend.social.cards.show', ['id' => $card->id]) }}">
                                 <div style="display: flow-root">
-                                    <h5 class="float-left mt-0">#{{ appName() . base_convert($card->id, 10, 36) }}</h5>
-                                    <p class="float-right mt-0">@displayDate($card->updated_at, 'Y/m/d h:s:i') ({{ $card->updated_at->diffForHumans() }})</p>
+                                    <h4 class="float-left my-0">#{{ appName() . base_convert($card->id, 10, 36) }}</h4>
+                                    <p class="float-right my-0">@displayDate($card->updated_at, 'Y/m/d h:s:i') ({{ $card->updated_at->diffForHumans() }})</p>
                                 </div>
-                                <p>{{ $card->getContent(200) }}</p>
+                                <p class="mb-0">{{ $card->getContent(200) }}</p>
                             </a>
                         </div>
                     </div>

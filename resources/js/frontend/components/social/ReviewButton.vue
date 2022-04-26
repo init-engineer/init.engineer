@@ -8,11 +8,11 @@
     <!-- 等待投票狀態、投票當中狀態 -->
     <div
       v-else-if="states === 'vote' || states === 'voting'"
-      style="position: relative; width: 130px"
+      style="position: relative;"
     >
       <button
         type="button"
-        class="btn yes"
+        class="btn yes mb-2 mx-0"
         @click="yesVoting()"
         :disabled="states === 'voting'"
       >
@@ -29,7 +29,7 @@
 
       <button
         type="button"
-        class="btn no"
+        class="btn no mb-2 mx-0"
         @click="noVoting()"
         :disabled="states === 'voting'"
       >
@@ -65,7 +65,7 @@
       </div>
       <div
         class="progress"
-        style="position: relative; width: 130px; height: 48px"
+        style="position: relative; height: 48px;"
       >
         <div
           class="progress-bar progress-bar-striped progress-bar-animated"

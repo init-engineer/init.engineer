@@ -15,13 +15,13 @@
         style="min-width: 128px;"
         height="128"
         src="{{ $row->getPicture() }}"
-        alt="{{ Str::limit($row->content, 64, '...') }}">
+        alt="{{ Str::limit($row->content, 32, '...') }}">
 </x-livewire-tables::bs5.table.cell>
 
-<x-livewire-tables::bs5.table.cell>
+<x-livewire-tables::bs5.table.cell style="width: 480px; min-width: 480px;">
     {{-- 文章內容 --}}
     <a href="{{ route('frontend.social.cards.show', ['id' => $row->id]) }}">
-        <p style="width: 320px; max-width: 320px;">{{ Str::limit($row->content, 191, '...') }}</p>
+        <p class="mb-0">{{ Str::limit($row->content, 300, '...') }}</p>
     </a>
 </x-livewire-tables::bs5.table.cell>
 
