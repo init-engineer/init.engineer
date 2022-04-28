@@ -62,7 +62,7 @@ class SocialPlatformTableSeeder extends Seeder
         ]);
 
         Platform::create([
-            'name' => '官方正式 @init_engineer',
+            'name' => '官方正式 @InitEngineer',
             'action' => Platform::ACTION_PUBLISH,
             'type' => Platform::TYPE_TWITTER,
             'active' => false,

@@ -57,7 +57,7 @@
     <meta property="og:author" content="https://www.facebook.com/init.kobeengineer">
     <meta property="og:locale" content="zh_TW">
 
-    <meta name="twitter:site" content="@init_engineer">
+    <meta name="twitter:site" content="@InitEngineer">
     <meta name="twitter:title" content="@yield('meta_title', appName())">
     <meta name="twitter:description" content="@yield('meta_description', appName())">
     <meta name="twitter:image" content="@yield('meta_image', asset('/img/frontend/background/cute-banner.jpg'))">
