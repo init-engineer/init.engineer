@@ -70,6 +70,17 @@ class ReviewController extends Controller
      */
     public function voting(Request $request, Cards $card, $status)
     {
+        $voted = $this->reviewService->haveVoted($card, $request->user());
+        if ($voted['voted']) {
+            return response()->json([
+                'voted' => true,
+                'count' => [
+                    'yes' => $this->reviewService->findYesByVoted($card),
+                    'no' => $this->reviewService->findNoByVoted($card),
+                ],
+            ], 200);
+        }
+
         /**
          * 如果投票的是管理者，並且投的是通過票
          * 那就需要附帶文章直接通過審核的決議
