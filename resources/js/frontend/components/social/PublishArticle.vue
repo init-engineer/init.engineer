@@ -413,6 +413,7 @@ export default {
         "taipei-sans-tc-beta-bold",
         "cubic-11",
         "huninn",
+        "glow-sans",
       ],
     };
   },

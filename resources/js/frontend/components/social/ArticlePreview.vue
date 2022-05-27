@@ -190,6 +190,10 @@ export default {
           name: "粉圓體",
           font: "Huninn",
         },
+        "glow-sans": {
+          name: "未來熒黑",
+          font: "Glow Sans",
+        },
       },
     };
   },

@@ -62,6 +62,7 @@ class PublishArticleRequest extends FormRequest
                 'taipei-sans-tc-beta-bold',
                 'cubic-11',
                 'huninn',
+                'glow-sans',
             ])],
         ];
     }
