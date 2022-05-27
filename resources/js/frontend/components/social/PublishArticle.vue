@@ -412,6 +412,7 @@ export default {
         "fot-matissepro-eb",
         "taipei-sans-tc-beta-bold",
         "cubic-11",
+        "huninn",
       ],
     };
   },

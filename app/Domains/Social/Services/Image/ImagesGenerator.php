@@ -257,6 +257,11 @@ class ImagesGenerator extends ImagesContract
                 $this->fontPath = public_path('fonts/Cubic_11_1.010_R.ttf');
                 break;
 
+            /** 粉圓體 */
+            case 'huninn':
+                $this->fontPath = public_path('fonts/jf-openhuninn-1.1.ttf');
+                break;
+
             /** 預設: AURAKA 點陣宋字型 */
             default:
                 $this->fontPath = public_path('fonts/Auraka.ttf');
