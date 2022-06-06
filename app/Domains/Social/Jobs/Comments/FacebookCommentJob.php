@@ -12,7 +12,6 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Http;
-use romanzipp\QueueMonitor\Traits\IsMonitored;
 
 /**
  * Class FacebookCommentJob.
@@ -22,8 +21,7 @@ class FacebookCommentJob implements ShouldQueue
     use Dispatchable,
         InteractsWithQueue,
         Queueable,
-        SerializesModels,
-        IsMonitored;
+        SerializesModels;
 
     /**
      * @var Platform

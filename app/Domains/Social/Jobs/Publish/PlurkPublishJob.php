@@ -18,7 +18,6 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use romanzipp\QueueMonitor\Traits\IsMonitored;
 
 /**
  * Class PlurkPublishJob.
@@ -30,8 +29,7 @@ class PlurkPublishJob implements ShouldQueue
     use Dispatchable,
         InteractsWithQueue,
         Queueable,
-        SerializesModels,
-        IsMonitored;
+        SerializesModels;
 
     /**
      * @var Cards

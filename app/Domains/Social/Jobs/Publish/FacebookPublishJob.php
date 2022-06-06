@@ -16,7 +16,6 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
-use romanzipp\QueueMonitor\Traits\IsMonitored;
 
 /**
  * Class FacebookPublishJob.
@@ -26,8 +25,7 @@ class FacebookPublishJob implements ShouldQueue
     use Dispatchable,
         InteractsWithQueue,
         Queueable,
-        SerializesModels,
-        IsMonitored;
+        SerializesModels;
 
     /**
      * @var Cards
