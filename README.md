@@ -13,7 +13,7 @@
 如同上面所說的，這份專案是為了[純靠北工程師](https://init.engineer)而量身打造的開源專案，因此不建議使用本專案來建立一個網頁應用服務，我們反而是推薦另一套由我們所建立的開源專案叫做「[哈啦狐 Forumfox](https://github.com/forumfox/forumfox)」，這將會是面向大眾、更適合作為投稿管理、提供匿名投稿的網頁應用系統。
 
 ### Q: 任務排程我該怎麼讓它依照優先順序來跑？
-我們構思已久，將 `onQueue` 等級切分為「`highest`、`high`、`medium`、`low`、`lowest`」五個等級劃分：
+我們構思已久，將 `onQueue` 等級切分為「`highest`、`high`、`medium`、`low`、`lowest`」五個等級劃分，然後下 `worker` 的時候記得在最後補上 `default` 啊！不然沒有放 `onQuene` 的任務它是不會做事的，指令範例：`php artisan queue:work --queue=highest,high,medium,low,lowest,default`
 | 等級    | 名稱 | 使用範圍           |
 |---------|------|--------------------|
 | highest | 最高 | 文章發表至社群平台 |
