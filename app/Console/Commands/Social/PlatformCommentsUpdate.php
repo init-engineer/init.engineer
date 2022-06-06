@@ -89,27 +89,27 @@ class PlatformCommentsUpdate extends Command
                         break;
 
                     case Platform::TYPE_FACEBOOK:
-                        dispatch(new FacebookCommentsJob($platformCard->platform, $platformCard));
+                        dispatch(new FacebookCommentsJob($platformCard->platform, $platformCard))->onQueue('lowest');
                         break;
 
                     case Platform::TYPE_TWITTER:
-                        dispatch(new TwitterCommentsJob($platformCard->platform, $platformCard));
+                        dispatch(new TwitterCommentsJob($platformCard->platform, $platformCard))->onQueue('lowest');
                         break;
 
                     case Platform::TYPE_PLURK:
-                        dispatch(new PlurkCommentsJob($platformCard->platform, $platformCard));
+                        dispatch(new PlurkCommentsJob($platformCard->platform, $platformCard))->onQueue('lowest');
                         break;
 
                     case Platform::TYPE_TUMBLR:
-                        dispatch(new TumblrCommentsJob($platformCard->platform, $platformCard));
+                        dispatch(new TumblrCommentsJob($platformCard->platform, $platformCard))->onQueue('lowest');
                         break;
 
                     case Platform::TYPE_DISCORD:
-                        dispatch(new DiscordCommentsJob($platformCard->platform, $platformCard));
+                        dispatch(new DiscordCommentsJob($platformCard->platform, $platformCard))->onQueue('lowest');
                         break;
 
                     case Platform::TYPE_TELEGRAM:
-                        dispatch(new TelegramCommentsJob($platformCard->platform, $platformCard));
+                        dispatch(new TelegramCommentsJob($platformCard->platform, $platformCard))->onQueue('lowest');
                         break;
                 }
             }

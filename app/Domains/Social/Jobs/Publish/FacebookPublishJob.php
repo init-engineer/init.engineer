@@ -190,7 +190,7 @@ class FacebookPublishJob implements ShouldQueue
         /**
          * 對社群文章執行 Discord 宣傳留言
          */
-        dispatch(new FacebookPushCommentJob($this->platform, $platformCard, $message));
+        dispatch(new FacebookPushCommentJob($this->platform, $platformCard, $message))->onQueue('medium');
 
         /**
          * 建立文章宣傳內容
@@ -203,7 +203,7 @@ class FacebookPublishJob implements ShouldQueue
         /**
          * 對社群文章執行文章宣傳留言
          */
-        dispatch(new FacebookPushCommentJob($this->platform, $platformCard, $message));
+        dispatch(new FacebookPushCommentJob($this->platform, $platformCard, $message))->onQueue('medium');
 
         return;
     }

@@ -132,7 +132,7 @@ class FacebookCommentJob implements ShouldQueue
              */
             if (isset($responseBody['paging']['next'])) {
                 $cursorsAfter = isset($responseBody['paging']['cursors']) ? $responseBody['paging']['cursors']['after'] : null;
-                dispatch(new FacebookCommentJob($this->platform, $this->platformCards, $this->graphVersion, $this->userId, $this->postId, $this->accessToken, $cursorsAfter));
+                dispatch(new FacebookCommentJob($this->platform, $this->platformCards, $this->graphVersion, $this->userId, $this->postId, $this->accessToken, $cursorsAfter))->onQueue('lowest');
             }
 
             /**

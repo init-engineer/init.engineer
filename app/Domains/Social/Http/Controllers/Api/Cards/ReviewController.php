@@ -112,42 +112,42 @@ class ReviewController extends Controller
                      * 丟給負責發表文章到 Facebook 的 Job
                      */
                     case Platform::TYPE_FACEBOOK:
-                        dispatch(new FacebookPublishJob($model, $platform));
+                        dispatch(new FacebookPublishJob($model, $platform))->onQueue('highest');
                         break;
 
                     /**
                      * 丟給負責發表文章到 Twitter 的 Job
                      */
                     case Platform::TYPE_TWITTER:
-                        dispatch(new TwitterPublishJob($model, $platform));
+                        dispatch(new TwitterPublishJob($model, $platform))->onQueue('highest');
                         break;
 
                     /**
                      * 丟給負責發表文章到 Plurk 的 Job
                      */
                     case Platform::TYPE_PLURK:
-                        dispatch(new PlurkPublishJob($model, $platform));
+                        dispatch(new PlurkPublishJob($model, $platform))->onQueue('highest');
                         break;
 
                     /**
                      * 丟給負責發表文章到 Discord 的 Job
                      */
                     case Platform::TYPE_DISCORD:
-                        dispatch(new DiscordPublishJob($model, $platform));
+                        dispatch(new DiscordPublishJob($model, $platform))->onQueue('highest');
                         break;
 
                     /**
                      * 丟給負責發表文章到 Tumblr 的 Job
                      */
                     case Platform::TYPE_TUMBLR:
-                        dispatch(new TumblrPublishJob($model, $platform));
+                        dispatch(new TumblrPublishJob($model, $platform))->onQueue('highest');
                         break;
 
                     /**
                      * 丟給負責發表文章到 Telegram 的 Job
                      */
                     case Platform::TYPE_TELEGRAM:
-                        dispatch(new TelegramPublishJob($model, $platform));
+                        dispatch(new TelegramPublishJob($model, $platform))->onQueue('highest');
                         break;
 
                     /**
