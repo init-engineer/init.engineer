@@ -12,7 +12,6 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Http;
-use romanzipp\QueueMonitor\Traits\IsMonitored;
 
 /**
  * Class FacebookCommentJob.
@@ -22,8 +21,7 @@ class FacebookCommentJob implements ShouldQueue
     use Dispatchable,
         InteractsWithQueue,
         Queueable,
-        SerializesModels,
-        IsMonitored;
+        SerializesModels;
 
     /**
      * @var Platform
@@ -132,7 +130,7 @@ class FacebookCommentJob implements ShouldQueue
              */
             if (isset($responseBody['paging']['next'])) {
                 $cursorsAfter = isset($responseBody['paging']['cursors']) ? $responseBody['paging']['cursors']['after'] : null;
-                dispatch(new FacebookCommentJob($this->platform, $this->platformCards, $this->graphVersion, $this->userId, $this->postId, $this->accessToken, $cursorsAfter));
+                dispatch(new FacebookCommentJob($this->platform, $this->platformCards, $this->graphVersion, $this->userId, $this->postId, $this->accessToken, $cursorsAfter))->onQueue('lowest');
             }
 
             /**

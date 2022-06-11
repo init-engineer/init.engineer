@@ -18,7 +18,6 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use romanzipp\QueueMonitor\Traits\IsMonitored;
 
 /**
  * Class PlurkPublishJob.
@@ -30,8 +29,7 @@ class PlurkPublishJob implements ShouldQueue
     use Dispatchable,
         InteractsWithQueue,
         Queueable,
-        SerializesModels,
-        IsMonitored;
+        SerializesModels;
 
     /**
      * @var Cards
@@ -210,7 +208,7 @@ class PlurkPublishJob implements ShouldQueue
         /**
          * 對社群文章執行 Discord 宣傳留言
          */
-        dispatch(new PlurkPushCommentJob($this->platform, $platformCard, $content));
+        dispatch(new PlurkPushCommentJob($this->platform, $platformCard, $content))->onQueue('medium');
 
         /**
          * 建立文章宣傳內容
@@ -223,7 +221,7 @@ class PlurkPublishJob implements ShouldQueue
         /**
          * 對社群文章執行文章宣傳留言
          */
-        dispatch(new PlurkPushCommentJob($this->platform, $platformCard, $content));
+        dispatch(new PlurkPushCommentJob($this->platform, $platformCard, $content))->onQueue('medium');
 
         return;
     }

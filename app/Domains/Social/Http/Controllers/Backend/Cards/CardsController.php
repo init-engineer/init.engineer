@@ -115,42 +115,42 @@ class CardsController extends Controller
                      * 丟給負責發表文章到 Facebook 的 Job
                      */
                     case Platform::TYPE_FACEBOOK:
-                        dispatch(new FacebookPublishJob($cards, $platform));
+                        dispatch(new FacebookPublishJob($cards, $platform))->onQueue('highest');
                         break;
 
                     /**
                      * 丟給負責發表文章到 Twitter 的 Job
                      */
                     case Platform::TYPE_TWITTER:
-                        dispatch(new TwitterPublishJob($cards, $platform));
+                        dispatch(new TwitterPublishJob($cards, $platform))->onQueue('highest');
                         break;
 
                     /**
                      * 丟給負責發表文章到 Plurk 的 Job
                      */
                     case Platform::TYPE_PLURK:
-                        dispatch(new PlurkPublishJob($cards, $platform));
+                        dispatch(new PlurkPublishJob($cards, $platform))->onQueue('highest');
                         break;
 
                     /**
                      * 丟給負責發表文章到 Discord 的 Job
                      */
                     case Platform::TYPE_DISCORD:
-                        dispatch(new DiscordPublishJob($cards, $platform));
+                        dispatch(new DiscordPublishJob($cards, $platform))->onQueue('highest');
                         break;
 
                     /**
                      * 丟給負責發表文章到 Tumblr 的 Job
                      */
                     case Platform::TYPE_TUMBLR:
-                        dispatch(new TumblrPublishJob($cards, $platform));
+                        dispatch(new TumblrPublishJob($cards, $platform))->onQueue('highest');
                         break;
 
                     /**
                      * 丟給負責發表文章到 Telegram 的 Job
                      */
                     case Platform::TYPE_TELEGRAM:
-                        dispatch(new TelegramPublishJob($cards, $platform));
+                        dispatch(new TelegramPublishJob($cards, $platform))->onQueue('highest');
                         break;
 
                     /**
@@ -196,42 +196,42 @@ class CardsController extends Controller
                      * 丟給負責發表文章到 Facebook 的 Job
                      */
                     case Platform::TYPE_FACEBOOK:
-                        dispatch(new FacebookPublishJob($cards, $platform));
+                        dispatch(new FacebookPublishJob($cards, $platform))->onQueue('highest');
                         break;
 
                     /**
                      * 丟給負責發表文章到 Twitter 的 Job
                      */
                     case Platform::TYPE_TWITTER:
-                        dispatch(new TwitterPublishJob($cards, $platform));
+                        dispatch(new TwitterPublishJob($cards, $platform))->onQueue('highest');
                         break;
 
                     /**
                      * 丟給負責發表文章到 Plurk 的 Job
                      */
                     case Platform::TYPE_PLURK:
-                        dispatch(new PlurkPublishJob($cards, $platform));
+                        dispatch(new PlurkPublishJob($cards, $platform))->onQueue('highest');
                         break;
 
                     /**
                      * 丟給負責發表文章到 Discord 的 Job
                      */
                     case Platform::TYPE_DISCORD:
-                        dispatch(new DiscordPublishJob($cards, $platform));
+                        dispatch(new DiscordPublishJob($cards, $platform))->onQueue('highest');
                         break;
 
                     /**
                      * 丟給負責發表文章到 Tumblr 的 Job
                      */
                     case Platform::TYPE_TUMBLR:
-                        dispatch(new TumblrPublishJob($cards, $platform));
+                        dispatch(new TumblrPublishJob($cards, $platform))->onQueue('highest');
                         break;
 
                     /**
                      * 丟給負責發表文章到 Telegram 的 Job
                      */
                     case Platform::TYPE_TELEGRAM:
-                        dispatch(new TelegramPublishJob($cards, $platform));
+                        dispatch(new TelegramPublishJob($cards, $platform))->onQueue('highest');
                         break;
 
                     /**

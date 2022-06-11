@@ -14,7 +14,6 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Http;
-use romanzipp\QueueMonitor\Traits\IsMonitored;
 
 /**
  * Class PlurkCommentsJob.
@@ -24,8 +23,7 @@ class PlurkCommentsJob implements ShouldQueue
     use Dispatchable,
         InteractsWithQueue,
         Queueable,
-        SerializesModels,
-        IsMonitored;
+        SerializesModels;
 
     /**
      * @var Platform
@@ -147,15 +145,20 @@ class PlurkCommentsJob implements ShouldQueue
                 }
 
                 /**
-                 * 判斷使用者資料是否需要更新。
+                 * 判斷有沒有正確獲得使用者資訊
                  */
-                if ($commentModel->user_id != $profile->json()['user_info']['id'] ||
-                    $commentModel->user_name != $profile->json()['user_info']['full_name'] ||
-                    $commentModel->user_avatar != $profile->json()['user_info']['avatar_big']) {
-                    $commentModel->user_id = $profile->json()['user_info']['id'];
-                    $commentModel->user_name = $profile->json()['user_info']['full_name'];
-                    $commentModel->user_avatar = $profile->json()['user_info']['avatar_big'];
-                    $commentModel->save();
+                if ($profile->successful()) {
+                    /**
+                     * 判斷使用者資訊是否需要更新。
+                     */
+                    if ($commentModel->user_id != $profile->json()['user_info']['id'] ||
+                        $commentModel->user_name != $profile->json()['user_info']['full_name'] ||
+                        $commentModel->user_avatar != $profile->json()['user_info']['avatar_big']) {
+                        $commentModel->user_id = $profile->json()['user_info']['id'];
+                        $commentModel->user_name = $profile->json()['user_info']['full_name'];
+                        $commentModel->user_avatar = $profile->json()['user_info']['avatar_big'];
+                        $commentModel->save();
+                    }
                 }
             } else {
                 /**

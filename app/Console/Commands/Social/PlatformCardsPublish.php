@@ -202,42 +202,42 @@ class PlatformCardsPublish extends Command
                          * 丟給負責發表文章到 Facebook 的 Job
                          */
                         case Platform::TYPE_FACEBOOK:
-                            dispatch(new FacebookPublishJob($card, $platform));
+                            dispatch(new FacebookPublishJob($card, $platform))->onQueue('highest');
                             break;
 
                         /**
                          * 丟給負責發表文章到 Twitter 的 Job
                          */
                         case Platform::TYPE_TWITTER:
-                            dispatch(new TwitterPublishJob($card, $platform));
+                            dispatch(new TwitterPublishJob($card, $platform))->onQueue('highest');
                             break;
 
                         /**
                          * 丟給負責發表文章到 Plurk 的 Job
                          */
                         case Platform::TYPE_PLURK:
-                            dispatch(new PlurkPublishJob($card, $platform));
+                            dispatch(new PlurkPublishJob($card, $platform))->onQueue('highest');
                             break;
 
                         /**
                          * 丟給負責發表文章到 Discord 的 Job
                          */
                         case Platform::TYPE_DISCORD:
-                            dispatch(new DiscordPublishJob($card, $platform));
+                            dispatch(new DiscordPublishJob($card, $platform))->onQueue('highest');
                             break;
 
                         /**
                          * 丟給負責發表文章到 Tumblr 的 Job
                          */
                         case Platform::TYPE_TUMBLR:
-                            dispatch(new TumblrPublishJob($card, $platform));
+                            dispatch(new TumblrPublishJob($card, $platform))->onQueue('highest');
                             break;
 
                         /**
                          * 丟給負責發表文章到 Telegram 的 Job
                          */
                         case Platform::TYPE_TELEGRAM:
-                            dispatch(new TelegramPublishJob($card, $platform));
+                            dispatch(new TelegramPublishJob($card, $platform))->onQueue('highest');
                             break;
 
                         /**

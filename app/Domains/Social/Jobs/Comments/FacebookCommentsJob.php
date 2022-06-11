@@ -12,7 +12,6 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
-use romanzipp\QueueMonitor\Traits\IsMonitored;
 
 /**
  * Class FacebookCommentsJob.
@@ -22,8 +21,7 @@ class FacebookCommentsJob implements ShouldQueue
     use Dispatchable,
         InteractsWithQueue,
         Queueable,
-        SerializesModels,
-        IsMonitored;
+        SerializesModels;
 
     /**
      * @var Platform
@@ -104,6 +102,6 @@ class FacebookCommentsJob implements ShouldQueue
         /**
          * 透過呼叫 FacebookCommentJob 來建立遞迴排程，避免 Job 因為遞迴呼叫 API 而造成 memory overflow
          */
-        dispatch(new FacebookCommentJob($this->platform, $this->platformCards, $this->platform->config['graph_version'], $this->platform->config['user_id'], $this->platformCards->platform_string_id, $accessToken, null));
+        dispatch(new FacebookCommentJob($this->platform, $this->platformCards, $this->platform->config['graph_version'], $this->platform->config['user_id'], $this->platformCards->platform_string_id, $accessToken, null))->onQueue('lowest');
     }
 }

@@ -18,7 +18,6 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use romanzipp\QueueMonitor\Traits\IsMonitored;
 
 /**
  * Class TwitterPublishJob.
@@ -30,8 +29,7 @@ class TwitterPublishJob implements ShouldQueue
     use Dispatchable,
         InteractsWithQueue,
         Queueable,
-        SerializesModels,
-        IsMonitored;
+        SerializesModels;
 
     /**
      * @var Cards
@@ -215,7 +213,7 @@ class TwitterPublishJob implements ShouldQueue
         /**
          * 對社群文章執行 Discord 宣傳留言
          */
-        dispatch(new TwitterPushCommentJob($this->platform, $platformCard, $status));
+        dispatch(new TwitterPushCommentJob($this->platform, $platformCard, $status))->onQueue('medium');
 
         /**
          * 建立文章宣傳內容
@@ -228,7 +226,7 @@ class TwitterPublishJob implements ShouldQueue
         /**
          * 對社群文章執行文章宣傳留言
          */
-        dispatch(new TwitterPushCommentJob($this->platform, $platformCard, $status));
+        dispatch(new TwitterPushCommentJob($this->platform, $platformCard, $status))->onQueue('medium');
 
         return;
     }

@@ -186,6 +186,14 @@ export default {
           name: "俐方體 11 號",
           font: "Cubic 11",
         },
+        "huninn": {
+          name: "粉圓體",
+          font: "Huninn",
+        },
+        "glow-sans": {
+          name: "未來熒黑",
+          font: "Glow Sans",
+        },
       },
     };
   },
