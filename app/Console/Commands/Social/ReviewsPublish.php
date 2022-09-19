@@ -120,11 +120,20 @@ class ReviewsPublish extends Command
          */
         if ($this->doNotDisturbMode) {
             $hour = Carbon::now('Asia/Taipei')->hour;
-            if ($hour >= $this->doNotDisturbStart ||
-                $hour <= $this->doNotDisturbEnd) {
-                // echo something ...
-
-                return Command::INVALID;
+            if ($this->doNotDisturbStart >= $this->doNotDisturbEnd) {
+                // 如果開始時間是 00:00 過後
+                if ($hour >= $this->doNotDisturbStart ||
+                     $hour <= $this->doNotDisturbEnd) {
+                    // echo something ...
+                    return Command::INVALID;
+                }
+            } else {
+                // 如果開始時間是 23:59 以前
+                if ($hour >= $this->doNotDisturbStart &&
+                     $hour <= $this->doNotDisturbEnd) {
+                    // echo something ...
+                    return Command::INVALID;
+                }
             }
         }
 
@@ -135,10 +144,12 @@ class ReviewsPublish extends Command
             $card = Cards::where('active', 1)->orderBy('updated_at', 'DESC')->first();
             $now = Carbon::now()->subMinutes($this->delayMinutes);
 
-            if ($now->timestamp <= $card->updated_at->timestamp) {
-                // echo something ...
+            if (isset($card)) {
+                if ($now->timestamp <= $card->updated_at->timestamp) {
+                    // echo something ...
 
-                return Command::INVALID;
+                    return Command::INVALID;
+                }
             }
         }
 
