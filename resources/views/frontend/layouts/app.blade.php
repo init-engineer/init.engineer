@@ -92,6 +92,8 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
     <link href="{{ mix('css/frontend.css') }}" rel="stylesheet">
     @stack('after-styles')
+
+    @include('includes.partials.ga')
 </head>
 <body>
     @include('frontend.includes.github')
