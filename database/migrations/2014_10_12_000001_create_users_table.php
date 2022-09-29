@@ -38,6 +38,7 @@ class CreateUsersTable extends Migration
             $table->boolean('to_be_logged_out')->default(false);
             $table->string('provider')->nullable();
             $table->string('provider_id')->nullable();
+            $table->string('remark')->nullable()->comment('備註');
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
