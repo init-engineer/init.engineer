@@ -25,7 +25,7 @@
         "perfect-scrollbar": "^1.5.5",
         "popper.js": "^1.16.1",
         "postcss": "^8.4.8",
-        "resolve-url-loader": "^3.1.4",
+        "resolve-url-loader": "^5.0.0",
         "sass": "^1.50.0",
         "sass-loader": "^8.0.0",
         "sweetalert2": "^9.8.2",
