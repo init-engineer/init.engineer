@@ -92,8 +92,6 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
     <link href="{{ mix('css/frontend.css') }}" rel="stylesheet">
     @stack('after-styles')
-
-    @include('includes.partials.ga')
 </head>
 <body>
     @include('frontend.includes.github')
@@ -118,6 +116,8 @@
     <!--app-->
 
     @stack('before-scripts')
+    @include('includes.partials.ga')
+    @include('includes.partials.ads')
     @livewireScripts()
     <script src="{{ mix('js/manifest.js') }}"></script>
     <script src="{{ mix('js/vendor.js') }}"></script>
