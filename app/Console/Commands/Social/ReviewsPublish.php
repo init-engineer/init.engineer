@@ -120,20 +120,13 @@ class ReviewsPublish extends Command
          */
         if ($this->doNotDisturbMode) {
             $hour = Carbon::now('Asia/Taipei')->hour;
-            if ($this->doNotDisturbStart >= $this->doNotDisturbEnd) {
+            if (($this->doNotDisturbStart >= $this->doNotDisturbEnd &&
                 // 如果開始時間是 00:00 過後
-                if ($hour >= $this->doNotDisturbStart ||
-                     $hour <= $this->doNotDisturbEnd) {
-                    // echo something ...
-                    return Command::INVALID;
-                }
-            } else {
+                ($hour >= $this->doNotDisturbStart || $hour <= $this->doNotDisturbEnd)) ||
                 // 如果開始時間是 23:59 以前
-                if ($hour >= $this->doNotDisturbStart &&
-                     $hour <= $this->doNotDisturbEnd) {
-                    // echo something ...
-                    return Command::INVALID;
-                }
+                ($hour >= $this->doNotDisturbStart && $hour <= $this->doNotDisturbEnd)) {
+                // echo something ...
+                return Command::INVALID;
             }
         }
 
@@ -144,12 +137,9 @@ class ReviewsPublish extends Command
             $card = Cards::where('active', 1)->orderBy('updated_at', 'DESC')->first();
             $now = Carbon::now()->subMinutes($this->delayMinutes);
 
-            if (isset($card)) {
-                if ($now->timestamp <= $card->updated_at->timestamp) {
-                    // echo something ...
-
-                    return Command::INVALID;
-                }
+            if (isset($card) && $now->timestamp <= $card->updated_at->timestamp) {
+                // echo something ...
+                return Command::INVALID;
             }
         }
 
@@ -184,18 +174,17 @@ class ReviewsPublish extends Command
             $yes = $card->reviews()->where('point', '>=', 1)->count();
             $no  = $card->reviews()->where('point', '<=', -1)->count();
             $count = $yes + $no;
-            if ($count >= 50 && ($yes / $count) >= 0.80) {
-                $result = true;
-            } else if ($count >= 40 && ($yes / $count) >= 0.85) {
-                $result = true;
-            } else if ($count >= 30 && ($yes / $count) >= 0.90) {
+            $result = false;
+            if ($count >= 10 && ($yes / $count) >= 1.00) {
                 $result = true;
             } else if ($count >= 20 && ($yes / $count) >= 0.95) {
                 $result = true;
-            } else if ($count >= 10 && ($yes / $count) >= 1.00) {
+            } else if ($count >= 30 && ($yes / $count) >= 0.90) {
                 $result = true;
-            } else {
-                $result = false;
+            } else if ($count >= 40 && ($yes / $count) >= 0.85) {
+                $result = true;
+            } else if ($count >= 50 && ($yes / $count) >= 0.80) {
+                $result = true;
             }
 
             /**
@@ -287,9 +276,9 @@ class ReviewsPublish extends Command
          * 計算整個 Command 執行時間
          */
         $diffCarbonTimeSeconds = $startCarbonTime->diffInSeconds($endCarbonTime);
-        $diffHours = (int) ($diffCarbonTimeSeconds / 3600);
-        $diffMinutes = (int) (($diffCarbonTimeSeconds - ($diffHours * 3600)) / 60);
-        $diffSeconds = $diffCarbonTimeSeconds - ($diffHours * 3600) - ($diffMinutes * 60);
+        $diffHours = floor($diffCarbonTimeSeconds / 3600);
+        $diffMinutes = floor(($diffCarbonTimeSeconds - ($diffHours * 3600)) / 60);
+        $diffSeconds = $diffCarbonTimeSeconds % 60;
 
         /**
          * 輸出報表
