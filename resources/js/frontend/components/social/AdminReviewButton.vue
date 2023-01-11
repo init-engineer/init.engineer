@@ -54,7 +54,7 @@
       <div class="clearfix" v-if="states === 'complete'">
         <p
           class="float-left mb-0"
-          style="color: rgb(26, 188, 156)"
+          style="color: rgb(10, 255, 207)"
           v-show="voting === 'yes'"
         >
           您投了同意票
