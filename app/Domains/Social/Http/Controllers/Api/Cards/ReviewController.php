@@ -2,6 +2,7 @@
 
 namespace App\Domains\Social\Http\Controllers\Api\Cards;
 
+use App\Domains\Social\Jobs\Publish\BskyPublishJob;
 use App\Domains\Social\Jobs\Publish\DiscordPublishJob;
 use App\Domains\Social\Jobs\Publish\FacebookPublishJob;
 use App\Domains\Social\Jobs\Publish\PlurkPublishJob;
@@ -148,6 +149,13 @@ class ReviewController extends Controller
                      */
                     case Platform::TYPE_TELEGRAM:
                         dispatch(new TelegramPublishJob($model, $platform))->onQueue('highest');
+                        break;
+
+                    /**
+                     * 丟給負責發表文章到 Bsky 的 Job
+                     */
+                    case Platform::TYPE_BSKY:
+                        dispatch(new BskyPublishJob($card, $platform))->onQueue('highest');
                         break;
 
                     /**
