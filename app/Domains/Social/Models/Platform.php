@@ -91,6 +91,13 @@ class Platform extends Model
     public const TYPE_TELEGRAM = 'telegram';
 
     /**
+     * 分類: 本地 Bsky
+     *
+     * @var string
+     */
+    public const TYPE_BSKY = 'bsky';
+
+    /**
      * The table associated with the model.
      *
      * @var string

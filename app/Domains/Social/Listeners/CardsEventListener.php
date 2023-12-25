@@ -4,6 +4,7 @@ namespace App\Domains\Social\Listeners;
 
 use App\Domains\Social\Events\Cards\ArticleCreated;
 use App\Domains\Social\Events\Cards\PictureCreated;
+use App\Domains\Social\Jobs\Publish\BskyPublishJob;
 use App\Domains\Social\Jobs\Publish\DiscordPublishJob;
 use App\Domains\Social\Jobs\Publish\FacebookPublishJob;
 use App\Domains\Social\Jobs\Publish\PlurkPublishJob;
@@ -122,6 +123,12 @@ class CardsEventListener
                     dispatch(new TelegramPublishJob($card, $platform))->onQueue('highest');
                     break;
 
+                /**
+                 * 丟給負責發表文章到 Bsky 的 Job
+                 */
+                case Platform::TYPE_BSKY:
+                    dispatch(new BskyPublishJob($card, $platform))->onQueue('highest');
+                    break;
                 /**
                  * 其它並不在支援名單當中的社群
                  */

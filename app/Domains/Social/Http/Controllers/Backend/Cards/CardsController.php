@@ -6,6 +6,7 @@ use App\Domains\Social\Http\Requests\Backend\Cards\DeleteCardsRequest;
 use App\Domains\Social\Http\Requests\Backend\Cards\EditCardsRequest;
 use App\Domains\Social\Http\Requests\Backend\Cards\StoreCardsRequest;
 use App\Domains\Social\Http\Requests\Backend\Cards\UpdateCardsRequest;
+use App\Domains\Social\Jobs\Publish\BskyPublishJob;
 use App\Domains\Social\Jobs\Publish\DiscordPublishJob;
 use App\Domains\Social\Jobs\Publish\FacebookPublishJob;
 use App\Domains\Social\Jobs\Publish\PlurkPublishJob;
@@ -154,6 +155,12 @@ class CardsController extends Controller
                         break;
 
                     /**
+                     * 丟給負責發表文章到 Bsky 的 Job
+                     */
+                    case Platform::TYPE_BSKY:
+                        dispatch(new BskyPublishJob($cards, $platform))->onQueue('highest');
+                        break;
+                    /**
                      * 其它並不在支援名單當中的社群
                      */
                     default:
@@ -234,6 +241,12 @@ class CardsController extends Controller
                         dispatch(new TelegramPublishJob($cards, $platform))->onQueue('highest');
                         break;
 
+                    /**
+                     * 丟給負責發表文章到 Bsky 的 Job
+                     */
+                    case Platform::TYPE_BSKY:
+                        dispatch(new BskyPublishJob($cards, $platform))->onQueue('highest');
+                        break;
                     /**
                      * 其它並不在支援名單當中的社群
                      */
