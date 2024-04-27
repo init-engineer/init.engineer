@@ -101,84 +101,82 @@ class ReviewController extends Controller
             /**
              * 如果上一篇通過審核的文章距今已超過 60 分鐘，那就順便發表到社群平台上。
              */
-            if ($this->delayMode) {
-                $card = Cards::where('active', 1)->orderBy('updated_at', 'DESC')->first();
-                $now = Carbon::now()->subMinutes(60);
+            $card = Cards::where('active', 1)->orderBy('updated_at', 'DESC')->first();
+            $now = Carbon::now()->addMinutes(60);
+
+            if (isset($card) && $now->timestamp > $card->updated_at->timestamp) {
+                /**
+                 * 先把需要發表的社群平台抓出來
+                 */
+                $platforms = Platform::where('action', Platform::ACTION_PUBLISH)
+                    ->active()
+                    ->get();
     
-                if (isset($card) && $now->timestamp > $card->updated_at->timestamp) {
-                    /**
-                     * 先把需要發表的社群平台抓出來
-                     */
-                    $platforms = Platform::where('action', Platform::ACTION_PUBLISH)
-                        ->active()
-                        ->get();
-        
-                    /**
-                     * 根據社群平台逐一發佈
-                     */
-                    foreach ($platforms as $platform) {
-                        switch ($platform->type) {
+                /**
+                 * 根據社群平台逐一發佈
+                 */
+                foreach ($platforms as $platform) {
+                    switch ($platform->type) {
+                        /**
+                         * 丟給負責發表文章到 Facebook 的 Job
+                         */
+                        case Platform::TYPE_FACEBOOK:
+                            dispatch(new FacebookPublishJob($model, $platform))->onQueue('highest');
+                            break;
+    
+                        /**
+                         * 丟給負責發表文章到 Twitter 的 Job
+                         */
+                        case Platform::TYPE_TWITTER:
+                            dispatch(new TwitterPublishJob($model, $platform))->onQueue('highest');
+                            break;
+    
+                        /**
+                         * 丟給負責發表文章到 Plurk 的 Job
+                         */
+                        case Platform::TYPE_PLURK:
+                            dispatch(new PlurkPublishJob($model, $platform))->onQueue('highest');
+                            break;
+    
+                        /**
+                         * 丟給負責發表文章到 Discord 的 Job
+                         */
+                        case Platform::TYPE_DISCORD:
+                            dispatch(new DiscordPublishJob($model, $platform))->onQueue('highest');
+                            break;
+    
+                        /**
+                         * 丟給負責發表文章到 Tumblr 的 Job
+                         */
+                        case Platform::TYPE_TUMBLR:
+                            dispatch(new TumblrPublishJob($model, $platform))->onQueue('highest');
+                            break;
+    
+                        /**
+                         * 丟給負責發表文章到 Telegram 的 Job
+                         */
+                        case Platform::TYPE_TELEGRAM:
+                            dispatch(new TelegramPublishJob($model, $platform))->onQueue('highest');
+                            break;
+    
+                        /**
+                         * 丟給負責發表文章到 Bsky 的 Job
+                         */
+                        case Platform::TYPE_BSKY:
+                            dispatch(new BskyPublishJob($card, $platform))->onQueue('highest');
+                            break;
+    
+                        /**
+                         * 其它並不在支援名單當中的社群
+                         */
+                        default:
                             /**
-                             * 丟給負責發表文章到 Facebook 的 Job
+                             * 直接把資料寫入 Activity log 以便日後查核
                              */
-                            case Platform::TYPE_FACEBOOK:
-                                dispatch(new FacebookPublishJob($model, $platform))->onQueue('highest');
-                                break;
-        
-                            /**
-                             * 丟給負責發表文章到 Twitter 的 Job
-                             */
-                            case Platform::TYPE_TWITTER:
-                                dispatch(new TwitterPublishJob($model, $platform))->onQueue('highest');
-                                break;
-        
-                            /**
-                             * 丟給負責發表文章到 Plurk 的 Job
-                             */
-                            case Platform::TYPE_PLURK:
-                                dispatch(new PlurkPublishJob($model, $platform))->onQueue('highest');
-                                break;
-        
-                            /**
-                             * 丟給負責發表文章到 Discord 的 Job
-                             */
-                            case Platform::TYPE_DISCORD:
-                                dispatch(new DiscordPublishJob($model, $platform))->onQueue('highest');
-                                break;
-        
-                            /**
-                             * 丟給負責發表文章到 Tumblr 的 Job
-                             */
-                            case Platform::TYPE_TUMBLR:
-                                dispatch(new TumblrPublishJob($model, $platform))->onQueue('highest');
-                                break;
-        
-                            /**
-                             * 丟給負責發表文章到 Telegram 的 Job
-                             */
-                            case Platform::TYPE_TELEGRAM:
-                                dispatch(new TelegramPublishJob($model, $platform))->onQueue('highest');
-                                break;
-        
-                            /**
-                             * 丟給負責發表文章到 Bsky 的 Job
-                             */
-                            case Platform::TYPE_BSKY:
-                                dispatch(new BskyPublishJob($card, $platform))->onQueue('highest');
-                                break;
-        
-                            /**
-                             * 其它並不在支援名單當中的社群
-                             */
-                            default:
-                                /**
-                                 * 直接把資料寫入 Activity log 以便日後查核
-                                 */
-                                activity('social cards - undefined publish')
-                                    ->performedOn($card)
-                                    ->log(json_encode($model));
-                                break;
-                        }
+                            activity('social cards - undefined publish')
+                                ->performedOn($card)
+                                ->log(json_encode($model));
+                            break;
                     }
                 }
             }
