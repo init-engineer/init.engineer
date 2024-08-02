@@ -254,12 +254,12 @@ class ImagesGenerator extends ImagesContract
 
             /** 俐方體 11 號 */
             case 'cubic-11':
-                $this->fontPath = public_path('fonts/Cubic_11_1.010_R.ttf');
+                $this->fontPath = public_path('fonts/Cubic_11.ttf');
                 break;
 
             /** 粉圓體 */
             case 'huninn':
-                $this->fontPath = public_path('fonts/jf-openhuninn-1.1.ttf');
+                $this->fontPath = public_path('fonts/jf-openhuninn.ttf');
                 break;
 
             /** 未來熒黑 */
