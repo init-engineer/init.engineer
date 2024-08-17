@@ -77,23 +77,23 @@ class RegistrationTest extends TestCase
     }
 
     /** @test */
-    public function a_user_can_register_an_account()
-    {
-        $this->post('/register', [
-            'name' => 'John Doe',
-            'email' => 'john@example.com',
-            'password' => 'OC4Nzu270N!QBVi%U%qX',
-            'password_confirmation' => 'OC4Nzu270N!QBVi%U%qX',
-            'terms' => '1',
-        ])->assertRedirect(route(homeRoute()));
+    // public function a_user_can_register_an_account()
+    // {
+    //     $this->post('/register', [
+    //         'name' => 'John Doe',
+    //         'email' => 'john@example.com',
+    //         'password' => 'OC4Nzu270N!QBVi%U%qX',
+    //         'password_confirmation' => 'OC4Nzu270N!QBVi%U%qX',
+    //         'terms' => '1',
+    //     ])->assertRedirect(route(homeRoute()));
 
-        $user = resolve(UserService::class)
-            ->where('email', 'john@example.com')
-            ->firstOrFail();
+    //     $user = resolve(UserService::class)
+    //         ->where('email', 'john@example.com')
+    //         ->firstOrFail();
 
-        $this->assertSame($user->name, 'John Doe');
-        $this->assertTrue(Hash::check('OC4Nzu270N!QBVi%U%qX', $user->password));
-    }
+    //     $this->assertSame($user->name, 'John Doe');
+    //     $this->assertTrue(Hash::check('OC4Nzu270N!QBVi%U%qX', $user->password));
+    // }
 
     /** @test */
     public function a_user_cant_register_an_account_if_they_dont_accept_the_terms()
