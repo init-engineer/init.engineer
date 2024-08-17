@@ -35,6 +35,18 @@ class RegisterController extends Controller
      */
     protected $userService;
 
+    protected $allowedDomains = [
+        'gmail.com',
+        'yahoo.com',
+        'yahoo.com.tw',
+        'hotmail.com',
+        'hotmail.com.tw',
+        'msn.com',
+        'outlook.com',
+        'icloud.com',
+        'github.com',
+    ];
+
     /**
      * RegisterController constructor.
      *
@@ -76,11 +88,35 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:100'],
-            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')],
+            'name' => [
+                'required',
+                'string',
+                'max:100',
+            ],
+            'email' => [
+                'required',
+                'string',
+                'email',
+                'max:255',
+                Rule::unique('users'),
+                function($attribute, $value, $fail) {
+                    $allowedDomains = $this->allowedDomains;
+                    $domain = substr(strrchr($value, "@"), 1);
+                    if (!in_array($domain, $allowedDomains) &&
+                        !(str_ends_with($domain, '.edu') || preg_match('/\.edu\./', $domain))) {
+                        $fail('The email domain is not allowed.');
+                    }
+                },
+            ],
             'password' => array_merge(['max:100'], PasswordRules::register($data['email'] ?? null)),
-            'terms' => ['required', 'in:1'],
-            'g-recaptcha-response' => ['required_if:captcha_status,true', new Captcha],
+            'terms' => [
+                'required',
+                'in:1',
+            ],
+            'g-recaptcha-response' => [
+                'required_if:captcha_status,true',
+                new Captcha,
+            ],
         ], [
             'terms.required' => __('You must accept the Terms & Conditions.'),
             'g-recaptcha-response.required_if' => __('validation.required', ['attribute' => 'captcha']),
