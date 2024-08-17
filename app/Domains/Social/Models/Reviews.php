@@ -45,6 +45,8 @@ class Reviews extends Model
         'card_id',
         'point',
         'config',
+        'ip_address',
+        'user_agent',
     ];
 
     /**

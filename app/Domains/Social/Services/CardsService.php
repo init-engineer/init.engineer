@@ -101,6 +101,8 @@ class CardsService extends BaseService
                 'content' => $data['content'],
                 'config' => $data['config'],
                 'picture' => $data['picture'],
+                'ip_address' => $data['ip_address'],
+                'user_agent' => $data['user_agent'],
             ]);
         } catch (Exception $e) {
             DB::rollBack();
@@ -262,6 +264,8 @@ class CardsService extends BaseService
             'picture' => $this->createImage($data['picture']),
             'active' => $data['active'] ?? false,
             'blockade' => $data['blockade'] ?? false,
+            'ip_address' => $data['ip_address'] ?? null,
+            'user_agent' => $data['user_agent'] ?? null,
         ]);
     }
 

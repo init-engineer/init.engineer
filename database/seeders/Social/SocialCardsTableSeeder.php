@@ -47,6 +47,8 @@ class SocialCardsTableSeeder extends Seeder
                 'blockade_by' => null,
                 'blockade_remarks' => null,
                 'blockade_at' => null,
+                'ip_address' => '127.0.0.1',
+                'user_agent' => 'Mozilla/5.0',
             ]);
 
             Cards::create([
@@ -72,6 +74,8 @@ class SocialCardsTableSeeder extends Seeder
                 'blockade_by' => null,
                 'blockade_remarks' => null,
                 'blockade_at' => null,
+                'ip_address' => '127.0.0.1',
+                'user_agent' => 'Mozilla/5.0',
             ]);
 
             Cards::create([
@@ -106,6 +110,8 @@ class SocialCardsTableSeeder extends Seeder
                 'blockade_by' => null,
                 'blockade_remarks' => null,
                 'blockade_at' => null,
+                'ip_address' => '127.0.0.1',
+                'user_agent' => 'Mozilla/5.0',
             ]);
 
             Cards::create([
@@ -131,6 +137,8 @@ class SocialCardsTableSeeder extends Seeder
                 'blockade_by' => null,
                 'blockade_remarks' => null,
                 'blockade_at' => null,
+                'ip_address' => '127.0.0.1',
+                'user_agent' => 'Mozilla/5.0',
             ]);
 
             Cards::create([
@@ -156,6 +164,8 @@ class SocialCardsTableSeeder extends Seeder
                 'blockade_by' => null,
                 'blockade_remarks' => null,
                 'blockade_at' => null,
+                'ip_address' => '127.0.0.1',
+                'user_agent' => 'Mozilla/5.0',
             ]);
 
             Cards::create([

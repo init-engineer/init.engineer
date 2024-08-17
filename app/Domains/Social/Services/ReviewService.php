@@ -119,6 +119,8 @@ class ReviewService extends BaseService
                 'model_id' => $data['model_id'],
                 'card_id' => $data['card_id'],
                 'point' => $data['point'],
+                'ip_address' => $data['ip_address'],
+                'user_agent' => $data['user_agent'],
             ]);
         } catch (Exception $e) {
             DB::rollBack();
@@ -197,6 +199,8 @@ class ReviewService extends BaseService
             'card_id' => $data['card_id'],
             'point' => $data['point'],
             'config' => isset($data['config']) ? json_encode($data['config']) : '{}',
+            'ip_address' => $data['ip_address'] ?? null,
+            'user_agent' => $data['user_agent'] ?? null,
         ]);
     }
 }

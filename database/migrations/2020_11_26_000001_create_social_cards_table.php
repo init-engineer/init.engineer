@@ -88,6 +88,8 @@ class CreateSocialCardsTable extends Migration
             $table->unsignedBigInteger('blockade_by')->nullable()->comment('被誰封鎖');
             $table->string('blockade_remarks')->nullable()->comment('封鎖原因');
             $table->timestamp('blockade_at')->nullable()->comment('在什麼時候被封鎖');
+            $table->string('ip_address')->nullable()->comment('IP Address');
+            $table->string('user_agent')->nullable()->comment('User Agent');
             $table->timestamps();
             $table->softDeletes();
 
@@ -146,6 +148,8 @@ class CreateSocialCardsTable extends Migration
             $table->unsignedBigInteger('card_id')->comment('文章 ID');
             $table->integer('point')->default(0)->comment('票數權重');
             $table->json('config')->comment('設定');
+            $table->string('ip_address')->nullable()->comment('IP Address');
+            $table->string('user_agent')->nullable()->comment('User Agent');
             $table->timestamps();
             $table->softDeletes();
 

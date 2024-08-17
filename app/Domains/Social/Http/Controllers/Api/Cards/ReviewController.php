@@ -111,7 +111,7 @@ class ReviewController extends Controller
                 $platforms = Platform::where('action', Platform::ACTION_PUBLISH)
                     ->active()
                     ->get();
-    
+
                 /**
                  * 根據社群平台逐一發佈
                  */
@@ -123,49 +123,49 @@ class ReviewController extends Controller
                         case Platform::TYPE_FACEBOOK:
                             dispatch(new FacebookPublishJob($model, $platform))->onQueue('highest');
                             break;
-    
+
                         /**
                          * 丟給負責發表文章到 Twitter 的 Job
                          */
                         case Platform::TYPE_TWITTER:
                             dispatch(new TwitterPublishJob($model, $platform))->onQueue('highest');
                             break;
-    
+
                         /**
                          * 丟給負責發表文章到 Plurk 的 Job
                          */
                         case Platform::TYPE_PLURK:
                             dispatch(new PlurkPublishJob($model, $platform))->onQueue('highest');
                             break;
-    
+
                         /**
                          * 丟給負責發表文章到 Discord 的 Job
                          */
                         case Platform::TYPE_DISCORD:
                             dispatch(new DiscordPublishJob($model, $platform))->onQueue('highest');
                             break;
-    
+
                         /**
                          * 丟給負責發表文章到 Tumblr 的 Job
                          */
                         case Platform::TYPE_TUMBLR:
                             dispatch(new TumblrPublishJob($model, $platform))->onQueue('highest');
                             break;
-    
+
                         /**
                          * 丟給負責發表文章到 Telegram 的 Job
                          */
                         case Platform::TYPE_TELEGRAM:
                             dispatch(new TelegramPublishJob($model, $platform))->onQueue('highest');
                             break;
-    
+
                         /**
                          * 丟給負責發表文章到 Bsky 的 Job
                          */
                         case Platform::TYPE_BSKY:
                             dispatch(new BskyPublishJob($card, $platform))->onQueue('highest');
                             break;
-    
+
                         /**
                          * 其它並不在支援名單當中的社群
                          */
@@ -186,6 +186,8 @@ class ReviewController extends Controller
             'model_id' => $request->user()->id,
             'card_id' => $card->id,
             'point' => ((bool) $status) ? 1 : -1,
+            'ip_address' => $request->ip(),
+            'user_agent' => $request->header('User-Agent'),
         ]);
 
         return response()->json([
