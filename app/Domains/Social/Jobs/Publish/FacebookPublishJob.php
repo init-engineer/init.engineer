@@ -181,7 +181,7 @@ class FacebookPublishJob implements ShouldQueue
          * 建立 Discord 宣傳內容
          */
         $message = $contentFluent->reset()
-            ->footer(sprintf('💖 %s 官方 Discord 歡迎在這找到你的同溫層！', appName()))
+            ->footer(sprintf('👾 %s 官方 Discord 歡迎在這找到你的同溫層！', appName()))
             ->footer('👉 https://discord.gg/tPhnrs2')
             ->build();
 
@@ -191,15 +191,17 @@ class FacebookPublishJob implements ShouldQueue
         dispatch(new FacebookPushCommentJob($this->platform, $platformCard, $message))->onQueue('medium');
 
         /**
-         * 建立文章宣傳內容
+         * 建立 Telegram 宣傳內容
          */
         $message = $contentFluent->reset()
-            ->footer('💖 全平台留言、文章詳細內容')
-            ->footer('👉 ' . route('frontend.social.cards.show', ['id' => $this->cards->id]))
+            ->footer(sprintf('✈️ %s 官方 Telegram 頻道歡迎在這找到你的同溫層！', appName()))
+            ->footer('👉 https://t.me/init_engineer')
+            ->footer(sprintf('✈️ %s 官方 Telegram 聊天群歡迎在這找到你的同溫層！', appName()))
+            ->footer('👉 https://t.me/init_engineer_chat')
             ->build();
 
         /**
-         * 對社群文章執行文章宣傳留言
+         * 對社群文章執行 Telegram 宣傳留言
          */
         dispatch(new FacebookPushCommentJob($this->platform, $platformCard, $message))->onQueue('medium');
 

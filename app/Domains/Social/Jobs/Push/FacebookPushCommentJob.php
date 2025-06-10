@@ -73,38 +73,10 @@ class FacebookPushCommentJob implements ShouldQueue
              * Config 有問題，無法處理
              */
             activity('social cards - facebook push message error')
-                ->performedOn($this->cards)
+                ->performedOn($this->platformCard)
                 ->log(json_encode($this->platform));
 
             return;
-        }
-
-        /**
-         * 在執行通知之前，先看看 Cache 有沒有已經暫存的 access token
-         * 如果有已經暫存的 access token，直接沿用原本的
-         * 如果沒有或已經過期，那麼需要重新獲取新的
-         * https://developers.facebook.com/docs/pages/access-tokens
-         */
-        $userId = $this->platform->config['user_id'];
-        $key = sprintf("facebook_access_token_%s", $userId);
-        $accessToken = Cache::get($key);
-        if ($accessToken === null) {
-            /**
-             * access token 並不存在或已經過期，需要重新獲取新的
-             */
-            $url = sprintf(
-                "https://graph.facebook.com/%s?fields=access_token&access_token=%s",
-                $userId,
-                $this->platform->config['access_token'],
-            );
-            $response = Http::get($url);
-            $accessToken = $response->json()['access_token'];
-
-            /**
-             * 將新申請的 access token 存入 Cache
-             */
-            $expiresAt = Carbon::now()->addMinutes(60);
-            Cache::put($key, $accessToken, $expiresAt);
         }
 
         /**
@@ -112,7 +84,7 @@ class FacebookPushCommentJob implements ShouldQueue
          */
         $url = sprintf('https://graph.facebook.com/%s/comments', $this->platformCard->platform_string_id);
         $response = Http::post($url, [
-            'access_token' => $accessToken,
+            'access_token' => $this->platform->config['access_token'],
             'message' => $this->message,
         ]);
 

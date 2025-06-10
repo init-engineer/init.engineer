@@ -77,7 +77,7 @@ class TwitterPushCommentJob implements ShouldQueue
              * Config 有問題，無法處理
              */
             activity('social cards - twitter push content error')
-                ->performedOn($this->cards)
+                ->performedOn($this->platformCard)
                 ->log(json_encode($this->platform));
 
             return;
