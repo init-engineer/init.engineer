@@ -82,7 +82,7 @@ class FacebookPushCommentJob implements ShouldQueue
         /**
          * 對社群文章執行留言
          */
-        $url = sprintf('https://graph.facebook.com/%s/comments', $this->platformCard->platform_string_id);
+        $url = sprintf('https://graph.facebook.com/%s_%s/comments', $this->platform->config['user_id'], $this->platformCard->platform_string_id);
         $response = Http::post($url, [
             'access_token' => $this->platform->config['access_token'],
             'message' => $this->message,
