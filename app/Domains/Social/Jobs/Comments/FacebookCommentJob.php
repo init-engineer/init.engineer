@@ -63,7 +63,6 @@ class FacebookCommentJob implements ShouldQueue
      *
      * @param Platform $platform
      * @param PlatformCards $platformCards
-     * @param string $graphVersion
      * @param string $userId
      * @param string $postId
      * @param string $accessToken
@@ -71,11 +70,16 @@ class FacebookCommentJob implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($platform, $platformCards, string $graphVersion, string $userId, string $postId, string $accessToken, string $after = null)
-    {
+    public function __construct(
+        $platform,
+        $platformCards,
+        string $userId,
+        string $postId,
+        string $accessToken,
+        ?string $after = null
+    ) {
         $this->platform = $platform;
         $this->platformCards = $platformCards;
-        $this->graphVersion = $graphVersion;
         $this->userId = $userId;
         $this->postId = $postId;
         $this->accessToken = $accessToken;
@@ -99,8 +103,7 @@ class FacebookCommentJob implements ShouldQueue
          * 整理 $url 呼叫的 API URL
          */
         $url = sprintf(
-            'https://graph.facebook.com/%s/%s_%s/comments?access_token=%s&limit=25&fields=%s',
-            $this->graphVersion,
+            'https://graph.facebook.com/%s_%s/comments?access_token=%s&limit=25&fields=%s',
             $this->userId,
             $this->postId,
             $this->accessToken,
@@ -130,7 +133,7 @@ class FacebookCommentJob implements ShouldQueue
              */
             if (isset($responseBody['paging']['next'])) {
                 $cursorsAfter = isset($responseBody['paging']['cursors']) ? $responseBody['paging']['cursors']['after'] : null;
-                dispatch(new FacebookCommentJob($this->platform, $this->platformCards, $this->graphVersion, $this->userId, $this->postId, $this->accessToken, $cursorsAfter))->onQueue('lowest');
+                dispatch(new FacebookCommentJob($this->platform, $this->platformCards, $this->userId, $this->postId, $this->accessToken, $cursorsAfter))->onQueue('lowest');
             }
 
             /**
