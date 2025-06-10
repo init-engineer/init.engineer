@@ -13,6 +13,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Http;
+use Storage;
 
 /**
  * Class TelegramPublishJob.
@@ -126,10 +127,11 @@ class TelegramPublishJob implements ShouldQueue
             default => 'application/octet-stream'
         };
 
+        $path = str_replace(appUrl() . '/storage', 'public', $this->cards->getPicture());
         $response = Http::attach(
             'photo',
-            $this->cards->getPicture(),
-            basename($this->cards->getPicture()),
+            Storage::get($path),
+            basename($path),
             ['Content-Type' => $contentType]
         )->post($url, [
             'chat_id' => $this->platform->config['chat_id'],
