@@ -113,9 +113,26 @@ class TelegramPublishJob implements ShouldQueue
          */
         $token = $this->platform->config['access_token'];
         $url = "https://api.telegram.org/bot$token/sendPhoto";
-        $response = Http::post($url, [
+
+        // 取得檔案副檔名
+        $extension = pathinfo($this->cards->getPicture(), PATHINFO_EXTENSION);
+
+        // 根據副檔名設定 Content-Type
+        $contentType = match(strtolower($extension)) {
+            'jpg', 'jpeg' => 'image/jpeg',
+            'png' => 'image/png',
+            'gif' => 'image/gif',
+            'webp' => 'image/webp',
+            default => 'application/octet-stream'
+        };
+
+        $response = Http::attach(
+            'photo',
+            $this->cards->getPicture(),
+            basename($this->cards->getPicture()),
+            ['Content-Type' => $contentType]
+        )->post($url, [
             'chat_id' => $this->platform->config['chat_id'],
-            'photo' => $this->cards->getPicture(),
             'caption' => $caption,
         ]);
 
