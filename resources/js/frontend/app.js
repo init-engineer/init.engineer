@@ -48,11 +48,8 @@ new Typed('#typed', {
      * @property {string} stringsElement ID of element containing string children
      */
     strings: [
-        'init-engineer-cli -help',
-        'init-engineer-cli create post',
-        'init-engineer-cli login',
-        'init-engineer-cli register',
-        'init-engineer-cli ban -u byStarTW',
+        'init-engineer-cli create post "光復香港，時代革命"',
+        'init-engineer-cli create post "習近平小熊維尼"',
     ],
     stringsElement: null,
 
