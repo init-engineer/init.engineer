@@ -43,7 +43,7 @@
             <div class="col-md-8">
                 @if ($cards->isActive())
                     {{-- 社群連結 --}}
-                    <card-tag-list :cid="{{ $cards->id }}"></card-tag-list>
+                    {{-- <card-tag-list :cid="{{ $cards->id }}"></card-tag-list> --}}
                 @endif
 
                 {{-- 文章主體 --}}
