@@ -21,7 +21,7 @@
 <x-livewire-tables::bs5.table.cell style="width: 480px; min-width: 480px;">
     {{-- 文章內容 --}}
     <a href="{{ route('frontend.social.cards.show', ['id' => $row->id]) }}">
-        <p class="mb-0">{{ Str::limit($row->content, 300, '...') }}</p>
+        <p class="mb-0">{{ Str::limit($row->content, 30, '...') }}</p>
     </a>
 </x-livewire-tables::bs5.table.cell>
 
