@@ -73,7 +73,7 @@
 
                     {{-- 文章內容 --}}
                     <div class="card-body">
-                        <pre class="card-text">{{ $cards->content }}</pre>
+                        <pre class="card-text">{{ $cards->content }}<br />更多精彩文章，盡在純靠北工程師。</pre>
                         <hr class="border" />
                         <h3 class="text-center">純靠北工程師 版權宣告</h3>
 
