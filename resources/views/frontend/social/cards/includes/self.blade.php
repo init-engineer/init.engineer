@@ -28,7 +28,7 @@
         @endif
 
         {{-- 文章內容 --}}
-        <p class="mb-0">{{ Str::limit($row->content, 30, '...') }}</p>
+        <p class="mb-0">{{ Str::limit($row->content, 300, '...') }}</p>
     </a>
 </x-livewire-tables::bs5.table.cell>
 
