@@ -73,8 +73,8 @@
 
                     {{-- 文章內容 --}}
                     <div class="card-body">
-                        {{-- <pre class="card-text">{{ $cards->content }}</pre> --}}
-                        {{-- <hr class="border" /> --}}
+                        <pre class="card-text">{{ $cards->content }}</pre>
+                        <hr class="border" />
                         <h3 class="text-center">純靠北工程師 版權宣告</h3>
 
                         <p><strong>最後更新日期：2025年9月25日</strong></p>
