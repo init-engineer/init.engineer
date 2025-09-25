@@ -131,7 +131,7 @@
                                 <h4 class="float-left my-0">#{{ appName() . base_convert($card->id, 10, 36) }}</h4>
                                 <p class="float-right my-0">@displayDate($card->updated_at, 'Y/m/d h:s:i') ({{ $card->updated_at->diffForHumans() }})</p>
                             </div>
-                            <p class="mb-0">{{ $card->getContent(30) }}</p>
+                            <p class="mb-0">{{ $card->getContent(200) }}</p>
                         </a>
                     </div>
                 </div>
@@ -157,7 +157,7 @@
                                     <h4 class="float-left my-0">#{{ appName() . base_convert($card->id, 10, 36) }}</h4>
                                     <p class="float-right my-0">@displayDate($card->updated_at, 'Y/m/d h:s:i') ({{ $card->updated_at->diffForHumans() }})</p>
                                 </div>
-                                <p class="mb-0">{{ $card->getContent(30) }}</p>
+                                <p class="mb-0">{{ $card->getContent(200) }}</p>
                             </a>
                         </div>
                     </div>
