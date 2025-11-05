@@ -96,6 +96,16 @@ class TelegramPublishJob implements ShouldQueue
             ->build();
 
         /**
+         * Telegram caption 長度限制為 1024 字元
+         * 如果超過限制，截斷內容並加上省略提示
+         */
+        if (mb_strlen($caption) > 1024) {
+            $footerText = "\n\n...(內容過長，請點擊連結查看完整內容)\n💖 全平台留言、文章詳細內容\n👉 " . route('frontend.social.cards.show', ['id' => $this->cards->id]);
+            $maxLength = 1024 - mb_strlen($footerText);
+            $caption = mb_substr($caption, 0, $maxLength) . $footerText;
+        }
+
+        /**
          * 判斷文章是否已經發表出去
          */
         if ($platformCard = $platformCardService->findPlatformCardById($this->platform->id, $this->cards->id)) {
@@ -146,16 +156,28 @@ class TelegramPublishJob implements ShouldQueue
             ->log($response->body());
 
         /**
+         * 檢查 API 回應是否成功
+         */
+        $responseData = $response->json();
+        if (!$response->successful() || !isset($responseData['result']['message_id'])) {
+            activity('social cards - telegram publish error')
+                ->performedOn($this->cards)
+                ->log('Telegram API response failed or missing message_id: ' . $response->body());
+
+            return;
+        }
+
+        /**
          * 建立 PlatformCards 紀錄
          */
         $platformCard = $platformCardService->store([
             'platform_type' => Platform::TYPE_TELEGRAM,
             'platform_id' => $this->platform->id,
-            'platform_string_id' => $response->json()['result']['message_id'],
+            'platform_string_id' => $responseData['result']['message_id'],
             'platform_url' => sprintf(
                 'https://t.me/%s/%s',
                 $this->platform->config['pages_name'],
-                $response->json()['result']['message_id'],
+                $responseData['result']['message_id'],
             ),
             'card_id' => $this->cards->id,
         ]);
