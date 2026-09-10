@@ -180,30 +180,30 @@ class FacebookPublishJob implements ShouldQueue
         /**
          * 建立 Discord 宣傳內容
          */
-        $message = $contentFluent->reset()
-            ->footer(sprintf('👾 %s 官方 Discord 歡迎在這找到你的同溫層！', appName()))
-            ->footer('👉 https://discord.gg/tPhnrs2')
-            ->build();
+        // $message = $contentFluent->reset()
+        //     ->footer(sprintf('👾 %s 官方 Discord 歡迎在這找到你的同溫層！', appName()))
+        //     ->footer('👉 https://discord.gg/tPhnrs2')
+        //     ->build();
 
         /**
          * 對社群文章執行 Discord 宣傳留言
          */
-        dispatch(new FacebookPushCommentJob($this->platform, $platformCard, $message))->onQueue('medium');
+        // dispatch(new FacebookPushCommentJob($this->platform, $platformCard, $message))->onQueue('medium');
 
         /**
          * 建立 Telegram 宣傳內容
          */
-        $message = $contentFluent->reset()
-            ->footer(sprintf('✈️ %s 官方 Telegram 頻道歡迎在這找到你的同溫層！', appName()))
-            ->footer('👉 https://t.me/init_engineer')
-            ->footer(sprintf('✈️ %s 官方 Telegram 聊天群歡迎在這找到你的同溫層！', appName()))
-            ->footer('👉 https://t.me/init_engineer_chat')
-            ->build();
+        // $message = $contentFluent->reset()
+        //     ->footer(sprintf('✈️ %s 官方 Telegram 頻道歡迎在這找到你的同溫層！', appName()))
+        //     ->footer('👉 https://t.me/init_engineer')
+        //     ->footer(sprintf('✈️ %s 官方 Telegram 聊天群歡迎在這找到你的同溫層！', appName()))
+        //     ->footer('👉 https://t.me/init_engineer_chat')
+        //     ->build();
 
         /**
          * 對社群文章執行 Telegram 宣傳留言
          */
-        dispatch(new FacebookPushCommentJob($this->platform, $platformCard, $message))->onQueue('medium');
+        // dispatch(new FacebookPushCommentJob($this->platform, $platformCard, $message))->onQueue('medium');
 
         return;
     }
